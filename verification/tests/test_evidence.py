@@ -180,3 +180,34 @@ class Dup: pass
  def test_contains_tokens_still_enforced(self):
   with self.assertRaises(ValueError):
    evidence.select_anchor(self.SRC,self.anchor('top',contains=['not-present']))
+
+
+class IndependentCorroborationTests(unittest.TestCase):
+ """Where a publisher ships no code, independent implementations must corroborate instead."""
+ def sources(self,*specs):
+  return [{'role':r,'repo':repo} for r,repo in specs]
+ def test_publisher_plus_independent_framework_still_satisfies(self):
+  s=self.sources(('publisher_code','deepseek-ai/DeepSeek-V3'),('framework_code','sgl-project/sglang'))
+  self.assertTrue(evidence.dual_code_roles(s,publisher_ships_code=True))
+ def test_publisher_path_still_rejects_a_single_organisation(self):
+  s=self.sources(('publisher_code','acme/model'),('framework_code','acme/server'))
+  self.assertFalse(evidence.dual_code_roles(s,publisher_ships_code=True))
+ def test_config_only_publisher_is_corroborated_by_two_organisations(self):
+  # Qwen ships configuration and no modeling code, so no publisher implementation can ever
+  # exist. Two independent reimplementations agreeing is the available corroboration.
+  s=self.sources(('framework_code','huggingface/transformers'),('framework_code','sgl-project/sglang'))
+  self.assertTrue(evidence.dual_code_roles(s,publisher_ships_code=False))
+ def test_config_only_publisher_still_needs_more_than_one_organisation(self):
+  s=self.sources(('framework_code','huggingface/transformers'),('framework_code','huggingface/transformers'))
+  self.assertFalse(evidence.dual_code_roles(s,publisher_ships_code=False))
+ def test_the_relaxation_does_not_leak_to_publishers_that_do_ship_code(self):
+  # DeepSeek publishes modeling code, so two frameworks must not substitute for reading it.
+  s=self.sources(('framework_code','huggingface/transformers'),('framework_code','sgl-project/sglang'))
+  self.assertFalse(evidence.dual_code_roles(s,publisher_ships_code=True))
+ def test_policy_set_matches_the_recorded_audit(self):
+  # The policy root must not claim a publisher ships no code without the evidence saying so.
+  root=Path(__file__).resolve().parents[2]
+  audit=evidence.loads((root/'evidence/publisher-code/audit.json').read_text())
+  config_only={r['repo'] for r in audit['records'] if not r['python_files']}
+  self.assertEqual(evidence.CONFIG_ONLY_PUBLISHERS,config_only)
+  self.assertTrue(config_only,'audit recorded no config-only publisher')

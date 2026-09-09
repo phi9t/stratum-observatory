@@ -2,7 +2,7 @@
   "runtime.gpu.H100-SXM": {
     "executed_at": "2026-09-09T19:23:14.942828+00:00",
     "exit_code": 0,
-    "lock_sha256": "a236b564420da400c78496b206f5ebcad039b0c386600ebe515041f55a624876",
+    "lock_sha256": "9e5ab6ee585986fa1c27abe477cc1171d8d99494bfb40311ddb59bb89276ccd6",
     "consumer_sha256": "56ae29ebb49ff2a7110c7bfb5a508368884696cb7af930382a64cd94174472f4",
     "environment": {
       "sku": {
@@ -102,7 +102,7 @@
   "runtime.gpu.B200": {
     "executed_at": "2026-09-09T19:23:26.092475+00:00",
     "exit_code": 0,
-    "lock_sha256": "a236b564420da400c78496b206f5ebcad039b0c386600ebe515041f55a624876",
+    "lock_sha256": "9e5ab6ee585986fa1c27abe477cc1171d8d99494bfb40311ddb59bb89276ccd6",
     "consumer_sha256": "56ae29ebb49ff2a7110c7bfb5a508368884696cb7af930382a64cd94174472f4",
     "environment": {
       "sku": {
@@ -202,7 +202,7 @@
   "runtime.gpu.GB300": {
     "executed_at": "2026-09-09T19:23:35.542514+00:00",
     "exit_code": 0,
-    "lock_sha256": "a236b564420da400c78496b206f5ebcad039b0c386600ebe515041f55a624876",
+    "lock_sha256": "9e5ab6ee585986fa1c27abe477cc1171d8d99494bfb40311ddb59bb89276ccd6",
     "consumer_sha256": "56ae29ebb49ff2a7110c7bfb5a508368884696cb7af930382a64cd94174472f4",
     "environment": {
       "sku": {

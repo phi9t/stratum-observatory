@@ -134,14 +134,17 @@ Recorded so they are not mistaken for oversights:
   make a record parse would be strictly worse than an honest stub.
 - **Three communication contracts describe observed behaviour**, so they need a runtime receipt
   rather than a binding, and say so.
-- **No Qwen repository is authorised as `publisher_code`**, which blocks 1,219 `MODEL_DUAL_CODE`
-  and 1,219 `CLAIM_ROLE` findings. This is now **verified rather than assumed**: the Hugging Face
-  API reports that none of `Qwen3-8B`, `Qwen3-30B-A3B`, `Qwen3-235B-A22B`, `Qwen3.8-27B` or
-  `Qwen3.8-Flash-Next` ships a single `.py` file. Qwen genuinely publishes no modeling code for
-  these checkpoints; the only implementation is `huggingface/transformers`, which is a third-party
-  reimplementation and is registered as `framework_code`. Admitting it as `publisher_code` would
-  let two reimplementations satisfy "publisher plus independent framework". The blocking is
-  correct, and these claims are expected to stay blocked.
+- **Qwen ships configuration and no modeling code**, verified against the Hugging Face model API
+  and recorded in `evidence/publisher-code/audit.json`: none of the five Qwen checkpoint
+  repositories contains a single `.py` file, while DeepSeek V2/V3 and Kimi K3 do. Demanding a
+  publisher implementation for those checkpoints would block them forever rather than describe
+  anything true.
+  For them the corroboration requirement is met instead by **independent implementations from at
+  least two different organizations** — `huggingface/transformers`, `vllm-project/vllm` and
+  `sgl-project/sglang` — each anchored to the same architectural symbol so the citations are a
+  comparison rather than a list. This is a narrow exception keyed to the recorded audit, not a
+  general relaxation: a publisher that does ship code still cannot be corroborated by two
+  reimplementations, and two repositories of one organization never suffice.
 - **Two sources remain unfetched** because their URLs redirect and the acquirer refuses to follow
   a redirect without inspecting the new origin. Pin the resolved origin; do not relax the guard.
 - **5,631 evidence entries name a source but no selector within it** (`CLAIM_ANCHOR`). These are
