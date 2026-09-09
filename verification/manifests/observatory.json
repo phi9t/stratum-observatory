@@ -131199,6 +131199,21 @@
           "source": "sglang-model",
           "anchor": null,
           "relation": "documents"
+        },
+        {
+          "source": "megatron-ddp",
+          "anchor": null,
+          "relation": "implements"
+        },
+        {
+          "source": "megatron-optimizer",
+          "anchor": null,
+          "relation": "implements"
+        },
+        {
+          "source": "torchtitan-parallel",
+          "anchor": null,
+          "relation": "implements"
         }
       ],
       "dependencies": []

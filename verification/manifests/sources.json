@@ -13,7 +13,7 @@
       "sha256": "9710e121a58d03ac92c8d6da287a19541994319afbbe6d6202af001ffd379213",
       "cache": ".verification-cache/sha256/9710e121a58d03ac92c8d6da287a19541994319afbbe6d6202af001ffd379213.txt",
       "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
-      "retrieved_at": "2026-09-09T20:08:09.812488+00:00",
+      "retrieved_at": "2026-09-09T20:20:08.577893+00:00",
       "etag": "\"d7f26ead420b1d967f2759679dbebc65edfcff93\""
     },
     {
@@ -28,7 +28,7 @@
       "sha256": "9e3564c70ac21854ce5a090cc946c5dc76b70d1050ef50840449181a20fff44a",
       "cache": ".verification-cache/sha256/9e3564c70ac21854ce5a090cc946c5dc76b70d1050ef50840449181a20fff44a.txt",
       "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
-      "retrieved_at": "2026-09-09T20:08:10.127978+00:00",
+      "retrieved_at": "2026-09-09T20:20:08.894875+00:00",
       "etag": "\"b8c41e8bfce768d74d8da3a37e693f5ee43876a0\""
     },
     {
@@ -43,7 +43,7 @@
       "sha256": "0e94b2ef13ba6147fb82bb220b0df70f5dd04b7a9b7a253a755408b83ad451ae",
       "cache": ".verification-cache/sha256/0e94b2ef13ba6147fb82bb220b0df70f5dd04b7a9b7a253a755408b83ad451ae.txt",
       "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
-      "retrieved_at": "2026-09-09T20:08:10.763938+00:00",
+      "retrieved_at": "2026-09-09T20:20:09.679583+00:00",
       "etag": "\"9e8ead74b5d4cd68853467c7e52c0b2fbd2b00f0f76326cf0b296d8fa606bea0\""
     },
     {
@@ -58,7 +58,7 @@
       "sha256": "e4e9adeccb746c358880e1734a98073ceea58acc21353dde2a33107ae76896ce",
       "cache": ".verification-cache/sha256/e4e9adeccb746c358880e1734a98073ceea58acc21353dde2a33107ae76896ce.txt",
       "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
-      "retrieved_at": "2026-09-09T20:08:11.179402+00:00",
+      "retrieved_at": "2026-09-09T20:20:09.984013+00:00",
       "etag": "\"0a83500caac81573f1f3430fb49b84a21e489b06d8f585c11b075cac9ff13b2d\""
     },
     {
@@ -73,7 +73,7 @@
       "sha256": "2924c38f652a6ebff2ef79c49f2f336ba18723ea4b854d3ac14d95292988acdb",
       "cache": ".verification-cache/sha256/2924c38f652a6ebff2ef79c49f2f336ba18723ea4b854d3ac14d95292988acdb.txt",
       "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
-      "retrieved_at": "2026-09-09T20:08:11.499974+00:00",
+      "retrieved_at": "2026-09-09T20:20:10.320750+00:00",
       "etag": "\"c6e5a8b8c5cd9fe3f07a2a2014b10b28ad7d65acd3de5956f4a1bcbe6b46a31a\""
     },
     {
@@ -88,7 +88,7 @@
       "sha256": "23a67369bffcc0fe597caabe500bf5db617feb5a092fd67b89380bc18b2619e4",
       "cache": ".verification-cache/sha256/23a67369bffcc0fe597caabe500bf5db617feb5a092fd67b89380bc18b2619e4.txt",
       "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
-      "retrieved_at": "2026-09-09T20:08:11.892251+00:00",
+      "retrieved_at": "2026-09-09T20:20:10.654430+00:00",
       "etag": "\"55891c503e5b2dc755f3477bc5ac2939248fa6fe26a9c7c84f39864acbf01728\""
     },
     {
@@ -103,7 +103,7 @@
       "sha256": "ec1ab0d268cad919bbb368f1ab5275cfac3e19d60ae403aa4bdf458a107d6d6d",
       "cache": ".verification-cache/sha256/ec1ab0d268cad919bbb368f1ab5275cfac3e19d60ae403aa4bdf458a107d6d6d.txt",
       "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
-      "retrieved_at": "2026-09-09T20:08:12.212114+00:00",
+      "retrieved_at": "2026-09-09T20:20:10.951063+00:00",
       "etag": "\"6326c51c7306c96c23ba1ad999590ccf275a71cf094e79da180e8d86c860ad9f\""
     },
     {
@@ -118,7 +118,7 @@
       "sha256": "389a11a7f6434c66b3a333121c7f85687842d96b6b7efa332ab9140721ba19c8",
       "cache": ".verification-cache/sha256/389a11a7f6434c66b3a333121c7f85687842d96b6b7efa332ab9140721ba19c8.txt",
       "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
-      "retrieved_at": "2026-09-09T20:08:12.699730+00:00",
+      "retrieved_at": "2026-09-09T20:20:11.418194+00:00",
       "etag": "\"618cb3d169fb9fb456ca406063c13823f78da295595a1e65cd5977ec999f3fb9\""
     },
     {
@@ -133,7 +133,7 @@
       "sha256": "ebd3b3d364b8aeef27a9d5d358d3beeb0aab78328298664cc1d2e40cb48bce16",
       "cache": ".verification-cache/sha256/ebd3b3d364b8aeef27a9d5d358d3beeb0aab78328298664cc1d2e40cb48bce16.txt",
       "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
-      "retrieved_at": "2026-09-09T20:08:13.023783+00:00",
+      "retrieved_at": "2026-09-09T20:20:11.683509+00:00",
       "etag": "\"e8dd1bd0f81b0b8f8b5ddfc10eead5d28e8e60aa101c42106d0edf44f27bd1de\""
     },
     {
@@ -148,7 +148,7 @@
       "sha256": "c8dcad71f253c10b6bb2d3afea50018283e46236438b0face6e01ff2b040f9bf",
       "cache": ".verification-cache/sha256/c8dcad71f253c10b6bb2d3afea50018283e46236438b0face6e01ff2b040f9bf.txt",
       "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
-      "retrieved_at": "2026-09-09T20:08:13.333549+00:00",
+      "retrieved_at": "2026-09-09T20:20:11.975253+00:00",
       "etag": "\"bf4ebfa0e5e5e239d988823f2072cab8016ce9fee545b4f59eb732278def7d0d\""
     },
     {
@@ -163,7 +163,7 @@
       "sha256": "1d10889eea8b4059b10e41d8d438d3aa96be5765d34821f83902fd07a887b93f",
       "cache": ".verification-cache/sha256/1d10889eea8b4059b10e41d8d438d3aa96be5765d34821f83902fd07a887b93f.txt",
       "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
-      "retrieved_at": "2026-09-09T20:08:13.683433+00:00",
+      "retrieved_at": "2026-09-09T20:20:12.425945+00:00",
       "etag": "\"837070abbebf65c75051108e326fb26c88d99422db37826bf6a73968b248ac8f\""
     },
     {
@@ -172,11 +172,11 @@
       "kind": "document",
       "url": "https://developer.nvidia.com/cuda/gpus",
       "version": "snapshot requested 2026-09-06",
-      "sha256": "d6fe390b6860c9c3c3b499e06a25f2c276748f767cf9fe7ec5c2f5aa92b06e1f",
-      "cache": ".verification-cache/sha256/d6fe390b6860c9c3c3b499e06a25f2c276748f767cf9fe7ec5c2f5aa92b06e1f.txt",
+      "sha256": "6b341c25a1b00e4ea34c72d9f5d010760a64aff4c9d589154024606a8910f8e1",
+      "cache": ".verification-cache/sha256/6b341c25a1b00e4ea34c72d9f5d010760a64aff4c9d589154024606a8910f8e1.txt",
       "license": "Publisher documentation terms; cache locally for audit, do not redistribute full text without permission.",
-      "retrieved_at": "2026-09-09T20:08:14.561122+00:00",
-      "etag": "W/\"d6fe390b6860c9c3c3b499e06a25f2c2\""
+      "retrieved_at": "2026-09-09T20:20:13.164191+00:00",
+      "etag": "W/\"6b341c25a1b00e4ea34c72d9f5d01076\""
     },
     {
       "id": "hopper-tuning",
@@ -187,7 +187,7 @@
       "sha256": "d32fa966146dd9a244676d9111af50a4a1f5147f9351c63f3ed0f5c953a991a6",
       "cache": ".verification-cache/sha256/d32fa966146dd9a244676d9111af50a4a1f5147f9351c63f3ed0f5c953a991a6.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:15.186841+00:00",
+      "retrieved_at": "2026-09-09T20:20:13.710926+00:00",
       "etag": "\"bb2e1675339048fa84b5de38262f5aab\""
     },
     {
@@ -199,7 +199,7 @@
       "sha256": "f15c6861d1981f0b301a98db775798abf35c6811646b0a9c980f815ca944bb6b",
       "cache": ".verification-cache/sha256/f15c6861d1981f0b301a98db775798abf35c6811646b0a9c980f815ca944bb6b.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:15.692741+00:00",
+      "retrieved_at": "2026-09-09T20:20:14.250314+00:00",
       "etag": "\"2ddbf75c71d905f091d8879c2624cc11\""
     },
     {
@@ -211,7 +211,7 @@
       "sha256": "aa3dd7e72e910b03e697dfe7cfb76efc04bb9382f0c73cf620eba348eea6c945",
       "cache": ".verification-cache/sha256/aa3dd7e72e910b03e697dfe7cfb76efc04bb9382f0c73cf620eba348eea6c945.txt",
       "license": "Publisher documentation terms; cache locally for audit, do not redistribute full text without permission.",
-      "retrieved_at": "2026-09-09T20:08:16.287056+00:00",
+      "retrieved_at": "2026-09-09T20:20:14.789776+00:00",
       "etag": "\"7fa490d7499bf6c32c8ed730bc4f6071\""
     },
     {
@@ -223,7 +223,7 @@
       "sha256": "544e40f118c93095c6e0e7e45fa4c1b0a30f72ac9cab44b3aacea2d926ba4472",
       "cache": ".verification-cache/sha256/544e40f118c93095c6e0e7e45fa4c1b0a30f72ac9cab44b3aacea2d926ba4472.txt",
       "license": "Publisher documentation terms; cache locally for audit, do not redistribute full text without permission.",
-      "retrieved_at": "2026-09-09T20:08:16.860792+00:00",
+      "retrieved_at": "2026-09-09T20:20:15.310913+00:00",
       "etag": "\"aa440e08b235fcbc6c990e1706cf84cb\""
     },
     {
@@ -235,7 +235,7 @@
       "sha256": "c0343ef5ac3decb8050282f8919a614bcf4d11f774e154b9811ffa0732adda14",
       "cache": ".verification-cache/sha256/c0343ef5ac3decb8050282f8919a614bcf4d11f774e154b9811ffa0732adda14.txt",
       "license": "Publisher documentation terms; cache locally for audit, do not redistribute full text without permission.",
-      "retrieved_at": "2026-09-09T20:08:17.815862+00:00",
+      "retrieved_at": "2026-09-09T20:20:16.519686+00:00",
       "etag": "\"49382-65af0c2c52211\""
     },
     {
@@ -247,7 +247,7 @@
       "sha256": "551c92b3c3f6b039d74ad59f659aa99f63c5ad7145e0596e55af03cbee848f9e",
       "cache": ".verification-cache/sha256/551c92b3c3f6b039d74ad59f659aa99f63c5ad7145e0596e55af03cbee848f9e.txt",
       "license": "Publisher documentation terms; cache locally for audit, do not redistribute full text without permission.",
-      "retrieved_at": "2026-09-09T20:08:18.354166+00:00",
+      "retrieved_at": "2026-09-09T20:20:17.056771+00:00",
       "etag": "\"3cecaddfb7ed2e15c9ff28e4367a3ba8\""
     },
     {
@@ -259,7 +259,7 @@
       "sha256": "2865189c72e80441587786cdcf72c973058e781b9e4011b287ef6407ccffcd99",
       "cache": ".verification-cache/sha256/2865189c72e80441587786cdcf72c973058e781b9e4011b287ef6407ccffcd99.txt",
       "license": "Publisher documentation terms; cache locally for audit, do not redistribute full text without permission.",
-      "retrieved_at": "2026-09-09T20:08:19.049227+00:00",
+      "retrieved_at": "2026-09-09T20:20:17.704828+00:00",
       "etag": "\"ff2e83e84d288938add4fe0a26f64760\""
     },
     {
@@ -281,7 +281,7 @@
       "sha256": "d7d2b6cff49d9f79e5e48b5acbfa98c4b17e53b09006443ea79bbbb4dd8855ea",
       "cache": ".verification-cache/sha256/d7d2b6cff49d9f79e5e48b5acbfa98c4b17e53b09006443ea79bbbb4dd8855ea.txt",
       "license": "Publisher documentation terms; cache locally for audit, do not redistribute full text without permission.",
-      "retrieved_at": "2026-09-09T20:08:20.199448+00:00",
+      "retrieved_at": "2026-09-09T20:20:18.752361+00:00",
       "etag": "\"1f671f3b75b191197694bcc39e1db0b5\""
     },
     {
@@ -293,7 +293,7 @@
       "sha256": "63d6cf91c14b73ba5e718e1e4ce4a4c90c418be0c18b4d4a2abae7a3bea34870",
       "cache": ".verification-cache/sha256/63d6cf91c14b73ba5e718e1e4ce4a4c90c418be0c18b4d4a2abae7a3bea34870.txt",
       "license": "Publisher documentation terms; cache locally for audit, do not redistribute full text without permission.",
-      "retrieved_at": "2026-09-09T20:08:20.763383+00:00",
+      "retrieved_at": "2026-09-09T20:20:19.341951+00:00",
       "etag": "\"feb8a839d66bc5a95c016d303269bd74\""
     },
     {
@@ -305,7 +305,7 @@
       "sha256": "e6331562e69a9b6c66c131bbcf2b0f4d261cc3160dcf4f3803a9e87c871c0373",
       "cache": ".verification-cache/sha256/e6331562e69a9b6c66c131bbcf2b0f4d261cc3160dcf4f3803a9e87c871c0373.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:21.977577+00:00",
+      "retrieved_at": "2026-09-09T20:20:20.532606+00:00",
       "etag": "\"CPv2qtP+uZYDEAE=\""
     },
     {
@@ -327,7 +327,7 @@
       "sha256": "64161fa86575a6cb0c6ecfb0764cddb0845a1badbc8293b19e2309063fa338cc",
       "cache": ".verification-cache/sha256/64161fa86575a6cb0c6ecfb0764cddb0845a1badbc8293b19e2309063fa338cc.txt",
       "license": "Publisher terms; local audit cache only; no redistributed document.",
-      "retrieved_at": "2026-09-09T20:08:23.032357+00:00",
+      "retrieved_at": "2026-09-09T20:20:21.696408+00:00",
       "etag": "\"990bea293d086960a502361fe585d1c6\""
     },
     {
@@ -342,7 +342,7 @@
       "sha256": "36f572d2909bd108d73a814c585fd61afd56266960a13eb67c713e229d3435d1",
       "cache": ".verification-cache/sha256/36f572d2909bd108d73a814c585fd61afd56266960a13eb67c713e229d3435d1.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:23.283106+00:00",
+      "retrieved_at": "2026-09-09T20:20:21.941025+00:00",
       "etag": "\"c2c1efbc4eaeb72bc2696281ea1b0c3f3b7a0f95\""
     },
     {
@@ -357,7 +357,7 @@
       "sha256": "2ba119a76ef7821cab8c6c0a5f3b7cc29e9214de0a88f4ec767db562a70422e8",
       "cache": ".verification-cache/sha256/2ba119a76ef7821cab8c6c0a5f3b7cc29e9214de0a88f4ec767db562a70422e8.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:23.620926+00:00",
+      "retrieved_at": "2026-09-09T20:20:22.278202+00:00",
       "etag": "\"2ae446412b23f7888a8beefe0b9e8ee0ff1b94c3\""
     },
     {
@@ -369,7 +369,7 @@
       "sha256": "6b2464b5d8d5ef270cad7b7dd691afa295546d8e2eecf8ef9082b50f548d3c73",
       "cache": ".verification-cache/sha256/6b2464b5d8d5ef270cad7b7dd691afa295546d8e2eecf8ef9082b50f548d3c73.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:23.929963+00:00",
+      "retrieved_at": "2026-09-09T20:20:22.653297+00:00",
       "etag": null
     },
     {
@@ -384,7 +384,7 @@
       "sha256": "cbf0b95dc614de208a109bb5fd4e7eed11385e9c68411d2c17db5319443035d9",
       "cache": ".verification-cache/sha256/cbf0b95dc614de208a109bb5fd4e7eed11385e9c68411d2c17db5319443035d9.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:24.165412+00:00",
+      "retrieved_at": "2026-09-09T20:20:22.889098+00:00",
       "etag": "\"aec35a75d9bd54d463287e655724a0aeffdb38ce\""
     },
     {
@@ -399,7 +399,7 @@
       "sha256": "eb6d535742061cf9da7a4232ecfe2f089d5ce20080afc5d2181e9d70ec4af8a4",
       "cache": ".verification-cache/sha256/eb6d535742061cf9da7a4232ecfe2f089d5ce20080afc5d2181e9d70ec4af8a4.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:24.497596+00:00",
+      "retrieved_at": "2026-09-09T20:20:23.217155+00:00",
       "etag": "\"28d9ea27aa530726b99c1ec32abc3c568de1f012\""
     },
     {
@@ -411,7 +411,7 @@
       "sha256": "870dc015b88218eed9694cd002675eb84077d1a18d965b2ca1973511355c6289",
       "cache": ".verification-cache/sha256/870dc015b88218eed9694cd002675eb84077d1a18d965b2ca1973511355c6289.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:24.807594+00:00",
+      "retrieved_at": "2026-09-09T20:20:23.517669+00:00",
       "etag": null
     },
     {
@@ -426,7 +426,7 @@
       "sha256": "2cad14532e7f22e76a18d113ab5eb83e878995e98a4e30c8b11c6d4c64c7abce",
       "cache": ".verification-cache/sha256/2cad14532e7f22e76a18d113ab5eb83e878995e98a4e30c8b11c6d4c64c7abce.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:25.458948+00:00",
+      "retrieved_at": "2026-09-09T20:20:24.199558+00:00",
       "etag": "\"8411eeadb4be90ec5ce24aafb93df0cdef146e446ecf4fd6fd9a3b8d53c6a8cb\""
     },
     {
@@ -441,7 +441,7 @@
       "sha256": "cbb7f2dc274c2f5592746c0dc6985ca50353efa07376f92cc922b77680a74f69",
       "cache": ".verification-cache/sha256/cbb7f2dc274c2f5592746c0dc6985ca50353efa07376f92cc922b77680a74f69.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:25.738681+00:00",
+      "retrieved_at": "2026-09-09T20:20:24.493741+00:00",
       "etag": "\"85e4f716aa8fb45f41717becc89511fa522a3f612baf2c0ac87ab4727fab4e7d\""
     },
     {
@@ -456,7 +456,7 @@
       "sha256": "b2666af64b7b31a02a152e9187ed2c5671262543b61510d0359c26fa491105ca",
       "cache": ".verification-cache/sha256/b2666af64b7b31a02a152e9187ed2c5671262543b61510d0359c26fa491105ca.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:26.059813+00:00",
+      "retrieved_at": "2026-09-09T20:20:24.855438+00:00",
       "etag": "\"4f863d3da05a011f8d24f7d7d20c99cd6ff5de2686ef47d1009583b8c4499650\""
     },
     {
@@ -471,7 +471,7 @@
       "sha256": "39c7c9c6b0107f12ac76cd2b6b54a0694c8540c1bb9588a380e05fcd3ee93e6b",
       "cache": ".verification-cache/sha256/39c7c9c6b0107f12ac76cd2b6b54a0694c8540c1bb9588a380e05fcd3ee93e6b.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:26.382457+00:00",
+      "retrieved_at": "2026-09-09T20:20:25.157296+00:00",
       "etag": "\"a8d4ff64b742a0613a5dad8708794cf8a86959b42b78bcc18d92674526f086be\""
     },
     {
@@ -486,7 +486,7 @@
       "sha256": "9cccf59800e88cfb2882248812f5c64dfe5262baacbe5a413d16133de1b595e7",
       "cache": ".verification-cache/sha256/9cccf59800e88cfb2882248812f5c64dfe5262baacbe5a413d16133de1b595e7.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:26.742432+00:00",
+      "retrieved_at": "2026-09-09T20:20:25.517154+00:00",
       "etag": "\"33daaa2ebeb7451e518307eb4fd51b74c52693b2bd7e20030b4374ea5acc196e\""
     },
     {
@@ -498,7 +498,7 @@
       "sha256": "006225337c190863a34263dcfd995fd679868d307ccb34d257dda6682733979d",
       "cache": ".verification-cache/sha256/006225337c190863a34263dcfd995fd679868d307ccb34d257dda6682733979d.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:27.027502+00:00",
+      "retrieved_at": "2026-09-09T20:20:25.783182+00:00",
       "etag": null
     },
     {
@@ -513,7 +513,7 @@
       "sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30",
       "cache": ".verification-cache/sha256/f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:27.264791+00:00",
+      "retrieved_at": "2026-09-09T20:20:26.019372+00:00",
       "etag": "\"d46195ac87f837ad233d02b2f80f148bf7c005e0\""
     },
     {
@@ -528,7 +528,7 @@
       "sha256": "2850ddb3bf7aecad20b611e2d44f3077fc8193f4827c93beddd4c02ad63c2297",
       "cache": ".verification-cache/sha256/2850ddb3bf7aecad20b611e2d44f3077fc8193f4827c93beddd4c02ad63c2297.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:27.510757+00:00",
+      "retrieved_at": "2026-09-09T20:20:26.255842+00:00",
       "etag": "\"2703739b9cfc422a3a0a6c932140db18533a8d1a\""
     },
     {
@@ -543,7 +543,7 @@
       "sha256": "0ecd5d6fe6f2db6739e4e36ab06b88ebe7bd013ef31b9583f43796059a2b23a4",
       "cache": ".verification-cache/sha256/0ecd5d6fe6f2db6739e4e36ab06b88ebe7bd013ef31b9583f43796059a2b23a4.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:27.761025+00:00",
+      "retrieved_at": "2026-09-09T20:20:26.491684+00:00",
       "etag": "\"5366b39a2fad87796848caedcb3dadb585a5fa51\""
     },
     {
@@ -558,7 +558,7 @@
       "sha256": "191e0af232104ed8b65258cf3fb2b842e288008baca7633c11b82a1ac7203aab",
       "cache": ".verification-cache/sha256/191e0af232104ed8b65258cf3fb2b842e288008baca7633c11b82a1ac7203aab.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:28.002837+00:00",
+      "retrieved_at": "2026-09-09T20:20:26.827640+00:00",
       "etag": "\"706cebd746c4b6f2b1d1f892630867acfdfd3df8\""
     },
     {
@@ -573,7 +573,7 @@
       "sha256": "458360c8072e6130580639170ad3e645b975512dbabae31eab5f92de5f0f09ef",
       "cache": ".verification-cache/sha256/458360c8072e6130580639170ad3e645b975512dbabae31eab5f92de5f0f09ef.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:28.374023+00:00",
+      "retrieved_at": "2026-09-09T20:20:27.220505+00:00",
       "etag": "\"797dd6326fff3ef83b849c8058c63851c7979099972924cb4d66c43d6d2e1ba9\""
     },
     {
@@ -588,7 +588,7 @@
       "sha256": "ba92e164715fcb2ed3c36b36a970df27bb447e29e420d62b5fb70d1e91df0953",
       "cache": ".verification-cache/sha256/ba92e164715fcb2ed3c36b36a970df27bb447e29e420d62b5fb70d1e91df0953.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:28.907316+00:00",
+      "retrieved_at": "2026-09-09T20:20:27.633207+00:00",
       "etag": "\"e181146fe8254d9a5e34bd284a40a82b0225a0bbc51742d6d1f018fdb9d1fc5c\""
     },
     {
@@ -603,7 +603,7 @@
       "sha256": "889658f2508e8c61d409b02e70e0d78d8d4452ec65aaafbe129805d213d2e74b",
       "cache": ".verification-cache/sha256/889658f2508e8c61d409b02e70e0d78d8d4452ec65aaafbe129805d213d2e74b.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:29.169301+00:00",
+      "retrieved_at": "2026-09-09T20:20:27.886729+00:00",
       "etag": "\"491017e9980e44ef01afa2c4782f5c7e169b9b26\""
     },
     {
@@ -618,7 +618,7 @@
       "sha256": "60dcec55be914a2e392f29a136491494ca8bcc0e5dad1a4deb8e703f96483c60",
       "cache": ".verification-cache/sha256/60dcec55be914a2e392f29a136491494ca8bcc0e5dad1a4deb8e703f96483c60.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:29.537627+00:00",
+      "retrieved_at": "2026-09-09T20:20:28.265500+00:00",
       "etag": "\"5370573322a02706f5166cc19d39cda4e25e88f059ed3906b191f07cf30c6038\""
     },
     {
@@ -633,7 +633,7 @@
       "sha256": "39eb1df919396967099af6b491c88de75d600915c69a1b7c9a61140862c33faf",
       "cache": ".verification-cache/sha256/39eb1df919396967099af6b491c88de75d600915c69a1b7c9a61140862c33faf.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:29.844142+00:00",
+      "retrieved_at": "2026-09-09T20:20:28.624048+00:00",
       "etag": "\"68388679bc9acda37ac02699e22a2cb42192e8287700fdf385e7900afb517d7d\""
     },
     {
@@ -645,7 +645,7 @@
       "sha256": "aa3dd7e72e910b03e697dfe7cfb76efc04bb9382f0c73cf620eba348eea6c945",
       "cache": ".verification-cache/sha256/aa3dd7e72e910b03e697dfe7cfb76efc04bb9382f0c73cf620eba348eea6c945.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:30.379228+00:00",
+      "retrieved_at": "2026-09-09T20:20:29.163473+00:00",
       "etag": "\"7fa490d7499bf6c32c8ed730bc4f6071\""
     },
     {
@@ -657,7 +657,7 @@
       "sha256": "cb16e7b58837d25cc3da20e069455976573d747f72661bc8e487354fe33c7422",
       "cache": ".verification-cache/sha256/cb16e7b58837d25cc3da20e069455976573d747f72661bc8e487354fe33c7422.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:31.217575+00:00",
+      "retrieved_at": "2026-09-09T20:20:30.135026+00:00",
       "etag": "\"4629c-65b067cac38b5\""
     },
     {
@@ -666,11 +666,11 @@
       "kind": "document",
       "version": "Reference inspected 2026-09-06; exact document snapshot pending",
       "url": "https://www.nvidia.com/en-us/data-center/h200/",
-      "sha256": "3cbd21165bdd847dce0416763b57ee61f8b69544fd65c75f70f088eb98acf065",
-      "cache": ".verification-cache/sha256/3cbd21165bdd847dce0416763b57ee61f8b69544fd65c75f70f088eb98acf065.txt",
+      "sha256": "b1c121482409e0189d3c7ca80bb33f82aac30757d2747ff2c0c0386ddaada667",
+      "cache": ".verification-cache/sha256/b1c121482409e0189d3c7ca80bb33f82aac30757d2747ff2c0c0386ddaada667.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:32.321817+00:00",
-      "etag": "\"44442-65b0871b22072\""
+      "retrieved_at": "2026-09-09T20:20:31.335588+00:00",
+      "etag": "W/\"44442-65af1028a7cd4\""
     },
     {
       "id": "b200-system",
@@ -681,7 +681,7 @@
       "sha256": "544e40f118c93095c6e0e7e45fa4c1b0a30f72ac9cab44b3aacea2d926ba4472",
       "cache": ".verification-cache/sha256/544e40f118c93095c6e0e7e45fa4c1b0a30f72ac9cab44b3aacea2d926ba4472.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:32.874167+00:00",
+      "retrieved_at": "2026-09-09T20:20:31.953023+00:00",
       "etag": "\"aa440e08b235fcbc6c990e1706cf84cb\""
     },
     {
@@ -693,7 +693,7 @@
       "sha256": "fabf22e95313ff051559cc2ff9fdc2d142b88f5d294a261a575eab0189fa4095",
       "cache": ".verification-cache/sha256/fabf22e95313ff051559cc2ff9fdc2d142b88f5d294a261a575eab0189fa4095.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:33.805379+00:00",
+      "retrieved_at": "2026-09-09T20:20:32.902212+00:00",
       "etag": "W/\"464d2-65af02985651a\""
     },
     {
@@ -705,7 +705,7 @@
       "sha256": "c0343ef5ac3decb8050282f8919a614bcf4d11f774e154b9811ffa0732adda14",
       "cache": ".verification-cache/sha256/c0343ef5ac3decb8050282f8919a614bcf4d11f774e154b9811ffa0732adda14.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:34.646706+00:00",
+      "retrieved_at": "2026-09-09T20:20:33.833320+00:00",
       "etag": "\"49382-65af0c2c52211\""
     },
     {
@@ -717,7 +717,7 @@
       "sha256": "d7d2b6cff49d9f79e5e48b5acbfa98c4b17e53b09006443ea79bbbb4dd8855ea",
       "cache": ".verification-cache/sha256/d7d2b6cff49d9f79e5e48b5acbfa98c4b17e53b09006443ea79bbbb4dd8855ea.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:35.384633+00:00",
+      "retrieved_at": "2026-09-09T20:20:34.403989+00:00",
       "etag": "\"1f671f3b75b191197694bcc39e1db0b5\""
     },
     {
@@ -729,7 +729,7 @@
       "sha256": "63d6cf91c14b73ba5e718e1e4ce4a4c90c418be0c18b4d4a2abae7a3bea34870",
       "cache": ".verification-cache/sha256/63d6cf91c14b73ba5e718e1e4ce4a4c90c418be0c18b4d4a2abae7a3bea34870.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:35.942394+00:00",
+      "retrieved_at": "2026-09-09T20:20:34.966692+00:00",
       "etag": "\"feb8a839d66bc5a95c016d303269bd74\""
     },
     {
@@ -741,7 +741,7 @@
       "sha256": "e4bf345bdc9731405e3bc654e113e94cf2f69a234bc847db6787b6cf8756c960",
       "cache": ".verification-cache/sha256/e4bf345bdc9731405e3bc654e113e94cf2f69a234bc847db6787b6cf8756c960.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:36.552234+00:00",
+      "retrieved_at": "2026-09-09T20:20:35.568488+00:00",
       "etag": "\"e23d627d4e2a9f1e91dd17605bf4ce05\""
     },
     {
@@ -753,8 +753,53 @@
       "sha256": "b51c8628a014a2a04c7490edcb755f081213bd0c0fd8db3e43587898faa928e3",
       "cache": ".verification-cache/sha256/b51c8628a014a2a04c7490edcb755f081213bd0c0fd8db3e43587898faa928e3.txt",
       "license": "Reference pin only; acquire exact bytes locally and preserve upstream notices. No upstream source bytes are redistributed.",
-      "retrieved_at": "2026-09-09T20:08:37.392400+00:00",
+      "retrieved_at": "2026-09-09T20:20:36.411430+00:00",
       "etag": "W/\"45c2c-65aefd93441de\""
+    },
+    {
+      "id": "megatron-ddp",
+      "kind": "git",
+      "role": "framework_code",
+      "provider": "github",
+      "repo": "NVIDIA/Megatron-LM",
+      "path": "megatron/core/distributed/distributed_data_parallel.py",
+      "revision": "56ef6ed61ccb3edffa138ec581c212d479d9ec06",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Megatron-LM/56ef6ed61ccb3edffa138ec581c212d479d9ec06/megatron/core/distributed/distributed_data_parallel.py",
+      "sha256": "e3f11d3c24ede0d58229fdcec03559c77664b470077d59b80406fe60fbd559f7",
+      "cache": ".verification-cache/sha256/e3f11d3c24ede0d58229fdcec03559c77664b470077d59b80406fe60fbd559f7.txt",
+      "license": "No source redistributed.",
+      "retrieved_at": "2026-09-09T20:20:36.720083+00:00",
+      "etag": "\"5dfd59bed2184e55ed45dce35cc081f8f708cf3ffa29f98fbcc7d23ce949b7c4\""
+    },
+    {
+      "id": "megatron-optimizer",
+      "kind": "git",
+      "role": "framework_code",
+      "provider": "github",
+      "repo": "NVIDIA/Megatron-LM",
+      "path": "megatron/core/optimizer/distrib_optimizer.py",
+      "revision": "56ef6ed61ccb3edffa138ec581c212d479d9ec06",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Megatron-LM/56ef6ed61ccb3edffa138ec581c212d479d9ec06/megatron/core/optimizer/distrib_optimizer.py",
+      "sha256": "e030d593ea1c7c27858987379d04a55c2a87720e1ff30930b977d3a66152bdcc",
+      "cache": ".verification-cache/sha256/e030d593ea1c7c27858987379d04a55c2a87720e1ff30930b977d3a66152bdcc.txt",
+      "license": "No source redistributed.",
+      "retrieved_at": "2026-09-09T20:20:37.203067+00:00",
+      "etag": "\"24ef56850e913f19f276d580113359cce01e513fc319240420fe85584abbadd6\""
+    },
+    {
+      "id": "torchtitan-parallel",
+      "kind": "git",
+      "role": "framework_code",
+      "provider": "github",
+      "repo": "pytorch/torchtitan",
+      "path": "torchtitan/distributed/parallel_dims.py",
+      "revision": "f95969aacfea0f940a41ca28b8398d025c5bb110",
+      "url": "https://raw.githubusercontent.com/pytorch/torchtitan/f95969aacfea0f940a41ca28b8398d025c5bb110/torchtitan/distributed/parallel_dims.py",
+      "sha256": "54e4301c5b71bc340cec2b2197575758bd45521bfb8c2119e9d7953d9945d872",
+      "cache": ".verification-cache/sha256/54e4301c5b71bc340cec2b2197575758bd45521bfb8c2119e9d7953d9945d872.txt",
+      "license": "No source redistributed.",
+      "retrieved_at": "2026-09-09T20:20:37.512418+00:00",
+      "etag": "\"6ac96cb3582fe47631270fa8eeff24a2c71281e0abb028fe5c3601fc68721ba6\""
     }
   ]
 }
