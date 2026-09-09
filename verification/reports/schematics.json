@@ -1,0 +1,22 @@
+{
+  "schema": "stratum-schematics/v1",
+  "status": "PASS",
+  "generated_at": "2026-09-09T16:45:55.301842+00:00",
+  "scenes": 684,
+  "decoder_layers": 504,
+  "row_alignment_tolerance_px": 4.0,
+  "unwired_annotation_nodes": 406,
+  "counts": {
+    "PASS": 2737
+  },
+  "findings": [],
+  "passed_codes": {
+    "IR_OK": 684,
+    "RAIL_OK": 684,
+    "LANE_OK": 684,
+    "SCENE_MODEL_OK": 504,
+    "SCENE_MODEL_SKIP": 180,
+    "ROW_OK": 1
+  },
+  "scope": "Scene IR semantics measured against core.mjs. Says nothing about upstream truth, and a coherent diagram is not a correct one."
+}

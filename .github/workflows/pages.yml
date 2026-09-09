@@ -35,6 +35,29 @@ jobs:
             dist/index.html
             verification/reports/
             tests/browser-results.json
+  schematics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - name: Provision the pinned interpreter and locked dependencies
+        run: |
+          uv python install
+          uv sync --frozen
+      # Diagram semantics against core.mjs over the full 504-layer matrix. No browser.
+      - run: npm run verify:schematics
+      - name: Preserve the schematics report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: schematics-report
+          path: verification/reports/schematics.*
+
   aesthetics:
     runs-on: ubuntu-latest
     steps:
@@ -96,7 +119,7 @@ jobs:
           path: dist
   deploy:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    needs: [engineering, aesthetics, publication]
+    needs: [engineering, schematics, aesthetics, publication]
     runs-on: ubuntu-latest
     permissions:
       pages: write
