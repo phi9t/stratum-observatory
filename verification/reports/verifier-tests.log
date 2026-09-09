@@ -193,6 +193,11 @@ test_auditor_api_exists (test_runner.RunnerTests.test_auditor_api_exists) ... ok
 test_empty_target_is_blocked (test_runner.RunnerTests.test_empty_target_is_blocked) ... ok
 test_inventory_is_derived_from_actual_core (test_runner.RunnerTests.test_inventory_is_derived_from_actual_core) ... ok
 test_unknown_profile_rejected (test_runner.RunnerTests.test_unknown_profile_rejected) ... ok
+test_artifact_digests_match_the_files_on_disk (test_runtime_evidence.RuntimeEvidenceTests.test_artifact_digests_match_the_files_on_disk) ... ok
+test_candidate_matches_the_runtime_schema (test_runtime_evidence.RuntimeEvidenceTests.test_candidate_matches_the_runtime_schema) ... ok
+test_every_environment_fingerprint_names_a_checksummed_artifact (test_runtime_evidence.RuntimeEvidenceTests.test_every_environment_fingerprint_names_a_checksummed_artifact) ... ok
+test_every_receipt_record_satisfies_its_domain (test_runtime_evidence.RuntimeEvidenceTests.test_every_receipt_record_satisfies_its_domain) ... ok
+test_the_normalized_record_is_reproducible_from_a_checksummed_file (test_runtime_evidence.RuntimeEvidenceTests.test_the_normalized_record_is_reproducible_from_a_checksummed_file) ... ok
 test_absent_runtime_manifest_still_reports_not_run (test_runtime_receipts.RuntimeReceiptTests.test_absent_runtime_manifest_still_reports_not_run) ... ok
 test_boolean_environment_fingerprint_is_not_an_environment (test_runtime_receipts.RuntimeReceiptTests.test_boolean_environment_fingerprint_is_not_an_environment) ... ok
 test_declared_value_without_a_probe_artifact_is_blocked (test_runtime_receipts.RuntimeReceiptTests.test_declared_value_without_a_probe_artifact_is_blocked) ... ok
@@ -234,6 +239,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 233 tests in 28.080s
+Ran 238 tests in 32.397s
 
 OK (skipped=1)
