@@ -1,13 +1,13 @@
 {
   "schema": "stratum-presentations/v1",
   "status": "PASS",
-  "generated_at": "2026-09-09T17:21:52.039115+00:00",
+  "generated_at": "2026-09-09T17:33:29.568475+00:00",
   "artifact_sha256": "ced16558478295db61e131e4d538be83177d06f2caadd1db6d995638a8c1a573",
   "delivery": {
     "file_url": true
   },
   "counts": {
-    "PASS": 11
+    "PASS": 12
   },
   "findings": [
     {
@@ -106,6 +106,15 @@
       "status": "PASS",
       "subject": "page",
       "message": "Motion is suppressed under prefers-reduced-motion.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "VISUAL_RECORD",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "scene",
+      "message": "Measured visualization record over 29 nodes satisfies the scene contract.",
       "remedy": "",
       "evidence": []
     }

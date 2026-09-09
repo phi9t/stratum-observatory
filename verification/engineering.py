@@ -68,7 +68,7 @@ def main():
         if not isinstance(value,int) or value<=0:print(f'FAIL: could not read the {name} test count; the runner output format changed');return 1
     data={'schema':'stratum-engineering/v1','status':'PASS','started_at':started,'completed_at':datetime.now(timezone.utc).isoformat(),
         'consumer_sha256':digest(inv['functions']),'verifier_sha256':toolchain_digest(root),'lock_sha256':digest({'target':target,'catalog':catalog}),
-        'artifact_sha256':a,'deterministic_build':True,'commands':commands,'browser':browser,
+        'artifact_sha256':a,'repeat_build_sha256':b,'deterministic_build':a==b,'commands':commands,'browser':browser,
         'test_counts':counts,
         'toolchain':{'python':sys.version.split()[0],'openssl':_openssl_identity(),'browser':browser.get('browser')},
         'scope':'Local software/geometry tests only. Does not attest to upstream source truth, GPU execution or physical fabric conformance.'}

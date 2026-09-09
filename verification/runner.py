@@ -52,6 +52,45 @@ def required_roles(c):
     if domain=='communication':return ('library_code','vendor_document')
     return ()
 
+def release_record(receipt,*,consumer,lock):
+    """The release contract, derived from the engineering receipt.
+
+    Transcribing build hashes into the manifest would guarantee they are stale, and the
+    validator only compares record fields to each other -- so a hand-written record with any
+    equal pair passes. Deriving one side from the receipt and the other from what is true
+    now makes each of those comparisons mean something: the source digest recomputed here
+    against the one the receipt bound, and likewise the evidence lock.
+    """
+    commands=receipt.get('commands',{});browser=receipt.get('browser',{})
+    return {'id':'release.observatory',
+            'source_sha256':consumer,'built_from_sha256':receipt.get('consumer_sha256'),
+            'source_lock_sha256':lock,'receipt_lock_sha256':receipt.get('lock_sha256'),
+            'artifact_sha256':receipt.get('artifact_sha256'),'repeat_build_sha256':receipt.get('repeat_build_sha256'),
+            'external_requests':browser.get('external_runtime_requests'),
+            'geometry_defects':browser.get('geometry_defects'),
+            'runtime_errors':browser.get('runtime_errors'),
+            'commands':{'node':commands.get('node-tests',{}).get('exit'),'browser':commands.get('browser',{}).get('exit')}}
+
+
+def apply_bindings(record,bindings,fields):
+    """Replace declared record fields with the application's own values.
+
+    Supports a dotted path so a nested constant can be bound too: GPU capacity lives at
+    `memory.value`, and without this every capacity in the manifest stays hand-transcribed.
+    Returns the consumers that do not exist, so the caller can report them.
+    """
+    missing=[]
+    for field,consumer in bindings.items():
+        if consumer not in fields:missing.append(consumer);continue
+        target=record;parts=field.split('.')
+        for part in parts[:-1]:
+            nxt=target.get(part)
+            if not isinstance(nxt,dict):nxt={};target[part]=nxt
+            target=nxt
+        target[parts[-1]]=fields[consumer]
+    return missing
+
+
 def check_receipt(root, receipt, expected_lock, inventory):
     out=[]
     def add(code,status,msg):out.append(Finding(code,'release',status,'engineering',msg,'Run npm run verify:engineering on this exact checkout; never reuse an old report.'))
@@ -165,9 +204,11 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
         d=rec['domain'];record=rec.get('record',{})
         # Core fields may be bound into the contract, not transcribed independently.
         record=dict(record)
-        for field,consumer in rec.get('bindings',{}).items():
-            if consumer not in inventory.get('fields',{}):add('CONTRACT_BINDING',d,'FAIL',rec['id'],f'No actual core input {consumer}.')
-            else:record[field]=inventory['fields'][consumer]
+        record=json.loads(json.dumps(record))  # deep copy: bindings may write into nested fields
+        if d=='release' and receipt:
+            record=release_record(receipt,consumer=digest(inventory.get('functions',{})),lock=lock)
+        for consumer in apply_bindings(record,rec.get('bindings',{}),inventory.get('fields',{})):
+            add('CONTRACT_BINDING',d,'FAIL',rec['id'],f'No actual core input {consumer}.')
         findings.extend(validate(d,record))
         refs=rec.get('claims',[])
         if not refs or any(claim_status.get(cid)!='PASS' for cid in refs):add('CONTRACT_EVIDENCE',d,'BLOCKED',rec['id'],'Contract inputs/semantics do not yet have verified claims.')

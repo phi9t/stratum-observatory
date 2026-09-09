@@ -1,6 +1,6 @@
 # Presentations — PASS
 
-Generated: 2026-09-09T17:21:52.039115+00:00
+Generated: 2026-09-09T17:33:29.568475+00:00
 
 Artifact `ced16558478295db…`
 
@@ -21,3 +21,4 @@ Exports, delivered-page accessibility, print, portability and preview freshness.
 | A11Y_FOCUS | PASS | A | The first focusable control shows a visible focus indicator. |
 | PRINT_CONTRAST | PASS | print | Print body text measures 15.91:1. |
 | MOTION_REDUCED | PASS | page | Motion is suppressed under prefers-reduced-motion. |
+| VISUAL_RECORD | PASS | scene | Measured visualization record over 29 nodes satisfies the scene contract. |

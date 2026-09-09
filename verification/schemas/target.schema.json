@@ -201,8 +201,13 @@
           },
           "bindings": {
             "type": "object"
+          },
+          "binding_scope": {
+            "type": "string",
+            "minLength": 1
           }
-        }
+        },
+        "$comment": "bindings maps a record field (dotted paths allowed) to an application input, so the constant is checked rather than transcribed. A contract with no bindings must state binding_scope: why nothing in it is derivable from the application."
       },
       "minItems": 1
     },

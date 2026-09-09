@@ -122,6 +122,53 @@ PROBE_A11Y=r"""
 """
 
 
+PROBE_VISUALIZATION=r"""
+() => {
+  // getBBox() returns user units, and the SVG carries viewBox="0 0 w h", so text bounds are
+  // already in scene coordinates -- the same space geometryReport compares against.
+  const scene = STRATUM.getScene();
+  const svg = document.querySelector('#scene-mount svg');
+  const nodes = [];
+  for (const n of scene.nodes) {
+    const host = svg.querySelector(`[data-node="${CSS.escape(n.id)}"]`);
+    if (!host) continue;
+    const texts = [...host.querySelectorAll('text')].map(t => t.getBBox());
+    if (!texts.length) continue;
+    const x0 = Math.min(...texts.map(b => b.x)), y0 = Math.min(...texts.map(b => b.y));
+    const x1 = Math.max(...texts.map(b => b.x + b.width)), y1 = Math.max(...texts.map(b => b.y + b.height));
+    nodes.push({id: n.id, bounds: [n.x, n.y, n.w, n.h], text_bounds: [x0, y0, x1 - x0, y1 - y0]});
+  }
+  return {nodes, edges: scene.edges.map(e => ({source: e.source, target: e.target, points: e.points})),
+          canvas: [scene.width, scene.height], state: STRATUM.getState()};
+}
+"""
+
+
+def visualization_record(probe,target):
+    """A visualization contract record measured from the rendered diagram.
+
+    The record the manifest has carried is `{"id": "visualization.pending"}`, so the scene
+    validator in domains/contracts.py -- which has been fully implemented all along -- has
+    never run on a real diagram. Node claims are the scene claims the inventory already
+    registers, so provenance is checked against the actual claim set rather than asserted.
+    """
+    st=probe['state']
+    prefix=f"scene.{st['model']}.{st['view']}.{st['stage']}."
+    claims={}
+    for c in target.get('claims',[]):
+        consumer=c.get('consumer') or ''
+        if consumer.startswith(prefix):
+            node_id=consumer[len(prefix):].rsplit('.',1)[0]
+            claims.setdefault(node_id,[]).append(c['id'])
+    ids={n['id'] for n in probe['nodes']}
+    return {'id':'visualization.observatory','claim_ids':sorted({cid for v in claims.values() for cid in v}),
+            'canvas':probe['canvas'],
+            'nodes':[{'id':n['id'],'claims':claims.get(n['id'],[]),'bounds':n['bounds'],'text_bounds':n['text_bounds']}
+                     for n in probe['nodes']],
+            'edges':[e for e in probe['edges'] if e['source'] in ids and e['target'] in ids]}
+
+
+
 def run(root):
     root=Path(root)
     sys.path.insert(0,str(root/'tests'))
@@ -204,6 +251,16 @@ def run(root):
         else:
             findings.append(_ok('MOTION_REDUCED','page','Motion is suppressed under prefers-reduced-motion.'))
         page.emulate_media(media='screen',reduced_motion='no-preference')
+        target=loads((root/'verification/manifests/observatory.json').read_text())
+        record=visualization_record(page.evaluate(PROBE_VISUALIZATION),target)
+        (root/'verification/reports/visualization-record.json').write_text(json.dumps(record,indent=2)+'\n')
+        from .domains.contracts import validate as validate_domain
+        problems=[f for f in validate_domain('visualization',record) if f.status!='PASS']
+        for f in problems[:6]:
+            findings.append(_bad('VISUAL_RECORD',f.code,f.message,f.remedy))
+        if not problems:
+            findings.append(_ok('VISUAL_RECORD','scene',
+                                f"Measured visualization record over {len(record['nodes'])} nodes satisfies the scene contract."))
         browser.close()
 
     report={'schema':'stratum-presentations/v1','status':aggregate(findings),
