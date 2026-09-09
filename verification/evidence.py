@@ -24,10 +24,11 @@ ROLES = {'publisher_config','publisher_code','framework_code','vendor_document',
 # This is a policy root. Adding a publisher/framework requires code-owner review.
 REPOS = {
     'publisher_config': {'Qwen/Qwen3.8-27B', 'moonshotai/Kimi-K3', 'Qwen/Qwen3-235B-A22B', 'deepseek-ai/DeepSeek-V2', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3', 'Qwen/Qwen3-30B-A3B', 'Qwen/Qwen3.8-Flash-Next'},
-    'publisher_code': {'moonshotai/Kimi-K3','huggingface/transformers','deepseek-ai/DeepSeek-V2','deepseek-ai/DeepSeek-V3'},
+    'publisher_code': {'moonshotai/Kimi-K3','deepseek-ai/DeepSeek-V2','deepseek-ai/DeepSeek-V3'},
     'tokenizer_code': {'moonshotai/Kimi-K3'},
     'checkpoint_metadata': {'moonshotai/Kimi-K3'},
-    'framework_code': {'sgl-project/sglang','vllm-project/vllm','NVIDIA/Megatron-LM'},
+    # transformers reimplements every model here; it corroborates a publisher, never substitutes for one.
+    'framework_code': {'sgl-project/sglang','vllm-project/vllm','NVIDIA/Megatron-LM','huggingface/transformers'},
     'library_code': {'NVIDIA/nccl','NVIDIA/nvshmem','ai-dynamo/nixl','openucx/ucx','linux-rdma/rdma-core','NVIDIA/cutlass','MoonshotAI/FlashKDA'},
 }
 DOC_HOSTS = {'docs.nvidia.com','developer.nvidia.com','www.nvidia.com','arxiv.org','docs.sglang.io','docs.vllm.ai'}
@@ -168,7 +169,12 @@ def select_anchor(raw: bytes, anchor: dict) -> tuple[str,list[int]]:
         # Quote is only an integrity anchor; meaning still requires reviewer approval.
         quote=anchor.get('quote','')
         if not quote or text.count(quote)!=1: raise ValueError('Quote missing or ambiguous')
-        selected=quote;start=text[:text.index(quote)].count('\n')+1;span=[start,start+quote.count('\n')]
+        if not anchor.get('contains'): raise ValueError('Quotes require explicit semantic tokens')
+        # Select the whole lines the quote spans, like span and python_symbol do. Hashing the
+        # quote alone would compare the manifest against a copy of itself: the author supplies
+        # both the value and its digest, and upstream drift around the quote goes unnoticed.
+        start=text[:text.index(quote)].count('\n')+1;end=start+quote.count('\n')
+        span=[start,end];selected='\n'.join(lines[start-1:end])
     else: raise ValueError('Unknown anchor kind')
     for token in anchor.get('contains',[]):
         if not isinstance(token,str) or not token or token not in selected: raise ValueError(f'Required token not in selected code: {token}')
@@ -190,8 +196,14 @@ def check_anchor(source: dict, anchor: dict, root: Path, *, allow_fixtures=False
         return [Finding('ANCHOR_RESOLUTION','evidence','FAIL',sid,str(exc),'Correct the path/symbol/JSON pointer and re-review.')]
 
 def dual_code_roles(sources: list[dict]) -> bool:
-    pub={s.get('repo') for s in sources if s.get('role')=='publisher_code'}
-    runtime={s.get('repo') for s in sources if s.get('role')=='framework_code'}
+    """Publisher implementation plus a framework implementation from a different organization.
+
+    Two repositories are not independent mathematics if one organization wrote both, so
+    compare owners rather than full repository names.
+    """
+    def org(repo): return repo.split('/')[0].lower() if repo else None
+    pub={org(s.get('repo')) for s in sources if s.get('role')=='publisher_code'}
+    runtime={org(s.get('repo')) for s in sources if s.get('role')=='framework_code'}
     return any(a and b and a!=b for a in pub for b in runtime)
 
 def check_dependencies(claims: list[dict]) -> list[Finding]:

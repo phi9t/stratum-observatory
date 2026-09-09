@@ -92,3 +92,55 @@ class EvidenceTests(unittest.TestCase):
         self.assertIn('COVERAGE_EMPTY',[f.code for f in evidence.check_coverage({'fields':{},'functions':{}},[])])
 
 if __name__=='__main__': unittest.main()
+
+
+class DualCodeIndependenceTests(unittest.TestCase):
+ """Two reimplementations are not a publisher and an independent check of it."""
+ def test_transformers_is_not_a_publisher(self):
+  from verification.evidence import REPOS
+  # huggingface/transformers is a third-party reimplementation of every model in
+  # this atlas. Accepting it as publisher_code lets transformers + sglang satisfy
+  # "publisher implementation AND independent framework implementation".
+  self.assertNotIn('huggingface/transformers',REPOS['publisher_code'])
+  self.assertIn('huggingface/transformers',REPOS['framework_code'])
+ def test_catalog_declares_no_third_party_publisher(self):
+  from verification.evidence import REPOS
+  root=Path(__file__).resolve().parents[2]
+  catalog=evidence.loads((root/'verification/manifests/sources.json').read_text())
+  for s in catalog['sources']:
+   if s.get('role')=='publisher_code':
+    self.assertIn(s['repo'],REPOS['publisher_code'],f"{s['id']} claims publisher_code for {s['repo']}")
+ def test_two_repos_from_one_organization_are_not_independent(self):
+  from verification.evidence import dual_code_roles
+  same=[{'role':'publisher_code','repo':'acme/model'},{'role':'framework_code','repo':'acme/server'}]
+  self.assertFalse(dual_code_roles(same),'same-organization repos were accepted as independent')
+ def test_genuine_publisher_and_independent_framework_are_accepted(self):
+  from verification.evidence import dual_code_roles
+  ok=[{'role':'publisher_code','repo':'deepseek-ai/DeepSeek-V3'},{'role':'framework_code','repo':'sgl-project/sglang'}]
+  self.assertTrue(dual_code_roles(ok))
+ def test_framework_alone_is_not_dual_code(self):
+  from verification.evidence import dual_code_roles
+  self.assertFalse(dual_code_roles([{'role':'framework_code','repo':'sgl-project/sglang'},{'role':'framework_code','repo':'vllm-project/vllm'}]))
+
+
+class AnchorSelfCertificationTests(unittest.TestCase):
+ """An anchor must be checked against source bytes, never against a copy of itself."""
+ def setUp(self):
+  self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.root=Path(self.tmp.name)
+  cache=self.root/'.verification-cache/sha256';cache.mkdir(parents=True)
+  self.text='alpha\ndef routed_experts():\n    return 256\nomega\n'
+  self.digest=hashlib.sha256(self.text.encode()).hexdigest()
+  (cache/f'{self.digest}.txt').write_text(self.text)
+  self.source={'id':'s','kind':'git','role':'framework_code','provider':'github','repo':'sgl-project/sglang',
+               'path':'python/sglang/model.py','revision':'a'*40,
+               'url':'https://raw.githubusercontent.com/sgl-project/sglang/'+'a'*40+'/python/sglang/model.py',
+               'sha256':self.digest,'cache':f'.verification-cache/sha256/{self.digest}.txt','license':'apache-2.0'}
+ def test_quote_hashed_against_itself_is_not_accepted(self):
+  quote='return 256'
+  anchor={'kind':'text_quote','quote':quote,'sha256':hashlib.sha256(quote.encode()).hexdigest(),'contains':['256']}
+  codes=[f.code for f in evidence.check_anchor(self.source,anchor,self.root)]
+  self.assertTrue(codes,'an anchor whose digest is a hash of its own quote was accepted')
+ def test_quote_absent_from_the_source_is_rejected(self):
+  quote='return 512'
+  anchor={'kind':'text_quote','quote':quote,'sha256':hashlib.sha256(quote.encode()).hexdigest(),'contains':['512']}
+  self.assertTrue([f.code for f in evidence.check_anchor(self.source,anchor,self.root)])
