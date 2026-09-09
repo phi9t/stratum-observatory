@@ -48,3 +48,40 @@ class IntegrationTests(unittest.TestCase):
   self.assertIn('needs: [engineering, publication]',text)
   self.assertIn('run: npm run verify:science',text)
   self.assertNotIn('continue-on-error: true',text)
+
+class ToolchainDigestTests(unittest.TestCase):
+ """The receipt must bind every file that decides what the tests actually did."""
+ @classmethod
+ def setUpClass(cls):cls.root=Path(__file__).resolve().parents[2]
+ def digest_with(self,relative,content):
+  """Copy the tree, change one file, and report whether the toolchain digest moved."""
+  from verification.engineering import toolchain_digest
+  before=toolchain_digest(self.root)
+  with tempfile.TemporaryDirectory() as tmp:
+   copy_root=Path(tmp)/'repo'
+   subprocess.run(['cp','-R',str(self.root),str(copy_root)],check=True,capture_output=True)
+   target=copy_root/relative;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(content)
+   return before,toolchain_digest(copy_root)
+ def assert_covered(self,relative,content):
+  before,after=self.digest_with(relative,content)
+  self.assertNotEqual(before,after,f'{relative} is outside toolchain_digest; a receipt would survive changing it.')
+ def test_python_lock_is_covered(self):self.assert_covered('uv.lock','# tampered\n')
+ def test_pyproject_is_covered(self):self.assert_covered('pyproject.toml','[project]\nname = "tampered"\n')
+ def test_python_version_pin_is_covered(self):self.assert_covered('.python-version','3.9\n')
+ def test_browser_suite_is_covered(self):
+  # This file produces the browser evidence the receipt attests to.
+  self.assert_covered('tests/browser.test.py','# weakened\n')
+ def test_codeowners_is_covered(self):self.assert_covered('.github/CODEOWNERS','* @nobody\n')
+ def test_yaml_workflows_are_covered(self):self.assert_covered('.github/workflows/extra.yaml','on: push\n')
+
+class ReceiptCountTests(unittest.TestCase):
+ """A receipt that cannot count its own tests is not evidence that they ran."""
+ def test_counts_are_scraped_from_both_node_reporter_formats(self):
+  from verification.engineering import scrape_count
+  # node 22 wrote "# tests 40"; node 24 writes "ℹ tests 40". Both must parse.
+  self.assertEqual(scrape_count('# tests 40\n# pass 40\n',r'tests (\d+)'),40)
+  self.assertEqual(scrape_count('ℹ tests 40\nℹ pass 40\n',r'tests (\d+)'),40)
+  self.assertEqual(scrape_count('Ran 125 tests in 4s\n',r'Ran (\d+) tests'),125)
+ def test_unparsable_output_returns_none_so_the_run_can_refuse(self):
+  from verification.engineering import scrape_count
+  self.assertIsNone(scrape_count('no counts here\n',r'tests (\d+)'))

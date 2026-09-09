@@ -17,14 +17,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - uses: actions/setup-python@v5
+      - uses: astral-sh/setup-uv@v5
         with:
-          python-version: '3.13'
-      - name: Install test browser
+          enable-cache: true
+      - name: Provision the pinned interpreter and locked dependencies
         run: |
-          python -m pip install playwright==1.55.0
-          python -m playwright install --with-deps chromium
-          echo "CHROMIUM_PATH=$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')" >> "$GITHUB_ENV"
+          uv python install
+          uv sync --frozen
+      - name: Install test browser
+        run: uv run --frozen playwright install --with-deps chromium
       - run: npm run verify:engineering
       - name: Retain exact tested artifact and receipt
         uses: actions/upload-artifact@v4
@@ -42,9 +43,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - uses: actions/setup-python@v5
+      - uses: astral-sh/setup-uv@v5
         with:
-          python-version: '3.13'
+          enable-cache: true
+      - name: Provision the pinned interpreter and locked dependencies
+        run: |
+          uv python install
+          uv sync --frozen
       - uses: actions/download-artifact@v4
         with:
           name: engineering

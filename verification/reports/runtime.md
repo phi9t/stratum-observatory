@@ -1,8 +1,8 @@
 # Scientific verification — stratum-observatory-3
 
-**runtime: FAIL**
+**runtime: BLOCKED**
 
-Generated: 2026-09-08T21:09:54.712008+00:00
+Generated: 2026-09-09T01:37:08.790581+00:00
 
 This report distinguishes software/contract tests from evidence-backed science. Missing evidence is not a contradiction, and a green engineering run is not scientific certification.
 
@@ -35,7 +35,7 @@ This report distinguishes software/contract tests from evidence-backed science. 
 | storage | BLOCKED |
 | measurement | BLOCKED |
 | visualization | BLOCKED |
-| release | FAIL |
+| release | BLOCKED |
 
 ## Findings by failure mode
 
@@ -47,7 +47,7 @@ This report distinguishes software/contract tests from evidence-backed science. 
 | CONTRACT_EVIDENCE | BLOCKED | 31 |
 | DOCUMENTED_NO_SOURCE | BLOCKED | 12 |
 | DOMAIN_INPUT | BLOCKED | 12 |
-| RECEIPT_EXPIRED | FAIL | 1 |
+| ENGINEERING_CURRENT | PASS | 1 |
 | REVIEW_REQUIRED | BLOCKED | 3009 |
 | RUNTIME_NOT_RUN | NOT_RUN | 31 |
 | SOURCE_CACHE | BLOCKED | 56 |

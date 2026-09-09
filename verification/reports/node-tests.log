@@ -2,253 +2,51 @@
 > stratum-model-systems-observatory@3.0.0 test
 > node --test tests/*.test.mjs
 
-TAP version 13
-# Subtest: multi-model API exists
-ok 1 - multi-model API exists
-  ---
-  duration_ms: 0.850603
-  type: 'test'
-  ...
-# Subtest: all eight exact variants are represented
-ok 2 - all eight exact variants are represented
-  ---
-  duration_ms: 0.11268
-  type: 'test'
-  ...
-# Subtest: Kimi 93 layers include the last global layer
-ok 3 - Kimi 93 layers include the last global layer
-  ---
-  duration_ms: 0.224799
-  type: 'test'
-  ...
-# Subtest: Qwen3.8 is not ordinary Qwen3
-ok 4 - Qwen3.8 is not ordinary Qwen3
-  ---
-  duration_ms: 0.117016
-  type: 'test'
-  ...
-# Subtest: Qwen3 heads are not forced to divide residual width
-ok 5 - Qwen3 heads are not forced to divide residual width
-  ---
-  duration_ms: 0.169987
-  type: 'test'
-  ...
-# Subtest: GQA counts K and V heads, not Q
-ok 6 - GQA counts K and V heads, not Q
-  ---
-  duration_ms: 0.534446
-  type: 'test'
-  ...
-# Subtest: DeepSeek compressed MLA retains content latent and rotary key
-ok 7 - DeepSeek compressed MLA retains content latent and rotary key
-  ---
-  duration_ms: 0.333443
-  type: 'test'
-  ...
-# Subtest: Kimi NoPE does not eliminate the shared 64 channels
-ok 8 - Kimi NoPE does not eliminate the shared 64 channels
-  ---
-  duration_ms: 0.154723
-  type: 'test'
-  ...
-# Subtest: hybrid recurrent state is independent of context
-ok 9 - hybrid recurrent state is independent of context
-  ---
-  duration_ms: 0.953148
-  type: 'test'
-  ...
-# Subtest: QSA sparse reads do not bound the full history
-ok 10 - QSA sparse reads do not bound the full history
-  ---
-  duration_ms: 0.422618
-  type: 'test'
-  ...
-# Subtest: uniform sharding changes per-rank state, not global state
-ok 11 - uniform sharding changes per-rank state, not global state
-  ---
-  duration_ms: 0.407084
-  type: 'test'
-  ...
-# Subtest: dense models cannot produce expert dispatch
-ok 12 - dense models cannot produce expert dispatch
-  ---
-  duration_ms: 0.161874
-  type: 'test'
-  ...
-# Subtest: single rank has zero off-rank collective or expert traffic
-ok 13 - single rank has zero off-rank collective or expert traffic
-  ---
-  duration_ms: 0.126231
-  type: 'test'
-  ...
-# Subtest: invalid URL input is rejected or clamped, never injected
-ok 14 - invalid URL input is rejected or clamped, never injected
-  ---
-  duration_ms: 0.102194
-  type: 'test'
-  ...
-# Subtest: hardware capacity and scope distinguish GPU from rack
-ok 15 - hardware capacity and scope distinguish GPU from rack
-  ---
-  duration_ms: 0.058608
-  type: 'test'
-  ...
-# Subtest: parameter ledgers declare rounded totals and extras
-ok 16 - parameter ledgers declare rounded totals and extras
-  ---
-  duration_ms: 0.121944
-  type: 'test'
-  ...
-# Subtest: absent mechanisms produce zero, never 0 times NaN
-ok 17 - absent mechanisms produce zero, never 0 times NaN
-  ---
-  duration_ms: 0.763772
-  type: 'test'
-  ...
-# Subtest: ds2: every decoder layer has a contained, orthogonal scene
-ok 18 - ds2: every decoder layer has a contained, orthogonal scene
-  ---
-  duration_ms: 54.414298
-  type: 'test'
-  ...
-# Subtest: ds3: every decoder layer has a contained, orthogonal scene
-ok 19 - ds3: every decoder layer has a contained, orthogonal scene
-  ---
-  duration_ms: 33.617451
-  type: 'test'
-  ...
-# Subtest: q38: every decoder layer has a contained, orthogonal scene
-ok 20 - q38: every decoder layer has a contained, orthogonal scene
-  ---
-  duration_ms: 18.566908
-  type: 'test'
-  ...
-# Subtest: q330: every decoder layer has a contained, orthogonal scene
-ok 21 - q330: every decoder layer has a contained, orthogonal scene
-  ---
-  duration_ms: 21.972364
-  type: 'test'
-  ...
-# Subtest: q3235: every decoder layer has a contained, orthogonal scene
-ok 22 - q3235: every decoder layer has a contained, orthogonal scene
-  ---
-  duration_ms: 43.393177
-  type: 'test'
-  ...
-# Subtest: q3827: every decoder layer has a contained, orthogonal scene
-ok 23 - q3827: every decoder layer has a contained, orthogonal scene
-  ---
-  duration_ms: 27.922391
-  type: 'test'
-  ...
-# Subtest: q38flash: every decoder layer has a contained, orthogonal scene
-ok 24 - q38flash: every decoder layer has a contained, orthogonal scene
-  ---
-  duration_ms: 22.911101
-  type: 'test'
-  ...
-# Subtest: kimi3: every decoder layer has a contained, orthogonal scene
-ok 25 - kimi3: every decoder layer has a contained, orthogonal scene
-  ---
-  duration_ms: 49.73823
-  type: 'test'
-  ...
-# Subtest: compare: all model/hardware identities have valid scenes
-ok 26 - compare: all model/hardware identities have valid scenes
-  ---
-  duration_ms: 3.808956
-  type: 'test'
-  ...
-# Subtest: training: all model/hardware identities have valid scenes
-ok 27 - training: all model/hardware identities have valid scenes
-  ---
-  duration_ms: 1.609258
-  type: 'test'
-  ...
-# Subtest: serving: all model/hardware identities have valid scenes
-ok 28 - serving: all model/hardware identities have valid scenes
-  ---
-  duration_ms: 3.805651
-  type: 'test'
-  ...
-# Subtest: hardware: all model/hardware identities have valid scenes
-ok 29 - hardware: all model/hardware identities have valid scenes
-  ---
-  duration_ms: 2.812773
-  type: 'test'
-  ...
-# Subtest: network: all model/hardware identities have valid scenes
-ok 30 - network: all model/hardware identities have valid scenes
-  ---
-  duration_ms: 1.278599
-  type: 'test'
-  ...
-# Subtest: evidence: all model/hardware identities have valid scenes
-ok 31 - evidence: all model/hardware identities have valid scenes
-  ---
-  duration_ms: 0.8884
-  type: 'test'
-  ...
-# Subtest: Kimi global layers do not insert rotary encoding
-ok 32 - Kimi global layers do not insert rotary encoding
-  ---
-  duration_ms: 0.798975
-  type: 'test'
-  ...
-# Subtest: Qwen3 has Q/K head norms but no shared expert
-ok 33 - Qwen3 has Q/K head norms but no shared expert
-  ---
-  duration_ms: 0.645815
-  type: 'test'
-  ...
-# Subtest: QSA has separate full history and block-selection paths
-ok 34 - QSA has separate full history and block-selection paths
-  ---
-  duration_ms: 0.638143
-  type: 'test'
-  ...
-# Subtest: recurrence is explicitly time-delayed
-ok 35 - recurrence is explicitly time-delayed
-  ---
-  duration_ms: 0.577471
-  type: 'test'
-  ...
-# Subtest: shared expert consumes hidden input, never routing scores
-ok 36 - shared expert consumes hidden input, never routing scores
-  ---
-  duration_ms: 2.118737
-  type: 'test'
-  ...
-# Subtest: nonstandard residuals are not rendered as ordinary residual sums
-ok 37 - nonstandard residuals are not rendered as ordinary residual sums
-  ---
-  duration_ms: 1.210776
-  type: 'test'
-  ...
-# Subtest: input / residual / PLE focus stages are real distinct scenes
-ok 38 - input / residual / PLE focus stages are real distinct scenes
-  ---
-  duration_ms: 0.709721
-  type: 'test'
-  ...
-# Subtest: training modes change actual collective semantics
-ok 39 - training modes change actual collective semantics
-  ---
-  duration_ms: 0.216727
-  type: 'test'
-  ...
-# Subtest: two-line operator boxes reserve at least 32px for fractional-DPR text bounds
-ok 40 - two-line operator boxes reserve at least 32px for fractional-DPR text bounds
-  ---
-  duration_ms: 3.674663
-  type: 'test'
-  ...
-1..40
-# tests 40
-# suites 0
-# pass 40
-# fail 0
-# cancelled 0
-# skipped 0
-# todo 0
-# duration_ms 361.157687
+✔ multi-model API exists (0.624291ms)
+✔ all eight exact variants are represented (0.08725ms)
+✔ Kimi 93 layers include the last global layer (0.154292ms)
+✔ Qwen3.8 is not ordinary Qwen3 (0.119791ms)
+✔ Qwen3 heads are not forced to divide residual width (0.085292ms)
+✔ GQA counts K and V heads, not Q (0.30825ms)
+✔ DeepSeek compressed MLA retains content latent and rotary key (0.131125ms)
+✔ Kimi NoPE does not eliminate the shared 64 channels (0.107208ms)
+✔ hybrid recurrent state is independent of context (0.127167ms)
+✔ QSA sparse reads do not bound the full history (0.202792ms)
+✔ uniform sharding changes per-rank state, not global state (0.238084ms)
+✔ dense models cannot produce expert dispatch (0.716625ms)
+✔ single rank has zero off-rank collective or expert traffic (0.162709ms)
+✔ invalid URL input is rejected or clamped, never injected (0.091709ms)
+✔ hardware capacity and scope distinguish GPU from rack (0.045375ms)
+✔ parameter ledgers declare rounded totals and extras (0.114959ms)
+✔ absent mechanisms produce zero, never 0 times NaN (0.565791ms)
+✔ ds2: every decoder layer has a contained, orthogonal scene (50.588792ms)
+✔ ds3: every decoder layer has a contained, orthogonal scene (32.1515ms)
+✔ q38: every decoder layer has a contained, orthogonal scene (17.456334ms)
+✔ q330: every decoder layer has a contained, orthogonal scene (21.720209ms)
+✔ q3235: every decoder layer has a contained, orthogonal scene (40.385083ms)
+✔ q3827: every decoder layer has a contained, orthogonal scene (25.959333ms)
+✔ q38flash: every decoder layer has a contained, orthogonal scene (21.557917ms)
+✔ kimi3: every decoder layer has a contained, orthogonal scene (47.699584ms)
+✔ compare: all model/hardware identities have valid scenes (3.186833ms)
+✔ training: all model/hardware identities have valid scenes (0.869959ms)
+✔ serving: all model/hardware identities have valid scenes (2.818083ms)
+✔ hardware: all model/hardware identities have valid scenes (1.980709ms)
+✔ network: all model/hardware identities have valid scenes (0.999167ms)
+✔ evidence: all model/hardware identities have valid scenes (0.395166ms)
+✔ Kimi global layers do not insert rotary encoding (0.724459ms)
+✔ Qwen3 has Q/K head norms but no shared expert (0.525625ms)
+✔ QSA has separate full history and block-selection paths (0.469333ms)
+✔ recurrence is explicitly time-delayed (0.438584ms)
+✔ shared expert consumes hidden input, never routing scores (2.049125ms)
+✔ nonstandard residuals are not rendered as ordinary residual sums (1.007333ms)
+✔ input / residual / PLE focus stages are real distinct scenes (0.504709ms)
+✔ training modes change actual collective semantics (0.15ms)
+✔ two-line operator boxes reserve at least 32px for fractional-DPR text bounds (3.898541ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 337.997084

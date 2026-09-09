@@ -2,8 +2,8 @@
   "schema": "stratum-verification-report/v1",
   "target": "stratum-observatory-3",
   "profile": "publication",
-  "status": "FAIL",
-  "generated_at": "2026-09-08T21:09:19.039489+00:00",
+  "status": "BLOCKED",
+  "generated_at": "2026-09-09T01:37:07.274778+00:00",
   "lock_sha256": "aea0f169461434357667aa080840dffc36858f3a88bbcdb4dec3fec157bc6f0d",
   "consumer_sha256": "6b3fb3c23d8c4f9b0a305d205bf7f236cbef12b5fc174f93a6984731031074f6",
   "coverage": {
@@ -18,8 +18,7 @@
   },
   "counts": {
     "BLOCKED": 13255,
-    "PASS": 21,
-    "FAIL": 1
+    "PASS": 22
   },
   "domains": {
     "evidence": "BLOCKED",
@@ -34,7 +33,7 @@
     "storage": "BLOCKED",
     "measurement": "BLOCKED",
     "visualization": "BLOCKED",
-    "release": "FAIL"
+    "release": "BLOCKED"
   },
   "runtime_certified": false,
   "findings": [
@@ -119523,12 +119522,12 @@
       "evidence": []
     },
     {
-      "code": "RECEIPT_EXPIRED",
+      "code": "ENGINEERING_CURRENT",
       "domain": "release",
-      "status": "FAIL",
+      "status": "PASS",
       "subject": "engineering",
-      "message": "Engineering receipt is future-dated or older than 24 hours.",
-      "remedy": "Run npm run verify:engineering on this exact checkout; never reuse an old report.",
+      "message": "Fresh local receipt binds tests, source, evidence lock and portable artifact; CI must protect the runner.",
+      "remedy": "",
       "evidence": []
     }
   ]

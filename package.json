@@ -6,14 +6,14 @@
   "scripts": {
     "test": "node --test tests/*.test.mjs",
     "build": "node build.mjs",
-    "start": "python3 -m http.server 8000",
+    "start": "uv run --frozen python -m http.server 8000",
     "verify": "npm run verify:engineering && npm run verify:science",
-    "test:verifiers": "python3 -m unittest discover -s verification/tests -v",
-    "verify:engineering": "python3 -m verification.engineering",
-    "verify:science": "python3 -m verification.runner --profile publication",
-    "verify:runtime": "python3 -m verification.runner --profile runtime",
-    "verify:sources": "python3 -m verification.sources acquire",
-    "capture": "python3 tests/capture.py"
+    "test:verifiers": "uv run --frozen python -m unittest discover -s verification/tests -v",
+    "verify:engineering": "uv run --frozen python -m verification.engineering",
+    "verify:science": "uv run --frozen python -m verification.runner --profile publication",
+    "verify:runtime": "uv run --frozen python -m verification.runner --profile runtime",
+    "verify:sources": "uv run --frozen python -m verification.sources acquire",
+    "capture": "uv run --frozen python tests/capture.py"
   },
   "engines": {
     "node": ">=20"

@@ -1,0 +1,13 @@
+[project]
+name = "stratum-model-systems-observatory"
+version = "3.0.0"
+description = "Verification toolchain for the STRATUM Model Systems Observatory."
+requires-python = "==3.13.*"
+# The verifier itself is standard-library only and must stay that way; Playwright
+# exists solely to drive the release browser suite against the built artifact.
+dependencies = ["playwright==1.55.0"]
+
+[tool.uv]
+# verification/ and tests/ are executed from the repository root via -m or by path.
+# Nothing here is installed or distributed, so no build backend is required.
+package = false

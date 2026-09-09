@@ -90,6 +90,14 @@ test_runtime_requires_each_registered_sku_and_fabric (test_integration.Integrati
 test_scientific_field_cannot_be_presentation (test_integration.IntegrationTests.test_scientific_field_cannot_be_presentation) ... ok
 test_unrun_gpu_is_not_pass (test_integration.IntegrationTests.test_unrun_gpu_is_not_pass) ... ok
 test_upstream_pin_change_invalidates_review_subject (test_integration.IntegrationTests.test_upstream_pin_change_invalidates_review_subject) ... ok
+test_counts_are_scraped_from_both_node_reporter_formats (test_integration.ReceiptCountTests.test_counts_are_scraped_from_both_node_reporter_formats) ... ok
+test_unparsable_output_returns_none_so_the_run_can_refuse (test_integration.ReceiptCountTests.test_unparsable_output_returns_none_so_the_run_can_refuse) ... ok
+test_browser_suite_is_covered (test_integration.ToolchainDigestTests.test_browser_suite_is_covered) ... ok
+test_codeowners_is_covered (test_integration.ToolchainDigestTests.test_codeowners_is_covered) ... ok
+test_pyproject_is_covered (test_integration.ToolchainDigestTests.test_pyproject_is_covered) ... ok
+test_python_lock_is_covered (test_integration.ToolchainDigestTests.test_python_lock_is_covered) ... ok
+test_python_version_pin_is_covered (test_integration.ToolchainDigestTests.test_python_version_pin_is_covered) ... ok
+test_yaml_workflows_are_covered (test_integration.ToolchainDigestTests.test_yaml_workflows_are_covered) ... ok
 test_dense_model_is_not_forced_to_invent_experts (test_observatory.ObservatoryTests.test_dense_model_is_not_forced_to_invent_experts) ... ok
 test_dense_with_routed_topk_is_rejected (test_observatory.ObservatoryTests.test_dense_with_routed_topk_is_rejected) ... ok
 test_live_inventory_covers_new_renderer_modules_and_all_presets (test_observatory.ObservatoryTests.test_live_inventory_covers_new_renderer_modules_and_all_presets) ... ok
@@ -101,6 +109,8 @@ test_revoked_key_blocked (test_reviews.SignedReviewTests.test_revoked_key_blocke
 test_self_review_rejected (test_reviews.SignedReviewTests.test_self_review_rejected) ... ok
 test_tampered_body_rejected (test_reviews.SignedReviewTests.test_tampered_body_rejected) ... ok
 test_unknown_reviewer_blocked (test_reviews.SignedReviewTests.test_unknown_reviewer_blocked) ... ok
+test_capable_toolchain_is_detected_on_this_host (test_reviews.ToolchainCapabilityTests.test_capable_toolchain_is_detected_on_this_host) ... ok
+test_missing_ed25519_toolchain_blocks_and_does_not_fail (test_reviews.ToolchainCapabilityTests.test_missing_ed25519_toolchain_blocks_and_does_not_fail) ... ok
 test_auditor_api_exists (test_runner.RunnerTests.test_auditor_api_exists) ... ok
 test_empty_target_is_blocked (test_runner.RunnerTests.test_empty_target_is_blocked) ... ok
 test_inventory_is_derived_from_actual_core (test_runner.RunnerTests.test_inventory_is_derived_from_actual_core) ... ok
@@ -117,6 +127,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 117 tests in 4.867s
+Ran 127 tests in 15.859s
 
 OK

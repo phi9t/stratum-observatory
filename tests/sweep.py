@@ -1,4 +1,5 @@
 from playwright.sync_api import sync_playwright
+from browser_env import chromium_path
 from pathlib import Path
 import json,os
 R=Path(__file__).resolve().parents[1]
@@ -17,7 +18,7 @@ for traffic in ['expert','allreduce','handoff']:
 for train in ['fsdp','ddp','rl']:cases.append({'view':'training','trainMode':train})
 errs=[]; report=[]
 with sync_playwright() as p:
- b=p.chromium.launch(executable_path=os.getenv('CHROMIUM_PATH','/usr/bin/chromium'),headless=True,args=['--no-sandbox'])
+ b=p.chromium.launch(executable_path=chromium_path(p),headless=True,args=['--no-sandbox'])
  page=b.new_page(viewport={'width':1840,'height':1400},device_scale_factor=1)
  page.on('pageerror',lambda e:errs.append(str(e)))
  page.set_content((R/'dist/index.html').read_text(),wait_until='load')
