@@ -125,6 +125,10 @@ test_tensor_transfer_needs_consumer_barrier (test_extended_contracts.ExtendedCon
 test_valid_ib_control_plane (test_extended_contracts.ExtendedContractTests.test_valid_ib_control_plane) ... ok
 test_wrong_nvswitch_count_is_not_hopper_template_copy (test_extended_contracts.ExtendedContractTests.test_wrong_nvswitch_count_is_not_hopper_template_copy) ... ok
 test_zero_partition_rejected (test_extended_contracts.ExtendedContractTests.test_zero_partition_rejected) ... ok
+test_a_binding_to_a_missing_consumer_is_reported (test_integration.ContractBindingTests.test_a_binding_to_a_missing_consumer_is_reported) ... ok
+test_a_nested_field_can_be_bound (test_integration.ContractBindingTests.test_a_nested_field_can_be_bound) ... ok
+test_drifted_hardware_value_breaks_its_bound_contract (test_integration.ContractBindingTests.test_drifted_hardware_value_breaks_its_bound_contract) ... ok
+test_no_contract_hides_an_empty_binding_set_while_claiming_a_constant (test_integration.ContractBindingTests.test_no_contract_hides_an_empty_binding_set_while_claiming_a_constant) ... ok
 test_changed_live_core_field_fails (test_integration.IntegrationTests.test_changed_live_core_field_fails) ... ok
 test_claim_with_missing_dependency_is_not_reported_as_verified (test_integration.IntegrationTests.test_claim_with_missing_dependency_is_not_reported_as_verified) ... ok
 test_cold_cache_is_blocked_not_certified (test_integration.IntegrationTests.test_cold_cache_is_blocked_not_certified) ... ok
@@ -140,6 +144,10 @@ test_unrun_gpu_is_not_pass (test_integration.IntegrationTests.test_unrun_gpu_is_
 test_upstream_pin_change_invalidates_review_subject (test_integration.IntegrationTests.test_upstream_pin_change_invalidates_review_subject) ... ok
 test_counts_are_scraped_from_both_node_reporter_formats (test_integration.ReceiptCountTests.test_counts_are_scraped_from_both_node_reporter_formats) ... ok
 test_unparsable_output_returns_none_so_the_run_can_refuse (test_integration.ReceiptCountTests.test_unparsable_output_returns_none_so_the_run_can_refuse) ... ok
+test_a_current_receipt_carries_both_build_hashes (test_integration.ReleaseContractTests.test_a_current_receipt_carries_both_build_hashes) ... skipped 'no engineering receipt yet'
+test_a_nondeterministic_build_is_caught (test_integration.ReleaseContractTests.test_a_nondeterministic_build_is_caught) ... ok
+test_a_receipt_from_another_tree_is_a_stale_release (test_integration.ReleaseContractTests.test_a_receipt_from_another_tree_is_a_stale_release) ... ok
+test_release_record_is_built_from_the_receipt (test_integration.ReleaseContractTests.test_release_record_is_built_from_the_receipt) ... ok
 test_changed_bytes_invalidate_review (test_integration.ReviewSubjectTests.test_changed_bytes_invalidate_review) ... ok
 test_changed_revision_invalidates_review (test_integration.ReviewSubjectTests.test_changed_revision_invalidates_review) ... ok
 test_changed_role_invalidates_review (test_integration.ReviewSubjectTests.test_changed_role_invalidates_review) ... ok
@@ -222,6 +230,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 221 tests in 26.045s
+Ran 229 tests in 32.871s
 
-OK
+OK (skipped=1)

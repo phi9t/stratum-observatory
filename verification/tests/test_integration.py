@@ -151,3 +151,80 @@ class ReviewSubjectTests(unittest.TestCase):
   declared=set(schema['properties']['sources']['items']['properties'])
   self.assertEqual(SOURCE_IDENTITY|SOURCE_VOLATILE,declared)
   self.assertEqual(SOURCE_IDENTITY&SOURCE_VOLATILE,set())
+
+class ContractBindingTests(unittest.TestCase):
+ """A bound constant is checked against the application; a transcribed one is not."""
+ @classmethod
+ def setUpClass(cls):
+  cls.root=Path(__file__).resolve().parents[2]
+  cls.target=loads((cls.root/'verification/manifests/observatory.json').read_text())
+  cls.catalog=loads((cls.root/'verification/manifests/sources.json').read_text())
+  cls.inv=loads(subprocess.run(['node','tools/export-verification.mjs'],cwd=cls.root,capture_output=True,text=True,check=True).stdout)
+ def run_audit(self,target=None):
+  cat=copy.deepcopy(self.catalog)
+  for s in cat['sources']:s['cache']=None;s['sha256']=None
+  return audit(self.root,target or self.target,self.inv,cat,profile='publication')
+ def test_a_nested_field_can_be_bound(self):
+  # GPU memory is {value, unit, scope, kind}; without dotted paths only whole-field
+  # replacement is possible and every capacity stays hand-transcribed.
+  from verification.runner import apply_bindings
+  record={'memory':{'value':0,'unit':'GB'}}
+  missing=apply_bindings(record,{'memory.value':'HARDWARE.h100.hbmGB'},{'HARDWARE.h100.hbmGB':80})
+  self.assertEqual(missing,[])
+  self.assertEqual(record['memory']['value'],80)
+  self.assertEqual(record['memory']['unit'],'GB','binding must not clobber its siblings')
+ def test_a_binding_to_a_missing_consumer_is_reported(self):
+  from verification.runner import apply_bindings
+  self.assertEqual(apply_bindings({},{'x':'NOPE.nope'},{}),['NOPE.nope'])
+ def test_drifted_hardware_value_breaks_its_bound_contract(self):
+  # The whole point: change the application and a bound contract must notice.
+  x=copy.deepcopy(self.inv);x['fields']['HARDWARE.h100.hbmGB']=79
+  cat=copy.deepcopy(self.catalog)
+  for s in cat['sources']:s['cache']=None;s['sha256']=None
+  codes={f['code'] for f in audit(self.root,self.target,x,cat,profile='publication')['findings']}
+  self.assertTrue({'GPU_MEMORY','CONSUMER_VALUE'}&codes,'a drifted hardware value was not noticed anywhere')
+ def test_no_contract_hides_an_empty_binding_set_while_claiming_a_constant(self):
+  # Contracts that genuinely have nothing to bind must say so, not leave {} to imply checked.
+  for c in self.target['contracts']:
+   if not c.get('bindings') and not c['id'].endswith('.pending'):
+    self.assertIn('binding_scope',c,f"{c['id']} has no bindings and no stated reason")
+
+class ReleaseContractTests(unittest.TestCase):
+ """The release record is derived from the receipt, never transcribed into the manifest."""
+ def test_a_current_receipt_carries_both_build_hashes(self):
+  # engineering.py computed the second build hash and discarded it, leaving determinism as a
+  # bare boolean a hand-written receipt could simply assert. Only a receipt bound to the
+  # current toolchain is checked; a stale one is already caught by VERIFIER_STALE.
+  root=Path(__file__).resolve().parents[2]
+  path=root/'verification/reports/engineering.json'
+  if not path.exists():self.skipTest('no engineering receipt yet')
+  receipt=loads(path.read_text())
+  from verification.engineering import toolchain_digest
+  if receipt.get('verifier_sha256')!=toolchain_digest(root):self.skipTest('receipt predates the current toolchain')
+  self.assertIn('repeat_build_sha256',receipt)
+  self.assertEqual(receipt['repeat_build_sha256'],receipt['artifact_sha256'])
+ def test_release_record_is_built_from_the_receipt(self):
+  from verification.runner import release_record
+  receipt={'consumer_sha256':'a'*64,'lock_sha256':'b'*64,'artifact_sha256':'c'*64,'repeat_build_sha256':'c'*64,
+           'commands':{'node-tests':{'exit':0},'browser':{'exit':0}},
+           'browser':{'geometry_defects':0,'runtime_errors':0,'external_runtime_requests':0}}
+  rec=release_record(receipt,consumer='a'*64,lock='b'*64)
+  self.assertEqual(rec['source_sha256'],rec['built_from_sha256'])
+  self.assertEqual(rec['source_lock_sha256'],rec['receipt_lock_sha256'])
+  self.assertEqual(rec['commands'],{'node':0,'browser':0})
+ def test_a_receipt_from_another_tree_is_a_stale_release(self):
+  from verification.runner import release_record
+  from verification.domains.contracts import validate
+  receipt={'consumer_sha256':'a'*64,'lock_sha256':'b'*64,'artifact_sha256':'c'*64,'repeat_build_sha256':'c'*64,
+           'commands':{'node-tests':{'exit':0},'browser':{'exit':0}},
+           'browser':{'geometry_defects':0,'runtime_errors':0,'external_runtime_requests':0}}
+  rec=release_record(receipt,consumer='9'*64,lock='b'*64)
+  self.assertIn('RELEASE_STALE',{f.code for f in validate('release',rec)})
+ def test_a_nondeterministic_build_is_caught(self):
+  from verification.runner import release_record
+  from verification.domains.contracts import validate
+  receipt={'consumer_sha256':'a'*64,'lock_sha256':'b'*64,'artifact_sha256':'c'*64,'repeat_build_sha256':'d'*64,
+           'commands':{'node-tests':{'exit':0},'browser':{'exit':0}},
+           'browser':{'geometry_defects':0,'runtime_errors':0,'external_runtime_requests':0}}
+  rec=release_record(receipt,consumer='a'*64,lock='b'*64)
+  self.assertIn('RELEASE_DETERMINISM',{f.code for f in validate('release',rec)})

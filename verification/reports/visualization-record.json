@@ -1,0 +1,1201 @@
+{
+  "id": "visualization.observatory",
+  "claim_ids": [
+    "scene.ds3.model.block.attention.0d740d8fbb2be692",
+    "scene.ds3.model.block.combine.000ad18d151e5dca",
+    "scene.ds3.model.block.dispatch.eed2c5200915c237",
+    "scene.ds3.model.block.embedding.f12446ac9154ccf0",
+    "scene.ds3.model.block.expert-activation.8763ea4c31c3faf2",
+    "scene.ds3.model.block.expert-down.0d6c4967eb5e72a6",
+    "scene.ds3.model.block.expert-up.7cc66f584e3c13c5",
+    "scene.ds3.model.block.ffn-activation.004094d6ffa36488",
+    "scene.ds3.model.block.ffn-down.1174052d57a2271e",
+    "scene.ds3.model.block.ffn-up.245321a5a7e2cf3f",
+    "scene.ds3.model.block.final-norm.202d7567083eaf81",
+    "scene.ds3.model.block.graph.04b4e13df835815c",
+    "scene.ds3.model.block.graph.05c8dba9f4360015",
+    "scene.ds3.model.block.graph.0602c34a326f8a8c",
+    "scene.ds3.model.block.graph.068f8640536cd872",
+    "scene.ds3.model.block.graph.0a249be51ec995f8",
+    "scene.ds3.model.block.graph.0d00297e43781ba7",
+    "scene.ds3.model.block.graph.0fe40622c5e5cd4d",
+    "scene.ds3.model.block.graph.0ff2c9e31020d965",
+    "scene.ds3.model.block.graph.1347d5fcc2807100",
+    "scene.ds3.model.block.graph.13f7bf5c558cfec9",
+    "scene.ds3.model.block.graph.16ab82f341aad85d",
+    "scene.ds3.model.block.graph.1dcb07851d1c81f7",
+    "scene.ds3.model.block.graph.1e84a163b5e58ec2",
+    "scene.ds3.model.block.graph.237c36cc347998f2",
+    "scene.ds3.model.block.graph.2598c3ade4397b5a",
+    "scene.ds3.model.block.graph.26a5dcdf257d3a0d",
+    "scene.ds3.model.block.graph.281879373109d91f",
+    "scene.ds3.model.block.graph.2b975a5c1657db04",
+    "scene.ds3.model.block.graph.2bacd5b8fcc5599d",
+    "scene.ds3.model.block.graph.2dd2b26f07beb47e",
+    "scene.ds3.model.block.graph.2e7f1df7c0a9329d",
+    "scene.ds3.model.block.graph.2ec247946c793942",
+    "scene.ds3.model.block.graph.322cfc7e93d8369b",
+    "scene.ds3.model.block.graph.38e161799b47b198",
+    "scene.ds3.model.block.graph.3c6e2f9d346497c7",
+    "scene.ds3.model.block.graph.3ca88eb5acf0f13a",
+    "scene.ds3.model.block.graph.40a13d918cc3e47d",
+    "scene.ds3.model.block.graph.4390315e4a4a0ee2",
+    "scene.ds3.model.block.graph.4426614b0d3616ad",
+    "scene.ds3.model.block.graph.46c05827774f1101",
+    "scene.ds3.model.block.graph.4800b570dd8cd3fc",
+    "scene.ds3.model.block.graph.499f69bb50877044",
+    "scene.ds3.model.block.graph.49e04e4fa4a0dfc5",
+    "scene.ds3.model.block.graph.4a352d7f3cb06581",
+    "scene.ds3.model.block.graph.4ade888509aa7ecd",
+    "scene.ds3.model.block.graph.4b4a7e3197babef9",
+    "scene.ds3.model.block.graph.4c12f21271cae168",
+    "scene.ds3.model.block.graph.4f4e7feb2fbb5f5b",
+    "scene.ds3.model.block.graph.536ff65ccf8f5718",
+    "scene.ds3.model.block.graph.55d19183dcb8e28a",
+    "scene.ds3.model.block.graph.57ef07ff5b625563",
+    "scene.ds3.model.block.graph.583ebd3066e06f1b",
+    "scene.ds3.model.block.graph.5a09e5477327c3b9",
+    "scene.ds3.model.block.graph.5aa523f50b9ecf76",
+    "scene.ds3.model.block.graph.5ca713f7a72bfbdc",
+    "scene.ds3.model.block.graph.5cb6893dbff69f9d",
+    "scene.ds3.model.block.graph.600827b2364baf17",
+    "scene.ds3.model.block.graph.6042bf546f9d54e9",
+    "scene.ds3.model.block.graph.60470d5439745810",
+    "scene.ds3.model.block.graph.62e5f89830e8c7eb",
+    "scene.ds3.model.block.graph.632cdcc1d32f7d2b",
+    "scene.ds3.model.block.graph.6666066cc2eac4b0",
+    "scene.ds3.model.block.graph.67afa5d06dcd1c6a",
+    "scene.ds3.model.block.graph.689917e553189c52",
+    "scene.ds3.model.block.graph.68a9d5c9c876fe26",
+    "scene.ds3.model.block.graph.6e83dcc433426c22",
+    "scene.ds3.model.block.graph.6fa9d3cac4611595",
+    "scene.ds3.model.block.graph.756cb4c7dbb678de",
+    "scene.ds3.model.block.graph.7a40a1e8bd236745",
+    "scene.ds3.model.block.graph.7ba9729a0457ec6c",
+    "scene.ds3.model.block.graph.7f66a54e5f596c4c",
+    "scene.ds3.model.block.graph.81119051161cb590",
+    "scene.ds3.model.block.graph.838b248d635a3c14",
+    "scene.ds3.model.block.graph.8a363cf4d313fa31",
+    "scene.ds3.model.block.graph.8d414d9292d3366b",
+    "scene.ds3.model.block.graph.8ecec10f702927f8",
+    "scene.ds3.model.block.graph.8eeaeb16b1a7d16a",
+    "scene.ds3.model.block.graph.93aefc8b92711c40",
+    "scene.ds3.model.block.graph.9571c4c5a7665946",
+    "scene.ds3.model.block.graph.9b483d323708484d",
+    "scene.ds3.model.block.graph.9c8af64cbacc01e8",
+    "scene.ds3.model.block.graph.a049bab76b3b6abc",
+    "scene.ds3.model.block.graph.a145091d61c6f77e",
+    "scene.ds3.model.block.graph.a1b2f002390be19f",
+    "scene.ds3.model.block.graph.a5451d5b5309c0ec",
+    "scene.ds3.model.block.graph.a65a8d23b29cb809",
+    "scene.ds3.model.block.graph.a7aa326446b96807",
+    "scene.ds3.model.block.graph.a8ebeebdadb27de8",
+    "scene.ds3.model.block.graph.aa05d02ab140e450",
+    "scene.ds3.model.block.graph.ab9c633534c6b903",
+    "scene.ds3.model.block.graph.b368a99cc4f406d6",
+    "scene.ds3.model.block.graph.b7b5f82baf84c859",
+    "scene.ds3.model.block.graph.b908aacc661c25ba",
+    "scene.ds3.model.block.graph.bc8f54f82c5eac92",
+    "scene.ds3.model.block.graph.be170c52e6c41e06",
+    "scene.ds3.model.block.graph.beda6015db3455e6",
+    "scene.ds3.model.block.graph.c0b0dce92aed358d",
+    "scene.ds3.model.block.graph.c0f2d16fc275b5b2",
+    "scene.ds3.model.block.graph.c20d1e342cd4baad",
+    "scene.ds3.model.block.graph.c3e99bab3b8140dc",
+    "scene.ds3.model.block.graph.c47b8bd864059729",
+    "scene.ds3.model.block.graph.c7682b7824626c2d",
+    "scene.ds3.model.block.graph.c8ed976a2a9b4223",
+    "scene.ds3.model.block.graph.cab9a23fb9355587",
+    "scene.ds3.model.block.graph.d1df73c419c4a1be",
+    "scene.ds3.model.block.graph.d2febe8c06a78bc8",
+    "scene.ds3.model.block.graph.d5b7016479b6e8ce",
+    "scene.ds3.model.block.graph.d695205938b80200",
+    "scene.ds3.model.block.graph.d6b74cdce27ed657",
+    "scene.ds3.model.block.graph.d76ffb034047af35",
+    "scene.ds3.model.block.graph.d85d48f38139c635",
+    "scene.ds3.model.block.graph.d97ade5f8fe6c4b1",
+    "scene.ds3.model.block.graph.dc66e18a9848eaf6",
+    "scene.ds3.model.block.graph.de965d5ba1d61d2d",
+    "scene.ds3.model.block.graph.deaec5e113afede4",
+    "scene.ds3.model.block.graph.dfd2cdd88c3fee53",
+    "scene.ds3.model.block.graph.e272be4b451dea0e",
+    "scene.ds3.model.block.graph.e3947135b2e36958",
+    "scene.ds3.model.block.graph.e54c5d61e999eddc",
+    "scene.ds3.model.block.graph.e8780715f0137161",
+    "scene.ds3.model.block.graph.ec9c8dbe2fe03dad",
+    "scene.ds3.model.block.graph.ef3a55176d3a196c",
+    "scene.ds3.model.block.graph.f085ee455c506a59",
+    "scene.ds3.model.block.graph.f5fbf183911ef820",
+    "scene.ds3.model.block.graph.f611646c328cf922",
+    "scene.ds3.model.block.graph.f665408f6a239a45",
+    "scene.ds3.model.block.graph.f758e6f476fb30e1",
+    "scene.ds3.model.block.graph.f890d7fcad6c6f0a",
+    "scene.ds3.model.block.graph.fcf5d89953edbca8",
+    "scene.ds3.model.block.graph.fd65d2cc73f9f973",
+    "scene.ds3.model.block.graph.fe9687244a8026f8",
+    "scene.ds3.model.block.graph.fea96834b7dc6e6a",
+    "scene.ds3.model.block.kv-build.259813f071835ffc",
+    "scene.ds3.model.block.kv-down.98ef1b1b0217be25",
+    "scene.ds3.model.block.kv-latent-norm.487d634967d9a7e1",
+    "scene.ds3.model.block.kv-up.5f73e0de77758adb",
+    "scene.ds3.model.block.lm-head.832e1eee9237367e",
+    "scene.ds3.model.block.merge-attn.8968566750adbd6f",
+    "scene.ds3.model.block.merge-ffn.cae7ff9ee9669a74",
+    "scene.ds3.model.block.norm1.3738c2f0f67d92eb",
+    "scene.ds3.model.block.norm2.76bc1dde6ff45928",
+    "scene.ds3.model.block.out-proj.8982afc9c6607e40",
+    "scene.ds3.model.block.overview-block.53504053dd22e5ed",
+    "scene.ds3.model.block.q-down.5bfb9fcb087f1f34",
+    "scene.ds3.model.block.q-latent-norm.eba320f70287c16d",
+    "scene.ds3.model.block.q-position.15f358d2b5f7eeef",
+    "scene.ds3.model.block.q-up.78296ba4fa313f10",
+    "scene.ds3.model.block.routed-shared.43792faad52ef979",
+    "scene.ds3.model.block.router.4048ee10d2c56634",
+    "scene.ds3.model.block.shared-activation.4f28d8e657bfdae3",
+    "scene.ds3.model.block.shared-down.153a37496356c8ee",
+    "scene.ds3.model.block.shared-up.69b01ece1f5418ac",
+    "scene.ds3.model.block.top-k.b952b3f2aa049703"
+  ],
+  "canvas": [
+    1440,
+    1010
+  ],
+  "nodes": [
+    {
+      "id": "embedding",
+      "claims": [
+        "scene.ds3.model.block.embedding.f12446ac9154ccf0"
+      ],
+      "bounds": [
+        20,
+        70,
+        166,
+        52
+      ],
+      "text_bounds": [
+        33,
+        76.85698699951172,
+        87.10810089111328,
+        35.71446990966797
+      ]
+    },
+    {
+      "id": "overview-block",
+      "claims": [
+        "scene.ds3.model.block.overview-block.53504053dd22e5ed"
+      ],
+      "bounds": [
+        20,
+        164,
+        166,
+        58
+      ],
+      "text_bounds": [
+        33,
+        173.85699462890625,
+        108.32262420654297,
+        35.71446990966797
+      ]
+    },
+    {
+      "id": "final-norm",
+      "claims": [
+        "scene.ds3.model.block.final-norm.202d7567083eaf81"
+      ],
+      "bounds": [
+        20,
+        755,
+        166,
+        34
+      ],
+      "text_bounds": [
+        33,
+        764.928466796875,
+        89.61929321289062,
+        14.143013000488281
+      ]
+    },
+    {
+      "id": "lm-head",
+      "claims": [
+        "scene.ds3.model.block.lm-head.832e1eee9237367e"
+      ],
+      "bounds": [
+        20,
+        824,
+        166,
+        52
+      ],
+      "text_bounds": [
+        33,
+        830.8569946289062,
+        90.32242584228516,
+        35.71448516845703
+      ]
+    },
+    {
+      "id": "norm1",
+      "claims": [
+        "scene.ds3.model.block.norm1.3738c2f0f67d92eb"
+      ],
+      "bounds": [
+        270,
+        112,
+        468,
+        40
+      ],
+      "text_bounds": [
+        283,
+        114.85698699951172,
+        81.16162872314453,
+        31.714462280273438
+      ]
+    },
+    {
+      "id": "norm2",
+      "claims": [
+        "scene.ds3.model.block.norm2.76bc1dde6ff45928"
+      ],
+      "bounds": [
+        886,
+        112,
+        486,
+        40
+      ],
+      "text_bounds": [
+        899,
+        114.85698699951172,
+        81.16160583496094,
+        31.714462280273438
+      ]
+    },
+    {
+      "id": "merge-attn",
+      "claims": [
+        "scene.ds3.model.block.merge-attn.8968566750adbd6f"
+      ],
+      "bounds": [
+        274,
+        887,
+        24,
+        24
+      ],
+      "text_bounds": [
+        281.1182556152344,
+        889.0712890625,
+        9.763500213623047,
+        19.285926818847656
+      ]
+    },
+    {
+      "id": "merge-ffn",
+      "claims": [
+        "scene.ds3.model.block.merge-ffn.cae7ff9ee9669a74"
+      ],
+      "bounds": [
+        890,
+        937,
+        24,
+        24
+      ],
+      "text_bounds": [
+        897.1182861328125,
+        939.0712890625,
+        9.763500213623047,
+        19.285926818847656
+      ]
+    },
+    {
+      "id": "q-down",
+      "claims": [
+        "scene.ds3.model.block.q-down.5bfb9fcb087f1f34"
+      ],
+      "bounds": [
+        270,
+        236,
+        222,
+        48
+      ],
+      "text_bounds": [
+        283,
+        240.8569793701172,
+        124.59514617919922,
+        35.71446990966797
+      ]
+    },
+    {
+      "id": "kv-down",
+      "claims": [
+        "scene.ds3.model.block.kv-down.98ef1b1b0217be25"
+      ],
+      "bounds": [
+        516,
+        236,
+        222,
+        48
+      ],
+      "text_bounds": [
+        529,
+        240.8569793701172,
+        132.8921356201172,
+        35.71446990966797
+      ]
+    },
+    {
+      "id": "q-latent-norm",
+      "claims": [
+        "scene.ds3.model.block.q-latent-norm.eba320f70287c16d"
+      ],
+      "bounds": [
+        270,
+        332,
+        222,
+        32
+      ],
+      "text_bounds": [
+        283,
+        333.428466796875,
+        99.36272430419922,
+        28.142990112304688
+      ]
+    },
+    {
+      "id": "kv-latent-norm",
+      "claims": [
+        "scene.ds3.model.block.kv-latent-norm.487d634967d9a7e1"
+      ],
+      "bounds": [
+        516,
+        332,
+        222,
+        32
+      ],
+      "text_bounds": [
+        529,
+        333.428466796875,
+        99.36270141601562,
+        28.142990112304688
+      ]
+    },
+    {
+      "id": "q-up",
+      "claims": [
+        "scene.ds3.model.block.q-up.78296ba4fa313f10"
+      ],
+      "bounds": [
+        270,
+        410,
+        222,
+        48
+      ],
+      "text_bounds": [
+        283,
+        414.85699462890625,
+        105.32930755615234,
+        35.71448516845703
+      ]
+    },
+    {
+      "id": "kv-up",
+      "claims": [
+        "scene.ds3.model.block.kv-up.5f73e0de77758adb"
+      ],
+      "bounds": [
+        516,
+        410,
+        222,
+        48
+      ],
+      "text_bounds": [
+        529,
+        414.85699462890625,
+        113.60616302490234,
+        35.71448516845703
+      ]
+    },
+    {
+      "id": "q-position",
+      "claims": [
+        "scene.ds3.model.block.q-position.15f358d2b5f7eeef"
+      ],
+      "bounds": [
+        270,
+        510,
+        222,
+        32
+      ],
+      "text_bounds": [
+        283,
+        511.4284362792969,
+        88.21304321289062,
+        28.143020629882812
+      ]
+    },
+    {
+      "id": "kv-build",
+      "claims": [
+        "scene.ds3.model.block.kv-build.259813f071835ffc"
+      ],
+      "bounds": [
+        516,
+        510,
+        222,
+        32
+      ],
+      "text_bounds": [
+        529,
+        511.4284362792969,
+        128.0906982421875,
+        28.143020629882812
+      ]
+    },
+    {
+      "id": "attention",
+      "claims": [
+        "scene.ds3.model.block.attention.0d740d8fbb2be692"
+      ],
+      "bounds": [
+        270,
+        600,
+        468,
+        58
+      ],
+      "text_bounds": [
+        283,
+        609.8569946289062,
+        150.30970764160156,
+        35.71442413330078
+      ]
+    },
+    {
+      "id": "out-proj",
+      "claims": [
+        "scene.ds3.model.block.out-proj.8982afc9c6607e40"
+      ],
+      "bounds": [
+        270,
+        818,
+        468,
+        48
+      ],
+      "text_bounds": [
+        283,
+        822.85693359375,
+        180.5243377685547,
+        35.71454620361328
+      ]
+    },
+    {
+      "id": "router",
+      "claims": [
+        "scene.ds3.model.block.router.4048ee10d2c56634"
+      ],
+      "bounds": [
+        886,
+        236,
+        282,
+        48
+      ],
+      "text_bounds": [
+        899,
+        240.8569793701172,
+        107.31814575195312,
+        35.71446990966797
+      ]
+    },
+    {
+      "id": "top-k",
+      "claims": [
+        "scene.ds3.model.block.top-k.b952b3f2aa049703"
+      ],
+      "bounds": [
+        886,
+        318,
+        282,
+        32
+      ],
+      "text_bounds": [
+        899,
+        319.428466796875,
+        90.50322723388672,
+        28.142990112304688
+      ]
+    },
+    {
+      "id": "dispatch",
+      "claims": [
+        "scene.ds3.model.block.dispatch.eed2c5200915c237"
+      ],
+      "bounds": [
+        886,
+        392,
+        282,
+        32
+      ],
+      "text_bounds": [
+        899,
+        393.4284362792969,
+        92.59253692626953,
+        28.142990112304688
+      ]
+    },
+    {
+      "id": "expert-up",
+      "claims": [
+        "scene.ds3.model.block.expert-up.7cc66f584e3c13c5"
+      ],
+      "bounds": [
+        886,
+        488,
+        282,
+        48
+      ],
+      "text_bounds": [
+        899,
+        492.8569641113281,
+        105.51009368896484,
+        35.714515686035156
+      ]
+    },
+    {
+      "id": "expert-activation",
+      "claims": [
+        "scene.ds3.model.block.expert-activation.8763ea4c31c3faf2"
+      ],
+      "bounds": [
+        886,
+        570,
+        282,
+        32
+      ],
+      "text_bounds": [
+        899,
+        571.428466796875,
+        141.75155639648438,
+        28.142990112304688
+      ]
+    },
+    {
+      "id": "expert-down",
+      "claims": [
+        "scene.ds3.model.block.expert-down.0d6c4967eb5e72a6"
+      ],
+      "bounds": [
+        886,
+        630,
+        282,
+        48
+      ],
+      "text_bounds": [
+        899,
+        634.8569946289062,
+        157.50173950195312,
+        35.71442413330078
+      ]
+    },
+    {
+      "id": "combine",
+      "claims": [
+        "scene.ds3.model.block.combine.000ad18d151e5dca"
+      ],
+      "bounds": [
+        886,
+        736,
+        282,
+        40
+      ],
+      "text_bounds": [
+        899,
+        738.8569946289062,
+        161.278564453125,
+        31.71448516845703
+      ]
+    },
+    {
+      "id": "shared-up",
+      "claims": [
+        "scene.ds3.model.block.shared-up.69b01ece1f5418ac"
+      ],
+      "bounds": [
+        1196,
+        488,
+        176,
+        48
+      ],
+      "text_bounds": [
+        1209,
+        495.4284362792969,
+        95.74658966064453,
+        33.14302062988281
+      ]
+    },
+    {
+      "id": "shared-activation",
+      "claims": [
+        "scene.ds3.model.block.shared-activation.4f28d8e657bfdae3"
+      ],
+      "bounds": [
+        1196,
+        570,
+        176,
+        32
+      ],
+      "text_bounds": [
+        1209,
+        571.428466796875,
+        56.632320404052734,
+        28.142990112304688
+      ]
+    },
+    {
+      "id": "shared-down",
+      "claims": [
+        "scene.ds3.model.block.shared-down.153a37496356c8ee"
+      ],
+      "bounds": [
+        1196,
+        630,
+        176,
+        48
+      ],
+      "text_bounds": [
+        1209,
+        637.428466796875,
+        76.23967742919922,
+        33.14292907714844
+      ]
+    },
+    {
+      "id": "routed-shared",
+      "claims": [
+        "scene.ds3.model.block.routed-shared.43792faad52ef979"
+      ],
+      "bounds": [
+        890,
+        883,
+        24,
+        24
+      ],
+      "text_bounds": [
+        897.1182861328125,
+        885.0712280273438,
+        9.763500213623047,
+        19.285926818847656
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "embedding",
+      "target": "overview-block",
+      "points": [
+        [
+          40,
+          122
+        ],
+        [
+          40,
+          164
+        ]
+      ]
+    },
+    {
+      "source": "final-norm",
+      "target": "lm-head",
+      "points": [
+        [
+          40,
+          789
+        ],
+        [
+          40,
+          824
+        ]
+      ]
+    },
+    {
+      "source": "out-proj",
+      "target": "merge-attn",
+      "points": [
+        [
+          286,
+          866
+        ],
+        [
+          286,
+          887
+        ]
+      ]
+    },
+    {
+      "source": "merge-attn",
+      "target": "norm2",
+      "points": [
+        [
+          286,
+          911
+        ],
+        [
+          286,
+          925
+        ],
+        [
+          806,
+          925
+        ],
+        [
+          806,
+          82
+        ],
+        [
+          902,
+          82
+        ],
+        [
+          902,
+          112
+        ]
+      ]
+    },
+    {
+      "source": "merge-attn",
+      "target": "merge-ffn",
+      "points": [
+        [
+          806,
+          925
+        ],
+        [
+          806,
+          949
+        ],
+        [
+          890,
+          949
+        ]
+      ]
+    },
+    {
+      "source": "norm1",
+      "target": "q-down",
+      "points": [
+        [
+          286,
+          152
+        ],
+        [
+          286,
+          218
+        ],
+        [
+          286,
+          236
+        ]
+      ]
+    },
+    {
+      "source": "norm1",
+      "target": "kv-down",
+      "points": [
+        [
+          286,
+          218
+        ],
+        [
+          532,
+          218
+        ],
+        [
+          532,
+          236
+        ]
+      ]
+    },
+    {
+      "source": "q-down",
+      "target": "q-latent-norm",
+      "points": [
+        [
+          286,
+          284
+        ],
+        [
+          286,
+          332
+        ]
+      ]
+    },
+    {
+      "source": "kv-down",
+      "target": "kv-latent-norm",
+      "points": [
+        [
+          532,
+          284
+        ],
+        [
+          532,
+          332
+        ]
+      ]
+    },
+    {
+      "source": "q-latent-norm",
+      "target": "q-up",
+      "points": [
+        [
+          286,
+          364
+        ],
+        [
+          286,
+          410
+        ]
+      ]
+    },
+    {
+      "source": "kv-latent-norm",
+      "target": "kv-up",
+      "points": [
+        [
+          532,
+          364
+        ],
+        [
+          532,
+          410
+        ]
+      ]
+    },
+    {
+      "source": "q-up",
+      "target": "q-position",
+      "points": [
+        [
+          286,
+          458
+        ],
+        [
+          286,
+          510
+        ]
+      ]
+    },
+    {
+      "source": "kv-up",
+      "target": "kv-build",
+      "points": [
+        [
+          532,
+          458
+        ],
+        [
+          532,
+          510
+        ]
+      ]
+    },
+    {
+      "source": "kv-down",
+      "target": "kv-build",
+      "points": [
+        [
+          738,
+          260
+        ],
+        [
+          784,
+          260
+        ],
+        [
+          784,
+          526
+        ],
+        [
+          738,
+          526
+        ]
+      ]
+    },
+    {
+      "source": "q-position",
+      "target": "attention",
+      "points": [
+        [
+          286,
+          542
+        ],
+        [
+          286,
+          600
+        ]
+      ]
+    },
+    {
+      "source": "kv-build",
+      "target": "attention",
+      "points": [
+        [
+          532,
+          542
+        ],
+        [
+          532,
+          600
+        ]
+      ]
+    },
+    {
+      "source": "attention",
+      "target": "out-proj",
+      "points": [
+        [
+          286,
+          658
+        ],
+        [
+          286,
+          818
+        ]
+      ]
+    },
+    {
+      "source": "norm2",
+      "target": "router",
+      "points": [
+        [
+          902,
+          152
+        ],
+        [
+          902,
+          236
+        ]
+      ]
+    },
+    {
+      "source": "router",
+      "target": "top-k",
+      "points": [
+        [
+          902,
+          284
+        ],
+        [
+          902,
+          318
+        ]
+      ]
+    },
+    {
+      "source": "top-k",
+      "target": "dispatch",
+      "points": [
+        [
+          902,
+          350
+        ],
+        [
+          902,
+          392
+        ]
+      ]
+    },
+    {
+      "source": "norm2",
+      "target": "dispatch",
+      "points": [
+        [
+          1372,
+          132
+        ],
+        [
+          1402,
+          132
+        ],
+        [
+          1402,
+          408
+        ],
+        [
+          1168,
+          408
+        ]
+      ]
+    },
+    {
+      "source": "dispatch",
+      "target": "expert-up",
+      "points": [
+        [
+          902,
+          424
+        ],
+        [
+          902,
+          488
+        ]
+      ]
+    },
+    {
+      "source": "expert-up",
+      "target": "expert-activation",
+      "points": [
+        [
+          902,
+          536
+        ],
+        [
+          902,
+          570
+        ]
+      ]
+    },
+    {
+      "source": "expert-activation",
+      "target": "expert-down",
+      "points": [
+        [
+          902,
+          602
+        ],
+        [
+          902,
+          630
+        ]
+      ]
+    },
+    {
+      "source": "expert-down",
+      "target": "combine",
+      "points": [
+        [
+          902,
+          678
+        ],
+        [
+          902,
+          736
+        ]
+      ]
+    },
+    {
+      "source": "top-k",
+      "target": "combine",
+      "points": [
+        [
+          1168,
+          334
+        ],
+        [
+          1180,
+          334
+        ],
+        [
+          1180,
+          756
+        ],
+        [
+          1168,
+          756
+        ]
+      ]
+    },
+    {
+      "source": "norm2",
+      "target": "shared-up",
+      "points": [
+        [
+          902,
+          152
+        ],
+        [
+          902,
+          214
+        ],
+        [
+          1212,
+          214
+        ],
+        [
+          1212,
+          488
+        ]
+      ]
+    },
+    {
+      "source": "shared-up",
+      "target": "shared-activation",
+      "points": [
+        [
+          1212,
+          536
+        ],
+        [
+          1212,
+          570
+        ]
+      ]
+    },
+    {
+      "source": "shared-activation",
+      "target": "shared-down",
+      "points": [
+        [
+          1212,
+          602
+        ],
+        [
+          1212,
+          630
+        ]
+      ]
+    },
+    {
+      "source": "combine",
+      "target": "routed-shared",
+      "points": [
+        [
+          902,
+          776
+        ],
+        [
+          902,
+          883
+        ]
+      ]
+    },
+    {
+      "source": "shared-down",
+      "target": "routed-shared",
+      "points": [
+        [
+          1212,
+          678
+        ],
+        [
+          1212,
+          895
+        ],
+        [
+          914,
+          895
+        ]
+      ]
+    },
+    {
+      "source": "routed-shared",
+      "target": "merge-ffn",
+      "points": [
+        [
+          902,
+          907
+        ],
+        [
+          902,
+          937
+        ]
+      ]
+    }
+  ]
+}

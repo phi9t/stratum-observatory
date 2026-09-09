@@ -3,8 +3,8 @@
   "target": "stratum-observatory-3",
   "profile": "runtime",
   "status": "BLOCKED",
-  "generated_at": "2026-09-09T17:21:55.950516+00:00",
-  "lock_sha256": "898d279515ae8ba392a555d9e93690654989f941d3e8d745646e4ee5972ff0dd",
+  "generated_at": "2026-09-09T17:33:32.684287+00:00",
+  "lock_sha256": "25727e7f4de60796cfd4cfab5c33584cf7f7c5cf7167e84dd3a18a89adf006f0",
   "consumer_sha256": "0cf9ad55b5fd56665452dcfebfdfba2c8a8d87241c7bfaf58709431f2e7f0c24",
   "coverage": {
     "inputs": 455,
@@ -17,8 +17,8 @@
     "passed_presentation_bindings": 0
   },
   "counts": {
-    "BLOCKED": 15740,
-    "PASS": 20,
+    "BLOCKED": 15736,
+    "PASS": 24,
     "NOT_RUN": 31
   },
   "domains": {
@@ -141330,12 +141330,12 @@
       "evidence": []
     },
     {
-      "code": "DOMAIN_INPUT",
+      "code": "CONTRACT_CONSISTENT",
       "domain": "gpu",
-      "status": "BLOCKED",
+      "status": "PASS",
       "subject": "gpu.B300",
-      "message": "Missing contract inputs: memory",
-      "remedy": "Supply a source-bound contract; do not use empty objects as skipped tests.",
+      "message": "Checked contract is internally consistent; this is not an empirical conformance result.",
+      "remedy": "",
       "evidence": []
     },
     {
@@ -141357,12 +141357,12 @@
       "evidence": []
     },
     {
-      "code": "DOMAIN_INPUT",
+      "code": "CONTRACT_CONSISTENT",
       "domain": "gpu",
-      "status": "BLOCKED",
+      "status": "PASS",
       "subject": "gpu.GB300",
-      "message": "Missing contract inputs: memory",
-      "remedy": "Supply a source-bound contract; do not use empty objects as skipped tests.",
+      "message": "Checked contract is internally consistent; this is not an empirical conformance result.",
+      "remedy": "",
       "evidence": []
     },
     {
@@ -141816,19 +141816,19 @@
       "evidence": []
     },
     {
-      "code": "DOMAIN_INPUT",
+      "code": "CONTRACT_CONSISTENT",
       "domain": "visualization",
-      "status": "BLOCKED",
-      "subject": "visualization.pending",
-      "message": "Missing contract inputs: claim_ids, nodes, edges, canvas",
-      "remedy": "Supply a source-bound contract; do not use empty objects as skipped tests.",
+      "status": "PASS",
+      "subject": "visualization.observatory",
+      "message": "Checked contract is internally consistent; this is not an empirical conformance result.",
+      "remedy": "",
       "evidence": []
     },
     {
       "code": "CONTRACT_EVIDENCE",
       "domain": "visualization",
       "status": "BLOCKED",
-      "subject": "visualization.pending",
+      "subject": "visualization.observatory",
       "message": "Contract inputs/semantics do not yet have verified claims.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -141837,25 +141837,25 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "visualization.pending",
+      "subject": "visualization.observatory",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
-      "code": "DOMAIN_INPUT",
+      "code": "CONTRACT_CONSISTENT",
       "domain": "release",
-      "status": "BLOCKED",
-      "subject": "release.pending",
-      "message": "Missing contract inputs: source_sha256, built_from_sha256, artifact_sha256, repeat_build_sha256, external_requests, geometry_defects, runtime_errors, commands, source_lock_sha256, receipt_lock_sha256",
-      "remedy": "Supply a source-bound contract; do not use empty objects as skipped tests.",
+      "status": "PASS",
+      "subject": "release.observatory",
+      "message": "Checked contract is internally consistent; this is not an empirical conformance result.",
+      "remedy": "",
       "evidence": []
     },
     {
       "code": "CONTRACT_EVIDENCE",
       "domain": "release",
       "status": "BLOCKED",
-      "subject": "release.pending",
+      "subject": "release.observatory",
       "message": "Contract inputs/semantics do not yet have verified claims.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -141864,7 +141864,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "release.pending",
+      "subject": "release.observatory",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
