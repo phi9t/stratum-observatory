@@ -144,3 +144,39 @@ class AnchorSelfCertificationTests(unittest.TestCase):
   quote='return 512'
   anchor={'kind':'text_quote','quote':quote,'sha256':hashlib.sha256(quote.encode()).hexdigest(),'contains':['512']}
   self.assertTrue([f.code for f in evidence.check_anchor(self.source,anchor,self.root)])
+
+
+class SymbolIndexTests(unittest.TestCase):
+ """Anchor resolution is memoised per file content; semantics must not change."""
+ SRC=b'''
+class Outer:
+    def inner(self):
+        return 1
+def top():
+    return 2
+class Dup: pass
+class Dup: pass
+'''
+ def anchor(self,symbol,**kw):
+  a={'kind':'python_symbol','symbol':symbol};a.update(kw);return a
+ def test_qualified_symbols_resolve(self):
+  sel,span=evidence.select_anchor(self.SRC,self.anchor('Outer.inner'))
+  self.assertIn('def inner',sel);self.assertEqual(len(span),2)
+  sel,_=evidence.select_anchor(self.SRC,self.anchor('top'))
+  self.assertIn('def top',sel)
+ def test_ambiguous_symbol_is_rejected(self):
+  with self.assertRaises(ValueError):evidence.select_anchor(self.SRC,self.anchor('Dup'))
+ def test_missing_symbol_is_rejected(self):
+  with self.assertRaises(ValueError):evidence.select_anchor(self.SRC,self.anchor('nope'))
+ def test_repeated_resolution_is_identical(self):
+  a=evidence.select_anchor(self.SRC,self.anchor('top'))
+  b=evidence.select_anchor(self.SRC,self.anchor('top'))
+  self.assertEqual(a,b)
+ def test_changed_content_is_not_served_from_the_memo(self):
+  first,_=evidence.select_anchor(self.SRC,self.anchor('top'))
+  changed=self.SRC.replace(b'return 2',b'return 3')
+  second,_=evidence.select_anchor(changed,self.anchor('top'))
+  self.assertNotEqual(first,second,'a changed file was served from the memo')
+ def test_contains_tokens_still_enforced(self):
+  with self.assertRaises(ValueError):
+   evidence.select_anchor(self.SRC,self.anchor('top',contains=['not-present']))

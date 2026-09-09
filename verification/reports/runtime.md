@@ -2,7 +2,7 @@
 
 **runtime: BLOCKED**
 
-Generated: 2026-09-09T19:31:56.386933+00:00
+Generated: 2026-09-09T20:05:13.475592+00:00
 
 This report distinguishes software/contract tests from evidence-backed science. Missing evidence is not a contradiction, and a green engineering run is not scientific certification.
 
@@ -15,7 +15,7 @@ This report distinguishes software/contract tests from evidence-backed science. 
 | scene_contracts | 2520 |
 | claims | 3025 |
 | sources | 56 |
-| verified_sources | 0 |
+| verified_sources | 54 |
 | verified_scientific_claims | 0 |
 | passed_presentation_bindings | 0 |
 
@@ -41,8 +41,9 @@ This report distinguishes software/contract tests from evidence-backed science. 
 
 | Code | Status | Count |
 |---|---|---:|
+| CLAIM_ANCHOR | BLOCKED | 5717 |
 | CLAIM_ROLE | BLOCKED | 1219 |
-| CLAIM_SOURCE_BLOCKED | BLOCKED | 10079 |
+| CLAIM_SOURCE_BLOCKED | BLOCKED | 2 |
 | CONTRACT_CONSISTENT | PASS | 26 |
 | CONTRACT_EVIDENCE | BLOCKED | 31 |
 | DOCUMENTED_NO_SOURCE | BLOCKED | 12 |
@@ -52,57 +53,57 @@ This report distinguishes software/contract tests from evidence-backed science. 
 | RECEIPT_UNATTESTED | BLOCKED | 1 |
 | REVIEW_REQUIRED | BLOCKED | 3059 |
 | RUNTIME_NOT_RUN | NOT_RUN | 28 |
-| SOURCE_CACHE | BLOCKED | 56 |
-| SOURCE_UNFETCHED | BLOCKED | 56 |
+| SOURCE_CACHE | BLOCKED | 2 |
+| SOURCE_UNFETCHED | BLOCKED | 2 |
 
 ## First unresolved findings
 
-**SOURCE_UNFETCHED / hf-config** — No authenticated acquisition snapshot/checksum is locked. Acquire exact pinned bytes; review the candidate lock.
+**SOURCE_UNFETCHED / ib-opensm** — No authenticated acquisition snapshot/checksum is locked. Acquire exact pinned bytes; review the candidate lock.
 
-**SOURCE_CACHE / hf-config** — Exact source bytes are absent from the offline cache. Acquire exact pinned bytes; review the candidate lock.
+**SOURCE_CACHE / ib-opensm** — Exact source bytes are absent from the offline cache. Acquire exact pinned bytes; review the candidate lock.
 
-**SOURCE_UNFETCHED / hf-model** — No authenticated acquisition snapshot/checksum is locked. Acquire exact pinned bytes; review the candidate lock.
+**SOURCE_UNFETCHED / dynamo-nixl** — No authenticated acquisition snapshot/checksum is locked. Acquire exact pinned bytes; review the candidate lock.
 
-**SOURCE_CACHE / hf-model** — Exact source bytes are absent from the offline cache. Acquire exact pinned bytes; review the candidate lock.
+**SOURCE_CACHE / dynamo-nixl** — Exact source bytes are absent from the offline cache. Acquire exact pinned bytes; review the candidate lock.
 
-**SOURCE_UNFETCHED / sglang-model** — No authenticated acquisition snapshot/checksum is locked. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.batch** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_CACHE / sglang-model** — Exact source bytes are absent from the offline cache. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.compare** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_UNFETCHED / sglang-config** — No authenticated acquisition snapshot/checksum is locked. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.context** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_CACHE / sglang-config** — Exact source bytes are absent from the offline cache. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.detail** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_UNFETCHED / sglang-vision** — No authenticated acquisition snapshot/checksum is locked. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.fabric** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_CACHE / sglang-vision** — Exact source bytes are absent from the offline cache. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.hardware** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_UNFETCHED / nccl-api** — No authenticated acquisition snapshot/checksum is locked. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.intensity** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_CACHE / nccl-api** — Exact source bytes are absent from the offline cache. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.kvBytes** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_UNFETCHED / nccl-collectives** — No authenticated acquisition snapshot/checksum is locked. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.layer** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_CACHE / nccl-collectives** — Exact source bytes are absent from the offline cache. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.library** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_UNFETCHED / nvshmem-api** — No authenticated acquisition snapshot/checksum is locked. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.model** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_CACHE / nvshmem-api** — Exact source bytes are absent from the offline cache. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.oversub** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_UNFETCHED / nvshmem-quiet** — No authenticated acquisition snapshot/checksum is locked. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.placement** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_CACHE / nvshmem-quiet** — Exact source bytes are absent from the offline cache. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.ranks** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_UNFETCHED / nixl-api** — No authenticated acquisition snapshot/checksum is locked. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.stage** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_CACHE / nixl-api** — Exact source bytes are absent from the offline cache. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.stateBytes** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_UNFETCHED / nixl-agent** — No authenticated acquisition snapshot/checksum is locked. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.theme** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_CACHE / nixl-agent** — Exact source bytes are absent from the offline cache. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.trace** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_UNFETCHED / cuda-cc** — No authenticated acquisition snapshot/checksum is locked. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.traffic** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
-**SOURCE_CACHE / cuda-cc** — Exact source bytes are absent from the offline cache. Acquire exact pinned bytes; review the candidate lock.
+**REVIEW_REQUIRED / DEFAULT_STATE.trainMode** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
 The adjacent JSON report contains every finding and consumer ID. No raw source, signed review, GPU run or deployment measurement is inferred from a URL or a fixture.

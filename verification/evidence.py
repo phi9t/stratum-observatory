@@ -135,6 +135,35 @@ def check_source(source: dict, root: Path, *, allow_fixtures=False) -> list[Find
     except (ValueError,UnicodeError,OSError) as exc: add('SOURCE_PATH','FAIL',str(exc))
     return out
 
+_SYMBOL_INDEX={}
+
+
+def _symbol_index(raw: bytes, text: str) -> dict:
+    """Qualified class/function names to their line spans, computed once per file content.
+
+    Every anchor used to re-parse and fully walk its module. With thousands of anchors over
+    the same few upstream files that dominated the audit -- 4,360 parses and 35M node visits
+    for 29 distinct files. Keyed on content, never on path, so changed bytes are never served
+    from the memo and identical bytes resolve identically.
+    """
+    key=hashlib.sha256(raw).hexdigest()
+    cached=_SYMBOL_INDEX.get(key)
+    if cached is not None:return cached
+    try: tree=ast.parse(text)
+    except SyntaxError as exc: raise ValueError('Source is not parsable Python') from exc
+    index={}
+    def visit(node,prefix=''):
+        for child in ast.iter_child_nodes(node):
+            if isinstance(child,(ast.ClassDef,ast.FunctionDef,ast.AsyncFunctionDef)):
+                name=prefix+child.name
+                index.setdefault(name,[]).append((child.lineno,child.end_lineno))
+                visit(child,name+'.')
+            else: visit(child,prefix)
+    visit(tree)
+    _SYMBOL_INDEX[key]=index
+    return index
+
+
 def select_anchor(raw: bytes, anchor: dict) -> tuple[str,list[int]]:
     text=raw.decode('utf-8','strict'); lines=text.splitlines(); kind=anchor.get('kind')
     if kind=='json_pointer':
@@ -147,19 +176,9 @@ def select_anchor(raw: bytes, anchor: dict) -> tuple[str,list[int]]:
         return canonical(value).decode(),[]
     if kind=='python_symbol':
         # Qualified AST lookup prevents a comment or string containing a class name from passing.
-        try: tree=ast.parse(text)
-        except SyntaxError as exc: raise ValueError('Source is not parsable Python') from exc
-        matches=[]
-        def visit(node,prefix=''):
-            for child in ast.iter_child_nodes(node):
-                if isinstance(child,(ast.ClassDef,ast.FunctionDef,ast.AsyncFunctionDef)):
-                    name=prefix+child.name
-                    if name==anchor.get('symbol'): matches.append(child)
-                    visit(child,name+'.')
-                else: visit(child,prefix)
-        visit(tree)
-        if len(matches)!=1: raise ValueError('Python symbol is missing or ambiguous')
-        node=matches[0]; span=[node.lineno,node.end_lineno]; selected='\n'.join(lines[span[0]-1:span[1]])
+        spans=_symbol_index(raw,text).get(anchor.get('symbol'),[])
+        if len(spans)!=1: raise ValueError('Python symbol is missing or ambiguous')
+        span=list(spans[0]); selected='\n'.join(lines[span[0]-1:span[1]])
     elif kind=='span':
         start,end=anchor.get('start'),anchor.get('end')
         if type(start)!=int or type(end)!=int or not 1<=start<=end<=len(lines): raise ValueError('Invalid line span')
