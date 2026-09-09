@@ -8,13 +8,35 @@
     "large_text_px": 24.0,
     "large_bold_px": 18.66,
     "bold_weight": 700,
-    "$comment": "WCAG 2.2 AA. Ratios are computed from specified colors, so they are an upper bound on legibility, not a guarantee of it."
+    "$comment": "WCAG 2.2. AA (4.5:1) is the floor everywhere. Reading-size prose at or above reading_px is held to the enhanced AAA ratio, because that is the text people read for comprehension. Ratios come from specified colours and are an upper bound on legibility, not a guarantee of it.",
+    "text_enhanced": 7.0,
+    "reading_px": 12.0
   },
   "typography": {
     "min_svg_px": 10.0,
-    "min_chrome_px": 9.0,
+    "min_chrome_px": 10.0,
     "$comment": "OBSERVATORY.md: the canvas scrolls before text becomes tiny. AGENTS.md: expand lanes and boxes, not font degradation.",
-    "scale": [7.5, 8, 8.5, 8.7, 9, 9.5, 10, 10.5, 11, 11.5, 11.6, 12, 14, 16, 17, 18, 19, 20, 21, 22, 23, 25, 27, 32]
+    "chrome_scale": [
+      10,
+      11,
+      12,
+      14,
+      16,
+      20,
+      24,
+      32
+    ],
+    "canvas_scale": [
+      10,
+      10.5,
+      11,
+      11.5,
+      11.6,
+      12,
+      14,
+      16
+    ],
+    "$canvas_comment": "Frozen, not designed. These sizes are locked to node boxes authored in src/diagram-*.mjs and verified across 504 layers in 8 models. 11.6 and 10.5 are geometry debt: removing them means re-authoring the boxes and re-recording the composition baseline."
   },
   "layout": {
     "min_text_clearance_px": 2.0,
@@ -23,5 +45,27 @@
     "row_alignment_tolerance_px": 4.0,
     "$comment": "geometryReport tests intersection, so a 0.1px gap passes today. These are separation floors, not collision checks."
   },
-  "themes": ["dark", "light"]
+  "themes": [
+    "dark",
+    "light"
+  ],
+  "spacing": {
+    "scale": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      16,
+      20,
+      24,
+      32,
+      40,
+      48,
+      64
+    ],
+    "$comment": "A 2/4px rhythm. auto, percentages and calc() are not scale members and are not checked."
+  }
 }

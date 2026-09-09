@@ -16800,7 +16800,7 @@
       "domain": "visualization",
       "classification": "presentation",
       "consumer": "file.src/styles.css",
-      "expected": "66bc1eeabdb12939441738ebd7c3636a8866bdbf388bb0e6e4277bb5a1320340",
+      "expected": "8822d121cc5a73b74d222e9eda0fcb649644cbeeed0ed8da8eb203ffedab2293",
       "statement": "file.src/styles.css: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": []

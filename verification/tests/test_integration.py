@@ -1,4 +1,4 @@
-import copy,json,subprocess,tempfile,unittest
+import copy,json,re,subprocess,tempfile,unittest
 from pathlib import Path
 from verification.evidence import loads
 from verification.runner import audit,source_subject
@@ -75,7 +75,13 @@ class IntegrationTests(unittest.TestCase):
   self.assertNotEqual(exit_code(aggregate([Finding('x','gpu','NOT_RUN','a','not run')])),0)
  def test_publication_workflow_cannot_deploy_on_engineering_alone(self):
   text=(self.root/'.github/workflows/pages.yml').read_text()
-  self.assertIn('needs: [engineering, publication]',text)
+  # Deploy must depend on publication, not on the software gate alone. Extra required
+  # jobs are welcome; a missing publication dependency is the failure mode.
+  deploy=re.search(r'^  deploy:.*?^    needs: \[([^\]]*)\]',text,re.S|re.M)
+  self.assertIsNotNone(deploy,'deploy job declares no needs')
+  required={j.strip() for j in deploy.group(1).split(',')}
+  self.assertIn('publication',required)
+  self.assertIn('engineering',required)
   self.assertIn('run: npm run verify:science',text)
   self.assertNotIn('continue-on-error: true',text)
 

@@ -10,6 +10,7 @@ legibility, not a guarantee of it: anti-aliasing and stem weight are not modelle
 """
 from __future__ import annotations
 import argparse,hashlib,json,math,os,re,subprocess,sys
+from dataclasses import dataclass
 from datetime import datetime,timezone
 from pathlib import Path
 from .model import Finding,aggregate,exit_code
@@ -82,10 +83,21 @@ def theme_tokens(stylesheet):
 
 # ---------------------------------------------------------------- judgement
 
-def required_ratio(px,weight,contrast_policy):
-    """WCAG large-text relaxation, applied to the rendered size rather than the declared one."""
+def required_ratio(px,weight,contrast_policy,surface='chrome'):
+    """WCAG thresholds applied to the rendered size rather than the declared one.
+
+    Large text gets the documented relaxation. Reading-size *chrome* prose is held to the
+    enhanced (AAA) ratio, because that is the text people read for comprehension.
+
+    Canvas labels stay at AA deliberately. They sit on semantic tint fills -- amber for
+    retained state, violet for communication (docs/design/OBSERVATORY.md) -- and forcing 7:1
+    there would wash that grammar out of the diagram. Their AAA clearance is reported as a
+    metric instead of enforced as a gate.
+    """
     large=px>=contrast_policy['large_text_px'] or (px>=contrast_policy['large_bold_px'] and weight>=contrast_policy['bold_weight'])
-    return contrast_policy['text_large'] if large else contrast_policy['text_normal']
+    if large:return contrast_policy['text_large']
+    if surface!='svg' and px>=contrast_policy.get('reading_px',1e9):return contrast_policy['text_enhanced']
+    return contrast_policy['text_normal']
 
 
 def judge_contrast(sample,policy):
@@ -112,7 +124,7 @@ def judge_contrast(sample,policy):
     foreground=composite([(fg[:3],fg[3]*float(sample.get('alpha',1.0)))],backdrop)
     ratio=contrast_ratio(foreground,backdrop)
     px=float(sample.get('px',0));weight=int(sample.get('weight',400) or 400)
-    needed=contrast['graphics'] if sample.get('kind')=='graphics' else required_ratio(px,weight,contrast)
+    needed=contrast['graphics'] if sample.get('kind')=='graphics' else required_ratio(px,weight,contrast,sample.get('surface','chrome'))
     detail=f'{ratio:.2f}:1 against {needed:.1f}:1 at {px:.1f}px weight {weight}'
     if ratio+1e-9 < needed:
         return Finding('CONTRAST_BELOW_POLICY','aesthetics','FAIL',subject,f'Contrast {detail}.',
@@ -201,6 +213,81 @@ def composition_signature(scene,tokens):
                    [[round(float(x)),round(float(y))] for x,y in e.get('points',[])]] for e in scene.get('edges',[])],key=lambda r:json.dumps(r,sort_keys=True))
     labels=sorted([[l.get('text'),round(float(l.get('x',0))),round(float(l.get('y',0))),role(l.get('tone'))] for l in scene.get('labels',[])],key=lambda r:json.dumps(r,sort_keys=True))
     return digest({'nodes':nodes,'groups':groups,'edges':edges,'labels':labels})
+
+
+# ---------------------------------------------------------------- stylesheet scales
+
+@dataclass(frozen=True)
+class Declaration:
+    selector: str
+    prop: str
+    value: str
+    canvas: bool
+
+
+SPACING_PROPS=('margin','padding','gap','row-gap','column-gap')
+
+
+def stylesheet_declarations(path):
+    """Every declaration in the stylesheet, tagged as canvas (inside the SVG scene) or chrome.
+
+    The innermost-rule pattern cannot cross a brace, so rules nested in @media are attributed
+    to their own selector rather than to the media query.
+    """
+    css=re.sub(r'/\*.*?\*/','',Path(path).read_text(),flags=re.S)
+    out=[]
+    for selector,body in re.findall(r'([^{}]+)\{([^{}]*)\}',css):
+        selector=' '.join(selector.split())
+        if selector.startswith('@'):continue
+        canvas='.schematic' in selector
+        for prop,value in re.findall(r'([a-z-]+)\s*:\s*([^;]+)',body):
+            out.append(Declaration(selector,prop.strip(),value.strip(),canvas))
+    return out
+
+
+def _px(token):
+    m=re.fullmatch(r'(-?\d*\.?\d+)px',token)
+    return float(m.group(1)) if m else None
+
+
+def judge_type_scale(stylesheet,policy):
+    """Every font-size must belong to a declared scale.
+
+    Chrome and canvas have separate scales: canvas sizes are geometry-locked to authored node
+    boxes across 504 layers, so they are frozen and enumerated rather than designed.
+    """
+    typography=policy['typography']
+    chrome=set(typography['chrome_scale']);canvas=set(typography['canvas_scale']);out=[]
+    for d in stylesheet_declarations(stylesheet):
+        # `font:` shorthand counts too; two of the original defects were declared that way.
+        if d.prop=='font-size':size=_px(d.value)
+        elif d.prop=='font':
+            head=re.match(r'(-?\d*\.?\d+px)',d.value.strip())
+            size=_px(head.group(1)) if head else None
+        else:continue
+        if size is None:continue  # 0, inherit and keyword fonts are not scale members
+        allowed=canvas if d.canvas else chrome
+        if size not in allowed:
+            surface='canvas' if d.canvas else 'chrome'
+            out.append(Finding('TYPE_OFF_SCALE','aesthetics','FAIL',f'{d.selector} {{font-size}}',
+                               f'{size}px is not in the {surface} type scale {sorted(allowed)}.',
+                               'Use a scale step. If the canvas genuinely needs a new size, re-author the node boxes and re-verify the geometry suite.'))
+    return out or [Finding('TYPE_SCALE_OK','aesthetics','PASS','stylesheet','Every font-size belongs to its declared scale.')]
+
+
+def judge_spacing_scale(stylesheet,policy):
+    """Margins, padding and gaps come from one spacing scale."""
+    allowed=set(policy['spacing']['scale']);out=[]
+    for d in stylesheet_declarations(stylesheet):
+        if not (d.prop in SPACING_PROPS or d.prop.startswith('margin-') or d.prop.startswith('padding-')):continue
+        for token in d.value.split():
+            size=0.0 if token=='0' else _px(token)
+            if size is None:continue  # auto, percentages and calc() are not scale members
+            if abs(size) not in allowed:
+                out.append(Finding('SPACING_OFF_SCALE','aesthetics','FAIL',f'{d.selector} {{{d.prop}}}',
+                                   f'{token} is not in the spacing scale {sorted(allowed)}.',
+                                   'Use a scale step so spacing reads as rhythm rather than drift.'))
+    return out or [Finding('SPACING_SCALE_OK','aesthetics','PASS','stylesheet','Every margin, padding and gap belongs to the spacing scale.')]
 
 
 # ---------------------------------------------------------------- in-page measurement
@@ -329,6 +416,8 @@ def run(root,record=False):
             signatures[label]=composition_signature(scene,data['tokens'])
             for item in data.get('truncated',[]):truncations.append({'case':label,**item})
         browser.close()
+    findings.extend(judge_type_scale(root/'src/styles.css',policy))
+    findings.extend(judge_spacing_scale(root/'src/styles.css',policy))
     if errors:
         findings.append(Finding('AESTHETIC_RUNTIME','aesthetics','FAIL','page',f'{len(errors)} runtime errors while measuring: {errors[0][:200]}','Fix the page error; measurements taken during an exception are not trustworthy.'))
     for key,entry in sorted(unique.items(),key=lambda kv:str(kv[0])):

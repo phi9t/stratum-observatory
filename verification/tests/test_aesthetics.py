@@ -15,15 +15,23 @@ class ColorMathTests(unittest.TestCase):
  def test_known_contrast_ratios(self):
   self.assertAlmostEqual(a.contrast_ratio((255,255,255),(0,0,0)),21.0,places=2)
   self.assertAlmostEqual(a.contrast_ratio((0,0,0),(0,0,0)),1.0,places=2)
- def test_light_theme_failures_are_rediscovered_from_the_stylesheet(self):
-  # These are the real, currently-shipping violations. If the algorithm drifts in
-  # either direction these numbers move and this test fails.
-  tokens=a.theme_tokens(ROOT/'src/styles.css')['light']
-  def ratio(fg,bg):return a.contrast_ratio(a.parse_color(tokens[fg])[:3],a.parse_color(tokens[bg])[:3])
-  self.assertAlmostEqual(ratio('--subtle','--bg'),3.28,places=2)
-  self.assertAlmostEqual(ratio('--subtle','--canvas'),3.58,places=2)
-  self.assertAlmostEqual(ratio('--amber','--amber-bg'),4.15,places=2)
-  self.assertAlmostEqual(ratio('--purple','--purple-bg'),4.30,places=2)
+ def test_token_pairs_are_measured_to_known_values(self):
+  """Pin the exact ratios so the algorithm stays calibrated, not merely passing.
+
+  These five pairs were the original defects (3.28 / 3.49 / 4.15 / 4.30 / 4.38 :1).
+  Asserting only "clears 4.5" would still pass if the maths broke in the safe
+  direction, so the measured value itself is pinned.
+  """
+  for theme,expected in (('light',{('--subtle','--bg'):4.75,('--subtle','--surface'):5.24,
+                                   ('--amber','--amber-bg'):4.63,('--purple','--purple-bg'):4.63,
+                                   ('--muted','--amber-bg'):4.63}),
+                         ('dark',{('--subtle','--bg'):5.38,('--subtle','--surface'):4.89,
+                                  ('--amber','--amber-bg'):6.96,('--purple','--purple-bg'):6.73})):
+   tokens=a.theme_tokens(ROOT/'src/styles.css')[theme]
+   for (fg,bg),want in expected.items():
+    got=a.contrast_ratio(a.parse_color(tokens[fg])[:3],a.parse_color(tokens[bg])[:3])
+    self.assertAlmostEqual(got,want,places=2,msg=f'{theme} {fg} on {bg}')
+    self.assertGreaterEqual(got,4.5,f'{theme} {fg} on {bg} regressed below AA')
  def test_translucent_foreground_is_composited_before_measuring(self):
   # .dim sets opacity .22 on a group; measuring the raw fill would overstate legibility.
   solid=a.composite([( (255,255,255),1.0 )],(0,0,0))
@@ -39,10 +47,11 @@ class ThresholdTests(unittest.TestCase):
  def setUp(self):self.policy=json.loads((ROOT/'verification/baselines/aesthetics/policy.json').read_text())
  def test_large_text_uses_the_relaxed_threshold(self):
   c=self.policy['contrast']
-  self.assertEqual(a.required_ratio(11.0,400,c),c['text_normal'])
-  self.assertEqual(a.required_ratio(24.0,400,c),c['text_large'])
-  self.assertEqual(a.required_ratio(19.0,700,c),c['text_large'])
-  self.assertEqual(a.required_ratio(19.0,400,c),c['text_normal'])
+  self.assertEqual(a.required_ratio(11.0,400,c,'chrome'),c['text_normal'])
+  self.assertEqual(a.required_ratio(24.0,400,c,'chrome'),c['text_large'])
+  self.assertEqual(a.required_ratio(19.0,700,c,'chrome'),c['text_large'])
+  # 19px at normal weight is reading size, so the ratchet holds it to AAA rather than AA.
+  self.assertEqual(a.required_ratio(19.0,400,c,'chrome'),c['text_enhanced'])
  def test_indeterminate_backdrop_blocks_rather_than_passes(self):
   sample={'kind':'text','id':'t','fill':'rgb(0,0,0)','alpha':1.0,'px':12.0,'weight':400,'backdrop':None}
   finding=a.judge_contrast(sample,self.policy)
@@ -141,3 +150,70 @@ class GateContractTests(unittest.TestCase):
   for key,per_theme in scenarios.items():
    self.assertEqual(set(per_theme),{'dark','light'},f'{key} is not baselined in both themes')
    self.assertEqual(len(set(per_theme.values())),1,f'{key} composition depends on the theme')
+
+class StylesheetScaleTests(unittest.TestCase):
+ """The scales must be enforced, or the ad-hoc values silently return."""
+ def setUp(self):
+  self.policy=json.loads((ROOT/'verification/baselines/aesthetics/policy.json').read_text())
+  self.css=ROOT/'src/styles.css'
+ def test_declarations_are_parsed_from_the_stylesheet(self):
+  decls=a.stylesheet_declarations(self.css)
+  self.assertGreater(len(decls),200,'the stylesheet parser found almost nothing')
+  # Rules inside @media must be attributed to their own selector, not the media query.
+  self.assertTrue(any(d.selector.startswith('.schematic') for d in decls))
+  self.assertFalse(any(d.selector.lstrip().startswith('@') for d in decls))
+ def test_schematic_rules_are_distinguished_from_chrome(self):
+  decls=a.stylesheet_declarations(self.css)
+  canvas=[d for d in decls if d.canvas and d.prop=='font-size']
+  chrome=[d for d in decls if not d.canvas and d.prop=='font-size']
+  self.assertTrue(canvas and chrome)
+  self.assertTrue(all('.schematic' in d.selector for d in canvas))
+ def test_every_font_size_belongs_to_its_scale(self):
+  findings=a.judge_type_scale(self.css,self.policy)
+  bad=[f for f in findings if f.status!='PASS']
+  self.assertEqual(bad,[],'\n'.join(f'{f.subject}: {f.message}' for f in bad))
+ def test_every_spacing_value_belongs_to_the_scale(self):
+  findings=a.judge_spacing_scale(self.css,self.policy)
+  bad=[f for f in findings if f.status!='PASS']
+  self.assertEqual(bad,[],'\n'.join(f'{f.subject}: {f.message}' for f in bad))
+ def test_the_font_shorthand_is_not_a_way_around_the_scale(self):
+  import tempfile
+  # .source-role and .lens-tab .idx set their size via `font:`, and that is where two of
+  # the original defects lived. Checking only `font-size` would miss them.
+  with tempfile.TemporaryDirectory() as tmp:
+   p=Path(tmp)/'x.css';p.write_text('.a{font:8px ui-monospace,Consolas,monospace}\n')
+   bad=[f for f in a.judge_type_scale(p,self.policy) if f.status!='PASS']
+   self.assertTrue(bad,'the font shorthand escaped the type scale')
+   self.assertIn('8.0px',bad[0].message)
+ def test_an_off_scale_size_is_caught(self):
+  import tempfile
+  with tempfile.TemporaryDirectory() as tmp:
+   p=Path(tmp)/'x.css';p.write_text('.a{font-size:13.5px}\n.schematic .b{font-size:9.25px}\n')
+   codes={f.code for f in a.judge_type_scale(p,self.policy) if f.status!='PASS'}
+   self.assertIn('TYPE_OFF_SCALE',codes)
+ def test_an_off_scale_gap_is_caught(self):
+  import tempfile
+  with tempfile.TemporaryDirectory() as tmp:
+   p=Path(tmp)/'x.css';p.write_text('.a{padding:7px 13px}\n')
+   codes={f.code for f in a.judge_spacing_scale(p,self.policy) if f.status!='PASS'}
+   self.assertIn('SPACING_OFF_SCALE',codes)
+
+class ContrastRatchetTests(unittest.TestCase):
+ def setUp(self):self.policy=json.loads((ROOT/'verification/baselines/aesthetics/policy.json').read_text())
+ def test_reading_size_chrome_prose_is_held_to_the_enhanced_ratio(self):
+  # AA is the floor everywhere; reading-size chrome prose is held to the AAA target.
+  c=self.policy['contrast']
+  self.assertIn('text_enhanced',c)
+  self.assertGreaterEqual(c['text_enhanced'],7.0)
+  self.assertEqual(a.required_ratio(14.0,400,c,'chrome'),c['text_enhanced'])
+  self.assertEqual(a.required_ratio(10.0,400,c,'chrome'),c['text_normal'])
+ def test_canvas_labels_keep_the_aa_floor(self):
+  # Canvas labels sit on semantic tint fills -- amber means retained state, violet means
+  # communication (OBSERVATORY.md). Forcing 7:1 there would wash the grammar out of the
+  # diagram, so the canvas is held to AA and its AAA clearance is reported instead.
+  c=self.policy['contrast']
+  self.assertEqual(a.required_ratio(14.0,400,c,'svg'),c['text_normal'])
+  self.assertEqual(a.required_ratio(12.0,550,c,'svg'),c['text_normal'])
+ def test_large_text_still_uses_the_relaxed_threshold(self):
+  c=self.policy['contrast']
+  self.assertEqual(a.required_ratio(24.0,400,c),c['text_large'])

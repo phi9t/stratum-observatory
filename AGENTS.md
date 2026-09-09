@@ -30,7 +30,7 @@ npm run test:verifiers                # uv run python -m unittest discover -s ve
 uv run python -m unittest verification.tests.test_evidence -v   # One verifier module
 uv run python tests/browser.test.py   # Chromium suite; CHROMIUM_PATH optional, Playwright resolves it
 npm run capture                       # Regenerate previews/ PNG+SVG from the current build
-npm run verify:aesthetics             # Measured legibility, composition and visual drift
+npm run verify:aesthetics             # Measured legibility, type/spacing scales, composition, drift
 npm run verify:aesthetics -- --record  # Write a candidate composition baseline for review
 npm run verify:engineering            # Verifier tests + node tests + two builds + browser; writes receipt
 npm run verify:science                # Publication gate; exits 2 while BLOCKED
@@ -75,7 +75,13 @@ pure ledgers (`parameterLedger`, `cacheLedger`, `servingLedger`, `trainingLedger
   `verification/baselines/aesthetics/composition.json`. The signature names colours by token and
   rounds coordinates, so retuning a palette does not churn it while a label changing semantic role
   does. `policy.json` is inside `toolchain_digest`; recorded baselines deliberately are not.
-  It is **engineering-class** evidence — measured on our own bytes — and per `docs/verifiers/DESIGN.md`
+  It also enforces the two type scales and the spacing scale statically from the stylesheet:
+  a **chrome scale** (10/11/12/14/16/20/24/32) that is a design choice, and a **canvas scale**
+  that is a frozen inventory — those sizes are locked to node boxes authored in
+  `src/diagram-*.mjs`, so changing one means re-authoring geometry and re-verifying 504 layers.
+  AA (4.5:1) is the floor everywhere; reading-size **chrome** prose is held to AAA (7:1), while
+  canvas labels stay at AA because they sit on the semantic tint fills that carry the colour
+  grammar. It is **engineering-class** evidence — measured on our own bytes — and per `docs/verifiers/DESIGN.md`
   trust boundary 1 it must never contribute to a scientific PASS. It is not a member of
   `contracts.DOMAINS`, because adding a domain would force both a contract and a runtime obligation.
 - `.github/workflows/pages.yml` gates Pages on engineering **then** publication; publication is expected to fail until real evidence exists, so Pages does not deploy. The aesthetics job runs alongside and is currently red on real defects.
