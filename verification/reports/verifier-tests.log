@@ -156,6 +156,18 @@ test_dense_with_routed_topk_is_rejected (test_observatory.ObservatoryTests.test_
 test_live_inventory_covers_new_renderer_modules_and_all_presets (test_observatory.ObservatoryTests.test_live_inventory_covers_new_renderer_modules_and_all_presets) ... ok
 test_qwen_has_no_publisher_implementation_to_register (test_observatory.ObservatoryTests.test_qwen_has_no_publisher_implementation_to_register) ... ok
 test_registered_qwen_reference_is_code_not_a_config_substitute (test_observatory.ObservatoryTests.test_registered_qwen_reference_is_code_not_a_config_substitute) ... ok
+test_a_clickable_citation_is_not_a_portability_defect (test_presentations.ArtifactSourceTests.test_a_clickable_citation_is_not_a_portability_defect) ... ok
+test_an_embedded_external_url_is_caught (test_presentations.ArtifactSourceTests.test_an_embedded_external_url_is_caught) ... ok
+test_artifact_declares_no_external_origin (test_presentations.ArtifactSourceTests.test_artifact_declares_no_external_origin) ... ok
+test_invalid_utf8_is_caught (test_presentations.ArtifactSourceTests.test_invalid_utf8_is_caught) ... ok
+test_oversized_artifact_is_caught (test_presentations.ArtifactSourceTests.test_oversized_artifact_is_caught) ... ok
+test_export_without_an_opaque_backdrop_is_caught (test_presentations.ExportedSvgTests.test_export_without_an_opaque_backdrop_is_caught) ... ok
+test_external_reference_in_an_export_is_caught (test_presentations.ExportedSvgTests.test_external_reference_in_an_export_is_caught) ... ok
+test_the_xmlns_declaration_is_required (test_presentations.ExportedSvgTests.test_the_xmlns_declaration_is_required) ... ok
+test_a_stale_manifest_is_caught (test_presentations.PreviewFreshnessTests.test_a_stale_manifest_is_caught) ... ok
+test_previews_match_the_built_artifact (test_presentations.PreviewFreshnessTests.test_previews_match_the_built_artifact) ... ok
+test_a_scenario_claiming_certification_is_rejected (test_presentations.ScenarioSchemaTests.test_a_scenario_claiming_certification_is_rejected) ... ok
+test_schema_exists_and_accepts_a_real_export (test_presentations.ScenarioSchemaTests.test_schema_exists_and_accepts_a_real_export) ... ok
 test_changed_evidence_digest_rejected (test_reviews.SignedReviewTests.test_changed_evidence_digest_rejected) ... ok
 test_expired_review_rejected (test_reviews.SignedReviewTests.test_expired_review_rejected) ... ok
 test_real_ed25519_acceptance (test_reviews.SignedReviewTests.test_real_ed25519_acceptance) ... ok
@@ -210,6 +222,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 209 tests in 30.398s
+Ran 221 tests in 26.045s
 
 OK

@@ -1,0 +1,32 @@
+{
+  "$comment": "Shape of STRATUM.exportConfig() output. The page declares schema 'stratum-observatory-scenario/v1' and, until now, nothing defined it. A reader who receives this file is entitled to know the status fields are present and honest.",
+  "type": "object",
+  "required": ["schema", "version", "state", "model", "hardware", "parameters", "logicalState", "references", "evidence", "scientificStatus", "runtimeStatus"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"type": "string", "enum": ["stratum-observatory-scenario/v1"]},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "state": {
+      "type": "object",
+      "required": ["model", "view", "stage", "layer", "hardware", "context", "batch", "theme"],
+      "properties": {
+        "model": {"type": "string"},
+        "view": {"type": "string"},
+        "stage": {"type": "string"},
+        "layer": {"type": "integer"},
+        "hardware": {"type": "string"},
+        "context": {"type": "integer"},
+        "batch": {"type": "integer"},
+        "theme": {"type": "string", "enum": ["dark", "light"]}
+      }
+    },
+    "model": {"type": "object", "required": ["id", "name", "layers"]},
+    "hardware": {"type": "object"},
+    "parameters": {"type": "object", "required": ["main", "active", "scope"]},
+    "logicalState": {"type": "object", "required": ["total", "exclusions", "partial"]},
+    "references": {"type": "object"},
+    "evidence": {"type": "object", "required": ["publication", "runtime", "reason"]},
+    "scientificStatus": {"type": "string", "enum": ["BLOCKED"]},
+    "runtimeStatus": {"type": "string", "enum": ["NOT_RUN"]}
+  }
+}

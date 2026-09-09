@@ -1,0 +1,114 @@
+{
+  "schema": "stratum-presentations/v1",
+  "status": "PASS",
+  "generated_at": "2026-09-09T17:21:52.039115+00:00",
+  "artifact_sha256": "ced16558478295db61e131e4d538be83177d06f2caadd1db6d995638a8c1a573",
+  "delivery": {
+    "file_url": true
+  },
+  "counts": {
+    "PASS": 11
+  },
+  "findings": [
+    {
+      "code": "PORTABILITY_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "index.html",
+      "message": "164 KiB, valid utf-8, nothing loaded from an external origin; 23 source citations are clickable by design.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PREVIEW_FRESH",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "previews",
+      "message": "23 captures match the built artifact.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "DELIVERY_ORIGIN",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "file://",
+      "message": "Artifact loads and initialises from a real file:// origin.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "DELIVERY_RUNTIME",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "file://",
+      "message": "No page errors on the file:// path.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "EXPORT_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "svg",
+      "message": "Export is namespaced, self-contained and carries a backdrop.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "SCENARIO_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "export",
+      "message": "Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "VERSION_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "version",
+      "message": "Export, page and package.json all report 3.0.0.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "A11Y_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "page",
+      "message": "131 controls named, 9 headings ordered, 2 live regions.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "A11Y_FOCUS",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "A",
+      "message": "The first focusable control shows a visible focus indicator.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PRINT_CONTRAST",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "print",
+      "message": "Print body text measures 15.91:1.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "MOTION_REDUCED",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "page",
+      "message": "Motion is suppressed under prefers-reduced-motion.",
+      "remedy": "",
+      "evidence": []
+    }
+  ],
+  "scope": "The delivered artifact as a reader receives it. Says nothing about upstream truth, and a legible page is not a correct one."
+}
