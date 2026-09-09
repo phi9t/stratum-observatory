@@ -2291,8 +2291,12 @@
       "evidence": [
         {
           "source": "ds2-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/max_position_embeddings",
+            "sha256": "75ca2ec74cfa858da157986f16c5047abe10b29cd941f117184d45591f5848e8"
+          },
+          "relation": "equal"
         },
         {
           "source": "ds2-code",
@@ -3502,8 +3506,12 @@
       "evidence": [
         {
           "source": "ds2-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/qk_nope_head_dim",
+            "sha256": "2747b7c718564ba5f066f0523b03e17f6a496b06851333d2d59ab6d863225848"
+          },
+          "relation": "equal"
         },
         {
           "source": "ds2-code",
@@ -3839,8 +3847,12 @@
       "evidence": [
         {
           "source": "ds2-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/scoring_func",
+            "sha256": "b5a0595eebca536231282454364953de822a0c99a2e8fab8fc04c9ac7d60b97c"
+          },
+          "relation": "equal"
         },
         {
           "source": "ds2-code",
@@ -4377,8 +4389,12 @@
       "evidence": [
         {
           "source": "ds3-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/max_position_embeddings",
+            "sha256": "75ca2ec74cfa858da157986f16c5047abe10b29cd941f117184d45591f5848e8"
+          },
+          "relation": "equal"
         },
         {
           "source": "ds3-code",
@@ -5447,8 +5463,12 @@
       "evidence": [
         {
           "source": "ds3-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/num_nextn_predict_layers",
+            "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+          },
+          "relation": "equal"
         },
         {
           "source": "ds3-code",
@@ -5588,8 +5608,12 @@
       "evidence": [
         {
           "source": "ds3-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/qk_nope_head_dim",
+            "sha256": "2747b7c718564ba5f066f0523b03e17f6a496b06851333d2d59ab6d863225848"
+          },
+          "relation": "equal"
         },
         {
           "source": "ds3-code",
@@ -5925,8 +5949,12 @@
       "evidence": [
         {
           "source": "ds3-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/scoring_func",
+            "sha256": "9753b9184270d248bca326149230b40e5a9ef526dc7498ac953f58b5a263c164"
+          },
+          "relation": "equal"
         },
         {
           "source": "ds3-code",
@@ -6447,8 +6475,12 @@
       "evidence": [
         {
           "source": "hf-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/attn_res_block_size",
+            "sha256": "6b51d431df5d7f141cbececcf79edf3dd861c3b4069f0b11661a3eefacbba918"
+          },
+          "relation": "equal"
         },
         {
           "source": "hf-model",
@@ -6779,8 +6811,12 @@
       "evidence": [
         {
           "source": "hf-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/mla_use_output_gate",
+            "sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+          },
+          "relation": "equal"
         },
         {
           "source": "hf-model",
@@ -7142,8 +7178,12 @@
       "evidence": [
         {
           "source": "hf-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/routed_expert_hidden_size",
+            "sha256": "9955f4a562efd60e9e84fb2ae6530fd781f06724fad301713d2fdc262a2f635d"
+          },
+          "relation": "equal"
         },
         {
           "source": "hf-model",
@@ -7380,8 +7420,12 @@
       "evidence": [
         {
           "source": "hf-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/max_position_embeddings",
+            "sha256": "50b4b069390c1d7966da182649bb2caddb412a2f9012425b5e9ec0ef4ec68545"
+          },
+          "relation": "equal"
         },
         {
           "source": "hf-model",
@@ -7536,8 +7580,12 @@
       "evidence": [
         {
           "source": "hf-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/qk_nope_head_dim",
+            "sha256": "2747b7c718564ba5f066f0523b03e17f6a496b06851333d2d59ab6d863225848"
+          },
+          "relation": "equal"
         },
         {
           "source": "hf-model",
@@ -7817,8 +7865,12 @@
       "evidence": [
         {
           "source": "hf-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/moe_router_activation_func",
+            "sha256": "9753b9184270d248bca326149230b40e5a9ef526dc7498ac953f58b5a263c164"
+          },
+          "relation": "equal"
         },
         {
           "source": "hf-model",
@@ -7856,8 +7908,12 @@
       "evidence": [
         {
           "source": "hf-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/num_shared_experts",
+            "sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+          },
+          "relation": "equal"
         },
         {
           "source": "hf-model",
@@ -7978,8 +8034,12 @@
       "evidence": [
         {
           "source": "hf-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/num_experts_per_token",
+            "sha256": "b17ef6d19c7a5b1ee83b907c595526dcb1eb06db8227d650d5dda0a9f4ce8cd9"
+          },
+          "relation": "equal"
         },
         {
           "source": "hf-model",
@@ -18421,8 +18481,12 @@
       "evidence": [
         {
           "source": "q3827-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/attn_output_gate",
+            "sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+          },
+          "relation": "equal"
         },
         {
           "source": "q35-code",
@@ -18515,8 +18579,12 @@
       "evidence": [
         {
           "source": "q3827-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/full_attention_interval",
+            "sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+          },
+          "relation": "equal"
         },
         {
           "source": "q35-code",
@@ -18954,7 +19022,11 @@
       "evidence": [
         {
           "source": "q3827-config",
-          "anchor": null,
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/output_gate_type",
+            "sha256": "6945e572324324e707a527779bc9355b705e89ed2a3938408bc62926556b24f5"
+          },
           "relation": "documents"
         },
         {
@@ -19048,8 +19120,12 @@
       "evidence": [
         {
           "source": "q3827-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/linear_num_value_heads",
+            "sha256": "98010bd9270f9b100b6214a21754fd33bdc8d41b2bc9f9dd16ff54d3c34ffd71"
+          },
+          "relation": "equal"
         },
         {
           "source": "q35-code",
@@ -19095,8 +19171,12 @@
       "evidence": [
         {
           "source": "q3827-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/linear_num_key_heads",
+            "sha256": "b17ef6d19c7a5b1ee83b907c595526dcb1eb06db8227d650d5dda0a9f4ce8cd9"
+          },
+          "relation": "equal"
         },
         {
           "source": "q35-code",
@@ -19142,8 +19222,12 @@
       "evidence": [
         {
           "source": "q3827-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/max_position_embeddings",
+            "sha256": "54faea9b3eeffce2a5ea906fdd1232a52a55d57d993e5406a572b9a9ea2827d8"
+          },
+          "relation": "equal"
         },
         {
           "source": "q35-code",
@@ -19189,8 +19273,12 @@
       "evidence": [
         {
           "source": "q3827-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/mtp_num_hidden_layers",
+            "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+          },
+          "relation": "equal"
         },
         {
           "source": "q35-code",
@@ -20518,8 +20606,12 @@
       "evidence": [
         {
           "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/full_attention_interval",
+            "sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+          },
+          "relation": "equal"
         },
         {
           "source": "q4-code",
@@ -20694,8 +20786,12 @@
       "evidence": [
         {
           "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/indexer_head_dim",
+            "sha256": "2747b7c718564ba5f066f0523b03e17f6a496b06851333d2d59ab6d863225848"
+          },
+          "relation": "equal"
         },
         {
           "source": "q4-code",
@@ -20736,8 +20832,12 @@
       "evidence": [
         {
           "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/indexer_budget",
+            "sha256": "bfa0ec8bdf2946547879d50a68687ea32e2fa628db187357415858b633d194d9"
+          },
+          "relation": "equal"
         },
         {
           "source": "q4-code",
@@ -20778,8 +20878,12 @@
       "evidence": [
         {
           "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/indexer_compress_ratio",
+            "sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+          },
+          "relation": "equal"
         },
         {
           "source": "q4-code",
@@ -20820,8 +20924,12 @@
       "evidence": [
         {
           "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/indexer_n_heads",
+            "sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+          },
+          "relation": "equal"
         },
         {
           "source": "q4-code",
@@ -21038,8 +21146,12 @@
       "evidence": [
         {
           "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/output_gate_type",
+            "sha256": "9753b9184270d248bca326149230b40e5a9ef526dc7498ac953f58b5a263c164"
+          },
+          "relation": "equal"
         },
         {
           "source": "q4-code",
@@ -21122,8 +21234,12 @@
       "evidence": [
         {
           "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/linear_num_value_heads",
+            "sha256": "98010bd9270f9b100b6214a21754fd33bdc8d41b2bc9f9dd16ff54d3c34ffd71"
+          },
+          "relation": "equal"
         },
         {
           "source": "q4-code",
@@ -21164,8 +21280,12 @@
       "evidence": [
         {
           "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/linear_num_key_heads",
+            "sha256": "b17ef6d19c7a5b1ee83b907c595526dcb1eb06db8227d650d5dda0a9f4ce8cd9"
+          },
+          "relation": "equal"
         },
         {
           "source": "q4-code",
@@ -21206,8 +21326,12 @@
       "evidence": [
         {
           "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/max_position_embeddings",
+            "sha256": "54faea9b3eeffce2a5ea906fdd1232a52a55d57d993e5406a572b9a9ea2827d8"
+          },
+          "relation": "equal"
         },
         {
           "source": "q4-code",
@@ -21248,8 +21372,12 @@
       "evidence": [
         {
           "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/hc_lowrank",
+            "sha256": "88820462180e5c893eff2ed73f4ec33e205d1cd5acc4d17fa7b2bca2495d3448"
+          },
+          "relation": "equal"
         },
         {
           "source": "q4-code",
@@ -21460,8 +21588,12 @@
       "evidence": [
         {
           "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/ple_layer_ids",
+            "sha256": "038966de9f6b9a901b20b4c6ca8b2a46009feebe031babc842d43690c0bc222b"
+          },
+          "relation": "equal"
         },
         {
           "source": "q4-code",
@@ -21801,8 +21933,12 @@
       "evidence": [
         {
           "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/hc_count",
+            "sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+          },
+          "relation": "equal"
         },
         {
           "source": "q4-code",

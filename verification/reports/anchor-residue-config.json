@@ -1,0 +1,1868 @@
+[
+  {
+    "claim": "MODELS.ds2.active",
+    "source": "ds2-config",
+    "expected": 21000000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.architecture",
+    "source": "ds2-config",
+    "expected": "mla",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.convKernel",
+    "source": "ds2-config",
+    "expected": 4,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.family",
+    "source": "ds2-config",
+    "expected": "DeepSeek",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.gate",
+    "source": "ds2-config",
+    "expected": false,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.generation",
+    "source": "ds2-config",
+    "expected": "V2",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.headDim",
+    "source": "ds2-config",
+    "expected": 128,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.id",
+    "source": "ds2-config",
+    "expected": "ds2",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.indexer",
+    "source": "ds2-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.latent",
+    "source": "ds2-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.linearHeadDim",
+    "source": "ds2-config",
+    "expected": 128,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.linearHeads",
+    "source": "ds2-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.linearKeyHeads",
+    "source": "ds2-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.maxContext",
+    "source": "ds2-config",
+    "expected": 131072,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.mtp",
+    "source": "ds2-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.name",
+    "source": "ds2-config",
+    "expected": "DeepSeek V2",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.ngram",
+    "source": "ds2-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.pleLayers",
+    "source": "ds2-config",
+    "expected": [],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.qkNorm",
+    "source": "ds2-config",
+    "expected": false,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.repo",
+    "source": "ds2-config",
+    "expected": "deepseek-ai/DeepSeek-V2",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.residual",
+    "source": "ds2-config",
+    "expected": "standard",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.sources",
+    "source": "ds2-config",
+    "expected": [
+      "ds2-config",
+      "ds2-code",
+      "ds-runtime",
+      "ds2-paper"
+    ],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.summary",
+    "source": "ds2-config",
+    "expected": "Low-rank attention. Fine-grained experts.",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.total",
+    "source": "ds2-config",
+    "expected": 236000000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds2.vision",
+    "source": "ds2-config",
+    "expected": false,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.active",
+    "source": "ds3-config",
+    "expected": 37000000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.architecture",
+    "source": "ds3-config",
+    "expected": "mla",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.convKernel",
+    "source": "ds3-config",
+    "expected": 4,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.family",
+    "source": "ds3-config",
+    "expected": "DeepSeek",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.gate",
+    "source": "ds3-config",
+    "expected": false,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.generation",
+    "source": "ds3-config",
+    "expected": "V3",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.headDim",
+    "source": "ds3-config",
+    "expected": 128,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.id",
+    "source": "ds3-config",
+    "expected": "ds3",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.indexer",
+    "source": "ds3-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.latent",
+    "source": "ds3-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.linearHeadDim",
+    "source": "ds3-config",
+    "expected": 128,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.linearHeads",
+    "source": "ds3-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.linearKeyHeads",
+    "source": "ds3-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.maxContext",
+    "source": "ds3-config",
+    "expected": 131072,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.name",
+    "source": "ds3-config",
+    "expected": "DeepSeek V3",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.ngram",
+    "source": "ds3-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.pleLayers",
+    "source": "ds3-config",
+    "expected": [],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.qkNorm",
+    "source": "ds3-config",
+    "expected": false,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.repo",
+    "source": "ds3-config",
+    "expected": "deepseek-ai/DeepSeek-V3",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.residual",
+    "source": "ds3-config",
+    "expected": "standard",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.sources",
+    "source": "ds3-config",
+    "expected": [
+      "ds3-config",
+      "ds3-code",
+      "ds-runtime",
+      "ds3-paper"
+    ],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.summary",
+    "source": "ds3-config",
+    "expected": "Latent KV. Auxiliary-loss-free routing.",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.total",
+    "source": "ds3-config",
+    "expected": 671000000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.ds3.vision",
+    "source": "ds3-config",
+    "expected": false,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.active",
+    "source": "hf-config",
+    "expected": 104200000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.architecture",
+    "source": "hf-config",
+    "expected": "hybrid-kda",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.convKernel",
+    "source": "hf-config",
+    "expected": 4,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.family",
+    "source": "hf-config",
+    "expected": "Kimi",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.generation",
+    "source": "hf-config",
+    "expected": "K3",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.globalEvery",
+    "source": "hf-config",
+    "expected": 4,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.headDim",
+    "source": "hf-config",
+    "expected": 128,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.id",
+    "source": "hf-config",
+    "expected": "kimi3",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.indexer",
+    "source": "hf-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.linearGate",
+    "source": "hf-config",
+    "expected": "sigmoid",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.linearHeadDim",
+    "source": "hf-config",
+    "expected": 128,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.linearHeads",
+    "source": "hf-config",
+    "expected": 96,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.linearKeyHeads",
+    "source": "hf-config",
+    "expected": 96,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.mtp",
+    "source": "hf-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.name",
+    "source": "hf-config",
+    "expected": "Kimi K3",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.ngram",
+    "source": "hf-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.pleLayers",
+    "source": "hf-config",
+    "expected": [],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.qkNorm",
+    "source": "hf-config",
+    "expected": false,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.repo",
+    "source": "hf-config",
+    "expected": "moonshotai/Kimi-K3",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.residual",
+    "source": "hf-config",
+    "expected": "attnres",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.sources",
+    "source": "hf-config",
+    "expected": [
+      "k3-config",
+      "k3-code",
+      "k3-runtime",
+      "k3-paper"
+    ],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.summary",
+    "source": "hf-config",
+    "expected": "Vector-decay recurrence meets attention over depth.",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.total",
+    "source": "hf-config",
+    "expected": 2780000000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.kimi3.vision",
+    "source": "hf-config",
+    "expected": true,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.active",
+    "source": "q3235-config",
+    "expected": 22000000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.architecture",
+    "source": "q3235-config",
+    "expected": "gqa",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.convKernel",
+    "source": "q3235-config",
+    "expected": 4,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.denseLayers",
+    "source": "q3235-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.family",
+    "source": "q3235-config",
+    "expected": "Qwen3",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.gate",
+    "source": "q3235-config",
+    "expected": false,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.generation",
+    "source": "q3235-config",
+    "expected": "235B-A22B MoE",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.id",
+    "source": "q3235-config",
+    "expected": "q3235",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.indexer",
+    "source": "q3235-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.kvRank",
+    "source": "q3235-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.latent",
+    "source": "q3235-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.linearHeadDim",
+    "source": "q3235-config",
+    "expected": 128,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.linearHeads",
+    "source": "q3235-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.linearKeyHeads",
+    "source": "q3235-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.maxContext",
+    "source": "q3235-config",
+    "expected": 32768,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.mtp",
+    "source": "q3235-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.name",
+    "source": "q3235-config",
+    "expected": "Qwen3 \u00b7 235B-A22B",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.ngram",
+    "source": "q3235-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.nopeDim",
+    "source": "q3235-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.pleLayers",
+    "source": "q3235-config",
+    "expected": [],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.qRank",
+    "source": "q3235-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.qkNorm",
+    "source": "q3235-config",
+    "expected": true,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.repo",
+    "source": "q3235-config",
+    "expected": "Qwen/Qwen3-235B-A22B",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.residual",
+    "source": "q3235-config",
+    "expected": "standard",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.ropeDim",
+    "source": "q3235-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.scoring",
+    "source": "q3235-config",
+    "expected": "softmax",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.shared",
+    "source": "q3235-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.sources",
+    "source": "q3235-config",
+    "expected": [
+      "q3235-config",
+      "q3-code",
+      "q3-moe-code",
+      "q3-moe-runtime",
+      "q3-paper"
+    ],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.summary",
+    "source": "q3235-config",
+    "expected": "Wide queries; narrow KV. Ninety-four layers.",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.total",
+    "source": "q3235-config",
+    "expected": 235093606400,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.vDim",
+    "source": "q3235-config",
+    "expected": 128,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3235.vision",
+    "source": "q3235-config",
+    "expected": false,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.active",
+    "source": "q330-config",
+    "expected": 3300000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.architecture",
+    "source": "q330-config",
+    "expected": "gqa",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.convKernel",
+    "source": "q330-config",
+    "expected": 4,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.denseLayers",
+    "source": "q330-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.family",
+    "source": "q330-config",
+    "expected": "Qwen3",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.gate",
+    "source": "q330-config",
+    "expected": false,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.generation",
+    "source": "q330-config",
+    "expected": "30B-A3B MoE",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.id",
+    "source": "q330-config",
+    "expected": "q330",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.indexer",
+    "source": "q330-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.kvRank",
+    "source": "q330-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.latent",
+    "source": "q330-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.linearHeadDim",
+    "source": "q330-config",
+    "expected": 128,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.linearHeads",
+    "source": "q330-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.linearKeyHeads",
+    "source": "q330-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.maxContext",
+    "source": "q330-config",
+    "expected": 32768,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.mtp",
+    "source": "q330-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.name",
+    "source": "q330-config",
+    "expected": "Qwen3 \u00b7 30B-A3B",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.ngram",
+    "source": "q330-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.nopeDim",
+    "source": "q330-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.pleLayers",
+    "source": "q330-config",
+    "expected": [],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.qRank",
+    "source": "q330-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.qkNorm",
+    "source": "q330-config",
+    "expected": true,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.repo",
+    "source": "q330-config",
+    "expected": "Qwen/Qwen3-30B-A3B",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.residual",
+    "source": "q330-config",
+    "expected": "standard",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.ropeDim",
+    "source": "q330-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.scoring",
+    "source": "q330-config",
+    "expected": "softmax",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.shared",
+    "source": "q330-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.sources",
+    "source": "q330-config",
+    "expected": [
+      "q330-config",
+      "q3-code",
+      "q3-moe-code",
+      "q3-moe-runtime",
+      "q3-paper"
+    ],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.summary",
+    "source": "q330-config",
+    "expected": "Eight selected experts. No shared expert.",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.total",
+    "source": "q330-config",
+    "expected": 30532128768,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.vDim",
+    "source": "q330-config",
+    "expected": 128,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q330.vision",
+    "source": "q330-config",
+    "expected": false,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.active",
+    "source": "q38-config",
+    "expected": 8190735360,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.architecture",
+    "source": "q38-config",
+    "expected": "gqa",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.convKernel",
+    "source": "q38-config",
+    "expected": 4,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.denseLayers",
+    "source": "q38-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.expertFF",
+    "source": "q38-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.experts",
+    "source": "q38-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.family",
+    "source": "q38-config",
+    "expected": "Qwen3",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.gate",
+    "source": "q38-config",
+    "expected": false,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.generation",
+    "source": "q38-config",
+    "expected": "8B dense",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.id",
+    "source": "q38-config",
+    "expected": "q38",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.indexer",
+    "source": "q38-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.kvRank",
+    "source": "q38-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.latent",
+    "source": "q38-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.linearHeadDim",
+    "source": "q38-config",
+    "expected": 128,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.linearHeads",
+    "source": "q38-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.linearKeyHeads",
+    "source": "q38-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.maxContext",
+    "source": "q38-config",
+    "expected": 32768,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.mtp",
+    "source": "q38-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.name",
+    "source": "q38-config",
+    "expected": "Qwen3 \u00b7 8B",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.ngram",
+    "source": "q38-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.nopeDim",
+    "source": "q38-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.pleLayers",
+    "source": "q38-config",
+    "expected": [],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.qRank",
+    "source": "q38-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.qkNorm",
+    "source": "q38-config",
+    "expected": true,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.repo",
+    "source": "q38-config",
+    "expected": "Qwen/Qwen3-8B",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.residual",
+    "source": "q38-config",
+    "expected": "standard",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.ropeDim",
+    "source": "q38-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.shared",
+    "source": "q38-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.sources",
+    "source": "q38-config",
+    "expected": [
+      "q38-config",
+      "q3-code",
+      "q3-runtime",
+      "q3-paper"
+    ],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.summary",
+    "source": "q38-config",
+    "expected": "The dense baseline: QK-normalized GQA.",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.topK",
+    "source": "q38-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.total",
+    "source": "q38-config",
+    "expected": 8190735360,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.vDim",
+    "source": "q38-config",
+    "expected": 128,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38.vision",
+    "source": "q38-config",
+    "expected": false,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.active",
+    "source": "q3827-config",
+    "expected": 27000000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.architecture",
+    "source": "q3827-config",
+    "expected": "hybrid",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.convKernel",
+    "source": "q3827-config",
+    "expected": 4,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.denseLayers",
+    "source": "q3827-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.expertFF",
+    "source": "q3827-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.experts",
+    "source": "q3827-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.family",
+    "source": "q3827-config",
+    "expected": "Qwen3.8",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.generation",
+    "source": "q3827-config",
+    "expected": "27B hybrid dense",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.id",
+    "source": "q3827-config",
+    "expected": "q3827",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.indexer",
+    "source": "q3827-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.kvRank",
+    "source": "q3827-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.latent",
+    "source": "q3827-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.linearGate",
+    "source": "q3827-config",
+    "expected": "SiLU",
+    "pointer": "/text_config/output_gate_type",
+    "upstream": "\"swish\"",
+    "reason": "upstream value differs from expected"
+  },
+  {
+    "claim": "MODELS.q3827.linearHeadDim",
+    "source": "q3827-config",
+    "expected": 128,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.name",
+    "source": "q3827-config",
+    "expected": "Qwen3.8 \u00b7 27B",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.ngram",
+    "source": "q3827-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.nopeDim",
+    "source": "q3827-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.pleLayers",
+    "source": "q3827-config",
+    "expected": [],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.qRank",
+    "source": "q3827-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.qkNorm",
+    "source": "q3827-config",
+    "expected": true,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.repo",
+    "source": "q3827-config",
+    "expected": "Qwen/Qwen3.8-27B",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.residual",
+    "source": "q3827-config",
+    "expected": "standard",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.ropeDim",
+    "source": "q3827-config",
+    "expected": 64,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.shared",
+    "source": "q3827-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.sources",
+    "source": "q3827-config",
+    "expected": [
+      "q3827-config",
+      "q35-code",
+      "q35-runtime",
+      "q3827-card"
+    ],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.summary",
+    "source": "q3827-config",
+    "expected": "Gated DeltaNet and global attention; dense FFNs.",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.topK",
+    "source": "q3827-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.total",
+    "source": "q3827-config",
+    "expected": 27000000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.vDim",
+    "source": "q3827-config",
+    "expected": 256,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q3827.vision",
+    "source": "q3827-config",
+    "expected": true,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.active",
+    "source": "q38flash-config",
+    "expected": 6000000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.architecture",
+    "source": "q38flash-config",
+    "expected": "hybrid-qsa",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.convKernel",
+    "source": "q38flash-config",
+    "expected": 4,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.denseLayers",
+    "source": "q38flash-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.family",
+    "source": "q38flash-config",
+    "expected": "Qwen3.8",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.ff",
+    "source": "q38flash-config",
+    "expected": 640,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.gate",
+    "source": "q38flash-config",
+    "expected": true,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.generation",
+    "source": "q38flash-config",
+    "expected": "Flash-Next",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.id",
+    "source": "q38flash-config",
+    "expected": "q38flash",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.kvRank",
+    "source": "q38flash-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.latent",
+    "source": "q38flash-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.linearHeadDim",
+    "source": "q38flash-config",
+    "expected": 128,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.mtp",
+    "source": "q38flash-config",
+    "expected": 4000000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.name",
+    "source": "q38flash-config",
+    "expected": "Qwen3.8 \u00b7 Flash-Next",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.ngram",
+    "source": "q38flash-config",
+    "expected": 51000000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.nopeDim",
+    "source": "q38flash-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.qRank",
+    "source": "q38flash-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.qkNorm",
+    "source": "q38flash-config",
+    "expected": true,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.repo",
+    "source": "q38flash-config",
+    "expected": "Qwen/Qwen3.8-Flash-Next",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.residual",
+    "source": "q38flash-config",
+    "expected": "hyper",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.ropeDim",
+    "source": "q38flash-config",
+    "expected": 64,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.shared",
+    "source": "q38flash-config",
+    "expected": 1,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.sources",
+    "source": "q38flash-config",
+    "expected": [
+      "q38flash-config",
+      "q4-code",
+      "q4-runtime",
+      "q38flash-card"
+    ],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.summary",
+    "source": "q38flash-config",
+    "expected": "Sparse reads. N-gram memory. Four residual streams.",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.total",
+    "source": "q38flash-config",
+    "expected": 125000000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.vDim",
+    "source": "q38flash-config",
+    "expected": 256,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.q38flash.vision",
+    "source": "q38flash-config",
+    "expected": true,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  }
+]
