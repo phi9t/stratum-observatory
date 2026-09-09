@@ -2,7 +2,7 @@
 
 **runtime: BLOCKED**
 
-Generated: 2026-09-09T20:05:13.475592+00:00
+Generated: 2026-09-09T20:13:43.123788+00:00
 
 This report distinguishes software/contract tests from evidence-backed science. Missing evidence is not a contradiction, and a green engineering run is not scientific certification.
 
@@ -41,7 +41,7 @@ This report distinguishes software/contract tests from evidence-backed science. 
 
 | Code | Status | Count |
 |---|---|---:|
-| CLAIM_ANCHOR | BLOCKED | 5717 |
+| CLAIM_ANCHOR | BLOCKED | 5631 |
 | CLAIM_ROLE | BLOCKED | 1219 |
 | CLAIM_SOURCE_BLOCKED | BLOCKED | 2 |
 | CONTRACT_CONSISTENT | PASS | 26 |
