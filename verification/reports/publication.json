@@ -3,8 +3,8 @@
   "target": "stratum-observatory-3",
   "profile": "publication",
   "status": "BLOCKED",
-  "generated_at": "2026-09-09T20:05:09.515325+00:00",
-  "lock_sha256": "6dc8359071020bd6331c4126f793dfc78f8cef81455f739ee01808ca3a1f3d97",
+  "generated_at": "2026-09-09T20:13:39.472723+00:00",
+  "lock_sha256": "9d475fb52c97e0a615f5fef7f9c218b2594a9c6721aaab8d8d0a68ffc9fc4a41",
   "consumer_sha256": "56ae29ebb49ff2a7110c7bfb5a508368884696cb7af930382a64cd94174472f4",
   "coverage": {
     "inputs": 455,
@@ -17,7 +17,7 @@
     "passed_presentation_bindings": 0
   },
   "counts": {
-    "BLOCKED": 11269,
+    "BLOCKED": 11183,
     "PASS": 24
   },
   "domains": {
@@ -2967,15 +2967,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds2.d",
-      "message": "Missing concrete selector for ds2-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds2.d",
       "message": "Missing concrete selector for ds2-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -2994,15 +2985,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds2.denseLayers",
-      "message": "Missing concrete selector for ds2-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds2.denseLayers",
       "message": "Missing concrete selector for ds2-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -3021,15 +3003,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds2.expertFF",
-      "message": "Missing concrete selector for ds2-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds2.expertFF",
       "message": "Missing concrete selector for ds2-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -3048,15 +3021,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds2.experts",
-      "message": "Missing concrete selector for ds2-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds2.experts",
       "message": "Missing concrete selector for ds2-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -3102,15 +3066,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds2.ff",
-      "message": "Missing concrete selector for ds2-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds2.ff",
       "message": "Missing concrete selector for ds2-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -3210,15 +3165,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds2.heads",
-      "message": "Missing concrete selector for ds2-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds2.heads",
       "message": "Missing concrete selector for ds2-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -3291,15 +3237,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds2.kvHeads",
-      "message": "Missing concrete selector for ds2-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds2.kvHeads",
       "message": "Missing concrete selector for ds2-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -3318,15 +3255,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds2.kvRank",
-      "message": "Missing concrete selector for ds2-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds2.kvRank",
       "message": "Missing concrete selector for ds2-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -3372,15 +3300,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds2.layers",
-      "message": "Missing concrete selector for ds2-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds2.layers",
       "message": "Missing concrete selector for ds2-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -3642,15 +3561,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds2.qRank",
-      "message": "Missing concrete selector for ds2-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds2.qRank",
       "message": "Missing concrete selector for ds2-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -3750,15 +3660,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds2.ropeDim",
-      "message": "Missing concrete selector for ds2-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds2.ropeDim",
       "message": "Missing concrete selector for ds2-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -3804,15 +3705,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds2.shared",
-      "message": "Missing concrete selector for ds2-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds2.shared",
       "message": "Missing concrete selector for ds2-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -3885,15 +3777,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds2.topK",
-      "message": "Missing concrete selector for ds2-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds2.topK",
       "message": "Missing concrete selector for ds2-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -3939,15 +3822,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds2.vDim",
-      "message": "Missing concrete selector for ds2-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds2.vDim",
       "message": "Missing concrete selector for ds2-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -3993,15 +3867,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds2.vocab",
-      "message": "Missing concrete selector for ds2-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds2.vocab",
       "message": "Missing concrete selector for ds2-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -4128,15 +3993,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds3.d",
-      "message": "Missing concrete selector for ds3-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds3.d",
       "message": "Missing concrete selector for ds3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -4155,15 +4011,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds3.denseLayers",
-      "message": "Missing concrete selector for ds3-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds3.denseLayers",
       "message": "Missing concrete selector for ds3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -4182,15 +4029,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds3.expertFF",
-      "message": "Missing concrete selector for ds3-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds3.expertFF",
       "message": "Missing concrete selector for ds3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -4209,15 +4047,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds3.experts",
-      "message": "Missing concrete selector for ds3-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds3.experts",
       "message": "Missing concrete selector for ds3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -4263,15 +4092,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds3.ff",
-      "message": "Missing concrete selector for ds3-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds3.ff",
       "message": "Missing concrete selector for ds3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -4371,15 +4191,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds3.heads",
-      "message": "Missing concrete selector for ds3-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds3.heads",
       "message": "Missing concrete selector for ds3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -4452,15 +4263,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds3.kvHeads",
-      "message": "Missing concrete selector for ds3-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds3.kvHeads",
       "message": "Missing concrete selector for ds3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -4479,15 +4281,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds3.kvRank",
-      "message": "Missing concrete selector for ds3-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds3.kvRank",
       "message": "Missing concrete selector for ds3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -4533,15 +4326,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds3.layers",
-      "message": "Missing concrete selector for ds3-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds3.layers",
       "message": "Missing concrete selector for ds3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -4803,15 +4587,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds3.qRank",
-      "message": "Missing concrete selector for ds3-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds3.qRank",
       "message": "Missing concrete selector for ds3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -4911,15 +4686,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds3.ropeDim",
-      "message": "Missing concrete selector for ds3-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds3.ropeDim",
       "message": "Missing concrete selector for ds3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -4965,15 +4731,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds3.shared",
-      "message": "Missing concrete selector for ds3-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds3.shared",
       "message": "Missing concrete selector for ds3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -5046,15 +4803,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds3.topK",
-      "message": "Missing concrete selector for ds3-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds3.topK",
       "message": "Missing concrete selector for ds3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -5100,15 +4848,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds3.vDim",
-      "message": "Missing concrete selector for ds3-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds3.vDim",
       "message": "Missing concrete selector for ds3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -5154,15 +4893,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.ds3.vocab",
-      "message": "Missing concrete selector for ds3-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.ds3.vocab",
       "message": "Missing concrete selector for ds3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -5325,15 +5055,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.kimi3.d",
-      "message": "Missing concrete selector for hf-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.kimi3.d",
       "message": "Missing concrete selector for hf-model; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -5361,15 +5082,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.kimi3.denseLayers",
-      "message": "Missing concrete selector for hf-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.kimi3.denseLayers",
       "message": "Missing concrete selector for hf-model; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -5397,15 +5109,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.kimi3.expertFF",
-      "message": "Missing concrete selector for hf-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.kimi3.expertFF",
       "message": "Missing concrete selector for hf-model; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -5433,15 +5136,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.kimi3.experts",
-      "message": "Missing concrete selector for hf-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.kimi3.experts",
       "message": "Missing concrete selector for hf-model; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -5505,15 +5199,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.kimi3.ff",
-      "message": "Missing concrete selector for hf-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.kimi3.ff",
       "message": "Missing concrete selector for hf-model; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -5685,15 +5370,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.kimi3.heads",
-      "message": "Missing concrete selector for hf-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.kimi3.heads",
       "message": "Missing concrete selector for hf-model; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -5793,15 +5469,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.kimi3.kvHeads",
-      "message": "Missing concrete selector for hf-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.kimi3.kvHeads",
       "message": "Missing concrete selector for hf-model; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -5829,15 +5496,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.kimi3.kvRank",
-      "message": "Missing concrete selector for hf-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.kimi3.kvRank",
       "message": "Missing concrete selector for hf-model; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -5901,15 +5559,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.kimi3.layers",
-      "message": "Missing concrete selector for hf-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.kimi3.layers",
       "message": "Missing concrete selector for hf-model; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -6297,15 +5946,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.kimi3.qRank",
-      "message": "Missing concrete selector for hf-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.kimi3.qRank",
       "message": "Missing concrete selector for hf-model; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -6441,15 +6081,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.kimi3.ropeDim",
-      "message": "Missing concrete selector for hf-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.kimi3.ropeDim",
       "message": "Missing concrete selector for hf-model; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -6693,15 +6324,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.kimi3.vDim",
-      "message": "Missing concrete selector for hf-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.kimi3.vDim",
       "message": "Missing concrete selector for hf-model; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -6758,15 +6380,6 @@
       "subject": "MODELS.kimi3.vision",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.kimi3.vocab",
-      "message": "Missing concrete selector for hf-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -6936,15 +6549,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q3235.d",
-      "message": "Missing concrete selector for q3235-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3235.d",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -7026,15 +6630,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q3235.expertFF",
-      "message": "Missing concrete selector for q3235-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3235.expertFF",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -7064,15 +6659,6 @@
       "subject": "MODELS.q3235.expertFF",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3235.experts",
-      "message": "Missing concrete selector for q3235-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -7143,15 +6729,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q3235.ff",
-      "message": "Missing concrete selector for q3235-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3235.ff",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -7278,15 +6855,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q3235.headDim",
-      "message": "Missing concrete selector for q3235-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3235.headDim",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -7316,15 +6884,6 @@
       "subject": "MODELS.q3235.headDim",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3235.heads",
-      "message": "Missing concrete selector for q3235-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -7440,15 +6999,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q3235.kvHeads",
-      "message": "Missing concrete selector for q3235-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3235.kvHeads",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -7568,15 +7118,6 @@
       "subject": "MODELS.q3235.latent",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3235.layers",
-      "message": "Missing concrete selector for q3235-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -8394,15 +7935,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q3235.topK",
-      "message": "Missing concrete selector for q3235-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3235.topK",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -8574,15 +8106,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q3235.vocab",
-      "message": "Missing concrete selector for q3235-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3235.vocab",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -8754,15 +8277,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q330.d",
-      "message": "Missing concrete selector for q330-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q330.d",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -8844,15 +8358,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q330.expertFF",
-      "message": "Missing concrete selector for q330-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q330.expertFF",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -8882,15 +8387,6 @@
       "subject": "MODELS.q330.expertFF",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q330.experts",
-      "message": "Missing concrete selector for q330-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -8961,15 +8457,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q330.ff",
-      "message": "Missing concrete selector for q330-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q330.ff",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -9096,15 +8583,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q330.headDim",
-      "message": "Missing concrete selector for q330-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q330.headDim",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -9134,15 +8612,6 @@
       "subject": "MODELS.q330.headDim",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q330.heads",
-      "message": "Missing concrete selector for q330-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -9258,15 +8727,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q330.kvHeads",
-      "message": "Missing concrete selector for q330-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q330.kvHeads",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -9386,15 +8846,6 @@
       "subject": "MODELS.q330.latent",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q330.layers",
-      "message": "Missing concrete selector for q330-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -10212,15 +9663,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q330.topK",
-      "message": "Missing concrete selector for q330-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q330.topK",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -10392,15 +9834,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q330.vocab",
-      "message": "Missing concrete selector for q330-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q330.vocab",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -10565,15 +9998,6 @@
       "subject": "MODELS.q38.convKernel",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38.d",
-      "message": "Missing concrete selector for q38-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -10779,15 +10203,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q38.ff",
-      "message": "Missing concrete selector for q38-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38.ff",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -10914,15 +10329,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q38.headDim",
-      "message": "Missing concrete selector for q38-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38.headDim",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -10952,15 +10358,6 @@
       "subject": "MODELS.q38.headDim",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38.heads",
-      "message": "Missing concrete selector for q38-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -11076,15 +10473,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q38.kvHeads",
-      "message": "Missing concrete selector for q38-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38.kvHeads",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -11204,15 +10592,6 @@
       "subject": "MODELS.q38.latent",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38.layers",
-      "message": "Missing concrete selector for q38-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -12165,15 +11544,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "MODELS.q38.vocab",
-      "message": "Missing concrete selector for q38-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38.vocab",
       "message": "Missing concrete selector for q3-paper; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -12311,15 +11681,6 @@
       "subject": "MODELS.q3827.convKernel",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3827.d",
-      "message": "Missing concrete selector for q3827-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -12476,15 +11837,6 @@
       "evidence": []
     },
     {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3827.ff",
-      "message": "Missing concrete selector for q3827-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
@@ -12620,15 +11972,6 @@
       "evidence": []
     },
     {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3827.headDim",
-      "message": "Missing concrete selector for q3827-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
@@ -12653,15 +11996,6 @@
       "subject": "MODELS.q3827.headDim",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3827.heads",
-      "message": "Missing concrete selector for q3827-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -12746,15 +12080,6 @@
       "evidence": []
     },
     {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3827.kvHeads",
-      "message": "Missing concrete selector for q3827-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
@@ -12851,15 +12176,6 @@
       "subject": "MODELS.q3827.latent",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3827.layers",
-      "message": "Missing concrete selector for q3827-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -13646,15 +12962,6 @@
       "evidence": []
     },
     {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q3827.vocab",
-      "message": "Missing concrete selector for q3827-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
@@ -13790,15 +13097,6 @@
       "evidence": []
     },
     {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38flash.d",
-      "message": "Missing concrete selector for q38flash-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
@@ -13862,15 +13160,6 @@
       "evidence": []
     },
     {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38flash.expertFF",
-      "message": "Missing concrete selector for q38flash-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
@@ -13895,15 +13184,6 @@
       "subject": "MODELS.q38flash.expertFF",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38flash.experts",
-      "message": "Missing concrete selector for q38flash-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -14096,15 +13376,6 @@
       "evidence": []
     },
     {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38flash.headDim",
-      "message": "Missing concrete selector for q38flash-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
@@ -14129,15 +13400,6 @@
       "subject": "MODELS.q38flash.headDim",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38flash.heads",
-      "message": "Missing concrete selector for q38flash-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -14330,15 +13592,6 @@
       "evidence": []
     },
     {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38flash.kvHeads",
-      "message": "Missing concrete selector for q38flash-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
@@ -14435,15 +13688,6 @@
       "subject": "MODELS.q38flash.latent",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38flash.layers",
-      "message": "Missing concrete selector for q38flash-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {
@@ -15158,15 +14402,6 @@
       "evidence": []
     },
     {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38flash.topK",
-      "message": "Missing concrete selector for q38flash-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
@@ -15299,15 +14534,6 @@
       "subject": "MODELS.q38flash.vision",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ANCHOR",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "MODELS.q38flash.vocab",
-      "message": "Missing concrete selector for q38flash-config; a repository URL is not a code reference.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },
     {

@@ -169,6 +169,9 @@ test_pyproject_is_covered (test_integration.ToolchainDigestTests.test_pyproject_
 test_python_lock_is_covered (test_integration.ToolchainDigestTests.test_python_lock_is_covered) ... ok
 test_python_version_pin_is_covered (test_integration.ToolchainDigestTests.test_python_version_pin_is_covered) ... ok
 test_yaml_workflows_are_covered (test_integration.ToolchainDigestTests.test_yaml_workflows_are_covered) ... ok
+test_a_value_contradicting_upstream_is_caught (test_integration.UpstreamComparisonTests.test_a_value_contradicting_upstream_is_caught) ... ok
+test_equal_relations_are_registered (test_integration.UpstreamComparisonTests.test_equal_relations_are_registered) ... ok
+test_the_shipped_values_agree_with_upstream (test_integration.UpstreamComparisonTests.test_the_shipped_values_agree_with_upstream) ... ok
 test_dense_model_is_not_forced_to_invent_experts (test_observatory.ObservatoryTests.test_dense_model_is_not_forced_to_invent_experts) ... ok
 test_dense_with_routed_topk_is_rejected (test_observatory.ObservatoryTests.test_dense_with_routed_topk_is_rejected) ... ok
 test_live_inventory_covers_new_renderer_modules_and_all_presets (test_observatory.ObservatoryTests.test_live_inventory_covers_new_renderer_modules_and_all_presets) ... ok
@@ -245,6 +248,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 244 tests in 76.425s
+Ran 247 tests in 170.817s
 
 OK (skipped=1)

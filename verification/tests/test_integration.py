@@ -273,3 +273,29 @@ class ReceiptTrustTests(unittest.TestCase):
   unattested=[f for f in findings if f.code=='RECEIPT_UNATTESTED']
   self.assertTrue(unattested,'a self-produced receipt should say so as a finding, not only in prose')
   self.assertEqual(unattested[0].status,'BLOCKED')
+
+class UpstreamComparisonTests(unittest.TestCase):
+ """The strongest check in the framework: our number against the publisher's own config."""
+ @classmethod
+ def setUpClass(cls):
+  cls.root=Path(__file__).resolve().parents[2]
+  cls.target=loads((cls.root/'verification/manifests/observatory.json').read_text())
+  cls.catalog=loads((cls.root/'verification/manifests/sources.json').read_text())
+  cls.inv=loads(subprocess.run(['node','tools/export-verification.mjs'],cwd=cls.root,capture_output=True,text=True,check=True).stdout)
+ def test_equal_relations_are_registered(self):
+  equal=[(c,e) for c in self.target['claims'] for e in c.get('evidence',[]) if e.get('relation')=='equal']
+  self.assertGreaterEqual(len(equal),80,'no upstream value comparisons are registered')
+  for c,e in equal:
+   self.assertEqual(e['anchor']['kind'],'json_pointer','an equal relation needs a typed pointer')
+ def test_a_value_contradicting_upstream_is_caught(self):
+  import copy
+  t=copy.deepcopy(self.target)
+  for c in t['claims']:
+   if c.get('consumer')=='MODELS.ds3.layers' and any(e.get('relation')=='equal' for e in c.get('evidence',[])):
+    c['expected']=c['expected']+1;break
+  else:self.skipTest('no anchored ds3 layer claim')
+  codes={f['code'] for f in audit(self.root,t,self.inv,self.catalog,profile='publication')['findings']}
+  self.assertIn('UPSTREAM_VALUE',codes,'a value contradicting the publisher config was accepted')
+ def test_the_shipped_values_agree_with_upstream(self):
+  codes={f['code'] for f in audit(self.root,self.target,self.inv,self.catalog,profile='publication')['findings']}
+  self.assertNotIn('UPSTREAM_VALUE',codes)
