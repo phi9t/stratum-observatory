@@ -18,7 +18,7 @@ The engineering gate runs verifier self-tests, model/graph tests, two builds and
 - Kimi final layer 93 is MLA; 69 KDA/24 MLA; NoPE does not drop shared key64; weighted latent aggregate precedes normalization/lift; depth residuals are not token recurrence.
 - Cache history grows with sequence; recurrent matrices do not; batch scales both. QSA does not erase full KV. PLE auxiliary exclusions remain visible.
 - Per-GPU/node/rack scopes, dense FP8 roofline, GB versus GiB, Gb/s versus GB/s, single-rank zero inter-rank traffic.
-- Orthogonal routes, finite contained bounds, browser-rendered text/edge/node nonintersections; all504 decoder layers in both label modes, seven lenses, supported focal views, themes and mobile.
+- Orthogonal routes, finite contained bounds, browser-rendered text/edge/node nonintersections; all 504 decoder layers in both label modes, seven lenses, supported focal views, themes and mobile.
 - Actual UI interactions, validated URL restore, no external runtime requests, self-contained SVG and JSON exports.
 - Negative provenance, source authority/anchor, signature, changed consumer, dependent-claim and unrun-experiment tests.
 

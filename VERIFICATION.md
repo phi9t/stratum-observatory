@@ -7,8 +7,10 @@ Generated from the fresh engineering receipt and the three adjacent gate reports
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 181 verifier tests, 40 model/graph tests, two byte-identical builds, actual Chromium suite |
-| Aesthetics | PASS | 0 | 112 scenarios, 102 distinct measurements; type, spacing, contrast and composition |
+| Engineering | PASS | 0 | 233 verifier tests, 40 model/graph tests, two byte-identical builds, actual Chromium suite |
+| Schematics | PASS | 0 | 684 scenes including all 504 decoder layers; 2,737 checks against core.mjs |
+| Presentations | PASS | 0 | Exports, accessibility, print, portability and preview freshness from a real file:// origin |
+| Aesthetics | PASS | 0 | 156 scenarios; type, spacing, contrast, clearance and composition |
 | Scientific publication | BLOCKED | 2 | Eight-model consumer inventory and strict evidence/review audit |
 | Runtime certification | BLOCKED | 2 | 31 obligations NOT_RUN; no model/GPU/fabric experiment was executed or attested |
 
@@ -62,6 +64,34 @@ Ratios are computed from specified colours against a resolved backdrop stack. Th
 bound on legibility, not a guarantee of it: anti-aliasing and stem weight are not modelled, and an
 element whose backdrop cannot be resolved is reported BLOCKED rather than passed.
 
+## Diagram semantics
+
+`npm run verify:schematics` checks what the diagram means rather than where its boxes landed. The
+scene IR comes from the diagram builders and, per scene, `core.mjs` independently states what is
+true; the two are compared. 684 scenes, 2,737 checks, no browser.
+
+Three rules were removed or narrowed during authoring because the data showed they were not
+contracts the IR makes: wire endpoints are semantic rather than geometric, wires fanning out from
+one node legitimately share a trunk, and unwired nodes are annotation cards rather than defects.
+Each was corrected rather than accommodated by widening a tolerance.
+
+Row alignment holds in its strong form: `norm1` and `attention` sit at pixel-identical heights in
+all eight presets. Ten operations occupy a second row and every one has a structural cause — Kimi's
+latent MoE inserts a stage, Flash-Next's QSA history sits higher, and the 93/94-layer checkpoints
+need another row of layer tiles. A second row is permitted; a third is not.
+
+## Delivered artifacts
+
+`npm run verify:presentations` is the only suite that opens the artifact from a real `file://`
+origin — every other suite injects with `set_content()`, so the path a reader takes had never been
+exercised. It validates the exported SVG and the exported scenario against a schema the page has
+declared all along with nothing defining it, checks accessible names, heading order and visible
+focus, emulates print and reduced motion for the first time, and consumes `previews/manifest.json`
+so previews cannot silently depict an artifact that no longer ships.
+
+The artifact loads nothing from an external origin. Its 23 external URLs are arXiv and vendor-doc
+citations the reader clicks, which is the provenance feature, not a portability defect.
+
 ## Scientific inventory
 
 | Item | Count |
@@ -75,7 +105,7 @@ element whose backdrop cannot be resolved is reported BLOCKED rather than passed
 | Scientifically certified claims under the signed policy | 0 |
 | Domain contracts / runtime obligations | 31 / 31 |
 
-The publication audit has **15,740 BLOCKED findings and no FAIL contradictions**. Many are
+The publication audit has **15,737 BLOCKED findings and no FAIL contradictions**. `DOMAIN_INPUT` fell from 12 to 8 as contracts were bound to the application or given measured records. Many are
 cascading source dependencies and absent independent reviews; this is **not** a claim that 15,740
 facts are false. No review identity, accepted source hash or execution receipt was invented.
 
@@ -95,20 +125,31 @@ BLOCKED on `MODEL_DUAL_CODE` and `CLAIM_ROLE`.
 
 Recorded so they are not mistaken for oversights:
 
-- The engineering receipt is **self-produced and unsigned**. Every field it asserts is
-  hand-computable. Closing this needs CI attestation and branch protection, not local code.
-  `.github/CODEOWNERS` now exists but has no force without protected branches.
-- **23 of 31 contracts carry empty `bindings`**, so their constants are hand-transcribed into the
-  manifest rather than bound to actual application values. Only the 8 model contracts bind.
-- No upstream bytes have been acquired, so every source remains `SOURCE_UNFETCHED`.
+- The engineering receipt is **self-produced**. This is now a finding rather than a sentence:
+  `RECEIPT_UNATTESTED` BLOCKS on any receipt without a build attestation. CI attests the exact
+  tested artifact; branch protection remains the repository owner's to configure, and
+  `.github/CODEOWNERS` has no force without it.
+- **Five contracts remain stubs** — training, serving, numerics, storage and measurement. Each now
+  states in the manifest exactly what it needs. Fabricating shard digests or tokenizer revisions to
+  make a record parse would be strictly worse than an honest stub.
+- **Three communication contracts describe observed behaviour**, so they need a runtime receipt
+  rather than a binding, and say so.
+- **No Qwen repository is authorised as `publisher_code`** (`evidence.py`), which permanently
+  blocks 1,219 `MODEL_DUAL_CODE` and 1,219 `CLAIM_ROLE` findings. Qwen does not publish modeling
+  code for these checkpoints, so this may be correct — but it is a policy-root question for a code
+  owner, not an oversight to fix silently.
+- No upstream bytes have been acquired, so every source remains `SOURCE_UNFETCHED`. Together with
+  `REVIEW_REQUIRED`, these are 84% of all findings and are independent: acquiring sources does not
+  reduce the review obligation, and neither changes the runtime gate, which is a superset of
+  publication.
 
 ## Artifact identity
 
-Portable HTML SHA-256: `ced16558478295db61e131e4d538be83177d06f2caadd1db6d995638a8c1a573`
+Portable HTML SHA-256: `83bc7a5982f07ae108f4db029c3713b3fa933d2f51715d4c32e3e2d873c4ce54`
 
-Scientific lock SHA-256: `898d279515ae8ba392a555d9e93690654989f941d3e8d745646e4ee5972ff0dd`
+Scientific lock SHA-256: `b0c0255c43600c6e847e62d86f4891b06a3f14cc9f83ccb3d1445eaddf4afe38`
 
-Verifier identity SHA-256: `6ca6fbc42fd053815bb20967e5cdb22fe295380bba326602b054c1efc846a540`
+Verifier identity SHA-256: `516cbb59f1477a4467878298d11fa0cbdb970ea97aeddf4b3f0f8f9fa3bdbf97`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -125,6 +166,6 @@ npm run verify:science       # exit 2 while evidence and reviews are outstanding
 npm run verify:runtime       # exit 2 while experiments are unrun
 ```
 
-`npm run verify` requires engineering, aesthetics AND publication. The Pages workflow remains fail-closed and
+`npm run verify` requires engineering, schematics, aesthetics, presentations AND publication. The Pages workflow remains fail-closed and
 does not deploy. Success is not all-green; success is each gate telling the truth about what it
 actually checked.
