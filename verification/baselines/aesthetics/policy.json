@@ -28,15 +28,12 @@
     ],
     "canvas_scale": [
       10,
-      10.5,
       11,
-      11.5,
-      11.6,
       12,
       14,
       16
     ],
-    "$canvas_comment": "Frozen, not designed. These sizes are locked to node boxes authored in src/diagram-*.mjs and verified across 504 layers in 8 models. 11.6 and 10.5 are geometry debt: removing them means re-authoring the boxes and re-recording the composition baseline."
+    "$canvas_comment": "Locked to node boxes authored in src/diagram-*.mjs and verified across 504 layers in 8 models. The 10.5/11.5/11.6px one-offs were retired by rounding down, which measured headroom showed to be free; rounding up would have left the two 176x32 pills about 1px of clearance. The canvas set is now a subset of the chrome scale, so a value can only be added here by re-authoring geometry."
   },
   "layout": {
     "min_text_clearance_px": 2.0,

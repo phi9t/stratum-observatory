@@ -1,17 +1,17 @@
 {
   "schema": "stratum-aesthetics/v1",
   "status": "PASS",
-  "generated_at": "2026-09-09T17:33:27.549928+00:00",
-  "artifact_sha256": "ced16558478295db61e131e4d538be83177d06f2caadd1db6d995638a8c1a573",
-  "policy_sha256": "b2e7d7d652349c0539f5eb8e18f966e2c16bd66d8a9eb37ae6a70095faac3603",
+  "generated_at": "2026-09-09T17:36:54.019394+00:00",
+  "artifact_sha256": "83bc7a5982f07ae108f4db029c3713b3fa933d2f51715d4c32e3e2d873c4ce54",
+  "policy_sha256": "a5fe5ba88566aeb7b82a09f75a7efd454c48a549e27243bc22f502b5db8e06f1",
   "scenarios": 156,
-  "distinct_measurements": 104,
+  "distinct_measurements": 100,
   "edge_crossings": {
     "max": 5,
     "budget": 8
   },
   "counts": {
-    "PASS": 367
+    "PASS": 359
   },
   "findings": [
     {
@@ -1998,7 +1998,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "2 (1035 occurrences)",
+      "subject": "2 (1067 occurrences)",
       "message": "Contrast 6.87:1 against 4.5:1 at 10.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2007,7 +2007,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "2 (1035 occurrences)",
+      "subject": "2 (1067 occurrences)",
       "message": "10.04px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2016,7 +2016,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "q-latent-norm (149 occurrences)",
+      "subject": "q-latent-norm (156 occurrences)",
       "message": "Contrast 6.72:1 against 4.5:1 at 10.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2025,7 +2025,25 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "q-latent-norm (149 occurrences)",
+      "subject": "q-latent-norm (156 occurrences)",
+      "message": "10.04px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "vision-input (9 occurrences)",
+      "message": "Contrast 5.43:1 against 4.5:1 at 10.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "vision-input (9 occurrences)",
       "message": "10.04px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2052,6 +2070,24 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
+      "subject": "state-prev (7 occurrences)",
+      "message": "Contrast 5.78:1 against 4.5:1 at 10.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "state-prev (7 occurrences)",
+      "message": "10.04px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
       "subject": "SELECT A LAYER (48 occurrences)",
       "message": "Contrast 7.24:1 against 4.5:1 at 10.5px weight 400.",
       "remedy": "",
@@ -2062,78 +2098,6 @@
       "domain": "aesthetics",
       "status": "PASS",
       "subject": "SELECT A LAYER (48 occurrences)",
-      "message": "10.54px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "shared-up (32 occurrences)",
-      "message": "Contrast 6.87:1 against 4.5:1 at 10.5px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "shared-up (32 occurrences)",
-      "message": "10.54px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "gate-functions (7 occurrences)",
-      "message": "Contrast 6.72:1 against 4.5:1 at 10.5px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "gate-functions (7 occurrences)",
-      "message": "10.54px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "vision-input (9 occurrences)",
-      "message": "Contrast 5.43:1 against 4.5:1 at 10.5px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "vision-input (9 occurrences)",
-      "message": "10.54px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "state-prev (7 occurrences)",
-      "message": "Contrast 5.78:1 against 4.5:1 at 10.5px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "state-prev (7 occurrences)",
       "message": "10.54px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2160,6 +2124,96 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
+      "subject": "embedding (303 occurrences)",
+      "message": "Contrast 6.87:1 against 4.5:1 at 11.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "embedding (303 occurrences)",
+      "message": "11.05px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "norm1 (72 occurrences)",
+      "message": "Contrast 6.72:1 against 4.5:1 at 11.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "norm1 (72 occurrences)",
+      "message": "11.05px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "overview-block (294 occurrences)",
+      "message": "Contrast 5.43:1 against 4.5:1 at 11.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "overview-block (294 occurrences)",
+      "message": "11.05px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "combine (116 occurrences)",
+      "message": "Contrast 6.02:1 against 4.5:1 at 11.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "combine (116 occurrences)",
+      "message": "11.05px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "b-attention (178 occurrences)",
+      "message": "Contrast 5.78:1 against 4.5:1 at 11.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "b-attention (178 occurrences)",
+      "message": "11.05px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
       "subject": "01  ATTENTION (130 occurrences)",
       "message": "Contrast 7.24:1 against 4.5:1 at 11.0px weight 500.",
       "remedy": "",
@@ -2171,96 +2225,6 @@
       "status": "PASS",
       "subject": "01  ATTENTION (130 occurrences)",
       "message": "11.05px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "embedding (303 occurrences)",
-      "message": "Contrast 6.87:1 against 4.5:1 at 11.6px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "embedding (303 occurrences)",
-      "message": "11.65px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "norm1 (72 occurrences)",
-      "message": "Contrast 6.72:1 against 4.5:1 at 11.6px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "norm1 (72 occurrences)",
-      "message": "11.65px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "overview-block (294 occurrences)",
-      "message": "Contrast 5.43:1 against 4.5:1 at 11.6px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "overview-block (294 occurrences)",
-      "message": "11.65px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "combine (116 occurrences)",
-      "message": "Contrast 6.02:1 against 4.5:1 at 11.6px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "combine (116 occurrences)",
-      "message": "11.65px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "b-attention (178 occurrences)",
-      "message": "Contrast 5.78:1 against 4.5:1 at 11.6px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "b-attention (178 occurrences)",
-      "message": "11.65px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
     },
@@ -2539,7 +2503,7 @@
       "domain": "aesthetics",
       "status": "PASS",
       "subject": "shared-activation (11 occurrences)",
-      "message": "Contrast 13.87:1 against 4.5:1 at 11.5px weight 550.",
+      "message": "Contrast 13.87:1 against 4.5:1 at 11.0px weight 550.",
       "remedy": "",
       "evidence": []
     },
@@ -2548,7 +2512,7 @@
       "domain": "aesthetics",
       "status": "PASS",
       "subject": "shared-activation (11 occurrences)",
-      "message": "11.55px at or above the 10.0px floor.",
+      "message": "11.05px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
     },
@@ -2845,7 +2809,7 @@
       "domain": "aesthetics",
       "status": "PASS",
       "subject": "shared-activation (11 occurrences)",
-      "message": "Contrast 11.38:1 against 4.5:1 at 11.5px weight 550.",
+      "message": "Contrast 11.38:1 against 4.5:1 at 11.0px weight 550.",
       "remedy": "",
       "evidence": []
     },
@@ -2854,7 +2818,7 @@
       "domain": "aesthetics",
       "status": "PASS",
       "subject": "shared-activation (11 occurrences)",
-      "message": "11.55px at or above the 10.0px floor.",
+      "message": "11.05px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
     },
@@ -3006,6 +2970,24 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
+      "subject": "vision-input (9 occurrences)",
+      "message": "Contrast 4.78:1 against 4.5:1 at 10.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "vision-input (9 occurrences)",
+      "message": "10.04px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
       "subject": "dispatch (14 occurrences)",
       "message": "Contrast 4.67:1 against 4.5:1 at 10.0px weight 400.",
       "remedy": "",
@@ -3024,8 +3006,8 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "q-latent-norm (149 occurrences)",
-      "message": "Contrast 5.02:1 against 4.5:1 at 10.0px weight 400.",
+      "subject": "state-prev (7 occurrences)",
+      "message": "Contrast 4.63:1 against 4.5:1 at 10.0px weight 400.",
       "remedy": "",
       "evidence": []
     },
@@ -3033,7 +3015,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "q-latent-norm (149 occurrences)",
+      "subject": "state-prev (7 occurrences)",
       "message": "10.04px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -3042,7 +3024,25 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "2 (1035 occurrences)",
+      "subject": "q-latent-norm (156 occurrences)",
+      "message": "Contrast 5.02:1 against 4.5:1 at 10.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "q-latent-norm (156 occurrences)",
+      "message": "10.04px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "2 (1067 occurrences)",
       "message": "Contrast 5.39:1 against 4.5:1 at 10.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -3051,7 +3051,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "2 (1035 occurrences)",
+      "subject": "2 (1067 occurrences)",
       "message": "10.04px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -3078,78 +3078,6 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "vision-input (9 occurrences)",
-      "message": "Contrast 4.78:1 against 4.5:1 at 10.5px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "vision-input (9 occurrences)",
-      "message": "10.54px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "state-prev (7 occurrences)",
-      "message": "Contrast 4.63:1 against 4.5:1 at 10.5px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "state-prev (7 occurrences)",
-      "message": "10.54px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "gate-functions (7 occurrences)",
-      "message": "Contrast 5.02:1 against 4.5:1 at 10.5px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "gate-functions (7 occurrences)",
-      "message": "10.54px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "shared-up (32 occurrences)",
-      "message": "Contrast 5.39:1 against 4.5:1 at 10.5px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "shared-up (32 occurrences)",
-      "message": "10.54px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
       "subject": "MODEL TOPOLOGY (56 occurrences)",
       "message": "Contrast 5.34:1 against 4.5:1 at 11.0px weight 400.",
       "remedy": "",
@@ -3160,6 +3088,96 @@
       "domain": "aesthetics",
       "status": "PASS",
       "subject": "MODEL TOPOLOGY (56 occurrences)",
+      "message": "11.05px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "overview-block (294 occurrences)",
+      "message": "Contrast 4.78:1 against 4.5:1 at 11.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "overview-block (294 occurrences)",
+      "message": "11.05px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "combine (116 occurrences)",
+      "message": "Contrast 4.67:1 against 4.5:1 at 11.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "combine (116 occurrences)",
+      "message": "11.05px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "b-attention (178 occurrences)",
+      "message": "Contrast 4.63:1 against 4.5:1 at 11.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "b-attention (178 occurrences)",
+      "message": "11.05px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "norm1 (72 occurrences)",
+      "message": "Contrast 5.02:1 against 4.5:1 at 11.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "norm1 (72 occurrences)",
+      "message": "11.05px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "embedding (303 occurrences)",
+      "message": "Contrast 5.39:1 against 4.5:1 at 11.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "embedding (303 occurrences)",
       "message": "11.05px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -3179,96 +3197,6 @@
       "status": "PASS",
       "subject": "01  ATTENTION (130 occurrences)",
       "message": "11.05px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "overview-block (294 occurrences)",
-      "message": "Contrast 4.78:1 against 4.5:1 at 11.6px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "overview-block (294 occurrences)",
-      "message": "11.65px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "combine (116 occurrences)",
-      "message": "Contrast 4.67:1 against 4.5:1 at 11.6px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "combine (116 occurrences)",
-      "message": "11.65px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "b-attention (178 occurrences)",
-      "message": "Contrast 4.63:1 against 4.5:1 at 11.6px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "b-attention (178 occurrences)",
-      "message": "11.65px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "norm1 (72 occurrences)",
-      "message": "Contrast 5.02:1 against 4.5:1 at 11.6px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "norm1 (72 occurrences)",
-      "message": "11.65px at or above the 10.0px floor.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "CONTRAST_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "embedding (303 occurrences)",
-      "message": "Contrast 5.39:1 against 4.5:1 at 11.6px weight 400.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "TYPOGRAPHY_OK",
-      "domain": "aesthetics",
-      "status": "PASS",
-      "subject": "embedding (303 occurrences)",
-      "message": "11.65px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
     },
