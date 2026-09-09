@@ -182,12 +182,34 @@ test_real_manifests_have_valid_shapes (test_schema.SchemaTests.test_real_manifes
 test_required_and_min_items (test_schema.SchemaTests.test_required_and_min_items) ... ok
 test_unknown_fields_rejected (test_schema.SchemaTests.test_unknown_fields_rejected) ... ok
 test_wrong_type_is_rejected (test_schema.SchemaTests.test_wrong_type_is_rejected) ... ok
+test_clean_scene_passes (test_schematics.IRContractTests.test_clean_scene_passes) ... ok
+test_duplicate_group_id_is_rejected (test_schematics.IRContractTests.test_duplicate_group_id_is_rejected) ... ok
+test_endpoints_are_semantic_not_geometric (test_schematics.IRContractTests.test_endpoints_are_semantic_not_geometric) ... ok
+test_group_outside_the_canvas_is_rejected (test_schematics.IRContractTests.test_group_outside_the_canvas_is_rejected) ... ok
+test_single_point_wire_is_rejected (test_schematics.IRContractTests.test_single_point_wire_is_rejected) ... ok
+test_unknown_edge_kind_is_rejected (test_schematics.IRContractTests.test_unknown_edge_kind_is_rejected) ... ok
+test_unknown_node_tone_is_rejected (test_schematics.IRContractTests.test_unknown_node_tone_is_rejected) ... ok
+test_collinear_overlapping_wires_are_reported (test_schematics.LaneTests.test_collinear_overlapping_wires_are_reported) ... ok
+test_fan_out_from_one_node_may_share_a_trunk (test_schematics.LaneTests.test_fan_out_from_one_node_may_share_a_trunk) ... ok
+test_parallel_wires_in_different_lanes_pass (test_schematics.LaneTests.test_parallel_wires_in_different_lanes_pass) ... ok
+test_fully_wired_scene_counts_zero (test_schematics.OrphanMetricTests.test_fully_wired_scene_counts_zero) ... ok
+test_panel_layout_without_wires_counts_zero (test_schematics.OrphanMetricTests.test_panel_layout_without_wires_counts_zero) ... ok
+test_unwired_node_is_counted (test_schematics.OrphanMetricTests.test_unwired_node_is_counted) ... ok
+test_a_third_row_is_rejected (test_schematics.RealSceneTests.test_a_third_row_is_rejected) ... ok
+test_core_operations_are_pixel_identical_across_every_preset (test_schematics.RealSceneTests.test_core_operations_are_pixel_identical_across_every_preset) ... ok
+test_row_alignment_across_presets (test_schematics.RealSceneTests.test_row_alignment_across_presets) ... ok
+test_the_matrix_covers_every_decoder_layer (test_schematics.RealSceneTests.test_the_matrix_covers_every_decoder_layer) ... ok
+test_dense_model_must_not_draw_a_router (test_schematics.SceneVersusModelTests.test_dense_model_must_not_draw_a_router) ... ok
+test_layer_tiles_must_match_the_partition (test_schematics.SceneVersusModelTests.test_layer_tiles_must_match_the_partition) ... ok
+test_shared_expert_absent_when_the_model_declares_none (test_schematics.SceneVersusModelTests.test_shared_expert_absent_when_the_model_declares_none) ... ok
+test_delay_kind_and_delay_flag_must_agree (test_schematics.StateRailTests.test_delay_kind_and_delay_flag_must_agree) ... ok
+test_state_toned_annotation_card_is_not_a_defect (test_schematics.StateRailTests.test_state_toned_annotation_card_is_not_a_defect) ... ok
 test_api_exists (test_sources.SourceAcquisitionTests.test_api_exists) ... ok
 test_missing_revision_does_not_resolve_main (test_sources.SourceAcquisitionTests.test_missing_revision_does_not_resolve_main) ... ok
 test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_never_overwrites_accepted_lock) ... ok
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 187 tests in 28.961s
+Ran 209 tests in 30.398s
 
 OK
