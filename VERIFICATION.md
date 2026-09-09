@@ -12,7 +12,7 @@ Generated from the fresh engineering receipt and the three adjacent gate reports
 | Presentations | PASS | 0 | Exports, accessibility, print, portability and preview freshness from a real file:// origin |
 | Aesthetics | PASS | 0 | 156 scenarios; type, spacing, contrast, clearance and composition |
 | Scientific publication | BLOCKED | 2 | Eight-model consumer inventory and strict evidence/review audit |
-| Runtime certification | BLOCKED | 2 | 31 obligations NOT_RUN; no model/GPU/fabric experiment was executed or attested |
+| Runtime certification | BLOCKED | 2 | 28 of 31 obligations NOT_RUN; H100, B200 and GB300 attested from the armada fleet |
 
 ## Toolchain
 
@@ -134,14 +134,21 @@ Recorded so they are not mistaken for oversights:
   make a record parse would be strictly worse than an honest stub.
 - **Three communication contracts describe observed behaviour**, so they need a runtime receipt
   rather than a binding, and say so.
-- **No Qwen repository is authorised as `publisher_code`** (`evidence.py`), which permanently
-  blocks 1,219 `MODEL_DUAL_CODE` and 1,219 `CLAIM_ROLE` findings. Qwen does not publish modeling
-  code for these checkpoints, so this may be correct — but it is a policy-root question for a code
-  owner, not an oversight to fix silently.
-- No upstream bytes have been acquired, so every source remains `SOURCE_UNFETCHED`. Together with
-  `REVIEW_REQUIRED`, these are 84% of all findings and are independent: acquiring sources does not
-  reduce the review obligation, and neither changes the runtime gate, which is a superset of
-  publication.
+- **No Qwen repository is authorised as `publisher_code`**, which blocks 1,219 `MODEL_DUAL_CODE`
+  and 1,219 `CLAIM_ROLE` findings. This is now **verified rather than assumed**: the Hugging Face
+  API reports that none of `Qwen3-8B`, `Qwen3-30B-A3B`, `Qwen3-235B-A22B`, `Qwen3.8-27B` or
+  `Qwen3.8-Flash-Next` ships a single `.py` file. Qwen genuinely publishes no modeling code for
+  these checkpoints; the only implementation is `huggingface/transformers`, which is a third-party
+  reimplementation and is registered as `framework_code`. Admitting it as `publisher_code` would
+  let two reimplementations satisfy "publisher plus independent framework". The blocking is
+  correct, and these claims are expected to stay blocked.
+- **Two sources remain unfetched** because their URLs redirect and the acquirer refuses to follow
+  a redirect without inspecting the new origin. Pin the resolved origin; do not relax the guard.
+- **5,631 evidence entries name a source but no selector within it** (`CLAIM_ANCHOR`). These are
+  papers and vendor documents, which need span or quote anchors rather than JSON pointers.
+- **`REVIEW_REQUIRED` is 3,056 findings** and is independent of everything above. No amount of
+  source acquisition or hardware access reduces it: it needs a reviewer identity in the protected
+  trust root and an independent signer who is not the author.
 
 ## Artifact identity
 

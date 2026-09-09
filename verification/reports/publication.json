@@ -3,21 +3,21 @@
   "target": "stratum-observatory-3",
   "profile": "publication",
   "status": "BLOCKED",
-  "generated_at": "2026-09-09T20:13:39.472723+00:00",
-  "lock_sha256": "9d475fb52c97e0a615f5fef7f9c218b2594a9c6721aaab8d8d0a68ffc9fc4a41",
+  "generated_at": "2026-09-09T20:23:53.665379+00:00",
+  "lock_sha256": "a236b564420da400c78496b206f5ebcad039b0c386600ebe515041f55a624876",
   "consumer_sha256": "56ae29ebb49ff2a7110c7bfb5a508368884696cb7af930382a64cd94174472f4",
   "coverage": {
     "inputs": 455,
     "functions_and_files": 27,
     "scene_contracts": 2520,
     "claims": 3025,
-    "sources": 56,
-    "verified_sources": 54,
+    "sources": 59,
+    "verified_sources": 57,
     "verified_scientific_claims": 0,
     "passed_presentation_bindings": 0
   },
   "counts": {
-    "BLOCKED": 11183,
+    "BLOCKED": 11186,
     "PASS": 24
   },
   "domains": {
@@ -99898,6 +99898,33 @@
       "status": "BLOCKED",
       "subject": "contract-claim.training.training",
       "message": "Missing concrete selector for sglang-model; a repository URL is not a code reference.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ANCHOR",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "contract-claim.training.training",
+      "message": "Missing concrete selector for megatron-ddp; a repository URL is not a code reference.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ANCHOR",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "contract-claim.training.training",
+      "message": "Missing concrete selector for megatron-optimizer; a repository URL is not a code reference.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ANCHOR",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "contract-claim.training.training",
+      "message": "Missing concrete selector for torchtitan-parallel; a repository URL is not a code reference.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
     },

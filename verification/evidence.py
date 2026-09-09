@@ -28,7 +28,7 @@ REPOS = {
     'tokenizer_code': {'moonshotai/Kimi-K3'},
     'checkpoint_metadata': {'moonshotai/Kimi-K3'},
     # transformers reimplements every model here; it corroborates a publisher, never substitutes for one.
-    'framework_code': {'sgl-project/sglang','vllm-project/vllm','NVIDIA/Megatron-LM','huggingface/transformers'},
+    'framework_code': {'sgl-project/sglang','vllm-project/vllm','NVIDIA/Megatron-LM','pytorch/torchtitan','huggingface/transformers'},
     'library_code': {'NVIDIA/nccl','NVIDIA/nvshmem','ai-dynamo/nixl','openucx/ucx','linux-rdma/rdma-core','NVIDIA/cutlass','MoonshotAI/FlashKDA'},
 }
 DOC_HOSTS = {'docs.nvidia.com','developer.nvidia.com','www.nvidia.com','arxiv.org','docs.sglang.io','docs.vllm.ai'}
