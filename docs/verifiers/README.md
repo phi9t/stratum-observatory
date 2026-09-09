@@ -1,6 +1,6 @@
 # STRATUM Scientific Verification Framework
 
-This is an additive verifier layer for the Kimi K3 atlas, reusable through explicit adapters for other atlases. It separates **tested software**, **source-backed scientific interpretation**, and **observed execution**. It does not infer one from another.
+This is an additive verifier layer for the eight-checkpoint Observatory target (`manifests/observatory.json`), reusable through explicit adapters for other atlases. `manifests/kimi-k3.json` is historical and is not the current consumer inventory. It separates **tested software**, **source-backed scientific interpretation**, and **observed execution**. It does not infer one from another.
 
 ## Commands and gates
 
@@ -9,7 +9,7 @@ npm run test:verifiers       # Pure CPU verifier tests, including adversarial ca
 npm run verify:engineering  # Verifier + atlas tests, two builds, actual Chromium suite
 npm run verify:science      # Offline publication gate; reports every missing obligation
 npm run verify:runtime      # Publication requirements + exact SKU/fabric/backend executions
-npm run verify              # Engineering AND publication; no silent bypass
+npm run verify              # engineering, schematics, aesthetics, presentations AND publication; no silent bypass
 ```
 
 A pass exits `0`; a contradiction/malformed input exits `1`; missing evidence or unrun work exits `2`. Reports are written even when the audit is blocked. `BLOCKED` means not established, **not necessarily false**. `NOT_RUN` is not a passing test. `NOT_APPLICABLE` is reserved; this release has no blanket waiver switch.
@@ -40,7 +40,7 @@ Failure handling, cancellation, isolation and compatibility are cross-cutting ob
 
 `verification/evidence.py` handles integrity, source anchors and review signatures. `domains/contracts.py` implements typed checks. `runner.py` assembles coverage and gates. `engineering.py` runs fresh local tests and binds the artifact. `sources.py` performs explicit candidate acquisition. `tools/export-verification.mjs` reads the actual application instead of a hand-copied parameter list.
 
-`manifests/kimi-k3.json` contains consumer claims, domain contracts and the runtime matrix. `sources.json` is the source catalog. `reviews.json` and `runtime.json` start empty. `trust/reviewers.json` intentionally contains no invented public keys. `schemas/` contains machine-readable shapes; the checked-in schema evaluator implements only the subset used by these files.
+`manifests/observatory.json` contains consumer claims, domain contracts and the runtime matrix; `manifests/kimi-k3.json` is the superseded Kimi-only target, kept for reference only. `sources.json` is the source catalog. `reviews.json` and `runtime.json` start empty. `trust/reviewers.json` intentionally contains no invented public keys. `schemas/` contains machine-readable shapes; the checked-in schema evaluator implements only the subset used by these files.
 
 Read [MODEL.md](MODEL.md), [GPU.md](GPU.md), [NETWORK.md](NETWORK.md), [OTHER_DOMAINS.md](OTHER_DOMAINS.md), [EVIDENCE.md](EVIDENCE.md), and [AGENT_RUNBOOK.md](AGENT_RUNBOOK.md).
 

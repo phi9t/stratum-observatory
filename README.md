@@ -63,10 +63,10 @@ npm run verify:engineering  # All above, two identical builds, real-browser test
 npm run verify:science      # Expected exit 2 until evidence/reviews are completed
 npm run verify:runtime      # Expected exit 2 until actual experiments are attested
 npm run capture             # Fresh PNG and SVG previews of the current build
-npm run verify              # Engineering AND scientific publication; fail-closed
+npm run verify              # engineering, schematics, aesthetics, presentations AND publication; fail-closed
 ```
 
-`0` means PASS, `1` means a contradiction/malformed input, `2` means BLOCKED or required work NOT_RUN. GitHub Pages requires engineering and publication; this archive does not configure a remote repository or bypass the blocked gate.
+`0` means PASS, `1` means a contradiction/malformed input, `2` means BLOCKED or required work NOT_RUN. GitHub Pages requires all four engineering-class gates and publication; this archive does not configure a remote repository or bypass the blocked gate.
 
 ## Source layout
 

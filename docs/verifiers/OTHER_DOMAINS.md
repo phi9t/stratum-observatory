@@ -42,7 +42,7 @@ The initial executable estimator checks arithmetic means and consistency with ra
 
 ## Visualization and scientific projection
 
-Nodes, tensor labels, operators, state, links and equations have registered claim bindings. `tools/export-verification.mjs` fingerprints every core field, exported function, protected file, all 93 layer views and representative training/serving/hardware/network variants. Whole-file fingerprints cover branches outside the sampled matrix; this is a change detector, not complete semantic static analysis.
+Nodes, tensor labels, operators, state, links and equations have registered claim bindings. `tools/export-verification.mjs` fingerprints every core field, exported function, protected file, all 504 decoder layers across the eight checkpoints and representative training/serving/hardware/network variants. Whole-file fingerprints cover branches outside the sampled matrix; this is a change detector, not complete semantic static analysis.
 
 The existing browser suite measures rendered SVG bounds, crossings/overlap categories, responsive overflow, interaction, URL restoration and exports. New diagrams must retain readable label lanes, explicit state rails, orthogonal edges and stable layouts. A collision-free picture is not proof that the depicted math is right; the model and systems claim gates remain mandatory.
 

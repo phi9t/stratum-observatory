@@ -30,12 +30,14 @@ npm run test:verifiers                # uv run python -m unittest discover -s ve
 uv run python -m unittest verification.tests.test_evidence -v   # One verifier module
 uv run python tests/browser.test.py   # Chromium suite; CHROMIUM_PATH optional, Playwright resolves it
 npm run capture                       # Regenerate previews/ PNG+SVG from the current build
+npm run verify:schematics             # Diagram semantics vs core.mjs over all 504 layers; no browser
+npm run verify:presentations          # Exports, accessibility, print, portability, preview freshness
 npm run verify:aesthetics             # Measured legibility, type/spacing scales, composition, drift
 npm run verify:aesthetics -- --record  # Write a candidate composition baseline for review
 npm run verify:engineering            # Verifier tests + node tests + two builds + browser; writes receipt
 npm run verify:science                # Publication gate; exits 2 while BLOCKED
 npm run verify:runtime                # Runtime gate; exits 2 while experiments are NOT_RUN
-npm run verify                        # engineering AND science, fail-closed
+npm run verify                        # engineering, schematics, aesthetics, presentations AND publication, fail-closed
 ```
 
 Exit codes: `0` PASS, `1` contradiction/malformed input, `2` BLOCKED or NOT_RUN.
@@ -62,7 +64,7 @@ pure ledgers (`parameterLedger`, `cacheLedger`, `servingLedger`, `trainingLedger
 - `app.mjs` exposes `window.STRATUM` (`getState/setState/getScene/selectNode/geometryReport/exportSVG/exportConfig/version`). That global is the seam the Chromium suite drives; keep it stable.
 - `build.mjs` inlines `src/styles.css` and concatenates the modules into an IIFE module registry. It supports only single-line `import {…} from './x.mjs';` and `export const|let|function|class` / `export {…};` — anything else (default exports, namespace imports, multi-line import lists, external specifiers) throws `Unsupported module syntax`. Module order is the hardcoded `files` array.
 
-**Verification** — four independent tracks that never infer one from another:
+**Verification** — six independent tracks that never infer one from another:
 
 - `verification/engineering.py` runs verifier tests → node tests → build → repeat build (byte-identical check) → `tests/browser.test.py`, then writes `verification/reports/engineering.json` binding four digests: `consumer_sha256` (live inventory from `node tools/export-verification.mjs`), `verifier_sha256` (all `verification/*.py`, `tools/*`, workflows, schemas, trust, `package.json`), `lock_sha256` (target + source manifests), `artifact_sha256` (`dist/index.html`).
 - `verification/runner.py` re-derives all four and rejects a receipt that is stale, >24h old, or bound to different bytes. Practical consequence: **any** edit under `src/`, `tools/`, `verification/`, workflows or manifests invalidates the receipt — re-run `verify:engineering` before quoting a science/runtime result.
@@ -84,6 +86,22 @@ pure ledgers (`parameterLedger`, `cacheLedger`, `servingLedger`, `trainingLedger
   grammar. It is **engineering-class** evidence — measured on our own bytes — and per `docs/verifiers/DESIGN.md`
   trust boundary 1 it must never contribute to a scientific PASS. It is not a member of
   `contracts.DOMAINS`, because adding a domain would force both a contract and a runtime obligation.
-- `.github/workflows/pages.yml` gates Pages on engineering **then** publication; publication is expected to fail until real evidence exists, so Pages does not deploy. The aesthetics job runs alongside and is currently red on real defects.
+- `verification/schematics.py` (`npm run verify:schematics`) checks what the diagram *means*.
+  `tools/export-scenes.mjs` dumps the scene IR plus, per scene, what `core.mjs` independently says
+  is true; Python judges the two against each other, so agreement is a cross-check rather than
+  self-consistency. No browser, which is what makes the full 684-scene / 504-layer matrix
+  affordable. It enforces the IR's closed value sets, the groups and labels `structuralReport`
+  never inspects, the `kind==='delay'` / `delay` biconditional, lane collinearity (invisible to
+  crossing counts), scene-vs-model routing and layer-tile agreement, and the row alignment
+  `OBSERVATORY.md` asserts. Connectivity is a **metric**, not a rule: every lens carries annotation
+  cards that sit beside the flow deliberately, and the IR has no annotation flag.
+- `verification/presentations.py` (`npm run verify:presentations`) checks what reaches a reader.
+  It is the only suite that opens the artifact from a real `file://` origin. It validates the
+  exported SVG and the exported scenario against `schemas/scenario.schema.json`, checks accessible
+  names, heading order and visible focus, emulates print and reduced motion, asserts nothing is
+  *loaded* from an external origin (clickable source citations are the provenance feature and are
+  fine), and consumes `previews/manifest.json` so previews cannot silently go stale. It also
+  measures the `visualization` contract record.
+- `.github/workflows/pages.yml` gates Pages on engineering **then** publication; publication is expected to fail until real evidence exists, so Pages does not deploy. The schematics, aesthetics and presentations jobs run alongside and all pass; deployment requires every one of them.
 
 `docs/verifiers/` holds the per-domain requirements (MODEL/GPU/NETWORK/EVIDENCE/…) and `AGENT_RUNBOOK.md` the evidence protocol; `docs/design/` records the design rationale.
