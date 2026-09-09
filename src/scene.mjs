@@ -1,0 +1,9 @@
+/** Visual IR. Geometry is template-authored; rendered text bounds are release-tested. */
+export function makeScene(width=1440,height=1010){return{width,height,nodes:[],edges:[],groups:[],labels:[],decorations:[],caption:'',defaultSelected:null};}
+export function addNode(g,id,x,y,w,h,name,sub='',options={}){const n={id,x,y,w,h,name,sub,kind:'op',tone:'neutral',...options};g.nodes.push(n);return n;}
+export function addGroup(g,id,x,y,w,h,title='',subtitle='',options={}){const n={id,x,y,w,h,title,subtitle,...options};g.groups.push(n);return n;}
+export function addLabel(g,text,x,y,tone='muted',options={}){const n={id:`label-${g.labels.length}`,text,x,y,tone,...options};g.labels.push(n);return n;}
+export function addWire(g,points,source='',target='',options={}){const e={id:`wire-${g.edges.length}`,points,source,target,kind:'flow',arrow:true,...options};g.edges.push(e);return e;}
+export function addSum(g,id,cx,cy,options={}){return addNode(g,id,cx-12,cy-12,24,24,'+','',{kind:'sum',...options});}
+export function makeInfo(category,title,body,formula='',facts=[],sources=[],links=[]){return{category,title,body,formula,facts,sources,links,status:'reference-mapped'};}
+export function structuralReport(scene){const out=[],ids=new Set();for(const n of scene.nodes){if(ids.has(n.id))out.push(`duplicate:${n.id}`);ids.add(n.id);if(![n.x,n.y,n.w,n.h].every(Number.isFinite)||n.w<=0||n.h<=0)out.push(`nonfinite:${n.id}`);if(n.x<0||n.y<0||n.x+n.w>scene.width||n.y+n.h>scene.height)out.push(`outside:${n.id}`);}for(const e of scene.edges){if(e.source&&!ids.has(e.source))out.push(`source:${e.source}`);if(e.target&&!ids.has(e.target))out.push(`target:${e.target}`);for(let i=1;i<e.points.length;i++)if(e.points[i][0]!==e.points[i-1][0]&&e.points[i][1]!==e.points[i-1][1])out.push(`diagonal:${e.id}`);}return out;}

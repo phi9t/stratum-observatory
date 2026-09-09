@@ -1,0 +1,11 @@
+node_modules/
+__pycache__/
+.pytest_cache/
+_site/
+.DS_Store
+.verification-cache/
+verification/candidates/
+*.private.pem
+previews/test-export.svg
+tests/sweep-report.json
+.venv/

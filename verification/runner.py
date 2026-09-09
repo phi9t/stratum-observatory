@@ -1,0 +1,246 @@
+"""Fail-closed offline publication/runtime gate. Never executes downloaded code."""
+from __future__ import annotations
+import argparse, hashlib, json, subprocess, sys
+from collections import Counter
+from datetime import datetime, timezone, timedelta
+from pathlib import Path
+from .model import Finding, aggregate, exit_code
+from .evidence import (canonical,digest,loads,safe_path,pointer,check_source,check_anchor,
+                       select_anchor,dual_code_roles,check_dependencies,check_coverage,check_review,HEX64)
+from .domains.contracts import DOMAINS, validate
+
+PROFILES=('publication','runtime')
+PRESENTATION_SUFFIXES={'id','name','family','sources','blurb'}
+PRESENTATION_FUNCTIONS={'function.fmt','function.compact','function.gb','function.sanitizeState'}
+
+def source_subject(claim,sources):
+    """Any source pin, bytes, anchor, assertion or consumer change invalidates review."""
+    return digest({'claim':claim,'sources':[sources.get(e.get('source'),{}) for e in claim.get('evidence',[])]})
+
+def classify_allowed(c):
+    key=c.get('consumer',''); kind=c.get('classification')
+    if kind not in {'documented','derived','assumed','presentation'}: return False
+    if kind=='presentation':
+        return key.startswith('DEFAULT_STATE.') or key.split('.')[-1] in PRESENTATION_SUFFIXES or key in PRESENTATION_FUNCTIONS or key in {'file.src/styles.css','file.index.html'}
+    if kind=='assumed': return key.startswith('DEFAULT_STATE.') or not key
+    return True
+
+def required_roles(c):
+    if c.get('classification') in ('presentation','assumed'):return ()
+    domain=c.get('domain')
+    if domain=='model':return ('publisher_code','framework_code')
+    if domain in ('gpu','scale_up','scale_out'):return ('vendor_document',)
+    if domain=='communication':return ('library_code','vendor_document')
+    return ()
+
+def check_receipt(root, receipt, expected_lock, inventory):
+    out=[]
+    def add(code,status,msg):out.append(Finding(code,'release',status,'engineering',msg,'Run npm run verify:engineering on this exact checkout; never reuse an old report.'))
+    if not receipt: add('ENGINEERING_NOT_RUN','NOT_RUN','No fresh engineering receipt for the current atlas.');return out
+    if receipt.get('schema')!='stratum-engineering/v1':add('RECEIPT_SCHEMA','FAIL','Unrecognized engineering receipt.')
+    from .engineering import toolchain_digest
+    if receipt.get('verifier_sha256')!=toolchain_digest(root):add('VERIFIER_STALE','FAIL','Verification code/workflow changed since the receipt.')
+    current=digest(inventory['functions'])
+    if receipt.get('consumer_sha256')!=current or receipt.get('lock_sha256')!=expected_lock:add('RECEIPT_STALE','FAIL','Receipt binds different source files or evidence lock.')
+    try:
+        t=datetime.fromisoformat(receipt['completed_at'].replace('Z','+00:00'))
+        if t.tzinfo is None or not timedelta(0)<=datetime.now(timezone.utc)-t<=timedelta(hours=24):add('RECEIPT_EXPIRED','FAIL','Engineering receipt is future-dated or older than 24 hours.')
+        actual=hashlib.sha256((root/'dist/index.html').read_bytes()).hexdigest()
+        if actual!=receipt.get('artifact_sha256'):add('ARTIFACT_STALE','FAIL','Portable HTML differs from the tested artifact.')
+        for name in ('verifier-tests','node-tests','build','browser'):
+            if receipt.get('commands',{}).get(name,{}).get('exit')!=0:add('ENGINEERING_COMMAND','FAIL',f'Missing/failing command: {name}.')
+        b=receipt.get('browser',{})
+        for key in ('geometry_defects','runtime_errors','external_runtime_requests'):
+            if b.get(key)!=0:add('BROWSER_RESULT','FAIL',f'Browser result {key} is absent or nonzero.')
+        if b.get('geometry_states',0)<=0 or b.get('responsive_states',0)<=0:add('BROWSER_EMPTY','FAIL','No browser state coverage.')
+        if not receipt.get('deterministic_build'):add('BUILD_NONDETERMINISTIC','FAIL','Two fresh builds did not produce identical bytes.')
+    except (ValueError,KeyError,OSError,TypeError) as exc:add('RECEIPT_INVALID','FAIL',str(exc))
+    return out or [Finding('ENGINEERING_CURRENT','release','PASS','engineering','Fresh local receipt binds tests, source, evidence lock and portable artifact; CI must protect the runner.')]
+
+def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publication',reviews=None,receipt=None,runtime=None):
+    if profile not in PROFILES:raise ValueError(f'Unknown verification profile: {profile}')
+    root=Path(root); reviews=reviews or {}; runtime=runtime or {}; findings=[]
+    def add(code,domain,status,subject,msg,remedy='Resolve the finding; do not weaken the gate.'):
+        findings.append(Finding(code,domain,status,str(subject),msg,remedy))
+    if target.get('schema')!='stratum-target/v1' or catalog.get('schema')!='stratum-sources/v1':
+        add('MANIFEST_SCHEMA','evidence','FAIL','target','Missing or unsupported manifest version.')
+    for name,allowed,obj in [('target',{'schema','id','description','claims','contracts','runtime_obligations'},target),('catalog',{'schema','sources'},catalog)]:
+        for key in obj.keys()-allowed:add('MANIFEST_UNKNOWN','evidence','FAIL',name,f'Unknown manifest key {key}.')
+    from .schema import validate as shape_validate
+    for name,value in [('target',target),('sources',catalog)]:
+        path=root/f'verification/schemas/{name}.schema.json'
+        if path.exists():
+            for error in shape_validate(value,loads(path.read_text())):add('MANIFEST_SHAPE','evidence','FAIL',name,error)
+    claims=target.get('claims',[]); contracts=target.get('contracts',[]); rawsources=catalog.get('sources',[])
+    if not isinstance(claims,list) or not isinstance(contracts,list) or not isinstance(rawsources,list):
+        add('MANIFEST_TYPE','evidence','FAIL','manifest','Claims, contracts and sources must be arrays.');claims=[];contracts=[];rawsources=[]
+    ids=[s.get('id') for s in rawsources if isinstance(s,dict)]
+    if len(ids)!=len(set(ids)) or len(ids)!=len(rawsources):add('SOURCE_DUPLICATE','evidence','FAIL','sources','Sources must have unique IDs and object values.')
+    sources={s['id']:s for s in rawsources if isinstance(s,dict) and isinstance(s.get('id'),str)}
+    lock=digest({'target':target,'catalog':catalog}); claim_status={}; source_status={}
+    if not sources:add('SOURCES_EMPTY','evidence','BLOCKED','sources','No source catalog.')
+    for sid,s in sources.items():
+        issues=check_source(s,root);findings.extend(issues);source_status[sid]=aggregate(issues) if issues else 'PASS'
+    findings.extend(check_coverage(inventory,claims));findings.extend(check_dependencies(claims))
+    for c in claims:
+        cid=c.get('id','<missing>');domain=c.get('domain');start=len(findings)
+        if domain not in DOMAINS:add('CLAIM_DOMAIN','evidence','FAIL',cid,'Claim has no registered domain.')
+        if not classify_allowed(c):add('CLAIM_CLASS','evidence','FAIL',cid,'Invalid classification or attempt to hide scientific input as presentation/assumption.')
+        if not c.get('statement'):add('CLAIM_STATEMENT','evidence','BLOCKED',cid,'Claim needs an explicit assertion and scope.')
+        evid=c.get('evidence',[]); referents=[]
+        if not isinstance(evid,list):add('CLAIM_EVIDENCE','evidence','FAIL',cid,'Evidence must be an array.');evid=[]
+        for e in evid:
+            sid=e.get('source');s=sources.get(sid)
+            if not s:add('CLAIM_SOURCE','evidence','FAIL',cid,f'Unknown source {sid}.');continue
+            referents.append(s)
+            if source_status[sid]!='PASS':
+                add('CLAIM_SOURCE_BLOCKED',domain or 'evidence','BLOCKED',cid,f'Exact source snapshot for {sid} is not verified.');continue
+            a=e.get('anchor')
+            if not a or not a.get('kind'):
+                add('CLAIM_ANCHOR','evidence','BLOCKED',cid,f'Missing concrete selector for {sid}; a repository URL is not a code reference.');continue
+            issues=check_anchor(s,a,root);findings.extend(issues)
+            if not issues and e.get('relation')=='equal':
+                try:
+                    selected,_=select_anchor(safe_path(root,s['cache']).read_bytes(),a)
+                    if a['kind']!='json_pointer':raise ValueError('Exact value relation requires a typed JSON pointer; code text needs semantic review.')
+                    if canonical(loads(selected))!=canonical(c.get('expected')):add('UPSTREAM_VALUE',domain,'FAIL',cid,'Local value contradicts the pinned upstream value.')
+                except (ValueError,KeyError,TypeError) as exc:add('UPSTREAM_VALUE','evidence','FAIL',cid,str(exc))
+            elif e.get('relation') not in ('equal','consumes','implements','documents','derives'):
+                add('EVIDENCE_RELATION','evidence','FAIL',cid,'Unknown evidence relation.')
+        if c.get('classification')=='documented' and not evid:
+            add('DOCUMENTED_NO_SOURCE',domain or 'evidence','BLOCKED',cid,'A documented scientific claim requires a concrete source anchor, not only a review.')
+        roles={s['role'] for s in referents}
+        for role in required_roles(c):
+            if role not in roles:add('CLAIM_ROLE',domain,'BLOCKED',cid,f'Required {role} anchor is missing.')
+        if domain=='model' and c.get('classification') not in ('presentation','assumed') and not dual_code_roles(referents):
+            add('MODEL_DUAL_CODE','model','BLOCKED',cid,'Requires publisher implementation AND independent framework implementation; config/paper alone cannot substitute.')
+        if c.get('classification')=='derived' and not c.get('dependencies'):
+            add('DERIVATION_INPUTS',domain or 'evidence','BLOCKED',cid,'Derived claim has no explicit input-claim dependencies.')
+        if c.get('classification') not in ('presentation',):
+            if c.get('classification')=='assumed' and (not c.get('scope') or not c.get('units')):
+                add('ASSUMPTION_SCOPE',domain,'BLOCKED',cid,'Assumption needs units and a declared scenario scope.')
+            review=check_review(c,source_subject(c,sources),reviews,root);findings.append(review)
+        claim_status[cid]=aggregate(findings[start:]) if len(findings)>start else 'PASS'
+        if claim_status[cid]=='PASS':add('CLAIM_VERIFIED',domain,'PASS',cid,'Registered consumer, source obligations and applicable review checks passed.')
+    # Derivations cannot launder unresolved inputs into a verified total.
+    for _ in range(len(claims)):
+        changed=False
+        for c in claims:
+            cid=c.get('id')
+            if claim_status.get(cid)=='PASS' and any(claim_status.get(d)!='PASS' for d in c.get('dependencies',[])):
+                claim_status[cid]='BLOCKED';add('DEPENDENCY_BLOCKED',c['domain'],'BLOCKED',cid,'A derivation input is unverified.');changed=True
+        if not changed:break
+    bydomain={d:[] for d in DOMAINS}
+    seen_contracts=set()
+    for rec in contracts:
+        if rec.get('domain') not in bydomain:add('CONTRACT_DOMAIN','evidence','FAIL',rec.get('id'),'Unknown contract domain.');continue
+        if rec.get('id') in seen_contracts:add('CONTRACT_DUPLICATE','evidence','FAIL',rec.get('id'),'Duplicate contract ID.')
+        seen_contracts.add(rec.get('id'));bydomain[rec['domain']].append(rec)
+        d=rec['domain'];record=rec.get('record',{})
+        # Core fields may be bound into the contract, not transcribed independently.
+        record=dict(record)
+        for field,consumer in rec.get('bindings',{}).items():
+            if consumer not in inventory.get('fields',{}):add('CONTRACT_BINDING',d,'FAIL',rec['id'],f'No actual core input {consumer}.')
+            else:record[field]=inventory['fields'][consumer]
+        findings.extend(validate(d,record))
+        refs=rec.get('claims',[])
+        if not refs or any(claim_status.get(cid)!='PASS' for cid in refs):add('CONTRACT_EVIDENCE',d,'BLOCKED',rec['id'],'Contract inputs/semantics do not yet have verified claims.')
+        # Review pins every constant and binding, including hypothetical scenarios.
+        findings.append(check_review({'id':rec['id']},digest(rec),reviews,root))
+    for domain,rows in bydomain.items():
+        if not rows:add('DOMAIN_UNCOVERED',domain,'BLOCKED',domain,'No source-bound contract for this required area. Register a complete contract. This release has no blanket domain-waiver switch.')
+    findings.extend(check_receipt(root,receipt,lock,inventory))
+    obligations=target.get('runtime_obligations',[])
+    if profile=='runtime':
+        matrix_domains={'gpu','scale_up','scale_out','communication'}
+        required={r['id'] for r in contracts if r.get('domain') in matrix_domains}
+        declared={o.get('contract') for o in obligations}
+        for missing in required-declared:
+            add('RUNTIME_MATRIX','evidence','BLOCKED',missing,'A registered SKU/fabric/library scenario is missing from the runtime matrix.')
+        runtime_ids=[o.get('id') for o in obligations]
+        if len(runtime_ids)!=len(set(runtime_ids)):add('RUNTIME_DUPLICATE','evidence','FAIL','runtime','Duplicate runtime obligation ID.')
+        covered={o.get('domain') for o in obligations}
+        for d in DOMAINS:
+            if d not in covered:add('RUNTIME_COVERAGE',d,'BLOCKED',d,'Required domain has no runtime evidence obligation.')
+        for o in obligations:
+            rid=o['id'];r=runtime.get(rid)
+            if not r:add('RUNTIME_NOT_RUN',o['domain'],'NOT_RUN',rid,o['description'],'Run the specified experiment on the declared stack; attach raw artifacts and a trusted signed receipt.');continue
+            try:
+                executed=datetime.fromisoformat(r['executed_at'].replace('Z','+00:00'))
+                age=datetime.now(timezone.utc)-executed
+                if executed.tzinfo is None or not timedelta(0)<=age<=timedelta(days=7 if o['domain']=='measurement' else 30):raise ValueError('Runtime receipt is expired or future-dated')
+                if r.get('exit_code')!=0:raise ValueError('Experiment did not record a successful exit')
+            except (KeyError,ValueError,TypeError) as exc:add('RUNTIME_EXECUTION',o['domain'],'FAIL',rid,str(exc))
+            if r.get('lock_sha256')!=lock or r.get('consumer_sha256')!=digest(inventory['functions']):add('RUNTIME_STALE',o['domain'],'FAIL',rid,'Runtime receipt belongs to a different atlas/lock.')
+            if o.get('contract'):
+                original=next((c for c in contracts if c['id']==o['contract']),None)
+                if original is None:add('RUNTIME_CONTRACT',o['domain'],'FAIL',rid,'Runtime obligation refers to an unknown contract.')
+                else:
+                    for key in ('sku','system','fabric','mode','library','tolerance_policy','accumulator'):
+                        if key in original['record'] and r.get('record',{}).get(key)!=original['record'][key]:add('RUNTIME_TARGET',o['domain'],'FAIL',rid,f'Execution receipt is for a different {key}.')
+            for key in o.get('environment',[]):
+                if not r.get('environment',{}).get(key):add('RUNTIME_ENVIRONMENT',o['domain'],'BLOCKED',rid,f'Missing environment fingerprint {key}.')
+            try:
+                artifacts=r.get('artifacts',[])
+                if not artifacts:raise ValueError('No raw experiment artifacts')
+                hashes={}
+                for artifact in artifacts:
+                    path=safe_path(root,artifact['path']);h=hashlib.sha256()
+                    with path.open('rb') as stream:
+                        for chunk in iter(lambda:stream.read(1024*1024),b''):h.update(chunk)
+                    if not HEX64.fullmatch(str(artifact.get('sha256',''))) or h.hexdigest()!=artifact['sha256']:raise ValueError('Runtime artifact hash mismatch')
+                    hashes[artifact['path']]=h.hexdigest()
+                binding=r.get('record_artifact',{})
+                if binding.get('path') not in hashes:raise ValueError('Normalized runtime record is not bound to a checksummed artifact')
+                path=safe_path(root,binding['path'])
+                if path.stat().st_size>8*1024*1024:raise ValueError('Normalized JSON record exceeds 8 MiB')
+                recorded=pointer(loads(path.read_text()),binding.get('pointer',''))
+                if canonical(recorded)!=canonical(r.get('record',{})):raise ValueError('Runtime summary differs from normalized raw record')
+                findings.extend(validate(o['domain'],r.get('record',{})))
+            except (OSError,ValueError,KeyError,TypeError) as exc:add('RUNTIME_ARTIFACT',o['domain'],'FAIL',rid,str(exc))
+            findings.append(check_review({'id':rid},digest({'obligation':o,'receipt':r}),reviews,root))
+    else:
+        # Informational only; runtime certification is not claimed by publication.
+        pass
+    counts=Counter(f.status for f in findings)
+    return {'schema':'stratum-verification-report/v1','target':target.get('id','unknown'),'profile':profile,
+            'status':aggregate(findings),'generated_at':datetime.now(timezone.utc).isoformat(),
+            'lock_sha256':lock,'consumer_sha256':digest(inventory.get('functions',{})),
+            'coverage':{'inputs':len(inventory.get('fields',{})),'functions_and_files':len(inventory.get('functions',{})),
+                        'scene_contracts':len(inventory.get('scenes',{})),'claims':len(claims),'sources':len(sources),
+                        'verified_sources':sum(v=='PASS' for v in source_status.values()),'verified_scientific_claims':sum(claim_status.get(c['id'])=='PASS' and c.get('classification')!='presentation' for c in claims),'passed_presentation_bindings':sum(claim_status.get(c['id'])=='PASS' and c.get('classification')=='presentation' for c in claims)},
+            'counts':dict(counts),'domains':{d:aggregate([f for f in findings if f.domain==d]) for d in ('evidence',)+DOMAINS},
+            'runtime_certified':profile=='runtime' and aggregate(findings)=='PASS',
+            'findings':[f.json() for f in findings]}
+
+def markdown(report):
+    lines=[f"# Scientific verification — {report['target']}",f"\n**{report['profile']}: {report['status']}**",f"\nGenerated: {report['generated_at']}",
+           '\nThis report distinguishes software/contract tests from evidence-backed science. Missing evidence is not a contradiction, and a green engineering run is not scientific certification.',
+           '\n## Coverage','\n| Item | Count |','|---|---:|']
+    lines += [f'| {k} | {v} |' for k,v in report['coverage'].items()]
+    lines += ['\n## Gates','\n| Domain | Status |','|---|---|']+[f'| {d} | {s} |' for d,s in report['domains'].items()]
+    groups=Counter((f['code'],f['status']) for f in report['findings'])
+    lines += ['\n## Findings by failure mode','\n| Code | Status | Count |','|---|---|---:|']+[f'| {c} | {s} | {n} |' for (c,s),n in sorted(groups.items())]
+    lines += ['\n## First unresolved findings']
+    for f in [x for x in report['findings'] if x['status']!='PASS'][:24]:
+        lines += [f"\n**{f['code']} / {f['subject']}** — {f['message']} {f['remedy']}"]
+    lines += ['\nThe adjacent JSON report contains every finding and consumer ID. No raw source, signed review, GPU run or deployment measurement is inferred from a URL or a fixture.']
+    return '\n'.join(lines)+'\n'
+
+def main(argv=None):
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--profile',choices=PROFILES,default='publication');p.add_argument('--root',default=str(Path(__file__).resolve().parents[1]));a=p.parse_args(argv);root=Path(a.root).resolve()
+    try:
+        inv=loads(subprocess.run(['node','tools/export-verification.mjs'],cwd=root,check=True,capture_output=True,text=True,timeout=60).stdout)
+        target=loads((root/'verification/manifests/observatory.json').read_text());catalog=loads((root/'verification/manifests/sources.json').read_text())
+        def optional(path):
+            f=root/path
+            return loads(f.read_text()) if f.exists() else {}
+        report=audit(root,target,inv,catalog,profile=a.profile,reviews=optional('verification/manifests/reviews.json'),receipt=optional('verification/reports/engineering.json'),runtime=optional('verification/manifests/runtime.json'))
+    except (ValueError,KeyError,TypeError,OSError,subprocess.SubprocessError) as exc:
+        print(f'MANIFEST/TOOL ERROR: {exc}',file=sys.stderr);return 1
+    out=root/'verification/reports';out.mkdir(exist_ok=True)
+    (out/f'{a.profile}.json').write_text(json.dumps(report,indent=2)+'\n')
+    (out/f'{a.profile}.md').write_text(markdown(report))
+    print(f"{a.profile}: {report['status']} | {report['coverage']} | {report['counts']}")
+    return exit_code(report['status'])
+if __name__=='__main__':raise SystemExit(main())
