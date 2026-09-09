@@ -111,9 +111,35 @@ def check_receipt(root, receipt, expected_lock, inventory):
         for key in ('geometry_defects','runtime_errors','external_runtime_requests'):
             if b.get(key)!=0:add('BROWSER_RESULT','FAIL',f'Browser result {key} is absent or nonzero.')
         if b.get('geometry_states',0)<=0 or b.get('responsive_states',0)<=0:add('BROWSER_EMPTY','FAIL','No browser state coverage.')
-        if not receipt.get('deterministic_build'):add('BUILD_NONDETERMINISTIC','FAIL','Two fresh builds did not produce identical bytes.')
+        if not receipt.get('deterministic_build') or receipt.get('repeat_build_sha256')!=receipt.get('artifact_sha256'):
+            add('BUILD_NONDETERMINISTIC','FAIL','Two fresh builds did not produce identical bytes.')
+        # The receipt copies the browser result into itself and is then re-read as truth.
+        # Compare it with the file the suite actually wrote.
+        try:
+            written=loads((root/'tests/browser-results.json').read_text())
+        except (OSError,ValueError):
+            written=None;add('BROWSER_MISREPORTED','FAIL','No browser result file to corroborate the receipt.')
+        if written is not None and any(written.get(k)!=b.get(k) for k in written):
+            add('BROWSER_MISREPORTED','FAIL','Receipt browser result disagrees with tests/browser-results.json.')
     except (ValueError,KeyError,OSError,TypeError) as exc:add('RECEIPT_INVALID','FAIL',str(exc))
-    return out or [Finding('ENGINEERING_CURRENT','release','PASS','engineering','Fresh local receipt binds tests, source, evidence lock and portable artifact; CI must protect the runner.')]
+    # A locally produced receipt asserts every field it is judged on. That is a real limit,
+    # so it is a finding rather than a sentence in a report nobody reads. CI supplies
+    # `provenance` via attest-build-provenance; its absence blocks, it never passes.
+    provenance=receipt.get('provenance') if receipt else None
+    if not provenance:
+        out.append(Finding('RECEIPT_UNATTESTED','release','BLOCKED','engineering',
+                           'Engineering receipt is self-produced and carries no build attestation.',
+                           'Run the gate in CI with attest-build-provenance, and protect the branch so the runner cannot be replaced.'))
+    elif provenance.get('artifact_sha256')!=receipt.get('artifact_sha256'):
+        out.append(Finding('RECEIPT_ATTESTATION','release','FAIL','engineering',
+                           'Build attestation does not cover the artifact this receipt binds.',
+                           'Attest the artifact that was actually tested.'))
+    else:
+        out.append(Finding('RECEIPT_ATTESTED','release','PASS','engineering',
+                           f"Build attestation from {provenance.get('workflow','CI')} covers the tested artifact."))
+    if not [f for f in out if f.status=='FAIL']:
+        out.append(Finding('ENGINEERING_CURRENT','release','PASS','engineering','Fresh receipt binds tests, source, evidence lock and portable artifact, and its browser result agrees with the file the suite wrote.'))
+    return out
 
 def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publication',reviews=None,receipt=None,runtime=None):
     if profile not in PROFILES:raise ValueError(f'Unknown verification profile: {profile}')

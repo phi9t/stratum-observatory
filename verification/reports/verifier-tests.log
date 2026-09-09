@@ -144,6 +144,10 @@ test_unrun_gpu_is_not_pass (test_integration.IntegrationTests.test_unrun_gpu_is_
 test_upstream_pin_change_invalidates_review_subject (test_integration.IntegrationTests.test_upstream_pin_change_invalidates_review_subject) ... ok
 test_counts_are_scraped_from_both_node_reporter_formats (test_integration.ReceiptCountTests.test_counts_are_scraped_from_both_node_reporter_formats) ... ok
 test_unparsable_output_returns_none_so_the_run_can_refuse (test_integration.ReceiptCountTests.test_unparsable_output_returns_none_so_the_run_can_refuse) ... ok
+test_a_faithful_receipt_is_accepted (test_integration.ReceiptTrustTests.test_a_faithful_receipt_is_accepted) ... ok
+test_a_receipt_asserting_determinism_without_two_hashes_is_caught (test_integration.ReceiptTrustTests.test_a_receipt_asserting_determinism_without_two_hashes_is_caught) ... ok
+test_a_receipt_that_rewrites_its_browser_result_is_caught (test_integration.ReceiptTrustTests.test_a_receipt_that_rewrites_its_browser_result_is_caught) ... ok
+test_an_unattested_receipt_is_blocked_not_passed (test_integration.ReceiptTrustTests.test_an_unattested_receipt_is_blocked_not_passed) ... ok
 test_a_current_receipt_carries_both_build_hashes (test_integration.ReleaseContractTests.test_a_current_receipt_carries_both_build_hashes) ... skipped 'no engineering receipt yet'
 test_a_nondeterministic_build_is_caught (test_integration.ReleaseContractTests.test_a_nondeterministic_build_is_caught) ... ok
 test_a_receipt_from_another_tree_is_a_stale_release (test_integration.ReleaseContractTests.test_a_receipt_from_another_tree_is_a_stale_release) ... ok
@@ -230,6 +234,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 229 tests in 26.351s
+Ran 233 tests in 26.232s
 
 OK (skipped=1)

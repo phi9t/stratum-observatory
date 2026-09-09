@@ -3,7 +3,7 @@
   "target": "stratum-observatory-3",
   "profile": "publication",
   "status": "BLOCKED",
-  "generated_at": "2026-09-09T17:36:57.672367+00:00",
+  "generated_at": "2026-09-09T17:41:03.178193+00:00",
   "lock_sha256": "b0c0255c43600c6e847e62d86f4891b06a3f14cc9f83ccb3d1445eaddf4afe38",
   "consumer_sha256": "56ae29ebb49ff2a7110c7bfb5a508368884696cb7af930382a64cd94174472f4",
   "coverage": {
@@ -17,7 +17,7 @@
     "passed_presentation_bindings": 0
   },
   "counts": {
-    "BLOCKED": 15736,
+    "BLOCKED": 15737,
     "PASS": 24
   },
   "domains": {
@@ -141869,11 +141869,20 @@
       "evidence": []
     },
     {
+      "code": "RECEIPT_UNATTESTED",
+      "domain": "release",
+      "status": "BLOCKED",
+      "subject": "engineering",
+      "message": "Engineering receipt is self-produced and carries no build attestation.",
+      "remedy": "Run the gate in CI with attest-build-provenance, and protect the branch so the runner cannot be replaced.",
+      "evidence": []
+    },
+    {
       "code": "ENGINEERING_CURRENT",
       "domain": "release",
       "status": "PASS",
       "subject": "engineering",
-      "message": "Fresh local receipt binds tests, source, evidence lock and portable artifact; CI must protect the runner.",
+      "message": "Fresh receipt binds tests, source, evidence lock and portable artifact, and its browser result agrees with the file the suite wrote.",
       "remedy": "",
       "evidence": []
     }
