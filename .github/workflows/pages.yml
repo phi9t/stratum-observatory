@@ -35,6 +35,33 @@ jobs:
             dist/index.html
             verification/reports/
             tests/browser-results.json
+  aesthetics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - name: Provision the pinned interpreter and locked dependencies
+        run: |
+          uv python install
+          uv sync --frozen
+      - run: uv run --frozen playwright install --with-deps chromium
+      - run: npm run build
+      # Measured legibility, layout composition and visual drift. Currently reports real
+      # WCAG AA failures in the paper theme, so this job is expected to be red until the
+      # tokens are remediated. Fix the tokens; never soften the gate or the policy.
+      - run: npm run verify:aesthetics
+      - name: Preserve the aesthetics report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aesthetics-report
+          path: verification/reports/aesthetics.*
+
   publication:
     runs-on: ubuntu-latest
     needs: engineering

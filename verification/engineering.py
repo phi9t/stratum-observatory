@@ -13,7 +13,11 @@ def toolchain_digest(root):
     files+=list((root/'verification/schemas').glob('*.json'))+list((root/'verification/trust').glob('*.json'))+list((root/'verification/trust').glob('*.pem'))
     # package.json defines the commands; the Python pin and lock define the interpreter and
     # the browser that produced the geometry result. A receipt must not survive either changing.
-    files+=[root/'package.json',root/'pyproject.toml',root/'uv.lock',root/'.python-version',root/'.github/CODEOWNERS']
+    # The aesthetics policy binds too: loosening a threshold is the only realistic attack on
+    # that gate. Recorded baselines deliberately do not, so re-recording a reviewed layout
+    # change does not invalidate every receipt.
+    files+=[root/'package.json',root/'pyproject.toml',root/'uv.lock',root/'.python-version',
+            root/'.github/CODEOWNERS',root/'verification/baselines/aesthetics/policy.json']
     return digest({str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(files) if p.is_file()})
 
 def scrape_count(text,pattern):
