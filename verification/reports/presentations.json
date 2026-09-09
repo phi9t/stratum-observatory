@@ -1,8 +1,8 @@
 {
   "schema": "stratum-presentations/v1",
   "status": "PASS",
-  "generated_at": "2026-09-09T17:33:29.568475+00:00",
-  "artifact_sha256": "ced16558478295db61e131e4d538be83177d06f2caadd1db6d995638a8c1a573",
+  "generated_at": "2026-09-09T17:36:56.139990+00:00",
+  "artifact_sha256": "83bc7a5982f07ae108f4db029c3713b3fa933d2f51715d4c32e3e2d873c4ce54",
   "delivery": {
     "file_url": true
   },
