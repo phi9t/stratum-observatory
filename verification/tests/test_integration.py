@@ -228,3 +228,48 @@ class ReleaseContractTests(unittest.TestCase):
            'browser':{'geometry_defects':0,'runtime_errors':0,'external_runtime_requests':0}}
   rec=release_record(receipt,consumer='a'*64,lock='b'*64)
   self.assertIn('RELEASE_DETERMINISM',{f.code for f in validate('release',rec)})
+
+class ReceiptTrustTests(unittest.TestCase):
+ """The receipt asserts facts about itself; those it can, must be cross-checked."""
+ @classmethod
+ def setUpClass(cls):
+  cls.root=Path(__file__).resolve().parents[2]
+  cls.inv=loads(subprocess.run(['node','tools/export-verification.mjs'],cwd=cls.root,capture_output=True,text=True,check=True).stdout)
+ def receipt(self,**over):
+  from verification.engineering import toolchain_digest
+  import hashlib
+  from datetime import datetime,timezone
+  from verification.evidence import digest
+  target=loads((self.root/'verification/manifests/observatory.json').read_text())
+  catalog=loads((self.root/'verification/manifests/sources.json').read_text())
+  browser=loads((self.root/'tests/browser-results.json').read_text())
+  r={'schema':'stratum-engineering/v1','verifier_sha256':toolchain_digest(self.root),
+     'consumer_sha256':digest(self.inv['functions']),'lock_sha256':digest({'target':target,'catalog':catalog}),
+     'artifact_sha256':hashlib.sha256((self.root/'dist/index.html').read_bytes()).hexdigest(),
+     'repeat_build_sha256':hashlib.sha256((self.root/'dist/index.html').read_bytes()).hexdigest(),
+     'completed_at':datetime.now(timezone.utc).isoformat(),'deterministic_build':True,
+     'commands':{k:{'exit':0} for k in ('verifier-tests','node-tests','build','browser')},
+     'browser':browser}
+  r.update(over);return r
+ def lock(self):
+  from verification.evidence import digest
+  return digest({'target':loads((self.root/'verification/manifests/observatory.json').read_text()),
+                 'catalog':loads((self.root/'verification/manifests/sources.json').read_text())})
+ def codes(self,receipt):
+  from verification.runner import check_receipt
+  return {f.code for f in check_receipt(self.root,receipt,self.lock(),self.inv)}
+ def test_a_faithful_receipt_is_accepted(self):
+  self.assertIn('ENGINEERING_CURRENT',self.codes(self.receipt()))
+ def test_a_receipt_that_rewrites_its_browser_result_is_caught(self):
+  # The receipt copies the browser object wholesale and then re-reads it as truth. It must
+  # agree with the file the suite actually wrote.
+  browser=dict(loads((self.root/'tests/browser-results.json').read_text()));browser['geometry_states']=1
+  self.assertIn('BROWSER_MISREPORTED',self.codes(self.receipt(browser=browser)))
+ def test_a_receipt_asserting_determinism_without_two_hashes_is_caught(self):
+  self.assertIn('BUILD_NONDETERMINISTIC',self.codes(self.receipt(repeat_build_sha256='0'*64)))
+ def test_an_unattested_receipt_is_blocked_not_passed(self):
+  from verification.runner import check_receipt
+  findings=check_receipt(self.root,self.receipt(),self.lock(),self.inv)
+  unattested=[f for f in findings if f.code=='RECEIPT_UNATTESTED']
+  self.assertTrue(unattested,'a self-produced receipt should say so as a finding, not only in prose')
+  self.assertEqual(unattested[0].status,'BLOCKED')
