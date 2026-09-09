@@ -85,6 +85,32 @@ jobs:
           name: aesthetics-report
           path: verification/reports/aesthetics.*
 
+  presentations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - name: Provision the pinned interpreter and locked dependencies
+        run: |
+          uv python install
+          uv sync --frozen
+      - run: uv run --frozen playwright install --with-deps chromium
+      - run: npm run build
+      # Exports, delivered-page accessibility, print, portability and preview freshness,
+      # loaded from a real file:// origin rather than injected with set_content().
+      - run: npm run verify:presentations
+      - name: Preserve the presentations report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: presentations-report
+          path: verification/reports/presentations.*
+
   publication:
     runs-on: ubuntu-latest
     needs: engineering
@@ -119,7 +145,7 @@ jobs:
           path: dist
   deploy:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    needs: [engineering, schematics, aesthetics, publication]
+    needs: [engineering, schematics, aesthetics, presentations, publication]
     runs-on: ubuntu-latest
     permissions:
       pages: write

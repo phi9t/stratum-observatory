@@ -67,5 +67,9 @@
       64
     ],
     "$comment": "A 2/4px rhythm. auto, percentages and calc() are not scale members and are not checked."
+  },
+  "presentation": {
+    "max_artifact_kib": 400,
+    "$comment": "The portable artifact must stay small enough to open anywhere. External URLs are allowed as clickable source citations and forbidden in any loading position; README states plainly that source links require connectivity."
   }
 }
