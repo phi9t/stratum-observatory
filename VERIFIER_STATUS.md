@@ -6,14 +6,13 @@ Four gates, reported separately. See `VERIFICATION.md` and the machine-readable
 | Gate | Result | Exit |
 |---|---|---:|
 | Engineering | PASS | 0 |
-| Aesthetics | FAIL — 21 measured legibility defects | 1 |
+| Aesthetics | PASS | 0 |
 | Scientific publication | BLOCKED | 2 |
 | Runtime certification | BLOCKED, 31 obligations NOT_RUN | 2 |
 
-The aesthetics gate is red on real, currently-shipping defects: 17 WCAG AA contrast
-failures (worst 3.28:1 against a 4.5:1 requirement, in the light "paper" theme, including
-text inside the exported SVG) and 4 rendered font sizes below the 9px chrome floor.
-The fix is to retune the tokens, never to lower `verification/baselines/aesthetics/policy.json`.
+`npm run verify` requires engineering, aesthetics and publication, so it exits 2 by design.
+GitHub Pages deployment additionally requires all three; publication is expected to block
+until upstream evidence and independent reviews exist.
 
 BLOCKED means not established. It is not a claim that anything is false, and it is not a
 passing test. The historical Kimi-only receipt does not apply.

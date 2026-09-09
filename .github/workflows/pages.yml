@@ -51,9 +51,9 @@ jobs:
           uv sync --frozen
       - run: uv run --frozen playwright install --with-deps chromium
       - run: npm run build
-      # Measured legibility, layout composition and visual drift. Currently reports real
-      # WCAG AA failures in the paper theme, so this job is expected to be red until the
-      # tokens are remediated. Fix the tokens; never soften the gate or the policy.
+      # Measured legibility, type and spacing scales, layout composition and visual drift.
+      # Green as of the token retune. Fix the stylesheet, never the policy: policy.json is
+      # inside toolchain_digest precisely so loosening a threshold cannot pass unnoticed.
       - run: npm run verify:aesthetics
       - name: Preserve the aesthetics report
         if: always()
@@ -96,7 +96,7 @@ jobs:
           path: dist
   deploy:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    needs: [engineering, publication]
+    needs: [engineering, aesthetics, publication]
     runs-on: ubuntu-latest
     permissions:
       pages: write

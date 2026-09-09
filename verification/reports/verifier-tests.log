@@ -1,12 +1,16 @@
 test_known_contrast_ratios (test_aesthetics.ColorMathTests.test_known_contrast_ratios) ... ok
-test_light_theme_failures_are_rediscovered_from_the_stylesheet (test_aesthetics.ColorMathTests.test_light_theme_failures_are_rediscovered_from_the_stylesheet) ... ok
 test_parses_the_css_colour_forms_the_renderer_emits (test_aesthetics.ColorMathTests.test_parses_the_css_colour_forms_the_renderer_emits) ... ok
 test_theme_token_key_parity (test_aesthetics.ColorMathTests.test_theme_token_key_parity) ... ok
+test_token_pairs_are_measured_to_known_values (test_aesthetics.ColorMathTests.test_token_pairs_are_measured_to_known_values)
+Pin the exact ratios so the algorithm stays calibrated, not merely passing. ... ok
 test_translucent_foreground_is_composited_before_measuring (test_aesthetics.ColorMathTests.test_translucent_foreground_is_composited_before_measuring) ... ok
 test_moved_lane_does_move_the_baseline (test_aesthetics.CompositionBaselineTests.test_moved_lane_does_move_the_baseline) ... ok
 test_palette_retune_does_not_move_the_baseline (test_aesthetics.CompositionBaselineTests.test_palette_retune_does_not_move_the_baseline) ... ok
 test_role_change_does_move_the_baseline (test_aesthetics.CompositionBaselineTests.test_role_change_does_move_the_baseline) ... ok
 test_subpixel_jitter_does_not_move_the_baseline (test_aesthetics.CompositionBaselineTests.test_subpixel_jitter_does_not_move_the_baseline) ... ok
+test_canvas_labels_keep_the_aa_floor (test_aesthetics.ContrastRatchetTests.test_canvas_labels_keep_the_aa_floor) ... ok
+test_large_text_still_uses_the_relaxed_threshold (test_aesthetics.ContrastRatchetTests.test_large_text_still_uses_the_relaxed_threshold) ... ok
+test_reading_size_chrome_prose_is_held_to_the_enhanced_ratio (test_aesthetics.ContrastRatchetTests.test_reading_size_chrome_prose_is_held_to_the_enhanced_ratio) ... ok
 test_aesthetics_is_not_a_scientific_domain (test_aesthetics.GateContractTests.test_aesthetics_is_not_a_scientific_domain) ... ok
 test_gate_exit_codes_match_the_other_gates (test_aesthetics.GateContractTests.test_gate_exit_codes_match_the_other_gates) ... ok
 test_policy_is_bound_to_the_receipt_but_baselines_are_not (test_aesthetics.GateContractTests.test_policy_is_bound_to_the_receipt_but_baselines_are_not) ... ok
@@ -15,6 +19,13 @@ test_recorded_baseline_covers_every_scenario_in_both_themes (test_aesthetics.Gat
 test_adequate_clearance_passes (test_aesthetics.LayoutRuleTests.test_adequate_clearance_passes) ... ok
 test_crossing_edges_are_counted (test_aesthetics.LayoutRuleTests.test_crossing_edges_are_counted) ... ok
 test_zero_clearance_is_reported_even_though_boxes_do_not_intersect (test_aesthetics.LayoutRuleTests.test_zero_clearance_is_reported_even_though_boxes_do_not_intersect) ... ok
+test_an_off_scale_gap_is_caught (test_aesthetics.StylesheetScaleTests.test_an_off_scale_gap_is_caught) ... ok
+test_an_off_scale_size_is_caught (test_aesthetics.StylesheetScaleTests.test_an_off_scale_size_is_caught) ... ok
+test_declarations_are_parsed_from_the_stylesheet (test_aesthetics.StylesheetScaleTests.test_declarations_are_parsed_from_the_stylesheet) ... ok
+test_every_font_size_belongs_to_its_scale (test_aesthetics.StylesheetScaleTests.test_every_font_size_belongs_to_its_scale) ... ok
+test_every_spacing_value_belongs_to_the_scale (test_aesthetics.StylesheetScaleTests.test_every_spacing_value_belongs_to_the_scale) ... ok
+test_schematic_rules_are_distinguished_from_chrome (test_aesthetics.StylesheetScaleTests.test_schematic_rules_are_distinguished_from_chrome) ... ok
+test_the_font_shorthand_is_not_a_way_around_the_scale (test_aesthetics.StylesheetScaleTests.test_the_font_shorthand_is_not_a_way_around_the_scale) ... ok
 test_failing_pair_is_reported_as_a_contradiction (test_aesthetics.ThresholdTests.test_failing_pair_is_reported_as_a_contradiction) ... ok
 test_indeterminate_backdrop_blocks_rather_than_passes (test_aesthetics.ThresholdTests.test_indeterminate_backdrop_blocks_rather_than_passes) ... ok
 test_large_text_uses_the_relaxed_threshold (test_aesthetics.ThresholdTests.test_large_text_uses_the_relaxed_threshold) ... ok
@@ -171,6 +182,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 171 tests in 50.461s
+Ran 181 tests in 24.737s
 
 OK
