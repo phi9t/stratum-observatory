@@ -3,7 +3,7 @@
   "target": "stratum-observatory-3",
   "profile": "runtime",
   "status": "BLOCKED",
-  "generated_at": "2026-09-09T01:37:08.790581+00:00",
+  "generated_at": "2026-09-09T01:44:50.016369+00:00",
   "lock_sha256": "aea0f169461434357667aa080840dffc36858f3a88bbcdb4dec3fec157bc6f0d",
   "consumer_sha256": "6b3fb3c23d8c4f9b0a305d205bf7f236cbef12b5fc174f93a6984731031074f6",
   "coverage": {
@@ -14,11 +14,11 @@
     "sources": 56,
     "verified_sources": 0,
     "verified_scientific_claims": 0,
-    "passed_presentation_bindings": 2
+    "passed_presentation_bindings": 0
   },
   "counts": {
-    "BLOCKED": 13255,
-    "PASS": 22,
+    "BLOCKED": 13302,
+    "PASS": 20,
     "NOT_RUN": 31
   },
   "domains": {
@@ -1542,6 +1542,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "HARDWARE.b200.id",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "gpu",
       "status": "BLOCKED",
@@ -1566,6 +1575,15 @@
       "subject": "HARDWARE.b200.name",
       "message": "Exact source snapshot for blackwell-tuning is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "HARDWARE.b200.name",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -1845,6 +1863,15 @@
       "subject": "HARDWARE.b200.sources",
       "message": "Exact source snapshot for blackwell-tuning is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "HARDWARE.b200.sources",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -2127,6 +2154,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "HARDWARE.gb300.id",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "gpu",
       "status": "BLOCKED",
@@ -2142,6 +2178,15 @@
       "subject": "HARDWARE.gb300.name",
       "message": "Exact source snapshot for blackwell-tuning is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "HARDWARE.gb300.name",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -2352,6 +2397,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "HARDWARE.gb300.sources",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "gpu",
       "status": "BLOCKED",
@@ -2685,6 +2739,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "HARDWARE.h100.id",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "gpu",
       "status": "BLOCKED",
@@ -2709,6 +2772,15 @@
       "subject": "HARDWARE.h100.name",
       "message": "Exact source snapshot for hopper-tuning is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "HARDWARE.h100.name",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -2988,6 +3060,15 @@
       "subject": "HARDWARE.h100.sources",
       "message": "Exact source snapshot for hopper-tuning is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "HARDWARE.h100.sources",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -3342,6 +3423,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "HARDWARE.h200.id",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "gpu",
       "status": "BLOCKED",
@@ -3366,6 +3456,15 @@
       "subject": "HARDWARE.h200.name",
       "message": "Exact source snapshot for hopper-tuning is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "HARDWARE.h200.name",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -3648,6 +3747,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "HARDWARE.h200.sources",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "gpu",
       "status": "BLOCKED",
@@ -4116,6 +4224,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.ds2.family",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -4374,6 +4491,15 @@
       "subject": "MODELS.ds2.id",
       "message": "Exact source snapshot for ds2-paper is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.ds2.id",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -4863,6 +4989,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.ds2.name",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -5346,6 +5481,15 @@
       "subject": "MODELS.ds2.sources",
       "message": "Exact source snapshot for ds2-paper is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.ds2.sources",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -6015,6 +6159,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.ds3.family",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -6273,6 +6426,15 @@
       "subject": "MODELS.ds3.id",
       "message": "Exact source snapshot for ds3-paper is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.ds3.id",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -6762,6 +6924,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.ds3.name",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -7245,6 +7416,15 @@
       "subject": "MODELS.ds3.sources",
       "message": "Exact source snapshot for ds3-paper is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.ds3.sources",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -7914,6 +8094,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.kimi3.family",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -8217,6 +8406,15 @@
       "subject": "MODELS.kimi3.id",
       "message": "Exact source snapshot for k3-paper is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.kimi3.id",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -8751,6 +8949,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.kimi3.name",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -9237,6 +9444,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.kimi3.sources",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -9930,6 +10146,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q3235.family",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -10242,6 +10467,15 @@
       "subject": "MODELS.q3235.id",
       "message": "Exact source snapshot for q3-paper is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q3235.id",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -10830,6 +11064,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q3235.name",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -11412,6 +11655,15 @@
       "subject": "MODELS.q3235.sources",
       "message": "Exact source snapshot for q3-paper is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q3235.sources",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -12162,6 +12414,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q330.family",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -12474,6 +12735,15 @@
       "subject": "MODELS.q330.id",
       "message": "Exact source snapshot for q3-paper is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q330.id",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -13062,6 +13332,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q330.name",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -13644,6 +13923,15 @@
       "subject": "MODELS.q330.sources",
       "message": "Exact source snapshot for q3-paper is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q330.sources",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -14322,6 +14610,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q38.family",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -14580,6 +14877,15 @@
       "subject": "MODELS.q38.id",
       "message": "Exact source snapshot for q3-paper is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q38.id",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -15069,6 +15375,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q38.name",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -15507,6 +15822,15 @@
       "subject": "MODELS.q38.sources",
       "message": "Exact source snapshot for q3-paper is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q38.sources",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -16059,6 +16383,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q3827.family",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -16299,6 +16632,15 @@
       "subject": "MODELS.q3827.id",
       "message": "Exact source snapshot for q35-runtime is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q3827.id",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -16725,6 +17067,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q3827.name",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -17073,6 +17424,15 @@
       "subject": "MODELS.q3827.sources",
       "message": "Exact source snapshot for q35-runtime is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q3827.sources",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -17571,6 +17931,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q38flash.family",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -17811,6 +18180,15 @@
       "subject": "MODELS.q38flash.id",
       "message": "Exact source snapshot for q4-runtime is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q38flash.id",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -18381,6 +18759,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q38flash.name",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -18729,6 +19116,15 @@
       "subject": "MODELS.q38flash.sources",
       "message": "Exact source snapshot for q4-runtime is not verified.",
       "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "MODELS.q38flash.sources",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -19605,6 +20001,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "function.sanitizeState",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_SOURCE_BLOCKED",
       "domain": "model",
       "status": "BLOCKED",
@@ -19875,12 +20280,12 @@
       "evidence": []
     },
     {
-      "code": "CLAIM_VERIFIED",
-      "domain": "visualization",
-      "status": "PASS",
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
       "subject": "file.src/styles.css",
-      "message": "Registered consumer, source obligations and applicable review checks passed.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -19893,12 +20298,12 @@
       "evidence": []
     },
     {
-      "code": "CLAIM_VERIFIED",
-      "domain": "visualization",
-      "status": "PASS",
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
       "subject": "file.index.html",
-      "message": "Registered consumer, source obligations and applicable review checks passed.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {

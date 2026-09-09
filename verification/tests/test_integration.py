@@ -23,6 +23,36 @@ class IntegrationTests(unittest.TestCase):
  def test_new_scientific_field_cannot_hide(self):
   x=copy.deepcopy(self.inv);x['fields']['MODELS.kimi3.hidden_gate']=64
   self.assertIn('COVERAGE_MISSING',{f['code'] for f in self.run_audit(inv=x)['findings']})
+ def test_drifted_presentation_claim_is_not_reported_as_verified(self):
+  # Presentation claims skip review, so they are the only claims that can reach PASS --
+  # and therefore the only place a bypassed coverage finding is observable.
+  presentation=[c for c in self.target['claims'] if c.get('classification')=='presentation' and c.get('consumer','').startswith('file.')]
+  self.assertTrue(presentation,'expected at least one presentation file claim')
+  consumer=presentation[0]['consumer']
+  x=copy.deepcopy(self.inv);x['functions'][consumer]={'sha256':'0'*64}
+  r=self.run_audit(inv=x)
+  verified={f['subject'] for f in r['findings'] if f['code']=='CLAIM_VERIFIED'}
+  self.assertIn('CONSUMER_VALUE',{f['code'] for f in r['findings']})
+  self.assertNotIn(presentation[0]['id'],verified,'a claim whose bound value drifted was still reported verified')
+  drifted={f['subject'] for f in r['findings'] if f['code']=='CONSUMER_VALUE'}
+  self.assertIn(presentation[0]['id'],drifted,'the drift was not attributed to the claim that owns it')
+ def test_claim_with_missing_dependency_is_not_reported_as_verified(self):
+  t=copy.deepcopy(self.target)
+  presentation=next(c for c in t['claims'] if c.get('classification')=='presentation' and c.get('consumer','').startswith('file.'))
+  presentation['dependencies']=['does.not.exist']
+  r=self.run_audit(target=t)
+  verified={f['subject'] for f in r['findings'] if f['code']=='CLAIM_VERIFIED'}
+  self.assertIn('CLAIM_DEPENDENCY',{f['code'] for f in r['findings']})
+  self.assertNotIn(presentation['id'],verified)
+ def test_no_claim_is_exempt_from_review(self):
+  # Presentation claims used to skip review entirely, so an entire stylesheet and the
+  # HTML entry point were outside the gate -- and were the only two PASSing claims.
+  r=self.run_audit()
+  self.assertEqual(r['coverage']['passed_presentation_bindings'],0)
+  required={f['subject'] for f in r['findings'] if f['code']=='REVIEW_REQUIRED'}
+  for cid in ('file.src/styles.css','file.index.html'):
+   self.assertIn(cid,required,f'{cid} is still review-exempt')
+  self.assertFalse([f for f in r['findings'] if f['code']=='CLAIM_VERIFIED'])
  def test_scientific_field_cannot_be_presentation(self):
   t=copy.deepcopy(self.target)
   for c in t['claims']:
@@ -85,3 +115,33 @@ class ReceiptCountTests(unittest.TestCase):
  def test_unparsable_output_returns_none_so_the_run_can_refuse(self):
   from verification.engineering import scrape_count
   self.assertIsNone(scrape_count('no counts here\n',r'tests (\d+)'))
+
+class ReviewSubjectTests(unittest.TestCase):
+ """A review must bind source identity, not the bookkeeping of when it was fetched."""
+ @classmethod
+ def setUpClass(cls):
+  cls.root=Path(__file__).resolve().parents[2]
+  cls.claim={'id':'c','consumer':'x','expected':1,'evidence':[{'source':'s','relation':'documents'}]}
+  cls.sources={'s':{'id':'s','kind':'git','role':'publisher_config','provider':'hf','repo':'a/b','path':'config.json',
+                    'revision':'0'*40,'url':'https://huggingface.co/a/b/raw/'+'0'*40+'/config.json',
+                    'sha256':'1'*64,'cache':'.verification-cache/sha256/'+'1'*64+'.txt',
+                    'license':'apache-2.0','retrieved_at':'2026-09-06T00:00:00+00:00','etag':'W/"v1"','version':None,'fixture':False}}
+ def subject(self,**overrides):
+  s=copy.deepcopy(self.sources);s['s'].update(overrides)
+  return source_subject(self.claim,s)
+ def test_refetch_metadata_does_not_invalidate_review(self):
+  # Re-running acquire on byte-identical upstream must not force every review to be re-signed.
+  self.assertEqual(self.subject(),self.subject(retrieved_at='2026-09-08T00:00:00+00:00',etag='W/"v2"'))
+ def test_changed_bytes_invalidate_review(self):
+  self.assertNotEqual(self.subject(),self.subject(sha256='2'*64))
+ def test_changed_revision_invalidates_review(self):
+  self.assertNotEqual(self.subject(),self.subject(revision='1'*40))
+ def test_changed_role_invalidates_review(self):
+  self.assertNotEqual(self.subject(),self.subject(role='framework_code'))
+ def test_identity_projection_classifies_every_schema_field(self):
+  # Schema growth must force a conscious identity/volatile decision, never silent exclusion.
+  from verification.runner import SOURCE_IDENTITY,SOURCE_VOLATILE
+  schema=loads((self.root/'verification/schemas/sources.schema.json').read_text())
+  declared=set(schema['properties']['sources']['items']['properties'])
+  self.assertEqual(SOURCE_IDENTITY|SOURCE_VOLATILE,declared)
+  self.assertEqual(SOURCE_IDENTITY&SOURCE_VOLATILE,set())
