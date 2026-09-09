@@ -5,6 +5,7 @@ No synthetic claim of upstream-code/GPU correctness is made by this suite.
 from pathlib import Path
 import json, os
 from playwright.sync_api import sync_playwright
+from browser_env import chromium_path
 
 ROOT=Path(__file__).resolve().parents[1]
 MODELS={'ds2':60,'ds3':61,'q38':36,'q330':48,'q3235':94,'q3827':64,'q38flash':48,'kimi3':93}
@@ -24,7 +25,7 @@ def assertion(ok, message):
     if not ok: raise AssertionError(message)
 
 with sync_playwright() as p:
-    browser=p.chromium.launch(executable_path=os.getenv('CHROMIUM_PATH','/usr/bin/chromium'),headless=True,args=['--no-sandbox'])
+    browser=p.chromium.launch(executable_path=chromium_path(p),headless=True,args=['--no-sandbox'])
     page=browser.new_page(viewport={'width':1840,'height':1400},device_scale_factor=1,accept_downloads=True)
     page.on('pageerror',lambda err:errors.append(str(err)))
     page.on('request',lambda req:requests.append(req.url) if req.url.startswith(('http://','https://')) else None)

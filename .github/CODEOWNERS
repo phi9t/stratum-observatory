@@ -1,0 +1,27 @@
+# Protected verification root.
+#
+# evidence.py states that adding a publisher/framework requires code-owner review.
+# That sentence is only true if these paths actually have owners. No in-repository
+# checker can defend against an administrator replacing both the checker and its
+# trust root, so these rules must be paired with branch protection on main.
+
+# Trust root: reviewer identities and public keys.
+/verification/trust/                @phissenschaft
+
+# Verifier code, interchange schemas and the source/role policy root.
+/verification/                      @phissenschaft
+/tools/                             @phissenschaft
+
+# Evidence locks: accepted source bytes, claims, contracts, reviews, runtime receipts.
+/verification/manifests/            @phissenschaft
+
+# The gate itself, the commands it runs, and the interpreter/browser it runs them with.
+/.github/workflows/                 @phissenschaft
+/.github/CODEOWNERS                 @phissenschaft
+/package.json                       @phissenschaft
+/pyproject.toml                     @phissenschaft
+/uv.lock                            @phissenschaft
+/.python-version                    @phissenschaft
+
+# Release evidence produced by the suites in tests/.
+/tests/                             @phissenschaft

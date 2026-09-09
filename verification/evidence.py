@@ -8,7 +8,9 @@ import ast
 import base64
 import hashlib
 import json
+import os
 import re
+import shutil
 import subprocess
 import tempfile
 from datetime import datetime, timezone
@@ -29,6 +31,27 @@ REPOS = {
     'library_code': {'NVIDIA/nccl','NVIDIA/nvshmem','ai-dynamo/nixl','openucx/ucx','linux-rdma/rdma-core','NVIDIA/cutlass','MoonshotAI/FlashKDA'},
 }
 DOC_HOSTS = {'docs.nvidia.com','developer.nvidia.com','www.nvidia.com','arxiv.org','docs.sglang.io','docs.vllm.ai'}
+
+
+_ED25519_OPENSSL: list = []
+
+def ed25519_openssl():
+    """An openssl that can actually do Ed25519, or None.
+
+    macOS ships LibreSSL as `openssl` and LibreSSL has no Ed25519. Treating that as a
+    signature failure would contradict an honest reviewer, so callers block instead.
+    Probed once per process; 3025 claims must not spawn 3025 probes.
+    """
+    if _ED25519_OPENSSL: return _ED25519_OPENSSL[0]
+    for candidate in (os.environ.get('STRATUM_OPENSSL'), shutil.which('openssl'),
+                      '/opt/homebrew/opt/openssl@3/bin/openssl', '/usr/local/opt/openssl@3/bin/openssl'):
+        if not candidate or not Path(candidate).exists(): continue
+        try:
+            probe=subprocess.run([candidate,'genpkey','-algorithm','Ed25519','-out',os.devnull],capture_output=True,timeout=10)
+        except (OSError,subprocess.SubprocessError): continue
+        if probe.returncode==0:
+            _ED25519_OPENSSL.append(candidate);return candidate
+    _ED25519_OPENSSL.append(None);return None
 
 
 def canonical(value) -> bytes:
@@ -214,6 +237,9 @@ def check_review(claim: dict, subject_digest: str, reviews: dict, root: Path, tr
     body=review.get('body',{});reviewer=body.get('reviewer');key=trust.get('reviewers',{}).get(reviewer)
     if not key:return blocked('Reviewer public key is not in the protected trust root.')
     if key.get('revoked'):return blocked('Reviewer key has been revoked in the protected trust root.')
+    openssl=ed25519_openssl()
+    if openssl is None:
+        return Finding('REVIEW_TOOLCHAIN','evidence','BLOCKED',cid,'No OpenSSL with Ed25519 support is available to verify review signatures.','Install OpenSSL 3.x (LibreSSL cannot verify Ed25519) or point STRATUM_OPENSSL at a capable binary.')
     try:
         if body.get('subject_sha256')!=subject_digest:raise ValueError('Review does not bind the current evidence/consumer digest')
         if body.get('verdict')!='accept':raise ValueError('Review verdict is not acceptance')
@@ -225,7 +251,7 @@ def check_review(claim: dict, subject_digest: str, reviews: dict, root: Path, tr
         with tempfile.TemporaryDirectory() as tmp:
             payload=Path(tmp)/'body.json';payload.write_bytes(canonical(body))
             sf=Path(tmp)/'signature';sf.write_bytes(sig)
-            run=subprocess.run(['openssl','pkeyutl','-verify','-pubin','-inkey',str(public),'-rawin','-in',str(payload),'-sigfile',str(sf)],capture_output=True,timeout=10)
+            run=subprocess.run([openssl,'pkeyutl','-verify','-pubin','-inkey',str(public),'-rawin','-in',str(payload),'-sigfile',str(sf)],capture_output=True,timeout=10)
             if run.returncode:raise ValueError('Review signature verification failed')
         return Finding('REVIEW_VALID','evidence','PASS',cid,'Independent signature binds the current claim and evidence.')
     except (ValueError,KeyError,OSError,subprocess.SubprocessError) as exc:

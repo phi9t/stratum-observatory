@@ -2,6 +2,7 @@
 from pathlib import Path
 import hashlib,json,os
 from playwright.sync_api import sync_playwright
+from browser_env import chromium_path
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'previews';OUT.mkdir(exist_ok=True)
 BASE={'model':'ds3','view':'model','stage':'block','layer':4,'theme':'dark','hardware':'h200','context':32768,'batch':1,'kvBytes':2,'stateBytes':4,'weightBytes':2,'ranks':8,'placement':'split','trainMode':'fsdp','traffic':'expert','fabric':'ib','library':'nccl','utilization':70,'oversub':1,'intensity':128,'compare':'kimi3','detail':'shapes','zoom':1,'trace':False}
@@ -24,7 +25,7 @@ CASES += [
  ('paper',{'model':'q38flash','layer':4,'theme':'light'}),
 ]
 with sync_playwright() as p:
- browser=p.chromium.launch(executable_path=os.getenv('CHROMIUM_PATH','/usr/bin/chromium'),headless=True,args=['--no-sandbox'])
+ browser=p.chromium.launch(executable_path=chromium_path(p),headless=True,args=['--no-sandbox'])
  page=browser.new_page(viewport={'width':1840,'height':1300},device_scale_factor=1.25)
  page.set_content((ROOT/'dist/index.html').read_text(),wait_until='load')
  page.wait_for_function('window.STRATUM?.version === "3.0.0"');page.evaluate('document.fonts.ready')
