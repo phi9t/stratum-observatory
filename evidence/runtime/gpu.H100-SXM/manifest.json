@@ -1,0 +1,98 @@
+{
+  "schema": "stratum-readonly-probe/v1",
+  "generated_at": "2026-09-09T19:23:14.942828+00:00",
+  "platform": "Linux-5.15.120.bsk.6-amd64-x86_64-with-debian-10.13",
+  "scope": "Inventory capture only. Does not prove kernel support, GPUDirect, remote visibility, measured bandwidth or correctness.",
+  "environment": {},
+  "results": [
+    {
+      "id": "gpu",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=name,uuid,pci.bus_id,pci.device_id,driver_version,memory.total,compute_cap,power.limit,mig.mode.current",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu.txt",
+      "sha256": "4a719da061df717a1ace95c7e5fc0712348bd6028b21d8ede1452fa499722496"
+    },
+    {
+      "id": "smi",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi"
+      ],
+      "path": "smi.txt",
+      "sha256": "72bf67af1631922af9b7c23de02f5c8acfa6ae12d43243d27e219e986cce2bb6"
+    },
+    {
+      "id": "topology",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "topo",
+        "-m"
+      ],
+      "path": "topology.txt",
+      "sha256": "9d8efaa8614ee8f7f455f21d0d5b93a1e440ab49a0f0300a7667865d8b9fa365"
+    },
+    {
+      "id": "nvlink",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "nvlink",
+        "--status"
+      ],
+      "path": "nvlink.txt",
+      "sha256": "5190806d5d71d559ef77694aa1f8b58e0bd99ffb2f7f6b36a559077473f98a9e"
+    },
+    {
+      "id": "cuda",
+      "status": "NOT_RUN",
+      "reason": "utility not installed",
+      "argv": [
+        "nvcc",
+        "--version"
+      ]
+    },
+    {
+      "id": "verbs",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "ibv_devinfo",
+        "-v"
+      ],
+      "path": "verbs.txt",
+      "sha256": "cab104dc7f2c6d2e78c354029efb85113c662514123d04103c05018519ea6351"
+    },
+    {
+      "id": "rdma",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "rdma",
+        "link",
+        "show"
+      ],
+      "path": "rdma.txt",
+      "sha256": "c07dc4ff03b123235086dde854a4d299bf6d4525366ddc2343faaa38c39bb763"
+    },
+    {
+      "id": "pci",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "lspci",
+        "-nn"
+      ],
+      "path": "pci.txt",
+      "sha256": "93e7ff6dd1ed0e0cf696cbfdfaefe2362b2d53400660df2e2c199e4f3bb5fa24"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "gpu.B200",
+  "sku": "B200",
+  "kind": "gpu",
+  "architecture": "blackwell",
+  "compute_capability": "10.0",
+  "gpu_count": 1,
+  "cpu_count": 0,
+  "memory": {
+    "value": 179.06,
+    "unit": "GiB",
+    "scope": "per_gpu",
+    "kind": "allocatable_measured"
+  }
+}

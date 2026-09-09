@@ -1,1 +1,306 @@
-{}
+{
+  "runtime.gpu.H100-SXM": {
+    "executed_at": "2026-09-09T19:23:14.942828+00:00",
+    "exit_code": 0,
+    "lock_sha256": "b0c0255c43600c6e847e62d86f4891b06a3f14cc9f83ccb3d1445eaddf4afe38",
+    "consumer_sha256": "56ae29ebb49ff2a7110c7bfb5a508368884696cb7af930382a64cd94174472f4",
+    "environment": {
+      "sku": {
+        "value": "NVIDIA H100 80GB HBM3",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.H100-SXM/gpu.txt"
+      },
+      "pci_device_id": {
+        "value": "0x233010DE",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.H100-SXM/gpu.txt"
+      },
+      "gpu_uuid": {
+        "value": "GPU-8252836a-e096-4522-5986-5d4e9c3107d9",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.H100-SXM/gpu.txt"
+      },
+      "driver": {
+        "value": "535.161.08",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.H100-SXM/gpu.txt"
+      },
+      "cuda": {
+        "value": "12.2",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.H100-SXM/smi.txt"
+      },
+      "compute_capability": {
+        "value": "9.0",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.H100-SXM/gpu.txt"
+      },
+      "mig": {
+        "value": "Disabled",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.H100-SXM/gpu.txt"
+      }
+    },
+    "record": {
+      "id": "gpu.H100-SXM",
+      "sku": "H100-SXM",
+      "kind": "gpu",
+      "architecture": "hopper",
+      "compute_capability": "9.0",
+      "gpu_count": 1,
+      "cpu_count": 0,
+      "memory": {
+        "value": 79.65,
+        "unit": "GiB",
+        "scope": "per_gpu",
+        "kind": "allocatable_measured"
+      }
+    },
+    "artifacts": [
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/gpu.txt",
+        "sha256": "4a719da061df717a1ace95c7e5fc0712348bd6028b21d8ede1452fa499722496"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/manifest.json",
+        "sha256": "7e5337eb7275a3bf2907316390f636c79e5d522a1a7d55b5fa12028ab1c750da"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/nvlink.txt",
+        "sha256": "5190806d5d71d559ef77694aa1f8b58e0bd99ffb2f7f6b36a559077473f98a9e"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/pci.txt",
+        "sha256": "93e7ff6dd1ed0e0cf696cbfdfaefe2362b2d53400660df2e2c199e4f3bb5fa24"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/rdma.txt",
+        "sha256": "c07dc4ff03b123235086dde854a4d299bf6d4525366ddc2343faaa38c39bb763"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/smi.txt",
+        "sha256": "72bf67af1631922af9b7c23de02f5c8acfa6ae12d43243d27e219e986cce2bb6"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/topology.txt",
+        "sha256": "9d8efaa8614ee8f7f455f21d0d5b93a1e440ab49a0f0300a7667865d8b9fa365"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/verbs.txt",
+        "sha256": "cab104dc7f2c6d2e78c354029efb85113c662514123d04103c05018519ea6351"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/record.json",
+        "sha256": "bc7a50c1be9cbf5b3723b4997d26a3d1218893e445cb18657525a9d6efde3cfa"
+      }
+    ],
+    "record_artifact": {
+      "path": "evidence/runtime/gpu.H100-SXM/record.json",
+      "pointer": ""
+    }
+  },
+  "runtime.gpu.B200": {
+    "executed_at": "2026-09-09T19:23:26.092475+00:00",
+    "exit_code": 0,
+    "lock_sha256": "b0c0255c43600c6e847e62d86f4891b06a3f14cc9f83ccb3d1445eaddf4afe38",
+    "consumer_sha256": "56ae29ebb49ff2a7110c7bfb5a508368884696cb7af930382a64cd94174472f4",
+    "environment": {
+      "sku": {
+        "value": "NVIDIA B200",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.B200/gpu.txt"
+      },
+      "pci_device_id": {
+        "value": "0x290110DE",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.B200/gpu.txt"
+      },
+      "gpu_uuid": {
+        "value": "GPU-c3f9bd88-bb24-8f3d-4665-888ff03c16d0",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.B200/gpu.txt"
+      },
+      "driver": {
+        "value": "580.105.08",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.B200/gpu.txt"
+      },
+      "cuda": {
+        "value": "13.0",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.B200/smi.txt"
+      },
+      "compute_capability": {
+        "value": "10.0",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.B200/gpu.txt"
+      },
+      "mig": {
+        "value": "Disabled",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.B200/gpu.txt"
+      }
+    },
+    "record": {
+      "id": "gpu.B200",
+      "sku": "B200",
+      "kind": "gpu",
+      "architecture": "blackwell",
+      "compute_capability": "10.0",
+      "gpu_count": 1,
+      "cpu_count": 0,
+      "memory": {
+        "value": 179.06,
+        "unit": "GiB",
+        "scope": "per_gpu",
+        "kind": "allocatable_measured"
+      }
+    },
+    "artifacts": [
+      {
+        "path": "evidence/runtime/gpu.B200/gpu.txt",
+        "sha256": "3128684eeebc2f3fd99326fb24ab0cc166dd3969790d86516b3866032a062961"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/manifest.json",
+        "sha256": "c0e67f19ffe72cf9b3d18c772755a9cab1a9585817b83439037ab202b28a1fb4"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/nvlink.txt",
+        "sha256": "d13e254e8cdbecfe5a57e4903f75abaef2ac2be4f656ad0690f7e3ee7274dbec"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/pci.txt",
+        "sha256": "a6bf119b3c2c7c8de80c0a56e61d1a37e3c80d0d15a90a2dab8746fd6f6f781a"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/rdma.txt",
+        "sha256": "312116aa51fda1044126327fc8be16c593d0d78ad309ea2c7809fc227e2e2508"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/smi.txt",
+        "sha256": "1256c3eeca210fedb48348c822b84b62b1ed8dacf74b3ca0a860cd796f8ef097"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/topology.txt",
+        "sha256": "d8f8563ec408b6fa1cdf4f9cf430311714daaf055a610bc6f2efec239228ee8a"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/verbs.txt",
+        "sha256": "8bc58bed05948bcb54e31b66837feb8d1ba476c4dde47f5b44dedcd77afe9271"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/record.json",
+        "sha256": "921411b2a1859038cd1b71f4d971bd3b005e034468ad300b1eb4c4c26b8dae36"
+      }
+    ],
+    "record_artifact": {
+      "path": "evidence/runtime/gpu.B200/record.json",
+      "pointer": ""
+    }
+  },
+  "runtime.gpu.GB300": {
+    "executed_at": "2026-09-09T19:23:35.542514+00:00",
+    "exit_code": 0,
+    "lock_sha256": "b0c0255c43600c6e847e62d86f4891b06a3f14cc9f83ccb3d1445eaddf4afe38",
+    "consumer_sha256": "56ae29ebb49ff2a7110c7bfb5a508368884696cb7af930382a64cd94174472f4",
+    "environment": {
+      "sku": {
+        "value": "NVIDIA GB300",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.GB300/gpu.txt"
+      },
+      "pci_device_id": {
+        "value": "0x31C210DE",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.GB300/gpu.txt"
+      },
+      "gpu_uuid": {
+        "value": "GPU-7ff86769-1382-55dc-b41d-930f5280e491",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.GB300/gpu.txt"
+      },
+      "driver": {
+        "value": "580.105.08",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.GB300/gpu.txt"
+      },
+      "cuda": {
+        "value": "13.0",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.GB300/smi.txt"
+      },
+      "compute_capability": {
+        "value": "10.3",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.GB300/gpu.txt"
+      },
+      "mig": {
+        "value": "Disabled",
+        "method": "probed",
+        "source_artifact": "evidence/runtime/gpu.GB300/gpu.txt"
+      }
+    },
+    "record": {
+      "id": "gpu.GB300",
+      "sku": "GB300",
+      "kind": "superchip",
+      "architecture": "blackwell-ultra",
+      "compute_capability": "10.3",
+      "gpu_count": 2,
+      "cpu_count": 1,
+      "memory": {
+        "value": 277.55,
+        "unit": "GiB",
+        "scope": "per_gpu",
+        "kind": "allocatable_measured"
+      }
+    },
+    "artifacts": [
+      {
+        "path": "evidence/runtime/gpu.GB300/cuda.txt",
+        "sha256": "54eb58688a158a238b4ab01aaafae36708b0f0e35e237d9a6d722cca02f98913"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/gpu.txt",
+        "sha256": "15e5142b4b28753142d03653689f10d12a1c19ea1005b335106cdc778d6f0c1a"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/manifest.json",
+        "sha256": "17b3f5866c82468a7aeb64775d9a467b63d20e015491915f10b502bfb6cb63ef"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/nvlink.txt",
+        "sha256": "23fb6931f31c1c1f116e93df4ebbc08877058db9f65ec4a74e83ebc100d127cf"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/pci.txt",
+        "sha256": "7acbb4d67b633c1a37475261a13b81f1dc374389427895dc310ce6b94d5159d6"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/rdma.txt",
+        "sha256": "98f3f764c59e7744aaf8abc480a28de014ccf5a484c65446b5624038e7c26cdd"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/smi.txt",
+        "sha256": "53cc1122bbaf512da30024a627ec73c8793b5aaac26d1d62a11fc80185f41906"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/topology.txt",
+        "sha256": "b0122009e4ac187e001d27a55d65f14071b101ed8af70a277b5246e72af75ce4"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/verbs.txt",
+        "sha256": "93f4434ad1cf549f9289809a0221d68cc7fcf82678d3b6412ad4ee6a999938ae"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/record.json",
+        "sha256": "07accdf6de7eb38b296d8b51fc3de64ab7490196bb21617351862b30e712a052"
+      }
+    ],
+    "record_artifact": {
+      "path": "evidence/runtime/gpu.GB300/record.json",
+      "pointer": ""
+    }
+  }
+}

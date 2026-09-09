@@ -1,0 +1,12 @@
+link mlx5_2/1 state ACTIVE physical_state LINK_UP netdev eth4 
+link mlx5_3/1 state ACTIVE physical_state LINK_UP netdev eth5 
+link mlx5_4/1 state ACTIVE physical_state LINK_UP netdev eth6 
+link mlx5_5/1 state ACTIVE physical_state LINK_UP netdev eth7 
+link mlx5_8/1 state ACTIVE physical_state LINK_UP netdev eth8 
+link mlx5_9/1 state ACTIVE physical_state LINK_UP netdev eth9 
+link mlx5_10/1 state ACTIVE physical_state LINK_UP netdev eth10 
+link mlx5_11/1 state ACTIVE physical_state LINK_UP netdev eth11 
+link mlx5_bond_0/1 state ACTIVE physical_state LINK_UP netdev eth0 
+link mlx5_bond_1/1 state ACTIVE physical_state LINK_UP netdev eth2 
+
+STDERR:

@@ -9,7 +9,11 @@ import argparse,hashlib,json,os,platform,shutil,subprocess
 from datetime import datetime,timezone
 from pathlib import Path
 COMMANDS={
- 'gpu':['nvidia-smi','--query-gpu=name,uuid,pci.bus_id,driver_version,memory.total,compute_cap,power.limit','--format=csv,noheader,nounits'],
+ # Fields chosen to cover exactly the environment keys the runtime obligations declare:
+ # sku, pci_device_id, gpu_uuid, driver, compute_capability and mig.
+ 'gpu':['nvidia-smi','--query-gpu=name,uuid,pci.bus_id,pci.device_id,driver_version,memory.total,compute_cap,power.limit,mig.mode.current','--format=csv,noheader,nounits'],
+ # Full header carries the driver's supported CUDA version, which is not a toolkit version.
+ 'smi':['nvidia-smi'],
  'topology':['nvidia-smi','topo','-m'], 'nvlink':['nvidia-smi','nvlink','--status'],
  'cuda':['nvcc','--version'], 'verbs':['ibv_devinfo','-v'],
  'rdma':['rdma','link','show'], 'pci':['lspci','-nn'],

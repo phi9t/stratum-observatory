@@ -1,0 +1,28 @@
+{
+  "schema": "stratum-probe-provenance/v1",
+  "captured_at": "2026-09-09T19:30:37.842183+00:00",
+  "method": "read-only tools/probe-system.py over ssh; no sudo, no fabric change, no model load",
+  "hosts": {
+    "gpu.H100-SXM": {
+      "host": "devx_h100_tiger_n102_147_034",
+      "fleet": "armada",
+      "access": "ssh via jumper_general_us_proxy",
+      "gpus_on_host": 8,
+      "note": "Probe describes the H100-SXM SKU; the host carries eight of them."
+    },
+    "gpu.B200": {
+      "host": "devx_b200_tiger_n116_077_207",
+      "fleet": "armada",
+      "access": "ssh via jumper_general_us_proxy",
+      "gpus_on_host": 8,
+      "note": "Probe describes the B200 SKU; the host carries eight of them."
+    },
+    "gpu.GB300": {
+      "host": "devx_gb300_tiger_dc61_pe_t719_n015",
+      "fleet": "armada",
+      "access": "ssh via jumper_general_us_proxy",
+      "gpus_on_host": 4,
+      "note": "Record describes the GB300 superchip scope (2 GPUs, 1 CPU); the host reports four GPUs."
+    }
+  }
+}

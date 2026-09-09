@@ -1,0 +1,15 @@
+{
+  "id": "gpu.GB300",
+  "sku": "GB300",
+  "kind": "superchip",
+  "architecture": "blackwell-ultra",
+  "compute_capability": "10.3",
+  "gpu_count": 2,
+  "cpu_count": 1,
+  "memory": {
+    "value": 277.55,
+    "unit": "GiB",
+    "scope": "per_gpu",
+    "kind": "allocatable_measured"
+  }
+}

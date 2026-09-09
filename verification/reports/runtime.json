@@ -3,7 +3,7 @@
   "target": "stratum-observatory-3",
   "profile": "runtime",
   "status": "BLOCKED",
-  "generated_at": "2026-09-09T17:46:42.782451+00:00",
+  "generated_at": "2026-09-09T19:31:56.386933+00:00",
   "lock_sha256": "b0c0255c43600c6e847e62d86f4891b06a3f14cc9f83ccb3d1445eaddf4afe38",
   "consumer_sha256": "56ae29ebb49ff2a7110c7bfb5a508368884696cb7af930382a64cd94174472f4",
   "coverage": {
@@ -17,9 +17,9 @@
     "passed_presentation_bindings": 0
   },
   "counts": {
-    "BLOCKED": 15737,
-    "PASS": 24,
-    "NOT_RUN": 31
+    "BLOCKED": 15740,
+    "PASS": 27,
+    "NOT_RUN": 28
   },
   "domains": {
     "evidence": "BLOCKED",
@@ -141897,12 +141897,21 @@
       "evidence": []
     },
     {
-      "code": "RUNTIME_NOT_RUN",
+      "code": "CONTRACT_CONSISTENT",
       "domain": "gpu",
-      "status": "NOT_RUN",
+      "status": "PASS",
+      "subject": "gpu.H100-SXM",
+      "message": "Checked contract is internally consistent; this is not an empirical conformance result.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
       "subject": "runtime.gpu.H100-SXM",
-      "message": "Device attribute and kernel resource/ISA probes on each claimed SKU; capture driver/runtime, MIG, clocks and power.",
-      "remedy": "Run the specified experiment on the declared stack; attach raw artifacts and a trusted signed receipt.",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -141915,12 +141924,21 @@
       "evidence": []
     },
     {
-      "code": "RUNTIME_NOT_RUN",
+      "code": "CONTRACT_CONSISTENT",
       "domain": "gpu",
-      "status": "NOT_RUN",
+      "status": "PASS",
+      "subject": "gpu.B200",
+      "message": "Checked contract is internally consistent; this is not an empirical conformance result.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
       "subject": "runtime.gpu.B200",
-      "message": "Device attribute and kernel resource/ISA probes on each claimed SKU; capture driver/runtime, MIG, clocks and power.",
-      "remedy": "Run the specified experiment on the declared stack; attach raw artifacts and a trusted signed receipt.",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {
@@ -141933,12 +141951,21 @@
       "evidence": []
     },
     {
-      "code": "RUNTIME_NOT_RUN",
+      "code": "CONTRACT_CONSISTENT",
       "domain": "gpu",
-      "status": "NOT_RUN",
+      "status": "PASS",
+      "subject": "gpu.GB300",
+      "message": "Checked contract is internally consistent; this is not an empirical conformance result.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
       "subject": "runtime.gpu.GB300",
-      "message": "Device attribute and kernel resource/ISA probes on each claimed SKU; capture driver/runtime, MIG, clocks and power.",
-      "remedy": "Run the specified experiment on the declared stack; attach raw artifacts and a trusted signed receipt.",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
     },
     {

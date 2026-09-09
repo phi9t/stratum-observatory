@@ -1,0 +1,97 @@
+0000:00:00.0 PCI bridge [0604]: NVIDIA Corporation Device [10de:22b2]
+0000:01:00.0 Ethernet controller [0200]: Mellanox Technologies MT43244 BlueField-3 integrated ConnectX-7 network controller [15b3:a2dc] (rev 01)
+0000:01:00.1 Ethernet controller [0200]: Mellanox Technologies MT43244 BlueField-3 integrated ConnectX-7 network controller [15b3:a2dc] (rev 01)
+0000:01:00.2 DMA controller [0801]: Mellanox Technologies MT43244 BlueField-3 SoC Management Interface [15b3:c2d5] (rev 01)
+0002:00:00.0 PCI bridge [0604]: NVIDIA Corporation Device [10de:22b2]
+0002:01:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0002:02:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0002:02:01.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0002:03:00.0 Ethernet controller [0200]: Mellanox Technologies CX8 Family [ConnectX-8] [15b3:1023]
+0002:03:00.1 Ethernet controller [0200]: Mellanox Technologies CX8 Family [ConnectX-8] [15b3:1023]
+0002:04:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0002:05:08.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0002:05:0c.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0002:07:00.0 Non-Volatile memory controller [0108]: Samsung Electronics Co Ltd NVMe SSD Controller PM9DXa [144d:a900]
+0005:00:00.0 PCI bridge [0604]: NVIDIA Corporation Device [10de:22b8]
+0005:01:00.0 PCI bridge [0604]: Pericom Semiconductor Device [12d8:c008] (rev 0f)
+0005:02:01.0 PCI bridge [0604]: Pericom Semiconductor Device [12d8:c008] (rev 06)
+0005:02:02.0 PCI bridge [0604]: Pericom Semiconductor Device [12d8:c008] (rev 06)
+0005:02:03.0 PCI bridge [0604]: Pericom Semiconductor Device [12d8:c008] (rev 06)
+0005:02:04.0 PCI bridge [0604]: Pericom Semiconductor Device [12d8:c008] (rev 06)
+0005:02:05.0 PCI bridge [0604]: Pericom Semiconductor Device [12d8:c008] (rev 06)
+0005:02:06.0 PCI bridge [0604]: Pericom Semiconductor Device [12d8:c008] (rev 06)
+0005:02:07.0 PCI bridge [0604]: Pericom Semiconductor Device [12d8:c008] (rev 06)
+0005:06:00.0 PCI bridge [0604]: ASPEED Technology, Inc. AST1150 PCI-to-PCI Bridge [1a03:1150] (rev 06)
+0005:07:00.0 VGA compatible controller [0300]: ASPEED Technology, Inc. ASPEED Graphics Family [1a03:2000] (rev 52)
+0005:08:00.0 USB controller [0c03]: Renesas Technology Corp. uPD720201 USB 3.0 Host Controller [1912:0014] (rev 03)
+0005:09:00.0 Ethernet controller [0200]: Intel Corporation I210 Gigabit Network Connection [8086:1533] (rev 03)
+0006:00:00.0 PCI bridge [0604]: NVIDIA Corporation Device [10de:22b2]
+0006:01:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0006:02:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0006:02:03.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0006:03:00.0 Ethernet controller [0200]: Mellanox Technologies CX8 Family [ConnectX-8] [15b3:1023]
+0006:03:00.1 Ethernet controller [0200]: Mellanox Technologies CX8 Family [ConnectX-8] [15b3:1023]
+0006:04:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0006:05:08.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0006:05:0c.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0006:07:00.0 Non-Volatile memory controller [0108]: Samsung Electronics Co Ltd NVMe SSD Controller PM9DXa [144d:a900]
+0008:00:00.0 PCI bridge [0604]: NVIDIA Corporation Device [10de:22b1]
+0008:01:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0008:02:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0008:02:03.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0008:03:00.0 DMA controller [0801]: Mellanox Technologies Device [15b3:2100]
+0008:04:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0008:05:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0008:06:00.0 3D controller [0302]: NVIDIA Corporation Device [10de:31c2] (rev a1)
+0009:00:00.0 PCI bridge [0604]: NVIDIA Corporation Device [10de:22b1]
+0009:01:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0009:02:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0009:02:01.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0009:03:00.0 DMA controller [0801]: Mellanox Technologies Device [15b3:2100]
+0009:04:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0009:05:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0009:06:00.0 3D controller [0302]: NVIDIA Corporation Device [10de:31c2] (rev a1)
+0010:00:00.0 PCI bridge [0604]: NVIDIA Corporation Device [10de:22b2]
+0010:01:00.0 Ethernet controller [0200]: Mellanox Technologies MT43244 BlueField-3 integrated ConnectX-7 network controller [15b3:a2dc] (rev 01)
+0010:01:00.1 Ethernet controller [0200]: Mellanox Technologies MT43244 BlueField-3 integrated ConnectX-7 network controller [15b3:a2dc] (rev 01)
+0010:01:00.2 DMA controller [0801]: Mellanox Technologies MT43244 BlueField-3 SoC Management Interface [15b3:c2d5] (rev 01)
+0012:00:00.0 PCI bridge [0604]: NVIDIA Corporation Device [10de:22b2]
+0012:01:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0012:02:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0012:02:01.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0012:03:00.0 Ethernet controller [0200]: Mellanox Technologies CX8 Family [ConnectX-8] [15b3:1023]
+0012:03:00.1 Ethernet controller [0200]: Mellanox Technologies CX8 Family [ConnectX-8] [15b3:1023]
+0012:04:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0012:05:08.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0012:05:0c.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0012:07:00.0 Non-Volatile memory controller [0108]: Samsung Electronics Co Ltd NVMe SSD Controller PM9DXa [144d:a900]
+0015:00:00.0 PCI bridge [0604]: NVIDIA Corporation Device [10de:22b8]
+0015:01:00.0 Non-Volatile memory controller [0108]: Samsung Electronics Co Ltd NVMe SSD Controller PM9A1/PM9A3/980PRO [144d:a80a]
+0016:00:00.0 PCI bridge [0604]: NVIDIA Corporation Device [10de:22b2]
+0016:01:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0016:02:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0016:02:03.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0016:03:00.0 Ethernet controller [0200]: Mellanox Technologies CX8 Family [ConnectX-8] [15b3:1023]
+0016:03:00.1 Ethernet controller [0200]: Mellanox Technologies CX8 Family [ConnectX-8] [15b3:1023]
+0016:04:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0016:05:08.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0016:05:0c.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0016:07:00.0 Non-Volatile memory controller [0108]: Samsung Electronics Co Ltd NVMe SSD Controller PM9DXa [144d:a900]
+0018:00:00.0 PCI bridge [0604]: NVIDIA Corporation Device [10de:22b1]
+0018:01:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0018:02:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0018:02:03.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0018:03:00.0 DMA controller [0801]: Mellanox Technologies Device [15b3:2100]
+0018:04:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0018:05:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0018:06:00.0 3D controller [0302]: NVIDIA Corporation Device [10de:31c2] (rev a1)
+0019:00:00.0 PCI bridge [0604]: NVIDIA Corporation Device [10de:22b1]
+0019:01:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0019:02:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0019:02:01.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0019:03:00.0 DMA controller [0801]: Mellanox Technologies Device [15b3:2100]
+0019:04:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0019:05:00.0 PCI bridge [0604]: Mellanox Technologies ConnectX/BlueField Family mlx5Gen PCIe Bridge [PCIe Bridge] [15b3:197c]
+0019:06:00.0 3D controller [0302]: NVIDIA Corporation Device [10de:31c2] (rev a1)
+
+STDERR:

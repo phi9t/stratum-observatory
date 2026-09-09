@@ -1,0 +1,15 @@
+{
+  "id": "gpu.H100-SXM",
+  "sku": "H100-SXM",
+  "kind": "gpu",
+  "architecture": "hopper",
+  "compute_capability": "9.0",
+  "gpu_count": 1,
+  "cpu_count": 0,
+  "memory": {
+    "value": 79.65,
+    "unit": "GiB",
+    "scope": "per_gpu",
+    "kind": "allocatable_measured"
+  }
+}
