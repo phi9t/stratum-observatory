@@ -1,0 +1,45 @@
+{
+  "$comment": "Shape of verification/manifests/runtime.json: obligation id -> execution receipt. Shape is not proof of execution; a trusted runner and reviewer attest that the artifacts came from the stated experiment.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "required": ["executed_at", "exit_code", "lock_sha256", "consumer_sha256", "environment", "record", "artifacts", "record_artifact"],
+    "additionalProperties": false,
+    "properties": {
+      "executed_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}"},
+      "exit_code": {"type": "integer"},
+      "lock_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+      "consumer_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+      "environment": {
+        "$comment": "A fingerprint is a recorded value and how it was obtained, never a boolean.",
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "required": ["value", "method"],
+          "additionalProperties": false,
+          "properties": {
+            "value": {"type": "string"},
+            "method": {"type": "string", "enum": ["probed", "declared"]},
+            "source_artifact": {"type": "string"}
+          }
+        }
+      },
+      "record": {"type": "object"},
+      "artifacts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["path", "sha256"],
+          "additionalProperties": false,
+          "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+        }
+      },
+      "record_artifact": {
+        "type": "object",
+        "required": ["path", "pointer"],
+        "additionalProperties": false,
+        "properties": {"path": {"type": "string"}, "pointer": {"type": "string"}}
+      }
+    }
+  }
+}

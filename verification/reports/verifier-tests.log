@@ -81,9 +81,12 @@ test_valid_ib_control_plane (test_extended_contracts.ExtendedContractTests.test_
 test_wrong_nvswitch_count_is_not_hopper_template_copy (test_extended_contracts.ExtendedContractTests.test_wrong_nvswitch_count_is_not_hopper_template_copy) ... ok
 test_zero_partition_rejected (test_extended_contracts.ExtendedContractTests.test_zero_partition_rejected) ... ok
 test_changed_live_core_field_fails (test_integration.IntegrationTests.test_changed_live_core_field_fails) ... ok
+test_claim_with_missing_dependency_is_not_reported_as_verified (test_integration.IntegrationTests.test_claim_with_missing_dependency_is_not_reported_as_verified) ... ok
 test_cold_cache_is_blocked_not_certified (test_integration.IntegrationTests.test_cold_cache_is_blocked_not_certified) ... ok
+test_drifted_presentation_claim_is_not_reported_as_verified (test_integration.IntegrationTests.test_drifted_presentation_claim_is_not_reported_as_verified) ... ok
 test_empty_and_unrun_never_return_success_exit (test_integration.IntegrationTests.test_empty_and_unrun_never_return_success_exit) ... ok
 test_new_scientific_field_cannot_hide (test_integration.IntegrationTests.test_new_scientific_field_cannot_hide) ... ok
+test_no_claim_is_exempt_from_review (test_integration.IntegrationTests.test_no_claim_is_exempt_from_review) ... ok
 test_publication_workflow_cannot_deploy_on_engineering_alone (test_integration.IntegrationTests.test_publication_workflow_cannot_deploy_on_engineering_alone) ... ok
 test_removing_verifier_domain_is_detected (test_integration.IntegrationTests.test_removing_verifier_domain_is_detected) ... ok
 test_runtime_requires_each_registered_sku_and_fabric (test_integration.IntegrationTests.test_runtime_requires_each_registered_sku_and_fabric) ... ok
@@ -92,6 +95,11 @@ test_unrun_gpu_is_not_pass (test_integration.IntegrationTests.test_unrun_gpu_is_
 test_upstream_pin_change_invalidates_review_subject (test_integration.IntegrationTests.test_upstream_pin_change_invalidates_review_subject) ... ok
 test_counts_are_scraped_from_both_node_reporter_formats (test_integration.ReceiptCountTests.test_counts_are_scraped_from_both_node_reporter_formats) ... ok
 test_unparsable_output_returns_none_so_the_run_can_refuse (test_integration.ReceiptCountTests.test_unparsable_output_returns_none_so_the_run_can_refuse) ... ok
+test_changed_bytes_invalidate_review (test_integration.ReviewSubjectTests.test_changed_bytes_invalidate_review) ... ok
+test_changed_revision_invalidates_review (test_integration.ReviewSubjectTests.test_changed_revision_invalidates_review) ... ok
+test_changed_role_invalidates_review (test_integration.ReviewSubjectTests.test_changed_role_invalidates_review) ... ok
+test_identity_projection_classifies_every_schema_field (test_integration.ReviewSubjectTests.test_identity_projection_classifies_every_schema_field) ... ok
+test_refetch_metadata_does_not_invalidate_review (test_integration.ReviewSubjectTests.test_refetch_metadata_does_not_invalidate_review) ... ok
 test_browser_suite_is_covered (test_integration.ToolchainDigestTests.test_browser_suite_is_covered) ... ok
 test_codeowners_is_covered (test_integration.ToolchainDigestTests.test_codeowners_is_covered) ... ok
 test_pyproject_is_covered (test_integration.ToolchainDigestTests.test_pyproject_is_covered) ... ok
@@ -115,6 +123,13 @@ test_auditor_api_exists (test_runner.RunnerTests.test_auditor_api_exists) ... ok
 test_empty_target_is_blocked (test_runner.RunnerTests.test_empty_target_is_blocked) ... ok
 test_inventory_is_derived_from_actual_core (test_runner.RunnerTests.test_inventory_is_derived_from_actual_core) ... ok
 test_unknown_profile_rejected (test_runner.RunnerTests.test_unknown_profile_rejected) ... ok
+test_absent_runtime_manifest_still_reports_not_run (test_runtime_receipts.RuntimeReceiptTests.test_absent_runtime_manifest_still_reports_not_run) ... ok
+test_boolean_environment_fingerprint_is_not_an_environment (test_runtime_receipts.RuntimeReceiptTests.test_boolean_environment_fingerprint_is_not_an_environment) ... ok
+test_declared_value_without_a_probe_artifact_is_blocked (test_runtime_receipts.RuntimeReceiptTests.test_declared_value_without_a_probe_artifact_is_blocked) ... ok
+test_string_exit_code_is_a_shape_error_not_a_silent_pass (test_runtime_receipts.RuntimeReceiptTests.test_string_exit_code_is_a_shape_error_not_a_silent_pass) ... ok
+test_additional_properties_schema_is_enforced (test_schema.EvaluatorCoverageTests.test_additional_properties_schema_is_enforced) ... ok
+test_anchored_patterns_reject_surrounding_text (test_schema.EvaluatorCoverageTests.test_anchored_patterns_reject_surrounding_text) ... ok
+test_unsupported_keywords_are_reported_not_ignored (test_schema.EvaluatorCoverageTests.test_unsupported_keywords_are_reported_not_ignored) ... ok
 test_invalid_digest_rejected (test_schema.SchemaTests.test_invalid_digest_rejected) ... ok
 test_null_pending_checksum_allowed (test_schema.SchemaTests.test_null_pending_checksum_allowed) ... ok
 test_real_manifests_have_valid_shapes (test_schema.SchemaTests.test_real_manifests_have_valid_shapes) ... ok
@@ -127,6 +142,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 127 tests in 15.859s
+Ran 142 tests in 21.638s
 
 OK

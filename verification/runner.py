@@ -10,12 +10,31 @@ from .evidence import (canonical,digest,loads,safe_path,pointer,check_source,che
 from .domains.contracts import DOMAINS, validate
 
 PROFILES=('publication','runtime')
+# Coverage and dependency checks run once over all claims, but these codes accuse one
+# specific claim. They must reach that claim's status, or a claim whose bound value
+# drifted still reports CLAIM_VERIFIED and still counts as verified science.
+CLAIM_SCOPED_FINDINGS={'CLAIM_DUPLICATE','CONSUMER_MISSING','CONSUMER_VALUE','CLAIM_CYCLE','CLAIM_DEPENDENCY'}
 PRESENTATION_SUFFIXES={'id','name','family','sources','blurb'}
 PRESENTATION_FUNCTIONS={'function.fmt','function.compact','function.gb','function.sanitizeState'}
 
+# Identity is what a reviewer actually read; the rest is refetch bookkeeping.
+# Together these must cover every property in schemas/sources.schema.json, so that
+# adding a field forces a conscious decision instead of silently escaping the subject.
+SOURCE_IDENTITY={'id','kind','role','provider','repo','path','revision','url','sha256','license','version','fixture'}
+SOURCE_VOLATILE={'cache','retrieved_at','etag'}
+
+def source_identity(source):
+    """Project a source onto the fields a review is actually about."""
+    return {k:v for k,v in source.items() if k in SOURCE_IDENTITY}
+
 def source_subject(claim,sources):
-    """Any source pin, bytes, anchor, assertion or consumer change invalidates review."""
-    return digest({'claim':claim,'sources':[sources.get(e.get('source'),{}) for e in claim.get('evidence',[])]})
+    """Any source pin, bytes, anchor, assertion or consumer change invalidates review.
+
+    A no-op refetch does not: re-running acquire on byte-identical upstream rewrites
+    retrieved_at/etag, and binding those would push operators toward hand-editing the
+    accepted lock to keep signatures alive -- weakening the binding it protects.
+    """
+    return digest({'claim':claim,'sources':[source_identity(sources.get(e.get('source'),{})) for e in claim.get('evidence',[])]})
 
 def classify_allowed(c):
     key=c.get('consumer',''); kind=c.get('classification')
@@ -67,7 +86,7 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
     for name,allowed,obj in [('target',{'schema','id','description','claims','contracts','runtime_obligations'},target),('catalog',{'schema','sources'},catalog)]:
         for key in obj.keys()-allowed:add('MANIFEST_UNKNOWN','evidence','FAIL',name,f'Unknown manifest key {key}.')
     from .schema import validate as shape_validate
-    for name,value in [('target',target),('sources',catalog)]:
+    for name,value in [('target',target),('sources',catalog),('runtime',runtime)]:
         path=root/f'verification/schemas/{name}.schema.json'
         if path.exists():
             for error in shape_validate(value,loads(path.read_text())):add('MANIFEST_SHAPE','evidence','FAIL',name,error)
@@ -81,7 +100,11 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
     if not sources:add('SOURCES_EMPTY','evidence','BLOCKED','sources','No source catalog.')
     for sid,s in sources.items():
         issues=check_source(s,root);findings.extend(issues);source_status[sid]=aggregate(issues) if issues else 'PASS'
-    findings.extend(check_coverage(inventory,claims));findings.extend(check_dependencies(claims))
+    crosscutting=check_coverage(inventory,claims)+check_dependencies(claims)
+    findings.extend(crosscutting)
+    by_claim={}
+    for f in crosscutting:
+        if f.code in CLAIM_SCOPED_FINDINGS:by_claim.setdefault(f.subject,[]).append(f)
     for c in claims:
         cid=c.get('id','<missing>');domain=c.get('domain');start=len(findings)
         if domain not in DOMAINS:add('CLAIM_DOMAIN','evidence','FAIL',cid,'Claim has no registered domain.')
@@ -116,11 +139,14 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
             add('MODEL_DUAL_CODE','model','BLOCKED',cid,'Requires publisher implementation AND independent framework implementation; config/paper alone cannot substitute.')
         if c.get('classification')=='derived' and not c.get('dependencies'):
             add('DERIVATION_INPUTS',domain or 'evidence','BLOCKED',cid,'Derived claim has no explicit input-claim dependencies.')
-        if c.get('classification') not in ('presentation',):
-            if c.get('classification')=='assumed' and (not c.get('scope') or not c.get('units')):
-                add('ASSUMPTION_SCOPE',domain,'BLOCKED',cid,'Assumption needs units and a declared scenario scope.')
-            review=check_review(c,source_subject(c,sources),reviews,root);findings.append(review)
-        claim_status[cid]=aggregate(findings[start:]) if len(findings)>start else 'PASS'
+        if c.get('classification')=='assumed' and (not c.get('scope') or not c.get('units')):
+            add('ASSUMPTION_SCOPE',domain,'BLOCKED',cid,'Assumption needs units and a declared scenario scope.')
+        # Every claim is reviewed, presentation included. Calling a user-visible value
+        # presentational is itself a judgement, and it is the judgement most worth checking:
+        # an unreviewed 'presentation' label is how a scientific number escapes the gate.
+        findings.append(check_review(c,source_subject(c,sources),reviews,root))
+        own=findings[start:]+by_claim.get(str(cid),[])
+        claim_status[cid]=aggregate(own) if own else 'PASS'
         if claim_status[cid]=='PASS':add('CLAIM_VERIFIED',domain,'PASS',cid,'Registered consumer, source obligations and applicable review checks passed.')
     # Derivations cannot launder unresolved inputs into a verified total.
     for _ in range(len(claims)):
@@ -179,7 +205,11 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
                     for key in ('sku','system','fabric','mode','library','tolerance_policy','accumulator'):
                         if key in original['record'] and r.get('record',{}).get(key)!=original['record'][key]:add('RUNTIME_TARGET',o['domain'],'FAIL',rid,f'Execution receipt is for a different {key}.')
             for key in o.get('environment',[]):
-                if not r.get('environment',{}).get(key):add('RUNTIME_ENVIRONMENT',o['domain'],'BLOCKED',rid,f'Missing environment fingerprint {key}.')
+                fingerprint=r.get('environment',{}).get(key)
+                if not isinstance(fingerprint,dict) or not fingerprint.get('value'):
+                    add('RUNTIME_ENVIRONMENT',o['domain'],'BLOCKED',rid,f'Missing environment fingerprint {key}.')
+                elif fingerprint.get('method')=='probed' and fingerprint.get('source_artifact') not in {a.get('path') for a in r.get('artifacts',[]) if isinstance(a,dict)}:
+                    add('RUNTIME_ENVIRONMENT',o['domain'],'BLOCKED',rid,f'Fingerprint {key} claims to be probed but names no checksummed artifact.')
             try:
                 artifacts=r.get('artifacts',[])
                 if not artifacts:raise ValueError('No raw experiment artifacts')
