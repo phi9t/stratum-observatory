@@ -41,9 +41,9 @@
   "layout": {
     "min_text_clearance_px": 2.0,
     "min_text_border_padding_px": 2.0,
-    "max_edge_crossings": 64,
+    "max_edge_crossings": 8,
     "row_alignment_tolerance_px": 4.0,
-    "$comment": "geometryReport tests intersection, so a 0.1px gap passes today. These are separation floors, not collision checks."
+    "$comment": "geometryReport tests intersection, so a 0.1px gap passes today. These are separation floors, not collision checks. The crossing budget is set just above the observed ceiling (5) so it is a live check; a budget far above what any scene produces cannot fail and is decoration."
   },
   "themes": [
     "dark",

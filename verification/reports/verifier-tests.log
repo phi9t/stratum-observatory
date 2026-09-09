@@ -11,6 +11,12 @@ test_subpixel_jitter_does_not_move_the_baseline (test_aesthetics.CompositionBase
 test_canvas_labels_keep_the_aa_floor (test_aesthetics.ContrastRatchetTests.test_canvas_labels_keep_the_aa_floor) ... ok
 test_large_text_still_uses_the_relaxed_threshold (test_aesthetics.ContrastRatchetTests.test_large_text_still_uses_the_relaxed_threshold) ... ok
 test_reading_size_chrome_prose_is_held_to_the_enhanced_ratio (test_aesthetics.ContrastRatchetTests.test_reading_size_chrome_prose_is_held_to_the_enhanced_ratio) ... ok
+test_clearance_result_is_reported_even_when_it_passes (test_aesthetics.CoverageTests.test_clearance_result_is_reported_even_when_it_passes) ... ok
+test_edge_crossing_budget_is_live (test_aesthetics.CoverageTests.test_edge_crossing_budget_is_live) ... ok
+test_focal_stages_are_measured (test_aesthetics.CoverageTests.test_focal_stages_are_measured) ... ok
+test_focal_stages_only_where_the_model_has_them (test_aesthetics.CoverageTests.test_focal_stages_only_where_the_model_has_them) ... ok
+test_model_list_comes_from_the_application_not_a_literal (test_aesthetics.CoverageTests.test_model_list_comes_from_the_application_not_a_literal) ... ok
+test_more_than_one_layer_is_sampled (test_aesthetics.CoverageTests.test_more_than_one_layer_is_sampled) ... ok
 test_aesthetics_is_not_a_scientific_domain (test_aesthetics.GateContractTests.test_aesthetics_is_not_a_scientific_domain) ... ok
 test_gate_exit_codes_match_the_other_gates (test_aesthetics.GateContractTests.test_gate_exit_codes_match_the_other_gates) ... ok
 test_policy_is_bound_to_the_receipt_but_baselines_are_not (test_aesthetics.GateContractTests.test_policy_is_bound_to_the_receipt_but_baselines_are_not) ... ok
@@ -182,6 +188,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 181 tests in 24.737s
+Ran 187 tests in 28.961s
 
 OK

@@ -146,10 +146,13 @@ class GateContractTests(unittest.TestCase):
   self.assertTrue(b)
   scenarios={}
   for label,sig in b.items():
-   model,view,theme=label.split('/');scenarios.setdefault((model,view),{})[theme]=sig
+   # Keys are model/view/stage/layer/theme; only the theme is split off.
+   scenario,theme=label.rsplit('/',1);scenarios.setdefault(scenario,{})[theme]=sig
   for key,per_theme in scenarios.items():
    self.assertEqual(set(per_theme),{'dark','light'},f'{key} is not baselined in both themes')
    self.assertEqual(len(set(per_theme.values())),1,f'{key} composition depends on the theme')
+  stages={k.split('/')[2] for k in scenarios}
+  self.assertTrue({'inputs','residual','ple'}<=stages,'focal stages are not baselined')
 
 class StylesheetScaleTests(unittest.TestCase):
  """The scales must be enforced, or the ad-hoc values silently return."""
@@ -217,3 +220,41 @@ class ContrastRatchetTests(unittest.TestCase):
  def test_large_text_still_uses_the_relaxed_threshold(self):
   c=self.policy['contrast']
   self.assertEqual(a.required_ratio(24.0,400,c),c['text_large'])
+
+class CoverageTests(unittest.TestCase):
+ """The gate must measure what it claims to measure."""
+ @classmethod
+ def setUpClass(cls):
+  cls.root=ROOT
+  cls.models=a.scenario_models(ROOT)
+ def test_model_list_comes_from_the_application_not_a_literal(self):
+  import subprocess
+  inv=json.loads(subprocess.run(['node','tools/export-verification.mjs'],cwd=ROOT,capture_output=True,text=True,check=True).stdout)
+  self.assertEqual(set(self.models),set(inv['models']),'the gate measures a different model set than the application defines')
+  self.assertGreaterEqual(len(self.models),8)
+ def test_focal_stages_are_measured(self):
+  # cases() has always promised focal stages in its docstring and emitted none, so the
+  # inputs / residual / ple scenes have never been contrast-checked.
+  cases=a.cases(self.models,['model'],['dark'])
+  stages={c.get('stage') for c in cases}
+  self.assertIn('inputs',stages)
+  self.assertIn('residual',stages)
+  self.assertIn('ple',stages)
+ def test_focal_stages_only_where_the_model_has_them(self):
+  cases=a.cases(self.models,['model'],['dark'])
+  ple={c['model'] for c in cases if c.get('stage')=='ple'}
+  self.assertEqual(ple,{'q38flash'},'ple is a Flash-Next-only scene')
+  inputs={c['model'] for c in cases if c.get('stage')=='inputs'}
+  self.assertTrue(inputs and inputs<=set(self.models))
+ def test_more_than_one_layer_is_sampled(self):
+  layers={c.get('layer') for c in a.cases(self.models,['model'],['dark']) if c.get('stage')=='block'}
+  self.assertGreater(len(layers),1,'only layer 4 was ever measured')
+ def test_clearance_result_is_reported_even_when_it_passes(self):
+  report=json.loads((ROOT/'verification/reports/aesthetics.json').read_text())
+  codes={f['code'] for f in report['findings']}
+  self.assertTrue(codes&{'CLEARANCE_OK','AESTHETIC_CLEARANCE'},'a reader cannot tell clearance was checked')
+ def test_edge_crossing_budget_is_live(self):
+  report=json.loads((ROOT/'verification/reports/aesthetics.json').read_text())
+  observed=report['edge_crossings']['max'];budget=report['edge_crossings']['budget']
+  self.assertLessEqual(budget,max(observed*2,observed+4),
+                       f'budget {budget} against an observed max of {observed} cannot fail')

@@ -209,7 +209,7 @@ def composition_signature(scene,tokens):
     def box(n):return [round(float(n.get(k,0))) for k in ('x','y','w','h')]
     nodes=sorted([[n.get('id'),box(n),role(n.get('tone')),n.get('kind'),n.get('name'),n.get('sub')] for n in scene.get('nodes',[])],key=lambda r:str(r[0]))
     groups=sorted([[g.get('id'),box(g),g.get('title'),g.get('subtitle')] for g in scene.get('groups',[])],key=lambda r:str(r[0]))
-    edges=sorted([[e.get('source'),e.get('target'),e.get('kind'),bool(e.get('delay') or e.get('delayed')),
+    edges=sorted([[e.get('source'),e.get('target'),e.get('kind'),bool(e.get('delay')),
                    [[round(float(x)),round(float(y))] for x,y in e.get('points',[])]] for e in scene.get('edges',[])],key=lambda r:json.dumps(r,sort_keys=True))
     labels=sorted([[l.get('text'),round(float(l.get('x',0))),round(float(l.get('y',0))),role(l.get('tone'))] for l in scene.get('labels',[])],key=lambda r:json.dumps(r,sort_keys=True))
     return digest({'nodes':nodes,'groups':groups,'edges':edges,'labels':labels})
@@ -361,12 +361,38 @@ PROBE=r"""
 """
 
 
+LAYER_SAMPLE=(1,2,4)
+
+
+def scenario_models(root):
+    """The application's own model table, so the sweep cannot drift from what ships.
+
+    Read from the same Node inventory the science gate uses rather than a literal; the
+    previous code probed a `window.__models` global that has never existed, so it always
+    fell through to a hardcoded list and would not have noticed a ninth checkpoint.
+    """
+    inventory=loads(subprocess.run(['node','tools/export-verification.mjs'],cwd=root,text=True,
+                                   capture_output=True,check=True,timeout=60).stdout)
+    return inventory['models']
+
+
 def cases(models,views,themes):
-    """Every model in every lens in both themes; focal stages where the model has them."""
+    """Every model in every lens in both themes, plus the focal scenes each model actually has.
+
+    Layer 4 alone left the first layer (often dense, or the one that establishes the residual
+    stream) and the recurrent layers unmeasured.
+    """
     out=[]
-    for model in models:
+    for model,meta in models.items():
         for view in views:
-            for theme in themes:out.append({'model':model,'view':view,'theme':theme,'stage':'block','layer':4})
+            layers=LAYER_SAMPLE if view=='model' else (4,)
+            for theme in themes:
+                for layer in layers:
+                    out.append({'model':model,'view':view,'theme':theme,'stage':'block','layer':layer})
+        for theme in themes:
+            if meta.get('vision'):out.append({'model':model,'view':'model','theme':theme,'stage':'inputs','layer':4})
+            if meta.get('residual') not in (None,'standard'):out.append({'model':model,'view':'model','theme':theme,'stage':'residual','layer':4})
+            if meta.get('pleLayers'):out.append({'model':model,'view':'model','theme':theme,'stage':'ple','layer':4})
     return out
 
 
@@ -382,6 +408,7 @@ def run(root,record=False):
     from playwright.sync_api import sync_playwright
     from browser_env import chromium_path
     policy=loads((root/POLICY_PATH).read_text())
+    models=scenario_models(root)
     artifact=root/'dist/index.html'
     findings=[];signatures={};truncations=[];crossing_report={}
     unique={}
@@ -392,20 +419,19 @@ def run(root,record=False):
         page.set_content(artifact.read_text(),wait_until='load')
         page.wait_for_function('window.STRATUM?.version === "3.0.0"')
         page.evaluate('document.fonts.ready')
-        models=list(page.evaluate('Object.keys(STRATUM.getScene() && window.__models || {})') or [])
-        models=models or ['ds2','ds3','q38','q330','q3235','q3827','q38flash','kimi3']
         views=['model','compare','training','serving','hardware','network','evidence']
         for case in cases(models,views,policy['themes']):
             page.evaluate('(p)=>STRATUM.setState(p)',case)
             data=page.evaluate(PROBE)
-            label=f"{case['model']}/{case['view']}/{case['theme']}"
+            scenario=f"{case['model']}/{case['view']}/{case['stage']}/{case['layer']}"
+            label=f"{scenario}/{case['theme']}"
             for t in data['texts']:
                 key=sample_key(t)
                 entry=unique.setdefault(key,{'sample':t,'count':0,'cases':set()})
                 entry['count']+=1;entry['cases'].add(label)
             boxes=data['boxes']
             for f in judge_clearance(boxes,policy):
-                if f.status!='PASS':findings.append(Finding(f.code,f.domain,f.status,f'{label}:{f.subject}',f.message,f.remedy))
+                findings.append(Finding(f.code,f.domain,f.status,f'{label}:{f.subject}',f.message,f.remedy))
             scene=page.evaluate('STRATUM.getScene()')
             crossings=count_crossings(scene.get('edges',[]))
             crossing_report[label]=crossings
@@ -430,10 +456,10 @@ def run(root,record=False):
     # Position must not depend on theme.
     by_scenario={}
     for label,sig in signatures.items():
-        model,view,theme=label.split('/');by_scenario.setdefault((model,view),{})[theme]=sig
-    for (model,view),per_theme in sorted(by_scenario.items()):
+        scenario,theme=label.rsplit('/',1);by_scenario.setdefault(scenario,{})[theme]=sig
+    for scenario,per_theme in sorted(by_scenario.items()):
         if len(set(per_theme.values()))>1:
-            findings.append(Finding('THEME_COMPOSITION_DRIFT','aesthetics','FAIL',f'{model}/{view}',
+            findings.append(Finding('THEME_COMPOSITION_DRIFT','aesthetics','FAIL',scenario,
                                     'Composition differs between themes; a theme may change colour, not position.',
                                     'Move the theme-dependent value into a colour token.'))
     baseline_file=root/BASELINE_PATH
