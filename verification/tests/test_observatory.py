@@ -31,3 +31,18 @@ class ObservatoryTests(unittest.TestCase):
    self.assertIn('file.'+path,inv['functions'])
   manifest=json.loads((ROOT/'verification/manifests/observatory.json').read_text())
   self.assertEqual(check_coverage(inv,manifest['claims']),[])
+ def test_paper_sources_are_pinned_to_full_text(self):
+  """An /abs/ landing page carries the abstract only; architecture facts are not on it."""
+  catalog=json.loads((ROOT/'verification/manifests/sources.json').read_text())
+  papers=[s for s in catalog['sources'] if s['role']=='paper']
+  self.assertTrue(papers,'catalog has no paper sources')
+  for s in papers:
+   with self.subTest(source=s['id']):
+    self.assertIn('/html/',s['url'],f"{s['id']} is pinned to a landing page, not the paper")
+ def test_paper_source_versions_are_not_pending(self):
+  """Bytes are locked, so a version reading 'pending' is a stale lie about the snapshot."""
+  catalog=json.loads((ROOT/'verification/manifests/sources.json').read_text())
+  for s in catalog['sources']:
+   if s.get('kind')=='document' and s.get('sha256'):
+    with self.subTest(source=s['id']):
+     self.assertNotIn('pending',s['version'].lower())
