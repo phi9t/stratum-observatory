@@ -5,7 +5,7 @@ from collections import Counter
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from .model import Finding, aggregate, exit_code
-from .evidence import (canonical,digest,loads,safe_path,pointer,check_source,check_anchor,
+from .evidence import (CONFIG_ONLY_PUBLISHERS,canonical,digest,loads,safe_path,pointer,check_source,check_anchor,
                        select_anchor,dual_code_roles,check_dependencies,check_coverage,check_review,HEX64)
 from .domains.contracts import DOMAINS, validate
 
@@ -44,10 +44,13 @@ def classify_allowed(c):
     if kind=='assumed': return key.startswith('DEFAULT_STATE.') or not key
     return True
 
-def required_roles(c):
+def required_roles(c,*,publisher_ships_code=True):
     if c.get('classification') in ('presentation','assumed'):return ()
     domain=c.get('domain')
-    if domain=='model':return ('publisher_code','framework_code')
+    if domain=='model':
+        # Where the publisher ships no code, the configuration it does ship is the anchor,
+        # corroborated by independent implementations.
+        return ('publisher_code','framework_code') if publisher_ships_code else ('publisher_config','framework_code')
     if domain in ('gpu','scale_up','scale_out'):return ('vendor_document',)
     if domain=='communication':return ('library_code','vendor_document')
     return ()
@@ -198,10 +201,16 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
         if c.get('classification')=='documented' and not evid:
             add('DOCUMENTED_NO_SOURCE',domain or 'evidence','BLOCKED',cid,'A documented scientific claim requires a concrete source anchor, not only a review.')
         roles={s['role'] for s in referents}
-        for role in required_roles(c):
+        # A publisher that ships only configuration has no implementation to cite. Which path
+        # applies is decided by the recorded audit, never by which sources happen to be present.
+        publisher_repos={s.get('repo') for s in referents if s.get('role')=='publisher_config'}
+        ships_code=not (publisher_repos and publisher_repos<=CONFIG_ONLY_PUBLISHERS)
+        for role in required_roles(c,publisher_ships_code=ships_code):
             if role not in roles:add('CLAIM_ROLE',domain,'BLOCKED',cid,f'Required {role} anchor is missing.')
-        if domain=='model' and c.get('classification') not in ('presentation','assumed') and not dual_code_roles(referents):
-            add('MODEL_DUAL_CODE','model','BLOCKED',cid,'Requires publisher implementation AND independent framework implementation; config/paper alone cannot substitute.')
+        if domain=='model' and c.get('classification') not in ('presentation','assumed') and not dual_code_roles(referents,publisher_ships_code=ships_code):
+            add('MODEL_DUAL_CODE','model','BLOCKED',cid,
+                'Requires publisher implementation AND independent framework implementation.' if ships_code else
+                'Publisher ships configuration only, so this needs independent implementations from at least two organizations.')
         if c.get('classification')=='derived' and not c.get('dependencies'):
             add('DERIVATION_INPUTS',domain or 'evidence','BLOCKED',cid,'Derived claim has no explicit input-claim dependencies.')
         if c.get('classification')=='assumed' and (not c.get('scope') or not c.get('units')):

@@ -31,6 +31,13 @@ REPOS = {
     'framework_code': {'sgl-project/sglang','vllm-project/vllm','NVIDIA/Megatron-LM','pytorch/torchtitan','huggingface/transformers'},
     'library_code': {'NVIDIA/nccl','NVIDIA/nvshmem','ai-dynamo/nixl','openucx/ucx','linux-rdma/rdma-core','NVIDIA/cutlass','MoonshotAI/FlashKDA'},
 }
+# Checkpoints whose publisher ships configuration and no modeling code. Verified against the
+# Hugging Face model API and recorded in evidence/publisher-code/audit.json, which a test
+# compares against this set. For these, no publisher implementation can ever exist, so the
+# corroboration requirement is met by independent reimplementations instead -- see
+# dual_code_roles. This is a narrow, evidenced exception, not a general relaxation.
+CONFIG_ONLY_PUBLISHERS = {'Qwen/Qwen3-235B-A22B','Qwen/Qwen3-30B-A3B','Qwen/Qwen3-8B',
+                          'Qwen/Qwen3.8-27B','Qwen/Qwen3.8-Flash-Next'}
 DOC_HOSTS = {'docs.nvidia.com','developer.nvidia.com','www.nvidia.com','arxiv.org','docs.sglang.io','docs.vllm.ai'}
 
 
@@ -214,16 +221,28 @@ def check_anchor(source: dict, anchor: dict, root: Path, *, allow_fixtures=False
     except (ValueError,OSError,TypeError) as exc:
         return [Finding('ANCHOR_RESOLUTION','evidence','FAIL',sid,str(exc),'Correct the path/symbol/JSON pointer and re-review.')]
 
-def dual_code_roles(sources: list[dict]) -> bool:
-    """Publisher implementation plus a framework implementation from a different organization.
+def _org(repo): return repo.split('/')[0].lower() if repo else None
 
-    Two repositories are not independent mathematics if one organization wrote both, so
-    compare owners rather than full repository names.
+
+def dual_code_roles(sources: list[dict], *, publisher_ships_code: bool=True) -> bool:
+    """Two independent readings of the architecture, by different organizations.
+
+    Where the publisher ships modeling code, one of those readings must be the publisher's
+    own: a reimplementation corroborates a publisher, it does not replace one.
+
+    Where the publisher ships only configuration -- verified and recorded, see
+    CONFIG_ONLY_PUBLISHERS -- no publisher implementation exists to read, and demanding one
+    blocks the claim forever rather than describing anything true. Independent
+    reimplementations from different organizations then carry the corroboration on their own.
+    That is weaker evidence than a publisher implementation and is deliberately labelled as
+    such by the source roles; it is not a licence for two repositories of one organization.
     """
-    def org(repo): return repo.split('/')[0].lower() if repo else None
-    pub={org(s.get('repo')) for s in sources if s.get('role')=='publisher_code'}
-    runtime={org(s.get('repo')) for s in sources if s.get('role')=='framework_code'}
-    return any(a and b and a!=b for a in pub for b in runtime)
+    frameworks={_org(s.get('repo')) for s in sources if s.get('role')=='framework_code'}
+    frameworks.discard(None)
+    if not publisher_ships_code:
+        return len(frameworks)>=2
+    publishers={_org(s.get('repo')) for s in sources if s.get('role')=='publisher_code'}
+    return any(a and b and a!=b for a in publishers for b in frameworks)
 
 def check_dependencies(claims: list[dict]) -> list[Finding]:
     byid={c.get('id'):c for c in claims};state={};out=[]

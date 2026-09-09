@@ -1,0 +1,91 @@
+{
+  "schema": "stratum-publisher-code-audit/v1",
+  "scope": "Whether each publisher checkpoint repository ships modeling code. Says nothing about the quality of any implementation.",
+  "records": [
+    {
+      "repo": "Qwen/Qwen3-235B-A22B",
+      "revision": "8efa61729e24bd65b1d152b5ab5409052aa80e65",
+      "observed_at": "2026-09-09T21:18:01.854568+00:00",
+      "api_response_sha256": "f3850918fb9497ee2a76f54ce4a0db94f9a18bfc4cbcbe8ddf03a40d2a4ff240",
+      "file_count": 128,
+      "python_files": []
+    },
+    {
+      "repo": "Qwen/Qwen3-30B-A3B",
+      "revision": "ad44e777bcd18fa416d9da3bd8f70d33ebb85d39",
+      "observed_at": "2026-09-09T21:18:02.150887+00:00",
+      "api_response_sha256": "65d35f57ba6d5d62634ec185bfc02d4546029a6e72137fbad12e82c29123cfe9",
+      "file_count": 26,
+      "python_files": []
+    },
+    {
+      "repo": "Qwen/Qwen3-8B",
+      "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+      "observed_at": "2026-09-09T21:18:02.397386+00:00",
+      "api_response_sha256": "f87dc06a3025958b8214b495b9da3c213fa571b0a2714097a8d22cd3eaf92403",
+      "file_count": 15,
+      "python_files": []
+    },
+    {
+      "repo": "Qwen/Qwen3.8-27B",
+      "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "observed_at": "2026-09-09T21:18:02.655227+00:00",
+      "api_response_sha256": "33e3a2e6fda8b5a3d738d6fa22db4e6cb3599760e245949ae976b2d49d588c47",
+      "file_count": 32,
+      "python_files": []
+    },
+    {
+      "repo": "Qwen/Qwen3.8-Flash-Next",
+      "revision": "de4b8e4d43b917e7706784d8bb445c9af86a3540",
+      "observed_at": "2026-09-09T21:18:02.905736+00:00",
+      "api_response_sha256": "adcc1852c24fd6c272022f8e7eb50faacbb62ca74942f089c03e2d50590ae3da",
+      "file_count": 144,
+      "python_files": []
+    },
+    {
+      "repo": "deepseek-ai/DeepSeek-V2",
+      "revision": "4461458f186c35188585855f28f77af5661ad489",
+      "observed_at": "2026-09-09T21:18:03.142922+00:00",
+      "api_response_sha256": "6f500c8c2fb97a3d7c949173320139995a6734d3596b825ddab7537228f799c5",
+      "file_count": 66,
+      "python_files": [
+        "configuration_deepseek.py",
+        "modeling_deepseek.py",
+        "tokenization_deepseek_fast.py"
+      ]
+    },
+    {
+      "repo": "deepseek-ai/DeepSeek-V3",
+      "revision": "e815299b0bcbac849fa540c768ef21845365c9eb",
+      "observed_at": "2026-09-09T21:18:03.390917+00:00",
+      "api_response_sha256": "6e31e444608cd3e01702b6813c5969434bc44cdb3f0e68f43fa6a12058f3a50c",
+      "file_count": 185,
+      "python_files": [
+        "configuration_deepseek.py",
+        "inference/convert.py",
+        "inference/fp8_cast_bf16.py",
+        "inference/generate.py",
+        "inference/kernel.py",
+        "inference/model.py",
+        "modeling_deepseek.py"
+      ]
+    },
+    {
+      "repo": "moonshotai/Kimi-K3",
+      "revision": "f831ab66814297da540d832a5235f8e904f29d06",
+      "observed_at": "2026-09-09T21:18:03.639040+00:00",
+      "api_response_sha256": "3f885678845d9d38db242825454b33faf4e73634dcd1f837879d3a94e3b2df79",
+      "file_count": 119,
+      "python_files": [
+        "configuration_kimi_k3.py",
+        "encoding_k3.py",
+        "kimi_k3_processor.py",
+        "kimi_k3_vision_processing.py",
+        "media_utils.py",
+        "modeling_kimi_k3.py",
+        "modeling_kimi_linear.py",
+        "tokenization_kimi.py"
+      ]
+    }
+  ]
+}

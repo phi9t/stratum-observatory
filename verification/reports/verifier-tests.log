@@ -113,6 +113,12 @@ test_reviewed_true_is_not_a_signature (test_evidence.EvidenceTests.test_reviewed
 test_same_repository_cannot_fill_both_roles (test_evidence.EvidenceTests.test_same_repository_cannot_fill_both_roles) ... ok
 test_traversal_and_symlink_escape_rejected (test_evidence.EvidenceTests.test_traversal_and_symlink_escape_rejected) ... ok
 test_two_independent_code_references (test_evidence.EvidenceTests.test_two_independent_code_references) ... ok
+test_config_only_publisher_is_corroborated_by_two_organisations (test_evidence.IndependentCorroborationTests.test_config_only_publisher_is_corroborated_by_two_organisations) ... ok
+test_config_only_publisher_still_needs_more_than_one_organisation (test_evidence.IndependentCorroborationTests.test_config_only_publisher_still_needs_more_than_one_organisation) ... ok
+test_policy_set_matches_the_recorded_audit (test_evidence.IndependentCorroborationTests.test_policy_set_matches_the_recorded_audit) ... ok
+test_publisher_path_still_rejects_a_single_organisation (test_evidence.IndependentCorroborationTests.test_publisher_path_still_rejects_a_single_organisation) ... ok
+test_publisher_plus_independent_framework_still_satisfies (test_evidence.IndependentCorroborationTests.test_publisher_plus_independent_framework_still_satisfies) ... ok
+test_the_relaxation_does_not_leak_to_publishers_that_do_ship_code (test_evidence.IndependentCorroborationTests.test_the_relaxation_does_not_leak_to_publishers_that_do_ship_code) ... ok
 test_ambiguous_symbol_is_rejected (test_evidence.SymbolIndexTests.test_ambiguous_symbol_is_rejected) ... ok
 test_changed_content_is_not_served_from_the_memo (test_evidence.SymbolIndexTests.test_changed_content_is_not_served_from_the_memo) ... ok
 test_contains_tokens_still_enforced (test_evidence.SymbolIndexTests.test_contains_tokens_still_enforced) ... ok
@@ -248,6 +254,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 247 tests in 58.620s
+Ran 253 tests in 48.218s
 
 OK (skipped=1)
