@@ -1,0 +1,416 @@
+{
+  "schema": "stratum-observatory-scenario/v1",
+  "version": "3.0.0",
+  "state": {
+    "model": "ds3",
+    "view": "model",
+    "stage": "block",
+    "layer": 4,
+    "hardware": "gb300",
+    "context": 131072,
+    "batch": 1,
+    "kvBytes": 2,
+    "stateBytes": 4,
+    "weightBytes": 2,
+    "ranks": 8,
+    "placement": "colocated",
+    "trainMode": "rl",
+    "traffic": "handoff",
+    "fabric": "roce",
+    "library": "nvshmem",
+    "utilization": 70,
+    "oversub": 1,
+    "intensity": 2048,
+    "compare": "kimi3",
+    "theme": "dark",
+    "detail": "shapes",
+    "zoom": 1,
+    "trace": false
+  },
+  "model": {
+    "headDim": 128,
+    "vDim": 128,
+    "qRank": 1536,
+    "kvRank": 512,
+    "ropeDim": 64,
+    "nopeDim": 128,
+    "kvHeads": 128,
+    "experts": 256,
+    "shared": 1,
+    "topK": 8,
+    "expertFF": 2048,
+    "denseLayers": 3,
+    "latent": 0,
+    "linearHeads": 0,
+    "linearKeyHeads": 0,
+    "linearHeadDim": 128,
+    "convKernel": 4,
+    "residual": "standard",
+    "qkNorm": false,
+    "gate": false,
+    "mtp": 1,
+    "ngram": 0,
+    "vision": false,
+    "indexer": 0,
+    "pleLayers": [],
+    "maxContext": 131072,
+    "id": "ds3",
+    "name": "DeepSeek V3",
+    "family": "DeepSeek",
+    "repo": "deepseek-ai/DeepSeek-V3",
+    "generation": "V3",
+    "architecture": "mla",
+    "layers": 61,
+    "d": 7168,
+    "ff": 18432,
+    "heads": 128,
+    "vocab": 129280,
+    "total": 671000000000,
+    "active": 37000000000,
+    "scoring": "sigmoid",
+    "configMax": 163840,
+    "summary": "Latent KV. Auxiliary-loss-free routing.",
+    "sources": [
+      "ds3-config",
+      "ds3-code",
+      "ds-runtime",
+      "ds3-paper"
+    ]
+  },
+  "hardware": {
+    "id": "gb300",
+    "name": "GB300 NVL72",
+    "system": "GB300 NVL72",
+    "arch": "Blackwell Ultra",
+    "gpu": "B300",
+    "gpus": 72,
+    "hbmGB": 288,
+    "hbmTBps": 8,
+    "peakTF": 5000,
+    "peakFormat": "Dense FP8",
+    "nvGBps": 1800,
+    "nvGen": 5,
+    "switches": null,
+    "nicGbps": 800,
+    "nic": "ConnectX-8",
+    "cpus": 36,
+    "cpu": "Grace",
+    "powerW": null,
+    "sources": [
+      "gb300",
+      "blackwell-tuning"
+    ]
+  },
+  "parameters": {
+    "main": 671026419200,
+    "resident": 671026419200,
+    "ngram": 0,
+    "mtp": 0,
+    "hasMtp": true,
+    "active": 37000000000,
+    "approximate": false,
+    "embedding": 1853358080,
+    "routed": 653908770816,
+    "shared": 2554331136,
+    "attention": 11413547008,
+    "scope": "Calculated base text decoder, untied vocabulary and norms; excludes MTP, vision and quantization metadata."
+  },
+  "logicalState": {
+    "history": 9210691584,
+    "mla": 9210691584,
+    "gqa": 0,
+    "recurrent": 0,
+    "conv": 0,
+    "indexer": 0,
+    "total": 9210691584,
+    "global": 61,
+    "linear": 0,
+    "B": 1,
+    "S": 131072,
+    "exclusions": [
+      "Page rounding, scale/metadata storage, fragmentation and temporary workspace",
+      "Output-token reserve, distributed replication and retained prefix snapshots"
+    ],
+    "partial": true,
+    "formula": "61 × B × S × (512 + 64) × b_KV"
+  },
+  "references": {
+    "ds2-config": {
+      "title": "DeepSeek-V2 • released configuration",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V2/blob/44f7caf9e95112ea265b13f837bd43d520253548/config.json",
+      "role": "publisher_config",
+      "anchor": "hidden_size; num_hidden_layers; n_routed_experts; qk_rope_head_dim",
+      "revision": "44f7caf9e95112ea265b13f837bd43d520253548"
+    },
+    "ds2-code": {
+      "title": "DeepSeek-V2 • publisher model implementation",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V2/blob/44f7caf9e95112ea265b13f837bd43d520253548/modeling_deepseek.py",
+      "role": "publisher_code",
+      "anchor": "DeepseekV2Attention; DeepseekV2MoE; MoEGate",
+      "revision": "44f7caf9e95112ea265b13f837bd43d520253548"
+    },
+    "ds2-paper": {
+      "title": "DeepSeek-V2 technical report",
+      "url": "https://arxiv.org/abs/2405.04434",
+      "role": "report",
+      "anchor": "MLA and DeepSeekMoE"
+    },
+    "ds3-config": {
+      "title": "DeepSeek-V3 • released configuration",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3/blob/e815299b0bcbac849fa540c768ef21845365c9eb/config.json",
+      "role": "publisher_config",
+      "anchor": "first_k_dense_replace; n_shared_experts; num_nextn_predict_layers",
+      "revision": "e815299b0bcbac849fa540c768ef21845365c9eb"
+    },
+    "ds3-code": {
+      "title": "DeepSeek-V3 • publisher implementation",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3/blob/e815299b0bcbac849fa540c768ef21845365c9eb/modeling_deepseek.py",
+      "role": "publisher_code",
+      "anchor": "DeepseekV3Attention; DeepseekV3MoE; MoEGate",
+      "revision": "e815299b0bcbac849fa540c768ef21845365c9eb"
+    },
+    "ds3-paper": {
+      "title": "DeepSeek-V3 technical report",
+      "url": "https://arxiv.org/abs/2412.19437",
+      "role": "report",
+      "anchor": "Auxiliary-loss-free balancing, DualPipe, FP8 and MTP"
+    },
+    "ds-runtime": {
+      "title": "SGLang • DeepSeek execution path",
+      "url": "https://github.com/sgl-project/sglang/blob/2c05ed4e7776c876478f4b2db61acb12b9a27d01/python/sglang/srt/models/deepseek_v2.py",
+      "role": "framework_code",
+      "revision": "2c05ed4e7776c876478f4b2db61acb12b9a27d01",
+      "anchor": "DeepseekV2ForCausalLM; DeepseekV2AttentionMLA"
+    },
+    "q3-code": {
+      "title": "Transformers • Qwen3 attention",
+      "url": "https://github.com/huggingface/transformers/blob/c93057d4835cd31752bb56f59989dd27696eb45b/src/transformers/models/qwen3/modeling_qwen3.py",
+      "role": "publisher_code",
+      "revision": "c93057d4835cd31752bb56f59989dd27696eb45b",
+      "anchor": "Qwen3Attention: q_norm, k_norm, rotary embedding"
+    },
+    "q3-moe-code": {
+      "title": "Transformers • Qwen3 MoE",
+      "url": "https://github.com/huggingface/transformers/blob/c93057d4835cd31752bb56f59989dd27696eb45b/src/transformers/models/qwen3_moe/modeling_qwen3_moe.py",
+      "role": "publisher_code",
+      "revision": "c93057d4835cd31752bb56f59989dd27696eb45b",
+      "anchor": "Qwen3MoeSparseMoeBlock"
+    },
+    "q3-runtime": {
+      "title": "SGLang • Qwen3 attention",
+      "url": "https://github.com/sgl-project/sglang/blob/2c05ed4e7776c876478f4b2db61acb12b9a27d01/python/sglang/srt/models/qwen3.py",
+      "role": "framework_code",
+      "revision": "2c05ed4e7776c876478f4b2db61acb12b9a27d01",
+      "anchor": "Qwen3Attention"
+    },
+    "q3-moe-runtime": {
+      "title": "SGLang • Qwen3 MoE",
+      "url": "https://github.com/sgl-project/sglang/blob/2c05ed4e7776c876478f4b2db61acb12b9a27d01/python/sglang/srt/models/qwen3_moe.py",
+      "role": "framework_code",
+      "revision": "2c05ed4e7776c876478f4b2db61acb12b9a27d01",
+      "anchor": "Qwen3MoeForCausalLM"
+    },
+    "q3-paper": {
+      "title": "Qwen3 technical report",
+      "url": "https://arxiv.org/abs/2505.09388",
+      "role": "report",
+      "anchor": "Dense and mixture-of-experts model family"
+    },
+    "q38-config": {
+      "title": "Qwen3-8B • configuration",
+      "url": "https://huggingface.co/Qwen/Qwen3-8B/blob/b968826d9c46dd6066d109eabc6255188de91218/config.json",
+      "role": "publisher_config",
+      "anchor": "head_dim; num_attention_heads; num_key_value_heads",
+      "revision": "b968826d9c46dd6066d109eabc6255188de91218"
+    },
+    "q330-config": {
+      "title": "Qwen3-30B-A3B • configuration",
+      "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B/blob/d47d535f78ec44bd57128f8e8aeba17eeb0285ea/config.json",
+      "role": "publisher_config",
+      "anchor": "num_experts; moe_intermediate_size; num_hidden_layers",
+      "revision": "d47d535f78ec44bd57128f8e8aeba17eeb0285ea"
+    },
+    "q3235-config": {
+      "title": "Qwen3-235B-A22B • configuration",
+      "url": "https://huggingface.co/Qwen/Qwen3-235B-A22B/blob/d0aa57eb283a2d2489020470fde653a310b4ec6a/config.json",
+      "role": "publisher_config",
+      "anchor": "hidden_size=4096; num_attention_heads=64; head_dim=128",
+      "revision": "d0aa57eb283a2d2489020470fde653a310b4ec6a"
+    },
+    "q3827-config": {
+      "title": "Qwen3.8-27B • configuration",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/blob/72a217afab8029b39e4af1c7273a829995a3dbaf/config.json",
+      "role": "publisher_config",
+      "anchor": "text_config.layer_types; linear_num_value_heads; vision_config",
+      "revision": "72a217afab8029b39e4af1c7273a829995a3dbaf"
+    },
+    "q3827-card": {
+      "title": "Qwen3.8-27B • model card",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "role": "report",
+      "anchor": "Exact released variant; qwen3_5 architecture"
+    },
+    "q35-code": {
+      "title": "Transformers • hybrid GatedDeltaNet / attention",
+      "url": "https://github.com/huggingface/transformers/blob/c93057d4835cd31752bb56f59989dd27696eb45b/src/transformers/models/qwen3_5/modeling_qwen3_5.py",
+      "role": "publisher_code",
+      "revision": "c93057d4835cd31752bb56f59989dd27696eb45b",
+      "anchor": "Qwen3_5GatedDeltaNet; Qwen3_5Attention"
+    },
+    "q35-runtime": {
+      "title": "SGLang • Qwen3.5/3.8 execution family",
+      "url": "https://github.com/sgl-project/sglang/blob/2c05ed4e7776c876478f4b2db61acb12b9a27d01/python/sglang/srt/models/qwen3_5.py",
+      "role": "framework_code",
+      "revision": "2c05ed4e7776c876478f4b2db61acb12b9a27d01",
+      "anchor": "Qwen3_5ForConditionalGeneration"
+    },
+    "q38flash-config": {
+      "title": "Qwen3.8-Flash-Next • configuration",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/blob/34567a4712bc9766c4449e2e98e4468bfa24d915/config.json",
+      "role": "publisher_config",
+      "anchor": "text_config: hc_count, ple_layer_ids, indexer_budget, layer_types",
+      "revision": "34567a4712bc9766c4449e2e98e4468bfa24d915"
+    },
+    "q38flash-card": {
+      "title": "Qwen3.8-Flash-Next • model card",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+      "role": "report",
+      "anchor": "125B backbone + 51B n-gram + 4B MTP; QSA and gated residuals"
+    },
+    "q4-code": {
+      "title": "Transformers • Qwen4Exp reference implementation",
+      "url": "https://github.com/huggingface/transformers/blob/c93057d4835cd31752bb56f59989dd27696eb45b/src/transformers/models/qwen4_exp/modular_qwen4_exp.py",
+      "role": "publisher_code",
+      "revision": "c93057d4835cd31752bb56f59989dd27696eb45b",
+      "anchor": "Qwen4ExpTextConfig; QSA; PLE; hyper-connections"
+    },
+    "q4-runtime": {
+      "title": "vLLM • NVIDIA QSA execution path",
+      "url": "https://github.com/vllm-project/vllm/blob/6865e67f0be02d53694517f6f71d7fb96492792d/vllm/models/qwen4_exp/nvidia/qsa.py",
+      "role": "framework_code",
+      "revision": "6865e67f0be02d53694517f6f71d7fb96492792d",
+      "anchor": "Qwen4ExpQSAAttention"
+    },
+    "k3-config": {
+      "title": "Kimi K3 • released configuration",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/blob/c5d1dd4c428bd1ce8b88c5044f3b6ccde9e3b721/config.json",
+      "role": "publisher_config",
+      "revision": "c5d1dd4c428bd1ce8b88c5044f3b6ccde9e3b721",
+      "anchor": "text_config: use_mla, attn_res_block_size, routed_expert_hidden_size"
+    },
+    "k3-code": {
+      "title": "Kimi K3 • publisher text backbone",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/blob/c5d1dd4c428bd1ce8b88c5044f3b6ccde9e3b721/modeling_kimi_linear.py",
+      "role": "publisher_code",
+      "anchor": "KDA; latent MoE; attention residual; gated MLA",
+      "revision": "c5d1dd4c428bd1ce8b88c5044f3b6ccde9e3b721"
+    },
+    "k3-runtime": {
+      "title": "SGLang • Kimi K3 execution path",
+      "url": "https://github.com/sgl-project/sglang/blob/28457f0dcab4ccf748d60f2387a1a4a7fdb5a110/python/sglang/srt/models/kimi_k3.py",
+      "role": "framework_code",
+      "revision": "28457f0dcab4ccf748d60f2387a1a4a7fdb5a110",
+      "anchor": "KimiK3LinearForCausalLM; KimiK3ForConditionalGeneration"
+    },
+    "k3-paper": {
+      "title": "Kimi K3 technical report",
+      "url": "https://arxiv.org/html/2607.24653v1",
+      "role": "report",
+      "anchor": "KDA; Stable LatentMoE; Block Attention Residuals; training and RL"
+    },
+    "hopper-system": {
+      "title": "NVIDIA • DGX H100 / H200 user guide",
+      "url": "https://docs.nvidia.com/dgx/dgxh100-user-guide/introduction-to-dgxh100.html",
+      "role": "vendor_document",
+      "anchor": "Component descriptions; NVSwitch; ConnectX-7"
+    },
+    "h100": {
+      "title": "NVIDIA • H100 SXM specifications",
+      "url": "https://www.nvidia.com/en-us/data-center/h100/",
+      "role": "vendor_document",
+      "anchor": "SXM, HBM and dense/sparse tensor throughput"
+    },
+    "h200": {
+      "title": "NVIDIA • H200 SXM specifications",
+      "url": "https://www.nvidia.com/en-us/data-center/h200/",
+      "role": "vendor_document",
+      "anchor": "141 GB, 4.8 TB/s; SXM versus NVL"
+    },
+    "b200-system": {
+      "title": "NVIDIA • DGX B200 user guide",
+      "url": "https://docs.nvidia.com/dgx/dgxb200-user-guide/introduction-to-dgxb200.html",
+      "role": "vendor_document",
+      "anchor": "1,440 GB / eight GPUs; two NVLink switches; eight ConnectX-7"
+    },
+    "b200": {
+      "title": "NVIDIA • DGX B200 specifications",
+      "url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+      "role": "vendor_document",
+      "anchor": "64 TB/s aggregate HBM; 72 PFLOPS sparse FP8 / 8 / 2"
+    },
+    "gb300": {
+      "title": "NVIDIA • GB300 NVL72 specifications",
+      "url": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+      "role": "vendor_document",
+      "anchor": "72 Blackwell Ultra GPUs / 36 Grace CPUs; per-GPU versus rack scope"
+    },
+    "hopper-tuning": {
+      "title": "CUDA • Hopper tuning guide",
+      "url": "https://docs.nvidia.com/cuda/hopper-tuning-guide/index.html",
+      "role": "vendor_document",
+      "anchor": "Tensor memory accelerator; thread block clusters; memory hierarchy"
+    },
+    "blackwell-tuning": {
+      "title": "CUDA • Blackwell tuning guide",
+      "url": "https://docs.nvidia.com/cuda/blackwell-tuning-guide/index.html",
+      "role": "vendor_document",
+      "anchor": "Tensor memory; fifth-generation tensor cores"
+    },
+    "nccl": {
+      "title": "NCCL • collective operation semantics",
+      "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/usage/collectives.html",
+      "role": "vendor_document",
+      "anchor": "AllReduce, AllGather, ReduceScatter and AlltoAll"
+    },
+    "nvshmem": {
+      "title": "NVSHMEM • memory model and completion",
+      "url": "https://docs.nvidia.com/nvshmem/api/latest/using.html",
+      "role": "vendor_document",
+      "anchor": "Fence orders; quiet completes; receiver synchronization"
+    },
+    "nixl": {
+      "title": "NIXL • transfer layer",
+      "url": "https://github.com/ai-dynamo/nixl",
+      "role": "library_code",
+      "anchor": "Agent, memory registration, backend, asynchronous transfers and completion"
+    },
+    "roce": {
+      "title": "NVIDIA • RoCE congestion and loss policy",
+      "url": "https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/",
+      "role": "vendor_document",
+      "anchor": "ECN; PFC lossless versus explicitly lossy profiles"
+    },
+    "ib": {
+      "title": "NVIDIA • Quantum InfiniBand networking",
+      "url": "https://www.nvidia.com/en-us/networking/products/infiniband/",
+      "role": "vendor_document",
+      "anchor": "Scale-out fabric; adapters and switch hierarchy"
+    },
+    "fsdp": {
+      "title": "PyTorch • FullyShardedDataParallel",
+      "url": "https://docs.pytorch.org/docs/stable/fsdp.html",
+      "role": "framework_document",
+      "anchor": "FULL_SHARD; parameter all-gather; gradient reduce-scatter"
+    }
+  },
+  "evidence": {
+    "referenceRecords": 41,
+    "snapshots": 0,
+    "independentReviews": 0,
+    "publication": "BLOCKED",
+    "runtime": "NOT_RUN",
+    "reason": "References inspected; immutable source bytes, exact semantic anchors and independent signatures are not accepted in this artifact."
+  },
+  "scientificStatus": "BLOCKED",
+  "runtimeStatus": "NOT_RUN"
+}

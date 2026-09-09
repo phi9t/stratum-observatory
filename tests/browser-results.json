@@ -1,0 +1,25 @@
+{
+  "schema": "stratum-browser-tests/v2",
+  "browser": "Chromium",
+  "geometry_states": 1336,
+  "responsive_states": 56,
+  "device_scale_states": 32,
+  "geometry_defects": 0,
+  "runtime_errors": 0,
+  "external_runtime_requests": 0,
+  "interactive_checks": "passed",
+  "exports": "independent SVG rendering and JSON passed",
+  "models": {
+    "ds2": 60,
+    "ds3": 61,
+    "q38": 36,
+    "q330": 48,
+    "q3235": 94,
+    "q3827": 64,
+    "q38flash": 48,
+    "kimi3": 93
+  },
+  "failures": [],
+  "errors": [],
+  "requests": []
+}

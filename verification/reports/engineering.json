@@ -1,0 +1,77 @@
+{
+  "schema": "stratum-engineering/v1",
+  "status": "PASS",
+  "started_at": "2026-09-06T20:36:34.703389+00:00",
+  "completed_at": "2026-09-06T20:37:20.906862+00:00",
+  "consumer_sha256": "6b3fb3c23d8c4f9b0a305d205bf7f236cbef12b5fc174f93a6984731031074f6",
+  "verifier_sha256": "4728343c2115113bdabb5041aef42cd05eae781b8b04227da91f1f34bfa68156",
+  "lock_sha256": "aea0f169461434357667aa080840dffc36858f3a88bbcdb4dec3fec157bc6f0d",
+  "artifact_sha256": "2df8de74b7d21cae84e4849a65c860c3d69463a0f3b530ff9a66af0b2655b51f",
+  "deterministic_build": true,
+  "commands": {
+    "verifier-tests": {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "verification/tests",
+        "-v"
+      ],
+      "exit": 0
+    },
+    "node-tests": {
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "exit": 0
+    },
+    "build": {
+      "argv": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit": 0
+    },
+    "browser": {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "tests/browser.test.py"
+      ],
+      "exit": 0
+    }
+  },
+  "browser": {
+    "schema": "stratum-browser-tests/v2",
+    "browser": "Chromium",
+    "geometry_states": 1336,
+    "responsive_states": 56,
+    "device_scale_states": 32,
+    "geometry_defects": 0,
+    "runtime_errors": 0,
+    "external_runtime_requests": 0,
+    "interactive_checks": "passed",
+    "exports": "independent SVG rendering and JSON passed",
+    "models": {
+      "ds2": 60,
+      "ds3": 61,
+      "q38": 36,
+      "q330": 48,
+      "q3235": 94,
+      "q3827": 64,
+      "q38flash": 48,
+      "kimi3": 93
+    },
+    "failures": [],
+    "errors": [],
+    "requests": []
+  },
+  "test_counts": {
+    "verifier": 117,
+    "atlas": 40
+  },
+  "scope": "Local software/geometry tests only. Does not attest to upstream source truth, GPU execution or physical fabric conformance."
+}

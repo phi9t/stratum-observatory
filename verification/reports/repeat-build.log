@@ -1,0 +1,5 @@
+
+> stratum-model-systems-observatory@3.0.0 build
+> node build.mjs
+
+Built dist/index.html: 164 KiB, eight models, no external runtime assets.
