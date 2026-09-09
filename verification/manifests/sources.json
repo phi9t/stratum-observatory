@@ -371,7 +371,7 @@
     },
     {
       "id": "q3-code",
-      "role": "publisher_code",
+      "role": "framework_code",
       "kind": "git",
       "provider": "github",
       "repo": "huggingface/transformers",
@@ -384,7 +384,7 @@
     },
     {
       "id": "q3-moe-code",
-      "role": "publisher_code",
+      "role": "framework_code",
       "kind": "git",
       "provider": "github",
       "repo": "huggingface/transformers",
@@ -485,7 +485,7 @@
     },
     {
       "id": "q35-code",
-      "role": "publisher_code",
+      "role": "framework_code",
       "kind": "git",
       "provider": "github",
       "repo": "huggingface/transformers",
@@ -524,7 +524,7 @@
     },
     {
       "id": "q4-code",
-      "role": "publisher_code",
+      "role": "framework_code",
       "kind": "git",
       "provider": "github",
       "repo": "huggingface/transformers",

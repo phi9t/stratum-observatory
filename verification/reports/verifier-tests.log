@@ -42,6 +42,13 @@ test_unknown_domain_fails (test_domains.DomainTests.test_unknown_domain_fails) .
 test_visual_label_requires_claim (test_domains.DomainTests.test_visual_label_requires_claim) ... ok
 test_visual_overflow (test_domains.DomainTests.test_visual_overflow) ... ok
 test_wrong_capability (test_domains.DomainTests.test_wrong_capability) ... ok
+test_quote_absent_from_the_source_is_rejected (test_evidence.AnchorSelfCertificationTests.test_quote_absent_from_the_source_is_rejected) ... ok
+test_quote_hashed_against_itself_is_not_accepted (test_evidence.AnchorSelfCertificationTests.test_quote_hashed_against_itself_is_not_accepted) ... ok
+test_catalog_declares_no_third_party_publisher (test_evidence.DualCodeIndependenceTests.test_catalog_declares_no_third_party_publisher) ... ok
+test_framework_alone_is_not_dual_code (test_evidence.DualCodeIndependenceTests.test_framework_alone_is_not_dual_code) ... ok
+test_genuine_publisher_and_independent_framework_are_accepted (test_evidence.DualCodeIndependenceTests.test_genuine_publisher_and_independent_framework_are_accepted) ... ok
+test_transformers_is_not_a_publisher (test_evidence.DualCodeIndependenceTests.test_transformers_is_not_a_publisher) ... ok
+test_two_repos_from_one_organization_are_not_independent (test_evidence.DualCodeIndependenceTests.test_two_repos_from_one_organization_are_not_independent) ... ok
 test_ambiguous_symbol_rejected (test_evidence.EvidenceTests.test_ambiguous_symbol_rejected) ... ok
 test_anchor_hash_catches_shifted_or_changed_span (test_evidence.EvidenceTests.test_anchor_hash_catches_shifted_or_changed_span) ... ok
 test_api_exists (test_evidence.EvidenceTests.test_api_exists) ... ok
@@ -109,7 +116,8 @@ test_yaml_workflows_are_covered (test_integration.ToolchainDigestTests.test_yaml
 test_dense_model_is_not_forced_to_invent_experts (test_observatory.ObservatoryTests.test_dense_model_is_not_forced_to_invent_experts) ... ok
 test_dense_with_routed_topk_is_rejected (test_observatory.ObservatoryTests.test_dense_with_routed_topk_is_rejected) ... ok
 test_live_inventory_covers_new_renderer_modules_and_all_presets (test_observatory.ObservatoryTests.test_live_inventory_covers_new_renderer_modules_and_all_presets) ... ok
-test_registered_qwen_reference_is_publisher_code_not_a_config_substitute (test_observatory.ObservatoryTests.test_registered_qwen_reference_is_publisher_code_not_a_config_substitute) ... ok
+test_qwen_has_no_publisher_implementation_to_register (test_observatory.ObservatoryTests.test_qwen_has_no_publisher_implementation_to_register) ... ok
+test_registered_qwen_reference_is_code_not_a_config_substitute (test_observatory.ObservatoryTests.test_registered_qwen_reference_is_code_not_a_config_substitute) ... ok
 test_changed_evidence_digest_rejected (test_reviews.SignedReviewTests.test_changed_evidence_digest_rejected) ... ok
 test_expired_review_rejected (test_reviews.SignedReviewTests.test_expired_review_rejected) ... ok
 test_real_ed25519_acceptance (test_reviews.SignedReviewTests.test_real_ed25519_acceptance) ... ok
@@ -142,6 +150,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 142 tests in 21.638s
+Ran 150 tests in 25.192s
 
 OK
