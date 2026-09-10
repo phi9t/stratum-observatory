@@ -144,6 +144,19 @@ def check_receipt(root, receipt, expected_lock, inventory):
         out.append(Finding('ENGINEERING_CURRENT','release','PASS','engineering','Fresh receipt binds tests, source, evidence lock and portable artifact, and its browser result agrees with the file the suite wrote.'))
     return out
 
+def roles_from_dependencies(claim,claim_status,claim_sources):
+    """Source dicts contributed by dependencies that are themselves verified.
+
+    A derivation is only as good as its inputs, so a dependency lends its evidence roles to its
+    dependent exactly when that dependency has passed. An unverified input lends nothing, which
+    is what makes this stricter than copying its citations into the dependent claim.
+    """
+    out=[]
+    for dep in claim.get('dependencies',[]):
+        if claim_status.get(dep)=='PASS':
+            out.extend(claim_sources.get(dep,[]))
+    return out
+
 def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publication',reviews=None,receipt=None,runtime=None):
     if profile not in PROFILES:raise ValueError(f'Unknown verification profile: {profile}')
     root=Path(root); reviews=reviews or {}; runtime=runtime or {}; findings=[]
@@ -164,7 +177,7 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
     ids=[s.get('id') for s in rawsources if isinstance(s,dict)]
     if len(ids)!=len(set(ids)) or len(ids)!=len(rawsources):add('SOURCE_DUPLICATE','evidence','FAIL','sources','Sources must have unique IDs and object values.')
     sources={s['id']:s for s in rawsources if isinstance(s,dict) and isinstance(s.get('id'),str)}
-    lock=digest({'target':target,'catalog':catalog}); claim_status={}; source_status={}
+    lock=digest({'target':target,'catalog':catalog}); claim_status={}; claim_sources={}; source_status={}
     if not sources:add('SOURCES_EMPTY','evidence','BLOCKED','sources','No source catalog.')
     for sid,s in sources.items():
         issues=check_source(s,root);findings.extend(issues);source_status[sid]=aggregate(issues) if issues else 'PASS'
@@ -198,19 +211,9 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
                 except (ValueError,KeyError,TypeError) as exc:add('UPSTREAM_VALUE','evidence','FAIL',cid,str(exc))
             elif e.get('relation') not in ('equal','consumes','implements','documents','derives'):
                 add('EVIDENCE_RELATION','evidence','FAIL',cid,'Unknown evidence relation.')
+        claim_sources[cid]=referents
         if c.get('classification')=='documented' and not evid:
             add('DOCUMENTED_NO_SOURCE',domain or 'evidence','BLOCKED',cid,'A documented scientific claim requires a concrete source anchor, not only a review.')
-        roles={s['role'] for s in referents}
-        # A publisher that ships only configuration has no implementation to cite. Which path
-        # applies is decided by the recorded audit, never by which sources happen to be present.
-        publisher_repos={s.get('repo') for s in referents if s.get('role')=='publisher_config'}
-        ships_code=not (publisher_repos and publisher_repos<=CONFIG_ONLY_PUBLISHERS)
-        for role in required_roles(c,publisher_ships_code=ships_code):
-            if role not in roles:add('CLAIM_ROLE',domain,'BLOCKED',cid,f'Required {role} anchor is missing.')
-        if domain=='model' and c.get('classification') not in ('presentation','assumed') and not dual_code_roles(referents,publisher_ships_code=ships_code):
-            add('MODEL_DUAL_CODE','model','BLOCKED',cid,
-                'Requires publisher implementation AND independent framework implementation.' if ships_code else
-                'Publisher ships configuration only, so this needs independent implementations from at least two organizations.')
         if c.get('classification')=='derived' and not c.get('dependencies'):
             add('DERIVATION_INPUTS',domain or 'evidence','BLOCKED',cid,'Derived claim has no explicit input-claim dependencies.')
         if c.get('classification')=='assumed' and (not c.get('scope') or not c.get('units')):
@@ -222,14 +225,44 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
         own=findings[start:]+by_claim.get(str(cid),[])
         claim_status[cid]=aggregate(own) if own else 'PASS'
         if claim_status[cid]=='PASS':add('CLAIM_VERIFIED',domain,'PASS',cid,'Registered consumer, source obligations and applicable review checks passed.')
+    def unverify(cid):
+        """A demoted claim must not keep a PASS finding asserting that it verified."""
+        for verified in [f for f in findings if f.code=='CLAIM_VERIFIED' and f.subject==str(cid)]:findings.remove(verified)
     # Derivations cannot launder unresolved inputs into a verified total.
-    for _ in range(len(claims)):
-        changed=False
-        for c in claims:
-            cid=c.get('id')
-            if claim_status.get(cid)=='PASS' and any(claim_status.get(d)!='PASS' for d in c.get('dependencies',[])):
-                claim_status[cid]='BLOCKED';add('DEPENDENCY_BLOCKED',c['domain'],'BLOCKED',cid,'A derivation input is unverified.');changed=True
-        if not changed:break
+    def propagate():
+        for _ in range(len(claims)):
+            changed=False
+            for c in claims:
+                cid=c.get('id','<missing>')
+                if claim_status.get(cid)=='PASS' and any(claim_status.get(d)!='PASS' for d in c.get('dependencies',[])):
+                    claim_status[cid]='BLOCKED';add('DEPENDENCY_BLOCKED',c.get('domain'),'BLOCKED',cid,'A derivation input is unverified.');unverify(cid);changed=True
+            if not changed:break
+    propagate()  # resolve inputs first, so roles can only be inherited from claims that passed
+    # Roles are resolved after the fixpoint so a derived claim can inherit them from inputs that
+    # actually verified. Doing this in the first pass would let an unverified input lend a role.
+    for c in claims:
+        cid=c.get('id','<missing>');domain=c.get('domain');start=len(findings)
+        # A derivation's standing is its inputs' standing. Its own citation list is, by
+        # construction, a COPY of what its inputs cite, and copying a citation adds no
+        # independent reading of the architecture -- so for a derived claim the referents are
+        # exactly what its VERIFIED inputs contribute, and nothing else.
+        referents=roles_from_dependencies(c,claim_status,claim_sources) if c.get('classification')=='derived' else list(claim_sources.get(cid,[]))
+        roles={s['role'] for s in referents}
+        # A publisher that ships only configuration has no implementation to cite. Which path
+        # applies is decided by the recorded audit, never by which sources happen to be present.
+        publisher_repos={s.get('repo') for s in referents if s.get('role')=='publisher_config'}
+        ships_code=not (publisher_repos and publisher_repos<=CONFIG_ONLY_PUBLISHERS)
+        for role in required_roles(c,publisher_ships_code=ships_code):
+            if role not in roles:add('CLAIM_ROLE',domain,'BLOCKED',cid,f'Required {role} anchor is missing.')
+        if domain=='model' and c.get('classification') not in ('presentation','assumed') and not dual_code_roles(referents,publisher_ships_code=ships_code):
+            add('MODEL_DUAL_CODE','model','BLOCKED',cid,
+                'Requires publisher implementation AND independent framework implementation.' if ships_code else
+                'Publisher ships configuration only, so this needs independent implementations from at least two organizations.')
+        if findings[start:]:
+            # A claim already FAILing keeps that status; a passing one is taken back to BLOCKED.
+            if claim_status.get(cid,'PASS')=='PASS':claim_status[cid]='BLOCKED'
+            unverify(cid)
+    propagate()  # a claim the role pass just demoted must demote its dependents too
     bydomain={d:[] for d in DOMAINS}
     seen_contracts=set()
     for rec in contracts:
