@@ -118,6 +118,17 @@ class RecordShapeTests(unittest.TestCase):
   self.assertEqual(a['topology']['rows'][0]['peers']['GPU1'],'NV18')
   self.assertEqual(a['topology']['nic_legend']['NIC0'],'mlx5_0')
 
+ def test_a_memory_only_numa_node_is_recorded_with_an_empty_cpu_list(self):
+  # A Grace-Blackwell host exposes device memory as CPU-less NUMA nodes: numactl prints
+  # `node 2 cpus:` with nothing after it. An empty CPU list is a fact the tool reported,
+  # not a value it withheld, so the model has to be able to carry it.
+  _,nodes,_=probe.parse_numactl('available: 3 nodes (0-2)\nnode 0 cpus: 0 1\n'
+                                'node 0 size: 10 MB\nnode 2 cpus:\nnode 2 size: 0 MB\n')
+  self.assertEqual(nodes[2]['cpus'],'')
+  record=json.loads(json.dumps(self.baseline))
+  record['attested']['numa']['nodes'].append({'node':9,'cpus':'','size_mb':0})
+  self.assertEqual(shape_validate(record,self.schema),[])
+
  def test_telemetry_is_recorded_but_kept_out_of_the_attested_half(self):
   t=self.baseline['transient']
   self.assertEqual(t['gpus'][0]['temperature_c'],30)
@@ -230,6 +241,81 @@ class AbsenceTests(unittest.TestCase):
 
  def test_an_absent_capture_does_not_silently_shrink_the_digest_to_the_same_value(self):
   self.assertNotEqual(self.partial['hardware_sha256'],self.baseline['hardware_sha256'])
+
+
+class RejectedFieldTests(unittest.TestCase):
+ """A --query-gpu name this driver does not implement.
+
+ nvidia-smi refuses the whole query over one unknown field name, so a single wrong name would
+ otherwise cost every GPU attribute in the capture. The probe drops exactly the names the
+ driver refused, keeps the refusal itself as a checksummed artifact, and names each dropped
+ field in `unavailable` with the driver's own words. Nothing is guessed in its place.
+ """
+ @classmethod
+ def setUpClass(cls):
+  cls.baseline=probe.build_record(FIXTURES/'probe-baseline')
+  cls.reduced=probe.build_record(FIXTURES/'probe-rejected-field')
+
+ def test_the_driver_s_refusal_names_the_field_it_refused(self):
+  self.assertEqual(probe.rejected_fields('Field "pci.link.gen.max" is not a valid field to query.\n'),
+                   ['pci.link.gen.max'])
+  self.assertEqual(probe.rejected_fields('no GPUs were found\n'),[])
+
+ def test_a_refused_field_is_dropped_and_the_rest_of_the_query_survives(self):
+  argv=['nvidia-smi','--query-gpu=index,pci.link.gen.max,name','--format=csv,noheader,nounits']
+  self.assertEqual(probe.query_fields(argv),['index','pci.link.gen.max','name'])
+  self.assertEqual(probe.without_fields(argv,['pci.link.gen.max']),
+                   ['nvidia-smi','--query-gpu=index,name','--format=csv,noheader,nounits'])
+  self.assertIsNone(probe.without_fields(argv,['index','pci.link.gen.max','name']))
+
+ def test_the_surviving_fields_are_still_read_out_of_the_right_columns(self):
+  # The CSV is positional: dropping a field shifts every column after it. Read the effective
+  # field list back out of the ledger's argv or every remaining value is silently wrong.
+  gpu=self.reduced['attested']['gpus'][0]
+  self.assertEqual(gpu['memory']['total_mib'],81559)
+  self.assertEqual(gpu['memory']['reserved_mib'],573)
+  self.assertEqual(gpu['vbios_version'],'96.00.74.00.11')
+  self.assertEqual(gpu['power']['max_limit_w'],700.0)
+  self.assertEqual(gpu['ecc_mode']['current'],'Enabled')
+  self.assertEqual(gpu['pci']['sub_device_id'],'0x16C110DE')
+  self.assertEqual(self.reduced['transient']['gpus'][0]['memory_free_mib'],80986)
+  self.assertEqual(self.reduced['transient']['gpus'][0]['clocks_sm_mhz'],345)
+
+ def test_a_refused_field_is_absent_from_the_record_never_defaulted(self):
+  gpu=self.reduced['attested']['gpus'][0]
+  self.assertNotIn('link_gen_max',gpu['pci'])
+  self.assertNotIn('link_width_max',gpu['pci'])
+  self.assertNotIn('clocks_memory_mhz',self.reduced['transient']['gpus'][0])
+  self.assertNotIn('link_gen_current',self.reduced['transient']['gpus'][0])
+  # and the baseline, where the driver accepted them, does carry them
+  self.assertEqual(self.baseline['attested']['gpus'][0]['pci']['link_gen_max'],5)
+
+ def test_a_refused_field_is_named_in_unavailable_with_the_driver_s_reason(self):
+  missing={u['field']:u for u in self.reduced['unavailable']}
+  for field,reason in (('attested.gpus[].pci.link_gen_max','pci.link.gen.max'),
+                       ('attested.gpus[].pci.link_width_max','pci.link.width.max'),
+                       ('transient.gpus[].clocks_memory_mhz','clocks.memory'),
+                       ('transient.gpus[].link_gen_current','pci.link.gen.current'),
+                       ('transient.gpus[].link_width_current','pci.link.width.current')):
+   self.assertIn(field,missing)
+   self.assertEqual(missing[field]['reason'],f'Field "{reason}" is not a valid field to query.')
+   self.assertTrue(missing[field]['command'].endswith(tuple('12345')),missing[field]['command'])
+
+ def test_the_refusal_itself_is_kept_as_a_checksummed_artifact(self):
+  ledger={c['id']:c for c in self.reduced['commands']}
+  self.assertEqual(ledger['gpu_attested_rejected_1']['status'],'NOT_RUN')
+  self.assertEqual(ledger['gpu_attested_rejected_1']['exit'],2)
+  self.assertIn('sha256',ledger['gpu_attested_rejected_1'])
+  self.assertIn('is not a valid field to query',ledger['gpu_attested_rejected_1']['reason'])
+
+ def test_every_queried_gpu_field_names_the_record_field_it_feeds(self):
+  # The map is what lets a refusal be reported against a record field rather than a CSV
+  # column. It must not drift from the query strings on either side.
+  self.assertEqual(sorted(probe.ATTESTED_GPU_FIELDS.split(',')),sorted(probe.ATTESTED_GPU_PATHS))
+  self.assertEqual(sorted(probe.TRANSIENT_GPU_FIELDS.split(',')),sorted(probe.TRANSIENT_GPU_PATHS))
+
+ def test_a_reduced_capture_does_not_collide_with_the_full_one(self):
+  self.assertNotEqual(self.reduced['hardware_sha256'],self.baseline['hardware_sha256'])
 
 
 class FixtureContainmentTests(unittest.TestCase):

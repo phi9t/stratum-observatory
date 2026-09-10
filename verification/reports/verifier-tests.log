@@ -171,6 +171,7 @@ test_no_captured_evidence_record_is_fixture_marked (test_hardware.FixtureContain
 test_every_command_is_a_known_read_only_utility (test_hardware.ReadOnlyCommandTests.test_every_command_is_a_known_read_only_utility) ... ok
 test_no_nvidia_smi_command_can_change_the_device (test_hardware.ReadOnlyCommandTests.test_no_nvidia_smi_command_can_change_the_device) ... ok
 test_the_existing_obligation_fields_are_still_captured (test_hardware.ReadOnlyCommandTests.test_the_existing_obligation_fields_are_still_captured) ... ok
+test_a_memory_only_numa_node_is_recorded_with_an_empty_cpu_list (test_hardware.RecordShapeTests.test_a_memory_only_numa_node_is_recorded_with_an_empty_cpu_list) ... ok
 test_a_recorded_capture_conforms_to_the_schema (test_hardware.RecordShapeTests.test_a_recorded_capture_conforms_to_the_schema) ... ok
 test_every_fixture_capture_conforms_to_the_schema (test_hardware.RecordShapeTests.test_every_fixture_capture_conforms_to_the_schema) ... ok
 test_every_pattern_in_the_schema_is_anchored (test_hardware.RecordShapeTests.test_every_pattern_in_the_schema_is_anchored) ... ok
@@ -178,6 +179,14 @@ test_telemetry_is_recorded_but_kept_out_of_the_attested_half (test_hardware.Reco
 test_the_record_carries_the_comprehensive_field_set (test_hardware.RecordShapeTests.test_the_record_carries_the_comprehensive_field_set) ... ok
 test_the_schema_is_versioned_and_declares_both_halves (test_hardware.RecordShapeTests.test_the_schema_is_versioned_and_declares_both_halves) ... ok
 test_the_schema_uses_only_keywords_this_validator_implements (test_hardware.RecordShapeTests.test_the_schema_uses_only_keywords_this_validator_implements) ... ok
+test_a_reduced_capture_does_not_collide_with_the_full_one (test_hardware.RejectedFieldTests.test_a_reduced_capture_does_not_collide_with_the_full_one) ... ok
+test_a_refused_field_is_absent_from_the_record_never_defaulted (test_hardware.RejectedFieldTests.test_a_refused_field_is_absent_from_the_record_never_defaulted) ... ok
+test_a_refused_field_is_dropped_and_the_rest_of_the_query_survives (test_hardware.RejectedFieldTests.test_a_refused_field_is_dropped_and_the_rest_of_the_query_survives) ... ok
+test_a_refused_field_is_named_in_unavailable_with_the_driver_s_reason (test_hardware.RejectedFieldTests.test_a_refused_field_is_named_in_unavailable_with_the_driver_s_reason) ... ok
+test_every_queried_gpu_field_names_the_record_field_it_feeds (test_hardware.RejectedFieldTests.test_every_queried_gpu_field_names_the_record_field_it_feeds) ... ok
+test_the_driver_s_refusal_names_the_field_it_refused (test_hardware.RejectedFieldTests.test_the_driver_s_refusal_names_the_field_it_refused) ... ok
+test_the_refusal_itself_is_kept_as_a_checksummed_artifact (test_hardware.RejectedFieldTests.test_the_refusal_itself_is_kept_as_a_checksummed_artifact) ... ok
+test_the_surviving_fields_are_still_read_out_of_the_right_columns (test_hardware.RejectedFieldTests.test_the_surviving_fields_are_still_read_out_of_the_right_columns) ... ok
 test_replay_is_deterministic (test_hardware.ReplayIntegrityTests.test_replay_is_deterministic) ... ok
 test_replaying_a_capture_whose_artifact_drifted_is_refused (test_hardware.ReplayIntegrityTests.test_replaying_a_capture_whose_artifact_drifted_is_refused) ... ok
 test_a_binding_to_a_missing_consumer_is_reported (test_integration.ContractBindingTests.test_a_binding_to_a_missing_consumer_is_reported) ... ok
@@ -331,22 +340,34 @@ Without this, every demotion assertion below would be trivially true. ... ok
 test_the_role_pass_demotes_a_claim_that_had_already_reached_pass (test_runner_order.VerifiedDependencyTests.test_the_role_pass_demotes_a_claim_that_had_already_reached_pass)
 scene.x.b has no evidence of its own and its only input is a vendor document, so the ... ok
 test_unresolvable_anchors_block_the_input_claim (test_runner_order.VerifiedDependencyTests.test_unresolvable_anchors_block_the_input_claim) ... ok
+test_each_binds_the_contract_record_it_attests (test_runtime_binding.CapturedHardwareTests.test_each_binds_the_contract_record_it_attests) ... ok
+test_each_binds_the_current_hardware_data_model (test_runtime_binding.CapturedHardwareTests.test_each_binds_the_current_hardware_data_model) ... ok
+test_each_carried_hardware_digest_re_derives_from_the_capture (test_runtime_binding.CapturedHardwareTests.test_each_carried_hardware_digest_re_derives_from_the_capture) ... ok
+test_each_names_the_hardware_record_it_rests_on (test_runtime_binding.CapturedHardwareTests.test_each_names_the_hardware_record_it_rests_on) ... ok
+test_no_accepted_receipt_rests_on_a_fixture_capture (test_runtime_binding.CapturedHardwareTests.test_no_accepted_receipt_rests_on_a_fixture_capture) ... ok
+test_the_repository_carries_accepted_hardware_receipts_to_check (test_runtime_binding.CapturedHardwareTests.test_the_repository_carries_accepted_hardware_receipts_to_check) ... ok
 test_a_behavioural_receipt_with_a_stale_consumer_digest_still_fails (test_runtime_binding.RuntimeBindingTests.test_a_behavioural_receipt_with_a_stale_consumer_digest_still_fails) ... ok
 test_a_behavioural_receipt_with_a_stale_lock_still_fails (test_runtime_binding.RuntimeBindingTests.test_a_behavioural_receipt_with_a_stale_lock_still_fails) ... ok
 test_a_changed_contract_record_fails_the_receipt (test_runtime_binding.RuntimeBindingTests.test_a_changed_contract_record_fails_the_receipt) ... ok
 test_a_completed_hardware_receipt_raises_no_binding_finding_at_all (test_runtime_binding.RuntimeBindingTests.test_a_completed_hardware_receipt_raises_no_binding_finding_at_all)
 Survival is not merely the absence of RUNTIME_STALE: nothing about the binding may ... ok
+test_a_hand_written_hardware_digest_is_caught (test_runtime_binding.RuntimeBindingTests.test_a_hand_written_hardware_digest_is_caught)
+`hardware_sha256` is re-derived from the capture the receipt names, not merely carried. ... ok
 test_a_hardware_receipt_cannot_stand_in_for_another_sku (test_runtime_binding.RuntimeBindingTests.test_a_hardware_receipt_cannot_stand_in_for_another_sku) ... ok
 test_a_hardware_receipt_survives_a_claim_manifest_edit (test_runtime_binding.RuntimeBindingTests.test_a_hardware_receipt_survives_a_claim_manifest_edit) ... ok
 test_a_hardware_receipt_survives_a_source_file_edit (test_runtime_binding.RuntimeBindingTests.test_a_hardware_receipt_survives_a_source_file_edit)
 Relabelling a wire changes the function/file digests. It is not a hardware fact. ... ok
+test_a_hardware_record_that_is_not_a_valid_capture_fails (test_runtime_binding.RuntimeBindingTests.test_a_hardware_record_that_is_not_a_valid_capture_fails) ... ok
+test_a_hardware_record_the_receipt_does_not_checksum_is_blocked (test_runtime_binding.RuntimeBindingTests.test_a_hardware_record_the_receipt_does_not_checksum_is_blocked)
+Re-deriving from bytes is only worth anything if those bytes are pinned by the receipt. ... ok
 test_a_moved_bound_core_value_fails_the_receipt (test_runtime_binding.RuntimeBindingTests.test_a_moved_bound_core_value_fails_the_receipt)
 The digest covers the record the gate judges, bindings applied. Changing the HBM ... ok
 test_a_receipt_naming_no_captured_hardware_state_is_blocked (test_runtime_binding.RuntimeBindingTests.test_a_receipt_naming_no_captured_hardware_state_is_blocked)
-Carried, not re-derived -- but a receipt that names no capture at all leaves a reader ... ok
+A receipt with no attested-state digest names nothing to re-derive, which leaves a reader ... ok
 test_a_receipt_naming_no_contract_record_is_blocked (test_runtime_binding.RuntimeBindingTests.test_a_receipt_naming_no_contract_record_is_blocked) ... ok
+test_a_receipt_naming_no_hardware_record_cannot_have_its_digest_checked (test_runtime_binding.RuntimeBindingTests.test_a_receipt_naming_no_hardware_record_cannot_have_its_digest_checked) ... ok
 test_a_receipt_without_the_new_fields_is_blocked_not_passed_and_not_failed (test_runtime_binding.RuntimeBindingTests.test_a_receipt_without_the_new_fields_is_blocked_not_passed_and_not_failed)
-The accepted receipts predate this binding. That is missing evidence: they must block, ... ok
+A receipt captured before this binding existed. That is missing evidence: it must block, ... ok
 test_a_superseded_data_model_blocks_and_names_the_re_probe (test_runtime_binding.RuntimeBindingTests.test_a_superseded_data_model_blocks_and_names_the_re_probe) ... ok
 test_artifact_tampering_is_still_caught_for_a_hardware_receipt (test_runtime_binding.RuntimeBindingTests.test_artifact_tampering_is_still_caught_for_a_hardware_receipt) ... ok
 test_expiry_still_retires_a_hardware_receipt (test_runtime_binding.RuntimeBindingTests.test_expiry_still_retires_a_hardware_receipt)
@@ -400,6 +421,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 364 tests in 105.880s
+Ran 383 tests in 100.068s
 
 OK (skipped=2)

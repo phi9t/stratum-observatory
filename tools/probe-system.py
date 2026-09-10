@@ -37,6 +37,31 @@ TRANSIENT_GPU_FIELDS=('index,uuid,pstate,temperature.gpu,fan.speed,power.draw,ut
  'utilization.memory,memory.used,memory.free,clocks.sm,clocks.memory,pci.link.gen.current,'
  'pci.link.width.current,ecc.errors.corrected.volatile.total,ecc.errors.uncorrected.volatile.total')
 
+# Every queried field and the per-GPU record field it feeds. nvidia-smi refuses an entire query
+# over one name it does not implement, so the probe drops the refused names and asks again; this
+# map is what lets the resulting absence be reported against the record field a reader is looking
+# for rather than against a CSV column. `driver_version` is queried per device as a cross-check
+# and the record reads the driver from the richer `nvidia-smi -q` output instead.
+ATTESTED_GPU_PATHS={'index':'index','name':'name','uuid':'uuid','serial':'serial',
+ 'pci.bus_id':'pci.bus_id','pci.device_id':'pci.device_id','pci.sub_device_id':'pci.sub_device_id',
+ 'pci.link.gen.max':'pci.link_gen_max','pci.link.width.max':'pci.link_width_max',
+ 'driver_version':'driver_version','vbios_version':'vbios_version','compute_cap':'compute_capability',
+ 'memory.total':'memory.total_mib','memory.reserved':'memory.reserved_mib',
+ 'ecc.mode.current':'ecc_mode.current','ecc.mode.pending':'ecc_mode.pending',
+ 'persistence_mode':'persistence_mode','compute_mode':'compute_mode','accounting.mode':'accounting_mode',
+ 'mig.mode.current':'mig_mode.current','mig.mode.pending':'mig_mode.pending',
+ 'clocks.max.graphics':'clocks_max.graphics_mhz','clocks.max.sm':'clocks_max.sm_mhz',
+ 'clocks.max.memory':'clocks_max.memory_mhz','power.max_limit':'power.max_limit_w',
+ 'power.min_limit':'power.min_limit_w','power.default_limit':'power.default_limit_w',
+ 'power.limit':'power.enforced_limit_w'}
+TRANSIENT_GPU_PATHS={'index':'index','uuid':'uuid','pstate':'pstate','temperature.gpu':'temperature_c',
+ 'fan.speed':'fan_speed_pct','power.draw':'power_draw_w','utilization.gpu':'utilization_gpu_pct',
+ 'utilization.memory':'utilization_memory_pct','memory.used':'memory_used_mib',
+ 'memory.free':'memory_free_mib','clocks.sm':'clocks_sm_mhz','clocks.memory':'clocks_memory_mhz',
+ 'pci.link.gen.current':'link_gen_current','pci.link.width.current':'link_width_current',
+ 'ecc.errors.corrected.volatile.total':'ecc_errors_corrected_volatile',
+ 'ecc.errors.uncorrected.volatile.total':'ecc_errors_uncorrected_volatile'}
+
 COMMANDS={
  # Fields chosen to cover exactly the environment keys the runtime obligations declare:
  # sku, pci_device_id, gpu_uuid, driver, compute_capability and mig. Receipts already in
@@ -70,6 +95,11 @@ NA={'','N/A','[N/A]','Not Supported','[Not Supported]','Unknown Error','[Unknown
     'Insufficient Permissions','[Insufficient Permissions]'}
 ANSI=re.compile(r'\x1b\[[0-9;]*m')
 KV=re.compile(r'^(\s*)(\S.*?)\s+:\s?(.*)$')
+# nvidia-smi prints this on stdout and exits 2 when a --query-gpu name is not implemented by the
+# installed driver. It refuses the whole query, so the probe reads the names back out of its own
+# message rather than guessing which of ours it disliked.
+REJECTION=re.compile(r'Field "[^"]+" is not a valid field to query\.')
+FIELD_REJECTED=re.compile(r'Field "([^"]+)" is not a valid field to query\.')
 
 
 # --- canonical form -----------------------------------------------------------------
@@ -113,11 +143,28 @@ def ranges(values):
     return ','.join(str(a) if a==b else f'{a}-{b}' for a,b in out)
 def slug(text):return re.sub(r'_+','_',re.sub(r'[^a-z0-9]+','_',text.lower())).strip('_')
 
+def rejections(text):
+    """The driver's refusal sentences, verbatim and de-duplicated."""
+    return list(dict.fromkeys(REJECTION.findall(text)))
+def rejected_fields(text):
+    """The --query-gpu names this driver refused, in the order it named them."""
+    return list(dict.fromkeys(FIELD_REJECTED.findall(text)))
+def query_fields(argv):
+    """The --query-gpu field list a command actually ran with, read back out of its own argv."""
+    for arg in argv or ():
+        if str(arg).startswith('--query-gpu='):return str(arg)[len('--query-gpu='):].split(',')
+    return []
+def without_fields(argv,drop):
+    """The same command minus those fields, or None if nothing would be left to ask for."""
+    keep=[f for f in query_fields(argv) if f not in drop]
+    if not keep:return None
+    return [('--query-gpu='+','.join(keep)) if str(a).startswith('--query-gpu=') else a for a in argv]
+
 
 # --- parsers ------------------------------------------------------------------------
 def parse_csv(text,fields):
     """nvidia-smi --format=csv,noheader,nounits -> one dict per device row."""
-    names=fields.split(',');rows=[]
+    names=fields.split(',') if isinstance(fields,str) else list(fields);rows=[]
     for line in body(text).splitlines():
         if not line.strip():continue
         parts=[p.strip() for p in line.split(',')]
@@ -288,13 +335,15 @@ def read_artifacts(directory):
     manifest=json.loads((directory/'manifest.json').read_text())
     texts={}
     for result in manifest.get('results',[]):
-        if result.get('status')!='PASS' or not result.get('path'):continue
+        if not result.get('path'):continue
         path=directory/result['path']
         if not path.exists():raise ValueError(f'{directory.name}: missing artifact {result["path"]}')
         raw=path.read_bytes()
         if hashlib.sha256(raw).hexdigest()!=result.get('sha256'):
             raise ValueError(f'{directory.name}: {result["path"]} does not match its recorded digest')
-        texts[result['id']]=raw.decode('utf-8')
+        # A refused query keeps its artifact and its checksum, but it reported nothing usable and
+        # must never be read as if it had.
+        if result.get('status')=='PASS':texts[result['id']]=raw.decode('utf-8')
     return manifest,texts
 
 def build_record(directory,sku=None):
@@ -323,28 +372,33 @@ def build_record(directory,sku=None):
 
     # gpus ---------------------------------------------------------------------------
     gpus=[];live=[]
-    for row in parse_csv(texts.get('gpu_attested',''),ATTESTED_GPU_FIELDS):
+    # The CSV is positional, so what each column means is whatever the command actually asked
+    # for -- read back out of its own argv, not assumed from the declared list. A driver that
+    # refused a name was re-asked without it, and every column after it has shifted.
+    attested_fields=query_fields(status.get('gpu_attested',{}).get('argv',[])) or ATTESTED_GPU_FIELDS
+    transient_fields=query_fields(status.get('gpu_transient',{}).get('argv',[])) or TRANSIENT_GPU_FIELDS
+    for row in parse_csv(texts.get('gpu_attested',''),attested_fields):
         section=by_bus.get(clean(row.get('pci.bus_id')) or '',{})
         gpu={'sources':['gpu_attested.txt']+(['smiq.txt'] if section else [])}
-        put(gpu,'index',as_int(row['index']));put(gpu,'name',clean(row['name']))
-        put(gpu,'uuid',clean(row['uuid']));put(gpu,'serial',clean(row['serial']))
-        put(gpu,'vbios_version',clean(row['vbios_version']))
-        put(gpu,'compute_capability',clean(row['compute_cap']))
-        put(gpu,'persistence_mode',clean(row['persistence_mode']))
-        put(gpu,'compute_mode',clean(row['compute_mode']))
-        put(gpu,'accounting_mode',clean(row['accounting.mode']))
-        sub(gpu,'pci',[('bus_id',clean(row['pci.bus_id'])),('device_id',clean(row['pci.device_id'])),
-                       ('sub_device_id',clean(row['pci.sub_device_id'])),
-                       ('link_gen_max',as_int(row['pci.link.gen.max'])),
-                       ('link_width_max',as_int(row['pci.link.width.max']))])
-        sub(gpu,'memory',[('total_mib',as_int(row['memory.total'])),('reserved_mib',as_int(row['memory.reserved']))])
-        sub(gpu,'clocks_max',[('graphics_mhz',as_int(row['clocks.max.graphics'])),
-                              ('sm_mhz',as_int(row['clocks.max.sm'])),('memory_mhz',as_int(row['clocks.max.memory']))])
-        sub(gpu,'power',[('max_limit_w',as_float(row['power.max_limit'])),('min_limit_w',as_float(row['power.min_limit'])),
-                         ('default_limit_w',as_float(row['power.default_limit'])),
-                         ('enforced_limit_w',as_float(row['power.limit']))])
-        sub(gpu,'ecc_mode',[('current',clean(row['ecc.mode.current'])),('pending',clean(row['ecc.mode.pending']))])
-        sub(gpu,'mig_mode',[('current',clean(row['mig.mode.current'])),('pending',clean(row['mig.mode.pending']))])
+        put(gpu,'index',as_int(row.get('index')));put(gpu,'name',clean(row.get('name')))
+        put(gpu,'uuid',clean(row.get('uuid')));put(gpu,'serial',clean(row.get('serial')))
+        put(gpu,'vbios_version',clean(row.get('vbios_version')))
+        put(gpu,'compute_capability',clean(row.get('compute_cap')))
+        put(gpu,'persistence_mode',clean(row.get('persistence_mode')))
+        put(gpu,'compute_mode',clean(row.get('compute_mode')))
+        put(gpu,'accounting_mode',clean(row.get('accounting.mode')))
+        sub(gpu,'pci',[('bus_id',clean(row.get('pci.bus_id'))),('device_id',clean(row.get('pci.device_id'))),
+                       ('sub_device_id',clean(row.get('pci.sub_device_id'))),
+                       ('link_gen_max',as_int(row.get('pci.link.gen.max'))),
+                       ('link_width_max',as_int(row.get('pci.link.width.max')))])
+        sub(gpu,'memory',[('total_mib',as_int(row.get('memory.total'))),('reserved_mib',as_int(row.get('memory.reserved')))])
+        sub(gpu,'clocks_max',[('graphics_mhz',as_int(row.get('clocks.max.graphics'))),
+                              ('sm_mhz',as_int(row.get('clocks.max.sm'))),('memory_mhz',as_int(row.get('clocks.max.memory')))])
+        sub(gpu,'power',[('max_limit_w',as_float(row.get('power.max_limit'))),('min_limit_w',as_float(row.get('power.min_limit'))),
+                         ('default_limit_w',as_float(row.get('power.default_limit'))),
+                         ('enforced_limit_w',as_float(row.get('power.limit')))])
+        sub(gpu,'ecc_mode',[('current',clean(row.get('ecc.mode.current'))),('pending',clean(row.get('ecc.mode.pending')))])
+        sub(gpu,'mig_mode',[('current',clean(row.get('mig.mode.current'))),('pending',clean(row.get('mig.mode.pending')))])
         put(gpu,'brand',clean(section.get('Product Brand')))
         put(gpu,'architecture',clean(section.get('Product Architecture')))
         put(gpu,'minor_number',as_int(section.get('Minor Number')))
@@ -360,19 +414,19 @@ def build_record(directory,sku=None):
         gpus.append(gpu)
     if gpus:attested['gpus']=sorted(gpus,key=lambda g:g.get('index',0))
 
-    for row in parse_csv(texts.get('gpu_transient',''),TRANSIENT_GPU_FIELDS):
+    for row in parse_csv(texts.get('gpu_transient',''),transient_fields):
         entry={}
-        put(entry,'index',as_int(row['index']));put(entry,'uuid',clean(row['uuid']))
-        put(entry,'pstate',clean(row['pstate']));put(entry,'temperature_c',as_int(row['temperature.gpu']))
-        put(entry,'fan_speed_pct',as_int(row['fan.speed']));put(entry,'power_draw_w',as_float(row['power.draw']))
-        put(entry,'utilization_gpu_pct',as_int(row['utilization.gpu']))
-        put(entry,'utilization_memory_pct',as_int(row['utilization.memory']))
-        put(entry,'memory_used_mib',as_int(row['memory.used']));put(entry,'memory_free_mib',as_int(row['memory.free']))
-        put(entry,'clocks_sm_mhz',as_int(row['clocks.sm']));put(entry,'clocks_memory_mhz',as_int(row['clocks.memory']))
-        put(entry,'link_gen_current',as_int(row['pci.link.gen.current']))
-        put(entry,'link_width_current',as_int(row['pci.link.width.current']))
-        put(entry,'ecc_errors_corrected_volatile',as_int(row['ecc.errors.corrected.volatile.total']))
-        put(entry,'ecc_errors_uncorrected_volatile',as_int(row['ecc.errors.uncorrected.volatile.total']))
+        put(entry,'index',as_int(row.get('index')));put(entry,'uuid',clean(row.get('uuid')))
+        put(entry,'pstate',clean(row.get('pstate')));put(entry,'temperature_c',as_int(row.get('temperature.gpu')))
+        put(entry,'fan_speed_pct',as_int(row.get('fan.speed')));put(entry,'power_draw_w',as_float(row.get('power.draw')))
+        put(entry,'utilization_gpu_pct',as_int(row.get('utilization.gpu')))
+        put(entry,'utilization_memory_pct',as_int(row.get('utilization.memory')))
+        put(entry,'memory_used_mib',as_int(row.get('memory.used')));put(entry,'memory_free_mib',as_int(row.get('memory.free')))
+        put(entry,'clocks_sm_mhz',as_int(row.get('clocks.sm')));put(entry,'clocks_memory_mhz',as_int(row.get('clocks.memory')))
+        put(entry,'link_gen_current',as_int(row.get('pci.link.gen.current')))
+        put(entry,'link_width_current',as_int(row.get('pci.link.width.current')))
+        put(entry,'ecc_errors_corrected_volatile',as_int(row.get('ecc.errors.corrected.volatile.total')))
+        put(entry,'ecc_errors_uncorrected_volatile',as_int(row.get('ecc.errors.uncorrected.volatile.total')))
         live.append(entry)
     for entry in live:
         section=next((v for k,v in by_bus.items() if v.get('GPU UUID')==entry.get('uuid')),{})
@@ -487,6 +541,21 @@ def build_record(directory,sku=None):
     if 'gpus' in attested and not any('multiprocessor_count' in g for g in attested['gpus']):
         unavailable.append({'field':'attested.gpus[].multiprocessor_count','command':'smiq',
                             'reason':reason_for(status.get('smiq'),'smiq')})
+    # A field this driver refused by name. The query was re-asked without it, so the rest of the
+    # capture is real; this is where the missing one is named, in the driver's own words.
+    for command,declared,paths,half in (('gpu_attested',ATTESTED_GPU_FIELDS,ATTESTED_GPU_PATHS,'attested'),
+                                        ('gpu_transient',TRANSIENT_GPU_FIELDS,TRANSIENT_GPU_PATHS,'transient')):
+        asked=set(query_fields((status.get(command) or {}).get('argv',[])))
+        if not asked:continue  # the query never ran at all; the whole section is reported above
+        refused={}
+        for result in manifest.get('results',[]):
+            if not str(result.get('id','')).startswith(command+'_rejected'):continue
+            for sentence in rejections(result.get('reason','')):
+                refused.setdefault(rejected_fields(sentence)[0],(str(result['id']),sentence))
+        for field in declared.split(','):
+            if field in asked:continue
+            source,reason=refused.get(field,(command,'not requested by this capture'))
+            unavailable.append({'field':f'{half}.gpus[].{paths[field]}','command':source,'reason':reason})
 
     record={'schema':SCHEMA,'hardware_sha256':digest(attested),'attested':attested,
             'transient':transient,'commands':manifest.get('results',[]),
@@ -507,11 +576,29 @@ def capture(out):
     results=[]
     for id,cmd in COMMANDS.items():
         if not shutil.which(cmd[0]):results.append({'id':id,'status':'NOT_RUN','reason':'utility not installed','argv':cmd});continue
-        try:
-            r=subprocess.run(cmd,capture_output=True,text=True,timeout=20,check=False)
-            raw=(r.stdout+'\nSTDERR:\n'+r.stderr).encode();path=out/(id+'.txt');path.write_bytes(raw)
-            results.append({'id':id,'status':'PASS' if r.returncode==0 and r.stdout.strip() else 'NOT_RUN','exit':r.returncode,'argv':cmd,'path':path.name,'sha256':hashlib.sha256(raw).hexdigest()})
-        except (OSError,subprocess.TimeoutExpired) as exc:results.append({'id':id,'status':'NOT_RUN','reason':str(exc),'argv':cmd})
+        argv=list(cmd);attempt=0
+        while True:
+            try:
+                r=subprocess.run(argv,capture_output=True,text=True,timeout=20,check=False)
+            except (OSError,subprocess.TimeoutExpired) as exc:
+                results.append({'id':id,'status':'NOT_RUN','reason':str(exc),'argv':argv});break
+            raw=(r.stdout+'\nSTDERR:\n'+r.stderr).encode()
+            refusals=rejections(r.stdout+r.stderr) if r.returncode!=0 else []
+            reduced=without_fields(argv,rejected_fields(' '.join(refusals))) if refusals else None
+            if reduced is None:
+                path=out/(id+'.txt');path.write_bytes(raw)
+                results.append({'id':id,'status':'PASS' if r.returncode==0 and r.stdout.strip() else 'NOT_RUN',
+                                'exit':r.returncode,'argv':argv,'path':path.name,'sha256':hashlib.sha256(raw).hexdigest()})
+                break
+            # This driver does not implement a field name we asked for, and refuses the whole
+            # query over it. Keep the refusal as a checksummed artifact, drop exactly the names
+            # it refused and ask again: one unknown name must not cost every other attribute.
+            attempt+=1
+            path=out/f'{id}.rejected.{attempt}.txt';path.write_bytes(raw)
+            results.append({'id':f'{id}_rejected_{attempt}','status':'NOT_RUN','exit':r.returncode,
+                            'reason':' '.join(refusals),'argv':argv,'path':path.name,
+                            'sha256':hashlib.sha256(raw).hexdigest()})
+            argv=reduced
     return results
 
 def main():

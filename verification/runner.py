@@ -8,7 +8,7 @@ from .model import Finding, aggregate, exit_code
 from .evidence import (CONFIG_ONLY_PUBLISHERS,canonical,digest,loads,safe_path,pointer,check_source,check_anchor,
                        select_anchor,dual_code_roles,check_dependencies,check_coverage,check_review,HEX64)
 from .domains.contracts import DOMAINS, validate
-from .hardware import HARDWARE_DOMAINS, schema_sha256 as hardware_schema_sha256
+from .hardware import HARDWARE_DOMAINS, hardware_sha256 as attested_sha256, load as load_hardware, schema_sha256 as hardware_schema_sha256
 
 PROFILES=('publication','runtime')
 # Coverage and dependency checks run once over all claims, but these codes accuse one
@@ -369,12 +369,30 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
                         'Hardware record was captured under a superseded data model.' if probed else
                         'Receipt names no probe_schema_sha256, so the data model it was captured under is unknown.',
                         'Re-probe the host with tools/probe-system.py under the current verification/schemas/hardware.schema.json and rebuild the receipt.')
-                if not r.get('hardware_sha256'):
-                    # Carried, not re-derived: without the hardware record itself this gate can
-                    # only require that the receipt says which capture it rests on, so that two
-                    # captures of the same host can be compared. It does not pretend to more.
+                # Re-derived, not merely carried. The receipt names the stratum-hardware/v1
+                # capture it rests on; that capture is one of its own checksummed artifacts, and
+                # the digest is recomputed from the attested half of those bytes. A digest typed
+                # in by hand, or left behind when the capture was replaced, is therefore a
+                # contradiction rather than an unchecked claim.
+                carried=r.get('hardware_sha256');named=(r.get('hardware_artifact') or {}).get('path')
+                checksummed={a.get('path') for a in r.get('artifacts',[]) if isinstance(a,dict)}
+                if not carried:
                     add('RUNTIME_HARDWARE',o['domain'],'BLOCKED',rid,'Receipt names no hardware_sha256, so the captured hardware state it rests on is unknown.',
-                        'Re-probe the host with tools/probe-system.py and carry the attested digest into the receipt.')
+                        'Re-probe the host with tools/probe-system.py and rebuild the receipt with tools/build-runtime-receipts.py.')
+                elif not named:
+                    add('RUNTIME_HARDWARE',o['domain'],'BLOCKED',rid,'Receipt carries a hardware_sha256 but names no hardware_artifact, so nothing can re-derive it.',
+                        'Rebuild the receipt with tools/build-runtime-receipts.py so it names the capture the digest was taken from.')
+                elif named not in checksummed:
+                    add('RUNTIME_HARDWARE',o['domain'],'BLOCKED',rid,'The hardware record this receipt names is not one of the artifacts it checksums, so its bytes are not pinned.',
+                        'Rebuild the receipt so the hardware record is among its checksummed artifacts.')
+                else:
+                    try:
+                        captured=load_hardware(safe_path(root,named))
+                        if attested_sha256(captured)!=carried:
+                            raise ValueError('Receipt names an attested hardware state that its own capture does not produce.')
+                    except (OSError,ValueError,KeyError,TypeError) as exc:
+                        add('RUNTIME_HARDWARE_DRIFT',o['domain'],'FAIL',rid,str(exc),
+                            'Re-probe the host with tools/probe-system.py and rebuild the receipt; never edit a recorded digest in place.')
                 if original is None:
                     if o.get('contract') is None:add('RUNTIME_HARDWARE',o['domain'],'BLOCKED',rid,'Hardware-attribute obligation names no contract for its receipt to bind.',
                                                     'Give the obligation the contract its probe attests, or record it as a behavioural obligation.')
