@@ -1,6 +1,6 @@
 {
   "schema": "stratum-probe-provenance/v1",
-  "captured_at": "2026-09-09T19:30:37.842183+00:00",
+  "captured_at": "2026-09-10T03:09:11.803141+00:00",
   "method": "read-only tools/probe-system.py over ssh; no sudo, no fabric change, no model load",
   "hosts": {
     "gpu.H100-SXM": {

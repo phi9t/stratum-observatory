@@ -1,6 +1,6 @@
 {
   "schema": "stratum-readonly-probe/v1",
-  "generated_at": "2026-09-09T19:23:26.092475+00:00",
+  "generated_at": "2026-09-10T03:09:05.494077+00:00",
   "platform": "Linux-5.15.152.bsk.9-amd64-x86_64-with-glibc2.36",
   "scope": "Inventory capture only. Does not prove kernel support, GPUDirect, remote visibility, measured bandwidth or correctness.",
   "environment": {},
@@ -25,7 +25,7 @@
         "nvidia-smi"
       ],
       "path": "smi.txt",
-      "sha256": "1256c3eeca210fedb48348c822b84b62b1ed8dacf74b3ca0a860cd796f8ef097"
+      "sha256": "d192d2859643f95e9d22f58ae3d49febc215170dfecb4d2f2c711953ca547044"
     },
     {
       "id": "topology",
