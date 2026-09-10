@@ -98,7 +98,10 @@
                 "additionalProperties": false,
                 "properties": {
                   "node": {"type": "integer"},
-                  "cpus": {"type": "string", "minLength": 1},
+                  "cpus": {
+                    "$comment": "The CPU list numactl printed for this node, normalised to ranges. Empty on a memory-only node -- a Grace-Blackwell host exposes device memory as CPU-less NUMA nodes and numactl prints `node 2 cpus:` with nothing after it. That is a reported absence of CPUs, not an unreported field, so it stays in the record rather than moving to `unavailable`.",
+                    "type": "string"
+                  },
                   "size_mb": {
                     "$comment": "numactl labels this MB; the value is recorded under the label the tool printed, not converted.",
                     "type": "integer"

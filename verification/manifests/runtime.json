@@ -1,9 +1,12 @@
 {
   "runtime.gpu.H100-SXM": {
-    "executed_at": "2026-09-10T04:51:06.991323+00:00",
+    "executed_at": "2026-09-10T07:08:00.989475+00:00",
     "exit_code": 0,
     "lock_sha256": "b34e0e4b8aecdefe02d0902543f3dd6603f76bf90ef858569fb35765a1040589",
     "consumer_sha256": "d36f581bb1a5cca92c2304d1dc1da4d73a814a45b03e4eb088fa99b348d70431",
+    "probe_schema_sha256": "7a12b11449041fc08a3cd8c613ac52db71c89590e0701d3325ca215f0a711bf4",
+    "contract_sha256": "96f4eb83d881ebe52000cc7014df286137af8808a20516201dd1dcbaa9f0640e",
+    "hardware_sha256": "62a097388aee1fa76aa5e4523e7c79a3884c415fe72c146f932832659d10e916",
     "environment": {
       "sku": {
         "value": "NVIDIA H100 80GB HBM3",
@@ -62,12 +65,68 @@
         "sha256": "4a719da061df717a1ace95c7e5fc0712348bd6028b21d8ede1452fa499722496"
       },
       {
+        "path": "evidence/runtime/gpu.H100-SXM/gpu_attested.rejected.1.txt",
+        "sha256": "929201253ed0a77b7fbe53ba09df3bf4a0559c66d77afa32d0e00039eb3f3802"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/gpu_attested.rejected.2.txt",
+        "sha256": "bf95344360742bae08dc98d0419c273ab70211c9f4427838464f5d896b1ef6e1"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/gpu_attested.txt",
+        "sha256": "95a8fef914ebbc1acc3a84c58da0e1cbc92ca9bda6f3a97acab18ded885cee58"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/gpu_transient.rejected.1.txt",
+        "sha256": "42bc6ef4e4165716583405cf1a9186636abd0513d092682ad851801a7410c4a6"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/gpu_transient.rejected.2.txt",
+        "sha256": "4bfe4867e43830f1a759359a33372653cdcb75839dd7e17519e0bc345d416646"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/gpu_transient.rejected.3.txt",
+        "sha256": "ec2ee4f53f6e7dc5dfc65cb98b83f8a1a4d2696610da26c8773b72b504728bf5"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/gpu_transient.txt",
+        "sha256": "61674108c681e98adf9a972c71541ca38beafc93ceb83814a378b90754e06b9e"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/hardware.json",
+        "sha256": "05d8f3e95a33020175a47fbfd41a582be2e8b617191fba4debf34f2a55ea875b"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/kernel.txt",
+        "sha256": "7b3ba5a8d69025e9a9d71dccd0bfe931f53c5b16d5dae80748806f834efe0849"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/lscpu.txt",
+        "sha256": "28bb7221d786509e8c6b599d596a8d7e087146b0a43061f60d43b3c54a6d2fbb"
+      },
+      {
         "path": "evidence/runtime/gpu.H100-SXM/manifest.json",
-        "sha256": "d592a7cdf1d81e894ac43d28c6da596a6b426d1c0920c43e8673da8e5eeaa63b"
+        "sha256": "92b64667ad83069bd122cf5a7effbdf503caeb4fc34cfdbabe4c19a61b766242"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/mig.txt",
+        "sha256": "f6c734ca9b7d034f7f89fb2e2ad717e5424842a1feb76675e4711ae57a8f5fbd"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/numa.txt",
+        "sha256": "cf54ba91053c6c8f1a56176ea42acbd9f3344e06355768cde30311e6a374f6e0"
       },
       {
         "path": "evidence/runtime/gpu.H100-SXM/nvlink.txt",
         "sha256": "5190806d5d71d559ef77694aa1f8b58e0bd99ffb2f7f6b36a559077473f98a9e"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/nvlink_cap.txt",
+        "sha256": "f37b82c6ffd3b6b05d8d709d349605707716fb0a9f65c919f2108cea19639141"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/ofed.txt",
+        "sha256": "e3a2fe9c0d02cab8c646a5d711b699086998a304280db871a543aae9d768c986"
       },
       {
         "path": "evidence/runtime/gpu.H100-SXM/pci.txt",
@@ -79,7 +138,11 @@
       },
       {
         "path": "evidence/runtime/gpu.H100-SXM/smi.txt",
-        "sha256": "3b55c94a4d001a40c059c9225ce4bfb06051115691d9ec60b67b0c6eafe49a8a"
+        "sha256": "3a3b95b8e2d80f7171eb1676b9c41709a566c38515d4e9902b7db34eee78d578"
+      },
+      {
+        "path": "evidence/runtime/gpu.H100-SXM/smiq.txt",
+        "sha256": "4219a826613b340bbb2b667b07776aa89f58790c5bd508eb406c6d3ca2da6c42"
       },
       {
         "path": "evidence/runtime/gpu.H100-SXM/topology.txt",
@@ -97,13 +160,19 @@
     "record_artifact": {
       "path": "evidence/runtime/gpu.H100-SXM/record.json",
       "pointer": ""
+    },
+    "hardware_artifact": {
+      "path": "evidence/runtime/gpu.H100-SXM/hardware.json"
     }
   },
   "runtime.gpu.B200": {
-    "executed_at": "2026-09-10T04:51:09.633488+00:00",
+    "executed_at": "2026-09-10T07:08:15.063425+00:00",
     "exit_code": 0,
     "lock_sha256": "b34e0e4b8aecdefe02d0902543f3dd6603f76bf90ef858569fb35765a1040589",
     "consumer_sha256": "d36f581bb1a5cca92c2304d1dc1da4d73a814a45b03e4eb088fa99b348d70431",
+    "probe_schema_sha256": "7a12b11449041fc08a3cd8c613ac52db71c89590e0701d3325ca215f0a711bf4",
+    "contract_sha256": "06b321cc145fcb7d5cf28affbbeeeec06ea7354b72df8a25e2e0e437a9144aed",
+    "hardware_sha256": "e850268c5c7a23b4bed85abc37857dbd61116f2182759256d77bd1fa877bb2d3",
     "environment": {
       "sku": {
         "value": "NVIDIA B200",
@@ -162,12 +231,68 @@
         "sha256": "3128684eeebc2f3fd99326fb24ab0cc166dd3969790d86516b3866032a062961"
       },
       {
+        "path": "evidence/runtime/gpu.B200/gpu_attested.rejected.1.txt",
+        "sha256": "929201253ed0a77b7fbe53ba09df3bf4a0559c66d77afa32d0e00039eb3f3802"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/gpu_attested.rejected.2.txt",
+        "sha256": "bf95344360742bae08dc98d0419c273ab70211c9f4427838464f5d896b1ef6e1"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/gpu_attested.txt",
+        "sha256": "67f3b3b5b25e7528e1c559bfe1e7749bf9b75fafdbf5b1c6de23bf88c5359281"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/gpu_transient.rejected.1.txt",
+        "sha256": "42bc6ef4e4165716583405cf1a9186636abd0513d092682ad851801a7410c4a6"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/gpu_transient.rejected.2.txt",
+        "sha256": "4bfe4867e43830f1a759359a33372653cdcb75839dd7e17519e0bc345d416646"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/gpu_transient.rejected.3.txt",
+        "sha256": "ec2ee4f53f6e7dc5dfc65cb98b83f8a1a4d2696610da26c8773b72b504728bf5"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/gpu_transient.txt",
+        "sha256": "fc371797282f8366aea7a296bf4705a07211d3079d9773568bcbc6134d4f95d8"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/hardware.json",
+        "sha256": "e53bec8bd71f728f1b483debd8d4cd61293f186b9cb3a4f4a5984f8b305b06c9"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/kernel.txt",
+        "sha256": "034fe711108ed67d96731ad156600569c1a7644586b5e1473afd9cd45f3847ae"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/lscpu.txt",
+        "sha256": "fbe9dcd21bb8a8d7a72dd3486fac17cebdc55ad2e685d9e127f6daf3ab02ce2a"
+      },
+      {
         "path": "evidence/runtime/gpu.B200/manifest.json",
-        "sha256": "c1d134956abb1f39717850cdda37c4b0024231c4389844dde159bcd69625a1f7"
+        "sha256": "00c4e64697b028f265fcf732c7ebc9aaec50aecd0bf9f0b972daa86de5e5878e"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/mig.txt",
+        "sha256": "0248c0cbe3d8fa7ebe01bcbda7e4a1096fe72e6f774af7109113ca7deda62d80"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/numa.txt",
+        "sha256": "4a4726fa343de78785be204690b8e6ff97edd94e2f38c42f8aba4fb0c6f9bcf4"
       },
       {
         "path": "evidence/runtime/gpu.B200/nvlink.txt",
         "sha256": "d13e254e8cdbecfe5a57e4903f75abaef2ac2be4f656ad0690f7e3ee7274dbec"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/nvlink_cap.txt",
+        "sha256": "e0940ab83b35e5fac9ee3efd640b49cb459449bcd19369aba62aa9239300a223"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/ofed.txt",
+        "sha256": "d22fae9a826b758115c2ab24825bcab93e7fa9388beac42ee21c77b21b3fdad3"
       },
       {
         "path": "evidence/runtime/gpu.B200/pci.txt",
@@ -179,7 +304,11 @@
       },
       {
         "path": "evidence/runtime/gpu.B200/smi.txt",
-        "sha256": "b9d69a7ba6ff701a28d937ed7a07105997279b3bfae805ebd42786fb49dd1cbf"
+        "sha256": "90768a4ff955bec0d91d04ea04430582729855265720060c28d73fe42773c20b"
+      },
+      {
+        "path": "evidence/runtime/gpu.B200/smiq.txt",
+        "sha256": "928fae4f01c851f960f43e8b5322f4ca28f6753d797f2c4d4bd3f2a2f8e472e3"
       },
       {
         "path": "evidence/runtime/gpu.B200/topology.txt",
@@ -197,13 +326,19 @@
     "record_artifact": {
       "path": "evidence/runtime/gpu.B200/record.json",
       "pointer": ""
+    },
+    "hardware_artifact": {
+      "path": "evidence/runtime/gpu.B200/hardware.json"
     }
   },
   "runtime.gpu.GB300": {
-    "executed_at": "2026-09-10T04:51:11.653536+00:00",
+    "executed_at": "2026-09-10T07:08:24.337042+00:00",
     "exit_code": 0,
     "lock_sha256": "b34e0e4b8aecdefe02d0902543f3dd6603f76bf90ef858569fb35765a1040589",
     "consumer_sha256": "d36f581bb1a5cca92c2304d1dc1da4d73a814a45b03e4eb088fa99b348d70431",
+    "probe_schema_sha256": "7a12b11449041fc08a3cd8c613ac52db71c89590e0701d3325ca215f0a711bf4",
+    "contract_sha256": "b8ac49dfe261f5d3e8671529321ca5d79a07d9d7c05f4350f78f464b1ff475a0",
+    "hardware_sha256": "358aba26a5bcc57dc8e7ef443c6e30db21c9204e981699675c847347dfeffe9b",
     "environment": {
       "sku": {
         "value": "NVIDIA GB300",
@@ -266,12 +401,68 @@
         "sha256": "15e5142b4b28753142d03653689f10d12a1c19ea1005b335106cdc778d6f0c1a"
       },
       {
+        "path": "evidence/runtime/gpu.GB300/gpu_attested.rejected.1.txt",
+        "sha256": "929201253ed0a77b7fbe53ba09df3bf4a0559c66d77afa32d0e00039eb3f3802"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/gpu_attested.rejected.2.txt",
+        "sha256": "bf95344360742bae08dc98d0419c273ab70211c9f4427838464f5d896b1ef6e1"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/gpu_attested.txt",
+        "sha256": "c9269b1f1256af10581b8d9f0331804f9731d713f7af873afa189d98dd70f63f"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/gpu_transient.rejected.1.txt",
+        "sha256": "42bc6ef4e4165716583405cf1a9186636abd0513d092682ad851801a7410c4a6"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/gpu_transient.rejected.2.txt",
+        "sha256": "4bfe4867e43830f1a759359a33372653cdcb75839dd7e17519e0bc345d416646"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/gpu_transient.rejected.3.txt",
+        "sha256": "ec2ee4f53f6e7dc5dfc65cb98b83f8a1a4d2696610da26c8773b72b504728bf5"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/gpu_transient.txt",
+        "sha256": "d89c850124f2ee7a65f0255b5e7c357eed8633660e317180007687e557d81ae8"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/hardware.json",
+        "sha256": "9c455d9a547581435c0e2eaeed23e93da841a028522aad3f6ec709d04a75349b"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/kernel.txt",
+        "sha256": "3198f377cd66341e65e927a983cb9a7400e21a2f13159601929352bb23d486fd"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/lscpu.txt",
+        "sha256": "e7dadfb3c8ce69285653810783de4d308e9187c12947491455870dccc2dfb393"
+      },
+      {
         "path": "evidence/runtime/gpu.GB300/manifest.json",
-        "sha256": "78ff68901c220e2746e219dfc17ab44f8d343dd68814177cc4037fda7eac25b1"
+        "sha256": "5c17da6a73ce46d373032606c105e9dcabea724c26e80da6249a453a9718661c"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/mig.txt",
+        "sha256": "e0b28ce08a44902ec808c30ca2b056b4051b5a4cd7f19dd3a157d91c5c23379b"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/numa.txt",
+        "sha256": "52ef84f70bf8bae0b81ebb640798c63b148c537e3159ab4642ee0e1e9f75b678"
       },
       {
         "path": "evidence/runtime/gpu.GB300/nvlink.txt",
         "sha256": "23fb6931f31c1c1f116e93df4ebbc08877058db9f65ec4a74e83ebc100d127cf"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/nvlink_cap.txt",
+        "sha256": "4b4e4f50a012b7c967f5a329bac3d1dd930d8c59bf860a464ab86e0aba401be3"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/ofed.txt",
+        "sha256": "416b7507f457560621c9a3efb18bafb9748f5fdccb95b6526ff2a15ed5364338"
       },
       {
         "path": "evidence/runtime/gpu.GB300/pci.txt",
@@ -283,7 +474,11 @@
       },
       {
         "path": "evidence/runtime/gpu.GB300/smi.txt",
-        "sha256": "06a01624c69565a536b2f66f5e6e6604ce35ba05bf6b0bc105b1c65cada5fab7"
+        "sha256": "1da9b00185dc4a2ea363d66561549915267e3e5bf8e23df73adede5a7bec3c1d"
+      },
+      {
+        "path": "evidence/runtime/gpu.GB300/smiq.txt",
+        "sha256": "08eb72f0a2f9b1ff63645747e844d3b62a162c374d48dfad6824cdb5184e035c"
       },
       {
         "path": "evidence/runtime/gpu.GB300/topology.txt",
@@ -301,6 +496,9 @@
     "record_artifact": {
       "path": "evidence/runtime/gpu.GB300/record.json",
       "pointer": ""
+    },
+    "hardware_artifact": {
+      "path": "evidence/runtime/gpu.GB300/hardware.json"
     }
   }
 }

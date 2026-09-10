@@ -42,17 +42,21 @@ class RuntimeBindingTests(unittest.TestCase):
  def contract(self,target,cid):
   return next(c for c in target['contracts'] if c['id']==cid)
 
- def hardware_receipt(self,*,target=None,inv=None,**over):
-  """The accepted H100 receipt, completed with the fields the new binding requires.
+ HARDWARE_ARTIFACT='evidence/runtime/gpu.H100-SXM/hardware.json'
 
-  Based on the real receipt so its artifacts, digests and record all still check out; the
-  three new fields are what Task C's capture will fill in for real.
+ def hardware_receipt(self,*,target=None,inv=None,**over):
+  """The accepted H100 receipt, with every binding field restated from the current bytes.
+
+  Based on the real receipt so its artifacts, digests and record all still check out. The
+  binding fields are recomputed rather than trusted so that a test which edits the manifest,
+  the inventory or the data model measures the rule it names and not a stale digest.
   """
   target=target or self.target;inv=inv or self.inv
   r=copy.deepcopy(self.accepted['runtime.gpu.H100-SXM'])
   r['probe_schema_sha256']=hardware.schema_sha256()
   r['contract_sha256']=contract_sha256(self.contract(target,'gpu.H100-SXM'),inv.get('fields',{}))
-  r['hardware_sha256']='a'*64
+  r['hardware_artifact']={'path':self.HARDWARE_ARTIFACT}
+  r['hardware_sha256']=hardware.load(ROOT/self.HARDWARE_ARTIFACT)['hardware_sha256']
   r.update(over)
   return {'runtime.gpu.H100-SXM':r}
 
@@ -121,17 +125,20 @@ class RuntimeBindingTests(unittest.TestCase):
   self.assertRegex((schema[0]['message']+' '+schema[0]['remedy']).lower(),r'probe')
 
  def test_a_receipt_without_the_new_fields_is_blocked_not_passed_and_not_failed(self):
-  """The accepted receipts predate this binding. That is missing evidence: they must block,
-  and the gate must not crash on them or wave them through."""
-  findings=self.findings(self.accepted,subject='runtime.gpu.H100-SXM')
+  """A receipt captured before this binding existed. That is missing evidence: it must block,
+  and the gate must not crash on it or wave it through."""
+  r=self.hardware_receipt()
+  for field in ('probe_schema_sha256','contract_sha256','hardware_sha256','hardware_artifact'):
+   r['runtime.gpu.H100-SXM'].pop(field,None)
+  findings=self.findings(r,subject='runtime.gpu.H100-SXM')
   codes={f['code'] for f in findings}
   self.assertIn('RUNTIME_SCHEMA',codes)
   self.assertIn('RUNTIME_HARDWARE',codes)
   self.assertEqual([f['code'] for f in findings if f['status']=='FAIL'],[])
 
  def test_a_receipt_naming_no_captured_hardware_state_is_blocked(self):
-  """Carried, not re-derived -- but a receipt that names no capture at all leaves a reader
-  unable to say which hardware state it rests on, which is missing evidence."""
+  """A receipt with no attested-state digest names nothing to re-derive, which leaves a reader
+  unable to say which hardware state it rests on. That is missing evidence, not a contradiction."""
   r=self.hardware_receipt();r['runtime.gpu.H100-SXM'].pop('hardware_sha256')
   named=[f for f in self.findings(r,subject='runtime.gpu.H100-SXM')
          if f['code']=='RUNTIME_HARDWARE' and 'hardware_sha256' in f['message']]
@@ -144,6 +151,44 @@ class RuntimeBindingTests(unittest.TestCase):
          if f['code']=='RUNTIME_HARDWARE' and 'contract_sha256' in f['message']]
   self.assertTrue(named,'a receipt that names no contract record was allowed to vouch for one')
   self.assertEqual(named[0]['status'],'BLOCKED')
+
+ def test_a_hand_written_hardware_digest_is_caught(self):
+  """`hardware_sha256` is re-derived from the capture the receipt names, not merely carried.
+  A digest typed in by hand -- or kept after the capture was replaced -- is a contradiction:
+  the receipt vouches for an attested state its own evidence does not produce."""
+  drift=[f for f in self.findings(self.hardware_receipt(hardware_sha256='a'*64),subject='runtime.gpu.H100-SXM')
+         if f['code']=='RUNTIME_HARDWARE_DRIFT']
+  self.assertTrue(drift,'a receipt naming an attested state its capture does not produce was accepted')
+  self.assertEqual(drift[0]['status'],'FAIL','a digest that does not re-derive is a contradiction')
+
+ def test_a_receipt_naming_no_hardware_record_cannot_have_its_digest_checked(self):
+  r=self.hardware_receipt();r['runtime.gpu.H100-SXM'].pop('hardware_artifact')
+  named=[f for f in self.findings(r,subject='runtime.gpu.H100-SXM')
+         if f['code']=='RUNTIME_HARDWARE' and 'hardware_artifact' in f['message']]
+  self.assertTrue(named,'a carried digest with no capture behind it was accepted')
+  self.assertEqual(named[0]['status'],'BLOCKED')
+
+ def test_a_hardware_record_the_receipt_does_not_checksum_is_blocked(self):
+  """Re-deriving from bytes is only worth anything if those bytes are pinned by the receipt."""
+  r=self.hardware_receipt(hardware_artifact={'path':'evidence/runtime/hosts.json'})
+  named=[f for f in self.findings(r,subject='runtime.gpu.H100-SXM')
+         if f['code']=='RUNTIME_HARDWARE' and 'checksum' in f['message']]
+  self.assertTrue(named,'an unchecksummed hardware record was accepted as the receipt\'s basis')
+  self.assertEqual(named[0]['status'],'BLOCKED')
+
+ def test_a_hardware_record_that_is_not_a_valid_capture_fails(self):
+  import json,tempfile
+  broken=json.loads((ROOT/self.HARDWARE_ARTIFACT).read_text())
+  broken['attested']['kernel']={'release':'6.6.0-never-probed','sources':['kernel.txt']}
+  path=ROOT/'verification/candidates/broken-hardware.json'
+  path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(broken))
+  try:
+   r=self.hardware_receipt(hardware_artifact={'path':'verification/candidates/broken-hardware.json'})
+   r['runtime.gpu.H100-SXM']['artifacts'].append(
+    {'path':'verification/candidates/broken-hardware.json','sha256':__import__('hashlib').sha256(path.read_bytes()).hexdigest()})
+   codes={f['code'] for f in self.findings(r,subject='runtime.gpu.H100-SXM')}
+   self.assertIn('RUNTIME_HARDWARE_DRIFT',codes)
+  finally:path.unlink()
 
  def test_expiry_still_retires_a_hardware_receipt(self):
   """Nothing between probes can detect a re-capped GPU or a swapped NIC. Kept deliberately."""
@@ -203,6 +248,60 @@ class RuntimeBindingTests(unittest.TestCase):
  def current_consumer(self):
   from verification.evidence import digest
   return digest(self.inv['functions'])
+
+
+class CapturedHardwareTests(unittest.TestCase):
+ """The accepted hardware receipts, checked against the capture bytes they were built from.
+
+ None of this is a shape check. Every digest is re-derived here from the artifacts on disk, so a
+ receipt carrying a hand-written `hardware_sha256`, a superseded `probe_schema_sha256` or a
+ `contract_sha256` for a record that has since moved fails in this file as well as in the gate.
+ """
+ @classmethod
+ def setUpClass(cls):
+  cls.target=loads((ROOT/'verification/manifests/observatory.json').read_text())
+  cls.accepted=loads((ROOT/'verification/manifests/runtime.json').read_text())
+  cls.inv=loads(subprocess.run(['node','tools/export-verification.mjs'],cwd=ROOT,capture_output=True,text=True,check=True).stdout)
+
+ def receipts(self):
+  return [(o,self.accepted[o['id']]) for o in self.target['runtime_obligations']
+          if o['domain'] in hardware.HARDWARE_DOMAINS and o['id'] in self.accepted]
+
+ def test_the_repository_carries_accepted_hardware_receipts_to_check(self):
+  # Otherwise every assertion below would pass over an empty list.
+  self.assertTrue(self.receipts(),'no accepted receipt for any hardware-attribute obligation')
+
+ def test_each_names_the_hardware_record_it_rests_on(self):
+  for o,r in self.receipts():
+   with self.subTest(obligation=o['id']):
+    path=(r.get('hardware_artifact') or {}).get('path')
+    self.assertTrue(path,'receipt names no hardware_artifact')
+    self.assertIn(path,{a['path'] for a in r['artifacts']},
+                  'the hardware record is not among the receipt\'s checksummed artifacts')
+
+ def test_each_carried_hardware_digest_re_derives_from_the_capture(self):
+  for o,r in self.receipts():
+   with self.subTest(obligation=o['id']):
+    record=hardware.load(ROOT/r['hardware_artifact']['path'])
+    self.assertEqual(r['hardware_sha256'],hardware.hardware_sha256(record),
+                     'the receipt names a hardware state the capture does not produce')
+
+ def test_each_binds_the_current_hardware_data_model(self):
+  for o,r in self.receipts():
+   with self.subTest(obligation=o['id']):
+    self.assertEqual(r.get('probe_schema_sha256'),hardware.schema_sha256())
+
+ def test_each_binds_the_contract_record_it_attests(self):
+  for o,r in self.receipts():
+   with self.subTest(obligation=o['id']):
+    contract=next(c for c in self.target['contracts'] if c['id']==o['contract'])
+    self.assertEqual(r.get('contract_sha256'),contract_sha256(contract,self.inv.get('fields',{})))
+
+ def test_no_accepted_receipt_rests_on_a_fixture_capture(self):
+  for o,r in self.receipts():
+   with self.subTest(obligation=o['id']):
+    # hardware.load refuses a fixture unless asked; this states the intent explicitly.
+    self.assertNotIn('fixture',loads((ROOT/r['hardware_artifact']['path']).read_text()))
 
 
 if __name__=='__main__':unittest.main()

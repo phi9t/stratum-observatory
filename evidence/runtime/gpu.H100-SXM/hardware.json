@@ -1,0 +1,5415 @@
+{
+  "schema": "stratum-hardware/v1",
+  "hardware_sha256": "62a097388aee1fa76aa5e4523e7c79a3884c415fe72c146f932832659d10e916",
+  "attested": {
+    "model": "stratum-hardware/v1",
+    "driver": {
+      "version": "535.161.08",
+      "cuda_driver_version": "12.2",
+      "attached_gpus": 8,
+      "sources": [
+        "smiq.txt"
+      ]
+    },
+    "gpus": [
+      {
+        "sources": [
+          "gpu_attested.txt",
+          "smiq.txt"
+        ],
+        "index": 0,
+        "name": "NVIDIA H100 80GB HBM3",
+        "uuid": "GPU-8252836a-e096-4522-5986-5d4e9c3107d9",
+        "serial": "1654223042403",
+        "vbios_version": "96.00.D0.00.02",
+        "compute_capability": "9.0",
+        "persistence_mode": "Enabled",
+        "compute_mode": "Default",
+        "accounting_mode": "Disabled",
+        "pci": {
+          "bus_id": "00000000:0F:00.0",
+          "device_id": "0x233010DE",
+          "sub_device_id": "0x16C110DE"
+        },
+        "memory": {
+          "total_mib": 81559,
+          "reserved_mib": 551
+        },
+        "clocks_max": {
+          "graphics_mhz": 1980,
+          "sm_mhz": 1980,
+          "memory_mhz": 2619
+        },
+        "power": {
+          "max_limit_w": 700.0,
+          "min_limit_w": 200.0,
+          "default_limit_w": 700.0,
+          "enforced_limit_w": 700.0
+        },
+        "ecc_mode": {
+          "current": "Enabled",
+          "pending": "Enabled"
+        },
+        "mig_mode": {
+          "current": "Disabled",
+          "pending": "Disabled"
+        },
+        "brand": "NVIDIA",
+        "architecture": "Hopper",
+        "minor_number": 0,
+        "module_id": 2,
+        "board_id": "0xf00",
+        "board_part_number": "692-2G520-0200-000",
+        "gpu_part_number": "2330-885-A1",
+        "multigpu_board": "No",
+        "gsp_firmware_version": "535.161.08",
+        "inforom_image_version": "G520.0200.00.05",
+        "virtualization_mode": "None"
+      },
+      {
+        "sources": [
+          "gpu_attested.txt",
+          "smiq.txt"
+        ],
+        "index": 1,
+        "name": "NVIDIA H100 80GB HBM3",
+        "uuid": "GPU-a66abe74-5952-967a-02b7-0dfc5c203062",
+        "serial": "1654522011576",
+        "vbios_version": "96.00.D0.00.02",
+        "compute_capability": "9.0",
+        "persistence_mode": "Enabled",
+        "compute_mode": "Default",
+        "accounting_mode": "Disabled",
+        "pci": {
+          "bus_id": "00000000:2D:00.0",
+          "device_id": "0x233010DE",
+          "sub_device_id": "0x16C110DE"
+        },
+        "memory": {
+          "total_mib": 81559,
+          "reserved_mib": 551
+        },
+        "clocks_max": {
+          "graphics_mhz": 1980,
+          "sm_mhz": 1980,
+          "memory_mhz": 2619
+        },
+        "power": {
+          "max_limit_w": 700.0,
+          "min_limit_w": 200.0,
+          "default_limit_w": 700.0,
+          "enforced_limit_w": 700.0
+        },
+        "ecc_mode": {
+          "current": "Enabled",
+          "pending": "Enabled"
+        },
+        "mig_mode": {
+          "current": "Disabled",
+          "pending": "Disabled"
+        },
+        "brand": "NVIDIA",
+        "architecture": "Hopper",
+        "minor_number": 1,
+        "module_id": 4,
+        "board_id": "0x2d00",
+        "board_part_number": "692-2G520-0200-000",
+        "gpu_part_number": "2330-885-A1",
+        "multigpu_board": "No",
+        "gsp_firmware_version": "535.161.08",
+        "inforom_image_version": "G520.0200.00.05",
+        "virtualization_mode": "None"
+      },
+      {
+        "sources": [
+          "gpu_attested.txt",
+          "smiq.txt"
+        ],
+        "index": 2,
+        "name": "NVIDIA H100 80GB HBM3",
+        "uuid": "GPU-6b050a88-7445-dda6-a8c6-a949ae068def",
+        "serial": "1654223045259",
+        "vbios_version": "96.00.D0.00.02",
+        "compute_capability": "9.0",
+        "persistence_mode": "Enabled",
+        "compute_mode": "Default",
+        "accounting_mode": "Disabled",
+        "pci": {
+          "bus_id": "00000000:44:00.0",
+          "device_id": "0x233010DE",
+          "sub_device_id": "0x16C110DE"
+        },
+        "memory": {
+          "total_mib": 81559,
+          "reserved_mib": 551
+        },
+        "clocks_max": {
+          "graphics_mhz": 1980,
+          "sm_mhz": 1980,
+          "memory_mhz": 2619
+        },
+        "power": {
+          "max_limit_w": 700.0,
+          "min_limit_w": 200.0,
+          "default_limit_w": 700.0,
+          "enforced_limit_w": 700.0
+        },
+        "ecc_mode": {
+          "current": "Enabled",
+          "pending": "Enabled"
+        },
+        "mig_mode": {
+          "current": "Disabled",
+          "pending": "Disabled"
+        },
+        "brand": "NVIDIA",
+        "architecture": "Hopper",
+        "minor_number": 2,
+        "module_id": 3,
+        "board_id": "0x4400",
+        "board_part_number": "692-2G520-0200-000",
+        "gpu_part_number": "2330-885-A1",
+        "multigpu_board": "No",
+        "gsp_firmware_version": "535.161.08",
+        "inforom_image_version": "G520.0200.00.05",
+        "virtualization_mode": "None"
+      },
+      {
+        "sources": [
+          "gpu_attested.txt",
+          "smiq.txt"
+        ],
+        "index": 3,
+        "name": "NVIDIA H100 80GB HBM3",
+        "uuid": "GPU-9ea6c522-aa69-ac49-e1a5-e0cbf401b22b",
+        "serial": "1654023014588",
+        "vbios_version": "96.00.D0.00.02",
+        "compute_capability": "9.0",
+        "persistence_mode": "Enabled",
+        "compute_mode": "Default",
+        "accounting_mode": "Disabled",
+        "pci": {
+          "bus_id": "00000000:5B:00.0",
+          "device_id": "0x233010DE",
+          "sub_device_id": "0x16C110DE"
+        },
+        "memory": {
+          "total_mib": 81559,
+          "reserved_mib": 551
+        },
+        "clocks_max": {
+          "graphics_mhz": 1980,
+          "sm_mhz": 1980,
+          "memory_mhz": 2619
+        },
+        "power": {
+          "max_limit_w": 700.0,
+          "min_limit_w": 200.0,
+          "default_limit_w": 700.0,
+          "enforced_limit_w": 700.0
+        },
+        "ecc_mode": {
+          "current": "Enabled",
+          "pending": "Enabled"
+        },
+        "mig_mode": {
+          "current": "Disabled",
+          "pending": "Disabled"
+        },
+        "brand": "NVIDIA",
+        "architecture": "Hopper",
+        "minor_number": 3,
+        "module_id": 1,
+        "board_id": "0x5b00",
+        "board_part_number": "692-2G520-0200-000",
+        "gpu_part_number": "2330-885-A1",
+        "multigpu_board": "No",
+        "gsp_firmware_version": "535.161.08",
+        "inforom_image_version": "G520.0200.00.05",
+        "virtualization_mode": "None"
+      },
+      {
+        "sources": [
+          "gpu_attested.txt",
+          "smiq.txt"
+        ],
+        "index": 4,
+        "name": "NVIDIA H100 80GB HBM3",
+        "uuid": "GPU-e1804d82-cb76-c173-6c01-db18ac272ff4",
+        "serial": "1654223042177",
+        "vbios_version": "96.00.D0.00.02",
+        "compute_capability": "9.0",
+        "persistence_mode": "Enabled",
+        "compute_mode": "Default",
+        "accounting_mode": "Disabled",
+        "pci": {
+          "bus_id": "00000000:89:00.0",
+          "device_id": "0x233010DE",
+          "sub_device_id": "0x16C110DE"
+        },
+        "memory": {
+          "total_mib": 81559,
+          "reserved_mib": 551
+        },
+        "clocks_max": {
+          "graphics_mhz": 1980,
+          "sm_mhz": 1980,
+          "memory_mhz": 2619
+        },
+        "power": {
+          "max_limit_w": 700.0,
+          "min_limit_w": 200.0,
+          "default_limit_w": 700.0,
+          "enforced_limit_w": 700.0
+        },
+        "ecc_mode": {
+          "current": "Enabled",
+          "pending": "Enabled"
+        },
+        "mig_mode": {
+          "current": "Disabled",
+          "pending": "Disabled"
+        },
+        "brand": "NVIDIA",
+        "architecture": "Hopper",
+        "minor_number": 4,
+        "module_id": 7,
+        "board_id": "0x8900",
+        "board_part_number": "692-2G520-0200-000",
+        "gpu_part_number": "2330-885-A1",
+        "multigpu_board": "No",
+        "gsp_firmware_version": "535.161.08",
+        "inforom_image_version": "G520.0200.00.05",
+        "virtualization_mode": "None"
+      },
+      {
+        "sources": [
+          "gpu_attested.txt",
+          "smiq.txt"
+        ],
+        "index": 5,
+        "name": "NVIDIA H100 80GB HBM3",
+        "uuid": "GPU-5c38a19d-ea92-0a29-e59c-1eb37488b56b",
+        "serial": "1654223047758",
+        "vbios_version": "96.00.D0.00.02",
+        "compute_capability": "9.0",
+        "persistence_mode": "Enabled",
+        "compute_mode": "Default",
+        "accounting_mode": "Disabled",
+        "pci": {
+          "bus_id": "00000000:A8:00.0",
+          "device_id": "0x233010DE",
+          "sub_device_id": "0x16C110DE"
+        },
+        "memory": {
+          "total_mib": 81559,
+          "reserved_mib": 551
+        },
+        "clocks_max": {
+          "graphics_mhz": 1980,
+          "sm_mhz": 1980,
+          "memory_mhz": 2619
+        },
+        "power": {
+          "max_limit_w": 700.0,
+          "min_limit_w": 200.0,
+          "default_limit_w": 700.0,
+          "enforced_limit_w": 700.0
+        },
+        "ecc_mode": {
+          "current": "Enabled",
+          "pending": "Enabled"
+        },
+        "mig_mode": {
+          "current": "Disabled",
+          "pending": "Disabled"
+        },
+        "brand": "NVIDIA",
+        "architecture": "Hopper",
+        "minor_number": 5,
+        "module_id": 5,
+        "board_id": "0xa800",
+        "board_part_number": "692-2G520-0200-000",
+        "gpu_part_number": "2330-885-A1",
+        "multigpu_board": "No",
+        "gsp_firmware_version": "535.161.08",
+        "inforom_image_version": "G520.0200.00.05",
+        "virtualization_mode": "None"
+      },
+      {
+        "sources": [
+          "gpu_attested.txt",
+          "smiq.txt"
+        ],
+        "index": 6,
+        "name": "NVIDIA H100 80GB HBM3",
+        "uuid": "GPU-34b19ada-c2e0-428e-abe9-fb1710f7cc98",
+        "serial": "1654223046238",
+        "vbios_version": "96.00.D0.00.02",
+        "compute_capability": "9.0",
+        "persistence_mode": "Enabled",
+        "compute_mode": "Default",
+        "accounting_mode": "Disabled",
+        "pci": {
+          "bus_id": "00000000:C0:00.0",
+          "device_id": "0x233010DE",
+          "sub_device_id": "0x16C110DE"
+        },
+        "memory": {
+          "total_mib": 81559,
+          "reserved_mib": 551
+        },
+        "clocks_max": {
+          "graphics_mhz": 1980,
+          "sm_mhz": 1980,
+          "memory_mhz": 2619
+        },
+        "power": {
+          "max_limit_w": 700.0,
+          "min_limit_w": 200.0,
+          "default_limit_w": 700.0,
+          "enforced_limit_w": 700.0
+        },
+        "ecc_mode": {
+          "current": "Enabled",
+          "pending": "Enabled"
+        },
+        "mig_mode": {
+          "current": "Disabled",
+          "pending": "Disabled"
+        },
+        "brand": "NVIDIA",
+        "architecture": "Hopper",
+        "minor_number": 6,
+        "module_id": 8,
+        "board_id": "0xc000",
+        "board_part_number": "692-2G520-0200-000",
+        "gpu_part_number": "2330-885-A1",
+        "multigpu_board": "No",
+        "gsp_firmware_version": "535.161.08",
+        "inforom_image_version": "G520.0200.00.05",
+        "virtualization_mode": "None"
+      },
+      {
+        "sources": [
+          "gpu_attested.txt",
+          "smiq.txt"
+        ],
+        "index": 7,
+        "name": "NVIDIA H100 80GB HBM3",
+        "uuid": "GPU-b072ffe4-7a4d-223e-7bdc-8ee1eccdf655",
+        "serial": "1654223046415",
+        "vbios_version": "96.00.D0.00.02",
+        "compute_capability": "9.0",
+        "persistence_mode": "Enabled",
+        "compute_mode": "Default",
+        "accounting_mode": "Disabled",
+        "pci": {
+          "bus_id": "00000000:D8:00.0",
+          "device_id": "0x233010DE",
+          "sub_device_id": "0x16C110DE"
+        },
+        "memory": {
+          "total_mib": 81559,
+          "reserved_mib": 551
+        },
+        "clocks_max": {
+          "graphics_mhz": 1980,
+          "sm_mhz": 1980,
+          "memory_mhz": 2619
+        },
+        "power": {
+          "max_limit_w": 700.0,
+          "min_limit_w": 200.0,
+          "default_limit_w": 700.0,
+          "enforced_limit_w": 700.0
+        },
+        "ecc_mode": {
+          "current": "Enabled",
+          "pending": "Enabled"
+        },
+        "mig_mode": {
+          "current": "Disabled",
+          "pending": "Disabled"
+        },
+        "brand": "NVIDIA",
+        "architecture": "Hopper",
+        "minor_number": 7,
+        "module_id": 6,
+        "board_id": "0xd800",
+        "board_part_number": "692-2G520-0200-000",
+        "gpu_part_number": "2330-885-A1",
+        "multigpu_board": "No",
+        "gsp_firmware_version": "535.161.08",
+        "inforom_image_version": "G520.0200.00.05",
+        "virtualization_mode": "None"
+      }
+    ],
+    "topology": {
+      "labels": [
+        "GPU0",
+        "GPU1",
+        "GPU2",
+        "GPU3",
+        "GPU4",
+        "GPU5",
+        "GPU6",
+        "GPU7",
+        "NIC0",
+        "NIC1",
+        "NIC2",
+        "NIC3",
+        "NIC4",
+        "NIC5",
+        "NIC6",
+        "NIC7",
+        "NIC8",
+        "NIC9",
+        "NIC10",
+        "NIC11",
+        "NIC12",
+        "NIC13",
+        "NIC14",
+        "NIC15",
+        "NIC16",
+        "NIC17",
+        "NIC18",
+        "NIC19",
+        "NIC20"
+      ],
+      "rows": [
+        {
+          "name": "GPU0",
+          "peers": {
+            "GPU0": "X",
+            "GPU1": "NV18",
+            "GPU2": "NV18",
+            "GPU3": "NV18",
+            "GPU4": "NV18",
+            "GPU5": "NV18",
+            "GPU6": "NV18",
+            "GPU7": "NV18",
+            "NIC0": "PXB",
+            "NIC1": "PXB",
+            "NIC2": "NODE",
+            "NIC3": "NODE",
+            "NIC4": "NODE",
+            "NIC5": "NODE",
+            "NIC6": "NODE",
+            "NIC7": "NODE",
+            "NIC8": "NODE",
+            "NIC9": "NODE",
+            "NIC10": "SYS",
+            "NIC11": "SYS",
+            "NIC12": "SYS",
+            "NIC13": "SYS",
+            "NIC14": "SYS",
+            "NIC15": "SYS",
+            "NIC16": "SYS",
+            "NIC17": "SYS",
+            "NIC18": "SYS",
+            "NIC19": "SYS",
+            "NIC20": "SYS"
+          },
+          "cpu_affinity": "0-55,112-167",
+          "numa_affinity": "0",
+          "gpu_numa_id": "N/A"
+        },
+        {
+          "name": "GPU1",
+          "peers": {
+            "GPU0": "NV18",
+            "GPU1": "X",
+            "GPU2": "NV18",
+            "GPU3": "NV18",
+            "GPU4": "NV18",
+            "GPU5": "NV18",
+            "GPU6": "NV18",
+            "GPU7": "NV18",
+            "NIC0": "NODE",
+            "NIC1": "NODE",
+            "NIC2": "NODE",
+            "NIC3": "NODE",
+            "NIC4": "PXB",
+            "NIC5": "PXB",
+            "NIC6": "NODE",
+            "NIC7": "NODE",
+            "NIC8": "NODE",
+            "NIC9": "NODE",
+            "NIC10": "SYS",
+            "NIC11": "SYS",
+            "NIC12": "SYS",
+            "NIC13": "SYS",
+            "NIC14": "SYS",
+            "NIC15": "SYS",
+            "NIC16": "SYS",
+            "NIC17": "SYS",
+            "NIC18": "SYS",
+            "NIC19": "SYS",
+            "NIC20": "SYS"
+          },
+          "cpu_affinity": "0-55,112-167",
+          "numa_affinity": "0",
+          "gpu_numa_id": "N/A"
+        },
+        {
+          "name": "GPU2",
+          "peers": {
+            "GPU0": "NV18",
+            "GPU1": "NV18",
+            "GPU2": "X",
+            "GPU3": "NV18",
+            "GPU4": "NV18",
+            "GPU5": "NV18",
+            "GPU6": "NV18",
+            "GPU7": "NV18",
+            "NIC0": "NODE",
+            "NIC1": "NODE",
+            "NIC2": "NODE",
+            "NIC3": "NODE",
+            "NIC4": "NODE",
+            "NIC5": "NODE",
+            "NIC6": "PXB",
+            "NIC7": "PXB",
+            "NIC8": "NODE",
+            "NIC9": "NODE",
+            "NIC10": "SYS",
+            "NIC11": "SYS",
+            "NIC12": "SYS",
+            "NIC13": "SYS",
+            "NIC14": "SYS",
+            "NIC15": "SYS",
+            "NIC16": "SYS",
+            "NIC17": "SYS",
+            "NIC18": "SYS",
+            "NIC19": "SYS",
+            "NIC20": "SYS"
+          },
+          "cpu_affinity": "0-55,112-167",
+          "numa_affinity": "0",
+          "gpu_numa_id": "N/A"
+        },
+        {
+          "name": "GPU3",
+          "peers": {
+            "GPU0": "NV18",
+            "GPU1": "NV18",
+            "GPU2": "NV18",
+            "GPU3": "X",
+            "GPU4": "NV18",
+            "GPU5": "NV18",
+            "GPU6": "NV18",
+            "GPU7": "NV18",
+            "NIC0": "NODE",
+            "NIC1": "NODE",
+            "NIC2": "NODE",
+            "NIC3": "NODE",
+            "NIC4": "NODE",
+            "NIC5": "NODE",
+            "NIC6": "NODE",
+            "NIC7": "NODE",
+            "NIC8": "PXB",
+            "NIC9": "PXB",
+            "NIC10": "SYS",
+            "NIC11": "SYS",
+            "NIC12": "SYS",
+            "NIC13": "SYS",
+            "NIC14": "SYS",
+            "NIC15": "SYS",
+            "NIC16": "SYS",
+            "NIC17": "SYS",
+            "NIC18": "SYS",
+            "NIC19": "SYS",
+            "NIC20": "SYS"
+          },
+          "cpu_affinity": "0-55,112-167",
+          "numa_affinity": "0",
+          "gpu_numa_id": "N/A"
+        },
+        {
+          "name": "GPU4",
+          "peers": {
+            "GPU0": "NV18",
+            "GPU1": "NV18",
+            "GPU2": "NV18",
+            "GPU3": "NV18",
+            "GPU4": "X",
+            "GPU5": "NV18",
+            "GPU6": "NV18",
+            "GPU7": "NV18",
+            "NIC0": "SYS",
+            "NIC1": "SYS",
+            "NIC2": "SYS",
+            "NIC3": "SYS",
+            "NIC4": "SYS",
+            "NIC5": "SYS",
+            "NIC6": "SYS",
+            "NIC7": "SYS",
+            "NIC8": "SYS",
+            "NIC9": "SYS",
+            "NIC10": "PXB",
+            "NIC11": "PXB",
+            "NIC12": "NODE",
+            "NIC13": "NODE",
+            "NIC14": "NODE",
+            "NIC15": "NODE",
+            "NIC16": "NODE",
+            "NIC17": "NODE",
+            "NIC18": "NODE",
+            "NIC19": "NODE",
+            "NIC20": "NODE"
+          },
+          "cpu_affinity": "56-111,168-223",
+          "numa_affinity": "1",
+          "gpu_numa_id": "N/A"
+        },
+        {
+          "name": "GPU5",
+          "peers": {
+            "GPU0": "NV18",
+            "GPU1": "NV18",
+            "GPU2": "NV18",
+            "GPU3": "NV18",
+            "GPU4": "NV18",
+            "GPU5": "X",
+            "GPU6": "NV18",
+            "GPU7": "NV18",
+            "NIC0": "SYS",
+            "NIC1": "SYS",
+            "NIC2": "SYS",
+            "NIC3": "SYS",
+            "NIC4": "SYS",
+            "NIC5": "SYS",
+            "NIC6": "SYS",
+            "NIC7": "SYS",
+            "NIC8": "SYS",
+            "NIC9": "SYS",
+            "NIC10": "NODE",
+            "NIC11": "NODE",
+            "NIC12": "NODE",
+            "NIC13": "NODE",
+            "NIC14": "PXB",
+            "NIC15": "PXB",
+            "NIC16": "NODE",
+            "NIC17": "NODE",
+            "NIC18": "NODE",
+            "NIC19": "NODE",
+            "NIC20": "NODE"
+          },
+          "cpu_affinity": "56-111,168-223",
+          "numa_affinity": "1",
+          "gpu_numa_id": "N/A"
+        },
+        {
+          "name": "GPU6",
+          "peers": {
+            "GPU0": "NV18",
+            "GPU1": "NV18",
+            "GPU2": "NV18",
+            "GPU3": "NV18",
+            "GPU4": "NV18",
+            "GPU5": "NV18",
+            "GPU6": "X",
+            "GPU7": "NV18",
+            "NIC0": "SYS",
+            "NIC1": "SYS",
+            "NIC2": "SYS",
+            "NIC3": "SYS",
+            "NIC4": "SYS",
+            "NIC5": "SYS",
+            "NIC6": "SYS",
+            "NIC7": "SYS",
+            "NIC8": "SYS",
+            "NIC9": "SYS",
+            "NIC10": "NODE",
+            "NIC11": "NODE",
+            "NIC12": "NODE",
+            "NIC13": "NODE",
+            "NIC14": "NODE",
+            "NIC15": "NODE",
+            "NIC16": "PXB",
+            "NIC17": "PXB",
+            "NIC18": "NODE",
+            "NIC19": "NODE",
+            "NIC20": "NODE"
+          },
+          "cpu_affinity": "56-111,168-223",
+          "numa_affinity": "1",
+          "gpu_numa_id": "N/A"
+        },
+        {
+          "name": "GPU7",
+          "peers": {
+            "GPU0": "NV18",
+            "GPU1": "NV18",
+            "GPU2": "NV18",
+            "GPU3": "NV18",
+            "GPU4": "NV18",
+            "GPU5": "NV18",
+            "GPU6": "NV18",
+            "GPU7": "X",
+            "NIC0": "SYS",
+            "NIC1": "SYS",
+            "NIC2": "SYS",
+            "NIC3": "SYS",
+            "NIC4": "SYS",
+            "NIC5": "SYS",
+            "NIC6": "SYS",
+            "NIC7": "SYS",
+            "NIC8": "SYS",
+            "NIC9": "SYS",
+            "NIC10": "NODE",
+            "NIC11": "NODE",
+            "NIC12": "NODE",
+            "NIC13": "NODE",
+            "NIC14": "NODE",
+            "NIC15": "NODE",
+            "NIC16": "NODE",
+            "NIC17": "NODE",
+            "NIC18": "PXB",
+            "NIC19": "PXB",
+            "NIC20": "NODE"
+          },
+          "cpu_affinity": "56-111,168-223",
+          "numa_affinity": "1",
+          "gpu_numa_id": "N/A"
+        },
+        {
+          "name": "NIC0",
+          "peers": {
+            "GPU0": "PXB",
+            "GPU1": "NODE",
+            "GPU2": "NODE",
+            "GPU3": "NODE",
+            "GPU4": "SYS",
+            "GPU5": "SYS",
+            "GPU6": "SYS",
+            "GPU7": "SYS",
+            "NIC0": "X",
+            "NIC1": "PIX",
+            "NIC2": "NODE",
+            "NIC3": "NODE",
+            "NIC4": "NODE",
+            "NIC5": "NODE",
+            "NIC6": "NODE",
+            "NIC7": "NODE",
+            "NIC8": "NODE",
+            "NIC9": "NODE",
+            "NIC10": "SYS",
+            "NIC11": "SYS",
+            "NIC12": "SYS",
+            "NIC13": "SYS",
+            "NIC14": "SYS",
+            "NIC15": "SYS",
+            "NIC16": "SYS",
+            "NIC17": "SYS",
+            "NIC18": "SYS",
+            "NIC19": "SYS",
+            "NIC20": "SYS"
+          }
+        },
+        {
+          "name": "NIC1",
+          "peers": {
+            "GPU0": "PXB",
+            "GPU1": "NODE",
+            "GPU2": "NODE",
+            "GPU3": "NODE",
+            "GPU4": "SYS",
+            "GPU5": "SYS",
+            "GPU6": "SYS",
+            "GPU7": "SYS",
+            "NIC0": "PIX",
+            "NIC1": "X",
+            "NIC2": "NODE",
+            "NIC3": "NODE",
+            "NIC4": "NODE",
+            "NIC5": "NODE",
+            "NIC6": "NODE",
+            "NIC7": "NODE",
+            "NIC8": "NODE",
+            "NIC9": "NODE",
+            "NIC10": "SYS",
+            "NIC11": "SYS",
+            "NIC12": "SYS",
+            "NIC13": "SYS",
+            "NIC14": "SYS",
+            "NIC15": "SYS",
+            "NIC16": "SYS",
+            "NIC17": "SYS",
+            "NIC18": "SYS",
+            "NIC19": "SYS",
+            "NIC20": "SYS"
+          }
+        },
+        {
+          "name": "NIC2",
+          "peers": {
+            "GPU0": "NODE",
+            "GPU1": "NODE",
+            "GPU2": "NODE",
+            "GPU3": "NODE",
+            "GPU4": "SYS",
+            "GPU5": "SYS",
+            "GPU6": "SYS",
+            "GPU7": "SYS",
+            "NIC0": "NODE",
+            "NIC1": "NODE",
+            "NIC2": "X",
+            "NIC3": "PIX",
+            "NIC4": "NODE",
+            "NIC5": "NODE",
+            "NIC6": "NODE",
+            "NIC7": "NODE",
+            "NIC8": "NODE",
+            "NIC9": "NODE",
+            "NIC10": "SYS",
+            "NIC11": "SYS",
+            "NIC12": "SYS",
+            "NIC13": "SYS",
+            "NIC14": "SYS",
+            "NIC15": "SYS",
+            "NIC16": "SYS",
+            "NIC17": "SYS",
+            "NIC18": "SYS",
+            "NIC19": "SYS",
+            "NIC20": "SYS"
+          }
+        },
+        {
+          "name": "NIC3",
+          "peers": {
+            "GPU0": "NODE",
+            "GPU1": "NODE",
+            "GPU2": "NODE",
+            "GPU3": "NODE",
+            "GPU4": "SYS",
+            "GPU5": "SYS",
+            "GPU6": "SYS",
+            "GPU7": "SYS",
+            "NIC0": "NODE",
+            "NIC1": "NODE",
+            "NIC2": "PIX",
+            "NIC3": "X",
+            "NIC4": "NODE",
+            "NIC5": "NODE",
+            "NIC6": "NODE",
+            "NIC7": "NODE",
+            "NIC8": "NODE",
+            "NIC9": "NODE",
+            "NIC10": "SYS",
+            "NIC11": "SYS",
+            "NIC12": "SYS",
+            "NIC13": "SYS",
+            "NIC14": "SYS",
+            "NIC15": "SYS",
+            "NIC16": "SYS",
+            "NIC17": "SYS",
+            "NIC18": "SYS",
+            "NIC19": "SYS",
+            "NIC20": "SYS"
+          }
+        },
+        {
+          "name": "NIC4",
+          "peers": {
+            "GPU0": "NODE",
+            "GPU1": "PXB",
+            "GPU2": "NODE",
+            "GPU3": "NODE",
+            "GPU4": "SYS",
+            "GPU5": "SYS",
+            "GPU6": "SYS",
+            "GPU7": "SYS",
+            "NIC0": "NODE",
+            "NIC1": "NODE",
+            "NIC2": "NODE",
+            "NIC3": "NODE",
+            "NIC4": "X",
+            "NIC5": "PIX",
+            "NIC6": "NODE",
+            "NIC7": "NODE",
+            "NIC8": "NODE",
+            "NIC9": "NODE",
+            "NIC10": "SYS",
+            "NIC11": "SYS",
+            "NIC12": "SYS",
+            "NIC13": "SYS",
+            "NIC14": "SYS",
+            "NIC15": "SYS",
+            "NIC16": "SYS",
+            "NIC17": "SYS",
+            "NIC18": "SYS",
+            "NIC19": "SYS",
+            "NIC20": "SYS"
+          }
+        },
+        {
+          "name": "NIC5",
+          "peers": {
+            "GPU0": "NODE",
+            "GPU1": "PXB",
+            "GPU2": "NODE",
+            "GPU3": "NODE",
+            "GPU4": "SYS",
+            "GPU5": "SYS",
+            "GPU6": "SYS",
+            "GPU7": "SYS",
+            "NIC0": "NODE",
+            "NIC1": "NODE",
+            "NIC2": "NODE",
+            "NIC3": "NODE",
+            "NIC4": "PIX",
+            "NIC5": "X",
+            "NIC6": "NODE",
+            "NIC7": "NODE",
+            "NIC8": "NODE",
+            "NIC9": "NODE",
+            "NIC10": "SYS",
+            "NIC11": "SYS",
+            "NIC12": "SYS",
+            "NIC13": "SYS",
+            "NIC14": "SYS",
+            "NIC15": "SYS",
+            "NIC16": "SYS",
+            "NIC17": "SYS",
+            "NIC18": "SYS",
+            "NIC19": "SYS",
+            "NIC20": "SYS"
+          }
+        },
+        {
+          "name": "NIC6",
+          "peers": {
+            "GPU0": "NODE",
+            "GPU1": "NODE",
+            "GPU2": "PXB",
+            "GPU3": "NODE",
+            "GPU4": "SYS",
+            "GPU5": "SYS",
+            "GPU6": "SYS",
+            "GPU7": "SYS",
+            "NIC0": "NODE",
+            "NIC1": "NODE",
+            "NIC2": "NODE",
+            "NIC3": "NODE",
+            "NIC4": "NODE",
+            "NIC5": "NODE",
+            "NIC6": "X",
+            "NIC7": "PIX",
+            "NIC8": "NODE",
+            "NIC9": "NODE",
+            "NIC10": "SYS",
+            "NIC11": "SYS",
+            "NIC12": "SYS",
+            "NIC13": "SYS",
+            "NIC14": "SYS",
+            "NIC15": "SYS",
+            "NIC16": "SYS",
+            "NIC17": "SYS",
+            "NIC18": "SYS",
+            "NIC19": "SYS",
+            "NIC20": "SYS"
+          }
+        },
+        {
+          "name": "NIC7",
+          "peers": {
+            "GPU0": "NODE",
+            "GPU1": "NODE",
+            "GPU2": "PXB",
+            "GPU3": "NODE",
+            "GPU4": "SYS",
+            "GPU5": "SYS",
+            "GPU6": "SYS",
+            "GPU7": "SYS",
+            "NIC0": "NODE",
+            "NIC1": "NODE",
+            "NIC2": "NODE",
+            "NIC3": "NODE",
+            "NIC4": "NODE",
+            "NIC5": "NODE",
+            "NIC6": "PIX",
+            "NIC7": "X",
+            "NIC8": "NODE",
+            "NIC9": "NODE",
+            "NIC10": "SYS",
+            "NIC11": "SYS",
+            "NIC12": "SYS",
+            "NIC13": "SYS",
+            "NIC14": "SYS",
+            "NIC15": "SYS",
+            "NIC16": "SYS",
+            "NIC17": "SYS",
+            "NIC18": "SYS",
+            "NIC19": "SYS",
+            "NIC20": "SYS"
+          }
+        },
+        {
+          "name": "NIC8",
+          "peers": {
+            "GPU0": "NODE",
+            "GPU1": "NODE",
+            "GPU2": "NODE",
+            "GPU3": "PXB",
+            "GPU4": "SYS",
+            "GPU5": "SYS",
+            "GPU6": "SYS",
+            "GPU7": "SYS",
+            "NIC0": "NODE",
+            "NIC1": "NODE",
+            "NIC2": "NODE",
+            "NIC3": "NODE",
+            "NIC4": "NODE",
+            "NIC5": "NODE",
+            "NIC6": "NODE",
+            "NIC7": "NODE",
+            "NIC8": "X",
+            "NIC9": "PIX",
+            "NIC10": "SYS",
+            "NIC11": "SYS",
+            "NIC12": "SYS",
+            "NIC13": "SYS",
+            "NIC14": "SYS",
+            "NIC15": "SYS",
+            "NIC16": "SYS",
+            "NIC17": "SYS",
+            "NIC18": "SYS",
+            "NIC19": "SYS",
+            "NIC20": "SYS"
+          }
+        },
+        {
+          "name": "NIC9",
+          "peers": {
+            "GPU0": "NODE",
+            "GPU1": "NODE",
+            "GPU2": "NODE",
+            "GPU3": "PXB",
+            "GPU4": "SYS",
+            "GPU5": "SYS",
+            "GPU6": "SYS",
+            "GPU7": "SYS",
+            "NIC0": "NODE",
+            "NIC1": "NODE",
+            "NIC2": "NODE",
+            "NIC3": "NODE",
+            "NIC4": "NODE",
+            "NIC5": "NODE",
+            "NIC6": "NODE",
+            "NIC7": "NODE",
+            "NIC8": "PIX",
+            "NIC9": "X",
+            "NIC10": "SYS",
+            "NIC11": "SYS",
+            "NIC12": "SYS",
+            "NIC13": "SYS",
+            "NIC14": "SYS",
+            "NIC15": "SYS",
+            "NIC16": "SYS",
+            "NIC17": "SYS",
+            "NIC18": "SYS",
+            "NIC19": "SYS",
+            "NIC20": "SYS"
+          }
+        },
+        {
+          "name": "NIC10",
+          "peers": {
+            "GPU0": "SYS",
+            "GPU1": "SYS",
+            "GPU2": "SYS",
+            "GPU3": "SYS",
+            "GPU4": "PXB",
+            "GPU5": "NODE",
+            "GPU6": "NODE",
+            "GPU7": "NODE",
+            "NIC0": "SYS",
+            "NIC1": "SYS",
+            "NIC2": "SYS",
+            "NIC3": "SYS",
+            "NIC4": "SYS",
+            "NIC5": "SYS",
+            "NIC6": "SYS",
+            "NIC7": "SYS",
+            "NIC8": "SYS",
+            "NIC9": "SYS",
+            "NIC10": "X",
+            "NIC11": "PIX",
+            "NIC12": "NODE",
+            "NIC13": "NODE",
+            "NIC14": "NODE",
+            "NIC15": "NODE",
+            "NIC16": "NODE",
+            "NIC17": "NODE",
+            "NIC18": "NODE",
+            "NIC19": "NODE",
+            "NIC20": "NODE"
+          }
+        },
+        {
+          "name": "NIC11",
+          "peers": {
+            "GPU0": "SYS",
+            "GPU1": "SYS",
+            "GPU2": "SYS",
+            "GPU3": "SYS",
+            "GPU4": "PXB",
+            "GPU5": "NODE",
+            "GPU6": "NODE",
+            "GPU7": "NODE",
+            "NIC0": "SYS",
+            "NIC1": "SYS",
+            "NIC2": "SYS",
+            "NIC3": "SYS",
+            "NIC4": "SYS",
+            "NIC5": "SYS",
+            "NIC6": "SYS",
+            "NIC7": "SYS",
+            "NIC8": "SYS",
+            "NIC9": "SYS",
+            "NIC10": "PIX",
+            "NIC11": "X",
+            "NIC12": "NODE",
+            "NIC13": "NODE",
+            "NIC14": "NODE",
+            "NIC15": "NODE",
+            "NIC16": "NODE",
+            "NIC17": "NODE",
+            "NIC18": "NODE",
+            "NIC19": "NODE",
+            "NIC20": "NODE"
+          }
+        },
+        {
+          "name": "NIC12",
+          "peers": {
+            "GPU0": "SYS",
+            "GPU1": "SYS",
+            "GPU2": "SYS",
+            "GPU3": "SYS",
+            "GPU4": "NODE",
+            "GPU5": "NODE",
+            "GPU6": "NODE",
+            "GPU7": "NODE",
+            "NIC0": "SYS",
+            "NIC1": "SYS",
+            "NIC2": "SYS",
+            "NIC3": "SYS",
+            "NIC4": "SYS",
+            "NIC5": "SYS",
+            "NIC6": "SYS",
+            "NIC7": "SYS",
+            "NIC8": "SYS",
+            "NIC9": "SYS",
+            "NIC10": "NODE",
+            "NIC11": "NODE",
+            "NIC12": "X",
+            "NIC13": "PIX",
+            "NIC14": "NODE",
+            "NIC15": "NODE",
+            "NIC16": "NODE",
+            "NIC17": "NODE",
+            "NIC18": "NODE",
+            "NIC19": "NODE",
+            "NIC20": "PIX"
+          }
+        },
+        {
+          "name": "NIC13",
+          "peers": {
+            "GPU0": "SYS",
+            "GPU1": "SYS",
+            "GPU2": "SYS",
+            "GPU3": "SYS",
+            "GPU4": "NODE",
+            "GPU5": "NODE",
+            "GPU6": "NODE",
+            "GPU7": "NODE",
+            "NIC0": "SYS",
+            "NIC1": "SYS",
+            "NIC2": "SYS",
+            "NIC3": "SYS",
+            "NIC4": "SYS",
+            "NIC5": "SYS",
+            "NIC6": "SYS",
+            "NIC7": "SYS",
+            "NIC8": "SYS",
+            "NIC9": "SYS",
+            "NIC10": "NODE",
+            "NIC11": "NODE",
+            "NIC12": "PIX",
+            "NIC13": "X",
+            "NIC14": "NODE",
+            "NIC15": "NODE",
+            "NIC16": "NODE",
+            "NIC17": "NODE",
+            "NIC18": "NODE",
+            "NIC19": "NODE",
+            "NIC20": "PIX"
+          }
+        },
+        {
+          "name": "NIC14",
+          "peers": {
+            "GPU0": "SYS",
+            "GPU1": "SYS",
+            "GPU2": "SYS",
+            "GPU3": "SYS",
+            "GPU4": "NODE",
+            "GPU5": "PXB",
+            "GPU6": "NODE",
+            "GPU7": "NODE",
+            "NIC0": "SYS",
+            "NIC1": "SYS",
+            "NIC2": "SYS",
+            "NIC3": "SYS",
+            "NIC4": "SYS",
+            "NIC5": "SYS",
+            "NIC6": "SYS",
+            "NIC7": "SYS",
+            "NIC8": "SYS",
+            "NIC9": "SYS",
+            "NIC10": "NODE",
+            "NIC11": "NODE",
+            "NIC12": "NODE",
+            "NIC13": "NODE",
+            "NIC14": "X",
+            "NIC15": "PIX",
+            "NIC16": "NODE",
+            "NIC17": "NODE",
+            "NIC18": "NODE",
+            "NIC19": "NODE",
+            "NIC20": "NODE"
+          }
+        },
+        {
+          "name": "NIC15",
+          "peers": {
+            "GPU0": "SYS",
+            "GPU1": "SYS",
+            "GPU2": "SYS",
+            "GPU3": "SYS",
+            "GPU4": "NODE",
+            "GPU5": "PXB",
+            "GPU6": "NODE",
+            "GPU7": "NODE",
+            "NIC0": "SYS",
+            "NIC1": "SYS",
+            "NIC2": "SYS",
+            "NIC3": "SYS",
+            "NIC4": "SYS",
+            "NIC5": "SYS",
+            "NIC6": "SYS",
+            "NIC7": "SYS",
+            "NIC8": "SYS",
+            "NIC9": "SYS",
+            "NIC10": "NODE",
+            "NIC11": "NODE",
+            "NIC12": "NODE",
+            "NIC13": "NODE",
+            "NIC14": "PIX",
+            "NIC15": "X",
+            "NIC16": "NODE",
+            "NIC17": "NODE",
+            "NIC18": "NODE",
+            "NIC19": "NODE",
+            "NIC20": "NODE"
+          }
+        },
+        {
+          "name": "NIC16",
+          "peers": {
+            "GPU0": "SYS",
+            "GPU1": "SYS",
+            "GPU2": "SYS",
+            "GPU3": "SYS",
+            "GPU4": "NODE",
+            "GPU5": "NODE",
+            "GPU6": "PXB",
+            "GPU7": "NODE",
+            "NIC0": "SYS",
+            "NIC1": "SYS",
+            "NIC2": "SYS",
+            "NIC3": "SYS",
+            "NIC4": "SYS",
+            "NIC5": "SYS",
+            "NIC6": "SYS",
+            "NIC7": "SYS",
+            "NIC8": "SYS",
+            "NIC9": "SYS",
+            "NIC10": "NODE",
+            "NIC11": "NODE",
+            "NIC12": "NODE",
+            "NIC13": "NODE",
+            "NIC14": "NODE",
+            "NIC15": "NODE",
+            "NIC16": "X",
+            "NIC17": "PIX",
+            "NIC18": "NODE",
+            "NIC19": "NODE",
+            "NIC20": "NODE"
+          }
+        },
+        {
+          "name": "NIC17",
+          "peers": {
+            "GPU0": "SYS",
+            "GPU1": "SYS",
+            "GPU2": "SYS",
+            "GPU3": "SYS",
+            "GPU4": "NODE",
+            "GPU5": "NODE",
+            "GPU6": "PXB",
+            "GPU7": "NODE",
+            "NIC0": "SYS",
+            "NIC1": "SYS",
+            "NIC2": "SYS",
+            "NIC3": "SYS",
+            "NIC4": "SYS",
+            "NIC5": "SYS",
+            "NIC6": "SYS",
+            "NIC7": "SYS",
+            "NIC8": "SYS",
+            "NIC9": "SYS",
+            "NIC10": "NODE",
+            "NIC11": "NODE",
+            "NIC12": "NODE",
+            "NIC13": "NODE",
+            "NIC14": "NODE",
+            "NIC15": "NODE",
+            "NIC16": "PIX",
+            "NIC17": "X",
+            "NIC18": "NODE",
+            "NIC19": "NODE",
+            "NIC20": "NODE"
+          }
+        },
+        {
+          "name": "NIC18",
+          "peers": {
+            "GPU0": "SYS",
+            "GPU1": "SYS",
+            "GPU2": "SYS",
+            "GPU3": "SYS",
+            "GPU4": "NODE",
+            "GPU5": "NODE",
+            "GPU6": "NODE",
+            "GPU7": "PXB",
+            "NIC0": "SYS",
+            "NIC1": "SYS",
+            "NIC2": "SYS",
+            "NIC3": "SYS",
+            "NIC4": "SYS",
+            "NIC5": "SYS",
+            "NIC6": "SYS",
+            "NIC7": "SYS",
+            "NIC8": "SYS",
+            "NIC9": "SYS",
+            "NIC10": "NODE",
+            "NIC11": "NODE",
+            "NIC12": "NODE",
+            "NIC13": "NODE",
+            "NIC14": "NODE",
+            "NIC15": "NODE",
+            "NIC16": "NODE",
+            "NIC17": "NODE",
+            "NIC18": "X",
+            "NIC19": "PIX",
+            "NIC20": "NODE"
+          }
+        },
+        {
+          "name": "NIC19",
+          "peers": {
+            "GPU0": "SYS",
+            "GPU1": "SYS",
+            "GPU2": "SYS",
+            "GPU3": "SYS",
+            "GPU4": "NODE",
+            "GPU5": "NODE",
+            "GPU6": "NODE",
+            "GPU7": "PXB",
+            "NIC0": "SYS",
+            "NIC1": "SYS",
+            "NIC2": "SYS",
+            "NIC3": "SYS",
+            "NIC4": "SYS",
+            "NIC5": "SYS",
+            "NIC6": "SYS",
+            "NIC7": "SYS",
+            "NIC8": "SYS",
+            "NIC9": "SYS",
+            "NIC10": "NODE",
+            "NIC11": "NODE",
+            "NIC12": "NODE",
+            "NIC13": "NODE",
+            "NIC14": "NODE",
+            "NIC15": "NODE",
+            "NIC16": "NODE",
+            "NIC17": "NODE",
+            "NIC18": "PIX",
+            "NIC19": "X",
+            "NIC20": "NODE"
+          }
+        },
+        {
+          "name": "NIC20",
+          "peers": {
+            "GPU0": "SYS",
+            "GPU1": "SYS",
+            "GPU2": "SYS",
+            "GPU3": "SYS",
+            "GPU4": "NODE",
+            "GPU5": "NODE",
+            "GPU6": "NODE",
+            "GPU7": "NODE",
+            "NIC0": "SYS",
+            "NIC1": "SYS",
+            "NIC2": "SYS",
+            "NIC3": "SYS",
+            "NIC4": "SYS",
+            "NIC5": "SYS",
+            "NIC6": "SYS",
+            "NIC7": "SYS",
+            "NIC8": "SYS",
+            "NIC9": "SYS",
+            "NIC10": "NODE",
+            "NIC11": "NODE",
+            "NIC12": "PIX",
+            "NIC13": "PIX",
+            "NIC14": "NODE",
+            "NIC15": "NODE",
+            "NIC16": "NODE",
+            "NIC17": "NODE",
+            "NIC18": "NODE",
+            "NIC19": "NODE",
+            "NIC20": "X"
+          }
+        }
+      ],
+      "sources": [
+        "topology.txt"
+      ],
+      "nic_legend": {
+        "NIC0": "mlx5_0",
+        "NIC1": "mlx5_1",
+        "NIC2": "mlx5_2",
+        "NIC3": "mlx5_3",
+        "NIC4": "mlx5_4",
+        "NIC5": "mlx5_5",
+        "NIC6": "mlx5_6",
+        "NIC7": "mlx5_7",
+        "NIC8": "mlx5_8",
+        "NIC9": "mlx5_9",
+        "NIC10": "mlx5_10",
+        "NIC11": "mlx5_11",
+        "NIC12": "mlx5_12",
+        "NIC13": "mlx5_13",
+        "NIC14": "mlx5_14",
+        "NIC15": "mlx5_15",
+        "NIC16": "mlx5_16",
+        "NIC17": "mlx5_17",
+        "NIC18": "mlx5_18",
+        "NIC19": "mlx5_19",
+        "NIC20": "mlx5_20"
+      }
+    },
+    "nvlink": {
+      "gpus": [
+        {
+          "index": 0,
+          "uuid": "GPU-8252836a-e096-4522-5986-5d4e9c3107d9",
+          "link_count": 18,
+          "links": [
+            {
+              "link": 0,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 1,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 2,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 3,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 4,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 5,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 6,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 7,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 8,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 9,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 10,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 11,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 12,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 13,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 14,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 15,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 16,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 17,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "uuid": "GPU-a66abe74-5952-967a-02b7-0dfc5c203062",
+          "link_count": 18,
+          "links": [
+            {
+              "link": 0,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 1,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 2,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 3,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 4,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 5,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 6,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 7,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 8,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 9,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 10,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 11,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 12,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 13,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 14,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 15,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 16,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 17,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "uuid": "GPU-6b050a88-7445-dda6-a8c6-a949ae068def",
+          "link_count": 18,
+          "links": [
+            {
+              "link": 0,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 1,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 2,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 3,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 4,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 5,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 6,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 7,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 8,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 9,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 10,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 11,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 12,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 13,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 14,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 15,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 16,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 17,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "uuid": "GPU-9ea6c522-aa69-ac49-e1a5-e0cbf401b22b",
+          "link_count": 18,
+          "links": [
+            {
+              "link": 0,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 1,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 2,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 3,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 4,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 5,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 6,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 7,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 8,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 9,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 10,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 11,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 12,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 13,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 14,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 15,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 16,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 17,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "uuid": "GPU-e1804d82-cb76-c173-6c01-db18ac272ff4",
+          "link_count": 18,
+          "links": [
+            {
+              "link": 0,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 1,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 2,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 3,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 4,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 5,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 6,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 7,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 8,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 9,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 10,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 11,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 12,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 13,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 14,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 15,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 16,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 17,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "uuid": "GPU-5c38a19d-ea92-0a29-e59c-1eb37488b56b",
+          "link_count": 18,
+          "links": [
+            {
+              "link": 0,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 1,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 2,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 3,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 4,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 5,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 6,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 7,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 8,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 9,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 10,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 11,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 12,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 13,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 14,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 15,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 16,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 17,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "uuid": "GPU-34b19ada-c2e0-428e-abe9-fb1710f7cc98",
+          "link_count": 18,
+          "links": [
+            {
+              "link": 0,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 1,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 2,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 3,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 4,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 5,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 6,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 7,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 8,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 9,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 10,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 11,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 12,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 13,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 14,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 15,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 16,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 17,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "uuid": "GPU-b072ffe4-7a4d-223e-7bdc-8ee1eccdf655",
+          "link_count": 18,
+          "links": [
+            {
+              "link": 0,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 1,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 2,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 3,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 4,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 5,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 6,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 7,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 8,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 9,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 10,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 11,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 12,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 13,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 14,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 15,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 16,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            },
+            {
+              "link": 17,
+              "capabilities": {
+                "p2p_supported": true,
+                "system_memory_access_supported": true,
+                "p2p_atomics_supported": true,
+                "system_memory_atomics_supported": true,
+                "sli_supported": true,
+                "link_supported": false
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "nvlink_cap.txt"
+      ]
+    },
+    "cpu": {
+      "sources": [
+        "lscpu.txt"
+      ],
+      "model": "Intel(R) Xeon(R) Platinum 8480+",
+      "architecture": "x86_64",
+      "vendor_id": "GenuineIntel",
+      "logical_cpus": 224,
+      "online_cpus": "0-223",
+      "sockets": 2,
+      "cores_per_socket": 56,
+      "threads_per_core": 2,
+      "numa_nodes": 2,
+      "family": "6",
+      "model_id": "143",
+      "stepping": "8",
+      "byte_order": "Little Endian",
+      "virtualization": "VT-x",
+      "max_mhz": 3800.0,
+      "min_mhz": 800.0,
+      "l1d_cache": "48K",
+      "l1i_cache": "32K",
+      "l2_cache": "2048K",
+      "l3_cache": "107520K"
+    },
+    "numa": {
+      "nodes": [
+        {
+          "cpus": "0-55,112-167",
+          "size_mb": 1547696,
+          "node": 0
+        },
+        {
+          "cpus": "56-111,168-223",
+          "size_mb": 1547455,
+          "node": 1
+        }
+      ],
+      "sources": [
+        "numa.txt"
+      ],
+      "node_count": 2,
+      "distances": [
+        [
+          10,
+          21
+        ],
+        [
+          21,
+          10
+        ]
+      ]
+    },
+    "kernel": {
+      "release": "5.15.120.bsk.6-amd64",
+      "sources": [
+        "kernel.txt"
+      ]
+    },
+    "ofed": {
+      "version": "MLNX_OFED_LINUX-23.10-3.2.2.0:",
+      "sources": [
+        "ofed.txt"
+      ]
+    },
+    "rdma": {
+      "devices": [
+        {
+          "hca": "mlx5_0",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:0051:4cde",
+          "sys_image_guid": "58a2:e103:0051:4cde",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth4",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_1",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:0051:4cdf",
+          "sys_image_guid": "58a2:e103:0051:4cde",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth5",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_10",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:004b:aebe",
+          "sys_image_guid": "58a2:e103:004b:aebe",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth12",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_11",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:004b:aebf",
+          "sys_image_guid": "58a2:e103:004b:aebe",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth13",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_12",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "946d:ae03:0077:fba2",
+          "sys_image_guid": "946d:ae03:0077:fb9e",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth2_pf",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_13",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "946d:ae03:0077:fba3",
+          "sys_image_guid": "946d:ae03:0077:fb9e",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth3",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_14",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:004c:7a4e",
+          "sys_image_guid": "58a2:e103:004c:7a4e",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth14",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_15",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:004c:7a4f",
+          "sys_image_guid": "58a2:e103:004c:7a4e",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth15",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_16",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:004b:99ce",
+          "sys_image_guid": "58a2:e103:004b:99ce",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth16",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_17",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:004b:99cf",
+          "sys_image_guid": "58a2:e103:004b:99ce",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth17",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_18",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:004c:78fe",
+          "sys_image_guid": "58a2:e103:004c:78fe",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth18",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_19",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:004c:78ff",
+          "sys_image_guid": "58a2:e103:004c:78fe",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth19",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_2",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "946d:ae03:0077:fb9e",
+          "sys_image_guid": "946d:ae03:0077:fb9e",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth0",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_20",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "0000:0000:0000:0000",
+          "sys_image_guid": "946d:ae03:0077:fb9e",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4126",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "15",
+          "netdev": "eth2",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_3",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "946d:ae03:0077:fb9f",
+          "sys_image_guid": "946d:ae03:0077:fb9e",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth1",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_4",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:004b:047e",
+          "sys_image_guid": "58a2:e103:004b:047e",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth6",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_5",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:004b:047f",
+          "sys_image_guid": "58a2:e103:004b:047e",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth7",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_6",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:004c:7a7e",
+          "sys_image_guid": "58a2:e103:004c:7a7e",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth8",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_7",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:004c:7a7f",
+          "sys_image_guid": "58a2:e103:004c:7a7e",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth9",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_8",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:0051:69be",
+          "sys_image_guid": "58a2:e103:0051:69be",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth10",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        },
+        {
+          "hca": "mlx5_9",
+          "sources": [
+            "verbs.txt",
+            "rdma.txt"
+          ],
+          "transport": "InfiniBand (0)",
+          "fw_ver": "28.39.2500",
+          "node_guid": "58a2:e103:0051:69bf",
+          "sys_image_guid": "58a2:e103:0051:69be",
+          "vendor_id": "0x02c9",
+          "vendor_part_id": "4129",
+          "hw_ver": "0x0",
+          "board_id": "ORC0000000009",
+          "phys_port_cnt": "1",
+          "max_mr_size": "0xffffffffffffffff",
+          "max_qp": "131072",
+          "max_sge": "30",
+          "max_cq": "16777216",
+          "max_pd": "8388608",
+          "atomic_cap": "ATOMIC_HCA (1)",
+          "max_pkeys": "128",
+          "num_comp_vectors": "63",
+          "netdev": "eth11",
+          "ports": [
+            {
+              "port": 1,
+              "max_mtu": "4096 (5)",
+              "link_layer": "Ethernet",
+              "max_msg_sz": "0x40000000",
+              "gid_tbl_len": "255",
+              "pkey_tbl_len": "1"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "verbs.txt"
+      ]
+    }
+  },
+  "transient": {
+    "captured_at": "2026-09-10T07:08:00.989475+00:00",
+    "gpus": [
+      {
+        "index": 0,
+        "uuid": "GPU-8252836a-e096-4522-5986-5d4e9c3107d9",
+        "pstate": "P0",
+        "temperature_c": 30,
+        "power_draw_w": 71.67,
+        "utilization_gpu_pct": 0,
+        "utilization_memory_pct": 0,
+        "memory_used_mib": 0,
+        "memory_free_mib": 81007,
+        "clocks_sm_mhz": 345,
+        "ecc_errors_corrected_volatile": 0,
+        "ecc_errors_uncorrected_volatile": 0
+      },
+      {
+        "index": 1,
+        "uuid": "GPU-a66abe74-5952-967a-02b7-0dfc5c203062",
+        "pstate": "P0",
+        "temperature_c": 35,
+        "power_draw_w": 111.21,
+        "utilization_gpu_pct": 0,
+        "utilization_memory_pct": 0,
+        "memory_used_mib": 0,
+        "memory_free_mib": 81007,
+        "clocks_sm_mhz": 1830,
+        "ecc_errors_corrected_volatile": 0,
+        "ecc_errors_uncorrected_volatile": 0
+      },
+      {
+        "index": 2,
+        "uuid": "GPU-6b050a88-7445-dda6-a8c6-a949ae068def",
+        "pstate": "P0",
+        "temperature_c": 32,
+        "power_draw_w": 113.96,
+        "utilization_gpu_pct": 0,
+        "utilization_memory_pct": 0,
+        "memory_used_mib": 0,
+        "memory_free_mib": 81007,
+        "clocks_sm_mhz": 1830,
+        "ecc_errors_corrected_volatile": 0,
+        "ecc_errors_uncorrected_volatile": 0
+      },
+      {
+        "index": 3,
+        "uuid": "GPU-9ea6c522-aa69-ac49-e1a5-e0cbf401b22b",
+        "pstate": "P0",
+        "temperature_c": 37,
+        "power_draw_w": 117.29,
+        "utilization_gpu_pct": 0,
+        "utilization_memory_pct": 0,
+        "memory_used_mib": 0,
+        "memory_free_mib": 81007,
+        "clocks_sm_mhz": 1830,
+        "ecc_errors_corrected_volatile": 0,
+        "ecc_errors_uncorrected_volatile": 0
+      },
+      {
+        "index": 4,
+        "uuid": "GPU-e1804d82-cb76-c173-6c01-db18ac272ff4",
+        "pstate": "P0",
+        "temperature_c": 32,
+        "power_draw_w": 116.67,
+        "utilization_gpu_pct": 0,
+        "utilization_memory_pct": 0,
+        "memory_used_mib": 0,
+        "memory_free_mib": 81007,
+        "clocks_sm_mhz": 1830,
+        "ecc_errors_corrected_volatile": 0,
+        "ecc_errors_uncorrected_volatile": 0
+      },
+      {
+        "index": 5,
+        "uuid": "GPU-5c38a19d-ea92-0a29-e59c-1eb37488b56b",
+        "pstate": "P0",
+        "temperature_c": 37,
+        "power_draw_w": 121.18,
+        "utilization_gpu_pct": 0,
+        "utilization_memory_pct": 0,
+        "memory_used_mib": 0,
+        "memory_free_mib": 81007,
+        "clocks_sm_mhz": 1830,
+        "ecc_errors_corrected_volatile": 0,
+        "ecc_errors_uncorrected_volatile": 0
+      },
+      {
+        "index": 6,
+        "uuid": "GPU-34b19ada-c2e0-428e-abe9-fb1710f7cc98",
+        "pstate": "P0",
+        "temperature_c": 36,
+        "power_draw_w": 115.87,
+        "utilization_gpu_pct": 0,
+        "utilization_memory_pct": 0,
+        "memory_used_mib": 0,
+        "memory_free_mib": 81007,
+        "clocks_sm_mhz": 1830,
+        "ecc_errors_corrected_volatile": 0,
+        "ecc_errors_uncorrected_volatile": 0
+      },
+      {
+        "index": 7,
+        "uuid": "GPU-b072ffe4-7a4d-223e-7bdc-8ee1eccdf655",
+        "pstate": "P0",
+        "temperature_c": 33,
+        "power_draw_w": 115.14,
+        "utilization_gpu_pct": 0,
+        "utilization_memory_pct": 0,
+        "memory_used_mib": 0,
+        "memory_free_mib": 81007,
+        "clocks_sm_mhz": 1830,
+        "ecc_errors_corrected_volatile": 0,
+        "ecc_errors_uncorrected_volatile": 0
+      }
+    ],
+    "compute_process_count": 0,
+    "nvlink": {
+      "gpus": [
+        {
+          "index": 0,
+          "uuid": "GPU-8252836a-e096-4522-5986-5d4e9c3107d9",
+          "links": [
+            {
+              "link": 0,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 1,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 2,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 3,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 4,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 5,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 6,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 7,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 8,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 9,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 10,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 11,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 12,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 13,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 14,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 15,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 16,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 17,
+              "state": "active",
+              "rate_gb_s": 26.562
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "uuid": "GPU-a66abe74-5952-967a-02b7-0dfc5c203062",
+          "links": [
+            {
+              "link": 0,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 1,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 2,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 3,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 4,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 5,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 6,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 7,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 8,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 9,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 10,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 11,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 12,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 13,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 14,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 15,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 16,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 17,
+              "state": "active",
+              "rate_gb_s": 26.562
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "uuid": "GPU-6b050a88-7445-dda6-a8c6-a949ae068def",
+          "links": [
+            {
+              "link": 0,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 1,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 2,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 3,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 4,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 5,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 6,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 7,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 8,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 9,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 10,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 11,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 12,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 13,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 14,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 15,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 16,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 17,
+              "state": "active",
+              "rate_gb_s": 26.562
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "uuid": "GPU-9ea6c522-aa69-ac49-e1a5-e0cbf401b22b",
+          "links": [
+            {
+              "link": 0,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 1,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 2,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 3,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 4,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 5,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 6,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 7,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 8,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 9,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 10,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 11,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 12,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 13,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 14,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 15,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 16,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 17,
+              "state": "active",
+              "rate_gb_s": 26.562
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "uuid": "GPU-e1804d82-cb76-c173-6c01-db18ac272ff4",
+          "links": [
+            {
+              "link": 0,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 1,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 2,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 3,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 4,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 5,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 6,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 7,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 8,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 9,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 10,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 11,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 12,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 13,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 14,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 15,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 16,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 17,
+              "state": "active",
+              "rate_gb_s": 26.562
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "uuid": "GPU-5c38a19d-ea92-0a29-e59c-1eb37488b56b",
+          "links": [
+            {
+              "link": 0,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 1,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 2,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 3,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 4,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 5,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 6,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 7,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 8,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 9,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 10,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 11,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 12,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 13,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 14,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 15,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 16,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 17,
+              "state": "active",
+              "rate_gb_s": 26.562
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "uuid": "GPU-34b19ada-c2e0-428e-abe9-fb1710f7cc98",
+          "links": [
+            {
+              "link": 0,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 1,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 2,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 3,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 4,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 5,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 6,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 7,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 8,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 9,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 10,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 11,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 12,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 13,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 14,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 15,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 16,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 17,
+              "state": "active",
+              "rate_gb_s": 26.562
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "uuid": "GPU-b072ffe4-7a4d-223e-7bdc-8ee1eccdf655",
+          "links": [
+            {
+              "link": 0,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 1,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 2,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 3,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 4,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 5,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 6,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 7,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 8,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 9,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 10,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 11,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 12,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 13,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 14,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 15,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 16,
+              "state": "active",
+              "rate_gb_s": 26.562
+            },
+            {
+              "link": 17,
+              "state": "active",
+              "rate_gb_s": 26.562
+            }
+          ]
+        }
+      ]
+    },
+    "cpu": {
+      "current_mhz": 2000.0
+    },
+    "numa": {
+      "nodes": [
+        {
+          "node": 0,
+          "free_mb": 904731
+        },
+        {
+          "node": 1,
+          "free_mb": 593794
+        }
+      ]
+    },
+    "rdma": {
+      "ports": [
+        {
+          "hca": "mlx5_0",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_1",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_10",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_11",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_12",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_13",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "10.0 Gbps (4)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_14",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_15",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_16",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_17",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_18",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_19",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_2",
+          "port": 1,
+          "state": "ACTIVE",
+          "physical_state": "LINK_UP",
+          "active_mtu": "4096 (5)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_20",
+          "port": 1,
+          "state": "ACTIVE",
+          "physical_state": "LINK_UP",
+          "active_mtu": "4096 (5)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_3",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "10.0 Gbps (4)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_4",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_5",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_6",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_7",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_8",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        },
+        {
+          "hca": "mlx5_9",
+          "port": 1,
+          "state": "DOWN",
+          "physical_state": "DISABLED",
+          "active_mtu": "1024 (3)",
+          "active_speed": "50.0 Gbps (64)",
+          "active_width": "4X (2)",
+          "port_lid": "0",
+          "sm_lid": "0"
+        }
+      ]
+    }
+  },
+  "commands": [
+    {
+      "id": "gpu",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=name,uuid,pci.bus_id,pci.device_id,driver_version,memory.total,compute_cap,power.limit,mig.mode.current",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu.txt",
+      "sha256": "4a719da061df717a1ace95c7e5fc0712348bd6028b21d8ede1452fa499722496"
+    },
+    {
+      "id": "gpu_attested_rejected_1",
+      "status": "NOT_RUN",
+      "exit": 2,
+      "reason": "Field \"pci.link.gen.max\" is not a valid field to query.",
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,name,uuid,serial,pci.bus_id,pci.device_id,pci.sub_device_id,pci.link.gen.max,pci.link.width.max,driver_version,vbios_version,compute_cap,memory.total,memory.reserved,ecc.mode.current,ecc.mode.pending,persistence_mode,compute_mode,accounting.mode,mig.mode.current,mig.mode.pending,clocks.max.graphics,clocks.max.sm,clocks.max.memory,power.max_limit,power.min_limit,power.default_limit,power.limit",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_attested.rejected.1.txt",
+      "sha256": "929201253ed0a77b7fbe53ba09df3bf4a0559c66d77afa32d0e00039eb3f3802"
+    },
+    {
+      "id": "gpu_attested_rejected_2",
+      "status": "NOT_RUN",
+      "exit": 2,
+      "reason": "Field \"pci.link.width.max\" is not a valid field to query.",
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,name,uuid,serial,pci.bus_id,pci.device_id,pci.sub_device_id,pci.link.width.max,driver_version,vbios_version,compute_cap,memory.total,memory.reserved,ecc.mode.current,ecc.mode.pending,persistence_mode,compute_mode,accounting.mode,mig.mode.current,mig.mode.pending,clocks.max.graphics,clocks.max.sm,clocks.max.memory,power.max_limit,power.min_limit,power.default_limit,power.limit",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_attested.rejected.2.txt",
+      "sha256": "bf95344360742bae08dc98d0419c273ab70211c9f4427838464f5d896b1ef6e1"
+    },
+    {
+      "id": "gpu_attested",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,name,uuid,serial,pci.bus_id,pci.device_id,pci.sub_device_id,driver_version,vbios_version,compute_cap,memory.total,memory.reserved,ecc.mode.current,ecc.mode.pending,persistence_mode,compute_mode,accounting.mode,mig.mode.current,mig.mode.pending,clocks.max.graphics,clocks.max.sm,clocks.max.memory,power.max_limit,power.min_limit,power.default_limit,power.limit",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_attested.txt",
+      "sha256": "95a8fef914ebbc1acc3a84c58da0e1cbc92ca9bda6f3a97acab18ded885cee58"
+    },
+    {
+      "id": "gpu_transient_rejected_1",
+      "status": "NOT_RUN",
+      "exit": 2,
+      "reason": "Field \"clocks.memory\" is not a valid field to query.",
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,pstate,temperature.gpu,fan.speed,power.draw,utilization.gpu,utilization.memory,memory.used,memory.free,clocks.sm,clocks.memory,pci.link.gen.current,pci.link.width.current,ecc.errors.corrected.volatile.total,ecc.errors.uncorrected.volatile.total",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_transient.rejected.1.txt",
+      "sha256": "42bc6ef4e4165716583405cf1a9186636abd0513d092682ad851801a7410c4a6"
+    },
+    {
+      "id": "gpu_transient_rejected_2",
+      "status": "NOT_RUN",
+      "exit": 2,
+      "reason": "Field \"pci.link.gen.current\" is not a valid field to query.",
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,pstate,temperature.gpu,fan.speed,power.draw,utilization.gpu,utilization.memory,memory.used,memory.free,clocks.sm,pci.link.gen.current,pci.link.width.current,ecc.errors.corrected.volatile.total,ecc.errors.uncorrected.volatile.total",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_transient.rejected.2.txt",
+      "sha256": "4bfe4867e43830f1a759359a33372653cdcb75839dd7e17519e0bc345d416646"
+    },
+    {
+      "id": "gpu_transient_rejected_3",
+      "status": "NOT_RUN",
+      "exit": 2,
+      "reason": "Field \"pci.link.width.current\" is not a valid field to query.",
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,pstate,temperature.gpu,fan.speed,power.draw,utilization.gpu,utilization.memory,memory.used,memory.free,clocks.sm,pci.link.width.current,ecc.errors.corrected.volatile.total,ecc.errors.uncorrected.volatile.total",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_transient.rejected.3.txt",
+      "sha256": "ec2ee4f53f6e7dc5dfc65cb98b83f8a1a4d2696610da26c8773b72b504728bf5"
+    },
+    {
+      "id": "gpu_transient",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,pstate,temperature.gpu,fan.speed,power.draw,utilization.gpu,utilization.memory,memory.used,memory.free,clocks.sm,ecc.errors.corrected.volatile.total,ecc.errors.uncorrected.volatile.total",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_transient.txt",
+      "sha256": "61674108c681e98adf9a972c71541ca38beafc93ceb83814a378b90754e06b9e"
+    },
+    {
+      "id": "smi",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi"
+      ],
+      "path": "smi.txt",
+      "sha256": "3a3b95b8e2d80f7171eb1676b9c41709a566c38515d4e9902b7db34eee78d578"
+    },
+    {
+      "id": "smiq",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "-q"
+      ],
+      "path": "smiq.txt",
+      "sha256": "4219a826613b340bbb2b667b07776aa89f58790c5bd508eb406c6d3ca2da6c42"
+    },
+    {
+      "id": "mig",
+      "status": "NOT_RUN",
+      "exit": 6,
+      "argv": [
+        "nvidia-smi",
+        "mig",
+        "-lgip"
+      ],
+      "path": "mig.txt",
+      "sha256": "f6c734ca9b7d034f7f89fb2e2ad717e5424842a1feb76675e4711ae57a8f5fbd"
+    },
+    {
+      "id": "topology",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "topo",
+        "-m"
+      ],
+      "path": "topology.txt",
+      "sha256": "9d8efaa8614ee8f7f455f21d0d5b93a1e440ab49a0f0300a7667865d8b9fa365"
+    },
+    {
+      "id": "nvlink",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "nvlink",
+        "--status"
+      ],
+      "path": "nvlink.txt",
+      "sha256": "5190806d5d71d559ef77694aa1f8b58e0bd99ffb2f7f6b36a559077473f98a9e"
+    },
+    {
+      "id": "nvlink_cap",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "nvlink",
+        "-c"
+      ],
+      "path": "nvlink_cap.txt",
+      "sha256": "f37b82c6ffd3b6b05d8d709d349605707716fb0a9f65c919f2108cea19639141"
+    },
+    {
+      "id": "cuda",
+      "status": "NOT_RUN",
+      "reason": "utility not installed",
+      "argv": [
+        "nvcc",
+        "--version"
+      ]
+    },
+    {
+      "id": "verbs",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "ibv_devinfo",
+        "-v"
+      ],
+      "path": "verbs.txt",
+      "sha256": "cab104dc7f2c6d2e78c354029efb85113c662514123d04103c05018519ea6351"
+    },
+    {
+      "id": "rdma",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "rdma",
+        "link",
+        "show"
+      ],
+      "path": "rdma.txt",
+      "sha256": "c07dc4ff03b123235086dde854a4d299bf6d4525366ddc2343faaa38c39bb763"
+    },
+    {
+      "id": "ofed",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "ofed_info",
+        "-s"
+      ],
+      "path": "ofed.txt",
+      "sha256": "e3a2fe9c0d02cab8c646a5d711b699086998a304280db871a543aae9d768c986"
+    },
+    {
+      "id": "lscpu",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "lscpu"
+      ],
+      "path": "lscpu.txt",
+      "sha256": "28bb7221d786509e8c6b599d596a8d7e087146b0a43061f60d43b3c54a6d2fbb"
+    },
+    {
+      "id": "numa",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "numactl",
+        "--hardware"
+      ],
+      "path": "numa.txt",
+      "sha256": "cf54ba91053c6c8f1a56176ea42acbd9f3344e06355768cde30311e6a374f6e0"
+    },
+    {
+      "id": "kernel",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "uname",
+        "-r"
+      ],
+      "path": "kernel.txt",
+      "sha256": "7b3ba5a8d69025e9a9d71dccd0bfe931f53c5b16d5dae80748806f834efe0849"
+    },
+    {
+      "id": "pci",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "lspci",
+        "-nn"
+      ],
+      "path": "pci.txt",
+      "sha256": "93e7ff6dd1ed0e0cf696cbfdfaefe2362b2d53400660df2e2c199e4f3bb5fa24"
+    }
+  ],
+  "unavailable": [
+    {
+      "field": "attested.cuda_toolkit",
+      "command": "cuda",
+      "reason": "utility not installed"
+    },
+    {
+      "field": "attested.gpus[].multiprocessor_count",
+      "command": "smiq",
+      "reason": "not reported by smiq.txt"
+    },
+    {
+      "field": "attested.gpus[].pci.link_gen_max",
+      "command": "gpu_attested_rejected_1",
+      "reason": "Field \"pci.link.gen.max\" is not a valid field to query."
+    },
+    {
+      "field": "attested.gpus[].pci.link_width_max",
+      "command": "gpu_attested_rejected_2",
+      "reason": "Field \"pci.link.width.max\" is not a valid field to query."
+    },
+    {
+      "field": "attested.mig_profiles",
+      "command": "mig",
+      "reason": "exited 6"
+    },
+    {
+      "field": "transient.gpus[].clocks_memory_mhz",
+      "command": "gpu_transient_rejected_1",
+      "reason": "Field \"clocks.memory\" is not a valid field to query."
+    },
+    {
+      "field": "transient.gpus[].link_gen_current",
+      "command": "gpu_transient_rejected_2",
+      "reason": "Field \"pci.link.gen.current\" is not a valid field to query."
+    },
+    {
+      "field": "transient.gpus[].link_width_current",
+      "command": "gpu_transient_rejected_3",
+      "reason": "Field \"pci.link.width.current\" is not a valid field to query."
+    }
+  ],
+  "sku": "H100-SXM"
+}

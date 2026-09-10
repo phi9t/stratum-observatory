@@ -1,28 +1,31 @@
 {
   "schema": "stratum-probe-provenance/v1",
-  "captured_at": "2026-09-10T04:51:11.653536+00:00",
-  "method": "read-only tools/probe-system.py over ssh; no sudo, no fabric change, no model load",
+  "captured_at": "2026-09-10T07:08:24.337042+00:00",
+  "method": "read-only tools/probe-system.py over ssh; no sudo, no fabric change, no model load. Each host carries its own probe time in evidence/runtime/<obligation>/manifest.json; the top-level captured_at is the end of the capture round.",
   "hosts": {
     "gpu.H100-SXM": {
       "host": "devx_h100_tiger_n102_147_034",
       "fleet": "armada",
       "access": "ssh via jumper_general_us_proxy",
       "gpus_on_host": 8,
-      "note": "Probe describes the H100-SXM SKU; the host carries eight of them."
+      "note": "Probe describes the H100-SXM SKU; the host carries eight of them.",
+      "captured_at": "2026-09-10T07:08:00.989475+00:00"
     },
     "gpu.B200": {
       "host": "devx_b200_tiger_n116_077_207",
       "fleet": "armada",
       "access": "ssh via jumper_general_us_proxy",
       "gpus_on_host": 8,
-      "note": "Probe describes the B200 SKU; the host carries eight of them."
+      "note": "Probe describes the B200 SKU; the host carries eight of them.",
+      "captured_at": "2026-09-10T07:08:15.063425+00:00"
     },
     "gpu.GB300": {
       "host": "devx_gb300_tiger_dc61_pe_t719_n015",
       "fleet": "armada",
       "access": "ssh via jumper_general_us_proxy",
       "gpus_on_host": 4,
-      "note": "Record describes the GB300 superchip scope (2 GPUs, 1 CPU); the host reports four GPUs."
+      "note": "Record describes the GB300 superchip scope (2 GPUs, 1 CPU); the host reports four GPUs.",
+      "captured_at": "2026-09-10T07:08:24.337042+00:00"
     }
   }
 }

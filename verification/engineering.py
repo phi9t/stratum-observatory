@@ -41,8 +41,11 @@ def main():
     # toolchain the tests never used, so refuse rather than attest to the wrong one.
     toolchain_before=toolchain_digest(root)
     steps=[('verifier-tests',[sys.executable,'-m','unittest','discover','-s','verification/tests','-v']),('node-tests',['npm','test']),('build',['npm','run','build'])]
+    # 600s, not 180s: the verifier suite runs 383 tests taking 108-113s on an idle machine and
+    # has already tripped 180s once under load. A timeout that fires on a slow machine reports a
+    # failure that did not happen, which is the one thing this gate must never do.
     for name,cmd in steps:
-        result=subprocess.run(cmd,cwd=root,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=180)
+        result=subprocess.run(cmd,cwd=root,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=600)
         (out/f'{name}.log').write_text(result.stdout);commands[name]={'argv':cmd,'exit':result.returncode}
         print(result.stdout[-1800:])
         if result.returncode:return result.returncode

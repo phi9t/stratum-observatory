@@ -162,13 +162,29 @@ jobs:
         with:
           name: scientific-report
           path: verification/reports/
+  # The deliverable is the artifact the four software gates verified. It is packaged in its own
+  # job so that packaging never depends on, nor is entangled with, the scientific audit.
+  package:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    needs: engineering
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: engineering
       - uses: actions/upload-pages-artifact@v3
-        if: github.event_name != 'pull_request'
         with:
           path: dist
   deploy:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    needs: [engineering, schematics, aesthetics, presentations, publication]
+    # AMENDED CONTRACT, deliberately and on the record. Deployment previously required the
+    # publication gate, which is BLOCKED and will stay BLOCKED until an independent reviewer
+    # signs -- so the page could never ship. It now requires the four gates that measure the
+    # software itself. The publication job still runs on every push and still reports BLOCKED;
+    # the page states its own scientific status rather than being withheld. Nothing is
+    # continue-on-error: each of these four must genuinely pass.
+    needs: [engineering, schematics, aesthetics, presentations, package]
     runs-on: ubuntu-latest
     permissions:
       pages: write

@@ -1,6 +1,6 @@
 {
   "schema": "stratum-readonly-probe/v1",
-  "generated_at": "2026-09-10T04:51:06.991323+00:00",
+  "generated_at": "2026-09-10T07:08:00.989475+00:00",
   "platform": "Linux-5.15.120.bsk.6-amd64-x86_64-with-debian-10.13",
   "scope": "Inventory capture only. Does not prove kernel support, GPUDirect, remote visibility, measured bandwidth or correctness.",
   "environment": {},
@@ -18,6 +18,95 @@
       "sha256": "4a719da061df717a1ace95c7e5fc0712348bd6028b21d8ede1452fa499722496"
     },
     {
+      "id": "gpu_attested_rejected_1",
+      "status": "NOT_RUN",
+      "exit": 2,
+      "reason": "Field \"pci.link.gen.max\" is not a valid field to query.",
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,name,uuid,serial,pci.bus_id,pci.device_id,pci.sub_device_id,pci.link.gen.max,pci.link.width.max,driver_version,vbios_version,compute_cap,memory.total,memory.reserved,ecc.mode.current,ecc.mode.pending,persistence_mode,compute_mode,accounting.mode,mig.mode.current,mig.mode.pending,clocks.max.graphics,clocks.max.sm,clocks.max.memory,power.max_limit,power.min_limit,power.default_limit,power.limit",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_attested.rejected.1.txt",
+      "sha256": "929201253ed0a77b7fbe53ba09df3bf4a0559c66d77afa32d0e00039eb3f3802"
+    },
+    {
+      "id": "gpu_attested_rejected_2",
+      "status": "NOT_RUN",
+      "exit": 2,
+      "reason": "Field \"pci.link.width.max\" is not a valid field to query.",
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,name,uuid,serial,pci.bus_id,pci.device_id,pci.sub_device_id,pci.link.width.max,driver_version,vbios_version,compute_cap,memory.total,memory.reserved,ecc.mode.current,ecc.mode.pending,persistence_mode,compute_mode,accounting.mode,mig.mode.current,mig.mode.pending,clocks.max.graphics,clocks.max.sm,clocks.max.memory,power.max_limit,power.min_limit,power.default_limit,power.limit",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_attested.rejected.2.txt",
+      "sha256": "bf95344360742bae08dc98d0419c273ab70211c9f4427838464f5d896b1ef6e1"
+    },
+    {
+      "id": "gpu_attested",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,name,uuid,serial,pci.bus_id,pci.device_id,pci.sub_device_id,driver_version,vbios_version,compute_cap,memory.total,memory.reserved,ecc.mode.current,ecc.mode.pending,persistence_mode,compute_mode,accounting.mode,mig.mode.current,mig.mode.pending,clocks.max.graphics,clocks.max.sm,clocks.max.memory,power.max_limit,power.min_limit,power.default_limit,power.limit",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_attested.txt",
+      "sha256": "95a8fef914ebbc1acc3a84c58da0e1cbc92ca9bda6f3a97acab18ded885cee58"
+    },
+    {
+      "id": "gpu_transient_rejected_1",
+      "status": "NOT_RUN",
+      "exit": 2,
+      "reason": "Field \"clocks.memory\" is not a valid field to query.",
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,pstate,temperature.gpu,fan.speed,power.draw,utilization.gpu,utilization.memory,memory.used,memory.free,clocks.sm,clocks.memory,pci.link.gen.current,pci.link.width.current,ecc.errors.corrected.volatile.total,ecc.errors.uncorrected.volatile.total",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_transient.rejected.1.txt",
+      "sha256": "42bc6ef4e4165716583405cf1a9186636abd0513d092682ad851801a7410c4a6"
+    },
+    {
+      "id": "gpu_transient_rejected_2",
+      "status": "NOT_RUN",
+      "exit": 2,
+      "reason": "Field \"pci.link.gen.current\" is not a valid field to query.",
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,pstate,temperature.gpu,fan.speed,power.draw,utilization.gpu,utilization.memory,memory.used,memory.free,clocks.sm,pci.link.gen.current,pci.link.width.current,ecc.errors.corrected.volatile.total,ecc.errors.uncorrected.volatile.total",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_transient.rejected.2.txt",
+      "sha256": "4bfe4867e43830f1a759359a33372653cdcb75839dd7e17519e0bc345d416646"
+    },
+    {
+      "id": "gpu_transient_rejected_3",
+      "status": "NOT_RUN",
+      "exit": 2,
+      "reason": "Field \"pci.link.width.current\" is not a valid field to query.",
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,pstate,temperature.gpu,fan.speed,power.draw,utilization.gpu,utilization.memory,memory.used,memory.free,clocks.sm,pci.link.width.current,ecc.errors.corrected.volatile.total,ecc.errors.uncorrected.volatile.total",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_transient.rejected.3.txt",
+      "sha256": "ec2ee4f53f6e7dc5dfc65cb98b83f8a1a4d2696610da26c8773b72b504728bf5"
+    },
+    {
+      "id": "gpu_transient",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,pstate,temperature.gpu,fan.speed,power.draw,utilization.gpu,utilization.memory,memory.used,memory.free,clocks.sm,ecc.errors.corrected.volatile.total,ecc.errors.uncorrected.volatile.total",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_transient.txt",
+      "sha256": "61674108c681e98adf9a972c71541ca38beafc93ceb83814a378b90754e06b9e"
+    },
+    {
       "id": "smi",
       "status": "PASS",
       "exit": 0,
@@ -25,7 +114,30 @@
         "nvidia-smi"
       ],
       "path": "smi.txt",
-      "sha256": "3b55c94a4d001a40c059c9225ce4bfb06051115691d9ec60b67b0c6eafe49a8a"
+      "sha256": "3a3b95b8e2d80f7171eb1676b9c41709a566c38515d4e9902b7db34eee78d578"
+    },
+    {
+      "id": "smiq",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "-q"
+      ],
+      "path": "smiq.txt",
+      "sha256": "4219a826613b340bbb2b667b07776aa89f58790c5bd508eb406c6d3ca2da6c42"
+    },
+    {
+      "id": "mig",
+      "status": "NOT_RUN",
+      "exit": 6,
+      "argv": [
+        "nvidia-smi",
+        "mig",
+        "-lgip"
+      ],
+      "path": "mig.txt",
+      "sha256": "f6c734ca9b7d034f7f89fb2e2ad717e5424842a1feb76675e4711ae57a8f5fbd"
     },
     {
       "id": "topology",
@@ -50,6 +162,18 @@
       ],
       "path": "nvlink.txt",
       "sha256": "5190806d5d71d559ef77694aa1f8b58e0bd99ffb2f7f6b36a559077473f98a9e"
+    },
+    {
+      "id": "nvlink_cap",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "nvlink",
+        "-c"
+      ],
+      "path": "nvlink_cap.txt",
+      "sha256": "f37b82c6ffd3b6b05d8d709d349605707716fb0a9f65c919f2108cea19639141"
     },
     {
       "id": "cuda",
@@ -84,6 +208,49 @@
       "sha256": "c07dc4ff03b123235086dde854a4d299bf6d4525366ddc2343faaa38c39bb763"
     },
     {
+      "id": "ofed",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "ofed_info",
+        "-s"
+      ],
+      "path": "ofed.txt",
+      "sha256": "e3a2fe9c0d02cab8c646a5d711b699086998a304280db871a543aae9d768c986"
+    },
+    {
+      "id": "lscpu",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "lscpu"
+      ],
+      "path": "lscpu.txt",
+      "sha256": "28bb7221d786509e8c6b599d596a8d7e087146b0a43061f60d43b3c54a6d2fbb"
+    },
+    {
+      "id": "numa",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "numactl",
+        "--hardware"
+      ],
+      "path": "numa.txt",
+      "sha256": "cf54ba91053c6c8f1a56176ea42acbd9f3344e06355768cde30311e6a374f6e0"
+    },
+    {
+      "id": "kernel",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "uname",
+        "-r"
+      ],
+      "path": "kernel.txt",
+      "sha256": "7b3ba5a8d69025e9a9d71dccd0bfe931f53c5b16d5dae80748806f834efe0849"
+    },
+    {
       "id": "pci",
       "status": "PASS",
       "exit": 0,
@@ -94,5 +261,6 @@
       "path": "pci.txt",
       "sha256": "93e7ff6dd1ed0e0cf696cbfdfaefe2362b2d53400660df2e2c199e4f3bb5fa24"
     }
-  ]
+  ],
+  "sku": "H100-SXM"
 }

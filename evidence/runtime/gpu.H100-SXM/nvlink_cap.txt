@@ -1,0 +1,874 @@
+GPU 0: NVIDIA H100 80GB HBM3 (UUID: GPU-8252836a-e096-4522-5986-5d4e9c3107d9)
+	 Link 0, P2P is supported: true
+	 Link 0, Access to system memory supported: true
+	 Link 0, P2P atomics supported: true
+	 Link 0, System memory atomics supported: true
+	 Link 0, SLI is supported: true
+	 Link 0, Link is supported: false
+	 Link 1, P2P is supported: true
+	 Link 1, Access to system memory supported: true
+	 Link 1, P2P atomics supported: true
+	 Link 1, System memory atomics supported: true
+	 Link 1, SLI is supported: true
+	 Link 1, Link is supported: false
+	 Link 2, P2P is supported: true
+	 Link 2, Access to system memory supported: true
+	 Link 2, P2P atomics supported: true
+	 Link 2, System memory atomics supported: true
+	 Link 2, SLI is supported: true
+	 Link 2, Link is supported: false
+	 Link 3, P2P is supported: true
+	 Link 3, Access to system memory supported: true
+	 Link 3, P2P atomics supported: true
+	 Link 3, System memory atomics supported: true
+	 Link 3, SLI is supported: true
+	 Link 3, Link is supported: false
+	 Link 4, P2P is supported: true
+	 Link 4, Access to system memory supported: true
+	 Link 4, P2P atomics supported: true
+	 Link 4, System memory atomics supported: true
+	 Link 4, SLI is supported: true
+	 Link 4, Link is supported: false
+	 Link 5, P2P is supported: true
+	 Link 5, Access to system memory supported: true
+	 Link 5, P2P atomics supported: true
+	 Link 5, System memory atomics supported: true
+	 Link 5, SLI is supported: true
+	 Link 5, Link is supported: false
+	 Link 6, P2P is supported: true
+	 Link 6, Access to system memory supported: true
+	 Link 6, P2P atomics supported: true
+	 Link 6, System memory atomics supported: true
+	 Link 6, SLI is supported: true
+	 Link 6, Link is supported: false
+	 Link 7, P2P is supported: true
+	 Link 7, Access to system memory supported: true
+	 Link 7, P2P atomics supported: true
+	 Link 7, System memory atomics supported: true
+	 Link 7, SLI is supported: true
+	 Link 7, Link is supported: false
+	 Link 8, P2P is supported: true
+	 Link 8, Access to system memory supported: true
+	 Link 8, P2P atomics supported: true
+	 Link 8, System memory atomics supported: true
+	 Link 8, SLI is supported: true
+	 Link 8, Link is supported: false
+	 Link 9, P2P is supported: true
+	 Link 9, Access to system memory supported: true
+	 Link 9, P2P atomics supported: true
+	 Link 9, System memory atomics supported: true
+	 Link 9, SLI is supported: true
+	 Link 9, Link is supported: false
+	 Link 10, P2P is supported: true
+	 Link 10, Access to system memory supported: true
+	 Link 10, P2P atomics supported: true
+	 Link 10, System memory atomics supported: true
+	 Link 10, SLI is supported: true
+	 Link 10, Link is supported: false
+	 Link 11, P2P is supported: true
+	 Link 11, Access to system memory supported: true
+	 Link 11, P2P atomics supported: true
+	 Link 11, System memory atomics supported: true
+	 Link 11, SLI is supported: true
+	 Link 11, Link is supported: false
+	 Link 12, P2P is supported: true
+	 Link 12, Access to system memory supported: true
+	 Link 12, P2P atomics supported: true
+	 Link 12, System memory atomics supported: true
+	 Link 12, SLI is supported: true
+	 Link 12, Link is supported: false
+	 Link 13, P2P is supported: true
+	 Link 13, Access to system memory supported: true
+	 Link 13, P2P atomics supported: true
+	 Link 13, System memory atomics supported: true
+	 Link 13, SLI is supported: true
+	 Link 13, Link is supported: false
+	 Link 14, P2P is supported: true
+	 Link 14, Access to system memory supported: true
+	 Link 14, P2P atomics supported: true
+	 Link 14, System memory atomics supported: true
+	 Link 14, SLI is supported: true
+	 Link 14, Link is supported: false
+	 Link 15, P2P is supported: true
+	 Link 15, Access to system memory supported: true
+	 Link 15, P2P atomics supported: true
+	 Link 15, System memory atomics supported: true
+	 Link 15, SLI is supported: true
+	 Link 15, Link is supported: false
+	 Link 16, P2P is supported: true
+	 Link 16, Access to system memory supported: true
+	 Link 16, P2P atomics supported: true
+	 Link 16, System memory atomics supported: true
+	 Link 16, SLI is supported: true
+	 Link 16, Link is supported: false
+	 Link 17, P2P is supported: true
+	 Link 17, Access to system memory supported: true
+	 Link 17, P2P atomics supported: true
+	 Link 17, System memory atomics supported: true
+	 Link 17, SLI is supported: true
+	 Link 17, Link is supported: false
+GPU 1: NVIDIA H100 80GB HBM3 (UUID: GPU-a66abe74-5952-967a-02b7-0dfc5c203062)
+	 Link 0, P2P is supported: true
+	 Link 0, Access to system memory supported: true
+	 Link 0, P2P atomics supported: true
+	 Link 0, System memory atomics supported: true
+	 Link 0, SLI is supported: true
+	 Link 0, Link is supported: false
+	 Link 1, P2P is supported: true
+	 Link 1, Access to system memory supported: true
+	 Link 1, P2P atomics supported: true
+	 Link 1, System memory atomics supported: true
+	 Link 1, SLI is supported: true
+	 Link 1, Link is supported: false
+	 Link 2, P2P is supported: true
+	 Link 2, Access to system memory supported: true
+	 Link 2, P2P atomics supported: true
+	 Link 2, System memory atomics supported: true
+	 Link 2, SLI is supported: true
+	 Link 2, Link is supported: false
+	 Link 3, P2P is supported: true
+	 Link 3, Access to system memory supported: true
+	 Link 3, P2P atomics supported: true
+	 Link 3, System memory atomics supported: true
+	 Link 3, SLI is supported: true
+	 Link 3, Link is supported: false
+	 Link 4, P2P is supported: true
+	 Link 4, Access to system memory supported: true
+	 Link 4, P2P atomics supported: true
+	 Link 4, System memory atomics supported: true
+	 Link 4, SLI is supported: true
+	 Link 4, Link is supported: false
+	 Link 5, P2P is supported: true
+	 Link 5, Access to system memory supported: true
+	 Link 5, P2P atomics supported: true
+	 Link 5, System memory atomics supported: true
+	 Link 5, SLI is supported: true
+	 Link 5, Link is supported: false
+	 Link 6, P2P is supported: true
+	 Link 6, Access to system memory supported: true
+	 Link 6, P2P atomics supported: true
+	 Link 6, System memory atomics supported: true
+	 Link 6, SLI is supported: true
+	 Link 6, Link is supported: false
+	 Link 7, P2P is supported: true
+	 Link 7, Access to system memory supported: true
+	 Link 7, P2P atomics supported: true
+	 Link 7, System memory atomics supported: true
+	 Link 7, SLI is supported: true
+	 Link 7, Link is supported: false
+	 Link 8, P2P is supported: true
+	 Link 8, Access to system memory supported: true
+	 Link 8, P2P atomics supported: true
+	 Link 8, System memory atomics supported: true
+	 Link 8, SLI is supported: true
+	 Link 8, Link is supported: false
+	 Link 9, P2P is supported: true
+	 Link 9, Access to system memory supported: true
+	 Link 9, P2P atomics supported: true
+	 Link 9, System memory atomics supported: true
+	 Link 9, SLI is supported: true
+	 Link 9, Link is supported: false
+	 Link 10, P2P is supported: true
+	 Link 10, Access to system memory supported: true
+	 Link 10, P2P atomics supported: true
+	 Link 10, System memory atomics supported: true
+	 Link 10, SLI is supported: true
+	 Link 10, Link is supported: false
+	 Link 11, P2P is supported: true
+	 Link 11, Access to system memory supported: true
+	 Link 11, P2P atomics supported: true
+	 Link 11, System memory atomics supported: true
+	 Link 11, SLI is supported: true
+	 Link 11, Link is supported: false
+	 Link 12, P2P is supported: true
+	 Link 12, Access to system memory supported: true
+	 Link 12, P2P atomics supported: true
+	 Link 12, System memory atomics supported: true
+	 Link 12, SLI is supported: true
+	 Link 12, Link is supported: false
+	 Link 13, P2P is supported: true
+	 Link 13, Access to system memory supported: true
+	 Link 13, P2P atomics supported: true
+	 Link 13, System memory atomics supported: true
+	 Link 13, SLI is supported: true
+	 Link 13, Link is supported: false
+	 Link 14, P2P is supported: true
+	 Link 14, Access to system memory supported: true
+	 Link 14, P2P atomics supported: true
+	 Link 14, System memory atomics supported: true
+	 Link 14, SLI is supported: true
+	 Link 14, Link is supported: false
+	 Link 15, P2P is supported: true
+	 Link 15, Access to system memory supported: true
+	 Link 15, P2P atomics supported: true
+	 Link 15, System memory atomics supported: true
+	 Link 15, SLI is supported: true
+	 Link 15, Link is supported: false
+	 Link 16, P2P is supported: true
+	 Link 16, Access to system memory supported: true
+	 Link 16, P2P atomics supported: true
+	 Link 16, System memory atomics supported: true
+	 Link 16, SLI is supported: true
+	 Link 16, Link is supported: false
+	 Link 17, P2P is supported: true
+	 Link 17, Access to system memory supported: true
+	 Link 17, P2P atomics supported: true
+	 Link 17, System memory atomics supported: true
+	 Link 17, SLI is supported: true
+	 Link 17, Link is supported: false
+GPU 2: NVIDIA H100 80GB HBM3 (UUID: GPU-6b050a88-7445-dda6-a8c6-a949ae068def)
+	 Link 0, P2P is supported: true
+	 Link 0, Access to system memory supported: true
+	 Link 0, P2P atomics supported: true
+	 Link 0, System memory atomics supported: true
+	 Link 0, SLI is supported: true
+	 Link 0, Link is supported: false
+	 Link 1, P2P is supported: true
+	 Link 1, Access to system memory supported: true
+	 Link 1, P2P atomics supported: true
+	 Link 1, System memory atomics supported: true
+	 Link 1, SLI is supported: true
+	 Link 1, Link is supported: false
+	 Link 2, P2P is supported: true
+	 Link 2, Access to system memory supported: true
+	 Link 2, P2P atomics supported: true
+	 Link 2, System memory atomics supported: true
+	 Link 2, SLI is supported: true
+	 Link 2, Link is supported: false
+	 Link 3, P2P is supported: true
+	 Link 3, Access to system memory supported: true
+	 Link 3, P2P atomics supported: true
+	 Link 3, System memory atomics supported: true
+	 Link 3, SLI is supported: true
+	 Link 3, Link is supported: false
+	 Link 4, P2P is supported: true
+	 Link 4, Access to system memory supported: true
+	 Link 4, P2P atomics supported: true
+	 Link 4, System memory atomics supported: true
+	 Link 4, SLI is supported: true
+	 Link 4, Link is supported: false
+	 Link 5, P2P is supported: true
+	 Link 5, Access to system memory supported: true
+	 Link 5, P2P atomics supported: true
+	 Link 5, System memory atomics supported: true
+	 Link 5, SLI is supported: true
+	 Link 5, Link is supported: false
+	 Link 6, P2P is supported: true
+	 Link 6, Access to system memory supported: true
+	 Link 6, P2P atomics supported: true
+	 Link 6, System memory atomics supported: true
+	 Link 6, SLI is supported: true
+	 Link 6, Link is supported: false
+	 Link 7, P2P is supported: true
+	 Link 7, Access to system memory supported: true
+	 Link 7, P2P atomics supported: true
+	 Link 7, System memory atomics supported: true
+	 Link 7, SLI is supported: true
+	 Link 7, Link is supported: false
+	 Link 8, P2P is supported: true
+	 Link 8, Access to system memory supported: true
+	 Link 8, P2P atomics supported: true
+	 Link 8, System memory atomics supported: true
+	 Link 8, SLI is supported: true
+	 Link 8, Link is supported: false
+	 Link 9, P2P is supported: true
+	 Link 9, Access to system memory supported: true
+	 Link 9, P2P atomics supported: true
+	 Link 9, System memory atomics supported: true
+	 Link 9, SLI is supported: true
+	 Link 9, Link is supported: false
+	 Link 10, P2P is supported: true
+	 Link 10, Access to system memory supported: true
+	 Link 10, P2P atomics supported: true
+	 Link 10, System memory atomics supported: true
+	 Link 10, SLI is supported: true
+	 Link 10, Link is supported: false
+	 Link 11, P2P is supported: true
+	 Link 11, Access to system memory supported: true
+	 Link 11, P2P atomics supported: true
+	 Link 11, System memory atomics supported: true
+	 Link 11, SLI is supported: true
+	 Link 11, Link is supported: false
+	 Link 12, P2P is supported: true
+	 Link 12, Access to system memory supported: true
+	 Link 12, P2P atomics supported: true
+	 Link 12, System memory atomics supported: true
+	 Link 12, SLI is supported: true
+	 Link 12, Link is supported: false
+	 Link 13, P2P is supported: true
+	 Link 13, Access to system memory supported: true
+	 Link 13, P2P atomics supported: true
+	 Link 13, System memory atomics supported: true
+	 Link 13, SLI is supported: true
+	 Link 13, Link is supported: false
+	 Link 14, P2P is supported: true
+	 Link 14, Access to system memory supported: true
+	 Link 14, P2P atomics supported: true
+	 Link 14, System memory atomics supported: true
+	 Link 14, SLI is supported: true
+	 Link 14, Link is supported: false
+	 Link 15, P2P is supported: true
+	 Link 15, Access to system memory supported: true
+	 Link 15, P2P atomics supported: true
+	 Link 15, System memory atomics supported: true
+	 Link 15, SLI is supported: true
+	 Link 15, Link is supported: false
+	 Link 16, P2P is supported: true
+	 Link 16, Access to system memory supported: true
+	 Link 16, P2P atomics supported: true
+	 Link 16, System memory atomics supported: true
+	 Link 16, SLI is supported: true
+	 Link 16, Link is supported: false
+	 Link 17, P2P is supported: true
+	 Link 17, Access to system memory supported: true
+	 Link 17, P2P atomics supported: true
+	 Link 17, System memory atomics supported: true
+	 Link 17, SLI is supported: true
+	 Link 17, Link is supported: false
+GPU 3: NVIDIA H100 80GB HBM3 (UUID: GPU-9ea6c522-aa69-ac49-e1a5-e0cbf401b22b)
+	 Link 0, P2P is supported: true
+	 Link 0, Access to system memory supported: true
+	 Link 0, P2P atomics supported: true
+	 Link 0, System memory atomics supported: true
+	 Link 0, SLI is supported: true
+	 Link 0, Link is supported: false
+	 Link 1, P2P is supported: true
+	 Link 1, Access to system memory supported: true
+	 Link 1, P2P atomics supported: true
+	 Link 1, System memory atomics supported: true
+	 Link 1, SLI is supported: true
+	 Link 1, Link is supported: false
+	 Link 2, P2P is supported: true
+	 Link 2, Access to system memory supported: true
+	 Link 2, P2P atomics supported: true
+	 Link 2, System memory atomics supported: true
+	 Link 2, SLI is supported: true
+	 Link 2, Link is supported: false
+	 Link 3, P2P is supported: true
+	 Link 3, Access to system memory supported: true
+	 Link 3, P2P atomics supported: true
+	 Link 3, System memory atomics supported: true
+	 Link 3, SLI is supported: true
+	 Link 3, Link is supported: false
+	 Link 4, P2P is supported: true
+	 Link 4, Access to system memory supported: true
+	 Link 4, P2P atomics supported: true
+	 Link 4, System memory atomics supported: true
+	 Link 4, SLI is supported: true
+	 Link 4, Link is supported: false
+	 Link 5, P2P is supported: true
+	 Link 5, Access to system memory supported: true
+	 Link 5, P2P atomics supported: true
+	 Link 5, System memory atomics supported: true
+	 Link 5, SLI is supported: true
+	 Link 5, Link is supported: false
+	 Link 6, P2P is supported: true
+	 Link 6, Access to system memory supported: true
+	 Link 6, P2P atomics supported: true
+	 Link 6, System memory atomics supported: true
+	 Link 6, SLI is supported: true
+	 Link 6, Link is supported: false
+	 Link 7, P2P is supported: true
+	 Link 7, Access to system memory supported: true
+	 Link 7, P2P atomics supported: true
+	 Link 7, System memory atomics supported: true
+	 Link 7, SLI is supported: true
+	 Link 7, Link is supported: false
+	 Link 8, P2P is supported: true
+	 Link 8, Access to system memory supported: true
+	 Link 8, P2P atomics supported: true
+	 Link 8, System memory atomics supported: true
+	 Link 8, SLI is supported: true
+	 Link 8, Link is supported: false
+	 Link 9, P2P is supported: true
+	 Link 9, Access to system memory supported: true
+	 Link 9, P2P atomics supported: true
+	 Link 9, System memory atomics supported: true
+	 Link 9, SLI is supported: true
+	 Link 9, Link is supported: false
+	 Link 10, P2P is supported: true
+	 Link 10, Access to system memory supported: true
+	 Link 10, P2P atomics supported: true
+	 Link 10, System memory atomics supported: true
+	 Link 10, SLI is supported: true
+	 Link 10, Link is supported: false
+	 Link 11, P2P is supported: true
+	 Link 11, Access to system memory supported: true
+	 Link 11, P2P atomics supported: true
+	 Link 11, System memory atomics supported: true
+	 Link 11, SLI is supported: true
+	 Link 11, Link is supported: false
+	 Link 12, P2P is supported: true
+	 Link 12, Access to system memory supported: true
+	 Link 12, P2P atomics supported: true
+	 Link 12, System memory atomics supported: true
+	 Link 12, SLI is supported: true
+	 Link 12, Link is supported: false
+	 Link 13, P2P is supported: true
+	 Link 13, Access to system memory supported: true
+	 Link 13, P2P atomics supported: true
+	 Link 13, System memory atomics supported: true
+	 Link 13, SLI is supported: true
+	 Link 13, Link is supported: false
+	 Link 14, P2P is supported: true
+	 Link 14, Access to system memory supported: true
+	 Link 14, P2P atomics supported: true
+	 Link 14, System memory atomics supported: true
+	 Link 14, SLI is supported: true
+	 Link 14, Link is supported: false
+	 Link 15, P2P is supported: true
+	 Link 15, Access to system memory supported: true
+	 Link 15, P2P atomics supported: true
+	 Link 15, System memory atomics supported: true
+	 Link 15, SLI is supported: true
+	 Link 15, Link is supported: false
+	 Link 16, P2P is supported: true
+	 Link 16, Access to system memory supported: true
+	 Link 16, P2P atomics supported: true
+	 Link 16, System memory atomics supported: true
+	 Link 16, SLI is supported: true
+	 Link 16, Link is supported: false
+	 Link 17, P2P is supported: true
+	 Link 17, Access to system memory supported: true
+	 Link 17, P2P atomics supported: true
+	 Link 17, System memory atomics supported: true
+	 Link 17, SLI is supported: true
+	 Link 17, Link is supported: false
+GPU 4: NVIDIA H100 80GB HBM3 (UUID: GPU-e1804d82-cb76-c173-6c01-db18ac272ff4)
+	 Link 0, P2P is supported: true
+	 Link 0, Access to system memory supported: true
+	 Link 0, P2P atomics supported: true
+	 Link 0, System memory atomics supported: true
+	 Link 0, SLI is supported: true
+	 Link 0, Link is supported: false
+	 Link 1, P2P is supported: true
+	 Link 1, Access to system memory supported: true
+	 Link 1, P2P atomics supported: true
+	 Link 1, System memory atomics supported: true
+	 Link 1, SLI is supported: true
+	 Link 1, Link is supported: false
+	 Link 2, P2P is supported: true
+	 Link 2, Access to system memory supported: true
+	 Link 2, P2P atomics supported: true
+	 Link 2, System memory atomics supported: true
+	 Link 2, SLI is supported: true
+	 Link 2, Link is supported: false
+	 Link 3, P2P is supported: true
+	 Link 3, Access to system memory supported: true
+	 Link 3, P2P atomics supported: true
+	 Link 3, System memory atomics supported: true
+	 Link 3, SLI is supported: true
+	 Link 3, Link is supported: false
+	 Link 4, P2P is supported: true
+	 Link 4, Access to system memory supported: true
+	 Link 4, P2P atomics supported: true
+	 Link 4, System memory atomics supported: true
+	 Link 4, SLI is supported: true
+	 Link 4, Link is supported: false
+	 Link 5, P2P is supported: true
+	 Link 5, Access to system memory supported: true
+	 Link 5, P2P atomics supported: true
+	 Link 5, System memory atomics supported: true
+	 Link 5, SLI is supported: true
+	 Link 5, Link is supported: false
+	 Link 6, P2P is supported: true
+	 Link 6, Access to system memory supported: true
+	 Link 6, P2P atomics supported: true
+	 Link 6, System memory atomics supported: true
+	 Link 6, SLI is supported: true
+	 Link 6, Link is supported: false
+	 Link 7, P2P is supported: true
+	 Link 7, Access to system memory supported: true
+	 Link 7, P2P atomics supported: true
+	 Link 7, System memory atomics supported: true
+	 Link 7, SLI is supported: true
+	 Link 7, Link is supported: false
+	 Link 8, P2P is supported: true
+	 Link 8, Access to system memory supported: true
+	 Link 8, P2P atomics supported: true
+	 Link 8, System memory atomics supported: true
+	 Link 8, SLI is supported: true
+	 Link 8, Link is supported: false
+	 Link 9, P2P is supported: true
+	 Link 9, Access to system memory supported: true
+	 Link 9, P2P atomics supported: true
+	 Link 9, System memory atomics supported: true
+	 Link 9, SLI is supported: true
+	 Link 9, Link is supported: false
+	 Link 10, P2P is supported: true
+	 Link 10, Access to system memory supported: true
+	 Link 10, P2P atomics supported: true
+	 Link 10, System memory atomics supported: true
+	 Link 10, SLI is supported: true
+	 Link 10, Link is supported: false
+	 Link 11, P2P is supported: true
+	 Link 11, Access to system memory supported: true
+	 Link 11, P2P atomics supported: true
+	 Link 11, System memory atomics supported: true
+	 Link 11, SLI is supported: true
+	 Link 11, Link is supported: false
+	 Link 12, P2P is supported: true
+	 Link 12, Access to system memory supported: true
+	 Link 12, P2P atomics supported: true
+	 Link 12, System memory atomics supported: true
+	 Link 12, SLI is supported: true
+	 Link 12, Link is supported: false
+	 Link 13, P2P is supported: true
+	 Link 13, Access to system memory supported: true
+	 Link 13, P2P atomics supported: true
+	 Link 13, System memory atomics supported: true
+	 Link 13, SLI is supported: true
+	 Link 13, Link is supported: false
+	 Link 14, P2P is supported: true
+	 Link 14, Access to system memory supported: true
+	 Link 14, P2P atomics supported: true
+	 Link 14, System memory atomics supported: true
+	 Link 14, SLI is supported: true
+	 Link 14, Link is supported: false
+	 Link 15, P2P is supported: true
+	 Link 15, Access to system memory supported: true
+	 Link 15, P2P atomics supported: true
+	 Link 15, System memory atomics supported: true
+	 Link 15, SLI is supported: true
+	 Link 15, Link is supported: false
+	 Link 16, P2P is supported: true
+	 Link 16, Access to system memory supported: true
+	 Link 16, P2P atomics supported: true
+	 Link 16, System memory atomics supported: true
+	 Link 16, SLI is supported: true
+	 Link 16, Link is supported: false
+	 Link 17, P2P is supported: true
+	 Link 17, Access to system memory supported: true
+	 Link 17, P2P atomics supported: true
+	 Link 17, System memory atomics supported: true
+	 Link 17, SLI is supported: true
+	 Link 17, Link is supported: false
+GPU 5: NVIDIA H100 80GB HBM3 (UUID: GPU-5c38a19d-ea92-0a29-e59c-1eb37488b56b)
+	 Link 0, P2P is supported: true
+	 Link 0, Access to system memory supported: true
+	 Link 0, P2P atomics supported: true
+	 Link 0, System memory atomics supported: true
+	 Link 0, SLI is supported: true
+	 Link 0, Link is supported: false
+	 Link 1, P2P is supported: true
+	 Link 1, Access to system memory supported: true
+	 Link 1, P2P atomics supported: true
+	 Link 1, System memory atomics supported: true
+	 Link 1, SLI is supported: true
+	 Link 1, Link is supported: false
+	 Link 2, P2P is supported: true
+	 Link 2, Access to system memory supported: true
+	 Link 2, P2P atomics supported: true
+	 Link 2, System memory atomics supported: true
+	 Link 2, SLI is supported: true
+	 Link 2, Link is supported: false
+	 Link 3, P2P is supported: true
+	 Link 3, Access to system memory supported: true
+	 Link 3, P2P atomics supported: true
+	 Link 3, System memory atomics supported: true
+	 Link 3, SLI is supported: true
+	 Link 3, Link is supported: false
+	 Link 4, P2P is supported: true
+	 Link 4, Access to system memory supported: true
+	 Link 4, P2P atomics supported: true
+	 Link 4, System memory atomics supported: true
+	 Link 4, SLI is supported: true
+	 Link 4, Link is supported: false
+	 Link 5, P2P is supported: true
+	 Link 5, Access to system memory supported: true
+	 Link 5, P2P atomics supported: true
+	 Link 5, System memory atomics supported: true
+	 Link 5, SLI is supported: true
+	 Link 5, Link is supported: false
+	 Link 6, P2P is supported: true
+	 Link 6, Access to system memory supported: true
+	 Link 6, P2P atomics supported: true
+	 Link 6, System memory atomics supported: true
+	 Link 6, SLI is supported: true
+	 Link 6, Link is supported: false
+	 Link 7, P2P is supported: true
+	 Link 7, Access to system memory supported: true
+	 Link 7, P2P atomics supported: true
+	 Link 7, System memory atomics supported: true
+	 Link 7, SLI is supported: true
+	 Link 7, Link is supported: false
+	 Link 8, P2P is supported: true
+	 Link 8, Access to system memory supported: true
+	 Link 8, P2P atomics supported: true
+	 Link 8, System memory atomics supported: true
+	 Link 8, SLI is supported: true
+	 Link 8, Link is supported: false
+	 Link 9, P2P is supported: true
+	 Link 9, Access to system memory supported: true
+	 Link 9, P2P atomics supported: true
+	 Link 9, System memory atomics supported: true
+	 Link 9, SLI is supported: true
+	 Link 9, Link is supported: false
+	 Link 10, P2P is supported: true
+	 Link 10, Access to system memory supported: true
+	 Link 10, P2P atomics supported: true
+	 Link 10, System memory atomics supported: true
+	 Link 10, SLI is supported: true
+	 Link 10, Link is supported: false
+	 Link 11, P2P is supported: true
+	 Link 11, Access to system memory supported: true
+	 Link 11, P2P atomics supported: true
+	 Link 11, System memory atomics supported: true
+	 Link 11, SLI is supported: true
+	 Link 11, Link is supported: false
+	 Link 12, P2P is supported: true
+	 Link 12, Access to system memory supported: true
+	 Link 12, P2P atomics supported: true
+	 Link 12, System memory atomics supported: true
+	 Link 12, SLI is supported: true
+	 Link 12, Link is supported: false
+	 Link 13, P2P is supported: true
+	 Link 13, Access to system memory supported: true
+	 Link 13, P2P atomics supported: true
+	 Link 13, System memory atomics supported: true
+	 Link 13, SLI is supported: true
+	 Link 13, Link is supported: false
+	 Link 14, P2P is supported: true
+	 Link 14, Access to system memory supported: true
+	 Link 14, P2P atomics supported: true
+	 Link 14, System memory atomics supported: true
+	 Link 14, SLI is supported: true
+	 Link 14, Link is supported: false
+	 Link 15, P2P is supported: true
+	 Link 15, Access to system memory supported: true
+	 Link 15, P2P atomics supported: true
+	 Link 15, System memory atomics supported: true
+	 Link 15, SLI is supported: true
+	 Link 15, Link is supported: false
+	 Link 16, P2P is supported: true
+	 Link 16, Access to system memory supported: true
+	 Link 16, P2P atomics supported: true
+	 Link 16, System memory atomics supported: true
+	 Link 16, SLI is supported: true
+	 Link 16, Link is supported: false
+	 Link 17, P2P is supported: true
+	 Link 17, Access to system memory supported: true
+	 Link 17, P2P atomics supported: true
+	 Link 17, System memory atomics supported: true
+	 Link 17, SLI is supported: true
+	 Link 17, Link is supported: false
+GPU 6: NVIDIA H100 80GB HBM3 (UUID: GPU-34b19ada-c2e0-428e-abe9-fb1710f7cc98)
+	 Link 0, P2P is supported: true
+	 Link 0, Access to system memory supported: true
+	 Link 0, P2P atomics supported: true
+	 Link 0, System memory atomics supported: true
+	 Link 0, SLI is supported: true
+	 Link 0, Link is supported: false
+	 Link 1, P2P is supported: true
+	 Link 1, Access to system memory supported: true
+	 Link 1, P2P atomics supported: true
+	 Link 1, System memory atomics supported: true
+	 Link 1, SLI is supported: true
+	 Link 1, Link is supported: false
+	 Link 2, P2P is supported: true
+	 Link 2, Access to system memory supported: true
+	 Link 2, P2P atomics supported: true
+	 Link 2, System memory atomics supported: true
+	 Link 2, SLI is supported: true
+	 Link 2, Link is supported: false
+	 Link 3, P2P is supported: true
+	 Link 3, Access to system memory supported: true
+	 Link 3, P2P atomics supported: true
+	 Link 3, System memory atomics supported: true
+	 Link 3, SLI is supported: true
+	 Link 3, Link is supported: false
+	 Link 4, P2P is supported: true
+	 Link 4, Access to system memory supported: true
+	 Link 4, P2P atomics supported: true
+	 Link 4, System memory atomics supported: true
+	 Link 4, SLI is supported: true
+	 Link 4, Link is supported: false
+	 Link 5, P2P is supported: true
+	 Link 5, Access to system memory supported: true
+	 Link 5, P2P atomics supported: true
+	 Link 5, System memory atomics supported: true
+	 Link 5, SLI is supported: true
+	 Link 5, Link is supported: false
+	 Link 6, P2P is supported: true
+	 Link 6, Access to system memory supported: true
+	 Link 6, P2P atomics supported: true
+	 Link 6, System memory atomics supported: true
+	 Link 6, SLI is supported: true
+	 Link 6, Link is supported: false
+	 Link 7, P2P is supported: true
+	 Link 7, Access to system memory supported: true
+	 Link 7, P2P atomics supported: true
+	 Link 7, System memory atomics supported: true
+	 Link 7, SLI is supported: true
+	 Link 7, Link is supported: false
+	 Link 8, P2P is supported: true
+	 Link 8, Access to system memory supported: true
+	 Link 8, P2P atomics supported: true
+	 Link 8, System memory atomics supported: true
+	 Link 8, SLI is supported: true
+	 Link 8, Link is supported: false
+	 Link 9, P2P is supported: true
+	 Link 9, Access to system memory supported: true
+	 Link 9, P2P atomics supported: true
+	 Link 9, System memory atomics supported: true
+	 Link 9, SLI is supported: true
+	 Link 9, Link is supported: false
+	 Link 10, P2P is supported: true
+	 Link 10, Access to system memory supported: true
+	 Link 10, P2P atomics supported: true
+	 Link 10, System memory atomics supported: true
+	 Link 10, SLI is supported: true
+	 Link 10, Link is supported: false
+	 Link 11, P2P is supported: true
+	 Link 11, Access to system memory supported: true
+	 Link 11, P2P atomics supported: true
+	 Link 11, System memory atomics supported: true
+	 Link 11, SLI is supported: true
+	 Link 11, Link is supported: false
+	 Link 12, P2P is supported: true
+	 Link 12, Access to system memory supported: true
+	 Link 12, P2P atomics supported: true
+	 Link 12, System memory atomics supported: true
+	 Link 12, SLI is supported: true
+	 Link 12, Link is supported: false
+	 Link 13, P2P is supported: true
+	 Link 13, Access to system memory supported: true
+	 Link 13, P2P atomics supported: true
+	 Link 13, System memory atomics supported: true
+	 Link 13, SLI is supported: true
+	 Link 13, Link is supported: false
+	 Link 14, P2P is supported: true
+	 Link 14, Access to system memory supported: true
+	 Link 14, P2P atomics supported: true
+	 Link 14, System memory atomics supported: true
+	 Link 14, SLI is supported: true
+	 Link 14, Link is supported: false
+	 Link 15, P2P is supported: true
+	 Link 15, Access to system memory supported: true
+	 Link 15, P2P atomics supported: true
+	 Link 15, System memory atomics supported: true
+	 Link 15, SLI is supported: true
+	 Link 15, Link is supported: false
+	 Link 16, P2P is supported: true
+	 Link 16, Access to system memory supported: true
+	 Link 16, P2P atomics supported: true
+	 Link 16, System memory atomics supported: true
+	 Link 16, SLI is supported: true
+	 Link 16, Link is supported: false
+	 Link 17, P2P is supported: true
+	 Link 17, Access to system memory supported: true
+	 Link 17, P2P atomics supported: true
+	 Link 17, System memory atomics supported: true
+	 Link 17, SLI is supported: true
+	 Link 17, Link is supported: false
+GPU 7: NVIDIA H100 80GB HBM3 (UUID: GPU-b072ffe4-7a4d-223e-7bdc-8ee1eccdf655)
+	 Link 0, P2P is supported: true
+	 Link 0, Access to system memory supported: true
+	 Link 0, P2P atomics supported: true
+	 Link 0, System memory atomics supported: true
+	 Link 0, SLI is supported: true
+	 Link 0, Link is supported: false
+	 Link 1, P2P is supported: true
+	 Link 1, Access to system memory supported: true
+	 Link 1, P2P atomics supported: true
+	 Link 1, System memory atomics supported: true
+	 Link 1, SLI is supported: true
+	 Link 1, Link is supported: false
+	 Link 2, P2P is supported: true
+	 Link 2, Access to system memory supported: true
+	 Link 2, P2P atomics supported: true
+	 Link 2, System memory atomics supported: true
+	 Link 2, SLI is supported: true
+	 Link 2, Link is supported: false
+	 Link 3, P2P is supported: true
+	 Link 3, Access to system memory supported: true
+	 Link 3, P2P atomics supported: true
+	 Link 3, System memory atomics supported: true
+	 Link 3, SLI is supported: true
+	 Link 3, Link is supported: false
+	 Link 4, P2P is supported: true
+	 Link 4, Access to system memory supported: true
+	 Link 4, P2P atomics supported: true
+	 Link 4, System memory atomics supported: true
+	 Link 4, SLI is supported: true
+	 Link 4, Link is supported: false
+	 Link 5, P2P is supported: true
+	 Link 5, Access to system memory supported: true
+	 Link 5, P2P atomics supported: true
+	 Link 5, System memory atomics supported: true
+	 Link 5, SLI is supported: true
+	 Link 5, Link is supported: false
+	 Link 6, P2P is supported: true
+	 Link 6, Access to system memory supported: true
+	 Link 6, P2P atomics supported: true
+	 Link 6, System memory atomics supported: true
+	 Link 6, SLI is supported: true
+	 Link 6, Link is supported: false
+	 Link 7, P2P is supported: true
+	 Link 7, Access to system memory supported: true
+	 Link 7, P2P atomics supported: true
+	 Link 7, System memory atomics supported: true
+	 Link 7, SLI is supported: true
+	 Link 7, Link is supported: false
+	 Link 8, P2P is supported: true
+	 Link 8, Access to system memory supported: true
+	 Link 8, P2P atomics supported: true
+	 Link 8, System memory atomics supported: true
+	 Link 8, SLI is supported: true
+	 Link 8, Link is supported: false
+	 Link 9, P2P is supported: true
+	 Link 9, Access to system memory supported: true
+	 Link 9, P2P atomics supported: true
+	 Link 9, System memory atomics supported: true
+	 Link 9, SLI is supported: true
+	 Link 9, Link is supported: false
+	 Link 10, P2P is supported: true
+	 Link 10, Access to system memory supported: true
+	 Link 10, P2P atomics supported: true
+	 Link 10, System memory atomics supported: true
+	 Link 10, SLI is supported: true
+	 Link 10, Link is supported: false
+	 Link 11, P2P is supported: true
+	 Link 11, Access to system memory supported: true
+	 Link 11, P2P atomics supported: true
+	 Link 11, System memory atomics supported: true
+	 Link 11, SLI is supported: true
+	 Link 11, Link is supported: false
+	 Link 12, P2P is supported: true
+	 Link 12, Access to system memory supported: true
+	 Link 12, P2P atomics supported: true
+	 Link 12, System memory atomics supported: true
+	 Link 12, SLI is supported: true
+	 Link 12, Link is supported: false
+	 Link 13, P2P is supported: true
+	 Link 13, Access to system memory supported: true
+	 Link 13, P2P atomics supported: true
+	 Link 13, System memory atomics supported: true
+	 Link 13, SLI is supported: true
+	 Link 13, Link is supported: false
+	 Link 14, P2P is supported: true
+	 Link 14, Access to system memory supported: true
+	 Link 14, P2P atomics supported: true
+	 Link 14, System memory atomics supported: true
+	 Link 14, SLI is supported: true
+	 Link 14, Link is supported: false
+	 Link 15, P2P is supported: true
+	 Link 15, Access to system memory supported: true
+	 Link 15, P2P atomics supported: true
+	 Link 15, System memory atomics supported: true
+	 Link 15, SLI is supported: true
+	 Link 15, Link is supported: false
+	 Link 16, P2P is supported: true
+	 Link 16, Access to system memory supported: true
+	 Link 16, P2P atomics supported: true
+	 Link 16, System memory atomics supported: true
+	 Link 16, SLI is supported: true
+	 Link 16, Link is supported: false
+	 Link 17, P2P is supported: true
+	 Link 17, Access to system memory supported: true
+	 Link 17, P2P atomics supported: true
+	 Link 17, System memory atomics supported: true
+	 Link 17, SLI is supported: true
+	 Link 17, Link is supported: false
+
+STDERR:

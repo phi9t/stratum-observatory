@@ -3,7 +3,7 @@
   "target": "stratum-observatory-3",
   "profile": "runtime",
   "status": "BLOCKED",
-  "generated_at": "2026-09-10T06:08:15.066016+00:00",
+  "generated_at": "2026-09-10T07:49:24.802082+00:00",
   "lock_sha256": "b34e0e4b8aecdefe02d0902543f3dd6603f76bf90ef858569fb35765a1040589",
   "consumer_sha256": "d36f581bb1a5cca92c2304d1dc1da4d73a814a45b03e4eb088fa99b348d70431",
   "coverage": {
@@ -17,7 +17,7 @@
     "passed_presentation_bindings": 0
   },
   "counts": {
-    "BLOCKED": 5172,
+    "BLOCKED": 5163,
     "PASS": 27,
     "NOT_RUN": 28
   },
@@ -46704,33 +46704,6 @@
       "evidence": []
     },
     {
-      "code": "RUNTIME_SCHEMA",
-      "domain": "gpu",
-      "status": "BLOCKED",
-      "subject": "runtime.gpu.H100-SXM",
-      "message": "Receipt names no probe_schema_sha256, so the data model it was captured under is unknown.",
-      "remedy": "Re-probe the host with tools/probe-system.py under the current verification/schemas/hardware.schema.json and rebuild the receipt.",
-      "evidence": []
-    },
-    {
-      "code": "RUNTIME_HARDWARE",
-      "domain": "gpu",
-      "status": "BLOCKED",
-      "subject": "runtime.gpu.H100-SXM",
-      "message": "Receipt names no hardware_sha256, so the captured hardware state it rests on is unknown.",
-      "remedy": "Re-probe the host with tools/probe-system.py and carry the attested digest into the receipt.",
-      "evidence": []
-    },
-    {
-      "code": "RUNTIME_HARDWARE",
-      "domain": "gpu",
-      "status": "BLOCKED",
-      "subject": "runtime.gpu.H100-SXM",
-      "message": "Receipt names no contract_sha256, so which contract record the probe saw is unknown.",
-      "remedy": "Rebuild the receipt against the contract it attests; a receipt that names no contract record cannot vouch for one.",
-      "evidence": []
-    },
-    {
       "code": "CONTRACT_CONSISTENT",
       "domain": "gpu",
       "status": "PASS",
@@ -46758,33 +46731,6 @@
       "evidence": []
     },
     {
-      "code": "RUNTIME_SCHEMA",
-      "domain": "gpu",
-      "status": "BLOCKED",
-      "subject": "runtime.gpu.B200",
-      "message": "Receipt names no probe_schema_sha256, so the data model it was captured under is unknown.",
-      "remedy": "Re-probe the host with tools/probe-system.py under the current verification/schemas/hardware.schema.json and rebuild the receipt.",
-      "evidence": []
-    },
-    {
-      "code": "RUNTIME_HARDWARE",
-      "domain": "gpu",
-      "status": "BLOCKED",
-      "subject": "runtime.gpu.B200",
-      "message": "Receipt names no hardware_sha256, so the captured hardware state it rests on is unknown.",
-      "remedy": "Re-probe the host with tools/probe-system.py and carry the attested digest into the receipt.",
-      "evidence": []
-    },
-    {
-      "code": "RUNTIME_HARDWARE",
-      "domain": "gpu",
-      "status": "BLOCKED",
-      "subject": "runtime.gpu.B200",
-      "message": "Receipt names no contract_sha256, so which contract record the probe saw is unknown.",
-      "remedy": "Rebuild the receipt against the contract it attests; a receipt that names no contract record cannot vouch for one.",
-      "evidence": []
-    },
-    {
       "code": "CONTRACT_CONSISTENT",
       "domain": "gpu",
       "status": "PASS",
@@ -46809,33 +46755,6 @@
       "subject": "runtime.gpu.B300",
       "message": "Device attribute and kernel resource/ISA probes on each claimed SKU; capture driver/runtime, MIG, clocks and power.",
       "remedy": "Run the specified experiment on the declared stack; attach raw artifacts and a trusted signed receipt.",
-      "evidence": []
-    },
-    {
-      "code": "RUNTIME_SCHEMA",
-      "domain": "gpu",
-      "status": "BLOCKED",
-      "subject": "runtime.gpu.GB300",
-      "message": "Receipt names no probe_schema_sha256, so the data model it was captured under is unknown.",
-      "remedy": "Re-probe the host with tools/probe-system.py under the current verification/schemas/hardware.schema.json and rebuild the receipt.",
-      "evidence": []
-    },
-    {
-      "code": "RUNTIME_HARDWARE",
-      "domain": "gpu",
-      "status": "BLOCKED",
-      "subject": "runtime.gpu.GB300",
-      "message": "Receipt names no hardware_sha256, so the captured hardware state it rests on is unknown.",
-      "remedy": "Re-probe the host with tools/probe-system.py and carry the attested digest into the receipt.",
-      "evidence": []
-    },
-    {
-      "code": "RUNTIME_HARDWARE",
-      "domain": "gpu",
-      "status": "BLOCKED",
-      "subject": "runtime.gpu.GB300",
-      "message": "Receipt names no contract_sha256, so which contract record the probe saw is unknown.",
-      "remedy": "Rebuild the receipt against the contract it attests; a receipt that names no contract record cannot vouch for one.",
       "evidence": []
     },
     {

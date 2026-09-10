@@ -1,0 +1,3 @@
+No MIG-enabled devices found.
+
+STDERR:

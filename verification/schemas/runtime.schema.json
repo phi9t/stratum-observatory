@@ -43,6 +43,13 @@
         "required": ["path", "pointer"],
         "additionalProperties": false,
         "properties": {"path": {"type": "string"}, "pointer": {"type": "string"}}
+      },
+      "hardware_artifact": {
+        "$comment": "The stratum-hardware/v1 capture a hardware-attribute receipt rests on, which must also appear in `artifacts` so its bytes are checksummed. runner.py re-derives hardware_sha256 from it, so a hand-written digest is a contradiction rather than an unchecked claim. Optional in the shape for the same reason as the digests above: absence is missing evidence, reported as RUNTIME_HARDWARE BLOCKED.",
+        "type": "object",
+        "required": ["path"],
+        "additionalProperties": false,
+        "properties": {"path": {"type": "string"}}
       }
     }
   }
