@@ -1,0 +1,66 @@
+hca_id:	mlx5_0
+	transport:			InfiniBand (0)
+	fw_ver:			28.39.2500
+	node_guid:			0000:0000:0000:0001
+	sys_image_guid:			0000:0000:0000:0001
+	vendor_id:			0x02c9
+	vendor_part_id:			4129
+	hw_ver:			0x0
+	board_id:			ORC0000000009
+	phys_port_cnt:			1
+	max_mr_size:			0xffffffffffffffff
+	max_qp:			131072
+	max_sge:			30
+	max_cq:			16777216
+	max_pd:			8388608
+	atomic_cap:			ATOMIC_HCA (1)
+	max_pkeys:			128
+	num_comp_vectors:		63
+		port:	1
+			state:			PORT_DOWN (1)
+			max_mtu:			4096 (5)
+			active_mtu:			1024 (3)
+			sm_lid:			0
+			port_lid:			7
+			port_lmc:			0x00
+			link_layer:			Ethernet
+			max_msg_sz:			0x40000000
+			gid_tbl_len:			255
+			pkey_tbl_len:			1
+			active_width:			4X (2)
+			active_speed:			25.0 Gbps (32)
+			phys_state:			DISABLED (3)
+hca_id:	mlx5_1
+	transport:			InfiniBand (0)
+	fw_ver:			28.39.2500
+	node_guid:			0000:0000:0000:0002
+	sys_image_guid:			0000:0000:0000:0002
+	vendor_id:			0x02c9
+	vendor_part_id:			4129
+	hw_ver:			0x0
+	board_id:			ORC0000000009
+	phys_port_cnt:			1
+	max_mr_size:			0xffffffffffffffff
+	max_qp:			131072
+	max_sge:			30
+	max_cq:			16777216
+	max_pd:			8388608
+	atomic_cap:			ATOMIC_HCA (1)
+	max_pkeys:			128
+	num_comp_vectors:		63
+		port:	1
+			state:			PORT_DOWN (1)
+			max_mtu:			4096 (5)
+			active_mtu:			1024 (3)
+			sm_lid:			0
+			port_lid:			7
+			port_lmc:			0x00
+			link_layer:			Ethernet
+			max_msg_sz:			0x40000000
+			gid_tbl_len:			255
+			pkey_tbl_len:			1
+			active_width:			4X (2)
+			active_speed:			25.0 Gbps (32)
+			phys_state:			DISABLED (3)
+
+STDERR:

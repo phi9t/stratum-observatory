@@ -9,7 +9,7 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 320 verifier tests, 42 model/graph tests, two byte-identical builds, actual Chromium suite |
+| Engineering | PASS | 0 | 348 verifier tests, 42 model/graph tests, two byte-identical builds, actual Chromium suite |
 | Schematics | PASS | 0 | 684 scenes including all 504 decoder layers; 2,737 checks against core.mjs |
 | Presentations | PASS | 0 | 12 checks — exports, accessibility, print, portability and preview freshness from a real file:// origin |
 | Aesthetics | PASS | 0 | 156 scenarios, 359 checks; type, spacing, contrast, clearance and composition |
@@ -288,7 +288,7 @@ Portable HTML SHA-256: `595b73f22f37051d664fd76e794449fa079808f3f151fb0853e5dd54
 
 Scientific lock SHA-256: `b34e0e4b8aecdefe02d0902543f3dd6603f76bf90ef858569fb35765a1040589`
 
-Verifier identity SHA-256: `61d5e0231fe01181f23a33a775e9691f52f1a982f833605d1695098539b0474e`
+Verifier identity SHA-256: `3a0d4ceb3892f64628ff3c63d2a7bb7cb58258ec6152032cdec16c913c84e0db`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
