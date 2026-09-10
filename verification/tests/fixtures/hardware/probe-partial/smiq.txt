@@ -1,0 +1,209 @@
+==============NVSMI LOG==============
+
+Timestamp                                 : Wed Sep  9 11:03:22 2026
+Driver Version                            : 535.161.08
+CUDA Version                              : 12.2
+
+Attached GPUs                             : 2
+GPU 00000000:0F:00.0
+    Product Name                          : NVIDIA H100 80GB HBM3
+    Product Brand                         : NVIDIA
+    Product Architecture                  : Hopper
+    Display Mode                          : Enabled
+    Display Active                        : Disabled
+    Persistence Mode                      : Enabled
+    Addressing Mode                       : None
+    MIG Mode
+        Current                           : Enabled
+        Pending                           : Enabled
+    Accounting Mode                       : Disabled
+    Accounting Mode Buffer Size           : 4000
+    Serial Number                         : 1650000000001
+    GPU UUID                              : GPU-f1x70000-0000-0000-0000-000000000001
+    Minor Number                          : 0
+    VBIOS Version                         : 96.00.74.00.11
+    MultiGPU Board                        : No
+    Board ID                              : 0xf00
+    Board Part Number                     : 692-2G520-0200-005
+    GPU Part Number                       : 2330-885-A1
+    FRU Part Number                       : N/A
+    Module ID                             : 0
+    Inforom Version
+        Image Version                     : G520.0200.00.05
+        OEM Object                        : 2.1
+        ECC Object                        : 7.16
+    GSP Firmware Version                  : 535.161.08
+    GPU Virtualization Mode
+        Virtualization Mode               : None
+        Host VGPU Mode                    : N/A
+    GPU Reset Status
+        Reset Required                    : No
+        Drain and Reset Recommended       : No
+    PCI
+        Bus                               : 0x0F
+        Device                            : 0x00
+        Domain                            : 0x0000
+        Device Id                         : 0x233010DE
+        Bus Id                            : 00000000:0F:00.0
+        Sub System Id                     : 0x16C110DE
+        GPU Link Info
+            PCIe Generation
+                Max                       : 5
+                Current                   : 1
+                Device Current            : 1
+                Device Max                : 5
+                Host Max                  : N/A
+            Link Width
+                Max                       : 16x
+                Current                   : 16x
+    Fan Speed                             : N/A
+    Performance State                     : P0
+    FB Memory Usage
+        Total                             : 81559 MiB
+        Reserved                          : 573 MiB
+        Used                              : 0 MiB
+        Free                              : 80986 MiB
+    Compute Mode                          : Default
+    Utilization
+        Gpu                               : 0 %
+        Memory                            : 0 %
+    ECC Mode
+        Current                           : Enabled
+        Pending                           : Enabled
+    ECC Errors
+        Volatile
+            SRAM Correctable              : 0
+            SRAM Uncorrectable            : 0
+            DRAM Correctable              : 0
+            DRAM Uncorrectable            : 0
+    Retired Pages
+        Remapped Rows
+            Correctable Error             : 0
+            Uncorrectable Error           : 0
+            Pending                       : No
+            Remapping Failure Occurred    : No
+    Temperature
+        GPU Current Temp                  : 30 C
+        GPU Shutdown Temp                 : 92 C
+        GPU Slowdown Temp                 : 89 C
+        GPU Max Operating Temp            : 85 C
+    GPU Power Readings
+        Power Draw                        : 71.00 W
+        Current Power Limit               : 700.00 W
+        Requested Power Limit             : 700.00 W
+        Default Power Limit               : 700.00 W
+        Min Power Limit                   : 200.00 W
+        Max Power Limit                   : 700.00 W
+    Clocks
+        Graphics                          : 345 MHz
+        SM                                : 345 MHz
+        Memory                            : 1593 MHz
+        Video                             : 765 MHz
+    Max Clocks
+        Graphics                          : 1980 MHz
+        SM                                : 1980 MHz
+        Memory                            : 2619 MHz
+        Video                             : 1545 MHz
+    Processes                             : None
+GPU 00000000:2D:00.0
+    Product Name                          : NVIDIA H100 80GB HBM3
+    Product Brand                         : NVIDIA
+    Product Architecture                  : Hopper
+    Display Mode                          : Enabled
+    Display Active                        : Disabled
+    Persistence Mode                      : Enabled
+    Addressing Mode                       : None
+    MIG Mode
+        Current                           : Disabled
+        Pending                           : Disabled
+    Accounting Mode                       : Disabled
+    Accounting Mode Buffer Size           : 4000
+    Serial Number                         : 1650000000002
+    GPU UUID                              : GPU-f1x70000-0000-0000-0000-000000000002
+    Minor Number                          : 1
+    VBIOS Version                         : 96.00.74.00.11
+    MultiGPU Board                        : No
+    Board ID                              : 0xf00
+    Board Part Number                     : 692-2G520-0200-005
+    GPU Part Number                       : 2330-885-A1
+    FRU Part Number                       : N/A
+    Module ID                             : 1
+    Inforom Version
+        Image Version                     : G520.0200.00.05
+        OEM Object                        : 2.1
+        ECC Object                        : 7.16
+    GSP Firmware Version                  : 535.161.08
+    GPU Virtualization Mode
+        Virtualization Mode               : None
+        Host VGPU Mode                    : N/A
+    GPU Reset Status
+        Reset Required                    : No
+        Drain and Reset Recommended       : No
+    PCI
+        Bus                               : 0x2D
+        Device                            : 0x00
+        Domain                            : 0x0000
+        Device Id                         : 0x233010DE
+        Bus Id                            : 00000000:2D:00.0
+        Sub System Id                     : 0x16C110DE
+        GPU Link Info
+            PCIe Generation
+                Max                       : 5
+                Current                   : 1
+                Device Current            : 1
+                Device Max                : 5
+                Host Max                  : N/A
+            Link Width
+                Max                       : 16x
+                Current                   : 16x
+    Fan Speed                             : N/A
+    Performance State                     : P0
+    FB Memory Usage
+        Total                             : 81559 MiB
+        Reserved                          : 573 MiB
+        Used                              : 0 MiB
+        Free                              : 80986 MiB
+    Compute Mode                          : Default
+    Utilization
+        Gpu                               : 0 %
+        Memory                            : 0 %
+    ECC Mode
+        Current                           : Enabled
+        Pending                           : Enabled
+    ECC Errors
+        Volatile
+            SRAM Correctable              : 0
+            SRAM Uncorrectable            : 0
+            DRAM Correctable              : 0
+            DRAM Uncorrectable            : 0
+    Retired Pages
+        Remapped Rows
+            Correctable Error             : 0
+            Uncorrectable Error           : 0
+            Pending                       : No
+            Remapping Failure Occurred    : No
+    Temperature
+        GPU Current Temp                  : 33 C
+        GPU Shutdown Temp                 : 92 C
+        GPU Slowdown Temp                 : 89 C
+        GPU Max Operating Temp            : 85 C
+    GPU Power Readings
+        Power Draw                        : 74.00 W
+        Current Power Limit               : 700.00 W
+        Requested Power Limit             : 700.00 W
+        Default Power Limit               : 700.00 W
+        Min Power Limit                   : 200.00 W
+        Max Power Limit                   : 700.00 W
+    Clocks
+        Graphics                          : 345 MHz
+        SM                                : 345 MHz
+        Memory                            : 1593 MHz
+        Video                             : 765 MHz
+    Max Clocks
+        Graphics                          : 1980 MHz
+        SM                                : 1980 MHz
+        Memory                            : 2619 MHz
+        Video                             : 1545 MHz
+    Processes                             : None
+
+STDERR:

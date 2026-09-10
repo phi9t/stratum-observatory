@@ -1,0 +1,522 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stratum-hardware/v1",
+  "title": "STRATUM hardware record",
+  "$comment": "One machine, captured read-only by tools/probe-system.py, in two halves. `attested` is what the machine IS: stable device and fabric attributes, and the only half `hardware_sha256` covers. `transient` is what it was DOING at capture time: telemetry, recorded for context and explicitly not evidence. A field that a utility did not report is absent and named in `unavailable`, never defaulted to zero. Shape is not proof of capture; the command ledger names the checksummed artifact every value was read out of.",
+  "type": "object",
+  "required": ["schema", "hardware_sha256", "attested", "transient", "commands", "unavailable"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"enum": ["stratum-hardware/v1"]},
+    "sku": {"type": "string", "minLength": 1},
+    "fixture": {
+      "$comment": "Present and true only on hand-authored captures under verification/tests/. verification/hardware.py refuses to accept one as production evidence.",
+      "type": "boolean"
+    },
+    "hardware_sha256": {
+      "$comment": "verification.evidence.digest of the `attested` half alone.",
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "attested": {
+      "type": "object",
+      "required": ["model"],
+      "additionalProperties": false,
+      "properties": {
+        "model": {"enum": ["stratum-hardware/v1"]},
+        "driver": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "version": {"type": "string", "minLength": 1},
+            "cuda_driver_version": {"type": "string", "minLength": 1},
+            "attached_gpus": {"type": "integer"},
+            "sources": {"$ref": "#/$defs/sources"}
+          }
+        },
+        "cuda_toolkit": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "version": {"type": "string", "minLength": 1},
+            "sources": {"$ref": "#/$defs/sources"}
+          }
+        },
+        "kernel": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "release": {"type": "string", "minLength": 1},
+            "sources": {"$ref": "#/$defs/sources"}
+          }
+        },
+        "ofed": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "version": {"type": "string", "minLength": 1},
+            "sources": {"$ref": "#/$defs/sources"}
+          }
+        },
+        "cpu": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "model": {"type": "string", "minLength": 1},
+            "architecture": {"type": "string", "minLength": 1},
+            "vendor_id": {"type": "string", "minLength": 1},
+            "logical_cpus": {"type": "integer"},
+            "online_cpus": {"type": "string", "minLength": 1},
+            "sockets": {"type": "integer"},
+            "cores_per_socket": {"type": "integer"},
+            "threads_per_core": {"type": "integer"},
+            "numa_nodes": {"type": "integer"},
+            "family": {"type": "string", "minLength": 1},
+            "model_id": {"type": "string", "minLength": 1},
+            "stepping": {"type": "string", "minLength": 1},
+            "byte_order": {"type": "string", "minLength": 1},
+            "virtualization": {"type": "string", "minLength": 1},
+            "max_mhz": {"type": "number"},
+            "min_mhz": {"type": "number"},
+            "l1d_cache": {"type": "string", "minLength": 1},
+            "l1i_cache": {"type": "string", "minLength": 1},
+            "l2_cache": {"type": "string", "minLength": 1},
+            "l3_cache": {"type": "string", "minLength": 1},
+            "sources": {"$ref": "#/$defs/sources"}
+          }
+        },
+        "numa": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "node_count": {"type": "integer"},
+            "nodes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["node"],
+                "additionalProperties": false,
+                "properties": {
+                  "node": {"type": "integer"},
+                  "cpus": {"type": "string", "minLength": 1},
+                  "size_mb": {
+                    "$comment": "numactl labels this MB; the value is recorded under the label the tool printed, not converted.",
+                    "type": "integer"
+                  }
+                }
+              }
+            },
+            "distances": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+            "sources": {"$ref": "#/$defs/sources"}
+          }
+        },
+        "gpus": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "index": {"type": "integer"},
+              "name": {"type": "string", "minLength": 1},
+              "brand": {"type": "string", "minLength": 1},
+              "architecture": {"type": "string", "minLength": 1},
+              "uuid": {"type": "string", "minLength": 1},
+              "serial": {"type": "string", "minLength": 1},
+              "minor_number": {"type": "integer"},
+              "module_id": {"type": "integer"},
+              "board_id": {"type": "string", "minLength": 1},
+              "board_part_number": {"type": "string", "minLength": 1},
+              "gpu_part_number": {"type": "string", "minLength": 1},
+              "multigpu_board": {"type": "string", "minLength": 1},
+              "vbios_version": {"type": "string", "minLength": 1},
+              "inforom_image_version": {"type": "string", "minLength": 1},
+              "gsp_firmware_version": {"type": "string", "minLength": 1},
+              "compute_capability": {"type": "string", "minLength": 1},
+              "multiprocessor_count": {
+                "$comment": "Absent on every driver that does not report one. Never taken from a datasheet.",
+                "type": "integer"
+              },
+              "persistence_mode": {"type": "string", "minLength": 1},
+              "compute_mode": {"type": "string", "minLength": 1},
+              "accounting_mode": {"type": "string", "minLength": 1},
+              "virtualization_mode": {"type": "string", "minLength": 1},
+              "pci": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "bus_id": {"type": "string", "minLength": 1},
+                  "device_id": {"type": "string", "minLength": 1},
+                  "sub_device_id": {"type": "string", "minLength": 1},
+                  "link_gen_max": {"type": "integer"},
+                  "link_width_max": {"type": "integer"}
+                }
+              },
+              "memory": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "total_mib": {"type": "integer"},
+                  "reserved_mib": {"type": "integer"}
+                }
+              },
+              "clocks_max": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "graphics_mhz": {"type": "integer"},
+                  "sm_mhz": {"type": "integer"},
+                  "memory_mhz": {"type": "integer"}
+                }
+              },
+              "power": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "max_limit_w": {"type": "number"},
+                  "min_limit_w": {"type": "number"},
+                  "default_limit_w": {"type": "number"},
+                  "enforced_limit_w": {
+                    "$comment": "Configuration, not activity: an operator changing the cap is a change to the machine and must move the digest.",
+                    "type": "number"
+                  }
+                }
+              },
+              "ecc_mode": {"$ref": "#/$defs/current_pending"},
+              "mig_mode": {"$ref": "#/$defs/current_pending"},
+              "sources": {"$ref": "#/$defs/sources"}
+            }
+          }
+        },
+        "mig_profiles": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "gpus": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["index"],
+                "additionalProperties": false,
+                "properties": {
+                  "index": {"type": "integer"},
+                  "profiles": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "name": {"type": "string", "minLength": 1},
+                        "profile_id": {"type": "integer"},
+                        "instances_total": {"type": "integer"},
+                        "memory_gib": {"type": "number"},
+                        "p2p": {"type": "string", "minLength": 1},
+                        "sm_count": {"type": "integer"},
+                        "decoders": {"type": "integer"},
+                        "encoders": {"type": "integer"}
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "sources": {"$ref": "#/$defs/sources"}
+          }
+        },
+        "nvlink": {
+          "$comment": "Per-link capability, which is a device property. Per-link state lives in the transient half: an idle link reports <inactive> without anything about the machine having changed.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "gpus": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["index"],
+                "additionalProperties": false,
+                "properties": {
+                  "index": {"type": "integer"},
+                  "uuid": {"type": "string", "minLength": 1},
+                  "link_count": {"type": "integer"},
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": ["link"],
+                      "additionalProperties": false,
+                      "properties": {
+                        "link": {"type": "integer"},
+                        "capabilities": {
+                          "type": "object",
+                          "additionalProperties": {"type": "boolean"},
+                          "properties": {
+                            "p2p_supported": {"type": "boolean"},
+                            "system_memory_access_supported": {"type": "boolean"},
+                            "p2p_atomics_supported": {"type": "boolean"},
+                            "system_memory_atomics_supported": {"type": "boolean"},
+                            "sli_supported": {"type": "boolean"},
+                            "link_supported": {"type": "boolean"}
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "sources": {"$ref": "#/$defs/sources"}
+          }
+        },
+        "topology": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "labels": {"type": "array", "items": {"type": "string", "minLength": 1}},
+            "rows": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name"],
+                "additionalProperties": false,
+                "properties": {
+                  "name": {"type": "string", "minLength": 1},
+                  "peers": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}},
+                  "cpu_affinity": {"type": "string", "minLength": 1},
+                  "numa_affinity": {"type": "string", "minLength": 1},
+                  "gpu_numa_id": {"type": "string", "minLength": 1}
+                }
+              }
+            },
+            "nic_legend": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}},
+            "sources": {"$ref": "#/$defs/sources"}
+          }
+        },
+        "rdma": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "devices": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["hca"],
+                "additionalProperties": false,
+                "properties": {
+                  "hca": {"type": "string", "minLength": 1},
+                  "netdev": {"type": "string", "minLength": 1},
+                  "transport": {"type": "string", "minLength": 1},
+                  "fw_ver": {"type": "string", "minLength": 1},
+                  "node_guid": {"type": "string", "minLength": 1},
+                  "sys_image_guid": {"type": "string", "minLength": 1},
+                  "vendor_id": {"type": "string", "minLength": 1},
+                  "vendor_part_id": {"type": "string", "minLength": 1},
+                  "hw_ver": {"type": "string", "minLength": 1},
+                  "board_id": {"type": "string", "minLength": 1},
+                  "phys_port_cnt": {"type": "string", "minLength": 1},
+                  "max_mr_size": {"type": "string", "minLength": 1},
+                  "max_qp": {"type": "string", "minLength": 1},
+                  "max_sge": {"type": "string", "minLength": 1},
+                  "max_cq": {"type": "string", "minLength": 1},
+                  "max_pd": {"type": "string", "minLength": 1},
+                  "atomic_cap": {"type": "string", "minLength": 1},
+                  "max_pkeys": {"type": "string", "minLength": 1},
+                  "num_comp_vectors": {"type": "string", "minLength": 1},
+                  "ports": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": ["port"],
+                      "additionalProperties": false,
+                      "properties": {
+                        "port": {"type": "integer"},
+                        "max_mtu": {"type": "string", "minLength": 1},
+                        "link_layer": {"type": "string", "minLength": 1},
+                        "max_msg_sz": {"type": "string", "minLength": 1},
+                        "gid_tbl_len": {"type": "string", "minLength": 1},
+                        "pkey_tbl_len": {"type": "string", "minLength": 1}
+                      }
+                    }
+                  },
+                  "sources": {"$ref": "#/$defs/sources"}
+                }
+              }
+            },
+            "sources": {"$ref": "#/$defs/sources"}
+          }
+        }
+      }
+    },
+    "transient": {
+      "$comment": "Recorded for context. Nothing here is evidence and nothing here reaches hardware_sha256.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "captured_at": {"type": "string", "minLength": 1},
+        "compute_process_count": {"type": "integer"},
+        "cpu": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {"current_mhz": {"type": "number"}}
+        },
+        "numa": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "nodes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["node"],
+                "additionalProperties": false,
+                "properties": {"node": {"type": "integer"}, "free_mb": {"type": "integer"}}
+              }
+            }
+          }
+        },
+        "gpus": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "index": {"type": "integer"},
+              "uuid": {"type": "string", "minLength": 1},
+              "pstate": {"type": "string", "minLength": 1},
+              "temperature_c": {"type": "integer"},
+              "fan_speed_pct": {"type": "integer"},
+              "power_draw_w": {"type": "number"},
+              "utilization_gpu_pct": {"type": "integer"},
+              "utilization_memory_pct": {"type": "integer"},
+              "memory_used_mib": {"type": "integer"},
+              "memory_free_mib": {"type": "integer"},
+              "clocks_sm_mhz": {"type": "integer"},
+              "clocks_memory_mhz": {"type": "integer"},
+              "link_gen_current": {"type": "integer"},
+              "link_width_current": {"type": "integer"},
+              "ecc_errors_corrected_volatile": {"type": "integer"},
+              "ecc_errors_uncorrected_volatile": {"type": "integer"},
+              "remapped_rows_correctable": {"type": "integer"},
+              "remapped_rows_uncorrectable": {"type": "integer"},
+              "remapped_rows_pending": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "mig_instances": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "gpu": {"type": "integer"},
+              "profile_id": {"type": "integer"},
+              "instances_free": {"type": "integer"}
+            }
+          }
+        },
+        "nvlink": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "gpus": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "index": {"type": "integer"},
+                  "uuid": {"type": "string", "minLength": 1},
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": ["link"],
+                      "additionalProperties": false,
+                      "properties": {
+                        "link": {"type": "integer"},
+                        "state": {"type": "string", "minLength": 1},
+                        "rate_gb_s": {"type": "number"}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "rdma": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "ports": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["hca", "port"],
+                "additionalProperties": false,
+                "properties": {
+                  "hca": {"type": "string", "minLength": 1},
+                  "port": {"type": "integer"},
+                  "state": {"type": "string", "minLength": 1},
+                  "physical_state": {"type": "string", "minLength": 1},
+                  "active_mtu": {"type": "string", "minLength": 1},
+                  "active_speed": {"type": "string", "minLength": 1},
+                  "active_width": {"type": "string", "minLength": 1},
+                  "port_lid": {"type": "string", "minLength": 1},
+                  "sm_lid": {"type": "string", "minLength": 1}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "commands": {
+      "$comment": "The raw ledger from manifest.json: what ran, what it exited with, and the digest of the bytes it produced.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "status", "argv"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "status": {"enum": ["PASS", "NOT_RUN"]},
+          "argv": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "exit": {"type": "integer"},
+          "reason": {"type": "string", "minLength": 1},
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "unavailable": {
+      "$comment": "Fields this model declares that this capture does not carry, each with the reason. An absence stated is not an absence hidden.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["field", "command", "reason"],
+        "additionalProperties": false,
+        "properties": {
+          "field": {"type": "string", "minLength": 1},
+          "command": {"type": "string", "minLength": 1},
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sources": {
+      "$comment": "The capture artifacts a section was read out of, by filename. The bytes behind each are checksummed in `commands`.",
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "current_pending": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "current": {"type": "string", "minLength": 1},
+        "pending": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+GPU 0: NVIDIA H100 80GB HBM3 (UUID: GPU-f1x70000-0000-0000-0000-000000000001)
+	 Link 0, P2P is supported: true
+	 Link 0, Access to system memory supported: true
+	 Link 0, P2P atomics supported: true
+	 Link 0, System memory atomics supported: true
+	 Link 0, SLI is supported: false
+	 Link 0, Link is supported: false
+	 Link 1, P2P is supported: true
+	 Link 1, Access to system memory supported: true
+	 Link 1, P2P atomics supported: true
+	 Link 1, System memory atomics supported: true
+	 Link 1, SLI is supported: false
+	 Link 1, Link is supported: false
+GPU 1: NVIDIA H100 80GB HBM3 (UUID: GPU-f1x70000-0000-0000-0000-000000000002)
+	 Link 0, P2P is supported: true
+	 Link 0, Access to system memory supported: true
+	 Link 0, P2P atomics supported: true
+	 Link 0, System memory atomics supported: true
+	 Link 0, SLI is supported: false
+	 Link 0, Link is supported: false
+	 Link 1, P2P is supported: true
+	 Link 1, Access to system memory supported: true
+	 Link 1, P2P atomics supported: true
+	 Link 1, System memory atomics supported: true
+	 Link 1, SLI is supported: false
+	 Link 1, Link is supported: false
+
+STDERR:

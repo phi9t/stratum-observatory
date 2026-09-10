@@ -1,0 +1,4 @@
+1/1: mlx5_0/1: state DOWN physical_state DISABLED netdev eth0 
+2/1: mlx5_1/1: state DOWN physical_state DISABLED netdev eth1 
+
+STDERR:

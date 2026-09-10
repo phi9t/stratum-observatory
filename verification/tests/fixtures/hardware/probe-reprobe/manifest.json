@@ -1,0 +1,202 @@
+{
+  "schema": "stratum-readonly-probe/v1",
+  "fixture": true,
+  "generated_at": "2026-09-09T19:47:05.000002+00:00",
+  "platform": "Linux-5.15.120.bsk.6-amd64-x86_64-with-glibc2.28",
+  "scope": "Inventory capture only. Does not prove kernel support, GPUDirect, remote visibility, measured bandwidth or correctness.",
+  "note": "FIXTURE. Hand-authored capture of a machine that does not exist. Never production evidence.",
+  "environment": {},
+  "results": [
+    {
+      "id": "gpu",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=name,uuid,pci.bus_id,pci.device_id,driver_version,memory.total,compute_cap,power.limit,mig.mode.current",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu.txt",
+      "sha256": "756d0fc52cf2a9221fa39fb5cdb0e23db8862e3524022985596fcc6d6900f131"
+    },
+    {
+      "id": "gpu_attested",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,name,uuid,serial,pci.bus_id,pci.device_id,pci.sub_device_id,pci.link.gen.max,pci.link.width.max,driver_version,vbios_version,compute_cap,memory.total,memory.reserved,ecc.mode.current,ecc.mode.pending,persistence_mode,compute_mode,accounting.mode,mig.mode.current,mig.mode.pending,clocks.max.graphics,clocks.max.sm,clocks.max.memory,power.max_limit,power.min_limit,power.default_limit,power.limit",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_attested.txt",
+      "sha256": "da6e8ed57a1850db00de83250ab044f59bdc6b66a7bd54ea8b31de82810a9f2c"
+    },
+    {
+      "id": "gpu_transient",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,pstate,temperature.gpu,fan.speed,power.draw,utilization.gpu,utilization.memory,memory.used,memory.free,clocks.sm,clocks.memory,pci.link.gen.current,pci.link.width.current,ecc.errors.corrected.volatile.total,ecc.errors.uncorrected.volatile.total",
+        "--format=csv,noheader,nounits"
+      ],
+      "path": "gpu_transient.txt",
+      "sha256": "943878534e99b354b96c7600e9b8b2d9c26f9219899761a85f53b25a49e4973c"
+    },
+    {
+      "id": "smi",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi"
+      ],
+      "path": "smi.txt",
+      "sha256": "60e38bdbd4f30f5f412180d051d3e4df87ac26f946576c87908d2992d323cf21"
+    },
+    {
+      "id": "smiq",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "-q"
+      ],
+      "path": "smiq.txt",
+      "sha256": "f8c9f8902ad734fd7df652ae539a2a22e3f65124ee7308e606cce3af0cd276b2"
+    },
+    {
+      "id": "mig",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "mig",
+        "-lgip"
+      ],
+      "path": "mig.txt",
+      "sha256": "f14e8d627face6326dbfd2def28df1c4a217c62ea7728301b3106bd3b4b3485b"
+    },
+    {
+      "id": "topology",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "topo",
+        "-m"
+      ],
+      "path": "topology.txt",
+      "sha256": "2b5440fae76eae8cf3c6d28ae49864e45da5352c7343dbf56efe7d9182b71f31"
+    },
+    {
+      "id": "nvlink",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "nvlink",
+        "--status"
+      ],
+      "path": "nvlink.txt",
+      "sha256": "0008c720c4f960ec3b820e55996e7ee39ca17364da4a0759a659ae5d0a16afbf"
+    },
+    {
+      "id": "nvlink_cap",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "nvidia-smi",
+        "nvlink",
+        "-c"
+      ],
+      "path": "nvlink_cap.txt",
+      "sha256": "84c9a99be2a8153d6125a753807448a226d0015deb20f0aa7b74c3526ad44231"
+    },
+    {
+      "id": "cuda",
+      "status": "NOT_RUN",
+      "reason": "utility not installed",
+      "argv": [
+        "nvcc",
+        "--version"
+      ]
+    },
+    {
+      "id": "lscpu",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "lscpu"
+      ],
+      "path": "lscpu.txt",
+      "sha256": "7d3dc5133658ea7a75da0e56db26f4dd89efb4789c76ca212db2a3e26f23256a"
+    },
+    {
+      "id": "numa",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "numactl",
+        "--hardware"
+      ],
+      "path": "numa.txt",
+      "sha256": "37e28fd62d23d2c5b1422c4c13976603f46ecdc9338f81380ba2af4f5b3b0e7c"
+    },
+    {
+      "id": "kernel",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "uname",
+        "-r"
+      ],
+      "path": "kernel.txt",
+      "sha256": "7b3ba5a8d69025e9a9d71dccd0bfe931f53c5b16d5dae80748806f834efe0849"
+    },
+    {
+      "id": "verbs",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "ibv_devinfo",
+        "-v"
+      ],
+      "path": "verbs.txt",
+      "sha256": "4336f444c7c6fe1c0f8fa4b14fa00a72ff94ae30b29d491869e7f863eb5dcfd7"
+    },
+    {
+      "id": "rdma",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "rdma",
+        "link",
+        "show"
+      ],
+      "path": "rdma.txt",
+      "sha256": "6928cf246d089aeacfa501331206500d097e69f44c427801e806f4c6813374d6"
+    },
+    {
+      "id": "ofed",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "ofed_info",
+        "-s"
+      ],
+      "path": "ofed.txt",
+      "sha256": "79a50aa2908634066e21be171240be5c85425ff97cae1e8c25bf283f2bcf34f9"
+    },
+    {
+      "id": "pci",
+      "status": "PASS",
+      "exit": 0,
+      "argv": [
+        "lspci",
+        "-nn"
+      ],
+      "path": "pci.txt",
+      "sha256": "5618d6f5c60caf75e7a27319987878ad51f6d8fe541294844de1882e721152a3"
+    }
+  ]
+}
