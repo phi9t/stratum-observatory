@@ -23,17 +23,17 @@ class RunnerTests(unittest.TestCase):
             self.assertNotEqual(report['status'],'PASS')
             self.assertTrue(report['findings'])
 
-    def test_roles_flow_only_from_a_verified_dependency(self):
-        """`roles_from_dependencies` is the policy root: PASS lends, anything else lends nothing."""
+    def test_roles_flow_along_declared_dependency_edges(self):
+        """Roles follow the declared edges. A dependency that cites nothing lends nothing, and a
+        role no input holds cannot appear -- but the edge itself, not the input's verification
+        status, is what carries provenance (the fixpoint refuses unverified inputs)."""
         from verification.runner import roles_from_dependencies
-        claim={'id':'d','dependencies':['a','b','missing']}
-        status={'a':'PASS','b':'BLOCKED','missing':'PASS'}
-        sources={'a':[{'role':'publisher_code','repo':'deepseek-ai/DeepSeek-V2'}],
-                 'b':[{'role':'framework_code','repo':'sgl-project/sglang'}]}
-        self.assertEqual(roles_from_dependencies(claim,status,sources),
-                         [{'role':'publisher_code','repo':'deepseek-ai/DeepSeek-V2'}])
-        self.assertEqual(roles_from_dependencies({'id':'d'},status,sources),[])
-        self.assertEqual(roles_from_dependencies(claim,{},sources),[])
+        pub={'role':'publisher_code','repo':'deepseek-ai/DeepSeek-V2'}
+        fw={'role':'framework_code','repo':'sgl-project/sglang'}
+        sources={'a':[pub],'b':[fw],'empty':[]}
+        self.assertEqual(roles_from_dependencies({'id':'d','dependencies':['a','b']},sources),[pub,fw])
+        self.assertEqual(roles_from_dependencies({'id':'d','dependencies':['empty','absent']},sources),[])
+        self.assertEqual(roles_from_dependencies({'id':'d'},sources),[])
 
     def test_unknown_profile_rejected(self):
         from verification.runner import audit
