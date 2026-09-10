@@ -23443,7 +23443,7 @@
       "domain": "model",
       "classification": "derived",
       "consumer": "file.src/diagram-model.mjs",
-      "expected": "17ae3c5e5427aff822bec9c43faa287fa1fc738ee66046f7d2be94d21094987d",
+      "expected": "c4bf40dc5e25a80fded461401df783c9c6da566678145e6aaa4d423f487c7650",
       "statement": "file.src/diagram-model.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {

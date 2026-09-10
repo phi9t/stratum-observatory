@@ -226,10 +226,12 @@ function residuals(g,m,s){
  node(g,m,'norm2',886,112,486,40,normTitle,`${F(m.d)} channels`,desc,'h₂ = normalize(read(x₁))',[],{kind:'pill'});
  const stream=m.residual==='hyper'?'4 streams':m.residual==='attnres'?'depth bank + partial sum':'x';
  const stream2=m.residual==='hyper'?'4 streams':m.residual==='attnres'?'updated depth bank':'x₁';
- addLabel(g,`residual stream · ${stream}`,300,80,'muted',{size:12});
+ addLabel(g,`residual stream · ${stream}`,250,80,'muted',{size:12});
  addLabel(g,`residual stream · ${stream2}`,920,80,'muted',{size:12});
- addWire(g,[[286,64],[286,112]],'', 'norm1');
- addWire(g,[[286,86],[238,86],[238,899],[270,899]],'', 'merge-attn',{kind:'residual'});
+ // The stream arrives from outside the block and splits: normalized into attention, and
+ // straight down the left rail as the mainline that bypasses it.
+ addWire(g,[[206,86],[286,86],[286,112]],'', 'norm1');
+ addWire(g,[[238,86],[238,899],[270,899]],'', 'merge-attn',{kind:'residual'});
  if(special){
   node(g,m,'merge-attn',270,884,230,30,m.residual==='hyper'?'Gated stream write':'Update block accumulator','',desc,'update residual state',[],{kind:'pill',tone:'state'});
   node(g,m,'merge-ffn',886,934,230,30,m.residual==='hyper'?'Gated stream write':'Update block accumulator','',desc,'update residual state',[],{kind:'pill',tone:'state'});
