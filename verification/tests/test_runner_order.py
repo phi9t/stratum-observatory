@@ -113,7 +113,8 @@ class OrderTests(unittest.TestCase):
 
 
 class DependencyRoleTests(OrderTests):
-    """Roles may flow from a verified dependency, and from nothing else."""
+    """Roles flow along declared dependency edges; the fixpoint, not the role check, refuses an
+    unverified input."""
 
     def test_inheritance_is_one_level_and_reads_what_a_dependency_cites(self):
         """Specified in the Task 6 brief as `test_unverified_dependency_cannot_lend_a_role` and
