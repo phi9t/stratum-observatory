@@ -421,6 +421,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 383 tests in 113.409s
+Ran 383 tests in 114.233s
 
 OK (skipped=2)

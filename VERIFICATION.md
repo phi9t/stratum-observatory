@@ -224,6 +224,14 @@ false in order to look greener.
 
 Recorded so they are not mistaken for oversights:
 
+- **Build attestation cannot run on this repository.** `actions/attest-build-provenance` is
+  unavailable for user-owned private repositories, and this repository is private because its
+  runtime evidence carries hardware identifiers from a private compute fleet. The workflow
+  therefore skips the attestation step rather than failing the run, and `RECEIPT_UNATTESTED`
+  stays BLOCKED permanently here. That is the honest report, not a waiver: skipping the step
+  changes whether the finding can ever be cleared, never whether it is disclosed. Publishing
+  the source repository, or moving it to an organization, is what would make attestation
+  possible.
 - The engineering receipt is **self-produced**. This is now a finding rather than a sentence:
   `RECEIPT_UNATTESTED` BLOCKS on any receipt without a build attestation. CI attests the exact
   tested artifact; branch protection remains the repository owner's to configure, and
@@ -327,7 +335,7 @@ Portable HTML SHA-256: `595b73f22f37051d664fd76e794449fa079808f3f151fb0853e5dd54
 
 Scientific lock SHA-256: `b34e0e4b8aecdefe02d0902543f3dd6603f76bf90ef858569fb35765a1040589`
 
-Verifier identity SHA-256: `a9fd6b5a13acd2019a8b7692e1376fcdbac633c5ba6013c351b6530a1b4d7cc1`
+Verifier identity SHA-256: `09e5dc466dbfc5c987d77fc9b3f1b13ff99b8a38fa64f18528a18427a8287fdb`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts

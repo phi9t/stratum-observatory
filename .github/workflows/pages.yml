@@ -31,11 +31,18 @@ jobs:
       - run: npm run verify:engineering
       # A locally produced receipt asserts every field it is judged on. Attesting the exact
       # tested artifact is what makes the receipt evidence rather than a claim about itself.
+      # Build provenance is unavailable for user-owned PRIVATE repositories, so this step is
+      # skipped there rather than failing the run. Skipping it is not a waiver: without an
+      # attestation the receipt is self-produced, and `verification/runner.py` already reports
+      # RECEIPT_UNATTESTED BLOCKED for exactly that. The gate tells the truth either way -- what
+      # changes is whether that particular finding can ever be cleared, not whether it is hidden.
       - name: Attest the tested artifact
+        if: ${{ !github.event.repository.private }}
         uses: actions/attest-build-provenance@v2
         with:
           subject-path: dist/index.html
       - name: Record the attestation in the receipt
+        if: ${{ !github.event.repository.private }}
         run: |
           uv run --frozen python - <<'PY'
           import hashlib, json, os, pathlib
