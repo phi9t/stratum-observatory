@@ -9,12 +9,12 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 348 verifier tests, 42 model/graph tests, two byte-identical builds, actual Chromium suite |
+| Engineering | PASS | 0 | 364 verifier tests, 42 model/graph tests, two byte-identical builds, actual Chromium suite |
 | Schematics | PASS | 0 | 684 scenes including all 504 decoder layers; 2,737 checks against core.mjs |
 | Presentations | PASS | 0 | 12 checks — exports, accessibility, print, portability and preview freshness from a real file:// origin |
 | Aesthetics | PASS | 0 | 156 scenarios, 359 checks; type, spacing, contrast, clearance and composition |
 | Scientific publication | BLOCKED | 2 | Eight-model consumer inventory and strict evidence/review audit; **no FAIL** |
-| Runtime certification | BLOCKED | 2 | 28 of 31 obligations NOT_RUN; H100, B200 and GB300 attested from the armada fleet; **no FAIL** |
+| Runtime certification | BLOCKED | 2 | 28 of 31 obligations NOT_RUN; H100, B200 and GB300 attested from the armada fleet, and now BLOCKED pending re-capture under the hardware data model; **no FAIL** |
 
 ## Toolchain
 
@@ -134,8 +134,10 @@ paper and vendor-document citations as unique quotes, dropping 148 citations tha
 provenance, and letting derived scene claims carry provenance through their dependencies together
 removed 3,853 BLOCKED findings without a single fabricated anchor.
 
-Runtime certification reports the same population plus its obligations: **5,163 BLOCKED, 27 PASS,
-28 NOT_RUN, no FAIL.**
+Runtime certification reports the same population plus its obligations: **5,172 BLOCKED, 27 PASS,
+28 NOT_RUN, no FAIL.** Nine of those BLOCKED findings are new and are about the three accepted GPU
+receipts themselves — 3 `RUNTIME_SCHEMA` and 6 `RUNTIME_HARDWARE` — because they were captured
+before the hardware data model existed and carry none of the digests it now binds.
 
 **Verified scientific claims: 0.** Two claims previously passed — the stylesheet and the HTML
 entry point — because `presentation` claims skipped review entirely. Every claim is now reviewed,
@@ -241,24 +243,34 @@ Recorded so they are not mistaken for oversights:
   individual Qwen models. 52 residue rows sit on such a shared key; re-keying on
   `(source, model, field)` is estimated to unlock roughly **24** of them and to turn the other 28
   into an honest "this source does not state this figure". Recorded, deliberately not fixed.
-- **Runtime receipts are invalidated by any manifest edit, and must be re-probed rather than
-  re-stamped.** `lock_sha256` binds each receipt to the target and source manifests; five manifest
-  edits during the anchor work moved past the lock the three GPU receipts were captured under, and
+- **A stale receipt must be re-probed rather than re-stamped.** For a behavioural obligation
+  `lock_sha256` still binds the receipt to the target and source manifests; five manifest edits
+  during the anchor work moved past the lock the three GPU receipts were captured under, and
   `verify:runtime` correctly turned into three `RUNTIME_STALE` FAIL findings — a gate failure, not a
   bookkeeping nuisance. The repair was to re-probe all three hosts (H100-SXM, B200, GB300) read-only
   on the armada fleet and rebuild the receipts against the current lock. Every attested value came
-  back byte-identical, but that was an outcome of the probe, not a licence to skip it. Editing the
-  recorded `lock_sha256` in place would have been fabrication.
-- **Any application edit costs a fleet round-trip.** Changing any file under `src/` changes its
-  `file.src/*` hash claim, which must be re-bound in `verification/manifests/observatory.json`;
-  that manifest is inside `lock_sha256`; and every runtime receipt binds the lock. So a purely
-  cosmetic diagram edit retires the three GPU receipts and requires re-probing real hardware —
-  which happened three times while relabelling one wire. The coupling is right in principle: a
-  receipt must not outlive the claim set it was captured against. But a receipt binds the
-  **whole** target manifest rather than the obligations and contracts it actually attests, so an
-  unrelated label move retires hardware evidence that is still true. Narrowing the binding to a
-  digest of the covered obligations would keep the guarantee and remove the churn. Recorded and
-  deliberately not changed here, because it is a policy-root change.
+  back byte-identical, but that was an outcome of the probe, not a licence to skip it. Editing a
+  recorded digest in place would have been fabrication. That remedy is unchanged; what changed is
+  which edits demand it, described in the next bullet.
+- **Hardware receipts no longer bind the claim manifest — and the three accepted ones now
+  BLOCK because of it.** Previously every receipt bound `lock_sha256` and `consumer_sha256`, so a
+  cosmetic diagram edit retired the three GPU receipts and required re-probing real hardware, which
+  happened three times while relabelling one wire. That coupling was too broad in one direction
+  only: an H100's HBM capacity does not depend on our claim set or our source files. Obligations in
+  the hardware-attribute domains (`gpu`, `scale_up`, `scale_out` — 13 of 31) therefore bind
+  `probe_schema_sha256` (the hardware data model; a mismatch is `RUNTIME_SCHEMA` **BLOCKED**, since
+  a superseded model is missing evidence, not a contradiction), `contract_sha256` (the contract
+  record with bindings applied; a mismatch is `RUNTIME_CONTRACT_DRIFT` **FAIL**, since the contract
+  would then assert something the probe never saw) and carry `hardware_sha256` (`RUNTIME_HARDWARE`
+  **BLOCKED** when absent). The other 18 obligations attest what our code *does* and keep binding
+  the lock and the consumer inventory exactly as before; `verification/tests/test_runtime_binding.py`
+  proves both directions, one obligation at a time. The expiry window stays for hardware receipts
+  too: nothing in the gate can detect a re-capped power limit or a swapped NIC between two probes,
+  so expiry is the only mechanism that forces another look. **The three accepted GPU receipts
+  predate this binding**, so they carry none of the three digests and the gate reports that as
+  missing evidence — 3 `RUNTIME_SCHEMA` and 6 `RUNTIME_HARDWARE` BLOCKED findings — rather than
+  rewriting them. Re-capturing them on the fleet under the new data model is a separate, deliberate
+  act.
 - **Five contracts remain stubs** — training, serving, numerics, storage and measurement. Each now
   states in the manifest exactly what it needs. Fabricating shard digests or tokenizer revisions to
   make a record parse would be strictly worse than an honest stub.
@@ -288,7 +300,7 @@ Portable HTML SHA-256: `595b73f22f37051d664fd76e794449fa079808f3f151fb0853e5dd54
 
 Scientific lock SHA-256: `b34e0e4b8aecdefe02d0902543f3dd6603f76bf90ef858569fb35765a1040589`
 
-Verifier identity SHA-256: `3a0d4ceb3892f64628ff3c63d2a7bb7cb58258ec6152032cdec16c913c84e0db`
+Verifier identity SHA-256: `4808250d89aa2fe03bb3231a1485571a6fea8d3a7270b3684cbed686870df1f6`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts

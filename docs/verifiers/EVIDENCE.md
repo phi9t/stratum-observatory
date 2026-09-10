@@ -57,7 +57,17 @@ Compute/sign canonical bytes with `verification.evidence.canonical`, not pretty-
 
 Each obligation names its domain, exact contract and required environment fields. There are separate obligations for each GPU SKU, system topology, IB/RoCE profile and communication library. A B200 result cannot certify H200, and one NCCL result cannot certify NIXL.
 
-A receipt under `manifests/runtime.json[obligation_id]` includes `executed_at`, successful `exit_code`, current `lock_sha256`, `consumer_sha256`, required environment, checked domain `record`, and raw `artifacts` with repository-relative paths and SHA-256 values. Its reviewed subject is `digest({obligation, receipt})`; the corresponding independent signature is stored in `reviews.json`. It must also bind the normalized record to a checksummed JSON artifact via `record_artifact: {path, pointer}`. Large binary traces may accompany that normalized record.
+A receipt under `manifests/runtime.json[obligation_id]` includes `executed_at`, successful `exit_code`, `lock_sha256`, `consumer_sha256`, required environment, checked domain `record`, and raw `artifacts` with repository-relative paths and SHA-256 values.
+
+What retires a receipt depends on what it attests. **Behavioural** obligations (`model`, `communication`, `training`, `serving`, `numerics`, `storage`, `measurement`, `visualization`, `release`) attest what our code does, so their receipts must carry the *current* `lock_sha256` and `consumer_sha256`; a stale one is `RUNTIME_STALE` FAIL. **Hardware-attribute** obligations (`gpu`, `scale_up`, `scale_out`) attest what a machine or fabric is, which no edit to our claim set or source files can change. Those receipts record the lock and consumer digests as capture-time provenance but are not compared against them; they bind three digests instead:
+
+| Field | Meaning | On mismatch |
+|---|---|---|
+| `probe_schema_sha256` | `verification.hardware.schema_sha256()` — the hardware data model the capture used | `RUNTIME_SCHEMA` **BLOCKED**: a superseded data model is missing evidence, so re-probe |
+| `contract_sha256` | `verification.runner.contract_sha256(contract, inventory['fields'])` — the contract record, bindings applied, that the probe saw | `RUNTIME_CONTRACT_DRIFT` **FAIL**: the contract now asserts something the probe never saw |
+| `hardware_sha256` | the attested-half digest from `verification/schemas/hardware.schema.json`, carried so two captures of one host can be compared | absent is `RUNTIME_HARDWARE` **BLOCKED**; it is carried, not re-derived, because the gate does not hold the hardware record |
+
+Everything else applies to both kinds: artifact digests, the `record_artifact` pointer binding, `RUNTIME_ENVIRONMENT`, `RUNTIME_TARGET`'s per-key contract comparison, `exit_code`, and the expiry window. The window stays for hardware receipts too: nothing here can detect a re-capped power limit or a swapped NIC between two probes, so expiry is the only thing that forces another look. Its reviewed subject is `digest({obligation, receipt})`; the corresponding independent signature is stored in `reviews.json`. It must also bind the normalized record to a checksummed JSON artifact via `record_artifact: {path, pointer}`. Large binary traces may accompany that normalized record.
 
 Receipts must identify actual commands, inputs, outputs, errors and exact software/backend/driver configuration. The checker validates digests, schemas, domain assertions and identity; the trusted runner/reviewer attests that the artifacts came from the stated experiment. It cannot cryptographically prove physical execution from an arbitrary uploaded log. Never substitute a unit-test fixture for a real receipt.
 

@@ -8,6 +8,7 @@ from .model import Finding, aggregate, exit_code
 from .evidence import (CONFIG_ONLY_PUBLISHERS,canonical,digest,loads,safe_path,pointer,check_source,check_anchor,
                        select_anchor,dual_code_roles,check_dependencies,check_coverage,check_review,HEX64)
 from .domains.contracts import DOMAINS, validate
+from .hardware import HARDWARE_DOMAINS, schema_sha256 as hardware_schema_sha256
 
 PROFILES=('publication','runtime')
 # Coverage and dependency checks run once over all claims, but these codes accuse one
@@ -92,6 +93,26 @@ def apply_bindings(record,bindings,fields):
             target=nxt
         target[parts[-1]]=fields[consumer]
     return missing
+
+
+def contract_record(rec,fields):
+    """The contract record as the gate judges it, plus the consumers its bindings did not find.
+
+    A bound field (`memory.value` -> `HARDWARE.h100.hbmGB`) means the manifest text is not what
+    the contract asserts; the application's own constant is. Anything binding a contract must
+    bind this record, not the manifest text -- and must get it from here, so the record a
+    receipt is digested against cannot drift from the record the domain validators judge.
+    """
+    record=json.loads(json.dumps(rec.get('record',{})))  # deep copy: bindings write into nested fields
+    return record,apply_bindings(record,rec.get('bindings',{}),fields)
+
+
+def contract_sha256(rec,fields):
+    """The digest a hardware-attribute receipt carries to name the contract record it saw.
+
+    Shared with the capture tooling so the receipt and the gate cannot compute it differently.
+    """
+    return digest(contract_record(rec,fields)[0])
 
 
 def check_receipt(root, receipt, expected_lock, inventory):
@@ -284,13 +305,13 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
         if rec.get('domain') not in bydomain:add('CONTRACT_DOMAIN','evidence','FAIL',rec.get('id'),'Unknown contract domain.');continue
         if rec.get('id') in seen_contracts:add('CONTRACT_DUPLICATE','evidence','FAIL',rec.get('id'),'Duplicate contract ID.')
         seen_contracts.add(rec.get('id'));bydomain[rec['domain']].append(rec)
-        d=rec['domain'];record=rec.get('record',{})
+        d=rec['domain']
         # Core fields may be bound into the contract, not transcribed independently.
-        record=dict(record)
-        record=json.loads(json.dumps(record))  # deep copy: bindings may write into nested fields
+        record,unbound=contract_record(rec,inventory.get('fields',{}))
         if d=='release' and receipt:
             record=release_record(receipt,consumer=digest(inventory.get('functions',{})),lock=lock)
-        for consumer in apply_bindings(record,rec.get('bindings',{}),inventory.get('fields',{})):
+            unbound=apply_bindings(record,rec.get('bindings',{}),inventory.get('fields',{}))
+        for consumer in unbound:
             add('CONTRACT_BINDING',d,'FAIL',rec['id'],f'No actual core input {consumer}.')
         findings.extend(validate(d,record))
         refs=rec.get('claims',[])
@@ -316,14 +337,56 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
             rid=o['id'];r=runtime.get(rid)
             if not r:add('RUNTIME_NOT_RUN',o['domain'],'NOT_RUN',rid,o['description'],'Run the specified experiment on the declared stack; attach raw artifacts and a trusted signed receipt.');continue
             try:
+                # The expiry window stays, hardware-attribute receipts included. Nothing in this
+                # file can detect that someone re-capped a GPU's power limit, reflashed a NIC or
+                # swapped a card between two probes of the same host: the digests would agree
+                # because they only describe what the last probe saw. Expiry is the only
+                # mechanism that forces someone to look again, so decoupling these receipts from
+                # the manifest is not a reason to drop it.
                 executed=datetime.fromisoformat(r['executed_at'].replace('Z','+00:00'))
                 age=datetime.now(timezone.utc)-executed
                 if executed.tzinfo is None or not timedelta(0)<=age<=timedelta(days=7 if o['domain']=='measurement' else 30):raise ValueError('Runtime receipt is expired or future-dated')
                 if r.get('exit_code')!=0:raise ValueError('Experiment did not record a successful exit')
             except (KeyError,ValueError,TypeError) as exc:add('RUNTIME_EXECUTION',o['domain'],'FAIL',rid,str(exc))
-            if r.get('lock_sha256')!=lock or r.get('consumer_sha256')!=digest(inventory['functions']):add('RUNTIME_STALE',o['domain'],'FAIL',rid,'Runtime receipt belongs to a different atlas/lock.')
+            original=next((c for c in contracts if c['id']==o['contract']),None) if o.get('contract') else None
+            # What a receipt is allowed to be retired by depends on what it attests.
+            #
+            # A hardware-attribute obligation (gpu/scale_up/scale_out) attests what a machine or
+            # a fabric IS. How much HBM an H100 carries does not depend on our claim set or on
+            # our source files, so binding those retires real fleet evidence for a relabelled
+            # wire -- which is what happened, three times in one session. Such a receipt binds
+            # instead the data model it was captured under, the contract record it vouches for,
+            # and the attested hardware state it rests on. lock_sha256/consumer_sha256 stay in
+            # the receipt as capture-time provenance; they are simply not compared here.
+            #
+            # Every other domain attests what our own code DOES, so it keeps binding the lock
+            # and the consumer inventory exactly as before. The branch, not a per-receipt flag,
+            # decides: a receipt cannot nominate itself for the relaxed rule.
+            if o['domain'] in HARDWARE_DOMAINS:
+                probed=r.get('probe_schema_sha256')
+                if probed!=hardware_schema_sha256():
+                    add('RUNTIME_SCHEMA',o['domain'],'BLOCKED',rid,
+                        'Hardware record was captured under a superseded data model.' if probed else
+                        'Receipt names no probe_schema_sha256, so the data model it was captured under is unknown.',
+                        'Re-probe the host with tools/probe-system.py under the current verification/schemas/hardware.schema.json and rebuild the receipt.')
+                if not r.get('hardware_sha256'):
+                    # Carried, not re-derived: without the hardware record itself this gate can
+                    # only require that the receipt says which capture it rests on, so that two
+                    # captures of the same host can be compared. It does not pretend to more.
+                    add('RUNTIME_HARDWARE',o['domain'],'BLOCKED',rid,'Receipt names no hardware_sha256, so the captured hardware state it rests on is unknown.',
+                        'Re-probe the host with tools/probe-system.py and carry the attested digest into the receipt.')
+                if original is None:
+                    if o.get('contract') is None:add('RUNTIME_HARDWARE',o['domain'],'BLOCKED',rid,'Hardware-attribute obligation names no contract for its receipt to bind.',
+                                                    'Give the obligation the contract its probe attests, or record it as a behavioural obligation.')
+                elif not r.get('contract_sha256'):
+                    add('RUNTIME_HARDWARE',o['domain'],'BLOCKED',rid,'Receipt names no contract_sha256, so which contract record the probe saw is unknown.',
+                        'Rebuild the receipt against the contract it attests; a receipt that names no contract record cannot vouch for one.')
+                elif r['contract_sha256']!=contract_sha256(original,inventory.get('fields',{})):
+                    add('RUNTIME_CONTRACT_DRIFT',o['domain'],'FAIL',rid,'Contract record changed since this receipt attested it; the receipt would vouch for a value the probe never saw.',
+                        'Re-probe the hardware for the contract as it now reads, or restore the record the probe actually attested.')
+            elif r.get('lock_sha256')!=lock or r.get('consumer_sha256')!=digest(inventory['functions']):
+                add('RUNTIME_STALE',o['domain'],'FAIL',rid,'Runtime receipt belongs to a different atlas/lock.')
             if o.get('contract'):
-                original=next((c for c in contracts if c['id']==o['contract']),None)
                 if original is None:add('RUNTIME_CONTRACT',o['domain'],'FAIL',rid,'Runtime obligation refers to an unknown contract.')
                 else:
                     for key in ('sku','system','fabric','mode','library','tolerance_policy','accumulator'):
