@@ -301,7 +301,18 @@
       "evidence": [
         {
           "source": "b200",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Equipped with eight NVIDIA Blackwell GPUs interconnected with fifth-generation",
+            "contains": [
+              "Blackwell"
+            ],
+            "sha256": "1fa08ccdb909d3f557beeefffb04388b73bf95c2ae1a3e86e23f6f945ad81ff7",
+            "resolved_span": [
+              4555,
+              4555
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -332,7 +343,18 @@
         },
         {
           "source": "b200-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "2 x Intel Xeon 8570 PCIe Gen5 CPUs with 56 cores each 2.1/4 GHz (Base/Max boost)",
+            "contains": [
+              "Xeon 8570"
+            ],
+            "sha256": "938d2b23c50aacb8669774425cea7e987b45391b442d231ca5de300452b448a4",
+            "resolved_span": [
+              389,
+              389
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -358,7 +380,18 @@
         },
         {
           "source": "b200-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "2 x Intel Xeon 8570 PCIe Gen5 CPUs with 56 cores each 2.1/4 GHz (Base/Max boost)",
+            "contains": [
+              "2 x Intel Xeon"
+            ],
+            "sha256": "938d2b23c50aacb8669774425cea7e987b45391b442d231ca5de300452b448a4",
+            "resolved_span": [
+              389,
+              389
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -405,12 +438,34 @@
       "evidence": [
         {
           "source": "b200",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Equipped with eight NVIDIA Blackwell GPUs interconnected with fifth-generation",
+            "contains": [
+              "eight"
+            ],
+            "sha256": "1fa08ccdb909d3f557beeefffb04388b73bf95c2ae1a3e86e23f6f945ad81ff7",
+            "resolved_span": [
+              4555,
+              4555
+            ]
+          },
           "relation": "documents"
         },
         {
           "source": "b200-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "8 x NVIDIA B200 GPUs that provide 1,440 GB total GPU memory",
+            "contains": [
+              "8 x NVIDIA B200"
+            ],
+            "sha256": "066318cf962ff7d69d7522a42c3c0a2ef772912f1dc8c2f5ea6b842c068f789a",
+            "resolved_span": [
+              386,
+              386
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -540,7 +595,18 @@
         },
         {
           "source": "b200-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "8 x NVIDIA\u00ae ConnectX\u00ae-7 Single Port Cards",
+            "contains": [
+              "ConnectX"
+            ],
+            "sha256": "b34936b61ecf21719383cb2591893ff435f5bef0e8df36ac9d767fc533652c82",
+            "resolved_span": [
+              401,
+              401
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -566,7 +632,18 @@
         },
         {
           "source": "b200-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "InfiniBand (default): Up to 400Gbps",
+            "contains": [
+              "400Gbps"
+            ],
+            "sha256": "19c5280a6698367bbaccffa161fbaa3138981fc19a263d26f5b88a9db355a3ec",
+            "resolved_span": [
+              404,
+              404
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -613,12 +690,34 @@
       "evidence": [
         {
           "source": "b200",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Equipped with eight NVIDIA Blackwell GPUs interconnected with fifth-generation",
+            "contains": [
+              "fifth-generation"
+            ],
+            "sha256": "1fa08ccdb909d3f557beeefffb04388b73bf95c2ae1a3e86e23f6f945ad81ff7",
+            "resolved_span": [
+              4555,
+              4555
+            ]
+          },
           "relation": "documents"
         },
         {
           "source": "b200-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "2 x 5th generation NVLink switches that provide 14.4 TB/s aggregate bandwidth",
+            "contains": [
+              "5th generation"
+            ],
+            "sha256": "178bf2d45a9fe6832fe92c67c0b9f18dd0aa18ca56c6a81bbad2656749ec2166",
+            "resolved_span": [
+              392,
+              392
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -752,7 +851,18 @@
         },
         {
           "source": "b200-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "2 x 5th generation NVLink switches that provide 14.4 TB/s aggregate bandwidth",
+            "contains": [
+              "2 x"
+            ],
+            "sha256": "178bf2d45a9fe6832fe92c67c0b9f18dd0aa18ca56c6a81bbad2656749ec2166",
+            "resolved_span": [
+              392,
+              392
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -799,7 +909,18 @@
       "evidence": [
         {
           "source": "gb300",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Configuration</td> \n    <td>72 NVIDIA Blackwell Ultra GPUs, 36 NVIDIA Grace CPUs</td>",
+            "contains": [
+              "Blackwell Ultra"
+            ],
+            "sha256": "9b50f44aa67954cb665b0c4dc7251166ab61bd4aaf0b5cbe54b288dc03f006aa",
+            "resolved_span": [
+              6934,
+              6935
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -820,7 +941,18 @@
       "evidence": [
         {
           "source": "gb300",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Configuration</td> \n    <td>72 NVIDIA Blackwell Ultra GPUs, 36 NVIDIA Grace CPUs</td>",
+            "contains": [
+              "Grace"
+            ],
+            "sha256": "9b50f44aa67954cb665b0c4dc7251166ab61bd4aaf0b5cbe54b288dc03f006aa",
+            "resolved_span": [
+              6934,
+              6935
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -841,7 +973,18 @@
       "evidence": [
         {
           "source": "gb300",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Configuration</td> \n    <td>72 NVIDIA Blackwell Ultra GPUs, 36 NVIDIA Grace CPUs</td>",
+            "contains": [
+              "36"
+            ],
+            "sha256": "9b50f44aa67954cb665b0c4dc7251166ab61bd4aaf0b5cbe54b288dc03f006aa",
+            "resolved_span": [
+              6934,
+              6935
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -883,7 +1026,18 @@
       "evidence": [
         {
           "source": "gb300",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Configuration</td> \n    <td>72 NVIDIA Blackwell Ultra GPUs, 36 NVIDIA Grace CPUs</td>",
+            "contains": [
+              "72"
+            ],
+            "sha256": "9b50f44aa67954cb665b0c4dc7251166ab61bd4aaf0b5cbe54b288dc03f006aa",
+            "resolved_span": [
+              6934,
+              6935
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -988,7 +1142,18 @@
       "evidence": [
         {
           "source": "gb300",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "input/output (IO) module hosts two ConnectX-8 devices, providing 800 gigabits per second (Gb/s) of network connectivity for each GPU in the NVIDIA GB300 NVL72.",
+            "contains": [
+              "ConnectX-8"
+            ],
+            "sha256": "414602f1a7e91a74c642368cc195fe3435f9f3eac938a6140cf847e7e1fe5c67",
+            "resolved_span": [
+              5881,
+              5881
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1009,7 +1174,18 @@
       "evidence": [
         {
           "source": "gb300",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "input/output (IO) module hosts two ConnectX-8 devices, providing 800 gigabits per second (Gb/s) of network connectivity for each GPU in the NVIDIA GB300 NVL72.",
+            "contains": [
+              "800 gigabits per second"
+            ],
+            "sha256": "414602f1a7e91a74c642368cc195fe3435f9f3eac938a6140cf847e7e1fe5c67",
+            "resolved_span": [
+              5881,
+              5881
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1232,7 +1408,18 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "2 x Intel Xeon 8480C PCIe Gen5 CPUs with 56 cores each 2.0/2.9/3.8 GHz (base/all core turbo/Max turbo)",
+            "contains": [
+              "Xeon"
+            ],
+            "sha256": "9f16c46648dbb4dabe4350f1cf623290b8d77dd5e4d5c103f472925a2a0e4f25",
+            "resolved_span": [
+              395,
+              395
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1258,7 +1445,18 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "2 x Intel Xeon 8480C PCIe Gen5 CPUs with 56 cores each 2.0/2.9/3.8 GHz (base/all core turbo/Max turbo)",
+            "contains": [
+              "2 x Intel Xeon"
+            ],
+            "sha256": "9f16c46648dbb4dabe4350f1cf623290b8d77dd5e4d5c103f472925a2a0e4f25",
+            "resolved_span": [
+              395,
+              395
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1331,7 +1529,18 @@
       "evidence": [
         {
           "source": "h100",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "<td> GPU Memory </td> \n    <td> 80GB </td>",
+            "contains": [
+              "80GB"
+            ],
+            "sha256": "ddcde1e86316101201c87a2ea00fdfc834186e03bfad1dbfff9d2b00f50fbb86",
+            "resolved_span": [
+              7242,
+              7243
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1357,7 +1566,18 @@
       "evidence": [
         {
           "source": "h100",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "<td> GPU Memory Bandwidth </td> \n    <td> 3.35TB/s </td>",
+            "contains": [
+              "3.35TB/s"
+            ],
+            "sha256": "e9f30e58d738247cf05c938a1d8d3b0d2405d78a10ff83f032757cc6f522a4b7",
+            "resolved_span": [
+              7247,
+              7248
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1409,7 +1629,18 @@
       "evidence": [
         {
           "source": "h100",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "H100 SXM",
+            "contains": [
+              "H100 SXM"
+            ],
+            "sha256": "3f93f113937a3a4169347acec44816c84b0d32c07a23024da5f7d82ccaa8c392",
+            "resolved_span": [
+              7196,
+              7196
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1440,7 +1671,18 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "4 x OSFP ports for 8 x NVIDIA\u00ae ConnectX\u00ae-7 Single Port InfiniBand Cards",
+            "contains": [
+              "ConnectX"
+            ],
+            "sha256": "eec75ee68ded3ffbc7ac2e2f23382b5f4044a943b0473368a078dc36b02c510f",
+            "resolved_span": [
+              407,
+              407
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1466,7 +1708,18 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "InfiniBand (default): Up to 400Gbps",
+            "contains": [
+              "400Gbps"
+            ],
+            "sha256": "19c5280a6698367bbaccffa161fbaa3138981fc19a263d26f5b88a9db355a3ec",
+            "resolved_span": [
+              410,
+              410
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1487,12 +1740,34 @@
       "evidence": [
         {
           "source": "h100",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "NVIDIA NVLink\u2122: 900GB/s <br> PCIe Gen5: 128GB/s",
+            "contains": [
+              "900GB/s"
+            ],
+            "sha256": "7a96f758c5d314805179012a3ad32857ec048ac35ac5b69e622d8f50f3f2692d",
+            "resolved_span": [
+              7273,
+              7273
+            ]
+          },
           "relation": "documents"
         },
         {
           "source": "hopper-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "4 x 4th generation NVLinks that provide 900 GB/s GPU-to-GPU bandwidth",
+            "contains": [
+              "900 GB/s"
+            ],
+            "sha256": "6865618f4c4ded0699cc14a2e9782b6fd01f06140914f26d4a9282e1e8e0c4ef",
+            "resolved_span": [
+              398,
+              398
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1518,7 +1793,18 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "4 x 4th generation NVLinks that provide 900 GB/s GPU-to-GPU bandwidth",
+            "contains": [
+              "4th generation"
+            ],
+            "sha256": "6865618f4c4ded0699cc14a2e9782b6fd01f06140914f26d4a9282e1e8e0c4ef",
+            "resolved_span": [
+              398,
+              398
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1652,7 +1938,18 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "4 x 4th generation NVLinks that provide 900 GB/s GPU-to-GPU bandwidth",
+            "contains": [
+              "4 x"
+            ],
+            "sha256": "6865618f4c4ded0699cc14a2e9782b6fd01f06140914f26d4a9282e1e8e0c4ef",
+            "resolved_span": [
+              398,
+              398
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1730,7 +2027,18 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "2 x Intel Xeon 8480C PCIe Gen5 CPUs with 56 cores each 2.0/2.9/3.8 GHz (base/all core turbo/Max turbo)",
+            "contains": [
+              "Xeon"
+            ],
+            "sha256": "9f16c46648dbb4dabe4350f1cf623290b8d77dd5e4d5c103f472925a2a0e4f25",
+            "resolved_span": [
+              395,
+              395
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1756,7 +2064,18 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "2 x Intel Xeon 8480C PCIe Gen5 CPUs with 56 cores each 2.0/2.9/3.8 GHz (base/all core turbo/Max turbo)",
+            "contains": [
+              "2 x Intel Xeon"
+            ],
+            "sha256": "9f16c46648dbb4dabe4350f1cf623290b8d77dd5e4d5c103f472925a2a0e4f25",
+            "resolved_span": [
+              395,
+              395
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1829,7 +2148,18 @@
       "evidence": [
         {
           "source": "h200",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "<td>GPU Memory</td> \n    <td>141GB</td> \n   </tr> \n   <tr> \n    <td>GPU Memory Bandwidth</td> \n    <td>4.8TB/s</td> \n   </tr>",
+            "contains": [
+              "141GB"
+            ],
+            "sha256": "2b4bcd9455b290720c6523d62213377b64006068a9116c1db7511aba85152854",
+            "resolved_span": [
+              7631,
+              7637
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1855,7 +2185,18 @@
       "evidence": [
         {
           "source": "h200",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "<td>GPU Memory</td> \n    <td>141GB</td> \n   </tr> \n   <tr> \n    <td>GPU Memory Bandwidth</td> \n    <td>4.8TB/s</td> \n   </tr>",
+            "contains": [
+              "4.8TB/s"
+            ],
+            "sha256": "2b4bcd9455b290720c6523d62213377b64006068a9116c1db7511aba85152854",
+            "resolved_span": [
+              7631,
+              7637
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1938,7 +2279,18 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "4 x OSFP ports for 8 x NVIDIA\u00ae ConnectX\u00ae-7 Single Port InfiniBand Cards",
+            "contains": [
+              "ConnectX"
+            ],
+            "sha256": "eec75ee68ded3ffbc7ac2e2f23382b5f4044a943b0473368a078dc36b02c510f",
+            "resolved_span": [
+              407,
+              407
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1964,7 +2316,18 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "InfiniBand (default): Up to 400Gbps",
+            "contains": [
+              "400Gbps"
+            ],
+            "sha256": "19c5280a6698367bbaccffa161fbaa3138981fc19a263d26f5b88a9db355a3ec",
+            "resolved_span": [
+              410,
+              410
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -1985,12 +2348,34 @@
       "evidence": [
         {
           "source": "h200",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "NVIDIA NVLink\u2122: 900GB/s<br>PCIe Gen5: 128GB/s",
+            "contains": [
+              "900GB/s"
+            ],
+            "sha256": "1ad431f6a8f4e527a2378c561e8876fdce9c618be3441746c48eb4d65bc60a55",
+            "resolved_span": [
+              7344,
+              7344
+            ]
+          },
           "relation": "documents"
         },
         {
           "source": "hopper-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "4 x 4th generation NVLinks that provide 900 GB/s GPU-to-GPU bandwidth",
+            "contains": [
+              "900 GB/s"
+            ],
+            "sha256": "6865618f4c4ded0699cc14a2e9782b6fd01f06140914f26d4a9282e1e8e0c4ef",
+            "resolved_span": [
+              398,
+              398
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -2016,7 +2401,18 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "4 x 4th generation NVLinks that provide 900 GB/s GPU-to-GPU bandwidth",
+            "contains": [
+              "4th generation"
+            ],
+            "sha256": "6865618f4c4ded0699cc14a2e9782b6fd01f06140914f26d4a9282e1e8e0c4ef",
+            "resolved_span": [
+              398,
+              398
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -2150,7 +2546,18 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "4 x 4th generation NVLinks that provide 900 GB/s GPU-to-GPU bandwidth",
+            "contains": [
+              "4 x"
+            ],
+            "sha256": "6865618f4c4ded0699cc14a2e9782b6fd01f06140914f26d4a9282e1e8e0c4ef",
+            "resolved_span": [
+              398,
+              398
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -2228,7 +2635,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "It comprises 236B total parameters, of which 21B are activated for each token, and supports a context length of 128K tokens.",
+            "contains": [
+              "21B"
+            ],
+            "sha256": "515a26ce8c3a00d92fae54b49e3051e7e7d35bf35e77e55d090ed564df434d84",
+            "resolved_span": [
+              299,
+              299
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -2275,7 +2693,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "DeepSeek-V2 adopts innovative architectures including Multi-head Latent Attention (MLA) and DeepSeekMoE.",
+            "contains": [
+              "Multi-head Latent Attention"
+            ],
+            "sha256": "ed86b1834f6f838e9d28bea981e581104ae34daa501eb9bdd7e149bea7b0b3f6",
+            "resolved_span": [
+              300,
+              300
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -2326,7 +2755,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "and the target maximum context length to 160K.",
+            "contains": [
+              "160K"
+            ],
+            "sha256": "59863ebcdda735da1a16f1f0573821fec32f197da0817be72318de6b6c80ed85",
+            "resolved_span": [
+              981,
+              981
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -2424,7 +2864,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "We set the number of Transformer layers to 60 and the hidden dimension to 5120.",
+            "contains": [
+              "5120"
+            ],
+            "sha256": "e57e0c125c891b622e56aae9144ccb766f0e545c188182ee0a2e0d3d77fcb04e",
+            "resolved_span": [
+              920,
+              920
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -2475,7 +2926,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "we substitute all FFNs except for the first layer with MoE layers",
+            "contains": [
+              "first layer"
+            ],
+            "sha256": "624c54c55d2e55721cbc50b936d7f5e0df8e46c0d195fab132289e1d5d1ac7b8",
+            "resolved_span": [
+              925,
+              925
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -2526,7 +2988,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Each MoE layer consists of 2 shared experts and 160 routed experts, where the intermediate hidden dimension of each expert is 1536.\nAmong the routed experts, 6 experts will be activated for each token.",
+            "contains": [
+              "1536"
+            ],
+            "sha256": "043a561183f7028e4ca2e49db807d5dc80d7b053468006b0739023f3b4f8c579",
+            "resolved_span": [
+              926,
+              927
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -2577,7 +3050,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Each MoE layer consists of 2 shared experts and 160 routed experts, where the intermediate hidden dimension of each expert is 1536.\nAmong the routed experts, 6 experts will be activated for each token.",
+            "contains": [
+              "160 routed experts"
+            ],
+            "sha256": "043a561183f7028e4ca2e49db807d5dc80d7b053468006b0739023f3b4f8c579",
+            "resolved_span": [
+              926,
+              927
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -2867,7 +3351,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "In MLA, we set the number of attention heads <math id=\"S3.SS1.SSS2.Px1.p1.m1\" class=\"ltx_Math\" alttext=\"n_{h}\" display=\"inline\" intent=\":literal\"><semantics><msub><mi>n</mi><mi>h</mi></msub><annotation encoding=\"application/x-tex\">n_{h}</annotation></semantics></math> to 128 and the per-head dimension <math id=\"S3.SS1.SSS2.Px1.p1.m2\" class=\"ltx_Math\" alttext=\"d_{h}\" display=\"inline\" intent=\":literal\"><semantics><msub><mi>d</mi><mi>h</mi></msub><annotation encoding=\"application/x-tex\">d_{h}</annotation></semantics></math> to 128.",
+            "contains": [
+              "128"
+            ],
+            "sha256": "af3649e366b36598265f8067009f8dcb2cb3af056bc5e6ebdca2202c4d0fd674",
+            "resolved_span": [
+              922,
+              922
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -3063,7 +3558,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "The KV compression dimension <math id=\"S3.SS1.SSS2.Px1.p1.m3\" class=\"ltx_Math\" alttext=\"d_{c}\" display=\"inline\" intent=\":literal\"><semantics><msub><mi>d</mi><mi>c</mi></msub><annotation encoding=\"application/x-tex\">d_{c}</annotation></semantics></math> is set to 512, and the query compression dimension <math id=\"S3.SS1.SSS2.Px1.p1.m4\" class=\"ltx_Math\" alttext=\"d_{c}^{\\prime}\" display=\"inline\" intent=\":literal\"><semantics><msubsup><mi>d</mi><mi>c</mi><mo>\u2032</mo></msubsup><annotation encoding=\"application/x-tex\">d_{c}^{\\prime}</annotation></semantics></math> is set to 1536.",
+            "contains": [
+              "512"
+            ],
+            "sha256": "6ecca40a699561cc04e1ba3170a907c4e0c435b00435868638d69b0dd574e881",
+            "resolved_span": [
+              923,
+              923
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -3161,7 +3667,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "We set the number of Transformer layers to 60 and the hidden dimension to 5120.",
+            "contains": [
+              "60"
+            ],
+            "sha256": "e57e0c125c891b622e56aae9144ccb766f0e545c188182ee0a2e0d3d77fcb04e",
+            "resolved_span": [
+              920,
+              920
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -3349,7 +3866,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "It comprises 236B total parameters, of which 21B are activated for each token, and supports a context length of 128K tokens.",
+            "contains": [
+              "128K"
+            ],
+            "sha256": "515a26ce8c3a00d92fae54b49e3051e7e7d35bf35e77e55d090ed564df434d84",
+            "resolved_span": [
+              299,
+              299
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -3541,7 +4069,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "In MLA, we set the number of attention heads <math id=\"S3.SS1.SSS2.Px1.p1.m1\" class=\"ltx_Math\" alttext=\"n_{h}\" display=\"inline\" intent=\":literal\"><semantics><msub><mi>n</mi><mi>h</mi></msub><annotation encoding=\"application/x-tex\">n_{h}</annotation></semantics></math> to 128 and the per-head dimension <math id=\"S3.SS1.SSS2.Px1.p1.m2\" class=\"ltx_Math\" alttext=\"d_{h}\" display=\"inline\" intent=\":literal\"><semantics><msub><mi>d</mi><mi>h</mi></msub><annotation encoding=\"application/x-tex\">d_{h}</annotation></semantics></math> to 128.",
+            "contains": [
+              "128"
+            ],
+            "sha256": "af3649e366b36598265f8067009f8dcb2cb3af056bc5e6ebdca2202c4d0fd674",
+            "resolved_span": [
+              922,
+              922
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -3639,7 +4178,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "The KV compression dimension <math id=\"S3.SS1.SSS2.Px1.p1.m3\" class=\"ltx_Math\" alttext=\"d_{c}\" display=\"inline\" intent=\":literal\"><semantics><msub><mi>d</mi><mi>c</mi></msub><annotation encoding=\"application/x-tex\">d_{c}</annotation></semantics></math> is set to 512, and the query compression dimension <math id=\"S3.SS1.SSS2.Px1.p1.m4\" class=\"ltx_Math\" alttext=\"d_{c}^{\\prime}\" display=\"inline\" intent=\":literal\"><semantics><msubsup><mi>d</mi><mi>c</mi><mo>\u2032</mo></msubsup><annotation encoding=\"application/x-tex\">d_{c}^{\\prime}</annotation></semantics></math> is set to 1536.",
+            "contains": [
+              "1536"
+            ],
+            "sha256": "6ecca40a699561cc04e1ba3170a907c4e0c435b00435868638d69b0dd574e881",
+            "resolved_span": [
+              923,
+              923
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -3831,7 +4381,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "For the decoupled queries and key, we set the per-head dimension <math id=\"S3.SS1.SSS2.Px1.p1.m5\" class=\"ltx_Math\" alttext=\"d_{h}^{R}\" display=\"inline\" intent=\":literal\"><semantics><msubsup><mi>d</mi><mi>h</mi><mi>R</mi></msubsup><annotation encoding=\"application/x-tex\">d_{h}^{R}</annotation></semantics></math> to 64.",
+            "contains": [
+              "64"
+            ],
+            "sha256": "86303f20206974dab5eec249311681ef135db973a04fd6ff97f8bbe090ce76a2",
+            "resolved_span": [
+              924,
+              924
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -3933,7 +4494,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Each MoE layer consists of 2 shared experts and 160 routed experts, where the intermediate hidden dimension of each expert is 1536.\nAmong the routed experts, 6 experts will be activated for each token.",
+            "contains": [
+              "2 shared experts"
+            ],
+            "sha256": "043a561183f7028e4ca2e49db807d5dc80d7b053468006b0739023f3b4f8c579",
+            "resolved_span": [
+              926,
+              927
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -4083,7 +4655,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Each MoE layer consists of 2 shared experts and 160 routed experts, where the intermediate hidden dimension of each expert is 1536.\nAmong the routed experts, 6 experts will be activated for each token.",
+            "contains": [
+              "6 experts"
+            ],
+            "sha256": "043a561183f7028e4ca2e49db807d5dc80d7b053468006b0739023f3b4f8c579",
+            "resolved_span": [
+              926,
+              927
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -4130,7 +4713,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "It comprises 236B total parameters, of which 21B are activated for each token, and supports a context length of 128K tokens.",
+            "contains": [
+              "236B"
+            ],
+            "sha256": "515a26ce8c3a00d92fae54b49e3051e7e7d35bf35e77e55d090ed564df434d84",
+            "resolved_span": [
+              299,
+              299
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -4279,7 +4873,18 @@
         },
         {
           "source": "ds2-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "which is built based on the Byte-level Byte-Pair Encoding (BBPE) algorithm and has a vocabulary size of 100K.",
+            "contains": [
+              "100K"
+            ],
+            "sha256": "4daf457bb5b9b47e0eacc4abdeb08a3a27c435ac4b6f0d30b8971fb6ba2fbaac",
+            "resolved_span": [
+              909,
+              909
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -4326,7 +4931,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Under this configuration, DeepSeek-V3 comprises 671B total parameters, of which 37B are activated for each token.",
+            "contains": [
+              "37B"
+            ],
+            "sha256": "9c6f666a3a9d96c19286ef1c7c29b599e746334f396fbd20f63372fe0bb7ec14",
+            "resolved_span": [
+              1482,
+              1482
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -4373,7 +4989,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "To achieve efficient inference and cost-effective training, DeepSeek-V3 adopts Multi-head Latent Attention (MLA) and DeepSeekMoE",
+            "contains": [
+              "Multi-head Latent Attention"
+            ],
+            "sha256": "7fa5356f7017c511ac217e7659c0809797788587db8b616e684f40c5f6133deb",
+            "resolved_span": [
+              351,
+              351
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -4522,7 +5149,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "We set the number of Transformer layers to 61 and the hidden dimension to 7168.",
+            "contains": [
+              "7168"
+            ],
+            "sha256": "fc46f7ff9e480e44ab079131fac4a635be6f5d4e23d3974b6aa5a4eb6d7b8699",
+            "resolved_span": [
+              1472,
+              1472
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -4573,7 +5211,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "We substitute all FFNs except for the first three layers with MoE layers.",
+            "contains": [
+              "first three layers"
+            ],
+            "sha256": "8434219a54bde554dcdcfb6a5031d74468a6f888ccaf58ed74b01da49ff7334d",
+            "resolved_span": [
+              1477,
+              1477
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -4624,7 +5273,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Each MoE layer consists of 1 shared expert and 256 routed experts, where the intermediate hidden dimension of each expert is 2048.\nAmong the routed experts, 8 experts will be activated for each token, and each token will be ensured to be sent to at most 4 nodes.",
+            "contains": [
+              "2048"
+            ],
+            "sha256": "537d8220725df3772385360b28152aacbd7091945ed76fc24d64851dae085c35",
+            "resolved_span": [
+              1478,
+              1479
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -4675,7 +5335,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Each MoE layer consists of 1 shared expert and 256 routed experts, where the intermediate hidden dimension of each expert is 2048.\nAmong the routed experts, 8 experts will be activated for each token, and each token will be ensured to be sent to at most 4 nodes.",
+            "contains": [
+              "256 routed experts"
+            ],
+            "sha256": "537d8220725df3772385360b28152aacbd7091945ed76fc24d64851dae085c35",
+            "resolved_span": [
+              1478,
+              1479
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -4965,7 +5636,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "In MLA, we set the number of attention heads <math id=\"S4.SS2.SSS0.Px1.p1.m1\" class=\"ltx_Math\" alttext=\"n_{h}\" display=\"inline\" intent=\":literal\"><semantics><msub><mi>n</mi><mi>h</mi></msub><annotation encoding=\"application/x-tex\">n_{h}</annotation></semantics></math> to 128 and the per-head dimension <math id=\"S4.SS2.SSS0.Px1.p1.m2\" class=\"ltx_Math\" alttext=\"d_{h}\" display=\"inline\" intent=\":literal\"><semantics><msub><mi>d</mi><mi>h</mi></msub><annotation encoding=\"application/x-tex\">d_{h}</annotation></semantics></math> to 128.",
+            "contains": [
+              "128"
+            ],
+            "sha256": "f17237efb3fec51973d22c1394e5c63b3789ee5df2ffefba54ad0d8e1258de00",
+            "resolved_span": [
+              1474,
+              1474
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -5161,7 +5843,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "The KV compression dimension <math id=\"S4.SS2.SSS0.Px1.p1.m3\" class=\"ltx_Math\" alttext=\"d_{c}\" display=\"inline\" intent=\":literal\"><semantics><msub><mi>d</mi><mi>c</mi></msub><annotation encoding=\"application/x-tex\">d_{c}</annotation></semantics></math> is set to 512, and the query compression dimension <math id=\"S4.SS2.SSS0.Px1.p1.m4\" class=\"ltx_Math\" alttext=\"d_{c}^{\\prime}\" display=\"inline\" intent=\":literal\"><semantics><msubsup><mi>d</mi><mi>c</mi><mo>\u2032</mo></msubsup><annotation encoding=\"application/x-tex\">d_{c}^{\\prime}</annotation></semantics></math> is set to 1536.",
+            "contains": [
+              "512"
+            ],
+            "sha256": "cdf170da36fd6818d3e040981ff7f234233d871bd77aee95f2735894ced7c197",
+            "resolved_span": [
+              1475,
+              1475
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -5259,7 +5952,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "We set the number of Transformer layers to 61 and the hidden dimension to 7168.",
+            "contains": [
+              "61"
+            ],
+            "sha256": "fc46f7ff9e480e44ab079131fac4a635be6f5d4e23d3974b6aa5a4eb6d7b8699",
+            "resolved_span": [
+              1472,
+              1472
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -5447,7 +6151,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Through this two-phase extension training, DeepSeek-V3 is capable of handling inputs up to 128K in length while maintaining strong performance.",
+            "contains": [
+              "128K"
+            ],
+            "sha256": "7631141debde9ac36674c354fcdc577872d92128b0431e6b380605325e5d96e2",
+            "resolved_span": [
+              1524,
+              1524
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -5498,7 +6213,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "The multi-token prediction depth <math id=\"S4.SS2.SSS0.Px1.p1.m6\" class=\"ltx_Math\" alttext=\"D\" display=\"inline\" intent=\":literal\"><semantics><mi>D</mi><annotation encoding=\"application/x-tex\">D</annotation></semantics></math> is set to 1, i.e., besides the exact next token, each token will predict one additional token.",
+            "contains": [
+              "predict one additional token"
+            ],
+            "sha256": "b1d9181f59793f2b9027c38b534a466fa3535418a4f9938abecb35aea8d9095c",
+            "resolved_span": [
+              1480,
+              1480
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -5643,7 +6369,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "In MLA, we set the number of attention heads <math id=\"S4.SS2.SSS0.Px1.p1.m1\" class=\"ltx_Math\" alttext=\"n_{h}\" display=\"inline\" intent=\":literal\"><semantics><msub><mi>n</mi><mi>h</mi></msub><annotation encoding=\"application/x-tex\">n_{h}</annotation></semantics></math> to 128 and the per-head dimension <math id=\"S4.SS2.SSS0.Px1.p1.m2\" class=\"ltx_Math\" alttext=\"d_{h}\" display=\"inline\" intent=\":literal\"><semantics><msub><mi>d</mi><mi>h</mi></msub><annotation encoding=\"application/x-tex\">d_{h}</annotation></semantics></math> to 128.",
+            "contains": [
+              "128"
+            ],
+            "sha256": "f17237efb3fec51973d22c1394e5c63b3789ee5df2ffefba54ad0d8e1258de00",
+            "resolved_span": [
+              1474,
+              1474
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -5741,7 +6478,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "The KV compression dimension <math id=\"S4.SS2.SSS0.Px1.p1.m3\" class=\"ltx_Math\" alttext=\"d_{c}\" display=\"inline\" intent=\":literal\"><semantics><msub><mi>d</mi><mi>c</mi></msub><annotation encoding=\"application/x-tex\">d_{c}</annotation></semantics></math> is set to 512, and the query compression dimension <math id=\"S4.SS2.SSS0.Px1.p1.m4\" class=\"ltx_Math\" alttext=\"d_{c}^{\\prime}\" display=\"inline\" intent=\":literal\"><semantics><msubsup><mi>d</mi><mi>c</mi><mo>\u2032</mo></msubsup><annotation encoding=\"application/x-tex\">d_{c}^{\\prime}</annotation></semantics></math> is set to 1536.",
+            "contains": [
+              "1536"
+            ],
+            "sha256": "cdf170da36fd6818d3e040981ff7f234233d871bd77aee95f2735894ced7c197",
+            "resolved_span": [
+              1475,
+              1475
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -5933,7 +6681,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "For the decoupled queries and key, we set the per-head dimension <math id=\"S4.SS2.SSS0.Px1.p1.m5\" class=\"ltx_Math\" alttext=\"d_{h}^{R}\" display=\"inline\" intent=\":literal\"><semantics><msubsup><mi>d</mi><mi>h</mi><mi>R</mi></msubsup><annotation encoding=\"application/x-tex\">d_{h}^{R}</annotation></semantics></math> to 64.",
+            "contains": [
+              "64"
+            ],
+            "sha256": "0230d71febbd5eb611fdcbfcc28a123338a7b2feeea8ea8cbe6b259300f495b4",
+            "resolved_span": [
+              1476,
+              1476
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -5984,7 +6743,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Slightly different from DeepSeek-V2, DeepSeek-V3 uses the sigmoid function to compute the affinity scores, and applies a normalization among all selected affinity scores to produce the gating values.",
+            "contains": [
+              "sigmoid"
+            ],
+            "sha256": "81405fe3b7ca3ca7a387da2ea47f8864add987038bac2817f1b34d537cd602f1",
+            "resolved_span": [
+              782,
+              782
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -6035,7 +6805,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Each MoE layer consists of 1 shared expert and 256 routed experts, where the intermediate hidden dimension of each expert is 2048.\nAmong the routed experts, 8 experts will be activated for each token, and each token will be ensured to be sent to at most 4 nodes.",
+            "contains": [
+              "1 shared expert"
+            ],
+            "sha256": "537d8220725df3772385360b28152aacbd7091945ed76fc24d64851dae085c35",
+            "resolved_span": [
+              1478,
+              1479
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -6185,7 +6966,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Each MoE layer consists of 1 shared expert and 256 routed experts, where the intermediate hidden dimension of each expert is 2048.\nAmong the routed experts, 8 experts will be activated for each token, and each token will be ensured to be sent to at most 4 nodes.",
+            "contains": [
+              "8 experts"
+            ],
+            "sha256": "537d8220725df3772385360b28152aacbd7091945ed76fc24d64851dae085c35",
+            "resolved_span": [
+              1478,
+              1479
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -6232,7 +7024,18 @@
         },
         {
           "source": "ds3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Under this configuration, DeepSeek-V3 comprises 671B total parameters, of which 37B are activated for each token.",
+            "contains": [
+              "671B"
+            ],
+            "sha256": "9c6f666a3a9d96c19286ef1c7c29b599e746334f396fbd20f63372fe0bb7ec14",
+            "resolved_span": [
+              1482,
+              1482
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -6420,7 +7223,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "We introduce Kimi K3, a 2.8T parameter Mixture-of-Experts model with 104 billion activated parameters, native vision capabilities, and a 1-million-token context window.",
+            "contains": [
+              "104 billion"
+            ],
+            "sha256": "b50f48e664300f397428f8fcac779dfa12005953e2b3416ccd323a87084273bc",
+            "resolved_span": [
+              445,
+              445
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -6459,7 +7273,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Kimi K3 is built on Kimi Delta Attention\u00a0<cite class=\"ltx_cite ltx_citemacro_cite\">[<a href=\"#bib.bib115\" title=\"\" class=\"ltx_ref\">56</a>]</cite> and Attention Residuals\u00a0<cite class=\"ltx_cite ltx_citemacro_cite\">[<a href=\"#bib.bib56\" title=\"\" class=\"ltx_ref\">59</a>]</cite>, which improve information flow across sequence length and model depth.",
+            "contains": [
+              "Kimi Delta Attention"
+            ],
+            "sha256": "0af9c0409747e8ea18e5795b57884d3d3fa7f33f3d7e7ea5f62ed235e594c7ef",
+            "resolved_span": [
+              446,
+              446
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -6584,7 +7409,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Hidden Dimension</span>\n</span></td>\n<td id=\"S3.T1.2.6.2\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.6.2.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:55.2pt;\">\n<span id=\"S3.T1.2.6.2.1.1\" class=\"ltx_p ltx_align_center\">7,168</span>\n</span></td>\n<td id=\"S3.T1.2.6.3\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.6.3.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:75.9pt;\">\n<span id=\"S3.T1.2.6.3.1.1\" class=\"ltx_p ltx_align_center\">7,168</span>\n</span></td>",
+            "contains": [
+              "7,168"
+            ],
+            "sha256": "73cc5bd094df2f55e817d80f45052a978da2659f04e27722c5b4feecfd1682ac",
+            "resolved_span": [
+              1235,
+              1244
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -6627,7 +7463,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Number of Dense Layers</span>\n</span></td>\n<td id=\"S3.T1.2.13.2\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.13.2.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:55.2pt;\">\n<span id=\"S3.T1.2.13.2.1.1\" class=\"ltx_p ltx_align_center\">1</span>\n</span></td>\n<td id=\"S3.T1.2.13.3\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.13.3.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:75.9pt;\">\n<span id=\"S3.T1.2.13.3.1.1\" class=\"ltx_p ltx_align_center\">1</span>\n</span></td>",
+            "contains": [
+              "Number of Dense Layers"
+            ],
+            "sha256": "f73895df6f47f4db5f96bdacb032cd32890a15c39c461c0a87e871f6f2364c83",
+            "resolved_span": [
+              1354,
+              1363
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -6670,7 +7517,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "per Expert</span>\n</span></td>\n<td id=\"S3.T1.2.8.2\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.8.2.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:55.2pt;\">\n<span id=\"S3.T1.2.8.2.1.1\" class=\"ltx_p ltx_align_center\">2,048</span>\n</span></td>\n<td id=\"S3.T1.2.8.3\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.8.3.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:75.9pt;\">\n<span id=\"S3.T1.2.8.3.1.1\" class=\"ltx_p ltx_align_center\">3,072</span>\n</span></td>",
+            "contains": [
+              "3,072"
+            ],
+            "sha256": "06157b249139e58ecdbef0066d57f2ab441ad3492ff7f9a55e5f44b808b25c92",
+            "resolved_span": [
+              1269,
+              1278
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -6713,7 +7571,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Stable LatentMoE expands the routed expert space to 896 experts, with 16 activated per token, while normalization, SiTU-GLU, and Quantile Balancing stabilize optimization at extreme sparsity.",
+            "contains": [
+              "896 experts"
+            ],
+            "sha256": "0a060fb4d7bb7027bc6ada1fd8f025ee066bbd5e923951f38cbcb9af6cec29fd",
+            "resolved_span": [
+              492,
+              492
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -6838,7 +7707,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "In addition, Kimi K3 augments MLA with an input-dependent, channel-wise full-rank output gate.",
+            "contains": [
+              "output gate"
+            ],
+            "sha256": "701e63a3a2b9b5ab250500c3dbba4f1bb929da298a226bb46b0a44ca67e6750a",
+            "resolved_span": [
+              753,
+              753
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -6998,7 +7878,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Attention Heads</span>\n</span></td>\n<td id=\"S3.T1.2.12.2\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.12.2.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:55.2pt;\">\n<span id=\"S3.T1.2.12.2.1.1\" class=\"ltx_p ltx_align_center\">64</span>\n</span></td>\n<td id=\"S3.T1.2.12.3\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.12.3.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:75.9pt;\">\n<span id=\"S3.T1.2.12.3.1.1\" class=\"ltx_p ltx_align_center\">96</span>\n</span></td>",
+            "contains": [
+              "96"
+            ],
+            "sha256": "e805e218746ca6a4ab34bd848e244ec6979c9132a22997694da52145e832770f",
+            "resolved_span": [
+              1337,
+              1346
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -7205,7 +8096,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Latent MoE Dimension</span>\n</span></td>\n<td id=\"S3.T1.2.7.2\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.7.2.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:55.2pt;\">\n<span id=\"S3.T1.2.7.2.1.1\" class=\"ltx_p ltx_align_center\">\u2013</span>\n</span></td>\n<td id=\"S3.T1.2.7.3\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.7.3.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:75.9pt;\">\n<span id=\"S3.T1.2.7.3.1.1\" class=\"ltx_p ltx_align_center\">3584 (0.5\u00d7)</span>\n</span></td>",
+            "contains": [
+              "3584"
+            ],
+            "sha256": "7cb799197cddaba7d79deb53859a313f8c4bbd97bcf02d30fabeb1424e2d3b1c",
+            "resolved_span": [
+              1252,
+              1261
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -7248,7 +8150,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Layers</span>\n</span></td>\n<td id=\"S3.T1.2.3.2\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.3.2.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:55.2pt;\">\n<span id=\"S3.T1.2.3.2.1.1\" class=\"ltx_p ltx_align_center\">61</span>\n</span></td>\n<td id=\"S3.T1.2.3.3\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.3.3.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:75.9pt;\">\n<span id=\"S3.T1.2.3.3.1.1\" class=\"ltx_p ltx_align_center\">93</span>\n</span></td>",
+            "contains": [
+              "93"
+            ],
+            "sha256": "812dd12d77c354b80b591d0ea58f3e84c3ca5e348733ebc4b631dd2e593ade04",
+            "resolved_span": [
+              1184,
+              1193
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -7447,7 +8360,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "We introduce Kimi K3, a 2.8T parameter Mixture-of-Experts model with 104 billion activated parameters, native vision capabilities, and a 1-million-token context window.",
+            "contains": [
+              "1-million-token"
+            ],
+            "sha256": "b50f48e664300f397428f8fcac779dfa12005953e2b3416ccd323a87084273bc",
+            "resolved_span": [
+              445,
+              445
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -7806,7 +8730,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Kimi K3 is built on Kimi Delta Attention\u00a0<cite class=\"ltx_cite ltx_citemacro_cite\">[<a href=\"#bib.bib115\" title=\"\" class=\"ltx_ref\">56</a>]</cite> and Attention Residuals\u00a0<cite class=\"ltx_cite ltx_citemacro_cite\">[<a href=\"#bib.bib56\" title=\"\" class=\"ltx_ref\">59</a>]</cite>, which improve information flow across sequence length and model depth.",
+            "contains": [
+              "Attention Residuals"
+            ],
+            "sha256": "0af9c0409747e8ea18e5795b57884d3d3fa7f33f3d7e7ea5f62ed235e594c7ef",
+            "resolved_span": [
+              446,
+              446
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -7935,7 +8870,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Shared Experts</span>\n</span></td>\n<td id=\"S3.T1.2.11.2\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.11.2.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:55.2pt;\">\n<span id=\"S3.T1.2.11.2.1.1\" class=\"ltx_p ltx_align_center\">1</span>\n</span></td>\n<td id=\"S3.T1.2.11.3\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.11.3.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:75.9pt;\">\n<span id=\"S3.T1.2.11.3.1.1\" class=\"ltx_p ltx_align_center\">2</span>\n</span></td>",
+            "contains": [
+              "2"
+            ],
+            "sha256": "24fd5f35d45933ffd2fbcd48d152b74dd278086731c6bc6fcd7b07efd3a23ce2",
+            "resolved_span": [
+              1320,
+              1329
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -8061,7 +9007,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Stable LatentMoE expands the routed expert space to 896 experts, with 16 activated per token, while normalization, SiTU-GLU, and Quantile Balancing stabilize optimization at extreme sparsity.",
+            "contains": [
+              "16 activated"
+            ],
+            "sha256": "0a060fb4d7bb7027bc6ada1fd8f025ee066bbd5e923951f38cbcb9af6cec29fd",
+            "resolved_span": [
+              492,
+              492
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -8100,7 +9057,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "We introduce Kimi K3, a 2.8T parameter Mixture-of-Experts model with 104 billion activated parameters, native vision capabilities, and a 1-million-token context window.",
+            "contains": [
+              "2.8T"
+            ],
+            "sha256": "b50f48e664300f397428f8fcac779dfa12005953e2b3416ccd323a87084273bc",
+            "resolved_span": [
+              445,
+              445
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -8182,7 +9150,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "We introduce Kimi K3, a 2.8T parameter Mixture-of-Experts model with 104 billion activated parameters, native vision capabilities, and a 1-million-token context window.",
+            "contains": [
+              "native vision capabilities"
+            ],
+            "sha256": "b50f48e664300f397428f8fcac779dfa12005953e2b3416ccd323a87084273bc",
+            "resolved_span": [
+              445,
+              445
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -8225,7 +9204,18 @@
         },
         {
           "source": "k3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Vocabulary Size</span>\n</span></td>\n<td id=\"S3.T1.2.14.2\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.14.2.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:55.2pt;\">\n<span id=\"S3.T1.2.14.2.1.1\" class=\"ltx_p ltx_align_center\">160K</span>\n</span></td>\n<td id=\"S3.T1.2.14.3\" class=\"ltx_td ltx_align_left ltx_align_top\" style=\"padding:0.4pt 7.0pt;\">\n<span id=\"S3.T1.2.14.3.1\" class=\"ltx_inline-block ltx_align_top\" style=\"width:75.9pt;\">\n<span id=\"S3.T1.2.14.3.1.1\" class=\"ltx_p ltx_align_center\">160K</span>\n</span></td>",
+            "contains": [
+              "160K"
+            ],
+            "sha256": "d581f6d3c254aa26acc529ed1281db169c235fc70ca8efd538878a64f6f9e88e",
+            "resolved_span": [
+              1371,
+              1380
+            ]
+          },
           "relation": "documents"
         }
       ],
@@ -8371,7 +9361,18 @@
         },
         {
           "source": "q3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "The architecture of the Qwen3 dense models is similar to Qwen2.5 <cite class=\"ltx_cite ltx_citemacro_citep\">(<a href=\"#bib.bib70\" title=\"\" class=\"ltx_ref\">Yang et al., 2024b</a>)</cite>, including using Grouped Query Attention (GQA, <cite class=\"ltx_cite ltx_citemacro_citep\"><a href=\"#bib.bib3\" title=\"\" class=\"ltx_ref\">Ainslie et al., 2023</a></cite>)",
+            "contains": [
+              "Grouped Query Attention"
+            ],
+            "sha256": "005b9ddd94ba714fb7c1b418faa9bbb4ca7063b6b09aa4ccd69289dfe91df894",
+            "resolved_span": [
+              319,
+              319
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -10811,7 +11812,18 @@
         },
         {
           "source": "q3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Besides, we remove QKV-bias used in Qwen2 <cite class=\"ltx_cite ltx_citemacro_citep\">(<a href=\"#bib.bib69\" title=\"\" class=\"ltx_ref\">Yang et al., 2024a</a>)</cite> and introduce QK-Norm <cite class=\"ltx_cite ltx_citemacro_citep\">(<a href=\"#bib.bib17\" title=\"\" class=\"ltx_ref\">Dehghani et al., 2023</a>)</cite> to the attention mechanism to ensure stable training for Qwen3.",
+            "contains": [
+              "QK-Norm"
+            ],
+            "sha256": "005b9ddd94ba714fb7c1b418faa9bbb4ca7063b6b09aa4ccd69289dfe91df894",
+            "resolved_span": [
+              319,
+              319
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -12029,7 +13041,18 @@
         },
         {
           "source": "q3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "The architecture of the Qwen3 dense models is similar to Qwen2.5 <cite class=\"ltx_cite ltx_citemacro_citep\">(<a href=\"#bib.bib70\" title=\"\" class=\"ltx_ref\">Yang et al., 2024b</a>)</cite>, including using Grouped Query Attention (GQA, <cite class=\"ltx_cite ltx_citemacro_citep\"><a href=\"#bib.bib3\" title=\"\" class=\"ltx_ref\">Ainslie et al., 2023</a></cite>)",
+            "contains": [
+              "Grouped Query Attention"
+            ],
+            "sha256": "005b9ddd94ba714fb7c1b418faa9bbb4ca7063b6b09aa4ccd69289dfe91df894",
+            "resolved_span": [
+              319,
+              319
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -14469,7 +15492,18 @@
         },
         {
           "source": "q3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Besides, we remove QKV-bias used in Qwen2 <cite class=\"ltx_cite ltx_citemacro_citep\">(<a href=\"#bib.bib69\" title=\"\" class=\"ltx_ref\">Yang et al., 2024a</a>)</cite> and introduce QK-Norm <cite class=\"ltx_cite ltx_citemacro_citep\">(<a href=\"#bib.bib17\" title=\"\" class=\"ltx_ref\">Dehghani et al., 2023</a>)</cite> to the attention mechanism to ensure stable training for Qwen3.",
+            "contains": [
+              "QK-Norm"
+            ],
+            "sha256": "005b9ddd94ba714fb7c1b418faa9bbb4ca7063b6b09aa4ccd69289dfe91df894",
+            "resolved_span": [
+              319,
+              319
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -15648,7 +16682,18 @@
         },
         {
           "source": "q3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "The architecture of the Qwen3 dense models is similar to Qwen2.5 <cite class=\"ltx_cite ltx_citemacro_citep\">(<a href=\"#bib.bib70\" title=\"\" class=\"ltx_ref\">Yang et al., 2024b</a>)</cite>, including using Grouped Query Attention (GQA, <cite class=\"ltx_cite ltx_citemacro_citep\"><a href=\"#bib.bib3\" title=\"\" class=\"ltx_ref\">Ainslie et al., 2023</a></cite>)",
+            "contains": [
+              "Grouped Query Attention"
+            ],
+            "sha256": "005b9ddd94ba714fb7c1b418faa9bbb4ca7063b6b09aa4ccd69289dfe91df894",
+            "resolved_span": [
+              319,
+              319
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -17352,7 +18397,18 @@
         },
         {
           "source": "q3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Besides, we remove QKV-bias used in Qwen2 <cite class=\"ltx_cite ltx_citemacro_citep\">(<a href=\"#bib.bib69\" title=\"\" class=\"ltx_ref\">Yang et al., 2024a</a>)</cite> and introduce QK-Norm <cite class=\"ltx_cite ltx_citemacro_citep\">(<a href=\"#bib.bib17\" title=\"\" class=\"ltx_ref\">Dehghani et al., 2023</a>)</cite> to the attention mechanism to ensure stable training for Qwen3.",
+            "contains": [
+              "QK-Norm"
+            ],
+            "sha256": "005b9ddd94ba714fb7c1b418faa9bbb4ca7063b6b09aa4ccd69289dfe91df894",
+            "resolved_span": [
+              319,
+              319
+            ]
+          },
           "relation": "documents"
         },
         {

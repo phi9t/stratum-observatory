@@ -36,6 +36,15 @@ test_failing_pair_is_reported_as_a_contradiction (test_aesthetics.ThresholdTests
 test_indeterminate_backdrop_blocks_rather_than_passes (test_aesthetics.ThresholdTests.test_indeterminate_backdrop_blocks_rather_than_passes) ... ok
 test_large_text_uses_the_relaxed_threshold (test_aesthetics.ThresholdTests.test_large_text_uses_the_relaxed_threshold) ... ok
 test_passing_pair_is_reported_as_pass (test_aesthetics.ThresholdTests.test_passing_pair_is_reported_as_pass) ... ok
+test_existing_anchor_is_never_overwritten (test_anchor_tools.AnchorConfigTests.test_existing_anchor_is_never_overwritten) ... ok
+test_matching_value_becomes_an_equal_pointer (test_anchor_tools.AnchorConfigTests.test_matching_value_becomes_an_equal_pointer) ... ok
+test_mismatched_value_is_reported_and_not_upgraded (test_anchor_tools.AnchorConfigTests.test_mismatched_value_is_reported_and_not_upgraded) ... ok
+test_pointer_absent_from_upstream_writes_no_anchor (test_anchor_tools.AnchorConfigTests.test_pointer_absent_from_upstream_writes_no_anchor) ... ok
+test_unmapped_field_writes_no_anchor (test_anchor_tools.AnchorConfigTests.test_unmapped_field_writes_no_anchor) ... ok
+test_absent_quote_writes_no_anchor (test_anchor_tools.AnchorDocumentTests.test_absent_quote_writes_no_anchor) ... ok
+test_ambiguous_quote_writes_no_anchor (test_anchor_tools.AnchorDocumentTests.test_ambiguous_quote_writes_no_anchor) ... ok
+test_unique_quote_becomes_a_text_quote_anchor (test_anchor_tools.AnchorDocumentTests.test_unique_quote_becomes_a_text_quote_anchor) ... ok
+test_unmapped_field_is_reported_as_unsupported (test_anchor_tools.AnchorDocumentTests.test_unmapped_field_is_reported_as_unsupported) ... ok
 test_400_gbps_is_50_gbytes (test_domains.DomainTests.test_400_gbps_is_50_gbytes) ... ok
 test_api_exists (test_domains.DomainTests.test_api_exists) ... ok
 test_bits_bytes_mismatch (test_domains.DomainTests.test_bits_bytes_mismatch) ... ok
@@ -181,6 +190,10 @@ test_the_shipped_values_agree_with_upstream (test_integration.UpstreamComparison
 test_dense_model_is_not_forced_to_invent_experts (test_observatory.ObservatoryTests.test_dense_model_is_not_forced_to_invent_experts) ... ok
 test_dense_with_routed_topk_is_rejected (test_observatory.ObservatoryTests.test_dense_with_routed_topk_is_rejected) ... ok
 test_live_inventory_covers_new_renderer_modules_and_all_presets (test_observatory.ObservatoryTests.test_live_inventory_covers_new_renderer_modules_and_all_presets) ... ok
+test_paper_source_versions_are_not_pending (test_observatory.ObservatoryTests.test_paper_source_versions_are_not_pending)
+Bytes are locked, so a version reading 'pending' is a stale lie about the snapshot. ... ok
+test_paper_sources_are_pinned_to_full_text (test_observatory.ObservatoryTests.test_paper_sources_are_pinned_to_full_text)
+An /abs/ landing page carries the abstract only; architecture facts are not on it. ... ok
 test_qwen_has_no_publisher_implementation_to_register (test_observatory.ObservatoryTests.test_qwen_has_no_publisher_implementation_to_register) ... ok
 test_registered_qwen_reference_is_code_not_a_config_substitute (test_observatory.ObservatoryTests.test_registered_qwen_reference_is_code_not_a_config_substitute) ... ok
 test_a_clickable_citation_is_not_a_portability_defect (test_presentations.ArtifactSourceTests.test_a_clickable_citation_is_not_a_portability_defect) ... ok
@@ -254,6 +267,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 253 tests in 48.218s
+Ran 264 tests in 63.329s
 
 OK (skipped=1)
