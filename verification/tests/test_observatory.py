@@ -46,3 +46,29 @@ class ObservatoryTests(unittest.TestCase):
    if s.get('kind')=='document' and s.get('sha256'):
     with self.subTest(source=s['id']):
      self.assertNotIn('pending',s['version'].lower())
+ def test_scene_claims_carry_no_unanchored_copies_of_dependency_citations(self):
+  """A derived contract's provenance is its dependencies: an unanchored citation whose
+  source a dependency already cites is a copy and must be gone. An unanchored citation
+  whose source no dependency cites is not a copy of anything -- it is the claim's own
+  only evidence for that role (e.g. a gpu scene claim's vendor_document), and removing
+  it would manufacture a false role gap, so it must stay."""
+  target=json.loads((ROOT/'verification/manifests/observatory.json').read_text())
+  by_id={c['id']:c for c in target['claims']}
+  offenders=[]
+  for c in target['claims']:
+   if not c['id'].startswith('scene.'):continue
+   dep_sources=set()
+   for dep_id in c.get('dependencies',[]):
+    dep=by_id.get(dep_id)
+    if dep is None:continue
+    for e in dep.get('evidence',[]):dep_sources.add(e['source'])
+   for e in c['evidence']:
+    if e['anchor'] is None and e['source'] in dep_sources:
+     offenders.append(c['id']);break
+  self.assertEqual(offenders[:5],[],f'{len(offenders)} scene claims still carry a copied (unanchored, dependency-cited) citation')
+ def test_every_scene_claim_still_declares_dependencies(self):
+  target=json.loads((ROOT/'verification/manifests/observatory.json').read_text())
+  for c in target['claims']:
+   if c['id'].startswith('scene.'):
+    with self.subTest(claim=c['id']):
+     self.assertTrue(c['dependencies'],'a derived claim with no inputs proves nothing')
