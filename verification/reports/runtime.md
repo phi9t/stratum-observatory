@@ -1,8 +1,8 @@
 # Scientific verification — stratum-observatory-3
 
-**runtime: BLOCKED**
+**runtime: FAIL**
 
-Generated: 2026-09-09T21:26:17.547146+00:00
+Generated: 2026-09-10T01:05:53.220546+00:00
 
 This report distinguishes software/contract tests from evidence-backed science. Missing evidence is not a contradiction, and a green engineering run is not scientific certification.
 
@@ -25,7 +25,7 @@ This report distinguishes software/contract tests from evidence-backed science. 
 |---|---|
 | evidence | BLOCKED |
 | model | BLOCKED |
-| gpu | BLOCKED |
+| gpu | FAIL |
 | scale_up | BLOCKED |
 | scale_out | BLOCKED |
 | communication | BLOCKED |
@@ -41,7 +41,7 @@ This report distinguishes software/contract tests from evidence-backed science. 
 
 | Code | Status | Count |
 |---|---|---:|
-| CLAIM_ANCHOR | BLOCKED | 5899 |
+| CLAIM_ANCHOR | BLOCKED | 5607 |
 | CLAIM_SOURCE_BLOCKED | BLOCKED | 2 |
 | CONTRACT_CONSISTENT | PASS | 26 |
 | CONTRACT_EVIDENCE | BLOCKED | 31 |
@@ -51,6 +51,7 @@ This report distinguishes software/contract tests from evidence-backed science. 
 | RECEIPT_UNATTESTED | BLOCKED | 1 |
 | REVIEW_REQUIRED | BLOCKED | 3059 |
 | RUNTIME_NOT_RUN | NOT_RUN | 28 |
+| RUNTIME_STALE | FAIL | 3 |
 | SOURCE_CACHE | BLOCKED | 2 |
 | SOURCE_UNFETCHED | BLOCKED | 2 |
 

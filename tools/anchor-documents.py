@@ -119,6 +119,12 @@ QUOTES[('k3-paper', 'total')] = ('We introduce Kimi K3, a 2.8T parameter Mixture
 QUOTES[('k3-paper', 'vision')] = ('We introduce Kimi K3, a 2.8T parameter Mixture-of-Experts model with 104 billion activated parameters, native vision capabilities, and a 1-million-token context window.', ['native vision capabilities'])
 QUOTES[('k3-paper', 'vocab')] = ('Vocabulary Size</span>\n</span></td>\n<td id="S3.T1.2.14.2" class="ltx_td ltx_align_left ltx_align_top" style="padding:0.4pt 7.0pt;">\n<span id="S3.T1.2.14.2.1" class="ltx_inline-block ltx_align_top" style="width:55.2pt;">\n<span id="S3.T1.2.14.2.1.1" class="ltx_p ltx_align_center">160K</span>\n</span></td>\n<td id="S3.T1.2.14.3" class="ltx_td ltx_align_left ltx_align_top" style="padding:0.4pt 7.0pt;">\n<span id="S3.T1.2.14.3.1" class="ltx_inline-block ltx_align_top" style="width:75.9pt;">\n<span id="S3.T1.2.14.3.1.1" class="ltx_p ltx_align_center">160K</span>\n</span></td>', ['160K'])
 QUOTES[('q3-paper', 'architecture')] = ('The architecture of the Qwen3 dense models is similar to Qwen2.5 <cite class="ltx_cite ltx_citemacro_citep">(<a href="#bib.bib70" title="" class="ltx_ref">Yang et al., 2024b</a>)</cite>, including using Grouped Query Attention (GQA, <cite class="ltx_cite ltx_citemacro_citep"><a href="#bib.bib3" title="" class="ltx_ref">Ainslie et al., 2023</a></cite>)', ['Grouped Query Attention'])
+# maxContext is the NATIVE context, which is what app.mjs calls it ("exceeds the native context
+# used by this preset"). Table 1/2 of the Qwen3 report give a "Context Length" of 128K, which is
+# the YaRN + Dual Chunk Attention extrapolated deployment length, not the native one; the report
+# states the native value in its own sentence, and states it for "all models", so the shared
+# (source, field) key is safe across q38, q330 and q3235, all of which display 32,768.
+QUOTES[('q3-paper', 'maxContext')] = ('All models are pre-trained on hundreds of billions of tokens with a sequence length of 32,768 tokens.', ['32,768'])
 QUOTES[('q3-paper', 'qkNorm')] = ('Besides, we remove QKV-bias used in Qwen2 <cite class="ltx_cite ltx_citemacro_citep">(<a href="#bib.bib69" title="" class="ltx_ref">Yang et al., 2024a</a>)</cite> and introduce QK-Norm <cite class="ltx_cite ltx_citemacro_citep">(<a href="#bib.bib17" title="" class="ltx_ref">Dehghani et al., 2023</a>)</cite> to the attention mechanism to ensure stable training for Qwen3.', ['QK-Norm'])
 
 

@@ -356,11 +356,6 @@
             ]
           },
           "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -393,11 +388,6 @@
             ]
           },
           "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -417,11 +407,6 @@
         },
         {
           "source": "b200-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
           "anchor": null,
           "relation": "documents"
         }
@@ -466,11 +451,6 @@
               386
             ]
           },
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
           "relation": "documents"
         }
       ],
@@ -535,23 +515,7 @@
       "consumer": "HARDWARE.b200.id",
       "expected": "b200",
       "statement": "HARDWARE.b200.id: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
-      "evidence": [
-        {
-          "source": "b200",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "b200-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
-          "relation": "documents"
-        }
-      ],
+      "evidence": [],
       "dependencies": []
     },
     {
@@ -561,23 +525,7 @@
       "consumer": "HARDWARE.b200.name",
       "expected": "B200 \u00b7 DGX",
       "statement": "HARDWARE.b200.name: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
-      "evidence": [
-        {
-          "source": "b200",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "b200-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
-          "relation": "documents"
-        }
-      ],
+      "evidence": [],
       "dependencies": []
     },
     {
@@ -607,11 +555,6 @@
               401
             ]
           },
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
           "relation": "documents"
         }
       ],
@@ -644,11 +587,6 @@
               404
             ]
           },
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
           "relation": "documents"
         }
       ],
@@ -745,11 +683,6 @@
           "source": "b200-system",
           "anchor": null,
           "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -769,11 +702,6 @@
         },
         {
           "source": "b200-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
           "anchor": null,
           "relation": "documents"
         }
@@ -797,11 +725,6 @@
           "source": "b200-system",
           "anchor": null,
           "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -817,23 +740,7 @@
         "blackwell-tuning"
       ],
       "statement": "HARDWARE.b200.sources: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
-      "evidence": [
-        {
-          "source": "b200",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "b200-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
-          "relation": "documents"
-        }
-      ],
+      "evidence": [],
       "dependencies": []
     },
     {
@@ -864,11 +771,6 @@
             ]
           },
           "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -888,11 +790,6 @@
         },
         {
           "source": "b200-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
           "anchor": null,
           "relation": "documents"
         }
@@ -954,11 +851,6 @@
             ]
           },
           "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -986,11 +878,6 @@
             ]
           },
           "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -1005,11 +892,6 @@
       "evidence": [
         {
           "source": "gb300",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
           "anchor": null,
           "relation": "documents"
         }
@@ -1038,11 +920,6 @@
               6935
             ]
           },
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
           "relation": "documents"
         }
       ],
@@ -1097,18 +974,7 @@
       "consumer": "HARDWARE.gb300.id",
       "expected": "gb300",
       "statement": "HARDWARE.gb300.id: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
-      "evidence": [
-        {
-          "source": "gb300",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
-          "relation": "documents"
-        }
-      ],
+      "evidence": [],
       "dependencies": []
     },
     {
@@ -1118,18 +984,7 @@
       "consumer": "HARDWARE.gb300.name",
       "expected": "GB300 NVL72",
       "statement": "HARDWARE.gb300.name: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
-      "evidence": [
-        {
-          "source": "gb300",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
-          "relation": "documents"
-        }
-      ],
+      "evidence": [],
       "dependencies": []
     },
     {
@@ -1154,11 +1009,6 @@
               5881
             ]
           },
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
           "relation": "documents"
         }
       ],
@@ -1186,11 +1036,6 @@
               5881
             ]
           },
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
           "relation": "documents"
         }
       ],
@@ -1250,11 +1095,6 @@
           "source": "gb300",
           "anchor": null,
           "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -1269,11 +1109,6 @@
       "evidence": [
         {
           "source": "gb300",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
           "anchor": null,
           "relation": "documents"
         }
@@ -1311,18 +1146,7 @@
         "blackwell-tuning"
       ],
       "statement": "HARDWARE.gb300.sources: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
-      "evidence": [
-        {
-          "source": "gb300",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
-          "anchor": null,
-          "relation": "documents"
-        }
-      ],
+      "evidence": [],
       "dependencies": []
     },
     {
@@ -1356,11 +1180,6 @@
       "evidence": [
         {
           "source": "gb300",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "blackwell-tuning",
           "anchor": null,
           "relation": "documents"
         }
@@ -1421,11 +1240,6 @@
             ]
           },
           "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -1458,11 +1272,6 @@
             ]
           },
           "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -1484,11 +1293,6 @@
           "source": "hopper-system",
           "anchor": null,
           "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -1508,11 +1312,6 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
           "anchor": null,
           "relation": "documents"
         }
@@ -1600,23 +1399,7 @@
       "consumer": "HARDWARE.h100.id",
       "expected": "h100",
       "statement": "HARDWARE.h100.id: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
-      "evidence": [
-        {
-          "source": "h100",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
-        }
-      ],
+      "evidence": [],
       "dependencies": []
     },
     {
@@ -1641,16 +1424,6 @@
               7196
             ]
           },
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
           "relation": "documents"
         }
       ],
@@ -1684,11 +1457,6 @@
             ]
           },
           "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -1720,11 +1488,6 @@
               410
             ]
           },
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
           "relation": "documents"
         }
       ],
@@ -1832,11 +1595,6 @@
           "source": "hopper-system",
           "anchor": null,
           "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -1856,11 +1614,6 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
           "anchor": null,
           "relation": "documents"
         }
@@ -1884,11 +1637,6 @@
           "source": "hopper-system",
           "anchor": null,
           "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -1904,23 +1652,7 @@
         "hopper-tuning"
       ],
       "statement": "HARDWARE.h100.sources: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
-      "evidence": [
-        {
-          "source": "h100",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
-        }
-      ],
+      "evidence": [],
       "dependencies": []
     },
     {
@@ -1951,11 +1683,6 @@
             ]
           },
           "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -1975,11 +1702,6 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
           "anchor": null,
           "relation": "documents"
         }
@@ -2040,11 +1762,6 @@
             ]
           },
           "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -2077,11 +1794,6 @@
             ]
           },
           "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -2103,11 +1815,6 @@
           "source": "hopper-system",
           "anchor": null,
           "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -2127,11 +1834,6 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
           "anchor": null,
           "relation": "documents"
         }
@@ -2219,23 +1921,7 @@
       "consumer": "HARDWARE.h200.id",
       "expected": "h200",
       "statement": "HARDWARE.h200.id: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
-      "evidence": [
-        {
-          "source": "h200",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
-        }
-      ],
+      "evidence": [],
       "dependencies": []
     },
     {
@@ -2245,23 +1931,7 @@
       "consumer": "HARDWARE.h200.name",
       "expected": "H200 SXM",
       "statement": "HARDWARE.h200.name: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
-      "evidence": [
-        {
-          "source": "h200",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
-        }
-      ],
+      "evidence": [],
       "dependencies": []
     },
     {
@@ -2291,11 +1961,6 @@
               407
             ]
           },
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
           "relation": "documents"
         }
       ],
@@ -2328,11 +1993,6 @@
               410
             ]
           },
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
           "relation": "documents"
         }
       ],
@@ -2440,11 +2100,6 @@
           "source": "hopper-system",
           "anchor": null,
           "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -2464,11 +2119,6 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
           "anchor": null,
           "relation": "documents"
         }
@@ -2492,11 +2142,6 @@
           "source": "hopper-system",
           "anchor": null,
           "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -2512,23 +2157,7 @@
         "hopper-tuning"
       ],
       "statement": "HARDWARE.h200.sources: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
-      "evidence": [
-        {
-          "source": "h200",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
-        }
-      ],
+      "evidence": [],
       "dependencies": []
     },
     {
@@ -2559,11 +2188,6 @@
             ]
           },
           "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -2583,11 +2207,6 @@
         },
         {
           "source": "hopper-system",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
-          "source": "hopper-tuning",
           "anchor": null,
           "relation": "documents"
         }
@@ -3076,11 +2695,6 @@
       "statement": "MODELS.ds2.family: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "ds2-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "ds2-code",
           "anchor": {
             "kind": "python_symbol",
@@ -3105,11 +2719,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "ds2-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -3377,11 +2986,6 @@
       "statement": "MODELS.ds2.id: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "ds2-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "ds2-code",
           "anchor": {
             "kind": "python_symbol",
@@ -3406,11 +3010,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "ds2-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -3939,11 +3538,6 @@
       "statement": "MODELS.ds2.name: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "ds2-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "ds2-code",
           "anchor": {
             "kind": "python_symbol",
@@ -3968,11 +3562,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "ds2-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -4525,11 +4114,6 @@
       "statement": "MODELS.ds2.sources: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "ds2-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "ds2-code",
           "anchor": {
             "kind": "python_symbol",
@@ -4554,11 +4138,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "ds2-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -5361,11 +4940,6 @@
       "statement": "MODELS.ds3.family: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "ds3-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "ds3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -5390,11 +4964,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "ds3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -5662,11 +5231,6 @@
       "statement": "MODELS.ds3.id: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "ds3-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "ds3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -5691,11 +5255,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "ds3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -6239,11 +5798,6 @@
       "statement": "MODELS.ds3.name: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "ds3-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "ds3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -6268,11 +5822,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "ds3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -6836,11 +6385,6 @@
       "statement": "MODELS.ds3.sources: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "ds3-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "ds3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -6865,11 +6409,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "ds3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -7343,8 +6882,12 @@
       "evidence": [
         {
           "source": "hf-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/linear_attn_config/short_conv_kernel_size",
+            "sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+          },
+          "relation": "equal"
         },
         {
           "source": "hf-model",
@@ -7597,11 +7140,6 @@
       "statement": "MODELS.kimi3.family: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "hf-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "hf-model",
           "anchor": null,
           "relation": "implements"
@@ -7618,11 +7156,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -7904,11 +7437,6 @@
       "statement": "MODELS.kimi3.id: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "hf-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "hf-model",
           "anchor": null,
           "relation": "implements"
@@ -7925,11 +7453,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -8216,8 +7739,12 @@
       "evidence": [
         {
           "source": "hf-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/linear_attn_config/head_dim",
+            "sha256": "2747b7c718564ba5f066f0523b03e17f6a496b06851333d2d59ab6d863225848"
+          },
+          "relation": "equal"
         },
         {
           "source": "hf-model",
@@ -8425,11 +7952,6 @@
       "statement": "MODELS.kimi3.name: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "hf-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "hf-model",
           "anchor": null,
           "relation": "implements"
@@ -8446,11 +7968,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -8901,11 +8418,6 @@
       "statement": "MODELS.kimi3.sources: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "hf-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "hf-model",
           "anchor": null,
           "relation": "implements"
@@ -8922,11 +8434,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -9855,11 +9362,6 @@
       "statement": "MODELS.q3235.family: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "q3235-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -9897,11 +9399,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "q3-paper",
-          "anchor": null,
-          "relation": "documents"
         },
         {
           "source": "q3-vllm",
@@ -10383,11 +9880,6 @@
       "statement": "MODELS.q3235.id: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "q3235-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -10425,11 +9917,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "q3-paper",
-          "anchor": null,
-          "relation": "documents"
         },
         {
           "source": "q3-vllm",
@@ -11210,7 +10697,18 @@
         },
         {
           "source": "q3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "All models are pre-trained on hundreds of billions of tokens with a sequence length of 32,768 tokens.",
+            "contains": [
+              "32,768"
+            ],
+            "sha256": "4822bd6eb809dc7ba3dbdaa8d2b69c0648a44f07271a552ee4b73207a9b8e2ee",
+            "resolved_span": [
+              445,
+              445
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -11337,11 +10835,6 @@
       "statement": "MODELS.q3235.name: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "q3235-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -11379,11 +10872,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "q3-paper",
-          "anchor": null,
-          "relation": "documents"
         },
         {
           "source": "q3-vllm",
@@ -12300,11 +11788,6 @@
       "statement": "MODELS.q3235.sources: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "q3235-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -12342,11 +11825,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "q3-paper",
-          "anchor": null,
-          "relation": "documents"
         },
         {
           "source": "q3-vllm",
@@ -12649,8 +12127,12 @@
       "evidence": [
         {
           "source": "q3235-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/head_dim",
+            "sha256": "2747b7c718564ba5f066f0523b03e17f6a496b06851333d2d59ab6d863225848"
+          },
+          "relation": "equal"
         },
         {
           "source": "q3-code",
@@ -12866,11 +12348,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "q3-paper",
-          "anchor": null,
-          "relation": "documents"
         },
         {
           "source": "q3-vllm",
@@ -13535,11 +13012,6 @@
       "statement": "MODELS.q330.family: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "q330-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -13577,11 +13049,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "q3-paper",
-          "anchor": null,
-          "relation": "documents"
         },
         {
           "source": "q3-vllm",
@@ -14063,11 +13530,6 @@
       "statement": "MODELS.q330.id: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "q330-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -14105,11 +13567,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "q3-paper",
-          "anchor": null,
-          "relation": "documents"
         },
         {
           "source": "q3-vllm",
@@ -14890,7 +14347,18 @@
         },
         {
           "source": "q3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "All models are pre-trained on hundreds of billions of tokens with a sequence length of 32,768 tokens.",
+            "contains": [
+              "32,768"
+            ],
+            "sha256": "4822bd6eb809dc7ba3dbdaa8d2b69c0648a44f07271a552ee4b73207a9b8e2ee",
+            "resolved_span": [
+              445,
+              445
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -15017,11 +14485,6 @@
       "statement": "MODELS.q330.name: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "q330-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -15059,11 +14522,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "q3-paper",
-          "anchor": null,
-          "relation": "documents"
         },
         {
           "source": "q3-vllm",
@@ -15980,11 +15438,6 @@
       "statement": "MODELS.q330.sources: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "q330-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -16022,11 +15475,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "q3-paper",
-          "anchor": null,
-          "relation": "documents"
         },
         {
           "source": "q3-vllm",
@@ -16329,8 +15777,12 @@
       "evidence": [
         {
           "source": "q330-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/head_dim",
+            "sha256": "2747b7c718564ba5f066f0523b03e17f6a496b06851333d2d59ab6d863225848"
+          },
+          "relation": "equal"
         },
         {
           "source": "q3-code",
@@ -16546,11 +15998,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "q3-paper",
-          "anchor": null,
-          "relation": "documents"
         },
         {
           "source": "q3-vllm",
@@ -17025,11 +16472,6 @@
       "statement": "MODELS.q38.family: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "q38-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -17054,11 +16496,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "q3-paper",
-          "anchor": null,
-          "relation": "documents"
         },
         {
           "source": "q3-vllm",
@@ -17397,11 +16834,6 @@
       "statement": "MODELS.q38.id: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "q38-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -17426,11 +16858,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "q3-paper",
-          "anchor": null,
-          "relation": "documents"
         },
         {
           "source": "q3-vllm",
@@ -17977,7 +17404,18 @@
         },
         {
           "source": "q3-paper",
-          "anchor": null,
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "All models are pre-trained on hundreds of billions of tokens with a sequence length of 32,768 tokens.",
+            "contains": [
+              "32,768"
+            ],
+            "sha256": "4822bd6eb809dc7ba3dbdaa8d2b69c0648a44f07271a552ee4b73207a9b8e2ee",
+            "resolved_span": [
+              445,
+              445
+            ]
+          },
           "relation": "documents"
         },
         {
@@ -18065,11 +17503,6 @@
       "statement": "MODELS.q38.name: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "q38-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -18094,11 +17527,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "q3-paper",
-          "anchor": null,
-          "relation": "documents"
         },
         {
           "source": "q3-vllm",
@@ -18681,11 +18109,6 @@
       "statement": "MODELS.q38.sources: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "q38-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q3-code",
           "anchor": {
             "kind": "python_symbol",
@@ -18710,11 +18133,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "q3-paper",
-          "anchor": null,
-          "relation": "documents"
         },
         {
           "source": "q3-vllm",
@@ -18922,8 +18340,12 @@
       "evidence": [
         {
           "source": "q38-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/head_dim",
+            "sha256": "2747b7c718564ba5f066f0523b03e17f6a496b06851333d2d59ab6d863225848"
+          },
+          "relation": "equal"
         },
         {
           "source": "q3-code",
@@ -19076,11 +18498,6 @@
           "relation": "implements"
         },
         {
-          "source": "q3-paper",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q3-vllm",
           "anchor": {
             "kind": "python_symbol",
@@ -19200,8 +18617,12 @@
       "evidence": [
         {
           "source": "q3827-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/linear_conv_kernel_dim",
+            "sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+          },
+          "relation": "equal"
         },
         {
           "source": "q35-code",
@@ -19437,11 +18858,6 @@
       "expected": "Qwen3.8",
       "statement": "MODELS.q3827.family: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
-        {
-          "source": "q3827-config",
-          "anchor": null,
-          "relation": "documents"
-        },
         {
           "source": "q35-code",
           "anchor": {
@@ -19787,11 +19203,6 @@
       "statement": "MODELS.q3827.id: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "q3827-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q35-code",
           "anchor": {
             "kind": "python_symbol",
@@ -20129,8 +19540,12 @@
       "evidence": [
         {
           "source": "q3827-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/linear_value_head_dim",
+            "sha256": "2747b7c718564ba5f066f0523b03e17f6a496b06851333d2d59ab6d863225848"
+          },
+          "relation": "equal"
         },
         {
           "source": "q35-code",
@@ -20378,11 +19793,6 @@
       "expected": "Qwen3.8 \u00b7 27B",
       "statement": "MODELS.q3827.name: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
-        {
-          "source": "q3827-config",
-          "anchor": null,
-          "relation": "documents"
-        },
         {
           "source": "q35-code",
           "anchor": {
@@ -20854,11 +20264,6 @@
       "statement": "MODELS.q3827.sources: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "q3827-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q35-code",
           "anchor": {
             "kind": "python_symbol",
@@ -21043,8 +20448,12 @@
       "evidence": [
         {
           "source": "q3827-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/head_dim",
+            "sha256": "51e8ea280b44e16934d4d611901f3d3afc41789840acdff81942c2f65009cd52"
+          },
+          "relation": "equal"
         },
         {
           "source": "q35-code",
@@ -21272,8 +20681,12 @@
       "evidence": [
         {
           "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/linear_conv_kernel_dim",
+            "sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+          },
+          "relation": "equal"
         },
         {
           "source": "q4-code",
@@ -21492,11 +20905,6 @@
       "expected": "Qwen3.8",
       "statement": "MODELS.q38flash.family: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
-        {
-          "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
-        },
         {
           "source": "q4-code",
           "anchor": {
@@ -21798,11 +21206,6 @@
       "expected": "q38flash",
       "statement": "MODELS.q38flash.id: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
-        {
-          "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
-        },
         {
           "source": "q4-code",
           "anchor": {
@@ -22248,8 +21651,12 @@
       "evidence": [
         {
           "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/linear_value_head_dim",
+            "sha256": "2747b7c718564ba5f066f0523b03e17f6a496b06851333d2d59ab6d863225848"
+          },
+          "relation": "equal"
         },
         {
           "source": "q4-code",
@@ -22514,11 +21921,6 @@
       "expected": "Qwen3.8 \u00b7 Flash-Next",
       "statement": "MODELS.q38flash.name: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
-        {
-          "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
-        },
         {
           "source": "q4-code",
           "anchor": {
@@ -22946,11 +22348,6 @@
       "statement": "MODELS.q38flash.sources: preserve the displayed value and its declared scope; resolve exact field/code anchors and an independent interpretation review before publication. Common defaults for absent mechanisms are not claims that the corresponding checkpoint has those operators.",
       "evidence": [
         {
-          "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
-        },
-        {
           "source": "q4-code",
           "anchor": {
             "kind": "python_symbol",
@@ -23165,8 +22562,12 @@
       "evidence": [
         {
           "source": "q38flash-config",
-          "anchor": null,
-          "relation": "documents"
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/head_dim",
+            "sha256": "51e8ea280b44e16934d4d611901f3d3afc41789840acdff81942c2f65009cd52"
+          },
+          "relation": "equal"
         },
         {
           "source": "q4-code",
@@ -23403,11 +22804,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -23451,11 +22847,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -23499,11 +22890,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -23623,11 +23009,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -23671,11 +23052,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -23719,11 +23095,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -23767,11 +23138,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -23815,11 +23181,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -23863,11 +23224,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -23911,11 +23267,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": []
@@ -23950,11 +23301,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -23998,11 +23344,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -24065,11 +23406,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -24132,11 +23468,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -24218,11 +23549,6 @@
             ]
           },
           "relation": "implements"
-        },
-        {
-          "source": "k3-paper",
-          "anchor": null,
-          "relation": "documents"
         }
       ],
       "dependencies": [

@@ -45,6 +45,12 @@ test_absent_quote_writes_no_anchor (test_anchor_tools.AnchorDocumentTests.test_a
 test_ambiguous_quote_writes_no_anchor (test_anchor_tools.AnchorDocumentTests.test_ambiguous_quote_writes_no_anchor) ... ok
 test_unique_quote_becomes_a_text_quote_anchor (test_anchor_tools.AnchorDocumentTests.test_unique_quote_becomes_a_text_quote_anchor) ... ok
 test_unmapped_field_is_reported_as_unsupported (test_anchor_tools.AnchorDocumentTests.test_unmapped_field_is_reported_as_unsupported) ... ok
+test_every_dropped_citation_is_gone_from_the_manifest (test_anchor_tools.ResidueRecordTests.test_every_dropped_citation_is_gone_from_the_manifest)
+A record that disagrees with the manifest is worse than no record. ... ok
+test_every_re_pointed_citation_now_carries_an_anchor (test_anchor_tools.ResidueRecordTests.test_every_re_pointed_citation_now_carries_an_anchor) ... ok
+test_every_residue_row_has_a_decision (test_anchor_tools.ResidueRecordTests.test_every_residue_row_has_a_decision) ... ok
+test_no_residue_row_was_resolved_by_inventing_a_quote (test_anchor_tools.ResidueRecordTests.test_no_residue_row_was_resolved_by_inventing_a_quote)
+A decision must name one of the three allowed resolutions. ... ok
 test_400_gbps_is_50_gbytes (test_domains.DomainTests.test_400_gbps_is_50_gbytes) ... ok
 test_api_exists (test_domains.DomainTests.test_api_exists) ... ok
 test_bits_bytes_mismatch (test_domains.DomainTests.test_bits_bytes_mismatch) ... ok
@@ -267,6 +273,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 264 tests in 63.329s
+Ran 268 tests in 48.373s
 
 OK (skipped=1)
