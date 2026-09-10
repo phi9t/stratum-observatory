@@ -65,3 +65,46 @@ class AnchorConfigTests(unittest.TestCase):
                                                    'sha256': 'f'*64}
         new, _ = self.tool.propose(t, self.sources, self.root)
         self.assertEqual(new['claims'][0]['evidence'][0]['anchor']['pointer'], '/num_hidden_layers')
+
+
+class AnchorDocumentTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = Path(self.tmp.name)
+        self.tool = load_tool('anchor-documents')
+        raw = b'<p>The H100 SXM offers 80GB of HBM3 at 3.35TB/s.</p>\n<p>NVLink is fast. NVLink is fast.</p>\n'
+        (self.root/'h100.html').write_bytes(raw)
+        self.sources = {'h100': {'id': 'h100', 'role': 'vendor_document', 'kind': 'document',
+                                 'cache': 'h100.html', 'sha256': hashlib.sha256(raw).hexdigest()}}
+
+    def target(self, claim_id):
+        return {'claims': [{'id': claim_id, 'domain': 'gpu', 'classification': 'documented',
+                            'expected': 80, 'statement': 's', 'dependencies': [],
+                            'evidence': [{'source': 'h100', 'anchor': None, 'relation': 'documents'}]}]}
+
+    def test_unique_quote_becomes_a_text_quote_anchor(self):
+        self.tool.QUOTES[('h100', 'hbmGB')] = ('80GB of HBM3', ['80GB'])
+        new, residue = self.tool.propose(self.target('HARDWARE.h100.hbmGB'), self.sources, self.root)
+        anchor = new['claims'][0]['evidence'][0]['anchor']
+        self.assertEqual(anchor['kind'], 'text_quote')
+        self.assertEqual(anchor['quote'], '80GB of HBM3')
+        self.assertEqual(anchor['contains'], ['80GB'])
+        self.assertEqual(residue, [])
+
+    def test_ambiguous_quote_writes_no_anchor(self):
+        self.tool.QUOTES[('h100', 'nvGen')] = ('NVLink is fast.', ['NVLink'])
+        new, residue = self.tool.propose(self.target('HARDWARE.h100.nvGen'), self.sources, self.root)
+        self.assertIsNone(new['claims'][0]['evidence'][0]['anchor'])
+        self.assertEqual(residue[0]['reason'], 'quote does not resolve uniquely')
+
+    def test_absent_quote_writes_no_anchor(self):
+        self.tool.QUOTES[('h100', 'arch')] = ('compute capability 9.0', ['9.0'])
+        new, residue = self.tool.propose(self.target('HARDWARE.h100.arch'), self.sources, self.root)
+        self.assertIsNone(new['claims'][0]['evidence'][0]['anchor'])
+        self.assertEqual(residue[0]['reason'], 'quote does not resolve uniquely')
+
+    def test_unmapped_field_is_reported_as_unsupported(self):
+        new, residue = self.tool.propose(self.target('HARDWARE.h100.powerW'), self.sources, self.root)
+        self.assertIsNone(new['claims'][0]['evidence'][0]['anchor'])
+        self.assertEqual(residue[0]['reason'], 'no authored quote')
