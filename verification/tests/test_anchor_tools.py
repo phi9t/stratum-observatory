@@ -108,3 +108,94 @@ class AnchorDocumentTests(unittest.TestCase):
         new, residue = self.tool.propose(self.target('HARDWARE.h100.powerW'), self.sources, self.root)
         self.assertIsNone(new['claims'][0]['evidence'][0]['anchor'])
         self.assertEqual(residue[0]['reason'], 'no authored quote')
+
+
+class ResidueRecordTests(unittest.TestCase):
+    """Every citation left unanchored must carry a recorded decision, not silence.
+
+    RULING (O): 2,987 rows is a document nobody reads if it is written one row per line, and
+    an unread table is a silent discard wearing a table's clothes. The record is therefore
+    organised by class -- one decision per (source, reason, field-class) group -- and this
+    test enforces the property that matters: every residue row falls inside exactly one
+    recorded class, and the recorded row counts add up to the real population. It still fails
+    if a row escapes every class, or if a class overstates or understates its own count.
+    """
+
+    RECORD = ROOT/'docs/verifiers/ANCHOR_RESIDUE.md'
+
+    @staticmethod
+    def residue_rows():
+        rows = []
+        for name in ('anchor-residue-config.json', 'anchor-residue-documents.json'):
+            path = ROOT/'verification/reports'/name
+            if path.exists():
+                rows.extend(json.loads(path.read_text()))
+        return rows
+
+    @staticmethod
+    def recorded_classes():
+        """(source, reason, field-class) -> (count, decision) parsed back out of the record."""
+        out = {}
+        for line in ResidueRecordTests.RECORD.read_text().splitlines():
+            if not line.startswith('| `'):
+                continue
+            cells = [c.strip().strip('`') for c in line.strip('|').split('|')]
+            if len(cells) != 5 or not cells[3].isdigit():
+                continue
+            out[(cells[0], cells[1], cells[2])] = (int(cells[3]), cells[4])
+        return out
+
+    def test_every_residue_row_has_a_decision(self):
+        self.assertTrue(self.RECORD.exists(), 'residue decisions are not recorded')
+        classes = self.recorded_classes()
+        self.assertTrue(classes, 'the record contains no class rows')
+        tool = load_tool('anchor-residue')
+        counted = {}
+        for row in self.residue_rows():
+            key = (row['source'], row['reason'], tool.field_class(row))
+            with self.subTest(claim=row['claim'], source=row['source']):
+                self.assertIn(key, classes, f"residue row {row['claim']} falls outside every recorded class")
+            counted[key] = counted.get(key, 0) + 1
+        for key, (recorded, _) in classes.items():
+            with self.subTest(cls=key):
+                self.assertEqual(counted.get(key, 0), recorded, f'recorded count for {key} does not match the reports')
+        self.assertEqual(sum(n for n, _ in classes.values()), len(self.residue_rows()),
+                         'recorded class counts do not sum to the residue total')
+
+    def test_no_residue_row_was_resolved_by_inventing_a_quote(self):
+        """A decision must name one of the three allowed resolutions."""
+        if not self.RECORD.exists():
+            self.skipTest('record not yet written')
+        allowed = ('re-pointed', 'dropped', 'reclassified', 'unresolved')
+        for line in self.RECORD.read_text().splitlines():
+            if line.startswith('| `') and 'claim' not in line:
+                with self.subTest(line=line):
+                    self.assertTrue(any(word in line for word in allowed), line)
+
+    def test_every_dropped_citation_is_gone_from_the_manifest(self):
+        """A record that disagrees with the manifest is worse than no record."""
+        if not self.RECORD.exists():
+            self.skipTest('record not yet written')
+        tool = load_tool('anchor-residue')
+        target = json.loads((ROOT/'verification/manifests/observatory.json').read_text())
+        present = {(c['id'], e['source']) for c in target['claims'] for e in c['evidence']}
+        for row in self.residue_rows():
+            if tool.decide(row)[0] != 'dropped':
+                continue
+            with self.subTest(claim=row['claim'], source=row['source']):
+                self.assertNotIn((row['claim'], row['source']), present,
+                                 'record says dropped but the manifest still cites it')
+
+    def test_every_re_pointed_citation_now_carries_an_anchor(self):
+        if not self.RECORD.exists():
+            self.skipTest('record not yet written')
+        tool = load_tool('anchor-residue')
+        target = json.loads((ROOT/'verification/manifests/observatory.json').read_text())
+        anchors = {(c['id'], e['source']): e['anchor'] for c in target['claims'] for e in c['evidence']}
+        for row in self.residue_rows():
+            if tool.decide(row)[0] != 're-pointed':
+                continue
+            with self.subTest(claim=row['claim'], source=row['source']):
+                anchor = anchors.get((row['claim'], row['source']))
+                self.assertIsNotNone(anchor, 'record says re-pointed but the manifest has no anchor')
+                self.assertIn(anchor.get('kind'), ('json_pointer', 'text_quote'))

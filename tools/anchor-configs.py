@@ -74,6 +74,10 @@ POINTERS.update({
     (_k3, 'scoring'): '/text_config/moe_router_activation_func',
     (_k3, 'latent'): '/text_config/routed_expert_hidden_size',
     (_k3, 'maxContext'): '/text_config/max_position_embeddings',
+    # Kimi K3 declares one head count and one head width for the whole KDA path, inside
+    # linear_attn_config; the short-conv width sits in the same block.
+    (_k3, 'linearHeadDim'): '/text_config/linear_attn_config/head_dim',
+    (_k3, 'convKernel'): '/text_config/linear_attn_config/short_conv_kernel_size',
 })
 
 # --- Qwen3 dense/MoE family: flat config. ---
@@ -94,6 +98,13 @@ for _repo in ('Qwen/Qwen3-30B-A3B', 'Qwen/Qwen3-235B-A22B'):
         (_repo, 'expertFF'): '/moe_intermediate_size',
     })
 
+# RULING (L/N) refinement, applied in Task 4. A `common` default that is a GENUINE VALUE may be
+# anchored wherever an upstream key names the same quantity; the test is semantic, never whether
+# the value arrived via `common`. transformers' Qwen3Attention sizes the q, k AND v projections
+# from the single `head_dim` key, so that key names the V head dimension as much as the Q one.
+for _repo in ('Qwen/Qwen3-8B', 'Qwen/Qwen3-30B-A3B', 'Qwen/Qwen3-235B-A22B'):
+    POINTERS[(_repo, 'vDim')] = '/head_dim'
+
 # --- Qwen3.8-27B and Qwen3.8-Flash-Next: everything real lives under /text_config/. ---
 _q3827 = 'Qwen/Qwen3.8-27B'
 POINTERS.update({
@@ -111,6 +122,11 @@ POINTERS.update({
     (_q3827, 'linearGate'): '/text_config/output_gate_type',
     (_q3827, 'mtp'): '/text_config/mtp_num_hidden_layers',
     (_q3827, 'maxContext'): '/text_config/max_position_embeddings',
+    # RULING (L/N) refinement: genuine values that happen to equal the `common` default, each
+    # named outright by Qwen3.8's own configuration.
+    (_q3827, 'vDim'): '/text_config/head_dim',
+    (_q3827, 'linearHeadDim'): '/text_config/linear_value_head_dim',
+    (_q3827, 'convKernel'): '/text_config/linear_conv_kernel_dim',
 })
 
 _q38flash = 'Qwen/Qwen3.8-Flash-Next'
@@ -136,6 +152,9 @@ POINTERS.update({
     (_q38flash, 'mixRank'): '/text_config/hc_lowrank',
     (_q38flash, 'pleLayers'): '/text_config/ple_layer_ids',
     (_q38flash, 'maxContext'): '/text_config/max_position_embeddings',
+    (_q38flash, 'vDim'): '/text_config/head_dim',
+    (_q38flash, 'linearHeadDim'): '/text_config/linear_value_head_dim',
+    (_q38flash, 'convKernel'): '/text_config/linear_conv_kernel_dim',
 })
 
 
