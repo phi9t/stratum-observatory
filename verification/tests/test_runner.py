@@ -35,6 +35,13 @@ class RunnerTests(unittest.TestCase):
         self.assertEqual(roles_from_dependencies({'id':'d','dependencies':['empty','absent']},sources),[])
         self.assertEqual(roles_from_dependencies({'id':'d'},sources),[])
 
+    def test_the_role_pass_does_not_soften_a_contradiction_into_missing_evidence(self):
+        """A FAIL claim that also fails a role check stays FAIL, never BLOCKED."""
+        from verification.runner import demoted_status
+        self.assertEqual(demoted_status('FAIL'),'FAIL')
+        self.assertEqual(demoted_status('PASS'),'BLOCKED')
+        self.assertEqual(demoted_status('NOT_RUN'),'NOT_RUN')
+
     def test_unknown_profile_rejected(self):
         from verification.runner import audit
         with self.assertRaises(ValueError):audit(Path('.'),{}, {}, {}, profile='skip-science')

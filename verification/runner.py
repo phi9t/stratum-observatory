@@ -162,6 +162,16 @@ def roles_from_dependencies(claim,claim_sources):
         out.extend(claim_sources.get(dep,[]))
     return out
 
+def demoted_status(prior):
+    """The status of a claim the role pass has just blocked.
+
+    A passing claim is taken back to BLOCKED. A claim that was already FAIL keeps FAIL: a
+    contradiction is not softened into missing evidence just because a role was also absent.
+    Every current reader of claim_status only asks whether it is PASS, so this is inert today --
+    it is here so that the first reader to distinguish the two is told the truth.
+    """
+    return 'BLOCKED' if prior=='PASS' else prior
+
 def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publication',reviews=None,receipt=None,runtime=None):
     if profile not in PROFILES:raise ValueError(f'Unknown verification profile: {profile}')
     root=Path(root); reviews=reviews or {}; runtime=runtime or {}; findings=[]
@@ -265,8 +275,7 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
                 'Requires publisher implementation AND independent framework implementation.' if ships_code else
                 'Publisher ships configuration only, so this needs independent implementations from at least two organizations.')
         if findings[start:]:
-            # A claim already FAILing keeps that status; a passing one is taken back to BLOCKED.
-            if claim_status.get(cid,'PASS')=='PASS':claim_status[cid]='BLOCKED'
+            claim_status[cid]=demoted_status(claim_status.get(cid,'PASS'))
             unverify(cid)
     propagate()  # required: the role pass can demote a claim its dependents were cleared against
     bydomain={d:[] for d in DOMAINS}
