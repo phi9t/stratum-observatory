@@ -195,6 +195,7 @@ test_equal_relations_are_registered (test_integration.UpstreamComparisonTests.te
 test_the_shipped_values_agree_with_upstream (test_integration.UpstreamComparisonTests.test_the_shipped_values_agree_with_upstream) ... ok
 test_dense_model_is_not_forced_to_invent_experts (test_observatory.ObservatoryTests.test_dense_model_is_not_forced_to_invent_experts) ... ok
 test_dense_with_routed_topk_is_rejected (test_observatory.ObservatoryTests.test_dense_with_routed_topk_is_rejected) ... ok
+test_every_scene_claim_still_declares_dependencies (test_observatory.ObservatoryTests.test_every_scene_claim_still_declares_dependencies) ... ok
 test_live_inventory_covers_new_renderer_modules_and_all_presets (test_observatory.ObservatoryTests.test_live_inventory_covers_new_renderer_modules_and_all_presets) ... ok
 test_paper_source_versions_are_not_pending (test_observatory.ObservatoryTests.test_paper_source_versions_are_not_pending)
 Bytes are locked, so a version reading 'pending' is a stale lie about the snapshot. ... ok
@@ -202,6 +203,8 @@ test_paper_sources_are_pinned_to_full_text (test_observatory.ObservatoryTests.te
 An /abs/ landing page carries the abstract only; architecture facts are not on it. ... ok
 test_qwen_has_no_publisher_implementation_to_register (test_observatory.ObservatoryTests.test_qwen_has_no_publisher_implementation_to_register) ... ok
 test_registered_qwen_reference_is_code_not_a_config_substitute (test_observatory.ObservatoryTests.test_registered_qwen_reference_is_code_not_a_config_substitute) ... ok
+test_scene_claims_carry_no_unanchored_copies_of_dependency_citations (test_observatory.ObservatoryTests.test_scene_claims_carry_no_unanchored_copies_of_dependency_citations)
+A derived contract's provenance is its dependencies: an unanchored citation whose ... ok
 test_a_clickable_citation_is_not_a_portability_defect (test_presentations.ArtifactSourceTests.test_a_clickable_citation_is_not_a_portability_defect) ... ok
 test_an_embedded_external_url_is_caught (test_presentations.ArtifactSourceTests.test_an_embedded_external_url_is_caught) ... ok
 test_artifact_declares_no_external_origin (test_presentations.ArtifactSourceTests.test_artifact_declares_no_external_origin) ... ok
@@ -214,6 +217,37 @@ test_a_stale_manifest_is_caught (test_presentations.PreviewFreshnessTests.test_a
 test_previews_match_the_built_artifact (test_presentations.PreviewFreshnessTests.test_previews_match_the_built_artifact) ... ok
 test_a_scenario_claiming_certification_is_rejected (test_presentations.ScenarioSchemaTests.test_a_scenario_claiming_certification_is_rejected) ... ok
 test_schema_exists_and_accepts_a_real_export (test_presentations.ScenarioSchemaTests.test_schema_exists_and_accepts_a_real_export) ... ok
+test_blocked_total_is_current (test_reported_numbers.PublicationNumberTests.test_blocked_total_is_current) ... ok
+test_claim_anchor_count_is_current (test_reported_numbers.PublicationNumberTests.test_claim_anchor_count_is_current) ... ok
+test_claim_role_is_not_reported_as_blocking (test_reported_numbers.PublicationNumberTests.test_claim_role_is_not_reported_as_blocking) ... ok
+test_no_fail_findings_are_reported_as_present (test_reported_numbers.PublicationNumberTests.test_no_fail_findings_are_reported_as_present) ... ok
+test_no_stale_accepted_snapshot_zero (test_reported_numbers.PublicationNumberTests.test_no_stale_accepted_snapshot_zero)
+`Accepted raw-byte snapshots | 0` was false once 60 of 62 sources verified. ... ok
+test_no_stale_dual_code_claim (test_reported_numbers.PublicationNumberTests.test_no_stale_dual_code_claim)
+Saying a code BLOCKS is a claim about the report, and the report says it does not. ... ok
+test_pass_total_is_current (test_reported_numbers.PublicationNumberTests.test_pass_total_is_current) ... ok
+test_review_required_count_is_current (test_reported_numbers.PublicationNumberTests.test_review_required_count_is_current) ... ok
+test_verified_source_count_is_current (test_reported_numbers.PublicationNumberTests.test_verified_source_count_is_current) ... ok
+test_data_versus_source_discrepancies_are_recorded (test_reported_numbers.ResidueNarrativeTests.test_data_versus_source_discrepancies_are_recorded) ... ok
+test_kept_scene_citations_are_stated_and_explained (test_reported_numbers.ResidueNarrativeTests.test_kept_scene_citations_are_stated_and_explained) ... ok
+test_pdf_limitation_cites_lines_that_still_decode_strictly (test_reported_numbers.ResidueNarrativeTests.test_pdf_limitation_cites_lines_that_still_decode_strictly)
+The cited line numbers must still be the strict UTF-8 decode they are blamed on. ... ok
+test_pdf_limitation_is_recorded_with_its_cause (test_reported_numbers.ResidueNarrativeTests.test_pdf_limitation_is_recorded_with_its_cause) ... ok
+test_quote_authoring_cap_is_recorded (test_reported_numbers.ResidueNarrativeTests.test_quote_authoring_cap_is_recorded) ... ok
+test_residue_document_totals_are_stated (test_reported_numbers.ResidueNarrativeTests.test_residue_document_totals_are_stated) ... ok
+test_the_anti_laundering_correction_is_recorded (test_reported_numbers.ResidueNarrativeTests.test_the_anti_laundering_correction_is_recorded) ... ok
+test_the_withdrawn_anti_laundering_claim_is_not_restated (test_reported_numbers.ResidueNarrativeTests.test_the_withdrawn_anti_laundering_claim_is_not_restated)
+The dependency fixpoint already carried that property; the role change did not add it. ... ok
+test_not_run_obligation_count_is_current (test_reported_numbers.RuntimeNumberTests.test_not_run_obligation_count_is_current) ... ok
+test_receipt_staleness_is_recorded_as_operational_fact (test_reported_numbers.RuntimeNumberTests.test_receipt_staleness_is_recorded_as_operational_fact)
+A manifest edit invalidates runtime receipts; they must be re-probed, not re-stamped. ... ok
+test_runtime_is_blocked_not_failed (test_reported_numbers.RuntimeNumberTests.test_runtime_is_blocked_not_failed) ... ok
+test_aesthetics_figures_are_current (test_reported_numbers.SoftwareGateNumberTests.test_aesthetics_figures_are_current) ... ok
+test_aesthetics_scenario_count_is_self_consistent (test_reported_numbers.SoftwareGateNumberTests.test_aesthetics_scenario_count_is_self_consistent) ... ok
+test_artifact_identity_names_the_current_bytes (test_reported_numbers.SoftwareGateNumberTests.test_artifact_identity_names_the_current_bytes)
+Re-derived from the working tree, not copied from the receipt, so it cannot go stale. ... ok
+test_engineering_test_counts_are_current (test_reported_numbers.SoftwareGateNumberTests.test_engineering_test_counts_are_current) ... skipped 'no engineering report; run npm run verify:engineering'
+test_schematics_figures_are_current (test_reported_numbers.SoftwareGateNumberTests.test_schematics_figures_are_current) ... ok
 test_changed_evidence_digest_rejected (test_reviews.SignedReviewTests.test_changed_evidence_digest_rejected) ... ok
 test_expired_review_rejected (test_reviews.SignedReviewTests.test_expired_review_rejected) ... ok
 test_real_ed25519_acceptance (test_reviews.SignedReviewTests.test_real_ed25519_acceptance) ... ok
@@ -226,7 +260,49 @@ test_missing_ed25519_toolchain_blocks_and_does_not_fail (test_reviews.ToolchainC
 test_auditor_api_exists (test_runner.RunnerTests.test_auditor_api_exists) ... ok
 test_empty_target_is_blocked (test_runner.RunnerTests.test_empty_target_is_blocked) ... ok
 test_inventory_is_derived_from_actual_core (test_runner.RunnerTests.test_inventory_is_derived_from_actual_core) ... ok
+test_roles_flow_along_declared_dependency_edges (test_runner.RunnerTests.test_roles_flow_along_declared_dependency_edges)
+Roles follow the declared edges. A dependency that cites nothing lends nothing, and a ... ok
+test_the_role_pass_does_not_soften_a_contradiction_into_missing_evidence (test_runner.RunnerTests.test_the_role_pass_does_not_soften_a_contradiction_into_missing_evidence)
+A FAIL claim that also fails a role check stays FAIL, never BLOCKED. ... ok
 test_unknown_profile_rejected (test_runner.RunnerTests.test_unknown_profile_rejected) ... ok
+test_a_dependent_cannot_verify_while_its_input_is_unverified (test_runner_order.DependencyRoleTests.test_a_dependent_cannot_verify_while_its_input_is_unverified)
+Replaced test_copied_citations_satisfy_the_role_check_today in Task 6. ... ok
+test_a_derived_claim_with_no_citations_of_its_own_inherits_its_input_roles (test_runner_order.DependencyRoleTests.test_a_derived_claim_with_no_citations_of_its_own_inherits_its_input_roles)
+Changed by ruling S in Task 6, and this is the change that makes Task 7 possible. ... ok
+test_a_role_no_dependency_holds_never_appears (test_runner_order.DependencyRoleTests.test_a_role_no_dependency_holds_never_appears) ... ok
+test_dependency_blocked_only_fires_on_an_otherwise_passing_claim (test_runner_order.DependencyRoleTests.test_dependency_blocked_only_fires_on_an_otherwise_passing_claim)
+DEPENDENCY_BLOCKED is a demotion of PASS, not an independent check. ... ok
+test_dependency_cycle_cannot_manufacture_verification (test_runner_order.DependencyRoleTests.test_dependency_cycle_cannot_manufacture_verification) ... ok
+test_derived_claim_still_needs_dependencies (test_runner_order.DependencyRoleTests.test_derived_claim_still_needs_dependencies) ... ok
+test_inheritance_is_one_level_and_reads_what_a_dependency_cites (test_runner_order.DependencyRoleTests.test_inheritance_is_one_level_and_reads_what_a_dependency_cites)
+Specified in the Task 6 brief as `test_unverified_dependency_cannot_lend_a_role` and ... ok
+test_two_repos_of_one_org_still_refused_through_dependencies (test_runner_order.DependencyRoleTests.test_two_repos_of_one_org_still_refused_through_dependencies) ... ok
+test_unresolvable_anchors_block_the_input_claim (test_runner_order.DependencyRoleTests.test_unresolvable_anchors_block_the_input_claim) ... ok
+test_a_dependent_cannot_verify_while_its_input_is_unverified (test_runner_order.OrderTests.test_a_dependent_cannot_verify_while_its_input_is_unverified)
+Replaced test_copied_citations_satisfy_the_role_check_today in Task 6. ... ok
+test_a_derived_claim_with_no_citations_of_its_own_inherits_its_input_roles (test_runner_order.OrderTests.test_a_derived_claim_with_no_citations_of_its_own_inherits_its_input_roles)
+Changed by ruling S in Task 6, and this is the change that makes Task 7 possible. ... ok
+test_dependency_blocked_only_fires_on_an_otherwise_passing_claim (test_runner_order.OrderTests.test_dependency_blocked_only_fires_on_an_otherwise_passing_claim)
+DEPENDENCY_BLOCKED is a demotion of PASS, not an independent check. ... ok
+test_unresolvable_anchors_block_the_input_claim (test_runner_order.OrderTests.test_unresolvable_anchors_block_the_input_claim) ... ok
+test_a_dependent_cannot_verify_while_its_input_is_unverified (test_runner_order.VerifiedDependencyTests.test_a_dependent_cannot_verify_while_its_input_is_unverified)
+Replaced test_copied_citations_satisfy_the_role_check_today in Task 6. ... ok
+test_a_derived_claim_inherits_roles_from_a_verified_dependency (test_runner_order.VerifiedDependencyTests.test_a_derived_claim_inherits_roles_from_a_verified_dependency) ... ok
+test_a_derived_claim_with_no_citations_of_its_own_inherits_its_input_roles (test_runner_order.VerifiedDependencyTests.test_a_derived_claim_with_no_citations_of_its_own_inherits_its_input_roles)
+Changed by ruling S in Task 6, and this is the change that makes Task 7 possible. ... ok
+test_a_verified_dependency_cannot_lend_two_repos_of_one_org (test_runner_order.VerifiedDependencyTests.test_a_verified_dependency_cannot_lend_two_repos_of_one_org)
+The config-only corroboration path needs two organizations, and inheritance from a ... ok
+test_an_unverified_input_lends_its_roles_but_never_its_verification (test_runner_order.VerifiedDependencyTests.test_an_unverified_input_lends_its_roles_but_never_its_verification)
+The property ruling S makes load-bearing, in one test. ... ok
+test_dependency_blocked_fires_on_a_genuinely_passing_dependent (test_runner_order.VerifiedDependencyTests.test_dependency_blocked_fires_on_a_genuinely_passing_dependent)
+scene.x.c inherits both code roles from the verified MODELS.x.d, so the role pass ... ok
+test_dependency_blocked_only_fires_on_an_otherwise_passing_claim (test_runner_order.VerifiedDependencyTests.test_dependency_blocked_only_fires_on_an_otherwise_passing_claim)
+DEPENDENCY_BLOCKED is a demotion of PASS, not an independent check. ... ok
+test_the_fixture_is_not_vacuous_and_claims_do_reach_pass (test_runner_order.VerifiedDependencyTests.test_the_fixture_is_not_vacuous_and_claims_do_reach_pass)
+Without this, every demotion assertion below would be trivially true. ... ok
+test_the_role_pass_demotes_a_claim_that_had_already_reached_pass (test_runner_order.VerifiedDependencyTests.test_the_role_pass_demotes_a_claim_that_had_already_reached_pass)
+scene.x.b has no evidence of its own and its only input is a vendor document, so the ... ok
+test_unresolvable_anchors_block_the_input_claim (test_runner_order.VerifiedDependencyTests.test_unresolvable_anchors_block_the_input_claim) ... ok
 test_artifact_digests_match_the_files_on_disk (test_runtime_evidence.RuntimeEvidenceTests.test_artifact_digests_match_the_files_on_disk) ... ok
 test_candidate_matches_the_runtime_schema (test_runtime_evidence.RuntimeEvidenceTests.test_candidate_matches_the_runtime_schema) ... ok
 test_every_environment_fingerprint_names_a_checksummed_artifact (test_runtime_evidence.RuntimeEvidenceTests.test_every_environment_fingerprint_names_a_checksummed_artifact) ... ok
@@ -273,6 +349,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 268 tests in 48.373s
+Ran 320 tests in 52.389s
 
-OK (skipped=1)
+OK (skipped=2)
