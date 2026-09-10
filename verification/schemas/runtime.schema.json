@@ -2,6 +2,7 @@
   "$comment": "Shape of verification/manifests/runtime.json: obligation id -> execution receipt. Shape is not proof of execution; a trusted runner and reviewer attest that the artifacts came from the stated experiment.",
   "type": "object",
   "additionalProperties": {
+    "$comment": "probe_schema_sha256/contract_sha256/hardware_sha256 are what a hardware-attribute receipt (gpu/scale_up/scale_out) binds instead of the lock and the consumer inventory: the data model it was captured under, the contract record it vouches for, and the attested hardware state it rests on. They are optional in the shape because a receipt that lacks them is missing evidence, not a malformed receipt -- runner.py reports that as RUNTIME_SCHEMA/RUNTIME_HARDWARE BLOCKED rather than as a manifest contradiction. Behavioural receipts keep binding lock_sha256 and consumer_sha256.",
     "type": "object",
     "required": ["executed_at", "exit_code", "lock_sha256", "consumer_sha256", "environment", "record", "artifacts", "record_artifact"],
     "additionalProperties": false,
@@ -10,6 +11,9 @@
       "exit_code": {"type": "integer"},
       "lock_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
       "consumer_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+      "probe_schema_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+      "contract_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+      "hardware_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
       "environment": {
         "$comment": "A fingerprint is a recorded value and how it was obtained, never a boolean.",
         "type": "object",

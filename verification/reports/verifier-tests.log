@@ -331,6 +331,29 @@ Without this, every demotion assertion below would be trivially true. ... ok
 test_the_role_pass_demotes_a_claim_that_had_already_reached_pass (test_runner_order.VerifiedDependencyTests.test_the_role_pass_demotes_a_claim_that_had_already_reached_pass)
 scene.x.b has no evidence of its own and its only input is a vendor document, so the ... ok
 test_unresolvable_anchors_block_the_input_claim (test_runner_order.VerifiedDependencyTests.test_unresolvable_anchors_block_the_input_claim) ... ok
+test_a_behavioural_receipt_with_a_stale_consumer_digest_still_fails (test_runtime_binding.RuntimeBindingTests.test_a_behavioural_receipt_with_a_stale_consumer_digest_still_fails) ... ok
+test_a_behavioural_receipt_with_a_stale_lock_still_fails (test_runtime_binding.RuntimeBindingTests.test_a_behavioural_receipt_with_a_stale_lock_still_fails) ... ok
+test_a_changed_contract_record_fails_the_receipt (test_runtime_binding.RuntimeBindingTests.test_a_changed_contract_record_fails_the_receipt) ... ok
+test_a_completed_hardware_receipt_raises_no_binding_finding_at_all (test_runtime_binding.RuntimeBindingTests.test_a_completed_hardware_receipt_raises_no_binding_finding_at_all)
+Survival is not merely the absence of RUNTIME_STALE: nothing about the binding may ... ok
+test_a_hardware_receipt_cannot_stand_in_for_another_sku (test_runtime_binding.RuntimeBindingTests.test_a_hardware_receipt_cannot_stand_in_for_another_sku) ... ok
+test_a_hardware_receipt_survives_a_claim_manifest_edit (test_runtime_binding.RuntimeBindingTests.test_a_hardware_receipt_survives_a_claim_manifest_edit) ... ok
+test_a_hardware_receipt_survives_a_source_file_edit (test_runtime_binding.RuntimeBindingTests.test_a_hardware_receipt_survives_a_source_file_edit)
+Relabelling a wire changes the function/file digests. It is not a hardware fact. ... ok
+test_a_moved_bound_core_value_fails_the_receipt (test_runtime_binding.RuntimeBindingTests.test_a_moved_bound_core_value_fails_the_receipt)
+The digest covers the record the gate judges, bindings applied. Changing the HBM ... ok
+test_a_receipt_naming_no_captured_hardware_state_is_blocked (test_runtime_binding.RuntimeBindingTests.test_a_receipt_naming_no_captured_hardware_state_is_blocked)
+Carried, not re-derived -- but a receipt that names no capture at all leaves a reader ... ok
+test_a_receipt_naming_no_contract_record_is_blocked (test_runtime_binding.RuntimeBindingTests.test_a_receipt_naming_no_contract_record_is_blocked) ... ok
+test_a_receipt_without_the_new_fields_is_blocked_not_passed_and_not_failed (test_runtime_binding.RuntimeBindingTests.test_a_receipt_without_the_new_fields_is_blocked_not_passed_and_not_failed)
+The accepted receipts predate this binding. That is missing evidence: they must block, ... ok
+test_a_superseded_data_model_blocks_and_names_the_re_probe (test_runtime_binding.RuntimeBindingTests.test_a_superseded_data_model_blocks_and_names_the_re_probe) ... ok
+test_artifact_tampering_is_still_caught_for_a_hardware_receipt (test_runtime_binding.RuntimeBindingTests.test_artifact_tampering_is_still_caught_for_a_hardware_receipt) ... ok
+test_expiry_still_retires_a_hardware_receipt (test_runtime_binding.RuntimeBindingTests.test_expiry_still_retires_a_hardware_receipt)
+Nothing between probes can detect a re-capped GPU or a swapped NIC. Kept deliberately. ... ok
+test_only_hardware_attribute_domains_are_relaxed (test_runtime_binding.RuntimeBindingTests.test_only_hardware_attribute_domains_are_relaxed)
+Every obligation, both directions: a stale lock and a stale consumer digest still ... ok
+test_the_hardware_domain_set_is_a_closed_subset_of_the_registered_domains (test_runtime_binding.RuntimeBindingTests.test_the_hardware_domain_set_is_a_closed_subset_of_the_registered_domains) ... ok
 test_artifact_digests_match_the_files_on_disk (test_runtime_evidence.RuntimeEvidenceTests.test_artifact_digests_match_the_files_on_disk) ... ok
 test_candidate_matches_the_runtime_schema (test_runtime_evidence.RuntimeEvidenceTests.test_candidate_matches_the_runtime_schema) ... ok
 test_every_environment_fingerprint_names_a_checksummed_artifact (test_runtime_evidence.RuntimeEvidenceTests.test_every_environment_fingerprint_names_a_checksummed_artifact) ... ok
@@ -377,6 +400,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 348 tests in 54.246s
+Ran 364 tests in 105.880s
 
 OK (skipped=2)

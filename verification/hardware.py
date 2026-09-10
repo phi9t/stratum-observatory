@@ -42,3 +42,21 @@ def check(record,*,allow_fixtures=False):
 
 def load(path,*,allow_fixtures=False):
     return check(loads(Path(path).read_text()),allow_fixtures=allow_fixtures)
+
+
+# Domains whose runtime obligations attest what a machine or a fabric IS, rather than what our
+# own code does. Their receipts are bound to the hardware and to the data model they were
+# captured under -- never to the claim manifest or to our function digests, because no edit to
+# either can change how much HBM an H100 has. Every other registered domain attests behaviour
+# of our own bytes and keeps binding `lock_sha256` and `consumer_sha256`; see
+# `verification/runner.py`. This set is closed on purpose: widening it relaxes a real check.
+HARDWARE_DOMAINS=frozenset({'gpu','scale_up','scale_out'})
+
+
+def schema_sha256():
+    """Digest of the hardware data model, as a receipt records it in `probe_schema_sha256`.
+
+    Taken over the parsed schema with the house digest, so reformatting the file does not
+    retire captures while any change to what the model actually requires does.
+    """
+    return digest(schema())
