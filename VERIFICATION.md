@@ -9,7 +9,7 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 320 verifier tests, 40 model/graph tests, two byte-identical builds, actual Chromium suite |
+| Engineering | PASS | 0 | 320 verifier tests, 42 model/graph tests, two byte-identical builds, actual Chromium suite |
 | Schematics | PASS | 0 | 684 scenes including all 504 decoder layers; 2,737 checks against core.mjs |
 | Presentations | PASS | 0 | 12 checks — exports, accessibility, print, portability and preview freshness from a real file:// origin |
 | Aesthetics | PASS | 0 | 156 scenarios, 359 checks; type, spacing, contrast, clearance and composition |
@@ -274,11 +274,11 @@ Recorded so they are not mistaken for oversights:
 
 ## Artifact identity
 
-Portable HTML SHA-256: `83bc7a5982f07ae108f4db029c3713b3fa933d2f51715d4c32e3e2d873c4ce54`
+Portable HTML SHA-256: `d10c1446481c4b9b98ee7fbce93b563dec375f480d425431dab64f1ff5e27391`
 
-Scientific lock SHA-256: `472521661590b25fc111479bef7b4b01d9b74b8add8122420c6038f7b09f124f`
+Scientific lock SHA-256: `aa8a032aad955b3bfc2dd9da454dbf40f4e5e9e4824417d74dd0816a5c9920b4`
 
-Verifier identity SHA-256: `2b7e7a0362250e2f0e28b4d31a94aeaed7550b9811e3f9d27c95828923840b73`
+Verifier identity SHA-256: `0f067402e63855fd9d4ab5fe760a6e2b4e5bbff635fe30ca89ff1f6a7e0eb263`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts

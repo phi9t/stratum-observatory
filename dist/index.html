@@ -224,8 +224,11 @@ function residuals(g,m,s){
  const desc=m.residual==='attnres'?'Block Attention Residuals retrieve across depth sources per token. The current partial block accumulator is updated and sealed at block boundaries; this is not an ordinary uniform residual sum.':m.residual==='hyper'?'The checkpoint carries four residual streams. A learned input mixer reads into one computation stream; an output gate writes back. It is not a single ordinary residual addition.':'Pre-normalization leaves a separate residual bypass untouched. After the attention output projection the update is added to the residual.';
  node(g,m,'norm1',270,112,468,40,normTitle,`${F(m.d)} channels`,desc,m.residual==='attnres'?'h = Σᵢ softmax(qᵀ norm(bᵢ))ᵢ bᵢ':m.residual==='hyper'?'h = H_pre(x₁,…,x₄)':'h = RMSNorm(x)',[],{kind:'pill'});
  node(g,m,'norm2',886,112,486,40,normTitle,`${F(m.d)} channels`,desc,'h₂ = normalize(read(x₁))',[],{kind:'pill'});
- addLabel(g,m.residual==='hyper'?'4-stream residual state':m.residual==='attnres'?'depth bank + partial sum':'x · residual stream',250,80,'muted',{size:12});
- addWire(g,[[286,86],[286,112]],'', 'norm1');
+ const stream=m.residual==='hyper'?'4 streams':m.residual==='attnres'?'depth bank + partial sum':'x';
+ const stream2=m.residual==='hyper'?'4 streams':m.residual==='attnres'?'updated depth bank':'x₁';
+ addLabel(g,`residual stream · ${stream}`,300,80,'muted',{size:12});
+ addLabel(g,`residual stream · ${stream2}`,920,80,'muted',{size:12});
+ addWire(g,[[286,64],[286,112]],'', 'norm1');
  addWire(g,[[286,86],[238,86],[238,899],[270,899]],'', 'merge-attn',{kind:'residual'});
  if(special){
   node(g,m,'merge-attn',270,884,230,30,m.residual==='hyper'?'Gated stream write':'Update block accumulator','',desc,'update residual state',[],{kind:'pill',tone:'state'});
@@ -404,7 +407,6 @@ function buildModel(s){
  feedForward(g,m,s);
  if(m.pleLayers.includes(s.layer)){
    // An explicit input-side modifier, not a fabricated standalone residual sum.
-   g.labels.find(x=>x.text==='x · residual stream');
    addLabel(g,'PLE n-gram lookup at this layer → input mixer',466,81,'state',{size:11.5});
    g.nodes.find(n=>n.id==='norm1').info.body+=' This is a PLE layer: bigram/trigram lookup, contextual gating and a causal convolution augment its input. PLE tables and caches are distinct from attention state.';
  }
