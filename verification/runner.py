@@ -144,17 +144,22 @@ def check_receipt(root, receipt, expected_lock, inventory):
         out.append(Finding('ENGINEERING_CURRENT','release','PASS','engineering','Fresh receipt binds tests, source, evidence lock and portable artifact, and its browser result agrees with the file the suite wrote.'))
     return out
 
-def roles_from_dependencies(claim,claim_status,claim_sources):
-    """Source dicts contributed by dependencies that are themselves verified.
+def roles_from_dependencies(claim,claim_sources):
+    """Source dicts contributed by a derived claim's declared dependencies.
 
-    A derivation is only as good as its inputs, so a dependency lends its evidence roles to its
-    dependent exactly when that dependency has passed. An unverified input lends nothing, which
-    is what makes this stricter than copying its citations into the dependent claim.
+    Provenance flows through the declared dependency edges: a derivation's evidence roles are
+    the roles its inputs cite, so a dependency that cites no publisher implementation cannot
+    lend one and CLAIM_ROLE still fires on the dependent.
+
+    This deliberately does NOT consult the dependencies' own claim_status, and it is not what
+    refuses an unverified input -- the dependency fixpoint is. A derived claim cannot reach PASS
+    while any dependency is unverified, however its roles were computed, so conditioning role
+    satisfaction on dependency status would add nothing to soundness while reporting a missing
+    implementation where the real cause is a missing signature.
     """
     out=[]
     for dep in claim.get('dependencies',[]):
-        if claim_status.get(dep)=='PASS':
-            out.extend(claim_sources.get(dep,[]))
+        out.extend(claim_sources.get(dep,[]))
     return out
 
 def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publication',reviews=None,receipt=None,runtime=None):
@@ -237,16 +242,17 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
                 if claim_status.get(cid)=='PASS' and any(claim_status.get(d)!='PASS' for d in c.get('dependencies',[])):
                     claim_status[cid]='BLOCKED';add('DEPENDENCY_BLOCKED',c.get('domain'),'BLOCKED',cid,'A derivation input is unverified.');unverify(cid);changed=True
             if not changed:break
-    propagate()  # resolve inputs first, so roles can only be inherited from claims that passed
-    # Roles are resolved after the fixpoint so a derived claim can inherit them from inputs that
-    # actually verified. Doing this in the first pass would let an unverified input lend a role.
+    propagate()  # settle the first pass's dependency demotions before any role is reported
+    # Roles are resolved after the fixpoint, not inside the first pass, because the pass below
+    # can itself demote a claim and so has to be followed by the fixpoint again.
     for c in claims:
         cid=c.get('id','<missing>');domain=c.get('domain');start=len(findings)
-        # A derivation's standing is its inputs' standing. Its own citation list is, by
-        # construction, a COPY of what its inputs cite, and copying a citation adds no
-        # independent reading of the architecture -- so for a derived claim the referents are
-        # exactly what its VERIFIED inputs contribute, and nothing else.
-        referents=roles_from_dependencies(c,claim_status,claim_sources) if c.get('classification')=='derived' else list(claim_sources.get(cid,[]))
+        # A derived claim's roles are its own citations together with those of its declared
+        # inputs, so removing a citation a derivation only ever copied from its input does not
+        # manufacture a role gap. Whether those inputs verified is settled by the fixpoint, not
+        # here; see roles_from_dependencies.
+        referents=list(claim_sources.get(cid,[]))
+        if c.get('classification')=='derived':referents+=roles_from_dependencies(c,claim_sources)
         roles={s['role'] for s in referents}
         # A publisher that ships only configuration has no implementation to cite. Which path
         # applies is decided by the recorded audit, never by which sources happen to be present.
@@ -262,7 +268,7 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
             # A claim already FAILing keeps that status; a passing one is taken back to BLOCKED.
             if claim_status.get(cid,'PASS')=='PASS':claim_status[cid]='BLOCKED'
             unverify(cid)
-    propagate()  # a claim the role pass just demoted must demote its dependents too
+    propagate()  # required: the role pass can demote a claim its dependents were cleared against
     bydomain={d:[] for d in DOMAINS}
     seen_contracts=set()
     for rec in contracts:

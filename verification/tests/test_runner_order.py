@@ -58,30 +58,48 @@ class OrderTests(unittest.TestCase):
             'contracts': [], 'runtime_obligations': [],
         }
 
-    def audit(self, target):
+    def audit(self, target, *, extra_fields=None):
         catalog = {'schema': 'stratum-sources/v1', 'sources': [
             self.source('pub', 'publisher_code', 'deepseek-ai/DeepSeek-V2', 'class A: pass'),
             self.source('fw', 'framework_code', 'sgl-project/sglang', 'class B: pass'),
             self.source('fw2', 'framework_code', 'sgl-project/sglang', 'class C: pass'),
         ]}
-        inventory = {'fields': {'MODELS.x.d': 5120, 'scene.x.a': 'digest'}, 'functions': {}}
+        inventory = {'fields': {'MODELS.x.d': 5120, 'scene.x.a': 'digest', **(extra_fields or {})},
+                     'functions': {}}
         return runner.audit(self.root, target, inventory, catalog, reviews={})
 
     def codes(self, report, claim):
         return {f['code'] for f in report['findings'] if f['subject'] == claim}
 
-    def test_copied_citations_no_longer_satisfy_roles_when_the_input_is_unverified(self):
-        """Changed deliberately in Task 6: a copied citation used to satisfy the role check even
-        when the claim it was copied from never verified. Roles now come from verified inputs."""
+    def test_a_dependent_cannot_verify_while_its_input_is_unverified(self):
+        """Replaced test_copied_citations_satisfy_the_role_check_today in Task 6.
+
+        That test pinned the copied-citation behaviour and an inverted version of it was
+        specified, then withdrawn (ruling S): whether a copied citation satisfies the role check
+        is not what protects the gate. This is. Copied citations still satisfy roles, and the
+        dependency fixpoint still refuses to let the dependent verify over an unverified input,
+        which is the property that carries the load.
+        """
         copied = [{'source': 'pub', 'anchor': None, 'relation': 'implements'},
                   {'source': 'fw', 'anchor': None, 'relation': 'implements'}]
         report = self.audit(self.minimal_target(dependent_evidence=copied))
-        self.assertIn('CLAIM_ROLE', self.codes(report, 'scene.x.a'))
+        self.assertNotIn('CLAIM_VERIFIED', self.codes(report, 'MODELS.x.d'))
+        self.assertNotIn('CLAIM_VERIFIED', self.codes(report, 'scene.x.a'))
 
-    def test_a_derived_claim_without_evidence_fails_roles_today(self):
+    def test_a_derived_claim_with_no_citations_of_its_own_inherits_its_input_roles(self):
+        """Changed by ruling S in Task 6, and this is the change that makes Task 7 possible.
+
+        It previously asserted CLAIM_ROLE and MODEL_DUAL_CODE on a derived claim carrying no
+        evidence at all. Under that behaviour, removing the ~5,000 citations a scene claim only
+        ever copied from its inputs would have manufactured a role gap on every one of them and
+        reported a missing publisher implementation where the citation is simply one level up.
+        Roles now flow along the declared dependency edge. What still holds is that the claim
+        cannot verify -- the fixpoint sees the unverified input and says so under its own cause.
+        """
         report = self.audit(self.minimal_target(dependent_evidence=[]))
-        self.assertIn('CLAIM_ROLE', self.codes(report, 'scene.x.a'))
-        self.assertIn('MODEL_DUAL_CODE', self.codes(report, 'scene.x.a'))
+        self.assertNotIn('CLAIM_ROLE', self.codes(report, 'scene.x.a'))
+        self.assertNotIn('MODEL_DUAL_CODE', self.codes(report, 'scene.x.a'))
+        self.assertNotIn('CLAIM_VERIFIED', self.codes(report, 'scene.x.a'))
 
     def test_dependency_blocked_only_fires_on_an_otherwise_passing_claim(self):
         """DEPENDENCY_BLOCKED is a demotion of PASS, not an independent check."""
@@ -97,10 +115,26 @@ class OrderTests(unittest.TestCase):
 class DependencyRoleTests(OrderTests):
     """Roles may flow from a verified dependency, and from nothing else."""
 
-    def test_unverified_dependency_cannot_lend_a_role(self):
-        """MODELS.x.d is blocked on anchors, so it lends nothing to its dependent."""
-        report = self.audit(self.minimal_target(dependent_evidence=[]))
-        self.assertIn('CLAIM_ROLE', self.codes(report, 'scene.x.a'))
+    def test_inheritance_is_one_level_and_reads_what_a_dependency_cites(self):
+        """Specified in the Task 6 brief as `test_unverified_dependency_cannot_lend_a_role` and
+        withdrawn by ruling S -- an unverified input is refused by the fixpoint, not by the role
+        check. Repurposed to pin what `roles_from_dependencies` actually reads: a dependency's
+        OWN citations, never the set it inherited in turn. So a grandchild derivation whose only
+        input is itself a citation-free derivation does report CLAIM_ROLE.
+
+        This is sufficient for the real target, where all 2,520 derived scene claims depend on a
+        `documented` claim as well as a derived one, and those documented inputs alone supply
+        both code roles for all 1,737 model scene claims. If that ever stops being true, this
+        test is the one that will say so.
+        """
+        target = self.minimal_target(dependent_evidence=[])
+        target['claims'].append(
+            {'id': 'scene.x.g', 'domain': 'model', 'classification': 'derived',
+             'consumer': 'scene.x.g', 'expected': 'grandchild', 'statement': 'derived on derived',
+             'dependencies': ['scene.x.a'], 'evidence': []})
+        report = self.audit(target, extra_fields={'scene.x.g': 'grandchild'})
+        self.assertNotIn('CLAIM_ROLE', self.codes(report, 'scene.x.a'))
+        self.assertIn('CLAIM_ROLE', self.codes(report, 'scene.x.g'))
 
     def test_a_role_no_dependency_holds_never_appears(self):
         target = self.minimal_target(dependent_evidence=[])
@@ -208,6 +242,14 @@ class VerifiedDependencyTests(OrderTests):
                     {'id': 'scene.x.i', 'domain': 'model', 'classification': 'derived',
                      'consumer': 'scene.x.i', 'expected': 'digest-i', 'statement': 'derived on model',
                      'dependencies': ['MODELS.x.d'], 'evidence': []},
+                    {'id': 'MODELS.x.u', 'domain': 'model', 'classification': 'documented',
+                     'consumer': 'MODELS.x.u', 'expected': 4096, 'statement': 'unanchored input',
+                     'dependencies': [], 'evidence': [
+                         {'source': 'pub', 'anchor': None, 'relation': 'implements'},
+                         {'source': 'fw', 'anchor': None, 'relation': 'implements'}]},
+                    {'id': 'scene.x.u', 'domain': 'model', 'classification': 'derived',
+                     'consumer': 'scene.x.u', 'expected': 'digest-u', 'statement': 'derived on unanchored',
+                     'dependencies': ['MODELS.x.u'], 'evidence': []},
                 ],
                 'contracts': [], 'runtime_obligations': []}
 
@@ -263,6 +305,26 @@ class VerifiedDependencyTests(OrderTests):
         self.assertNotIn('CLAIM_VERIFIED', self.codes(report, 'scene.x.c'))
         self.assertEqual(report['coverage']['verified_scientific_claims'], 3,
                          'exactly GPU.x.v, MODELS.x.d and scene.x.i may be counted as verified')
+
+    def test_an_unverified_input_lends_its_roles_but_never_its_verification(self):
+        """The property ruling S makes load-bearing, in one test.
+
+        MODELS.x.u cites both code roles but neither citation is anchored, so it is BLOCKED.
+        scene.x.u derives from it and cites nothing of its own. Its roles come through the
+        dependency edge, so the gate does NOT accuse it of missing a publisher or framework
+        implementation -- the citations exist, one level up, and Task 7 removing the copy from
+        scene.x.u changes nothing here. What it must never do is verify: the fixpoint demotes it
+        because its input did not verify, and DEPENDENCY_BLOCKED names that actual cause.
+        """
+        report = self.run_audit()
+        self.assertIn('CLAIM_ANCHOR', self.codes(report, 'MODELS.x.u'))
+        self.assertNotIn('CLAIM_VERIFIED', self.codes(report, 'MODELS.x.u'),
+                         'the lending input must really be unverified, or this proves nothing')
+        self.assertNotIn('CLAIM_ROLE', self.codes(report, 'scene.x.u'))
+        self.assertNotIn('MODEL_DUAL_CODE', self.codes(report, 'scene.x.u'))
+        blocked = {f['subject'] for f in report['findings'] if f['code'] == 'DEPENDENCY_BLOCKED'}
+        self.assertIn('scene.x.u', blocked)
+        self.assertNotIn('CLAIM_VERIFIED', self.codes(report, 'scene.x.u'))
 
     def test_a_verified_dependency_cannot_lend_two_repos_of_one_org(self):
         """The config-only corroboration path needs two organizations, and inheritance from a
