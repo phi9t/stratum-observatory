@@ -291,8 +291,32 @@ class UpstreamComparisonTests(unittest.TestCase):
   self.assertGreaterEqual(len(equal),80,'no upstream value comparisons are registered')
   for c,e in equal:
    self.assertEqual(e['anchor']['kind'],'json_pointer','an equal relation needs a typed pointer')
+ def cached_equal_claims(self):
+  """Claims with an `equal` relation whose upstream bytes are actually on this machine.
+
+  `.verification-cache/` is git-ignored on purpose -- the project does not redistribute upstream
+  source bytes -- so a fresh clone and every CI runner has no cache. Without it an `equal`
+  anchor cannot resolve and the audit reports SOURCE_CACHE instead of comparing anything. These
+  tests must SKIP there, never pass: the absent-cache run of
+  test_the_shipped_values_agree_with_upstream was asserting the absence of a finding that could
+  not have been produced, which is a false green.
+  """
+  from verification.evidence import safe_path
+  sources={s['id']:s for s in self.catalog['sources']}
+  out=[]
+  for c in self.target['claims']:
+   for e in c.get('evidence',[]):
+    if e.get('relation')!='equal':continue
+    cache=sources.get(e.get('source'),{}).get('cache')
+    if cache and safe_path(self.root,cache).exists():out.append((c,e))
+  return out
+ def require_cache(self):
+  if not self.cached_equal_claims():
+   self.skipTest('no upstream source bytes cached; run `uv run --frozen python -m verification.sources acquire` '
+                 'to compare against publisher configs. .verification-cache/ is git-ignored by design.')
  def test_a_value_contradicting_upstream_is_caught(self):
   import copy
+  self.require_cache()
   t=copy.deepcopy(self.target)
   for c in t['claims']:
    if c.get('consumer')=='MODELS.ds3.layers' and any(e.get('relation')=='equal' for e in c.get('evidence',[])):
@@ -301,5 +325,6 @@ class UpstreamComparisonTests(unittest.TestCase):
   codes={f['code'] for f in audit(self.root,t,self.inv,self.catalog,profile='publication')['findings']}
   self.assertIn('UPSTREAM_VALUE',codes,'a value contradicting the publisher config was accepted')
  def test_the_shipped_values_agree_with_upstream(self):
+  self.require_cache()
   codes={f['code'] for f in audit(self.root,self.target,self.inv,self.catalog,profile='publication')['findings']}
   self.assertNotIn('UPSTREAM_VALUE',codes)
