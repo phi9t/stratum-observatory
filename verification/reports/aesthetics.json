@@ -1,8 +1,8 @@
 {
   "schema": "stratum-aesthetics/v1",
   "status": "PASS",
-  "generated_at": "2026-09-10T03:28:22.018434+00:00",
-  "artifact_sha256": "83bc7a5982f07ae108f4db029c3713b3fa933d2f51715d4c32e3e2d873c4ce54",
+  "generated_at": "2026-09-10T04:30:24.834654+00:00",
+  "artifact_sha256": "d10c1446481c4b9b98ee7fbce93b563dec375f480d425431dab64f1ff5e27391",
   "policy_sha256": "a5fe5ba88566aeb7b82a09f75a7efd454c48a549e27243bc22f502b5db8e06f1",
   "scenarios": 156,
   "distinct_measurements": 100,
@@ -2232,7 +2232,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "MLA  /  DENSE FFN (132 occurrences)",
+      "subject": "MLA  /  DENSE FFN (156 occurrences)",
       "message": "Contrast 7.24:1 against 4.5:1 at 12.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2241,7 +2241,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "MLA  /  DENSE FFN (132 occurrences)",
+      "subject": "MLA  /  DENSE FFN (156 occurrences)",
       "message": "12.05px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -3204,7 +3204,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "MLA  /  DENSE FFN (132 occurrences)",
+      "subject": "MLA  /  DENSE FFN (156 occurrences)",
       "message": "Contrast 5.34:1 against 4.5:1 at 12.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -3213,7 +3213,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "MLA  /  DENSE FFN (132 occurrences)",
+      "subject": "MLA  /  DENSE FFN (156 occurrences)",
       "message": "12.05px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
