@@ -249,6 +249,16 @@ Recorded so they are not mistaken for oversights:
   on the private fleet and rebuild the receipts against the current lock. Every attested value came
   back byte-identical, but that was an outcome of the probe, not a licence to skip it. Editing the
   recorded `lock_sha256` in place would have been fabrication.
+- **Any application edit costs a fleet round-trip.** Changing any file under `src/` changes its
+  `file.src/*` hash claim, which must be re-bound in `verification/manifests/observatory.json`;
+  that manifest is inside `lock_sha256`; and every runtime receipt binds the lock. So a purely
+  cosmetic diagram edit retires the three GPU receipts and requires re-probing real hardware —
+  which happened three times while relabelling one wire. The coupling is right in principle: a
+  receipt must not outlive the claim set it was captured against. But a receipt binds the
+  **whole** target manifest rather than the obligations and contracts it actually attests, so an
+  unrelated label move retires hardware evidence that is still true. Narrowing the binding to a
+  digest of the covered obligations would keep the guarantee and remove the churn. Recorded and
+  deliberately not changed here, because it is a policy-root change.
 - **Five contracts remain stubs** — training, serving, numerics, storage and measurement. Each now
   states in the manifest exactly what it needs. Fabricating shard digests or tokenizer revisions to
   make a record parse would be strictly worse than an honest stub.
@@ -274,11 +284,11 @@ Recorded so they are not mistaken for oversights:
 
 ## Artifact identity
 
-Portable HTML SHA-256: `d10c1446481c4b9b98ee7fbce93b563dec375f480d425431dab64f1ff5e27391`
+Portable HTML SHA-256: `595b73f22f37051d664fd76e794449fa079808f3f151fb0853e5dd546d913f07`
 
-Scientific lock SHA-256: `aa8a032aad955b3bfc2dd9da454dbf40f4e5e9e4824417d74dd0816a5c9920b4`
+Scientific lock SHA-256: `b34e0e4b8aecdefe02d0902543f3dd6603f76bf90ef858569fb35765a1040589`
 
-Verifier identity SHA-256: `0f067402e63855fd9d4ab5fe760a6e2b4e5bbff635fe30ca89ff1f6a7e0eb263`
+Verifier identity SHA-256: `61d5e0231fe01181f23a33a775e9691f52f1a982f833605d1695098539b0474e`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
