@@ -1,8 +1,8 @@
 # STRATUM — Model Systems Observatory
 
-**Eight exact model variants. Seven connected lenses. One offline scientific interface.**
+**Nine exact model variants. Seven connected lenses. One offline scientific interface.**
 
-Open `dist/index.html` in a full desktop browser. It contains the application, styles and vector graphics: no installation, network service, API key, CDN, fonts, model weights or telemetry. External source links require connectivity. Some attachment viewers disable JavaScript; use a full browser. For local development, run `npm start` and open `http://localhost:8000`.
+Open `dist/index.html` in a full desktop browser. It contains the application, styles and vector graphics: no installation, network service, API key, CDN, fonts, model weights or telemetry. External source links require connectivity. Some attachment viewers disable JavaScript; use a full browser. Run `npm start` to build and serve the portable pages at `http://localhost:8000`. DeepSeek V4.1 Flash has its own entry point at `deepseek-v4.1.html`, starting with the whole-network causal encoder/decoder view. The atlas card opens that page; “All models” returns to the atlas. Both pages share the same model definitions, accounting, and verification code.
 
 ## Experience
 
@@ -17,6 +17,7 @@ Choose a checkpoint, choose a lens, and inspect an operation. Every model keeps 
 | Qwen3 235B-A22B | 94 layers; GQA; query projection width differs from residual width; 128 experts, top-8 |
 | Qwen3.8 27B | 64 layers; GatedDeltaNet/full-attention hybrid; dense FFN; vision input |
 | Qwen3.8 Flash-Next | 48 layers; GatedDeltaNet/QSA; latent index micro-block selection; 512 experts/top-10 plus shared; four-stream gated residual; layer-2 n-gram memory; vision input |
+| DeepSeek V4.1 Flash | Dedicated causal encoder/decoder page; shared compressed KV, sliding-window state, mHC, Engram and draft-head context |
 | Kimi K3 | 93 layers; vector-decay KDA/gated NoPE MLA; latent MoE; depth attention residuals; vision input |
 
 The source inspector attaches publisher configuration, publisher/reference implementation, independent serving implementation and document references. Exact checkpoint IDs and commit pins are in `src/models.mjs` and `evidence/reference-registry.json`. These are **reference mappings, not accepted raw-byte evidence or signed scientific approvals**.
@@ -62,7 +63,7 @@ npm run test:verifiers      # Evidence, signatures, contracts and negative tests
 npm run verify:schematics   # What the diagram means, over all 544 decoder layers
 npm run verify:aesthetics   # Measured legibility, type/spacing scales, composition drift
 npm run verify:presentations # Exports, accessibility, print, portability, preview coverage
-npm run verify:engineering  # All above, two identical builds, real-browser tests
+npm run verify:engineering  # Verifier/Node tests, two identical builds, real-browser tests
 npm run verify:science      # Expected exit 2 until evidence/reviews are completed
 npm run verify:runtime      # Expected exit 2 until actual experiments are attested
 npm run capture             # Fresh PNG and SVG previews of the current build

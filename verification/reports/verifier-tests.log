@@ -112,7 +112,9 @@ Ruling P1 required this not be skipped silently; ruling T789b requires the softw
 test_indistinguishable_band_ratios_are_caught (test_ced.ArchitectureInvariantTests.test_indistinguishable_band_ratios_are_caught)
 Identical ratios would make the two halves the same mechanism drawn twice. ... ok
 test_mismatched_engram_tables_and_layers_are_caught (test_ced.ArchitectureInvariantTests.test_mismatched_engram_tables_and_layers_are_caught) ... ok
+test_missing_or_mislabeled_serving_phase_fails_closed (test_ced.ArchitectureInvariantTests.test_missing_or_mislabeled_serving_phase_fails_closed) ... ok
 test_models_without_the_architecture_are_left_alone (test_ced.ArchitectureInvariantTests.test_models_without_the_architecture_are_left_alone) ... ok
+test_mutated_live_serving_sample_cannot_pass_phase_depth (test_ced.ArchitectureInvariantTests.test_mutated_live_serving_sample_cannot_pass_phase_depth) ... ok
 test_the_active_ratio_is_no_longer_judged_by_the_software_gate (test_ced.ArchitectureInvariantTests.test_the_active_ratio_is_no_longer_judged_by_the_software_gate)
 Ruling T789b: its honest outcome is BLOCKED, which is exit 2 on a gate the Pages ... ok
 test_the_fixture_matches_the_shipped_model (test_ced.ArchitectureInvariantTests.test_the_fixture_matches_the_shipped_model)
@@ -124,6 +126,7 @@ test_the_tag_invariant_passes_on_the_shipped_inventory (test_ced.ArchitectureInv
 test_the_transcribed_architecture_satisfies_every_invariant (test_ced.ArchitectureInvariantTests.test_the_transcribed_architecture_satisfies_every_invariant) ... ok
 test_the_two_mode_derivations_are_compared_and_can_disagree (test_ced.ArchitectureInvariantTests.test_the_two_mode_derivations_are_compared_and_can_disagree)
 Move one Full layer in the config arrays only. The report-derived structure is ... ok
+test_wrong_exported_serving_depth_fails_with_unchanged_model (test_ced.ArchitectureInvariantTests.test_wrong_exported_serving_depth_fails_with_unchanged_model) ... ok
 test_a_band_stating_the_other_half_ratio_is_caught (test_ced.BandRatioTests.test_a_band_stating_the_other_half_ratio_is_caught)
 What an off-by-one in `ratioOf` would look like: the decoder Full band drawn with ... ok
 test_a_band_that_states_no_ratio_is_caught (test_ced.BandRatioTests.test_a_band_that_states_no_ratio_is_caught) ... ok
@@ -202,11 +205,14 @@ test_the_shipped_coverage_covers_every_published_innovation (test_ced.Innovation
 The eight records `tests/core.test.mjs` requires must actually reach the inventory, ... ok
 test_the_shipped_coverage_is_cited_and_derived (test_ced.InnovationCoverageTests.test_the_shipped_coverage_is_cited_and_derived) ... ok
 test_a_ledger_that_drifts_from_the_python_derivation_is_caught (test_ced.KvBudgetTests.test_a_ledger_that_drifts_from_the_python_derivation_is_caught) ... ok
+test_a_plausible_but_wrong_headline_does_not_pass_exact_reconciliation (test_ced.KvBudgetTests.test_a_plausible_but_wrong_headline_does_not_pass_exact_reconciliation) ... ok
 test_a_reported_total_below_the_derived_main_kv_is_caught (test_ced.KvBudgetTests.test_a_reported_total_below_the_derived_main_kv_is_caught)
 890 -> 600 would make the residual negative, i.e. main KV alone exceeds the total. ... ok
 test_a_residual_implying_an_impossible_precision_is_caught (test_ced.KvBudgetTests.test_a_residual_implying_an_impossible_precision_is_caught)
 1200 B leaves 480 B over 320 channels = 1.5 B/channel, wider than FP8. ... ok
 test_bounded_state_that_moves_with_context_is_caught (test_ced.KvBudgetTests.test_bounded_state_that_moves_with_context_is_caught) ... ok
+test_combined_subtotal_cannot_silently_drop_indexer_payload (test_ced.KvBudgetTests.test_combined_subtotal_cannot_silently_drop_indexer_payload) ... ok
+test_missing_or_wrong_packed_indexer_payload_is_caught (test_ced.KvBudgetTests.test_missing_or_wrong_packed_indexer_payload_is_caught) ... ok
 test_the_bounded_invariant_runs_for_every_model_not_only_this_architecture (test_ced.KvBudgetTests.test_the_bounded_invariant_runs_for_every_model_not_only_this_architecture) ... ok
 test_the_python_derivation_reproduces_the_published_figures (test_ced.KvBudgetTests.test_the_python_derivation_reproduces_the_published_figures)
 720 B/token over 1,280 stored channels, and 320 indexer channels. Written out so a ... ok
@@ -285,6 +291,9 @@ test_the_module_has_no_schematics_domain_blocked_constructor (test_ced.SoftwareG
 Deleted rather than left unused: constructing one must take new code, not a keyword. ... ok
 test_the_scene_conditions_are_the_gate_s_own (test_ced.SoftwareGateStatusTests.test_the_scene_conditions_are_the_gate_s_own)
 The conditions travel with the judges, so the gate cannot call one on a lens the ... ok
+test_dedicated_page_mutation_changes_delivery_identity (test_delivery_artifacts.DeliveryTests.test_dedicated_page_mutation_changes_delivery_identity) ... ok
+test_missing_dedicated_artifact_cannot_be_certified (test_delivery_artifacts.DeliveryTests.test_missing_dedicated_artifact_cannot_be_certified) ... ok
+test_preview_cannot_claim_the_dedicated_page_without_its_identity (test_delivery_artifacts.DeliveryTests.test_preview_cannot_claim_the_dedicated_page_without_its_identity) ... ok
 test_400_gbps_is_50_gbytes (test_domains.DomainTests.test_400_gbps_is_50_gbytes) ... ok
 test_api_exists (test_domains.DomainTests.test_api_exists) ... ok
 test_bits_bytes_mismatch (test_domains.DomainTests.test_bits_bytes_mismatch) ... ok
@@ -455,6 +464,7 @@ test_a_faithful_receipt_is_accepted (test_integration.ReceiptTrustTests.test_a_f
 test_a_receipt_asserting_determinism_without_two_hashes_is_caught (test_integration.ReceiptTrustTests.test_a_receipt_asserting_determinism_without_two_hashes_is_caught) ... ok
 test_a_receipt_that_rewrites_its_browser_result_is_caught (test_integration.ReceiptTrustTests.test_a_receipt_that_rewrites_its_browser_result_is_caught) ... ok
 test_an_unattested_receipt_is_blocked_not_passed (test_integration.ReceiptTrustTests.test_an_unattested_receipt_is_blocked_not_passed) ... ok
+test_missing_page_identity_is_rejected (test_integration.ReceiptTrustTests.test_missing_page_identity_is_rejected) ... ok
 test_a_current_receipt_carries_both_build_hashes (test_integration.ReleaseContractTests.test_a_current_receipt_carries_both_build_hashes) ... skipped 'no engineering receipt yet'
 test_a_nondeterministic_build_is_caught (test_integration.ReleaseContractTests.test_a_nondeterministic_build_is_caught) ... ok
 test_a_receipt_from_another_tree_is_a_stale_release (test_integration.ReleaseContractTests.test_a_receipt_from_another_tree_is_a_stale_release) ... ok
@@ -710,6 +720,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 577 tests in 208.600s
+Ran 587 tests in 168.335s
 
 OK (skipped=4)

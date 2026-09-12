@@ -9,10 +9,10 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 577 verifier tests (4 skipped), 90 model/graph tests, two byte-identical builds and 1,447 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
-| Schematics | PASS | 0 | 755 scenes including all 544 decoder layers; 3,117 checks against core.mjs, of which 234 are recorded not-applicable passes |
-| Presentations | PASS | 0 | 26 checks over 10 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
-| Aesthetics | PASS | 0 | 180 scenarios, 413 checks; type, spacing, contrast, clearance, probe coverage and composition |
+| Engineering | PASS | 0 | 587 verifier tests (4 skipped), 100 model/graph tests, two byte-identical builds of both portable entry points and 1,451 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Schematics | PASS | 0 | 757 scenes including all 544 decoder layers; 3,129 checks against core.mjs, of which 238 are recorded not-applicable passes |
+| Presentations | PASS | 0 | 33 checks over 10 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
+| Aesthetics | PASS | 0 | 182 scenarios, 415 checks; type, spacing, contrast, clearance, probe coverage and composition |
 | Scientific publication | BLOCKED | 2 | Nine-model consumer inventory and strict evidence/review audit; **no FAIL** |
 | Runtime certification | BLOCKED | 2 | Run on these bytes: 29 of 32 obligations NOT_RUN, **no FAIL and no `RUNTIME_STALE`** — the behavioural obligations have no receipts to go stale, and the three hardware receipts do not bind the claim manifest |
 
@@ -26,7 +26,7 @@ Python pin, `tests/`, `.github/CODEOWNERS` and the aesthetics policy are all ins
 
 ## Browser evidence
 
-**1,447 rendered states**, including all **544 decoder layers** across nine checkpoints in both
+**1,451 rendered states**, including all **544 decoder layers** across nine checkpoints in both
 label modes, **56 responsive viewport/lens/theme combinations** and **36 device-scale cases at
 1.25 and 2**. **0 geometry defects, 0 runtime JavaScript errors, 0 external runtime requests.**
 Model/layer/scenario controls, search, keyboard navigation, tracing, focus, zoom, URL restore,
@@ -67,7 +67,7 @@ or GPU execution.
 
 ## Aesthetics evidence
 
-`npm run verify:aesthetics` passes: **413 checks, 0 failures** across 180 scenarios and 114
+`npm run verify:aesthetics` passes: **415 checks, 0 failures** across 182 scenarios and 114
 distinct measurements. The first run of this gate failed on 21 defects that shipped in the
 delivered artifact; all are now fixed at the source rather than by moving a threshold.
 
@@ -88,7 +88,7 @@ labels stay at AA deliberately: they sit on the semantic tint fills that carry t
 of `docs/design/OBSERVATORY.md`, and forcing 7:1 there would wash that grammar out of the diagram.
 
 Position must not depend on theme, and does not: composition is byte-identical between dark and
-light in every scenario. All **180** measured scenarios were each compared against a recorded
+light in every scenario. All **182** measured scenarios were each compared against a recorded
 signature and all match — the measured, the compared and the baselined counts are the same number,
 which is the only way this check means anything. That sentence is now the gate's own PASS message,
 computed from the compared set, rather than a property of this document.
@@ -166,9 +166,9 @@ synthetic markup in a browser, not asserted.
 
 `npm run verify:schematics` checks what the diagram means rather than where its boxes landed. The
 scene IR comes from the diagram builders and, per scene, `core.mjs` independently states what is
-true; the two are compared. 755 scenes, 3,117 checks, 544 decoder layers, no browser. Of those
-3,117, **234 are explicit not-applicable passes** — `SCENE_MODEL_SKIP` 211 and `MHC_SKIP` 23, both
-counted in the report's own `passed_codes` — so 2,882 are measurements and the rest are a check
+true; the two are compared. 757 scenes, 3,129 checks, 544 decoder layers, no browser. Of those
+3,129, **238 are explicit not-applicable passes** — `SCENE_MODEL_SKIP` 213 and `MHC_SKIP` 25, both
+counted in the report's own `passed_codes` — so 2,889 are applicable checks and the rest are a check
 saying, in the report rather than by silence, that it did not apply here.
 
 It also judges the causal encoder-decoder architecture itself, under 25 codes that did not exist
@@ -206,7 +206,7 @@ Two residues, named rather than papered over. The five judges defined inside `sc
 itself are not in those lists; they are covered by that module having no BLOCKED constructor and by
 `test_the_gate_report_carries_only_pass_and_fail`, which reads the real report's status counts.
 And `aggregate` returns BLOCKED for an empty finding list, so a gate that produced no findings at
-all would block; it produces 3,117 across 755 scenes, and the scene count is itself asserted.
+all would block; it produces 3,129 across 757 scenes, and the scene count is itself asserted.
 
 ## The written exposition
 
@@ -318,7 +318,7 @@ Ten negative tests in `verification/tests/test_ced.py` show each of those can ac
 
 `npm run verify:presentations` is the only suite that opens the artifact from a real `file://`
 origin — every other suite injects with `set_content()`, so the path a reader takes had never been
-exercised. Its 26 checks validate the exported SVG and the exported scenario against a schema the
+exercised. Its 33 checks validate the exported SVG and the exported scenario against a schema the
 page has declared all along with nothing defining it, check accessible names, heading order and
 visible focus, emulate print and reduced motion, and consume `previews/manifest.json` so previews
 cannot silently depict an artifact that no longer ships.
@@ -423,25 +423,25 @@ inventory, not correctness of anything in it.
 
 | Item | Count |
 |---|---:|
-| Input leaves | 575 |
+| Input leaves | 577 |
 | Function/file identities | 29 |
-| Distinct sampled scene contracts | 2881 |
-| Claims including domain obligations | 3508 |
-| Candidate source entries | 68 |
-| Accepted raw-byte snapshots | 66 |
+| Distinct sampled scene contracts | 2883 |
+| Claims including domain obligations | 3512 |
+| Candidate source entries | 71 |
+| Accepted raw-byte snapshots | 69 |
 | Scientifically certified claims under the signed policy | 0 |
 | Passed presentation bindings | 0 |
 | Domain contracts / runtime obligations | 32 / 32 |
 
-The publication audit has **6,095 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
+The publication audit has **6,103 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
 from a fresh engineering receipt:
 
 | Code | Status | Count |
 |---|---|---:|
-| `REVIEW_REQUIRED` | BLOCKED | 3,540 |
+| `REVIEW_REQUIRED` | BLOCKED | 3,544 |
 | `CLAIM_ANCHOR` | BLOCKED | 2,334 |
-| `CLAIM_ROLE` | BLOCKED | 87 |
-| `MODEL_DUAL_CODE` | BLOCKED | 75 |
+| `CLAIM_ROLE` | BLOCKED | 89 |
+| `MODEL_DUAL_CODE` | BLOCKED | 77 |
 | `CONTRACT_EVIDENCE` | BLOCKED | 32 |
 | `CONTRACT_CONSISTENT` | PASS | 24 |
 | `CONTRACT_MODEL_COVERAGE` | PASS | 9 |
@@ -454,7 +454,7 @@ from a fresh engineering receipt:
 | `ENGINEERING_CURRENT` | PASS | 1 |
 
 Most of these are cascading source dependencies and absent independent reviews; this is **not** a
-claim that 6,095 facts are false. No review identity, accepted source hash or execution receipt was
+claim that 6,103 facts are false. No review identity, accepted source hash or execution receipt was
 invented.
 
 For the record, the evidence-anchor work began at **9,037 findings (9,013 BLOCKED)** with
@@ -464,7 +464,7 @@ provenance, and letting derived scene claims carry provenance through their depe
 removed 3,853 BLOCKED findings without a single fabricated anchor.
 
 Runtime certification was run on these bytes and reports the same population plus its
-obligations: **6,098 BLOCKED, 41 PASS, 29 NOT_RUN, no FAIL.**
+obligations: **6,106 BLOCKED, 41 PASS, 29 NOT_RUN, no FAIL.**
 
 **Adding a ninth checkpoint did not make any receipt stale, and an earlier draft of this section
 was wrong to predict that it would.** The prediction came from reading the coupling rule instead of
@@ -496,12 +496,13 @@ dual-code independence compares organizations rather than repository names. Unde
 corroboration requirement through independent implementations from three organizations. For the
 eight Qwen, DeepSeek V2/V3 and Kimi presets, `MODEL_DUAL_CODE` and `CLAIM_ROLE` are **0** findings.
 
-**DeepSeek-V4.1-Flash has no independent implementation at all, and that is why those codes are no
-longer zero.** No framework implements `deepseek_v41`: `deepseek_v4` exists in transformers and
-SGLang and is a different model, so citing it would be corroboration by a near-name. The publisher
-ships configuration and four modeling files and nothing else corroborates them, which is
-`MODEL_DUAL_CODE` **75** and `CLAIM_ROLE` **87** BLOCKED. Both are the correct fail-closed report
-for a checkpoint this new, and neither can be cleared by reclassifying a shape claim as `assumed`.
+**DeepSeek V4.1 now has a pinned independent serving implementation.** SGLang's
+`dsv4.1` development branch at `ac1a56987c5c552f9f4284f5a98db5d65541fafa` includes an
+explicit V4.1 configuration adapter, guarded model execution and cache layout. The adapter
+maps V4.1 to the shared `deepseek_v4.py` entry class; filename similarity alone is not the
+identity proof. Three new source snapshots and exact AST anchors cover the added cache
+representation and serving explanation. Full claim-by-claim corroboration and signatures
+remain incomplete; source availability does not close the publication gate.
 
 ## A correction to this project's own reasoning
 
@@ -590,8 +591,8 @@ One non-move belongs in the record too. `encoderLayers`' configuration and code 
 unanchored: `config.json` marks a boundary at layer 20 but never calls it an encoder/decoder split,
 and `Transformer.__init__` builds one flat `nn.ModuleList`. Only the card states the split, so only
 the card carries the anchor.
-`CLAIM_ROLE` stayed at 87 and `MODEL_DUAL_CODE` at 75, because no framework implements
-`deepseek_v41` and nothing was reclassified to hide that.
+`CLAIM_ROLE` and `MODEL_DUAL_CODE` remained blocked in that earlier audit because no exact
+framework source had been pinned. The SGLang addition below supersedes that source inventory.
 
 The remaining 748 sit on `MODELS.*`, `HARDWARE.*`, contract records, functions and files, and each
 falls inside a class in `ANCHOR_RESIDUE.md`. One of them was added deliberately:
@@ -734,24 +735,19 @@ Recorded so they are not mistaken for oversights:
 - **Two sources remain unfetched** — `ib-opensm` and `dynamo-nixl` — because their URLs redirect and
   the acquirer refuses to follow a redirect without inspecting the new origin. Pin the resolved
   origin; do not relax the guard.
-- **`REVIEW_REQUIRED` is 3,540 findings** and is independent of everything above.
+- **`REVIEW_REQUIRED` is 3,544 findings** and is independent of everything above.
   No amount of source acquisition or hardware access reduces it: it needs a reviewer identity in
   the protected trust root and an independent signer who is not the author.
-- **No framework implements `deepseek_v41`, so every `dsv41` model-domain claim is BLOCKED for
-  want of independent corroboration.** The architecture string appears in none of `transformers`,
-  SGLang or vLLM — the three implementations the other checkpoints are corroborated against — and
-  `deepseek_v4`, which exists in two of them, is a **different model**, so citing it would be
-  corroboration by near-name. `sources.json` therefore carries no `framework_code` entry for this
-  checkpoint at all, which is `MODEL_DUAL_CODE` **75** and `CLAIM_ROLE` **87** BLOCKED, the
-  correct fail-closed report for a checkpoint this new; neither can be cleared by reclassifying a
-  shape claim as `assumed`, and neither will close until someone independent ships an
-  implementation.
-- **The 170 B indexer residual is bounded, not derived.** The publisher's headline KV budget is
-  890 B/token and the Full-mode layers account for 720 B/token, re-derived twice. The difference is
-  indexer K at a precision the publisher never states, so all that can be checked is that the
-  published figure implies between 0.5 and 1.0 bytes per indexer channel. Narrowing that bound
-  would be a guess wearing a check's clothing, and the residual stays an inference about a quantity
-  no document carries.
+- **Independent V4.1 source is available, but full corroboration is incomplete.** The pinned
+  SGLang development branch supplies the exact V4.1 dispatch and cache implementation.
+  Remaining `MODEL_DUAL_CODE` and `CLAIM_ROLE` findings require per-consumer evidence;
+  a shared source file cannot automatically certify every model claim.
+- **The indexer term is now independently derived.** SGLang's packed indexer pool stores
+  64 payload bytes plus 4 scale bytes per compressed token. Source ownership and compression
+  yield 170 B/input token; together with 720 B/token main KV this reconciles the reported
+  890 B/token. The new `KV_INDEXER_DISAGREEMENT` and `KV_TOTAL_DISAGREEMENT` checks compare
+  both the component and exported combined subtotal. This is complete-pair amortized payload;
+  window state, pending compression pairs, pages and allocation reserves remain separate.
 - **No DSpark parameter count is published.** The configuration pins the draft block size, the
   draft expert count and the top-k; no document states the module's weights. The inspector says so
   on the page — the count is unpublished and excluded from every weight total in this atlas — and
@@ -791,7 +787,7 @@ Recorded so they are not mistaken for oversights:
 
 `MODELS.dsv41` is a hand transcription of the publisher's `config.json`, and transcription error
 is the dominant failure mode when adding an architecture. `CED_PUBLISHER_AGREEMENT` re-derives
-54 of its 79 fields from the acquired publisher bytes -- 45 by JSON pointer, 9 by an expression
+54 of its 81 fields from the acquired publisher bytes -- 45 by JSON pointer, 9 by an expression
 over the same document -- and compares them, with 0 unresolved pointers and 0 disagreements. The
 other 25 fields are recorded with the reason each has no publisher counterpart, and
 `CED_FIELD_UNMAPPED` fails on any field in neither list, so adding a field to the model table
@@ -818,11 +814,11 @@ executes all three, and CI could never have executed the transcription compariso
 
 ## Artifact identity
 
-Portable HTML SHA-256: `fecceb9e48bcd462541716bb8e1c1738d3b66ef58f146fad5d55b2e445de2926`
+Portable HTML SHA-256: `766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427`
 
-Scientific lock SHA-256: `4a92ee6958a5f8c1ad108167f9261ab11cf065d5016c13a04b0c8c8bab6f9349`
+Scientific lock SHA-256: `78467d42b7635c5236e78f00fd3e5cc779a213dd796a4f5087b9cb21287868f0`
 
-Verifier identity SHA-256: `3568b6df160da709010d2fca84ba9a2c193de8baeb90e0b1fbdaa8480e424418`
+Verifier identity SHA-256: `57f67dad3d03eb4ddfe4ac1cccb9a1b7890d2aa973fc9a84df79288eb1613d44`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -858,14 +854,14 @@ the software is verified and that the science is not.
 **Publication completeness is an offline gate, and CI gates on contradictions only.** The
 publication audit answers two questions. *Completeness* — is every claim backed by cached upstream
 bytes and an independent signed review? — cannot run in CI by construction: `.verification-cache/`
-is git-ignored because all 68 source licences forbid redistributing the bytes, so CI would report
+is git-ignored because all 71 source licences forbid redistributing the bytes, so CI would report
 `verified_sources: 0`; and no reviewer identity exists, because inventing one is forbidden. A CI job
 asking that question could only ever be red, and a check that can never pass is noise a reader stops
 reading. It used to be exactly that: a permanently failing `publication` job whose red X was
 indistinguishable from a contradiction, because `aggregate()` collapses BLOCKED and FAIL into one
 exit code and GitHub renders both the same.
 
-So completeness runs on a trusted machine — `npm run verify:science`, exit 2, **6,095 BLOCKED and
+So completeness runs on a trusted machine — `npm run verify:science`, exit 2, **6,103 BLOCKED and
 38 PASS findings, 0 FAIL** — and its report is committed as `verification/reports/publication.json`.
 This document states its figures, and `verification/tests/test_reported_numbers.py`, which runs
 inside the *green* engineering gate, fails if the record drifts from the report **or if the report
@@ -881,3 +877,27 @@ it can never enter the deploy gate's requirements, and that no job named `public
 mistaken for a completeness result.
 
 Success is not all-green; success is each gate telling the truth about what it actually checked.
+
+
+## Dedicated V4.1 landing
+
+DeepSeek V4.1 Flash ships at `dist/deepseek-v4.1.html`, built from the shared shell and opening
+on the whole-network CED view. Atlas navigation, fixed checkpoint identity, serving phase
+inspection, reloads, exports, return navigation and mobile layout are exercised in Chromium.
+The same navigation also passed through `npm start` over HTTP. Both portable files participate
+in engineering identity, repeated builds, Pages packaging and attestation. Dedicated previews
+carry that page's own artifact hash. Publication and runtime status remain separate.
+
+Corrected scientific consumers: shared post-RoPE KV and inverse output RoPE; previous pre-vector
+versus current post-vector/Sinkhorn mHC ownership; mHC comparison identity; bounded sliding-window
+state and derived FP4 indexer storage; actual exported phase-depth validation. The active
+manifest binds these consumers to the existing pinned publisher anchors and shared ledgers.
+Existing source snapshots, independent review subjects, trust roots and hardware receipts are unchanged.
+Three SGLang snapshots were added at ac1a56987c5c552f9f4284f5a98db5d65541fafa, with exact
+V4.1 dispatch and storage anchors. Main KV and packed indexer payload reconcile to 890 B/token;
+window state and allocation overhead remain separate. [Research and source scope](docs/design/V41-SERVING-RESEARCH.md)
+record the development-branch serving implementation and Miles plugin. Neither is a runtime receipt.
+
+Dedicated HTML SHA-256: `555ef82954687e85242131f635e558a3ee0c9c1bd847b57204f7dfc47d9168f8`
+
+CED phase depths follow the report-level scheme. The pinned reference forward still visits all backbone layers; encoder-only prefill execution is not certified by that code. This distinction is visible in the CED caption and serving inspector.

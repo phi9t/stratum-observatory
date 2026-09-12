@@ -33,6 +33,12 @@ MODELS={k:m['layers'] for k,m in APP.items()}
 errors=[];requests=[];cases=[];responsive=[];failures=[]
 
 def check(page, patch, label='geometry'):
+    current=page.evaluate('STRATUM.getState()')
+    dedicated=patch.get('model',current['model'])=='dsv41'
+    if bool(page.evaluate('document.body.dataset.pageModel'))!=dedicated:
+        page.set_content((ROOT/'dist'/('deepseek-v4.1.html' if dedicated else 'index.html')).read_text(),wait_until='load')
+        page.wait_for_function('window.STRATUM')
+        patch={**current,**patch}
     r=page.evaluate('(p)=>{STRATUM.setState(p);return STRATUM.geometryReport()}',patch)
     invalid=page.locator('svg').evaluate_all('''els=>els.flatMap(e=>[e,...e.querySelectorAll('*')]).filter(e=>[...e.attributes].some(a=>/(^|[^a-z])(?:NaN|Infinity)([^a-z]|$)/.test(a.value))).map(e=>e.outerHTML.slice(0,180))''')
     record={'state':page.evaluate('STRATUM.getState()'),'defects':r['geometry_defects'],'label':label}
@@ -62,6 +68,10 @@ with sync_playwright() as p:
     for m,stages in FOCUS.items():
         for stage in stages:
             for theme in ['dark','light']: check(page,{'model':m,'view':'model','stage':stage,'theme':theme},'focus-stage')
+    for model,meta in APP.items():
+        if meta.get('encoderLayers'):
+            for phase in ['prefill','decode']:
+                for theme in ['dark','light']:check(page,{'model':model,'view':'serving','stage':'block','phase':phase,'theme':theme},'serving-phase')
     for h in HARDWARE:
         for theme in ['dark','light']:
             for ai in [1,128,2048]: check(page,{'view':'hardware','hardware':h,'intensity':ai,'theme':theme},'hardware-roofline')
@@ -152,6 +162,12 @@ with sync_playwright() as p:
     page.evaluate('STRATUM.setState({model:"<svg/onload=1>",layer:999999,batch:-2})')
     assertion(page.locator('script[src]').count()==0,'no external script dependency')
     assertion(page.evaluate('STRATUM.geometryReport().geometry_defects')==0,'sanitized state remains valid')
+    from dedicated_page import exercise
+    delivery=browser.new_page()
+    delivery.on('pageerror',lambda e:errors.append(str(e)))
+    delivery.on('request',lambda req:requests.append(req.url) if req.url.startswith(('http://','https://')) else None)
+    exercise(delivery,ROOT)
+    delivery.close()
     browser.close()
 report={'schema':'stratum-browser-tests/v2','browser':'Chromium','geometry_states':len(cases),'responsive_states':len(responsive),'device_scale_states':sum(1 for c in cases if c['label'].startswith('device-scale-')),'geometry_defects':sum(len(f['defects'])+len(f['invalid_svg']) for f in failures),'runtime_errors':len(errors),'external_runtime_requests':len(requests),'interactive_checks':'passed','exports':'independent SVG rendering and JSON passed','models':MODELS,'failures':failures,'errors':errors,'requests':requests}
 (ROOT/'tests/browser-results.json').write_text(json.dumps(report,indent=2)+'\n')

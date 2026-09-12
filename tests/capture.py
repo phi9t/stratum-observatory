@@ -49,6 +49,8 @@ def per_model_cases(page):
                      'layer':representative_layer(page.evaluate(LAYER_OPTIONS))}))
   for stage in page.evaluate(FOCUS_STAGES):
    if stage!='block':cases.append((f'{mid}-{stage}',{'model':mid,'view':'model','stage':stage}))
+   if stage=='ced':
+    for phase in ['prefill','decode']:cases.append((f'{mid}-serving-{phase}',{'model':mid,'view':'serving','phase':phase}))
  return cases
 
 #: Curated states, each named for the motif it shows rather than for its checkpoint, and each
@@ -78,13 +80,16 @@ with sync_playwright() as p:
  page.wait_for_function('window.STRATUM?.version === "3.0.0"');page.evaluate('document.fonts.ready')
  manifest=[]
  for name,patch in per_model_cases(page)+EXTRA_CASES:
-  state={**BASE,**patch};page.evaluate('(s)=>STRATUM.setState(s)',state)
+  state={**BASE,**patch}
+  artifact=ROOT/'dist'/('deepseek-v4.1.html' if state['model']=='dsv41' else 'index.html')
+  page.goto(artifact.as_uri(),wait_until='load');page.wait_for_function('window.STRATUM')
+  page.evaluate('(s)=>STRATUM.setState(s)',state)
   page.evaluate('document.fonts.ready');page.wait_for_timeout(50)
   report=page.evaluate('STRATUM.geometryReport()')
   if report['geometry_defects']:raise AssertionError((name,report))
   page.screenshot(path=str(OUT/f'{name}.png'),full_page=True)
   svg=page.evaluate('STRATUM.exportSVG()');(OUT/f'{name}.svg').write_text(svg)
-  manifest.append({'name':name,'state':page.evaluate('STRATUM.getState()'),'svg_sha256':hashlib.sha256(svg.encode()).hexdigest()})
+  manifest.append({'name':name,'artifact':artifact.name,'artifact_sha256':hashlib.sha256(artifact.read_bytes()).hexdigest(),'state':page.evaluate('STRATUM.getState()'),'svg_sha256':hashlib.sha256(svg.encode()).hexdigest()})
   print(name,flush=True)
  page.set_viewport_size({'width':390,'height':844})
  page.evaluate('(s)=>STRATUM.setState(s)',{**BASE,'model':'q38flash','view':'serving'})
@@ -93,7 +98,7 @@ with sync_playwright() as p:
  # a viewport and a state but no `svg_sha256` -- an absent digest, not a fabricated one. Without
  # a record it was a published file the manifest never named, which `PREVIEW_INVENTORY` now
  # reports: bytes in the published directory attested by nothing.
- manifest.append({'name':'mobile','viewport':{'width':390,'height':844},
+ manifest.append({'name':'mobile','artifact':'index.html','artifact_sha256':hashlib.sha256((ROOT/'dist/index.html').read_bytes()).hexdigest(),'viewport':{'width':390,'height':844},
                   'state':page.evaluate('STRATUM.getState()')})
  browser.close()
 (OUT/'manifest.json').write_text(json.dumps({'artifact_sha256':hashlib.sha256((ROOT/'dist/index.html').read_bytes()).hexdigest(),'captures':manifest},indent=2)+'\n')
