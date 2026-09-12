@@ -64,11 +64,20 @@ def main():
     if toolchain_digest(root)!=toolchain_before:print('FAIL: verifier toolchain changed during the run');return 1
     inv=loads(subprocess.run(['node','tools/export-verification.mjs'],cwd=root,text=True,capture_output=True,check=True,timeout=60).stdout)
     target=loads((root/'verification/manifests/observatory.json').read_text());catalog=loads((root/'verification/manifests/sources.json').read_text())
-    counts={'verifier':scrape_count((out/'verifier-tests.log').read_text(),r'Ran (\d+) tests'),
-            'atlas':scrape_count((out/'node-tests.log').read_text(),r'tests (\d+)')}
+    verifier_log=(out/'verifier-tests.log').read_text();node_log=(out/'node-tests.log').read_text()
+    counts={'verifier':scrape_count(verifier_log,r'Ran (\d+) tests'),
+            'atlas':scrape_count(node_log,r'tests (\d+)')}
     # A receipt that cannot count the tests it ran is not evidence that they ran.
     for name,value in counts.items():
         if not isinstance(value,int) or value<=0:print(f'FAIL: could not read the {name} test count; the runner output format changed');return 1
+    # "Ran N tests" counts the tests unittest started, not the ones that asserted anything. Two
+    # receipt-staleness guards cannot run inside this gate because it deletes the receipt first,
+    # and in CI the seven publisher-cache guards skip as well because `.verification-cache/` is
+    # absent by design (ruling T789a). A receipt that records only N invites quoting N as
+    # "N tests ran", which is how two self-disabling tests became one of this branch's nine
+    # instances. Absent skip line means zero skipped, which unittest states by omitting it.
+    counts['verifier_skipped']=scrape_count(verifier_log,r'\(skipped=(\d+)\)') or 0
+    counts['atlas_skipped']=scrape_count(node_log,r'skipped (\d+)') or 0
     data={'schema':'stratum-engineering/v1','status':'PASS','started_at':started,'completed_at':datetime.now(timezone.utc).isoformat(),
         'consumer_sha256':digest(inv['functions']),'verifier_sha256':toolchain_digest(root),'lock_sha256':digest({'target':target,'catalog':catalog}),
         'artifact_sha256':a,'repeat_build_sha256':b,'deterministic_build':a==b,'commands':commands,'browser':browser,

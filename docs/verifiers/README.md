@@ -1,6 +1,6 @@
 # STRATUM Scientific Verification Framework
 
-This is an additive verifier layer for the eight-checkpoint Observatory target (`manifests/observatory.json`), reusable through explicit adapters for other atlases. `manifests/kimi-k3.json` is historical and is not the current consumer inventory. It separates **tested software**, **source-backed scientific interpretation**, and **observed execution**. It does not infer one from another.
+This is an additive verifier layer for the nine-checkpoint Observatory target (`manifests/observatory.json`), reusable through explicit adapters for other atlases. `manifests/kimi-k3.json` is historical and is not the current consumer inventory. It separates **tested software**, **source-backed scientific interpretation**, and **observed execution**. It does not infer one from another.
 
 ## Commands and gates
 

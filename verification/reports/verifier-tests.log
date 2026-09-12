@@ -1,13 +1,30 @@
+test_a_class_kept_in_css_but_dropped_from_the_markup_is_caught (test_aesthetics.ChromeProbeCoverageTests.test_a_class_kept_in_css_but_dropped_from_the_markup_is_caught)
+A selector that only the stylesheet still knows about measures nothing either. ... ok
+test_a_renamed_class_is_caught_rather_than_silently_unmeasured (test_aesthetics.ChromeProbeCoverageTests.test_a_renamed_class_is_caught_rather_than_silently_unmeasured)
+The exact reported failure: rename .innovation-note and measurement disappears. ... ok
+test_canvas_and_large_text_are_out_of_scope_deliberately (test_aesthetics.ChromeProbeCoverageTests.test_canvas_and_large_text_are_out_of_scope_deliberately)
+Canvas labels are held to AA on the semantic tints, and >= large_text_px is a heading under ... ok
+test_new_reading_size_prose_in_neither_list_is_caught (test_aesthetics.ChromeProbeCoverageTests.test_new_reading_size_prose_in_neither_list_is_caught) ... ok
+test_the_font_shorthand_is_not_a_way_around_the_coverage_guard (test_aesthetics.ChromeProbeCoverageTests.test_the_font_shorthand_is_not_a_way_around_the_coverage_guard) ... ok
+test_the_probe_string_is_built_from_the_list (test_aesthetics.ChromeProbeCoverageTests.test_the_probe_string_is_built_from_the_list)
+Otherwise the list is documentation and the probe still carries its own copy. ... ok
+test_the_recorded_debt_is_named_as_debt_and_not_as_coverage (test_aesthetics.ChromeProbeCoverageTests.test_the_recorded_debt_is_named_as_debt_and_not_as_coverage)
+A reader of the PASS message must be told the measured set is not everything. ... ok
+test_the_shipped_probe_list_is_live_and_complete (test_aesthetics.ChromeProbeCoverageTests.test_the_shipped_probe_list_is_live_and_complete) ... ok
 test_known_contrast_ratios (test_aesthetics.ColorMathTests.test_known_contrast_ratios) ... ok
 test_parses_the_css_colour_forms_the_renderer_emits (test_aesthetics.ColorMathTests.test_parses_the_css_colour_forms_the_renderer_emits) ... ok
 test_theme_token_key_parity (test_aesthetics.ColorMathTests.test_theme_token_key_parity) ... ok
 test_token_pairs_are_measured_to_known_values (test_aesthetics.ColorMathTests.test_token_pairs_are_measured_to_known_values)
 Pin the exact ratios so the algorithm stays calibrated, not merely passing. ... ok
 test_translucent_foreground_is_composited_before_measuring (test_aesthetics.ColorMathTests.test_translucent_foreground_is_composited_before_measuring) ... ok
-test_moved_lane_does_move_the_baseline (test_aesthetics.CompositionBaselineTests.test_moved_lane_does_move_the_baseline) ... ok
-test_palette_retune_does_not_move_the_baseline (test_aesthetics.CompositionBaselineTests.test_palette_retune_does_not_move_the_baseline) ... ok
-test_role_change_does_move_the_baseline (test_aesthetics.CompositionBaselineTests.test_role_change_does_move_the_baseline) ... ok
-test_subpixel_jitter_does_not_move_the_baseline (test_aesthetics.CompositionBaselineTests.test_subpixel_jitter_does_not_move_the_baseline) ... ok
+test_a_measured_scenario_with_no_recorded_signature_is_caught (test_aesthetics.CompositionBaselineTests.test_a_measured_scenario_with_no_recorded_signature_is_caught) ... ok
+test_a_moved_signature_is_still_caught (test_aesthetics.CompositionBaselineTests.test_a_moved_signature_is_still_caught) ... ok
+test_a_vanished_scenario_is_still_caught (test_aesthetics.CompositionBaselineTests.test_a_vanished_scenario_is_still_caught) ... ok
+test_an_exact_match_passes_and_states_the_compared_number (test_aesthetics.CompositionBaselineTests.test_an_exact_match_passes_and_states_the_compared_number) ... ok
+test_comparing_nothing_does_not_pass (test_aesthetics.CompositionBaselineTests.test_comparing_nothing_does_not_pass)
+The same defect this gate exists to catch, found in this gate's own PASS line: an empty ... ok
+test_the_stable_count_is_the_compared_count_and_not_the_measured_one (test_aesthetics.CompositionBaselineTests.test_the_stable_count_is_the_compared_count_and_not_the_measured_one)
+The exact defect: two measured, one baselined, and a PASS line saying two matched. ... ok
 test_canvas_labels_keep_the_aa_floor (test_aesthetics.ContrastRatchetTests.test_canvas_labels_keep_the_aa_floor) ... ok
 test_large_text_still_uses_the_relaxed_threshold (test_aesthetics.ContrastRatchetTests.test_large_text_still_uses_the_relaxed_threshold) ... ok
 test_reading_size_chrome_prose_is_held_to_the_enhanced_ratio (test_aesthetics.ContrastRatchetTests.test_reading_size_chrome_prose_is_held_to_the_enhanced_ratio) ... ok
@@ -17,6 +34,10 @@ test_focal_stages_are_measured (test_aesthetics.CoverageTests.test_focal_stages_
 test_focal_stages_only_where_the_model_has_them (test_aesthetics.CoverageTests.test_focal_stages_only_where_the_model_has_them) ... ok
 test_model_list_comes_from_the_application_not_a_literal (test_aesthetics.CoverageTests.test_model_list_comes_from_the_application_not_a_literal) ... ok
 test_more_than_one_layer_is_sampled (test_aesthetics.CoverageTests.test_more_than_one_layer_is_sampled) ... ok
+test_the_focal_stage_map_is_the_applications_own_and_not_re_derived (test_aesthetics.CoverageTests.test_the_focal_stage_map_is_the_applications_own_and_not_re_derived)
+The sixth copy of the predicate lived here. `core.focalStages` is now the only one, so ... ok
+test_view_list_comes_from_the_application_not_a_literal (test_aesthetics.CoverageTests.test_view_list_comes_from_the_application_not_a_literal)
+The mirror of the model check, for the axis that had no check at all. ... ok
 test_aesthetics_is_not_a_scientific_domain (test_aesthetics.GateContractTests.test_aesthetics_is_not_a_scientific_domain) ... ok
 test_gate_exit_codes_match_the_other_gates (test_aesthetics.GateContractTests.test_gate_exit_codes_match_the_other_gates) ... ok
 test_policy_is_bound_to_the_receipt_but_baselines_are_not (test_aesthetics.GateContractTests.test_policy_is_bound_to_the_receipt_but_baselines_are_not) ... ok
@@ -36,7 +57,12 @@ test_failing_pair_is_reported_as_a_contradiction (test_aesthetics.ThresholdTests
 test_indeterminate_backdrop_blocks_rather_than_passes (test_aesthetics.ThresholdTests.test_indeterminate_backdrop_blocks_rather_than_passes) ... ok
 test_large_text_uses_the_relaxed_threshold (test_aesthetics.ThresholdTests.test_large_text_uses_the_relaxed_threshold) ... ok
 test_passing_pair_is_reported_as_pass (test_aesthetics.ThresholdTests.test_passing_pair_is_reported_as_pass) ... ok
+test_array_index_past_the_end_writes_no_anchor (test_anchor_tools.AnchorConfigTests.test_array_index_past_the_end_writes_no_anchor) ... ok
+test_array_index_pointer_selects_that_element (test_anchor_tools.AnchorConfigTests.test_array_index_pointer_selects_that_element)
+A per-layer list is addressable: the anchor pins one element, not the whole array. ... ok
 test_existing_anchor_is_never_overwritten (test_anchor_tools.AnchorConfigTests.test_existing_anchor_is_never_overwritten) ... ok
+test_float_upstream_of_an_integer_value_is_not_called_equal (test_anchor_tools.AnchorConfigTests.test_float_upstream_of_an_integer_value_is_not_called_equal)
+10.0 and 10 are the same number and not the same bytes. ... ok
 test_matching_value_becomes_an_equal_pointer (test_anchor_tools.AnchorConfigTests.test_matching_value_becomes_an_equal_pointer) ... ok
 test_mismatched_value_is_reported_and_not_upgraded (test_anchor_tools.AnchorConfigTests.test_mismatched_value_is_reported_and_not_upgraded) ... ok
 test_pointer_absent_from_upstream_writes_no_anchor (test_anchor_tools.AnchorConfigTests.test_pointer_absent_from_upstream_writes_no_anchor) ... ok
@@ -45,12 +71,220 @@ test_absent_quote_writes_no_anchor (test_anchor_tools.AnchorDocumentTests.test_a
 test_ambiguous_quote_writes_no_anchor (test_anchor_tools.AnchorDocumentTests.test_ambiguous_quote_writes_no_anchor) ... ok
 test_unique_quote_becomes_a_text_quote_anchor (test_anchor_tools.AnchorDocumentTests.test_unique_quote_becomes_a_text_quote_anchor) ... ok
 test_unmapped_field_is_reported_as_unsupported (test_anchor_tools.AnchorDocumentTests.test_unmapped_field_is_reported_as_unsupported) ... ok
+test_a_repo_hosted_paper_is_quotable (test_anchor_tools.RepoHostedPaperTests.test_a_repo_hosted_paper_is_quotable) ... ok
+test_a_repo_hosted_paper_with_no_authored_quote_is_residue (test_anchor_tools.RepoHostedPaperTests.test_a_repo_hosted_paper_with_no_authored_quote_is_residue) ... ok
+test_publisher_configuration_is_still_not_this_tool_s_business (test_anchor_tools.RepoHostedPaperTests.test_publisher_configuration_is_still_not_this_tool_s_business)
+Widening by role must not make the quote tool start judging JSON. ... ok
 test_every_dropped_citation_is_gone_from_the_manifest (test_anchor_tools.ResidueRecordTests.test_every_dropped_citation_is_gone_from_the_manifest)
 A record that disagrees with the manifest is worse than no record. ... ok
 test_every_re_pointed_citation_now_carries_an_anchor (test_anchor_tools.ResidueRecordTests.test_every_re_pointed_citation_now_carries_an_anchor) ... ok
 test_every_residue_row_has_a_decision (test_anchor_tools.ResidueRecordTests.test_every_residue_row_has_a_decision) ... ok
 test_no_residue_row_was_resolved_by_inventing_a_quote (test_anchor_tools.ResidueRecordTests.test_no_residue_row_was_resolved_by_inventing_a_quote)
 A decision must name one of the three allowed resolutions. ... ok
+test_the_census_reads_every_report_on_disk (test_anchor_tools.ResidueRecordTests.test_the_census_reads_every_report_on_disk)
+The direction the old four-entry literal did not protect. ... ok
+test_a_ratio_far_from_the_depth_ratio_blocks_rather_than_failing (test_ced.ActiveRatioTests.test_a_ratio_far_from_the_depth_ratio_blocks_rather_than_failing)
+The published actives are whole billions and the embedding and Engram terms are ... ok
+test_an_absent_decode_active_blocks (test_ced.ActiveRatioTests.test_an_absent_decode_active_blocks) ... ok
+test_models_without_the_architecture_are_left_alone (test_ced.ActiveRatioTests.test_models_without_the_architecture_are_left_alone) ... ok
+test_the_published_actives_track_the_depth_split (test_ced.ActiveRatioTests.test_the_published_actives_track_the_depth_split) ... ok
+test_the_shipped_model_tracks_its_depth_split (test_ced.ActiveRatioTests.test_the_shipped_model_tracks_its_depth_split) ... ok
+test_a_candidate_pool_built_after_its_consumers_is_caught (test_ced.ArchitectureInvariantTests.test_a_candidate_pool_built_after_its_consumers_is_caught) ... ok
+test_a_ced_model_with_a_different_tag_is_judged_not_skipped (test_ced.ArchitectureInvariantTests.test_a_ced_model_with_a_different_tag_is_judged_not_skipped)
+The hole the `architecture == 'ced-csa2'` guard left open. ... ok
+test_a_decoder_deriving_its_own_kv_is_caught (test_ced.ArchitectureInvariantTests.test_a_decoder_deriving_its_own_kv_is_caught)
+Two decoder KV sources means the decoder no longer projects solely from H20. ... ok
+test_a_draft_head_without_one_target_per_layer_is_caught (test_ced.ArchitectureInvariantTests.test_a_draft_head_without_one_target_per_layer_is_caught) ... ok
+test_a_draft_layer_owning_a_compressed_cache_is_caught (test_ced.ArchitectureInvariantTests.test_a_draft_layer_owning_a_compressed_cache_is_caught)
+DSparkAttention.forward opens with `assert self.compress_ratio == 0`, so a draft layer ... ok
+test_a_draft_moe_identical_to_the_backbone_is_caught (test_ced.ArchitectureInvariantTests.test_a_draft_moe_identical_to_the_backbone_is_caught) ... ok
+test_a_full_layer_outside_the_index_sources_is_caught (test_ced.ArchitectureInvariantTests.test_a_full_layer_outside_the_index_sources_is_caught) ... ok
+test_a_partition_that_does_not_tile_the_depth_is_caught (test_ced.ArchitectureInvariantTests.test_a_partition_that_does_not_tile_the_depth_is_caught) ... ok
+test_a_phase_split_covering_every_layer_is_not_a_split (test_ced.ArchitectureInvariantTests.test_a_phase_split_covering_every_layer_is_not_a_split) ... ok
+test_a_reuse_layer_with_nothing_to_reuse_is_caught (test_ced.ArchitectureInvariantTests.test_a_reuse_layer_with_nothing_to_reuse_is_caught)
+Drop the encoder's first Full layer: layers 3-7 then read a cache no layer wrote. ... ok
+test_a_rounded_engram_total_is_caught (test_ced.ArchitectureInvariantTests.test_a_rounded_engram_total_is_caught) ... ok
+test_a_sub_unit_compression_ratio_is_caught (test_ced.ArchitectureInvariantTests.test_a_sub_unit_compression_ratio_is_caught) ... ok
+test_a_trivial_draft_block_is_caught (test_ced.ArchitectureInvariantTests.test_a_trivial_draft_block_is_caught) ... ok
+test_a_wrong_hash_column_count_is_caught (test_ced.ArchitectureInvariantTests.test_a_wrong_hash_column_count_is_caught) ... ok
+test_an_absent_inventory_fails_the_partition_check (test_ced.ArchitectureInvariantTests.test_an_absent_inventory_fails_the_partition_check)
+Ruling P1 required this not be skipped silently; ruling T789b requires the software ... ok
+test_indistinguishable_band_ratios_are_caught (test_ced.ArchitectureInvariantTests.test_indistinguishable_band_ratios_are_caught)
+Identical ratios would make the two halves the same mechanism drawn twice. ... ok
+test_mismatched_engram_tables_and_layers_are_caught (test_ced.ArchitectureInvariantTests.test_mismatched_engram_tables_and_layers_are_caught) ... ok
+test_models_without_the_architecture_are_left_alone (test_ced.ArchitectureInvariantTests.test_models_without_the_architecture_are_left_alone) ... ok
+test_the_active_ratio_is_no_longer_judged_by_the_software_gate (test_ced.ArchitectureInvariantTests.test_the_active_ratio_is_no_longer_judged_by_the_software_gate)
+Ruling T789b: its honest outcome is BLOCKED, which is exit 2 on a gate the Pages ... ok
+test_the_fixture_matches_the_shipped_model (test_ced.ArchitectureInvariantTests.test_the_fixture_matches_the_shipped_model)
+A drifted literal would make every negative test above a test of nothing. ... ok
+test_the_report_derivation_reads_no_layer_ids (test_ced.ArchitectureInvariantTests.test_the_report_derivation_reads_no_layer_ids)
+If it did, the comparison would be a tautology. Proved by signature, not by reading. ... ok
+test_the_shipped_model_satisfies_every_invariant (test_ced.ArchitectureInvariantTests.test_the_shipped_model_satisfies_every_invariant) ... ok
+test_the_tag_invariant_passes_on_the_shipped_inventory (test_ced.ArchitectureInvariantTests.test_the_tag_invariant_passes_on_the_shipped_inventory) ... ok
+test_the_transcribed_architecture_satisfies_every_invariant (test_ced.ArchitectureInvariantTests.test_the_transcribed_architecture_satisfies_every_invariant) ... ok
+test_the_two_mode_derivations_are_compared_and_can_disagree (test_ced.ArchitectureInvariantTests.test_the_two_mode_derivations_are_compared_and_can_disagree)
+Move one Full layer in the config arrays only. The report-derived structure is ... ok
+test_a_band_stating_the_other_half_ratio_is_caught (test_ced.BandRatioTests.test_a_band_stating_the_other_half_ratio_is_caught)
+What an off-by-one in `ratioOf` would look like: the decoder Full band drawn with ... ok
+test_a_band_that_states_no_ratio_is_caught (test_ced.BandRatioTests.test_a_band_that_states_no_ratio_is_caught) ... ok
+test_a_preset_declaring_no_ratios_cannot_be_judged (test_ced.BandRatioTests.test_a_preset_declaring_no_ratios_cannot_be_judged) ... ok
+test_the_drawn_ratios_agree_with_the_declared_ones (test_ced.BandRatioTests.test_the_drawn_ratios_agree_with_the_declared_ones) ... ok
+test_the_shipped_ced_scene_states_its_derived_ratios (test_ced.BandRatioTests.test_the_shipped_ced_scene_states_its_derived_ratios) ... ok
+test_a_back_edge_is_caught_in_an_otherwise_correct_drawing (test_ced.CEDTopologyTests.test_a_back_edge_is_caught_in_an_otherwise_correct_drawing)
+CED is a one-way handoff. A back edge would make it a shared-KV Transformer. ... ok
+test_a_band_the_layer_pattern_does_not_produce_is_caught (test_ced.CEDTopologyTests.test_a_band_the_layer_pattern_does_not_produce_is_caught) ... ok
+test_a_dropped_band_leaves_the_halves_short (test_ced.CEDTopologyTests.test_a_dropped_band_leaves_the_halves_short) ... ok
+test_a_fanout_node_that_never_names_its_layers_is_caught (test_ced.CEDTopologyTests.test_a_fanout_node_that_never_names_its_layers_is_caught) ... ok
+test_a_lens_without_the_two_halves_is_skipped_not_failed (test_ced.CEDTopologyTests.test_a_lens_without_the_two_halves_is_skipped_not_failed) ... ok
+test_a_missing_handoff_edge_is_caught (test_ced.CEDTopologyTests.test_a_missing_handoff_edge_is_caught) ... ok
+test_a_pool_that_feeds_an_encoder_band_is_caught (test_ced.CEDTopologyTests.test_a_pool_that_feeds_an_encoder_band_is_caught)
+The indexer pool is decoder-only; an encoder Full layer ranks the whole visible range. ... ok
+test_a_pool_that_skips_a_reindex_band_is_caught (test_ced.CEDTopologyTests.test_a_pool_that_skips_a_reindex_band_is_caught) ... ok
+test_a_preset_with_no_declared_split_cannot_be_satisfied_by_any_drawing (test_ced.CEDTopologyTests.test_a_preset_with_no_declared_split_cannot_be_satisfied_by_any_drawing) ... ok
+test_a_second_handoff_edge_is_caught (test_ced.CEDTopologyTests.test_a_second_handoff_edge_is_caught) ... ok
+test_an_engram_fanout_that_under_counts_its_sites_is_caught (test_ced.CEDTopologyTests.test_an_engram_fanout_that_under_counts_its_sites_is_caught) ... ok
+test_the_band_rule_folds_only_reuse_and_window_layers (test_ced.CEDTopologyTests.test_the_band_rule_folds_only_reuse_and_window_layers) ... ok
+test_the_graph_the_builder_owes_passes (test_ced.CEDTopologyTests.test_the_graph_the_builder_owes_passes) ... ok
+test_a_complete_all_models_claim_passes (test_ced.ClaimModelCoverageTests.test_a_complete_all_models_claim_passes) ... ok
+test_a_dependency_naming_an_unsupported_model_is_caught (test_ced.ClaimModelCoverageTests.test_a_dependency_naming_an_unsupported_model_is_caught) ... ok
+test_a_manifest_claim_omitting_a_supported_model_is_caught (test_ced.ClaimModelCoverageTests.test_a_manifest_claim_omitting_a_supported_model_is_caught)
+The all-models claims say they reconcile every supported model. One that names ... ok
+test_a_manifest_with_no_multi_model_claim_blocks_rather_than_passing (test_ced.ClaimModelCoverageTests.test_a_manifest_with_no_multi_model_claim_blocks_rather_than_passing)
+Zero comparisons is not agreement. The same rule as the absent publisher cache. ... ok
+test_a_single_model_scene_claim_is_not_required_to_cover_all_models (test_ced.ClaimModelCoverageTests.test_a_single_model_scene_claim_is_not_required_to_cover_all_models)
+The per-scene claims each depend on their own one model; that is correct. ... ok
+test_the_shipped_manifest_covers_every_model (test_ced.ClaimModelCoverageTests.test_the_shipped_manifest_covers_every_model) ... ok
+test_a_contract_in_another_domain_does_not_count_as_model_coverage (test_ced.ContractModelCoverageTests.test_a_contract_in_another_domain_does_not_count_as_model_coverage)
+A `gpu` contract that happens to bind a model field is not a model contract. ... ok
+test_a_model_with_a_contract_but_no_runtime_obligation_is_caught (test_ced.ContractModelCoverageTests.test_a_model_with_a_contract_but_no_runtime_obligation_is_caught)
+A contract with no obligation is never NOT_RUN, so its absence of evidence is ... ok
+test_a_model_with_both_passes (test_ced.ContractModelCoverageTests.test_a_model_with_both_passes) ... ok
+test_a_model_with_no_contract_is_caught (test_ced.ContractModelCoverageTests.test_a_model_with_no_contract_is_caught) ... ok
+test_an_empty_inventory_blocks_rather_than_passing (test_ced.ContractModelCoverageTests.test_an_empty_inventory_blocks_rather_than_passing)
+Zero comparisons is not agreement -- the same rule as the absent publisher cache. ... ok
+test_the_contract_id_is_not_assumed_to_name_the_model (test_ced.ContractModelCoverageTests.test_the_contract_id_is_not_assumed_to_name_the_model)
+`model.kimi-k3` speaks for `MODELS.kimi3`. A check keyed on `f'model.{mid}'` would ... ok
+test_the_shipped_manifest_covers_every_shipped_model (test_ced.ContractModelCoverageTests.test_the_shipped_manifest_covers_every_shipped_model) ... ok
+test_the_shipped_model_contract_validates (test_ced.ContractModelCoverageTests.test_the_shipped_model_contract_validates)
+Authored, not fabricated: every bound field is the application's own constant and the ... ok
+test_the_architecture_invariants_stay_in_the_schematics_gate (test_ced.GatePlacementTests.test_the_architecture_invariants_stay_in_the_schematics_gate)
+Only the upstream-bytes check moved; these read the application alone. ... ok
+test_the_schematics_gate_cannot_report_blocked (test_ced.GatePlacementTests.test_the_schematics_gate_cannot_report_blocked)
+Its exit code gates a deployment, so BLOCKED must not be reachable from it. Every ... ok
+test_the_schematics_gate_does_not_carry_the_transcription_check (test_ced.GatePlacementTests.test_the_schematics_gate_does_not_carry_the_transcription_check) ... ok
+test_the_transcription_check_reports_in_the_evidence_domain (test_ced.GatePlacementTests.test_the_transcription_check_reports_in_the_evidence_domain) ... ok
+test_a_citation_that_resolves_to_no_source_is_caught (test_ced.InnovationCoverageTests.test_a_citation_that_resolves_to_no_source_is_caught)
+`citation()` in src/app.mjs renders nothing for an unknown id, so a typo becomes an ... ok
+test_a_figure_inside_a_longer_number_does_not_satisfy_the_check (test_ced.InnovationCoverageTests.test_a_figure_inside_a_longer_number_does_not_satisfy_the_check)
+Numbers are compared as numbers. A row writing 1720 must not satisfy 720, which a ... ok
+test_a_missing_row_is_not_read_as_agreement (test_ced.InnovationCoverageTests.test_a_missing_row_is_not_read_as_agreement) ... ok
+test_a_record_that_cites_nothing_is_caught (test_ced.InnovationCoverageTests.test_a_record_that_cites_nothing_is_caught) ... ok
+test_a_row_claimed_as_pinned_but_unmapped_is_caught (test_ced.InnovationCoverageTests.test_a_row_claimed_as_pinned_but_unmapped_is_caught)
+Remove the mapping and the row must stop counting as evidence, not keep passing. ... ok
+test_a_row_that_quotes_only_the_published_total_is_caught (test_ced.InnovationCoverageTests.test_a_row_that_quotes_only_the_published_total_is_caught)
+The specific hazard: 890 B/token is the publisher's headline and 720 is what the ... ok
+test_a_row_that_states_the_wrong_encoder_depth_is_caught (test_ced.InnovationCoverageTests.test_a_row_that_states_the_wrong_encoder_depth_is_caught) ... ok
+test_a_row_whose_derived_figure_disagrees_with_python_is_caught (test_ced.InnovationCoverageTests.test_a_row_whose_derived_figure_disagrees_with_python_is_caught) ... ok
+test_a_thousands_separated_figure_still_satisfies_the_check (test_ced.InnovationCoverageTests.test_a_thousands_separated_figure_still_satisfies_the_check)
+The page formats with separators, so the matcher must read 1,280 as 1280 -- otherwise ... ok
+test_absent_coverage_rows_fail_rather_than_pass (test_ced.InnovationCoverageTests.test_absent_coverage_rows_fail_rather_than_pass) ... ok
+test_each_pinned_row_fails_on_its_own_figure (test_ced.InnovationCoverageTests.test_each_pinned_row_fails_on_its_own_figure)
+One mutation per newly covered row, so none of the three is decorative. ... ok
+test_every_row_is_either_checked_or_named_with_its_reason (test_ced.InnovationCoverageTests.test_every_row_is_either_checked_or_named_with_its_reason)
+The 5-of-8 scope is stated, not implied: no row may be silently unchecked. ... ok
+test_the_check_reuses_the_kv_arithmetic_the_ledger_is_held_to (test_ced.InnovationCoverageTests.test_the_check_reuses_the_kv_arithmetic_the_ledger_is_held_to)
+Not a second derivation of the same quantity: the same function. If it were a copy, ... ok
+test_the_config_pinned_rows_are_actually_pinned (test_ced.InnovationCoverageTests.test_the_config_pinned_rows_are_actually_pinned)
+The claim that three more rows are checked against *publisher bytes* rests entirely on ... ok
+test_the_pass_message_states_the_scope (test_ced.InnovationCoverageTests.test_the_pass_message_states_the_scope)
+A reader of the report must be told how much was checked, not just that it passed. ... ok
+test_the_shipped_coverage_covers_every_published_innovation (test_ced.InnovationCoverageTests.test_the_shipped_coverage_covers_every_published_innovation)
+The eight records `tests/core.test.mjs` requires must actually reach the inventory, ... ok
+test_the_shipped_coverage_is_cited_and_derived (test_ced.InnovationCoverageTests.test_the_shipped_coverage_is_cited_and_derived) ... ok
+test_a_ledger_that_drifts_from_the_python_derivation_is_caught (test_ced.KvBudgetTests.test_a_ledger_that_drifts_from_the_python_derivation_is_caught) ... ok
+test_a_reported_total_below_the_derived_main_kv_is_caught (test_ced.KvBudgetTests.test_a_reported_total_below_the_derived_main_kv_is_caught)
+890 -> 600 would make the residual negative, i.e. main KV alone exceeds the total. ... ok
+test_a_residual_implying_an_impossible_precision_is_caught (test_ced.KvBudgetTests.test_a_residual_implying_an_impossible_precision_is_caught)
+1200 B leaves 480 B over 320 channels = 1.5 B/channel, wider than FP8. ... ok
+test_bounded_state_that_moves_with_context_is_caught (test_ced.KvBudgetTests.test_bounded_state_that_moves_with_context_is_caught) ... ok
+test_the_bounded_invariant_runs_for_every_model_not_only_this_architecture (test_ced.KvBudgetTests.test_the_bounded_invariant_runs_for_every_model_not_only_this_architecture) ... ok
+test_the_python_derivation_reproduces_the_published_figures (test_ced.KvBudgetTests.test_the_python_derivation_reproduces_the_published_figures)
+720 B/token over 1,280 stored channels, and 320 indexer channels. Written out so a ... ok
+test_the_real_budget_agrees_between_python_and_the_ledger (test_ced.KvBudgetTests.test_the_real_budget_agrees_between_python_and_the_ledger) ... ok
+test_the_residual_bound_is_the_physical_range_not_one_fitted_to_890 (test_ced.KvBudgetTests.test_the_residual_bound_is_the_physical_range_not_one_fitted_to_890)
+The report states no indexer precision, so the bound is FP4..FP8 and nothing narrower. ... ok
+test_the_shipped_ledger_agrees_with_the_python_derivation (test_ced.KvBudgetTests.test_the_shipped_ledger_agrees_with_the_python_derivation) ... ok
+test_two_samples_at_the_same_context_cannot_prove_the_invariant (test_ced.KvBudgetTests.test_two_samples_at_the_same_context_cannot_prove_the_invariant)
+Comparing a state against itself is not evidence that it is bounded. FAIL rather than ... ok
+test_a_bare_sum_on_an_mhc_residual_path_is_caught (test_ced.MHCResidualTests.test_a_bare_sum_on_an_mhc_residual_path_is_caught) ... ok
+test_a_correctly_drawn_mhc_residual_passes (test_ced.MHCResidualTests.test_a_correctly_drawn_mhc_residual_passes) ... ok
+test_a_lens_without_a_residual_rail_is_skipped_not_failed (test_ced.MHCResidualTests.test_a_lens_without_a_residual_rail_is_skipped_not_failed) ... ok
+test_a_rail_that_understates_the_stream_count_is_caught (test_ced.MHCResidualTests.test_a_rail_that_understates_the_stream_count_is_caught) ... ok
+test_the_declared_stream_count_comes_from_the_model_not_the_drawing (test_ced.MHCResidualTests.test_the_declared_stream_count_comes_from_the_model_not_the_drawing)
+A model with no declared stream count cannot be satisfied by any label. ... ok
+test_the_shipped_dsv41_block_scenes_satisfy_the_invariant (test_ced.MHCResidualTests.test_the_shipped_dsv41_block_scenes_satisfy_the_invariant)
+Asserted over the real matrix, not only over a fixture. ... ok
+test_a_standard_residual_is_left_alone (test_ced.MhcTests.test_a_standard_residual_is_left_alone) ... ok
+test_a_stream_count_inconsistent_with_the_residual_mode_is_caught (test_ced.MhcTests.test_a_stream_count_inconsistent_with_the_residual_mode_is_caught) ... ok
+test_a_stream_count_that_is_merely_wrong_is_caught (test_ced.MhcTests.test_a_stream_count_that_is_merely_wrong_is_caught) ... ok
+test_the_coefficient_count_follows_from_the_stream_count (test_ced.MhcTests.test_the_coefficient_count_follows_from_the_stream_count) ... ok
+test_the_shipped_models_satisfy_the_coefficient_count (test_ced.MhcTests.test_the_shipped_models_satisfy_the_coefficient_count) ... ok
+test_a_ledger_that_gates_the_decoder_band_too_is_caught (test_ced.ParameterBandRatioTests.test_a_ledger_that_gates_the_decoder_band_too_is_caught)
+`l < encoderLayers` becoming `l <= encoderLayers` gates a fourth band. This is the ... ok
+test_a_ledger_that_ignores_the_band_ratio_is_caught (test_ced.ParameterBandRatioTests.test_a_ledger_that_ignores_the_band_ratio_is_caught)
+The gate allocated unconditionally, or not at all: both make the two samples agree. ... ok
+test_an_absent_parameter_sample_fails_rather_than_passes (test_ced.ParameterBandRatioTests.test_an_absent_parameter_sample_fails_rather_than_passes) ... ok
+test_the_derivation_follows_the_encoder_boundary_and_the_ratio (test_ced.ParameterBandRatioTests.test_the_derivation_follows_the_encoder_boundary_and_the_ratio)
+The derivation itself, so the negatives above are not merely arithmetic on a constant. ... ok
+test_the_parameter_fixture_matches_the_shipped_ledger (test_ced.ParameterBandRatioTests.test_the_parameter_fixture_matches_the_shipped_ledger)
+Otherwise every negative below is a test of a literal nobody ships. ... ok
+test_the_shipped_ledger_agrees_with_the_python_derivation (test_ced.ParameterBandRatioTests.test_the_shipped_ledger_agrees_with_the_python_derivation) ... ok
+test_a_checkpoint_with_one_ratio_throughout_cannot_pin_its_boundary (test_ced.PublisherAgreementTests.test_a_checkpoint_with_one_ratio_throughout_cannot_pin_its_boundary)
+Why CED_BAND_RATIO's distinctness rule is load-bearing rather than aesthetic: ... ok
+test_a_config_matching_no_mapped_field_blocks_rather_than_passing (test_ced.PublisherAgreementTests.test_a_config_matching_no_mapped_field_blocks_rather_than_passing)
+Zero comparisons is the exact false green a previous audit found here. ... ok
+test_a_derived_field_is_checked_against_an_expression_not_a_pointer (test_ced.PublisherAgreementTests.test_a_derived_field_is_checked_against_an_expression_not_a_pointer)
+encoderLayers is our arithmetic over compress_ratios, not a published field. It still ... ok
+test_a_faithful_transcription_against_the_whole_config_passes (test_ced.PublisherAgreementTests.test_a_faithful_transcription_against_the_whole_config_passes) ... ok
+test_a_mistranscribed_field_is_caught (test_ced.PublisherAgreementTests.test_a_mistranscribed_field_is_caught) ... ok
+test_a_partial_config_cannot_report_agreement (test_ced.PublisherAgreementTests.test_a_partial_config_cannot_report_agreement)
+Two fields resolving out of fifty-four is not a faithful transcription verified; it is ... ok
+test_an_absent_cache_blocks_rather_than_passing (test_ced.PublisherAgreementTests.test_an_absent_cache_blocks_rather_than_passing) ... ok
+test_an_unmapped_model_field_is_visible_in_the_report (test_ced.PublisherAgreementTests.test_an_unmapped_model_field_is_visible_in_the_report) ... ok
+test_every_mapped_pointer_resolves_against_the_acquired_config (test_ced.PublisherAgreementTests.test_every_mapped_pointer_resolves_against_the_acquired_config)
+A pointer that silently fails to resolve is a field nothing compares, which is the ... ok
+test_every_mismatch_is_reported_not_only_the_first (test_ced.PublisherAgreementTests.test_every_mismatch_is_reported_not_only_the_first) ... ok
+test_every_transcribed_field_is_accounted_for (test_ced.PublisherAgreementTests.test_every_transcribed_field_is_accounted_for)
+A field with no mapping is a field nobody checks. Read from the shipped model rather ... ok
+test_one_unresolvable_field_is_enough_to_block (test_ced.PublisherAgreementTests.test_one_unresolvable_field_is_enough_to_block)
+Runs with no cache: the real config minus one key, so the guard is exercised where it ... ok
+test_the_map_covers_the_fields_the_architecture_turns_on (test_ced.PublisherAgreementTests.test_the_map_covers_the_fields_the_architecture_turns_on) ... ok
+test_the_shipped_transcription_agrees_with_the_publisher_bytes (test_ced.PublisherAgreementTests.test_the_shipped_transcription_agrees_with_the_publisher_bytes)
+The check this task exists for, run against the real acquired config.json. ... ok
+test_no_framework_is_authorized_to_stand_in_for_this_model (test_ced.PublisherAuthorizationTests.test_no_framework_is_authorized_to_stand_in_for_this_model)
+No framework implements deepseek_v41. deepseek_v4 is a different model and ... ok
+test_the_publisher_is_authorized_for_the_roles_its_bytes_are_cited_under (test_ced.PublisherAuthorizationTests.test_the_publisher_is_authorized_for_the_roles_its_bytes_are_cited_under)
+Six dsv41 sources are cited: one config and one card, four modeling files. ... ok
+test_the_config_derivation_agrees_with_the_application (test_ced.ReportStructureTests.test_the_config_derivation_agrees_with_the_application)
+A third reading: core.layerKind, exported per layer. If ced.py's transcription of the ... ok
+test_the_report_group_structure_reproduces_the_published_assignment (test_ced.ReportStructureTests.test_the_report_group_structure_reproduces_the_published_assignment) ... ok
+test_the_two_derivations_agree_on_the_shipped_model (test_ced.ReportStructureTests.test_the_two_derivations_agree_on_the_shipped_model) ... ok
+test_every_other_lens_is_skipped_rather_than_judged (test_ced.ShippedCEDSceneTests.test_every_other_lens_is_skipped_rather_than_judged) ... ok
+test_the_ced_lens_is_exported_at_all (test_ced.ShippedCEDSceneTests.test_the_ced_lens_is_exported_at_all) ... ok
+test_the_fixture_layer_kinds_match_the_application (test_ced.ShippedCEDSceneTests.test_the_fixture_layer_kinds_match_the_application)
+A hand-written fixture that drifts from core.mjs would make every negative test vacuous. ... ok
+test_the_shipped_ced_scene_satisfies_the_invariant (test_ced.ShippedCEDSceneTests.test_the_shipped_ced_scene_satisfies_the_invariant) ... ok
+test_every_wired_model_judge_takes_the_shared_signature (test_ced.SoftwareGateStatusTests.test_every_wired_model_judge_takes_the_shared_signature)
+The single wiring list only works if every member is callable the same way. ... ok
+test_no_scene_judge_can_emit_blocked (test_ced.SoftwareGateStatusTests.test_no_scene_judge_can_emit_blocked)
+Iterates `SCENE_JUDGES`, likewise shared with the gate, condition and all. ... ok
+test_no_schematics_judge_can_emit_blocked (test_ced.SoftwareGateStatusTests.test_no_schematics_judge_can_emit_blocked)
+Iterates `SCHEMATICS_JUDGES`, the same object `schematics.run` iterates, so a judge ... ok
+test_the_gate_report_carries_only_pass_and_fail (test_ced.SoftwareGateStatusTests.test_the_gate_report_carries_only_pass_and_fail) ... ok
+test_the_module_has_no_schematics_domain_blocked_constructor (test_ced.SoftwareGateStatusTests.test_the_module_has_no_schematics_domain_blocked_constructor)
+Deleted rather than left unused: constructing one must take new code, not a keyword. ... ok
+test_the_scene_conditions_are_the_gate_s_own (test_ced.SoftwareGateStatusTests.test_the_scene_conditions_are_the_gate_s_own)
+The conditions travel with the judges, so the gate cannot call one on a lens the ... ok
 test_400_gbps_is_50_gbytes (test_domains.DomainTests.test_400_gbps_is_50_gbytes) ... ok
 test_api_exists (test_domains.DomainTests.test_api_exists) ... ok
 test_bits_bytes_mismatch (test_domains.DomainTests.test_bits_bytes_mismatch) ... ok
@@ -130,6 +364,7 @@ test_traversal_and_symlink_escape_rejected (test_evidence.EvidenceTests.test_tra
 test_two_independent_code_references (test_evidence.EvidenceTests.test_two_independent_code_references) ... ok
 test_config_only_publisher_is_corroborated_by_two_organisations (test_evidence.IndependentCorroborationTests.test_config_only_publisher_is_corroborated_by_two_organisations) ... ok
 test_config_only_publisher_still_needs_more_than_one_organisation (test_evidence.IndependentCorroborationTests.test_config_only_publisher_still_needs_more_than_one_organisation) ... ok
+test_every_authorized_publisher_has_an_audit_record (test_evidence.IndependentCorroborationTests.test_every_authorized_publisher_has_an_audit_record) ... ok
 test_policy_set_matches_the_recorded_audit (test_evidence.IndependentCorroborationTests.test_policy_set_matches_the_recorded_audit) ... ok
 test_publisher_path_still_rejects_a_single_organisation (test_evidence.IndependentCorroborationTests.test_publisher_path_still_rejects_a_single_organisation) ... ok
 test_publisher_plus_independent_framework_still_satisfies (test_evidence.IndependentCorroborationTests.test_publisher_plus_independent_framework_still_satisfies) ... ok
@@ -196,14 +431,22 @@ test_no_contract_hides_an_empty_binding_set_while_claiming_a_constant (test_inte
 test_changed_live_core_field_fails (test_integration.IntegrationTests.test_changed_live_core_field_fails) ... ok
 test_claim_with_missing_dependency_is_not_reported_as_verified (test_integration.IntegrationTests.test_claim_with_missing_dependency_is_not_reported_as_verified) ... ok
 test_cold_cache_is_blocked_not_certified (test_integration.IntegrationTests.test_cold_cache_is_blocked_not_certified) ... ok
+test_deploy_rides_the_four_software_gates_and_nothing_is_continue_on_error (test_integration.IntegrationTests.test_deploy_rides_the_four_software_gates_and_nothing_is_continue_on_error) ... ok
 test_drifted_presentation_claim_is_not_reported_as_verified (test_integration.IntegrationTests.test_drifted_presentation_claim_is_not_reported_as_verified) ... ok
 test_empty_and_unrun_never_return_success_exit (test_integration.IntegrationTests.test_empty_and_unrun_never_return_success_exit) ... ok
+test_every_contract_domain_is_either_in_the_runtime_matrix_or_recorded_outside_it (test_integration.IntegrationTests.test_every_contract_domain_is_either_in_the_runtime_matrix_or_recorded_outside_it)
+A domain in neither set is exempt from RUNTIME_MATRIX by omission rather than by decision. ... ok
 test_new_scientific_field_cannot_hide (test_integration.IntegrationTests.test_new_scientific_field_cannot_hide) ... ok
 test_no_claim_is_exempt_from_review (test_integration.IntegrationTests.test_no_claim_is_exempt_from_review) ... ok
-test_publication_workflow_cannot_deploy_on_engineering_alone (test_integration.IntegrationTests.test_publication_workflow_cannot_deploy_on_engineering_alone) ... ok
+test_publication_completeness_is_offline_and_ci_gates_on_contradictions_only (test_integration.IntegrationTests.test_publication_completeness_is_offline_and_ci_gates_on_contradictions_only)
+The publication audit answers two questions and CI can honestly answer one of them. ... ok
 test_removing_verifier_domain_is_detected (test_integration.IntegrationTests.test_removing_verifier_domain_is_detected) ... ok
 test_runtime_requires_each_registered_sku_and_fabric (test_integration.IntegrationTests.test_runtime_requires_each_registered_sku_and_fabric) ... ok
 test_scientific_field_cannot_be_presentation (test_integration.IntegrationTests.test_scientific_field_cannot_be_presentation) ... ok
+test_the_audit_carries_the_checks_no_software_gate_may_block_on (test_integration.IntegrationTests.test_the_audit_carries_the_checks_no_software_gate_may_block_on)
+Ruling T789b. CED_ACTIVE_RATIO and CLAIM_MODEL_COVERAGE both have an honest BLOCKED ... ok
+test_the_cold_audit_blocks_the_transcription_check_rather_than_omitting_it (test_integration.IntegrationTests.test_the_cold_audit_blocks_the_transcription_check_rather_than_omitting_it)
+Ruling T789a moved CED_PUBLISHER_AGREEMENT here from the schematics gate. With no cached ... ok
 test_unrun_gpu_is_not_pass (test_integration.IntegrationTests.test_unrun_gpu_is_not_pass) ... ok
 test_upstream_pin_change_invalidates_review_subject (test_integration.IntegrationTests.test_upstream_pin_change_invalidates_review_subject) ... ok
 test_counts_are_scraped_from_both_node_reporter_formats (test_integration.ReceiptCountTests.test_counts_are_scraped_from_both_node_reporter_formats) ... ok
@@ -250,8 +493,34 @@ test_oversized_artifact_is_caught (test_presentations.ArtifactSourceTests.test_o
 test_export_without_an_opaque_backdrop_is_caught (test_presentations.ExportedSvgTests.test_export_without_an_opaque_backdrop_is_caught) ... ok
 test_external_reference_in_an_export_is_caught (test_presentations.ExportedSvgTests.test_external_reference_in_an_export_is_caught) ... ok
 test_the_xmlns_declaration_is_required (test_presentations.ExportedSvgTests.test_the_xmlns_declaration_is_required) ... ok
+test_the_focal_states_come_from_the_live_model_table (test_presentations.FocalStateTests.test_the_focal_states_come_from_the_live_model_table)
+Every stage a model offers, not the one stage a literal named. ... ok
+test_the_shipped_report_measured_more_than_the_page_it_opened (test_presentations.FocalStateTests.test_the_shipped_report_measured_more_than_the_page_it_opened) ... ok
+test_a_checkpoint_no_preview_depicts_is_caught (test_presentations.PreviewCoverageTests.test_a_checkpoint_no_preview_depicts_is_caught) ... ok
+test_a_complete_manifest_passes (test_presentations.PreviewCoverageTests.test_a_complete_manifest_passes) ... ok
+test_a_focal_page_no_preview_depicts_is_caught (test_presentations.PreviewCoverageTests.test_a_focal_page_no_preview_depicts_is_caught)
+Depicting the checkpoint is not depicting the page whose whole subject is the band split. ... ok
+test_a_focal_page_other_than_ced_is_also_required (test_presentations.PreviewCoverageTests.test_a_focal_page_other_than_ced_is_also_required)
+The exact residue this closes: the requirement was `ced` and only `ced`, so the mHC ... ok
+test_the_published_previews_cover_every_live_checkpoint (test_presentations.PreviewCoverageTests.test_the_published_previews_cover_every_live_checkpoint)
+And against the real manifest and the real model table, so the negatives above are not ... ok
+test_the_shipped_report_asserts_coverage_and_not_only_freshness (test_presentations.PreviewCoverageTests.test_the_shipped_report_asserts_coverage_and_not_only_freshness) ... ok
 test_a_stale_manifest_is_caught (test_presentations.PreviewFreshnessTests.test_a_stale_manifest_is_caught) ... ok
 test_previews_match_the_built_artifact (test_presentations.PreviewFreshnessTests.test_previews_match_the_built_artifact) ... ok
+test_a_recorded_capture_with_no_file_is_caught (test_presentations.PreviewIntegrityTests.test_a_recorded_capture_with_no_file_is_caught) ... ok
+test_an_edited_preview_is_caught (test_presentations.PreviewIntegrityTests.test_an_edited_preview_is_caught) ... ok
+test_the_published_svgs_match_their_recorded_digests (test_presentations.PreviewIntegrityTests.test_the_published_svgs_match_their_recorded_digests) ... ok
+test_zero_comparisons_is_not_integrity (test_presentations.PreviewIntegrityTests.test_zero_comparisons_is_not_integrity) ... ok
+test_an_unrecorded_file_is_caught (test_presentations.PreviewInventoryTests.test_an_unrecorded_file_is_caught) ... ok
+test_every_published_file_is_named_by_a_capture (test_presentations.PreviewInventoryTests.test_every_published_file_is_named_by_a_capture) ... ok
+test_a_header_row_with_no_headers_is_caught (test_presentations.ProseProbeTests.test_a_header_row_with_no_headers_is_caught) ... ok
+test_a_table_of_plain_cells_is_caught (test_presentations.ProseProbeTests.test_a_table_of_plain_cells_is_caught)
+The defect that is invisible to every geometric and contrast check: five columns of <td>, ... ok
+test_a_well_formed_table_and_citation_report_nothing (test_presentations.ProseProbeTests.test_a_well_formed_table_and_citation_report_nothing) ... ok
+test_an_unnamed_or_unguarded_citation_is_caught (test_presentations.ProseProbeTests.test_an_unnamed_or_unguarded_citation_is_caught) ... ok
+test_the_shipped_ced_page_satisfies_the_probe (test_presentations.ProseProbeTests.test_the_shipped_ced_page_satisfies_the_probe)
+And the real page, so the negatives above are not tests of a probe nothing runs. ... ok
+test_unscoped_headers_are_caught_in_both_directions (test_presentations.ProseProbeTests.test_unscoped_headers_are_caught_in_both_directions) ... ok
 test_a_scenario_claiming_certification_is_rejected (test_presentations.ScenarioSchemaTests.test_a_scenario_claiming_certification_is_rejected) ... ok
 test_schema_exists_and_accepts_a_real_export (test_presentations.ScenarioSchemaTests.test_schema_exists_and_accepts_a_real_export) ... ok
 test_blocked_total_is_current (test_reported_numbers.PublicationNumberTests.test_blocked_total_is_current) ... ok
@@ -264,7 +533,16 @@ test_no_stale_dual_code_claim (test_reported_numbers.PublicationNumberTests.test
 Saying a code BLOCKS is a claim about the report, and the report says it does not. ... ok
 test_pass_total_is_current (test_reported_numbers.PublicationNumberTests.test_pass_total_is_current) ... ok
 test_review_required_count_is_current (test_reported_numbers.PublicationNumberTests.test_review_required_count_is_current) ... ok
+test_the_committed_publication_report_describes_these_bytes (test_reported_numbers.PublicationNumberTests.test_the_committed_publication_report_describes_these_bytes)
+Offline-only is only honest if the offline report is proven current by a gate that runs. ... ok
+test_transcription_figures_are_current (test_reported_numbers.PublicationNumberTests.test_transcription_figures_are_current)
+The 54-of-79 field comparison, read out of the audit that actually performed it. ... ok
 test_verified_source_count_is_current (test_reported_numbers.PublicationNumberTests.test_verified_source_count_is_current) ... ok
+test_a_figure_ending_a_sentence_is_still_stated (test_reported_numbers.RecordMatcherTests.test_a_figure_ending_a_sentence_is_still_stated) ... ok
+test_a_figure_inside_a_decimal_is_not_stated (test_reported_numbers.RecordMatcherTests.test_a_figure_inside_a_decimal_is_not_stated) ... ok
+test_a_figure_inside_a_longer_number_is_not_stated (test_reported_numbers.RecordMatcherTests.test_a_figure_inside_a_longer_number_is_not_stated) ... ok
+test_the_unit_separates_two_quantities_that_share_a_number (test_reported_numbers.RecordMatcherTests.test_the_unit_separates_two_quantities_that_share_a_number)
+What word boundaries alone cannot do, and what actually hid the 26-against-28 drift: ... ok
 test_data_versus_source_discrepancies_are_recorded (test_reported_numbers.ResidueNarrativeTests.test_data_versus_source_discrepancies_are_recorded) ... ok
 test_kept_scene_citations_are_stated_and_explained (test_reported_numbers.ResidueNarrativeTests.test_kept_scene_citations_are_stated_and_explained) ... ok
 test_pdf_limitation_cites_lines_that_still_decode_strictly (test_reported_numbers.ResidueNarrativeTests.test_pdf_limitation_cites_lines_that_still_decode_strictly)
@@ -275,7 +553,8 @@ test_residue_document_totals_are_stated (test_reported_numbers.ResidueNarrativeT
 test_the_anti_laundering_correction_is_recorded (test_reported_numbers.ResidueNarrativeTests.test_the_anti_laundering_correction_is_recorded) ... ok
 test_the_withdrawn_anti_laundering_claim_is_not_restated (test_reported_numbers.ResidueNarrativeTests.test_the_withdrawn_anti_laundering_claim_is_not_restated)
 The dependency fixpoint already carried that property; the role change did not add it. ... ok
-test_not_run_obligation_count_is_current (test_reported_numbers.RuntimeNumberTests.test_not_run_obligation_count_is_current) ... ok
+test_not_run_obligation_count_is_current (test_reported_numbers.RuntimeNumberTests.test_not_run_obligation_count_is_current)
+With a unit, because a bare NOT_RUN count is exactly the collision `unit=` exists for. ... ok
 test_receipt_staleness_is_recorded_as_operational_fact (test_reported_numbers.RuntimeNumberTests.test_receipt_staleness_is_recorded_as_operational_fact)
 A manifest edit invalidates runtime receipts; they must be re-probed, not re-stamped. ... ok
 test_runtime_is_blocked_not_failed (test_reported_numbers.RuntimeNumberTests.test_runtime_is_blocked_not_failed) ... ok
@@ -283,8 +562,18 @@ test_aesthetics_figures_are_current (test_reported_numbers.SoftwareGateNumberTes
 test_aesthetics_scenario_count_is_self_consistent (test_reported_numbers.SoftwareGateNumberTests.test_aesthetics_scenario_count_is_self_consistent) ... ok
 test_artifact_identity_names_the_current_bytes (test_reported_numbers.SoftwareGateNumberTests.test_artifact_identity_names_the_current_bytes)
 Re-derived from the working tree, not copied from the receipt, so it cannot go stale. ... ok
+test_browser_figures_are_current (test_reported_numbers.SoftwareGateNumberTests.test_browser_figures_are_current)
+The browser figures had no reconciliation at all, and one of them was wrong. ... skipped 'no engineering report; run npm run verify:engineering'
+test_device_scale_states_matches_the_cases_the_run_recorded (test_reported_numbers.SoftwareGateNumberTests.test_device_scale_states_matches_the_cases_the_run_recorded)
+The receipt must agree with the case file the same run wrote. ... skipped 'no engineering report; run npm run verify:engineering'
 test_engineering_test_counts_are_current (test_reported_numbers.SoftwareGateNumberTests.test_engineering_test_counts_are_current) ... skipped 'no engineering report; run npm run verify:engineering'
+test_kv_budget_figures_are_current (test_reported_numbers.SoftwareGateNumberTests.test_kv_budget_figures_are_current)
+Re-derived from the working tree rather than copied, for the same reason the artifact ... ok
+test_parameter_band_figures_are_current (test_reported_numbers.SoftwareGateNumberTests.test_parameter_band_figures_are_current)
+Re-derived from the working tree, like the KV figures above and for the same reason. ... ok
 test_schematics_figures_are_current (test_reported_numbers.SoftwareGateNumberTests.test_schematics_figures_are_current) ... ok
+test_the_exposition_checks_are_reported_as_having_run (test_reported_numbers.SoftwareGateNumberTests.test_the_exposition_checks_are_reported_as_having_run)
+The record says the written exposition is checked. That is a claim about the gate, so ... ok
 test_changed_evidence_digest_rejected (test_reviews.SignedReviewTests.test_changed_evidence_digest_rejected) ... ok
 test_expired_review_rejected (test_reviews.SignedReviewTests.test_expired_review_rejected) ... ok
 test_real_ed25519_acceptance (test_reviews.SignedReviewTests.test_real_ed25519_acceptance) ... ok
@@ -421,6 +710,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 383 tests in 114.233s
+Ran 577 tests in 208.600s
 
-OK (skipped=2)
+OK (skipped=4)

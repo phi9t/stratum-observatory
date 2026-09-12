@@ -93,6 +93,124 @@ def judge_preview_freshness(root,recorded=None):
     return [_ok('PREVIEW_FRESH','previews',f"{len(data.get('captures',[]))} captures match the built artifact.")]
 
 
+def judge_preview_coverage(root,models,focal):
+    """Fresh is not complete, and this suite only ever asked the first question.
+
+    `judge_preview_freshness` compares one artifact digest, so a manifest depicting eight of nine
+    checkpoints is exactly as fresh as one depicting all nine. `tests/capture.py` built its cases
+    from a hardcoded eight-model literal and therefore published no preview of the ninth
+    checkpoint at all, and nothing reported it.
+
+    Closing that with an `encoderLayers`-only requirement left the same defect one layer in: this
+    judge asked for a decoder block plus, where applicable, a `ced` page, and `focalStages` offers
+    four. So `dsv41/model/residual` -- the mHC 4-stream residual this checkpoint exists to draw --
+    was in no published preview and reported PASS, as were `dsv41/model/inputs`,
+    `q38flash/model/inputs` and `q3827/model/inputs`. The requirement is now every focal page a
+    model actually offers, read from `core.focalStages` rather than from a property test here.
+    """
+    root=Path(root);manifest=root/'previews/manifest.json'
+    if not manifest.exists():
+        return [Finding('PREVIEW_ABSENT','presentations','BLOCKED','previews','No preview manifest to compare against.','Run npm run capture.')]
+    captures=loads(manifest.read_text()).get('captures') or []
+    stages={}
+    for capture in captures:
+        state=capture.get('state') or {}
+        stages.setdefault(state.get('model'),set()).add(state.get('stage'))
+    out=[];pages=0
+    for mid in sorted(models):
+        if mid not in stages:
+            out.append(_bad('PREVIEW_COVERAGE',mid,f'No published preview depicts {mid} in any state.',
+                            'tests/capture.py must derive its cases from the live model table; a literal list '
+                            'reports success over the models it happens to name.'))
+            continue
+        wanted=set(focal.get(mid,()));pages+=len(wanted)
+        missing=sorted(wanted-stages[mid])
+        if missing:
+            out.append(_bad('PREVIEW_COVERAGE',mid,
+                            f'No published preview depicts the {mid} focal page(s) {missing}; '
+                            f'this checkpoint offers {sorted(wanted)}.',
+                            'A focal page carries a diagram and prose that exist in no other state. '
+                            'tests/capture.py must capture every stage the control strip offers, not a '
+                            'literal subset of them.'))
+    return out or [_ok('PREVIEW_COVERAGE','previews',
+                       f'All {len(models)} checkpoints appear in the {len(captures)} published previews, '
+                       f'including every one of the {pages} focal pages they offer.')]
+
+
+def judge_preview_integrity(root):
+    """The 29 recorded per-file digests that nothing has ever read.
+
+    `tests/capture.py` writes an `svg_sha256` for every capture. Across every `.py` and `.mjs` in
+    this repository there was exactly one reference to that key: the line that writes it.
+    `judge_preview_freshness` compares a single artifact digest and `judge_preview_coverage`
+    counts models, so a `previews/*.svg` that had been hand-edited, truncated, or left behind by
+    an older build passed both -- the manifest recorded exactly what was wrong with it and no one
+    asked. A recorded digest that nothing verifies is not provenance; it is decoration that reads
+    like provenance, which is worse.
+
+    Missing files are reported separately from mismatching ones: one is an incomplete capture,
+    the other is a published preview that does not depict what the manifest says it depicts.
+    """
+    root=Path(root);manifest=root/'previews/manifest.json'
+    if not manifest.exists():
+        return [Finding('PREVIEW_ABSENT','presentations','BLOCKED','previews','No preview manifest to compare against.','Run npm run capture.')]
+    captures=loads(manifest.read_text()).get('captures') or []
+    out=[];checked=0
+    for capture in captures:
+        name=capture.get('name');recorded=capture.get('svg_sha256')
+        if not recorded:
+            continue
+        path=root/'previews'/f'{name}.svg'
+        if not path.exists():
+            out.append(_bad('PREVIEW_INTEGRITY',name,
+                            f'The manifest records a digest for {name}.svg but the file is absent.',
+                            'Re-run npm run capture; a recorded capture with no file is an incomplete publication.'))
+            continue
+        actual=hashlib.sha256(path.read_bytes()).hexdigest()
+        checked+=1
+        if actual!=recorded:
+            out.append(_bad('PREVIEW_INTEGRITY',name,
+                            f'{name}.svg hashes to {actual[:16]}… but the manifest records {str(recorded)[:16]}….',
+                            'The published preview is not the one the manifest attests. Re-run npm run '
+                            'capture rather than editing the recorded digest.'))
+    if out:
+        return out
+    if not checked:
+        return [Finding('PREVIEW_INTEGRITY','presentations','BLOCKED','previews',
+                        'No capture carries a recorded SVG digest, so nothing here was verified.',
+                        'A comparison count of zero is not integrity. Re-run npm run capture.')]
+    return [_ok('PREVIEW_INTEGRITY','previews',
+                f'{checked} published SVG previews each hash to the digest the manifest records.')]
+
+
+def judge_preview_inventory(root):
+    """Coverage in the direction nobody was checking: files on disk that the manifest never names.
+
+    `judge_preview_coverage` walks the manifest and asks whether each model is in it. Nothing
+    walked `previews/` and asked whether each published file is in the manifest, so bytes could
+    sit in the published directory attested by nothing and depicting anything -- including an
+    artifact several releases old. That is the same "absent coverage reads as passing coverage"
+    shape as the manifest-side gap, with the arrow reversed.
+    """
+    root=Path(root);manifest=root/'previews/manifest.json'
+    if not manifest.exists():
+        return [Finding('PREVIEW_ABSENT','presentations','BLOCKED','previews','No preview manifest to compare against.','Run npm run capture.')]
+    captures=loads(manifest.read_text()).get('captures') or []
+    named={c.get('name') for c in captures}
+    on_disk={path.stem for path in (root/'previews').iterdir()
+             if path.suffix in ('.png','.svg')}
+    orphans=sorted(on_disk-named)
+    if orphans:
+        return [_bad('PREVIEW_INVENTORY','previews',
+                     f'{len(orphans)} published preview file(s) are named by no capture record: '
+                     f'{", ".join(orphans)}.',
+                     'Every file in previews/ must be produced by npm run capture and recorded in the '
+                     'manifest, or it is bytes attested by nothing. Capture it properly or move it out '
+                     'of the published directory; do not leave it unrecorded.')]
+    return [_ok('PREVIEW_INVENTORY','previews',
+                f'Every one of the {len(on_disk)} published preview files is named by a capture record.')]
+
+
 PROBE_A11Y=r"""
 () => {
   const out = {issues: [], counts: {}};
@@ -117,6 +235,46 @@ PROBE_A11Y=r"""
   if (svg && !named(svg)) out.issues.push({kind: 'unnamed-diagram', detail: 'the schematic has no accessible name'});
   out.title = document.title;
   out.lang = document.documentElement.lang;
+  return out;
+}
+"""
+
+
+PROBE_PROSE=r"""
+() => {
+  // Prose and data tables, measured on the page a reader is actually on. `PROBE_A11Y` covers
+  // headings and control names; this covers the part of a data table a screen reader needs and
+  // nothing else checks: a real header row, a row header per body row, and links that say where
+  // they go. A five-column table of <td>s is perfectly legible and completely unnavigable.
+  const out = {issues: [], counts: {}};
+  const tables = Array.from(document.querySelectorAll('table'));
+  out.counts.tables = tables.length;
+  out.counts.rows = 0;
+  for (const t of tables) {
+    const id = t.className || t.tagName;
+    const head = t.querySelector('thead');
+    if (!head) { out.issues.push({kind: 'table-no-thead', detail: id}); continue; }
+    const cols = Array.from(head.querySelectorAll('th'));
+    if (!cols.length) out.issues.push({kind: 'table-no-column-headers', detail: id});
+    for (const th of cols) if (th.getAttribute('scope') !== 'col')
+      out.issues.push({kind: 'table-unscoped-column', detail: `${id}: ${(th.textContent||'').trim().slice(0,24)}`});
+    const bodyRows = Array.from(t.querySelectorAll('tbody tr'));
+    out.counts.rows += bodyRows.length;
+    for (const tr of bodyRows) {
+      const first = tr.firstElementChild;
+      if (!first) continue;
+      if (first.tagName !== 'TH') { out.issues.push({kind: 'table-no-row-header', detail: id}); break; }
+      if (first.getAttribute('scope') !== 'row') { out.issues.push({kind: 'table-unscoped-row', detail: id}); break; }
+    }
+  }
+  const links = Array.from(document.querySelectorAll('a[href^="http"]'));
+  out.counts.links = links.length;
+  for (const el of links) {
+    if (!(el.textContent || '').trim() && !el.getAttribute('aria-label'))
+      out.issues.push({kind: 'unnamed-citation', detail: el.getAttribute('href').slice(0, 60)});
+    if (!/noopener/.test(el.getAttribute('rel') || ''))
+      out.issues.push({kind: 'citation-without-noopener', detail: el.getAttribute('href').slice(0, 60)});
+  }
   return out;
 }
 """
@@ -169,6 +327,30 @@ def visualization_record(probe,target):
 
 
 
+def focal_states(root,models=None,focal=None):
+    """The states a reader can reach that this suite must also reach.
+
+    Derived from the live model table, not from a literal: `tests/browser.test.py` shipped a
+    hardcoded eight-checkpoint list and went on sweeping it after a ninth arrived, which
+    `VERIFICATION.md` records. A focal stage carries prose and a data table that exist in no other
+    state, so measuring only the default state measures a page nobody is complaining about.
+
+    The model list was read live and then narrowed by a literal `'ced'`, which is the same defect
+    one layer in: `focalStages` offers four stages and this emitted one, so the `inputs`, `ple`
+    and mHC `residual` pages reached a reader measured in no state while `PROSE_SCOPE` correctly
+    reported having measured two. Every stage a model offers is now a state here.
+
+    `models`/`focal` let a caller that has already paid for one exporter run reuse it; omitted,
+    the table is read here, so the derivation is the same either way.
+    """
+    if models is None or focal is None:
+        from .ced import inventory
+        models,samples=inventory(root)
+        focal=samples['focal_stages']
+    return [{'model':mid,'view':'model','stage':stage,'layer':4}
+            for mid in sorted(models) for stage in focal.get(mid,())]
+
+
 def run(root):
     root=Path(root)
     sys.path.insert(0,str(root/'tests'))
@@ -176,9 +358,15 @@ def run(root):
     from browser_env import chromium_path
     policy=load_policy(root)
     artifact=root/'dist/index.html'
+    from .ced import inventory
+    models,samples=inventory(root)
+    focal=samples['focal_stages']
     findings=list(judge_artifact_source(artifact,policy))
     findings.extend(judge_preview_freshness(root))
-    checks={}
+    findings.extend(judge_preview_coverage(root,models,focal))
+    findings.extend(judge_preview_integrity(root))
+    findings.extend(judge_preview_inventory(root))
+    checks={'models':sorted(models)}
     with sync_playwright() as pw:
         browser=pw.chromium.launch(executable_path=chromium_path(pw),headless=True,args=['--no-sandbox','--allow-file-access-from-files'])
         page=browser.new_page(viewport={'width':1440,'height':1000})
@@ -217,6 +405,45 @@ def run(root):
             findings.append(_ok('A11Y_OK','page',f"{a11y['counts']['controls']} controls named, {a11y['counts']['headings']} headings ordered, {a11y['counts']['live']} live regions."))
         if not a11y.get('lang'):
             findings.append(_bad('A11Y_LANG','page','Document declares no language.','Set lang on the html element.'))
+
+        # The focal pages. `page.goto` lands on the default state only, so until now the CED
+        # page's headings, control names, table semantics and citations were checked by nothing --
+        # and a report that says "9 headings ordered" was describing a different page.
+        states=[{'label':'default','patch':None}]+[{'label':f"{c['model']}/{c['stage']}",'patch':c}
+                                                   for c in focal_states(root,models,focal)]
+        checks['states']=[st['label'] for st in states]
+        for st in states:
+            if st['patch']:page.evaluate('(p)=>STRATUM.setState(p)',st['patch'])
+            where=st['label']
+            # The default state's headings and control names are already reported above as
+            # A11Y_OK; re-running the same probe on it would double every finding it produces.
+            local=page.evaluate(PROBE_A11Y) if st['patch'] else a11y
+            if st['patch']:
+                for issue in local['issues']:
+                    findings.append(_bad('A11Y_'+issue['kind'].replace('-','_').upper(),where,
+                                         f"{issue['kind']}: {issue['detail']}",
+                                         'The delivered page must be usable by someone not using a mouse or a screen.'))
+            prose=page.evaluate(PROBE_PROSE)
+            for issue in prose['issues']:
+                findings.append(_bad('A11Y_'+issue['kind'].replace('-','_').upper(),where,
+                                     f"{issue['kind']}: {issue['detail']}",
+                                     'A data table needs a real header row, a row header per row and named links; '
+                                     'legible is not navigable.'))
+            if not local['issues'] and not prose['issues']:
+                findings.append(_ok('PROSE_OK',where,
+                                    f"{local['counts']['headings']} headings ordered, "
+                                    f"{local['counts']['controls']} controls named, "
+                                    f"{prose['counts']['tables']} table(s) with scoped headers over "
+                                    f"{prose['counts']['rows']} rows, {prose['counts']['links']} citations named."))
+        if len(states)<2:
+            findings.append(_bad('PROSE_SCOPE','states',
+                                 'No focal state was measured, so this suite only saw the page it opened.',
+                                 'focal_states reads the live model table; a checkpoint with an encoder/decoder '
+                                 'split must appear there or its page reaches a reader unmeasured.'))
+        else:
+            findings.append(_ok('PROSE_SCOPE','states',
+                                f"Measured {len(states)} states from a real file:// origin: {', '.join(checks['states'])}."))
+        page.evaluate('(p)=>STRATUM.setState(p)',{'model':'ds3','view':'model','stage':'block'})
 
         # Focus must be visible to someone navigating by keyboard.
         page.keyboard.press('Tab')

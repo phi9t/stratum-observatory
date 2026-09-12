@@ -11,12 +11,13 @@ Geometry states: 1000
 Geometry states: 1100
 Geometry states: 1200
 Geometry states: 1300
+Geometry states: 1400
 {
   "schema": "stratum-browser-tests/v2",
   "browser": "Chromium",
-  "geometry_states": 1336,
+  "geometry_states": 1447,
   "responsive_states": 56,
-  "device_scale_states": 32,
+  "device_scale_states": 36,
   "geometry_defects": 0,
   "runtime_errors": 0,
   "external_runtime_requests": 0,
@@ -30,7 +31,8 @@ Geometry states: 1300
     "q3235": 94,
     "q3827": 64,
     "q38flash": 48,
-    "kimi3": 93
+    "kimi3": 93,
+    "dsv41": 40
   },
   "failures": [],
   "errors": [],
