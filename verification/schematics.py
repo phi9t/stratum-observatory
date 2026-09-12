@@ -4,7 +4,7 @@ Engineering-class, like aesthetics: every value is derived from our own scene IR
 own model table, so it needs no upstream source and no signed review, and per
 docs/verifiers/DESIGN.md trust boundary 1 it must never contribute to a scientific PASS.
 
-Runs in Node-then-Python with no browser, which is what makes the full 504-layer matrix
+Runs in Node-then-Python with no browser, which is what makes the full 544-layer matrix
 affordable. `scene` comes from the diagram builders; `expect` comes from core.mjs, the same
 functions behind the ledgers. Comparing them checks that the picture agrees with the
 mathematics rather than merely with itself.
@@ -14,6 +14,7 @@ import argparse,json,subprocess,sys
 from collections import Counter,defaultdict
 from datetime import datetime,timezone
 from pathlib import Path
+from .ced import SCENE_JUDGES,SCHEMATICS_JUDGES,inventory
 from .model import Finding,aggregate,exit_code
 from .evidence import loads
 
@@ -164,9 +165,9 @@ def judge_scene_vs_model(scene,expect,state):
 def judge_row_alignment(data,tolerance,max_rows=2):
     """OBSERVATORY.md: sibling operations share semantic rows across presets.
 
-    Position is memory. `norm1`, `attention` and `router` sit at pixel-identical heights in
-    all eight presets, and that is what lets a reader switch checkpoints without relearning
-    the diagram.
+    Position is memory. `norm1`, `norm2`, `attention` and `out-proj` sit at pixel-identical
+    heights in all nine presets, and `router` in all seven that route, which is what lets a
+    reader switch checkpoints without relearning the diagram.
 
     A second row is legitimate where a checkpoint inserts a different mechanism -- Kimi's
     latent MoE pushes the expert column down, Flash-Next's QSA history sits higher, and the
@@ -211,8 +212,21 @@ def run(root,tolerance=None):
         scoped(entry,judge_state_rails(scene))
         scoped(entry,judge_lanes(scene))
         scoped(entry,judge_scene_vs_model(scene,entry['expect'],entry['state']))
+        for applies,judge in SCENE_JUDGES:
+            if applies(entry['expect'],entry['state']):scoped(entry,judge(scene,entry['expect']))
         orphans+=count_orphans(scene)
     findings.extend(judge_row_alignment(data,tolerance))
+    # One exporter run, both halves: the live model table and the sampled ledger/partition output.
+    # Read from the application rather than from a literal, so the invariants judge what ships.
+    inv_models,inv_samples=inventory(root)
+    for judge in SCHEMATICS_JUDGES:findings.extend(judge(inv_models,inv_samples))
+    # CED_PUBLISHER_AGREEMENT, CED_ACTIVE_RATIO and CLAIM_MODEL_COVERAGE deliberately do NOT run
+    # here. All three have a BLOCKED outcome -- absent publisher bytes, a rounded published
+    # figure, a manifest with nothing to compare -- and `aggregate` turns any BLOCKED into exit 2
+    # on a gate the Pages deploy requires, which would stop the page shipping for reasons that
+    # are not software defects. They run in runner.audit, where offline-BLOCKED is the expected
+    # state and where evidence work belongs (rulings T789a and T789b). What is left here reads
+    # only our own bytes and can only return PASS or FAIL.
     report={'schema':'stratum-schematics/v1','status':aggregate(findings),
             'generated_at':datetime.now(timezone.utc).isoformat(),
             'scenes':data['count'],'decoder_layers':sum(1 for e in data['scenes'] if e['key'].split('/')[1:3]==['model','block']),

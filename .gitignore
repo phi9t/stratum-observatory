@@ -6,6 +6,9 @@ _site/
 .verification-cache/
 verification/candidates/
 *.private.pem
-previews/test-export.svg
+tests/test-export.svg
+tests/test-scenario.json
+tests/smoke-initial.png
 tests/sweep-report.json
+tests/sweep-shots/
 .venv/

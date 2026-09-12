@@ -1,13 +1,36 @@
 {
   "schema": "stratum-presentations/v1",
   "status": "PASS",
-  "generated_at": "2026-09-10T08:55:04.807220+00:00",
-  "artifact_sha256": "595b73f22f37051d664fd76e794449fa079808f3f151fb0853e5dd546d913f07",
+  "generated_at": "2026-09-12T18:53:23.953905+00:00",
+  "artifact_sha256": "fecceb9e48bcd462541716bb8e1c1738d3b66ef58f146fad5d55b2e445de2926",
   "delivery": {
-    "file_url": true
+    "models": [
+      "ds2",
+      "ds3",
+      "dsv41",
+      "kimi3",
+      "q3235",
+      "q330",
+      "q38",
+      "q3827",
+      "q38flash"
+    ],
+    "file_url": true,
+    "states": [
+      "default",
+      "dsv41/inputs",
+      "dsv41/residual",
+      "dsv41/ced",
+      "kimi3/inputs",
+      "kimi3/residual",
+      "q3827/inputs",
+      "q38flash/inputs",
+      "q38flash/residual",
+      "q38flash/ple"
+    ]
   },
   "counts": {
-    "PASS": 12
+    "PASS": 26
   },
   "findings": [
     {
@@ -15,7 +38,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "index.html",
-      "message": "164 KiB, valid utf-8, nothing loaded from an external origin; 23 source citations are clickable by design.",
+      "message": "209 KiB, valid utf-8, nothing loaded from an external origin; 23 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -24,7 +47,34 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "23 captures match the built artifact.",
+      "message": "30 captures match the built artifact.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PREVIEW_COVERAGE",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "previews",
+      "message": "All 9 checkpoints appear in the 30 published previews, including every one of the 9 focal pages they offer.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PREVIEW_INTEGRITY",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "previews",
+      "message": "29 published SVG previews each hash to the digest the manifest records.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PREVIEW_INVENTORY",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "previews",
+      "message": "Every one of the 30 published preview files is named by a capture record.",
       "remedy": "",
       "evidence": []
     },
@@ -78,7 +128,106 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "page",
-      "message": "131 controls named, 9 headings ordered, 2 live regions.",
+      "message": "132 controls named, 9 headings ordered, 2 live regions.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "default",
+      "message": "9 headings ordered, 132 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/inputs",
+      "message": "8 headings ordered, 52 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/residual",
+      "message": "8 headings ordered, 53 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/ced",
+      "message": "10 headings ordered, 84 controls named, 1 table(s) with scoped headers over 8 rows, 29 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "kimi3/inputs",
+      "message": "8 headings ordered, 48 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "kimi3/residual",
+      "message": "8 headings ordered, 49 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "q3827/inputs",
+      "message": "8 headings ordered, 47 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "q38flash/inputs",
+      "message": "8 headings ordered, 49 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "q38flash/residual",
+      "message": "8 headings ordered, 50 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "q38flash/ple",
+      "message": "8 headings ordered, 49 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_SCOPE",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "states",
+      "message": "Measured 10 states from a real file:// origin: default, dsv41/inputs, dsv41/residual, dsv41/ced, kimi3/inputs, kimi3/residual, q3827/inputs, q38flash/inputs, q38flash/residual, q38flash/ple.",
       "remedy": "",
       "evidence": []
     },

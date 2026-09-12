@@ -211,3 +211,14 @@ class IndependentCorroborationTests(unittest.TestCase):
   config_only={r['repo'] for r in audit['records'] if not r['python_files']}
   self.assertEqual(evidence.CONFIG_ONLY_PUBLISHERS,config_only)
   self.assertTrue(config_only,'audit recorded no config-only publisher')
+ def test_every_authorized_publisher_has_an_audit_record(self):
+  # A repo missing from the audit entirely contributes to neither side of
+  # test_policy_set_matches_the_recorded_audit's comparison, so it is silently treated as
+  # "ships code" by omission -- indistinguishable from a publisher actually verified to
+  # ship code. An absent record must not read as evidence of anything; every repo in
+  # REPOS['publisher_config'] must have been actually queried and recorded.
+  root=Path(__file__).resolve().parents[2]
+  audit=evidence.loads((root/'evidence/publisher-code/audit.json').read_text())
+  audited={r['repo'] for r in audit['records']}
+  missing=evidence.REPOS['publisher_config']-audited
+  self.assertEqual(missing,set(),f'no audit record for: {sorted(missing)}')

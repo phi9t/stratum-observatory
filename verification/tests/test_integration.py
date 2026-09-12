@@ -1,6 +1,7 @@
 import copy,json,re,subprocess,tempfile,unittest
 from pathlib import Path
 from verification.evidence import loads
+from verification import runner
 from verification.runner import audit,source_subject
 from verification.model import aggregate,Finding,exit_code
 class IntegrationTests(unittest.TestCase):
@@ -17,6 +18,25 @@ class IntegrationTests(unittest.TestCase):
   return audit(self.root,target or self.target,inv or self.inv,cat,profile=profile)
  def test_cold_cache_is_blocked_not_certified(self):
   r=self.run_audit();self.assertEqual(r['status'],'BLOCKED');self.assertFalse(r['runtime_certified']);self.assertEqual(r['coverage']['verified_sources'],0)
+ def test_the_cold_audit_blocks_the_transcription_check_rather_than_omitting_it(self):
+  """Ruling T789a moved CED_PUBLISHER_AGREEMENT here from the schematics gate. With no cached
+  publisher bytes it must report BLOCKED and still be present: a check that disappears when its
+  evidence does is indistinguishable from one that passed."""
+  f={x['code']:x for x in self.run_audit()['findings']}
+  self.assertIn('CED_PUBLISHER_AGREEMENT',f)
+  self.assertEqual(f['CED_PUBLISHER_AGREEMENT']['status'],'BLOCKED')
+  self.assertEqual(f['CED_PUBLISHER_AGREEMENT']['domain'],'evidence')
+  self.assertIn('acquire',f['CED_PUBLISHER_AGREEMENT']['remedy'])
+  self.assertEqual(f['CED_FIELD_UNMAPPED']['status'],'PASS')
+ def test_the_audit_carries_the_checks_no_software_gate_may_block_on(self):
+  """Ruling T789b. CED_ACTIVE_RATIO and CLAIM_MODEL_COVERAGE both have an honest BLOCKED
+  outcome, and aggregate turns one BLOCKED into exit 2 on a gate the Pages deploy requires. They
+  report here instead, in the evidence domain."""
+  f={x['code']:x for x in self.run_audit()['findings']}
+  for code in ('CED_ACTIVE_RATIO','CLAIM_MODEL_COVERAGE'):
+   self.assertIn(code,f)
+   self.assertEqual(f[code]['domain'],'evidence')
+  self.assertEqual(f['CLAIM_MODEL_COVERAGE']['status'],'PASS')
  def test_changed_live_core_field_fails(self):
   x=copy.deepcopy(self.inv);x['fields']['MODELS.kimi3.layers']=94
   r=self.run_audit(inv=x);self.assertEqual(r['status'],'FAIL');self.assertIn('CONSUMER_VALUE',{f['code'] for f in r['findings']})
@@ -64,6 +84,24 @@ class IntegrationTests(unittest.TestCase):
  def test_runtime_requires_each_registered_sku_and_fabric(self):
   t=copy.deepcopy(self.target);t['runtime_obligations']=[o for o in t['runtime_obligations'] if o.get('contract')!='gpu.B200']
   self.assertIn('RUNTIME_MATRIX',{f['code'] for f in self.run_audit(target=t,profile='runtime')['findings']})
+ def test_every_contract_domain_is_either_in_the_runtime_matrix_or_recorded_outside_it(self):
+  """A domain in neither set is exempt from RUNTIME_MATRIX by omission rather than by decision.
+
+  The membership literal covered 4 of the 12 registered domains and nothing compared it against
+  `DOMAINS`, so a thirteenth would have been added to the manifest, validated, given claims, and
+  quietly never asked for a runtime obligation. Widening the matrix is the wrong repair -- a
+  `numerics.*` contract has no host to probe -- so the partition is closed instead, and this is
+  the check that it stays closed."""
+  import unittest.mock
+  from verification.domains.contracts import DOMAINS
+  self.assertNotIn('RUNTIME_MATRIX_PARTITION',{f['code'] for f in self.run_audit(profile='runtime')['findings']},
+                   'a registered contract domain is in neither the runtime matrix nor its recorded exclusions')
+  # Behavioural, not textual: register a thirteenth domain and the audit must say so rather than
+  # exempting it from the matrix by default.
+  with unittest.mock.patch.object(runner,'DOMAINS',tuple(DOMAINS)+('telemetry',)):
+   codes={f['code'] for f in self.run_audit(profile='runtime')['findings']}
+  self.assertIn('RUNTIME_MATRIX_PARTITION',codes,
+                'a newly registered domain fell outside both sets without a finding')
  def test_unrun_gpu_is_not_pass(self):
   r=self.run_audit(profile='runtime');self.assertTrue(any(f['code']=='RUNTIME_NOT_RUN' for f in r['findings']))
  def test_upstream_pin_change_invalidates_review_subject(self):
@@ -73,21 +111,48 @@ class IntegrationTests(unittest.TestCase):
  def test_empty_and_unrun_never_return_success_exit(self):
   self.assertNotEqual(exit_code(aggregate([])),0)
   self.assertNotEqual(exit_code(aggregate([Finding('x','gpu','NOT_RUN','a','not run')])),0)
- def test_publication_workflow_cannot_deploy_on_engineering_alone(self):
+ def _job(self,text,name):
+  m=re.search(rf'^  {re.escape(name)}:\n(.*?)(?=^  \w[\w-]*:\n|\Z)',text,re.S|re.M)
+  return None if m is None else [l for l in m.group(1).splitlines() if not l.lstrip().startswith('#')]
+
+ def test_deploy_rides_the_four_software_gates_and_nothing_is_continue_on_error(self):
   text=(self.root/'.github/workflows/pages.yml').read_text()
-  # AMENDED CONTRACT. This test used to require `publication` in deploy's needs. Publication is
-  # BLOCKED until an independent reviewer signs, so that gated a deployment which could never
-  # happen; the page now ships and reports its own scientific status. What must NOT weaken is the
-  # rest: deploy still requires every gate that measures the software, publication still RUNS on
-  # every push, and nothing may be continue-on-error.
+  # AMENDED CONTRACT. Deploy used to require `publication`, which is BLOCKED until an
+  # independent reviewer signs, so it gated a deployment that could never happen. Deploy rides
+  # every gate that measures the software, and nothing may be continue-on-error.
   deploy=re.search(r'^  deploy:.*?^    needs: \[([^\]]*)\]',text,re.S|re.M)
   self.assertIsNotNone(deploy,'deploy job declares no needs')
   required={j.strip() for j in deploy.group(1).split(',')}
   for job in ('engineering','schematics','aesthetics','presentations'):
    self.assertIn(job,required,f'deploy no longer requires the {job} gate')
-  self.assertIn('run: npm run verify:science',text,'the publication audit must still run')
-  self.assertIn('  publication:',text,'the publication job must still exist')
   self.assertNotIn('continue-on-error: true',text)
+
+ def test_publication_completeness_is_offline_and_ci_gates_on_contradictions_only(self):
+  """The publication audit answers two questions and CI can honestly answer one of them.
+
+  Completeness -- cached upstream bytes plus an independent signed review for every claim -- is
+  offline by construction: the cache is git-ignored because the source licences forbid
+  redistributing the bytes, and no reviewer identity exists. A CI job asking it could only ever
+  be red, and a check that can never pass is noise. So there is no `publication` job. The audit
+  still RUNS in CI, on CI's own bytes, inside `publication-contradictions`, which fails on exit
+  1, on any FAIL finding, or on a missing or empty report, and accepts exit 2 -- BLOCKED, which
+  this project does not treat as failing. It reports; it does not deploy.
+  """
+  text=(self.root/'.github/workflows/pages.yml').read_text()
+  self.assertIsNone(self._job(text,'publication'),
+                    'a `publication` job can only ever be red in CI; completeness is offline-only')
+  live=self._job(text,'publication-contradictions')
+  self.assertIsNotNone(live,'the publication-contradictions job must exist')
+  # The audit runs here on a live line: the FAIL check must come from a fresh run on these
+  # bytes, not from reading a committed report a stale checkout could carry.
+  self.assertTrue(any('npm run verify:science' in l for l in live),
+                  'the contradictions job must run the scientific audit on a live line')
+  self.assertTrue(any(re.match(r'\s*needs:\s*engineering\s*$',l) for l in live),
+                  'the audit needs the engineering receipt the runner validates against')
+  self.assertTrue(any("'FAIL'" in l for l in live),'the job must actually test for FAIL findings')
+  deploy=re.search(r'^  deploy:.*?^    needs: \[([^\]]*)\]',text,re.S|re.M)
+  self.assertNotIn('publication-contradictions',{j.strip() for j in deploy.group(1).split(',')},
+                   'a green "no contradictions" must never stand in for a publication gate that is BLOCKED')
 
 class ToolchainDigestTests(unittest.TestCase):
  """The receipt must bind every file that decides what the tests actually did."""

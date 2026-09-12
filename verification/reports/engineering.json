@@ -1,13 +1,13 @@
 {
   "schema": "stratum-engineering/v1",
   "status": "PASS",
-  "started_at": "2026-09-10T09:04:42.514821+00:00",
-  "completed_at": "2026-09-10T09:07:23.708128+00:00",
-  "consumer_sha256": "d36f581bb1a5cca92c2304d1dc1da4d73a814a45b03e4eb088fa99b348d70431",
-  "verifier_sha256": "09e5dc466dbfc5c987d77fc9b3f1b13ff99b8a38fa64f18528a18427a8287fdb",
-  "lock_sha256": "b34e0e4b8aecdefe02d0902543f3dd6603f76bf90ef858569fb35765a1040589",
-  "artifact_sha256": "595b73f22f37051d664fd76e794449fa079808f3f151fb0853e5dd546d913f07",
-  "repeat_build_sha256": "595b73f22f37051d664fd76e794449fa079808f3f151fb0853e5dd546d913f07",
+  "started_at": "2026-09-12T18:48:38.317404+00:00",
+  "completed_at": "2026-09-12T18:53:04.248263+00:00",
+  "consumer_sha256": "24dfddf0b0d10d344c376b3c0a26422c3dc6c2b182901ce7238cabb03a826013",
+  "verifier_sha256": "3568b6df160da709010d2fca84ba9a2c193de8baeb90e0b1fbdaa8480e424418",
+  "lock_sha256": "4a92ee6958a5f8c1ad108167f9261ab11cf065d5016c13a04b0c8c8bab6f9349",
+  "artifact_sha256": "fecceb9e48bcd462541716bb8e1c1738d3b66ef58f146fad5d55b2e445de2926",
+  "repeat_build_sha256": "fecceb9e48bcd462541716bb8e1c1738d3b66ef58f146fad5d55b2e445de2926",
   "deterministic_build": true,
   "commands": {
     "verifier-tests": {
@@ -48,9 +48,9 @@
   "browser": {
     "schema": "stratum-browser-tests/v2",
     "browser": "Chromium",
-    "geometry_states": 1336,
+    "geometry_states": 1447,
     "responsive_states": 56,
-    "device_scale_states": 32,
+    "device_scale_states": 36,
     "geometry_defects": 0,
     "runtime_errors": 0,
     "external_runtime_requests": 0,
@@ -64,15 +64,18 @@
       "q3235": 94,
       "q3827": 64,
       "q38flash": 48,
-      "kimi3": 93
+      "kimi3": 93,
+      "dsv41": 40
     },
     "failures": [],
     "errors": [],
     "requests": []
   },
   "test_counts": {
-    "verifier": 383,
-    "atlas": 42
+    "verifier": 577,
+    "atlas": 90,
+    "verifier_skipped": 4,
+    "atlas_skipped": 0
   },
   "toolchain": {
     "python": "3.13.12",

@@ -5,48 +5,48 @@
     {
       "repo": "Qwen/Qwen3-235B-A22B",
       "revision": "8efa61729e24bd65b1d152b5ab5409052aa80e65",
-      "observed_at": "2026-09-09T21:18:01.854568+00:00",
-      "api_response_sha256": "f3850918fb9497ee2a76f54ce4a0db94f9a18bfc4cbcbe8ddf03a40d2a4ff240",
+      "observed_at": "2026-09-10T22:09:36.531067+00:00",
+      "api_response_sha256": "57bc3afe1f34192946c77a99e0eb7008fc57960f0bcab5d613e28aa950e081f7",
       "file_count": 128,
       "python_files": []
     },
     {
       "repo": "Qwen/Qwen3-30B-A3B",
       "revision": "ad44e777bcd18fa416d9da3bd8f70d33ebb85d39",
-      "observed_at": "2026-09-09T21:18:02.150887+00:00",
-      "api_response_sha256": "65d35f57ba6d5d62634ec185bfc02d4546029a6e72137fbad12e82c29123cfe9",
+      "observed_at": "2026-09-10T22:09:36.774499+00:00",
+      "api_response_sha256": "2d50609701c8465c8793c255a768c483fbcb8dd8f0a19b8c4a6f72660662cdc0",
       "file_count": 26,
       "python_files": []
     },
     {
       "repo": "Qwen/Qwen3-8B",
       "revision": "b968826d9c46dd6066d109eabc6255188de91218",
-      "observed_at": "2026-09-09T21:18:02.397386+00:00",
-      "api_response_sha256": "f87dc06a3025958b8214b495b9da3c213fa571b0a2714097a8d22cd3eaf92403",
+      "observed_at": "2026-09-10T22:09:37.118197+00:00",
+      "api_response_sha256": "d8f16d936989c61ac0956e5919a908953e8f6dd255021a6e9260c2afe16929f8",
       "file_count": 15,
       "python_files": []
     },
     {
       "repo": "Qwen/Qwen3.8-27B",
       "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
-      "observed_at": "2026-09-09T21:18:02.655227+00:00",
-      "api_response_sha256": "33e3a2e6fda8b5a3d738d6fa22db4e6cb3599760e245949ae976b2d49d588c47",
+      "observed_at": "2026-09-10T22:09:37.371850+00:00",
+      "api_response_sha256": "86d290b1296c175619fe705a69ff5e5ad0c9cbd2fcdae3bde8a1769c7a0edf55",
       "file_count": 32,
       "python_files": []
     },
     {
       "repo": "Qwen/Qwen3.8-Flash-Next",
       "revision": "de4b8e4d43b917e7706784d8bb445c9af86a3540",
-      "observed_at": "2026-09-09T21:18:02.905736+00:00",
-      "api_response_sha256": "adcc1852c24fd6c272022f8e7eb50faacbb62ca74942f089c03e2d50590ae3da",
+      "observed_at": "2026-09-10T22:09:37.635403+00:00",
+      "api_response_sha256": "4248c7f755b05d859619066c8ec69b846d9307cf794f07e6d92f206b31dd130c",
       "file_count": 144,
       "python_files": []
     },
     {
       "repo": "deepseek-ai/DeepSeek-V2",
       "revision": "4461458f186c35188585855f28f77af5661ad489",
-      "observed_at": "2026-09-09T21:18:03.142922+00:00",
-      "api_response_sha256": "6f500c8c2fb97a3d7c949173320139995a6734d3596b825ddab7537228f799c5",
+      "observed_at": "2026-09-10T22:09:37.874531+00:00",
+      "api_response_sha256": "d2cd1a368513d59ea2082869b61dac7fad387d2b311e5dca19b4ccd01412412a",
       "file_count": 66,
       "python_files": [
         "configuration_deepseek.py",
@@ -57,8 +57,8 @@
     {
       "repo": "deepseek-ai/DeepSeek-V3",
       "revision": "e815299b0bcbac849fa540c768ef21845365c9eb",
-      "observed_at": "2026-09-09T21:18:03.390917+00:00",
-      "api_response_sha256": "6e31e444608cd3e01702b6813c5969434bc44cdb3f0e68f43fa6a12058f3a50c",
+      "observed_at": "2026-09-10T22:09:38.116065+00:00",
+      "api_response_sha256": "3f4605a6f018a4084910f444c006745ffd8b4be4af8783fe6d557c22365e90b1",
       "file_count": 185,
       "python_files": [
         "configuration_deepseek.py",
@@ -71,10 +71,28 @@
       ]
     },
     {
+      "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "revision": "dba1be0a40aa45a94ad051997016db3960a90277",
+      "observed_at": "2026-09-10T22:09:38.362526+00:00",
+      "api_response_sha256": "6e7ff5854bdb593467a205479e9ea3d6a5a1e4d1c0b1fe702c4c24b09d204cb5",
+      "file_count": 88,
+      "python_files": [
+        "encoding/encoding.py",
+        "encoding/test_encoding.py",
+        "inference/convert.py",
+        "inference/engram.py",
+        "inference/generate.py",
+        "inference/image_processor.py",
+        "inference/kernel.py",
+        "inference/model.py",
+        "inference/vision.py"
+      ]
+    },
+    {
       "repo": "moonshotai/Kimi-K3",
       "revision": "f831ab66814297da540d832a5235f8e904f29d06",
-      "observed_at": "2026-09-09T21:18:03.639040+00:00",
-      "api_response_sha256": "3f885678845d9d38db242825454b33faf4e73634dcd1f837879d3a94e3b2df79",
+      "observed_at": "2026-09-10T22:09:38.603100+00:00",
+      "api_response_sha256": "50b15ab0877394de3a8be7ed181bba78d1c6a021bd39103d399c8738ada9c6ff",
       "file_count": 119,
       "python_files": [
         "configuration_kimi_k3.py",

@@ -21,11 +21,23 @@ const compact=g=>({
 function expectations(state){
  const m=core.getModel(state.model);
  const out={model:m.id,layers:m.layers,experts:m.experts,topK:m.topK,shared:m.shared,denseLayers:m.denseLayers,
-  vision:!!m.vision,residual:m.residual,latent:!!m.latent,architecture:m.architecture,
+  vision:!!m.vision,residual:m.residual,streams:m.streams||0,latent:!!m.latent,architecture:m.architecture,
   partition:core.layerPartition(m.id)};
  if(state.view==='model'&&state.stage==='block'){
   out.layerKind=core.layerKind(m.id,state.layer);
   out.ffnKind=core.ffnKind(m.id,state.layer);
+ }
+ if(m.encoderLayers){
+  // Raw material for verification/ced.py, which re-derives the band runs itself. Reporting the
+  // bands from here instead would hand the judge the builder's own grouping rule back.
+  out.encoderLayers=m.encoderLayers;
+  out.layerKinds=Array.from({length:m.layers},(_,i)=>core.layerKind(m.id,i+1));
+  out.engramLayers=m.engramLayers;out.dsparkTargets=m.dsparkTargets;
+  out.candidateSource=m.candidateSource;out.indexSourceLayers=m.indexSourceLayers;
+  // The band compression ratios, so ced.py can re-derive which ratio each band owes and compare
+  // that against the ratio the page states. `ratioOf` in diagram-meta.mjs is a third copy of the
+  // rule parameterLedger and cacheLedger also apply, and nothing compared them.
+  out.compressEncoder=m.compressEncoder;out.compressDecoder=m.compressDecoder;
  }
  return out;
 }
@@ -39,9 +51,7 @@ function emit(key,patch){
 for(const [model,m] of Object.entries(core.MODELS)){
  for(let layer=1;layer<=m.layers;layer++)emit(`${model}/model/block/${layer}`,{model,view:'model',stage:'block',layer});
  for(const view of core.VIEWS)if(view!=='model')emit(`${model}/${view}/block/4`,{model,view,layer:4});
- if(m.vision)emit(`${model}/model/inputs/4`,{model,view:'model',stage:'inputs'});
- if(m.residual!=='standard')emit(`${model}/model/residual/4`,{model,view:'model',stage:'residual'});
- if(m.pleLayers.length)emit(`${model}/model/ple/4`,{model,view:'model',stage:'ple'});
+ for(const stage of core.focalStages(m))emit(`${model}/model/${stage}/4`,{model,view:'model',stage});
  for(const compare of Object.keys(core.MODELS))emit(`${model}/compare/${compare}/4`,{model,view:'compare',compare});
  for(const trainMode of ['fsdp','ddp','rl'])emit(`${model}/training/${trainMode}/4`,{model,view:'training',trainMode});
  for(const placement of ['split','colocated'])emit(`${model}/serving/${placement}/4`,{model,view:'serving',placement});
