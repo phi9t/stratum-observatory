@@ -17,7 +17,7 @@ def toolchain_digest(root):
     # that gate. Recorded baselines deliberately do not, so re-recording a reviewed layout
     # change does not invalidate every receipt.
     files+=[root/'package.json',root/'pyproject.toml',root/'uv.lock',root/'.python-version',
-            root/'.github/CODEOWNERS',root/'verification/baselines/aesthetics/policy.json']
+            root/'.github/CODEOWNERS',root/'verification/baselines/aesthetics/policy.json',root/'verification/manifests/accounting-methods.json']
     return digest({str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(files) if p.is_file()})
 
 def delivery_artifacts(root):
@@ -49,7 +49,7 @@ def main():
     # `uv run` can re-resolve the lock mid-run. If it does, the receipt would bind a
     # toolchain the tests never used, so refuse rather than attest to the wrong one.
     toolchain_before=toolchain_digest(root)
-    steps=[('verifier-tests',[sys.executable,'-m','unittest','discover','-s','verification/tests','-v']),('node-tests',['npm','test']),('build',['npm','run','build'])]
+    steps=[('verifier-tests',[sys.executable,'-m','unittest','discover','-s','verification/tests','-v']),('node-tests',['npm','test']),('accounting',[sys.executable,'-m','verification.accounting']),('build',['npm','run','build'])]
     # 600s, not 180s: the verifier suite runs 383 tests taking 108-113s on an idle machine and
     # has already tripped 180s once under load. A timeout that fires on a slow machine reports a
     # failure that did not happen, which is the one thing this gate must never do.

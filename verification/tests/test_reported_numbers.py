@@ -417,3 +417,21 @@ class ResidueNarrativeTests(RecordTestCase):
     def test_quote_authoring_cap_is_recorded(self):
         self.assertIn('anchor-documents.py', self.text)
         self.assertRegex(self.text, r'`\(source, field\)`')
+
+class AccountingNumberTests(RecordTestCase):
+    def test_accounting_report_is_current_and_classified(self):
+        import subprocess
+        report=self.require('accounting','npm run verify:accounting')
+        exported=json.loads(subprocess.check_output(['node','tools/export-accounting.mjs'],cwd=ROOT))
+        self.assertEqual(report['consumer_sha256'],exported['consumer_sha256'])
+        self.assertEqual(report['function_sha256'],exported['function_sha256'])
+        self.assertEqual(report['methods_sha256'],hashlib.sha256((ROOT/'verification/manifests/accounting-methods.json').read_bytes()).hexdigest())
+        self.assertEqual(report['case_count'],len(exported['cases']))
+        counts=collections.Counter(f['classification'] for f in report['findings'])
+        self.assertTrue(set(counts)<={'agreement','explained_difference','unsupported','contradiction'})
+        self.assertEqual(counts['contradiction'],0)
+        self.assertEqual(report['status'],'PASS')
+        for name,count in report['counts'].items():
+            self.assertEqual(count,counts[name])
+            self.assertStated(count,'accounting '+name,unit=name)
+        self.assertStated(report['case_count'],'accounting live scenarios',unit='accounting')

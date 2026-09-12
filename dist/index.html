@@ -17,6 +17,17 @@ body.focus-mode .site-header,body.focus-mode .identity,body.focus-mode .model-st
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media print{.global-actions,.model-strip,.controls,.workspace-actions,.zoom-controls,.lens-tabs,dialog,.inspector-related,footer{display:none!important}body,main{background:white!important;color:#222!important}.workbench{display:block}.scene-viewport{overflow:visible}.scene-viewport svg{width:100%!important;min-width:0!important}.inspector{break-before:page}.canvas-frame{box-shadow:none}.analysis-panel{break-inside:avoid}}
 .schematic .tight .node-title{font-size:12px}.schematic .tight .node-sub{font-size:10px}.schematic .tight.small .node-title{font-size:11px}.schematic .tight.small .node-sub{font-size:10px}
+
+.accounting-assumptions{margin:24px 20px 20px;border-top:1px solid var(--line);padding-top:16px;color:var(--text)}
+.accounting-assumptions summary{font-size:14px;font-weight:600;cursor:pointer;padding:8px 0}
+.accounting-assumptions section{padding:16px 0;max-width:80ch;break-inside:avoid}
+.accounting-assumptions h4{font-size:14px;margin:0 0 8px;color:var(--text)}
+.accounting-assumptions p{font-size:14px;line-height:1.7;margin:8px 0;color:var(--text)}
+.accounting-citations{display:flex;flex-wrap:wrap;gap:8px}
+.accounting-citations a{font-size:12px;color:var(--text);text-decoration:underline;overflow-wrap:anywhere}
+@media print{.accounting-assumptions{break-inside:auto}.accounting-assumptions>section{display:block!important}}
+summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+@media(max-width:520px){.accounting-assumptions{margin:24px 16px 16px}}
 </style></head><body>
 <a class="skip-link" href="#workspace">Skip to schematic</a>
 <header class="site-header"><a class="brand" href="#" aria-label="Stratum home"><svg width="31" height="31" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 9L16 3l12 6-12 6zM4 16l12 6 12-6M4 23l12 6 12-6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span>STRATUM<span class="brand-sub">MODEL SYSTEMS OBSERVATORY</span></span></a><div class="header-note">From one tensor<br><b>to the entire system.</b></div><div class="global-actions"><button id="search-button" class="button command-button" title="Search models, views and components"><span>Search the atlas</span><kbd>⌘ K</kbd></button><button id="theme-button" class="icon-button" aria-label="Switch color theme" title="Switch theme">◐</button><button id="export-config" class="icon-button" aria-label="Export scenario JSON" title="Export scenario">↗</button></div></header>
@@ -39,6 +50,11 @@ const SG='https://github.com/sgl-project/sglang/blob/2c05ed4e7776c876478f4b2db61
 const TR='https://github.com/huggingface/transformers/blob/c93057d4835cd31752bb56f59989dd27696eb45b/src/transformers/models/';
 const VL='https://github.com/vllm-project/vllm/blob/6865e67f0be02d53694517f6f71d7fb96492792d/vllm/models/qwen4_exp/nvidia/';
 const SOURCES={
+ "book-ultrascale":{"title": "Ultra-Scale Playbook \u00b7 phi9t hosted edition", "url": "https://phi9t.github.io/megatronlm/", "role": "methodology_reference", "anchor": "Dated snapshot and exact method anchors in the accounting evidence registry"},
+ "book-scaling-transformers":{"title": "JAX Scaling Book \u00b7 Transformers", "url": "https://jax-ml.github.io/scaling-book/transformers/", "role": "methodology_reference", "anchor": "Dated snapshot and exact method anchors in the accounting evidence registry"},
+ "book-scaling-training":{"title": "JAX Scaling Book \u00b7 Training", "url": "https://jax-ml.github.io/scaling-book/training/", "role": "methodology_reference", "anchor": "Dated snapshot and exact method anchors in the accounting evidence registry"},
+ "book-scaling-inference":{"title": "JAX Scaling Book \u00b7 Inference", "url": "https://jax-ml.github.io/scaling-book/inference/", "role": "methodology_reference", "anchor": "Dated snapshot and exact method anchors in the accounting evidence registry"},
+ "book-scaling-roofline":{"title": "JAX Scaling Book \u00b7 Roofline methods", "url": "https://jax-ml.github.io/scaling-book/roofline/", "role": "methodology_reference", "anchor": "Dated snapshot and exact method anchors in the accounting evidence registry"},
  'ds2-config':{title:'DeepSeek-V2 • released configuration',url:HF+'deepseek-ai/DeepSeek-V2/blob/main/config.json',role:'publisher_config',anchor:'hidden_size; num_hidden_layers; n_routed_experts; qk_rope_head_dim'},
  'ds2-code':{title:'DeepSeek-V2 • publisher model implementation',url:HF+'deepseek-ai/DeepSeek-V2/blob/main/modeling_deepseek.py',role:'publisher_code',anchor:'DeepseekV2Attention; DeepseekV2MoE; MoEGate'},
  'ds2-paper':{title:'DeepSeek-V2 technical report',url:'https://arxiv.org/abs/2405.04434',role:'report',anchor:'MLA and DeepSeekMoE'},
@@ -233,7 +249,48 @@ function formatBytes(x){if(!Number.isFinite(x))return'—';if(x===0)return'0 B';
 function formatTime(sec){if(sec===0)return'0';return sec>=1?sec.toFixed(2)+' s':sec>=.001?(sec*1000).toFixed(2)+' ms':(sec*1e6).toFixed(1)+' μs';}
 function evidenceSummary(){return{referenceRecords:Object.keys(SOURCES).length,snapshots:0,independentReviews:0,publication:'BLOCKED',runtime:'NOT_RUN',reason:'References inspected; immutable source bytes, exact semantic anchors and independent signatures are not accepted in this artifact.'};}
 
-return {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DEFAULT_STATE,getModel,sanitizeState,focalStages,layerKind,layerPartition,ffnKind,parameterLedger,cacheLedger,servingLedger,trainingLedger,networkLedger,roofline,formatNum,formatParams,formatBytes,formatTime,evidenceSummary};
+/** Reader-facing method assumptions. Arithmetic audit results belong to their sampled report. */
+function accountingAssumptions(id,settings={}){
+ const m=getModel(id),s=sanitizeState({...settings,model:m.id});
+ const row=(method,title,body,scope,applicability,sources,values={})=>({method,title,body,scope,applicability,sources,values});
+ if(s.view==='training'){
+  const l=trainingLedger(m,s),parameters=parameterLedger(m).resident;
+  return [row('book-training-state','Persistent training state',
+   `The selected baseline retains BF16 weights and gradients, FP32 master weights and Adam moments: ${l.bytesPerParameter} bytes per parameter (${formatBytes(l.total)} globally). An additional FP32 accumulation buffer adds ${formatBytes(l.master)}, giving ${(l.total+l.master)/parameters} bytes per parameter (${formatBytes(l.total+l.master)}). The hosted playbook prose mentions that extra copy; its displayed equations omit it.`,
+   'Logical persistent learner state. Activations, temporary gathers, allocator overhead and other RL models are excluded. Uniform division is an accounting assumption, not a verified sharding plan.',
+   'applicable',['book-ultrascale','book-scaling-training'],{baseline:l.total,accumulation:l.master,withAccumulation:l.total+l.master,bytesPerParameter:l.bytesPerParameter,alternativeBytesPerParameter:(l.total+l.master)/parameters})];
+ }
+ if(s.view==='hardware'){
+  const h=HARDWARE[s.hardware],l=roofline(s.hardware,s.intensity);
+  return [row('book-roofline','Matching roofline units',
+   `The selected per-GPU dense FP8 ceiling is ${formatNum(l.compute)} TFLOP/s. Decimal bandwidth ${h.hbmTBps} TB/s × ${s.intensity} FLOP/byte gives ${formatNum(l.memory,2)} TFLOP/s; the lower ceiling is ${formatNum(l.attainable,2)} TFLOP/s. The ridge is ${formatNum(l.ridge,2)} FLOP/byte.`,
+   'The intensity must describe actual HBM reads and writes at the same precision and device scope. This bound excludes communication, launch costs and measured utilization.',
+   'applicable',['book-scaling-roofline'],l)];
+ }
+ if(s.view==='network'){
+  const l=networkLedger(m,s),ring=s.traffic==='allreduce';
+  return [row('book-ring-allreduce','Ring traffic and direction',
+   ring?`For ${s.ranks} ranks, reduce-scatter plus all-gather sends 2 × (N − 1) / N × M bytes per rank: ${formatBytes(l.sent)} for the full BF16 gradient buffer. Each rank receives the same amount separately. Adding both directions would double this sent-byte figure.`:
+   `The selected ${s.traffic==='expert'?'expert dispatch':'cache handoff'} payload is outside the ring all-reduce method. STRATUM derives ${formatBytes(l.sent)} under its own operation-specific ownership assumptions.`,
+   `${l.scope} Network rates use decimal bytes per second and one-way NIC capacity; payload divided by useful rate is a bandwidth-only lower bound.`,
+   ring?'applicable':'specialized',['book-ultrascale'],{sent:l.sent,rate:l.rate,seconds:l.seconds})];
+ }
+ const cache=cacheLedger(m,s),params=parameterLedger(m),gqa=m.architecture==='gqa';
+ const notes=[row('book-gqa-cache','Cache storage and ownership',
+  gqa?`The GQA method stores both K and V: 2 × batch × context × layers × KV heads × head dimension × bytes per element. The selected ${m.name} scenario stores ${formatBytes(cache.total)}. KV heads, rather than query heads, determine this payload.`:
+  m.architecture==='ced-csa2'?`The generic GQA formula does not cover CSA2. STRATUM counts compressed cache storage at ${m.kvSourceLayers.length} unique source layers, plus the indexer and sliding-window state: ${formatBytes(cache.total)}. Shared cache can be read multiple times during execution; repeated reads consume bandwidth without duplicating retained storage.`:
+  `The generic GQA formula does not cover the complete ${m.name} cache. STRATUM separately accounts for its latent, recurrent or compressed mechanisms: ${formatBytes(cache.total)}. These terms require architecture-specific implementation evidence.`,
+  `${cache.exclusions.join('. ')}. Byte displays use binary KiB/GiB; book decimal GB examples are converted explicitly in the audit.`,
+  gqa?'applicable':'specialized',['book-scaling-inference'],{total:cache.total})];
+ if(s.view!=='serving')notes.push(row('book-gqa-parameters','Parameter scope',
+  gqa?`The book projection method counts Q, K, V and output matrices from their dimensions. STRATUM also includes scoped embeddings, feed-forward matrices and normalization parameters, giving ${formatParams(params.resident)} resident parameters for ${m.name}.`:
+  `The ordinary Transformer projection formula cannot validate the complete ${m.name} architecture. STRATUM's ${formatParams(params.resident)} resident-parameter scope still depends on its model-specific evidence.`,
+  `${params.scope} Method references supplement publisher code, independent implementation review and runtime evidence; they cannot replace those requirements.`,
+  gqa?'applicable':'specialized',['book-scaling-transformers','book-scaling-inference'],{resident:params.resident}));
+ return notes;
+}
+
+return {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DEFAULT_STATE,getModel,sanitizeState,focalStages,layerKind,layerPartition,ffnKind,parameterLedger,cacheLedger,servingLedger,trainingLedger,networkLedger,roofline,formatNum,formatParams,formatBytes,formatTime,evidenceSummary,accountingAssumptions};
 })();
 __modules["scene.mjs"] = (() => {
 /** Visual IR. Geometry is template-authored; rendered text bounds are release-tested. */
@@ -898,7 +955,7 @@ function innovationRows(m){return INNOVATIONS.map(r=>({id:r.id,title:r.title,rep
 return {SHORT_CONTEXT,INNOVATIONS,innovationRows};
 })();
 __modules["app.mjs"] = (() => {
-const {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DEFAULT_STATE,sanitizeState,getModel,focalStages,layerKind,layerPartition,ffnKind,parameterLedger,cacheLedger,servingLedger,trainingLedger,networkLedger,roofline,formatNum,formatParams,formatBytes,formatTime,evidenceSummary} = __modules["core.mjs"];
+const {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DEFAULT_STATE,sanitizeState,getModel,focalStages,layerKind,layerPartition,ffnKind,parameterLedger,cacheLedger,servingLedger,trainingLedger,networkLedger,roofline,formatNum,formatParams,formatBytes,formatTime,evidenceSummary,accountingAssumptions} = __modules["core.mjs"];
 const {buildScene} = __modules["diagrams.mjs"];
 const {structuralReport} = __modules["scene.mjs"];
 const {innovationRows} = __modules["innovations.mjs"];
@@ -1011,6 +1068,8 @@ function renderAnalysis(){const m=getModel(state.model),h=HARDWARE[state.hardwar
   const domains=[['Model architecture','Publisher + independent framework code; full consumer coverage.'],['GPU architecture','Exact SKU, capability, precision, kernel-resource and memory contracts.'],['Scale-up topology','Per-GPU, superchip, node and rack scope; actual port ownership.'],['Scale-out fabric','InfiniBand / RoCE policy, health, addressing, congestion and affinity.'],['Communication libraries','NCCL / NVSHMEM / NIXL version, backend, ordering and lifetime.'],['Training','Rank meshes, objectives, optimizer state and restart-equivalent updates.'],['Serving','Hybrid prefix completeness, private state, cache identity and handoff.'],['Numerics / kernels','Differential outputs, precision, packing/scales and predetermined tolerances.'],['Storage / recovery','Complete shard generations, hashes, durable commit and recovery.'],['Data / measurement','Tokenizer/data versions, raw observations, denominators and environment.'],['Visual semantics','Scene-to-claim coverage, truthful dependency graphs and actual text bounds.'],['Evidence / provenance','Immutable bytes, precise anchors, independent signed interpretation.'],['Release / reproducibility','Source/evidence/verifier/artifact identity and fresh execution receipts.']];
   html=analysisHeader('No reasonable domain is left without a gate','13 verifier areas · candidate references are not certification');html+=`<div class="verification-grid">${domains.map(([t,b])=>`<div class="verifier-card"><h4>${t}</h4><span class="status-pill">Evidence / execution pending</span><p>${b}</p></div>`).join('')}</div>`;html+=analysisHeader('Source map for this model and system','Open the original implementation · exact snapshot acceptance is outstanding');const refs=[...new Set([...m.sources,...h.sources,'nccl','nvshmem','nixl','roce'])];html+=`<div class="source-list">${refs.map(sourceCard).join('')}</div>`;
  }
+ const expanded=$('analysis-panel').querySelector('.accounting-assumptions')?.open;
+ html+=`<details class="accounting-assumptions"${expanded?' open':''}><summary>Accounting assumptions</summary>${accountingAssumptions(m,state).map(r=>`<section data-accounting-method="${esc(r.method)}" data-applicability="${esc(r.applicability)}"><h4>${esc(r.title)}</h4><p>${esc(r.body)}</p><p>${esc(r.scope)}</p><div class="accounting-citations">${r.sources.map(citation).join('')}</div></section>`).join('')}</details>`;
  $('analysis-panel').innerHTML=html;
 }
 function renderPrinciples(){const m=getModel(state.model),p=layerPartition(m);const copy=state.view==='hardware'?[['INVARIANT','A GPU, superchip and rack are different accounting scopes. Never transfer a capacity or bandwidth number between them silently.'],['BOTTLENECK','The roofline uses a chosen arithmetic intensity. Kernel shape, non-Tensor-Core work and synchronization remain outside that bound.'],['NEXT MEASUREMENT','Capture actual device properties, free HBM, topology, kernel timings and traffic counters on the selected SKU.']]:state.view==='network'?[['INVARIANT','Buffer production, ordering, completion and consumer visibility are distinct events. A return from an asynchronous API is not necessarily completion.'],['BOTTLENECK','NIC injection, PCIe affinity, path capacity, fabric congestion and collective scheduling can each dominate at different message sizes.'],['NEXT MEASUREMENT','Bind raw traces and versions to rank maps, NIC ports, switch policy, library backend and deterministic correctness checks.']]:state.view==='training'?[['INVARIANT','A correct update depends on the objective, loss denominator, collective groups, optimizer state and restart boundary—not just the model weights.'],['BOTTLENECK','Persistent parameter state is only one term. Activation lifetimes and temporary materialization determine whether the real step fits.'],['NEXT MEASUREMENT','Measure peak allocated/reserved HBM and the critical path under the exact parallelism, checkpoint and precision configuration.']]:[['INVARIANT',`${m.name} uses ${Object.entries(p).filter(x=>x[1]).map(([k,v])=>`${v} ${k.toUpperCase()}`).join(' + ')} layers. The scene changes the mechanism, not only its title.`],['BOTTLENECK',p.kda||p.delta?'Hybrid attention exchanges some growing token history for current recurrent state. Global attention, snapshots and auxiliary state still consume memory.':'A projection can reduce stored state without removing all computation or communication. Keep mathematical head space separate from the physical cache.'],['EVIDENCE', 'A configuration field, publisher implementation, independent runtime path and rendered claim need explicit bindings. Source links alone are not scientific verification.']];
@@ -1055,6 +1114,10 @@ document.addEventListener('keydown',e=>{const target=e.target;const input=/^(INP
 window.addEventListener('resize',applyZoom);window.addEventListener('hashchange',()=>{state=loadState();render();});
 window.STRATUM={getState:()=>({...state}),getScene:()=>scene,setState:patch=>setState(patch),selectNode,geometryReport,exportSVG,exportConfig,version:'3.0.0'};
 render();
+
+let accountingOpenBeforePrint=false;
+window.addEventListener('beforeprint',()=>{const el=document.querySelector('.accounting-assumptions');if(el){accountingOpenBeforePrint=el.open;el.open=true;}});
+window.addEventListener('afterprint',()=>{const el=document.querySelector('.accounting-assumptions');if(el)el.open=accountingOpenBeforePrint;});
 
 return {};
 })();

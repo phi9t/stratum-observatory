@@ -20,7 +20,7 @@ from .model import Finding
 
 HEX40 = re.compile(r'^[0-9a-f]{40}$')
 HEX64 = re.compile(r'^[0-9a-f]{64}$')
-ROLES = {'publisher_config','publisher_code','framework_code','vendor_document','library_code','paper','tokenizer_code','checkpoint_metadata'}
+ROLES = {'publisher_config','publisher_code','framework_code','vendor_document','library_code','paper','tokenizer_code','checkpoint_metadata','methodology_reference'}
 # This is a policy root. Adding a publisher/framework requires code-owner review.
 REPOS = {
     'publisher_config': {'Qwen/Qwen3.8-27B', 'moonshotai/Kimi-K3', 'Qwen/Qwen3-235B-A22B', 'deepseek-ai/DeepSeek-V2', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3', 'Qwen/Qwen3-30B-A3B', 'Qwen/Qwen3.8-Flash-Next', 'deepseek-ai/DeepSeek-V4.1-Flash'},
@@ -39,7 +39,6 @@ REPOS = {
 CONFIG_ONLY_PUBLISHERS = {'Qwen/Qwen3-235B-A22B','Qwen/Qwen3-30B-A3B','Qwen/Qwen3-8B',
                           'Qwen/Qwen3.8-27B','Qwen/Qwen3.8-Flash-Next'}
 DOC_HOSTS = {'docs.nvidia.com','developer.nvidia.com','www.nvidia.com','arxiv.org','docs.sglang.io','docs.vllm.ai'}
-
 
 _ED25519_OPENSSL: list = []
 
@@ -106,6 +105,7 @@ def valid_url(source: dict) -> bool:
     try:
         u = urlsplit(source.get('url',''))
         if u.scheme!='https' or u.username or u.password or u.port not in (None,443) or u.query: return False
+        if source.get('role')=='methodology_reference': return methodology_url(source,u)
         if source.get('kind')=='git':
             rev,repo,path=source.get('revision',''),source.get('repo',''),source.get('path','')
             if not HEX40.fullmatch(rev): return False
@@ -141,6 +141,20 @@ def check_source(source: dict, root: Path, *, allow_fixtures=False) -> list[Find
     except FileNotFoundError: add('SOURCE_CACHE','BLOCKED','Exact source bytes are absent from the offline cache.')
     except (ValueError,UnicodeError,OSError) as exc: add('SOURCE_PATH','FAIL',str(exc))
     return out
+
+# Narrow methodology-only origins: these never join vendor DOC_HOSTS or code REPOS.
+METHODOLOGY_PATHS = {
+    'phi9t.github.io': {'/megatronlm/'},
+    'jax-ml.github.io': {'/scaling-book/transformers/', '/scaling-book/training/',
+                         '/scaling-book/inference/', '/scaling-book/roofline/',
+                         '/scaling-book/gpus/'},
+}
+
+def methodology_url(source, url):
+    """An explicitly dated hosted document, never a code or hardware authority."""
+    return (source.get('kind') == 'document' and not url.fragment
+            and url.path in METHODOLOGY_PATHS.get(url.hostname, set()))
+
 
 _SYMBOL_INDEX={}
 

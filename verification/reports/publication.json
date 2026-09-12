@@ -3,21 +3,21 @@
   "target": "stratum-observatory-3",
   "profile": "publication",
   "status": "BLOCKED",
-  "generated_at": "2026-09-12T23:07:41.933384+00:00",
-  "lock_sha256": "78467d42b7635c5236e78f00fd3e5cc779a213dd796a4f5087b9cb21287868f0",
-  "consumer_sha256": "34fce277bb6acd708fc0e50816e20a24273672ccc5544ecfd8f812c9fbacab2c",
+  "generated_at": "2026-09-12T23:50:46.190470+00:00",
+  "lock_sha256": "67573f7cdb32853f86d1c6751f22e8f268e6953ab7b0e24ded7a631bd821a08f",
+  "consumer_sha256": "0c0ade05306cc5e79cd8de997024c006be32e7f8362a49a1abc51cafed86bde6",
   "coverage": {
-    "inputs": 577,
-    "functions_and_files": 29,
+    "inputs": 583,
+    "functions_and_files": 30,
     "scene_contracts": 2883,
-    "claims": 3512,
-    "sources": 71,
-    "verified_sources": 69,
+    "claims": 3519,
+    "sources": 76,
+    "verified_sources": 74,
     "verified_scientific_claims": 0,
     "passed_presentation_bindings": 0
   },
   "counts": {
-    "BLOCKED": 6103,
+    "BLOCKED": 6110,
     "PASS": 38
   },
   "domains": {
@@ -52809,6 +52809,69 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "scene.dsv41.serving.block.omissions.3b5a78e9620a621f",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "accounting.method.book-gqa-parameters",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "accounting.method.book-gqa-cache",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "accounting.method.book-training-state",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "accounting.method.book-ring-allreduce",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "accounting.method.book-roofline",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "accounting.example.book-gqa-cache-llama13b-8192-v1",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "function.accountingAssumptions",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []

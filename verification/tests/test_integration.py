@@ -170,6 +170,7 @@ class ToolchainDigestTests(unittest.TestCase):
  def assert_covered(self,relative,content):
   before,after=self.digest_with(relative,content)
   self.assertNotEqual(before,after,f'{relative} is outside toolchain_digest; a receipt would survive changing it.')
+ def test_accounting_methods_are_covered(self):self.assert_covered('verification/manifests/accounting-methods.json','{}\n')
  def test_python_lock_is_covered(self):self.assert_covered('uv.lock','# tampered\n')
  def test_pyproject_is_covered(self):self.assert_covered('pyproject.toml','[project]\nname = "tampered"\n')
  def test_python_version_pin_is_covered(self):self.assert_covered('.python-version','3.9\n')
@@ -317,7 +318,7 @@ class ReceiptTrustTests(unittest.TestCase):
      'artifact_sha256':hashlib.sha256((self.root/'dist/index.html').read_bytes()).hexdigest(),
      'repeat_build_sha256':hashlib.sha256((self.root/'dist/index.html').read_bytes()).hexdigest(),
      'completed_at':datetime.now(timezone.utc).isoformat(),'deterministic_build':True,
-     'commands':{k:{'exit':0} for k in ('verifier-tests','node-tests','build','browser')},
+     'commands':{k:{'exit':0} for k in ('verifier-tests','node-tests','accounting','build','browser')},
      'browser':browser}
   r.update(over);return r
  def lock(self):
@@ -327,6 +328,9 @@ class ReceiptTrustTests(unittest.TestCase):
  def codes(self,receipt):
   from verification.runner import check_receipt
   return {f.code for f in check_receipt(self.root,receipt,self.lock(),self.inv)}
+ def test_missing_accounting_command_is_rejected(self):
+  receipt=self.receipt();receipt['commands'].pop('accounting',None)
+  self.assertIn('ENGINEERING_COMMAND',self.codes(receipt))
  def test_missing_page_identity_is_rejected(self):
   r=self.receipt();r.pop('artifacts')
   self.assertIn('ARTIFACT_STALE',self.codes(r))
