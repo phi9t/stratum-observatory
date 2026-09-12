@@ -20,6 +20,15 @@ def toolchain_digest(root):
             root/'.github/CODEOWNERS',root/'verification/baselines/aesthetics/policy.json']
     return digest({str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(files) if p.is_file()})
 
+def delivery_artifacts(root):
+    """Bind every delivered entry point, rejecting a missing page."""
+    directory=Path(root)/'dist'
+    required={'index.html','deepseek-v4.1.html'}
+    present={p.name for p in directory.glob('*.html')}
+    if not required<=present:raise FileNotFoundError(f'Missing delivered pages: {sorted(required-present)}')
+    return {name:hashlib.sha256((directory/name).read_bytes()).hexdigest() for name in sorted(present)}
+
+
 def scrape_count(text,pattern):
     """Read a test count out of a runner's summary line, or None if it cannot be read."""
     match=re.search(pattern,text)
@@ -49,12 +58,12 @@ def main():
         (out/f'{name}.log').write_text(result.stdout);commands[name]={'argv':cmd,'exit':result.returncode}
         print(result.stdout[-1800:])
         if result.returncode:return result.returncode
-    artifact=root/'dist/index.html';a=hashlib.sha256(artifact.read_bytes()).hexdigest()
+    artifact=root/'dist/index.html';a=hashlib.sha256(artifact.read_bytes()).hexdigest();pages=delivery_artifacts(root)
     result=subprocess.run(['npm','run','build'],cwd=root,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=120)
     (out/'repeat-build.log').write_text(result.stdout)
     if result.returncode:return result.returncode
     b=hashlib.sha256(artifact.read_bytes()).hexdigest()
-    if a!=b:print('FAIL: nondeterministic build');return 1
+    if a!=b or pages!=delivery_artifacts(root):print('FAIL: nondeterministic build');return 1
     old=root/'tests/browser-results.json';old.unlink(missing_ok=True)
     result=subprocess.run([sys.executable,'tests/browser.test.py'],cwd=root,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=600)
     (out/'browser.log').write_text(result.stdout);commands['browser']={'argv':[sys.executable,'tests/browser.test.py'],'exit':result.returncode};print(result.stdout)
@@ -80,7 +89,7 @@ def main():
     counts['atlas_skipped']=scrape_count(node_log,r'skipped (\d+)') or 0
     data={'schema':'stratum-engineering/v1','status':'PASS','started_at':started,'completed_at':datetime.now(timezone.utc).isoformat(),
         'consumer_sha256':digest(inv['functions']),'verifier_sha256':toolchain_digest(root),'lock_sha256':digest({'target':target,'catalog':catalog}),
-        'artifact_sha256':a,'repeat_build_sha256':b,'deterministic_build':a==b,'commands':commands,'browser':browser,
+        'artifact_sha256':a,'artifacts':pages,'repeat_build_sha256':b,'deterministic_build':a==b,'commands':commands,'browser':browser,
         'test_counts':counts,
         'toolchain':{'python':sys.version.split()[0],'openssl':_openssl_identity(),'browser':browser.get('browser')},
         'scope':'Local software/geometry tests only. Does not attest to upstream source truth, GPU execution or physical fabric conformance.'}

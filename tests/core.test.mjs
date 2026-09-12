@@ -28,7 +28,8 @@ test('dsv41 context-linear and bounded match an independent derivation from MODE
   const cache = c.cacheLedger(m, { context: S, batch: B });
   const perToken = m.kvSourceLayers.reduce((a, l) =>
     a + m.headDim / (l < m.encoderLayers ? m.compressEncoder : m.compressDecoder), 0) * (0.5 + 1 / 16);
-  assert.equal(cache.contextLinear, B * S * perToken, 'FP4 main KV over the four Full-mode layers');
+  assert.equal(cache.history, B * S * perToken, 'FP4 main KV over the four Full-mode layers');
+  assert.equal(cache.contextLinear, cache.history + B * S * 170, 'packed indexer payload and scales');
   assert.equal(cache.bounded, B * m.window * m.layers * m.headDim, 'FP8 SWA window across all forty layers');
 });
 
@@ -145,7 +146,7 @@ test('dsv41 global KV is 720 bytes per token from the four Full-mode layers', ()
   const one = c.cacheLedger('dsv41', { context: 1, batch: 1 });
   // 3 encoder Full layers at m=2 and 1 decoder Full layer at m=1, FP4 at 0.5625 B/channel
   assert.equal(one.mainKV, 720);
-  assert.equal(one.contextLinear, 720);
+  assert.equal(one.contextLinear, 890);
   const ten = c.cacheLedger('dsv41', { context: 10, batch: 1 });
   assert.equal(ten.mainKV, 7200, 'main KV is linear in context');
 });

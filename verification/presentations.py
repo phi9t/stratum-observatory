@@ -90,7 +90,27 @@ def judge_preview_freshness(root,recorded=None):
     if declared!=actual:
         return [_bad('PREVIEW_STALE','previews',f'Previews were captured from artifact {str(declared)[:16]}… but the build is {actual[:16]}….',
                      'Re-run npm run capture; published previews must depict the artifact that ships.')]
-    return [_ok('PREVIEW_FRESH','previews',f"{len(data.get('captures',[]))} captures match the built artifact.")]
+    for capture in data.get('captures',[]):
+        name=capture.get('artifact')
+        if name:
+            if name not in ('index.html','deepseek-v4.1.html'):
+                return [_bad('PREVIEW_STALE',str(name),'Unknown preview artifact.','Capture a delivered entry point.')]
+            artifact=root/'dist'/name
+            if not artifact.is_file() or hashlib.sha256(artifact.read_bytes()).hexdigest()!=capture.get('artifact_sha256'):
+                return [_bad('PREVIEW_STALE',name,'Preview belongs to different page bytes.','Run npm run capture.')]
+    return [_ok('PREVIEW_FRESH','previews',f"{len(data.get('captures',[]))} captures match the built artifacts.")]
+
+
+def judge_preview_artifacts(root):
+    root=Path(root);out=[]
+    captures=loads((root/'previews/manifest.json').read_text()).get('captures',[])
+    for capture in captures:
+        expected='deepseek-v4.1.html' if capture.get('state',{}).get('model')=='dsv41' else 'index.html'
+        page=root/'dist'/expected
+        if capture.get('artifact')!=expected or not page.is_file() or capture.get('artifact_sha256')!=hashlib.sha256(page.read_bytes()).hexdigest():
+            out.append(_bad('PREVIEW_ARTIFACT',capture.get('name','preview'),
+                            'Preview does not bind the delivered page for its model.','Regenerate previews with npm run capture.'))
+    return out or [_ok('PREVIEW_ARTIFACT','previews','Every capture binds its delivered entry point.')]
 
 
 def judge_preview_coverage(root,models,focal):
@@ -362,7 +382,10 @@ def run(root):
     models,samples=inventory(root)
     focal=samples['focal_stages']
     findings=list(judge_artifact_source(artifact,policy))
+    dedicated=root/'dist/deepseek-v4.1.html'
+    findings.extend(judge_artifact_source(dedicated,policy))
     findings.extend(judge_preview_freshness(root))
+    findings.extend(judge_preview_artifacts(root))
     findings.extend(judge_preview_coverage(root,models,focal))
     findings.extend(judge_preview_integrity(root))
     findings.extend(judge_preview_inventory(root))
@@ -413,7 +436,11 @@ def run(root):
                                                    for c in focal_states(root,models,focal)]
         checks['states']=[st['label'] for st in states]
         for st in states:
-            if st['patch']:page.evaluate('(p)=>STRATUM.setState(p)',st['patch'])
+            if st['patch']:
+                target=dedicated if st['patch']['model']=='dsv41' else artifact
+                page.goto(target.resolve().as_uri(),wait_until='load')
+                page.wait_for_function('window.STRATUM')
+                page.evaluate('(p)=>STRATUM.setState(p)',st['patch'])
             where=st['label']
             # The default state's headings and control names are already reported above as
             # A11Y_OK; re-running the same probe on it would double every finding it produces.
@@ -443,6 +470,8 @@ def run(root):
         else:
             findings.append(_ok('PROSE_SCOPE','states',
                                 f"Measured {len(states)} states from a real file:// origin: {', '.join(checks['states'])}."))
+        page.goto(artifact.resolve().as_uri(),wait_until='load')
+        page.wait_for_function('window.STRATUM')
         page.evaluate('(p)=>STRATUM.setState(p)',{'model':'ds3','view':'model','stage':'block'})
 
         # Focus must be visible to someone navigating by keyboard.
@@ -488,6 +517,23 @@ def run(root):
         if not problems:
             findings.append(_ok('VISUAL_RECORD','scene',
                                 f"Measured visualization record over {len(record['nodes'])} nodes satisfies the scene contract."))
+        page.goto(dedicated.resolve().as_uri(),wait_until='load')
+        page.wait_for_function('window.STRATUM')
+        findings.extend(judge_exported_svg(page.evaluate('STRATUM.exportSVG()'),policy))
+        findings.extend(judge_scenario(json.loads(page.evaluate('STRATUM.exportConfig()')),root))
+        page.keyboard.press('Tab')
+        focus=page.evaluate("() => {const e=document.activeElement,s=getComputedStyle(e);return e!==document.body&&(s.outlineStyle!=='none'||s.boxShadow!=='none')}")
+        findings.append((_ok if focus else _bad)('DEDICATED_FOCUS','dedicated','Dedicated page keyboard entry has visible focus.',*(() if focus else ('Restore visible keyboard focus.',))))
+        page.emulate_media(media='print')
+        colors=page.evaluate("() => {const s=getComputedStyle(document.body);return [s.color,s.backgroundColor]}")
+        fg,bg=map(parse_color,colors)
+        readable=bool(fg and bg and contrast_ratio(fg[:3],bg[:3])>=4.5)
+        findings.append((_ok if readable else _bad)('DEDICATED_PRINT','dedicated','Dedicated page print contrast meets AA.',*(() if readable else ('Set readable print colors.',))))
+        page.emulate_media(media='screen',reduced_motion='reduce')
+        duration=page.locator('#atlas-link').evaluate("e=>getComputedStyle(e).transitionDuration")
+        quiet=duration in ('0s','0s, 0s')
+        findings.append((_ok if quiet else _bad)('DEDICATED_MOTION','dedicated','Dedicated navigation honors reduced motion.',*(() if quiet else ('Honor reduced motion.',))))
+        if errors:findings.append(_bad('DELIVERY_RUNTIME','all pages',str(errors),'Fix all delivered page errors.'))
         browser.close()
 
     report={'schema':'stratum-presentations/v1','status':aggregate(findings),

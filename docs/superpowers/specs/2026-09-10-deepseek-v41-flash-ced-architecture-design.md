@@ -1,3 +1,9 @@
+> September 12 amendment: the earlier absence-of-framework observations below are historical.
+> Exact V4.1 SGLang and Miles development branches are now identified in
+> [V41-SERVING-RESEARCH](../../design/V41-SERVING-RESEARCH.md). The dedicated-page landing
+> incorporates SGLang cache packing and qualifies reported phase depth versus optional replay.
+> Original source observations are retained below; they do not describe current availability.
+
 # DeepSeek-V4.1-Flash: Causal Encoder-Decoder architecture — design
 
 **Date:** 2026-09-10
