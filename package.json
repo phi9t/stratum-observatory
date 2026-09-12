@@ -16,7 +16,8 @@
     "verify:science": "uv run --frozen python -m verification.runner --profile publication",
     "verify:runtime": "uv run --frozen python -m verification.runner --profile runtime",
     "verify:sources": "uv run --frozen python -m verification.sources acquire",
-    "capture": "uv run --frozen python tests/capture.py"
+    "capture": "uv run --frozen python tests/capture.py",
+    "verify:accounting": "uv run --frozen python -m verification.accounting"
   },
   "engines": {
     "node": ">=20"

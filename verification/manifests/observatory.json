@@ -22881,6 +22881,22 @@
             ]
           },
           "relation": "implements"
+        },
+        {
+          "source": "book-scaling-inference",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "\\text{KV cache size} = 2 \\cdot \\text{bytes per float} \\cdot H \\cdot K \\cdot L \\cdot T",
+            "contains": [
+              "\\text{KV cache size} = 2 \\cdot \\text{bytes per float} \\cdot H \\cdot K \\cdot L \\cdot T"
+            ],
+            "sha256": "8fac0b7e03be295747c8a6fc6b07f81f5e3f3bc4a95fa62f16a27addbab71138",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -22898,7 +22914,8 @@
         "MODELS.dsv41.kvSourceLayers",
         "MODELS.dsv41.indexer",
         "MODELS.dsv41.compressEncoder",
-        "MODELS.dsv41.compressDecoder"
+        "MODELS.dsv41.compressDecoder",
+        "accounting.method.book-gqa-cache"
       ]
     },
     {
@@ -23287,6 +23304,40 @@
             ]
           },
           "relation": "implements"
+        },
+        {
+          "source": "book-ultrascale",
+          "anchor": {
+            "kind": "span",
+            "start": 3336,
+            "end": 3350,
+            "contains": [
+              "ReduceScatter",
+              "AllGather"
+            ],
+            "sha256": "a502fd00cb1718de0e4769828c940efde2aa396fe0b2e133a5ff9381a549ed6b",
+            "resolved_span": [
+              3336,
+              3350
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-ultrascale",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "2 \\times (N-1) \\times \\frac{K}{N}",
+            "contains": [
+              "2 \\times (N-1) \\times \\frac{K}{N}"
+            ],
+            "sha256": "605927cfac2a9f75acf6366031e4b49495655b127c03e2f6ea6b563e66cc5a88",
+            "resolved_span": [
+              3360,
+              3360
+            ]
+          },
+          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -23298,7 +23349,8 @@
         "MODELS.q3827.d",
         "MODELS.q38flash.d",
         "MODELS.kimi3.d",
-        "MODELS.dsv41.d"
+        "MODELS.dsv41.d",
+        "accounting.method.book-ring-allreduce"
       ]
     },
     {
@@ -23331,6 +23383,38 @@
             ]
           },
           "relation": "implements"
+        },
+        {
+          "source": "book-scaling-inference",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Attention parameter count: $L * 2 * D * H * (N + K)$",
+            "contains": [
+              "Attention parameter count: $L * 2 * D * H * (N + K)$"
+            ],
+            "sha256": "8fac0b7e03be295747c8a6fc6b07f81f5e3f3bc4a95fa62f16a27addbab71138",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-scaling-transformers",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "W_{Q}[\\red{D}, N, H]",
+            "contains": [
+              "W_{Q}[\\red{D}, N, H]"
+            ],
+            "sha256": "1ace83c54112010af0dbe10d75dcdf1944f8b15cde4a8c58ff1dfdd90e9a42eb",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -23342,7 +23426,8 @@
         "MODELS.q3827.d",
         "MODELS.q38flash.d",
         "MODELS.kimi3.d",
-        "MODELS.dsv41.d"
+        "MODELS.dsv41.d",
+        "accounting.method.book-gqa-parameters"
       ]
     },
     {
@@ -23375,6 +23460,38 @@
             ]
           },
           "relation": "implements"
+        },
+        {
+          "source": "book-scaling-roofline",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "\\text{Arithmetic Intensity} = \\frac{\\text{Computation FLOPs}}{\\text{Communication Bytes}}",
+            "contains": [
+              "\\text{Arithmetic Intensity} = \\frac{\\text{Computation FLOPs}}{\\text{Communication Bytes}}"
+            ],
+            "sha256": "05fa99424e13e6fc239023a7203061b72b20670683604e2236dd3958c1a766a3",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-scaling-roofline",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "T_\\text{lower}=\\max(T_\\text{math}, T_\\text{comms})",
+            "contains": [
+              "T_\\text{lower}=\\max(T_\\text{math}, T_\\text{comms})"
+            ],
+            "sha256": "05fa99424e13e6fc239023a7203061b72b20670683604e2236dd3958c1a766a3",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -23386,7 +23503,8 @@
         "MODELS.q3827.d",
         "MODELS.q38flash.d",
         "MODELS.kimi3.d",
-        "MODELS.dsv41.d"
+        "MODELS.dsv41.d",
+        "accounting.method.book-roofline"
       ]
     },
     {
@@ -23497,6 +23615,60 @@
             ]
           },
           "relation": "implements"
+        },
+        {
+          "source": "book-ultrascale",
+          "anchor": {
+            "kind": "span",
+            "start": 484,
+            "end": 488,
+            "contains": [
+              "m_{params}",
+              "m_{grad}",
+              "m_{params\\_fp32}",
+              "m_{opt}"
+            ],
+            "sha256": "f78e9fca0d9191ed08041490d7b7c136891c0483610dddc58958175690807ac9",
+            "resolved_span": [
+              484,
+              488
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-scaling-training",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Optimizer state also sharded along batch.",
+            "contains": [
+              "Optimizer state also sharded along batch."
+            ],
+            "sha256": "4286696603c3e53dd4cf01924e89e395c107bcf16fff70a73e8b817ce39f4205",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-ultrascale",
+          "anchor": {
+            "kind": "span",
+            "start": 477,
+            "end": 477,
+            "contains": [
+              "storing an additional copy of the model weights and gradients in FP32",
+              "making 12 bytes per parameter in total"
+            ],
+            "sha256": "a0d4e1dae9301e7a54de3b4703beb12e08b84f65a92d6430b36f95ff5ab21e89",
+            "resolved_span": [
+              477,
+              477
+            ]
+          },
+          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -23508,7 +23680,8 @@
         "MODELS.q3827.d",
         "MODELS.q38flash.d",
         "MODELS.kimi3.d",
-        "MODELS.dsv41.d"
+        "MODELS.dsv41.d",
+        "accounting.method.book-training-state"
       ]
     },
     {
@@ -23516,7 +23689,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/app.mjs",
-      "expected": "5b1963550a1e413d9d2a6fdf6546792f1cb664b4c9f66ffba248fc6f476c225e",
+      "expected": "bb3682cd0d2b21e21caeb740f3f34e3ce7d701eda9f1b80a966e90d75af04cfb",
       "statement": "file.src/app.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23536,7 +23709,7 @@
       "domain": "model",
       "classification": "derived",
       "consumer": "file.src/core.mjs",
-      "expected": "ed4566685f7580e56aa9c2d62041919f6757f632bd71ab573ce067ea98ba7996",
+      "expected": "4ea9cb022c5038310c472ac7edd704f4c868981ffb6ca5dd1f854c1965816678",
       "statement": "file.src/core.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -23704,7 +23877,7 @@
       "domain": "model",
       "classification": "derived",
       "consumer": "file.src/models.mjs",
-      "expected": "4e221414f32fa5dee67686d58b74f73ba27da19f31905b85150145660389dbd5",
+      "expected": "79115ed9fafbbd1e9891001f46dde1e0f1a3fb942c25028f415b49757d2d128b",
       "statement": "file.src/models.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -23768,7 +23941,7 @@
       "domain": "visualization",
       "classification": "presentation",
       "consumer": "file.src/styles.css",
-      "expected": "b1006be8fa84cfc3d8a96e6ca87b506cd21289ee723a8f8cfda2977667b370f2",
+      "expected": "1cbb8de2103a86b6b9269664a2d25d7b199fd5bdacdfb312ebccb2f7c9a043e9",
       "statement": "file.src/styles.css: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": []
@@ -148896,6 +149069,750 @@
         "file.src/diagram-systems.mjs",
         "MODELS.dsv41.indexerScaleGroup",
         "MODELS.dsv41.indexerKvFormat"
+      ]
+    },
+    {
+      "id": "accounting.method.book-gqa-parameters",
+      "domain": "numerics",
+      "classification": "documented",
+      "consumer": "accounting.method.book-gqa-parameters",
+      "expected": {
+        "id": "book-gqa-parameters",
+        "sources": [
+          {
+            "source": "book-scaling-inference",
+            "anchor": {
+              "kind": "text_quote",
+              "quote": "Attention parameter count: $L * 2 * D * H * (N + K)$",
+              "contains": [
+                "Attention parameter count: $L * 2 * D * H * (N + K)$"
+              ],
+              "sha256": "8fac0b7e03be295747c8a6fc6b07f81f5e3f3bc4a95fa62f16a27addbab71138",
+              "resolved_span": [
+                183,
+                183
+              ]
+            },
+            "relation": "methodology_reference"
+          },
+          {
+            "source": "book-scaling-transformers",
+            "anchor": {
+              "kind": "text_quote",
+              "quote": "W_{Q}[\\red{D}, N, H]",
+              "contains": [
+                "W_{Q}[\\red{D}, N, H]"
+              ],
+              "sha256": "1ace83c54112010af0dbe10d75dcdf1944f8b15cde4a8c58ff1dfdd90e9a42eb",
+              "resolved_span": [
+                183,
+                183
+              ]
+            },
+            "relation": "methodology_reference"
+          }
+        ],
+        "assumptions": [
+          "Count Q, K, V and output projection matrices from their actual dimensions; query width may differ from residual width.",
+          "Apply the ordinary GQA expression only to layers with separate full Q/K/V projections."
+        ],
+        "exclusions": [
+          "MLA, QSA, recurrent attention, embeddings, norms, MLPs, biases and auxiliary modules are not covered by this projection formula."
+        ]
+      },
+      "statement": "Analytical methodology with explicit assumptions and exclusions; no checkpoint, hardware or measured performance assertion.",
+      "evidence": [
+        {
+          "source": "book-scaling-inference",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Attention parameter count: $L * 2 * D * H * (N + K)$",
+            "contains": [
+              "Attention parameter count: $L * 2 * D * H * (N + K)$"
+            ],
+            "sha256": "8fac0b7e03be295747c8a6fc6b07f81f5e3f3bc4a95fa62f16a27addbab71138",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-scaling-transformers",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "W_{Q}[\\red{D}, N, H]",
+            "contains": [
+              "W_{Q}[\\red{D}, N, H]"
+            ],
+            "sha256": "1ace83c54112010af0dbe10d75dcdf1944f8b15cde4a8c58ff1dfdd90e9a42eb",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "accounting.method.book-gqa-cache",
+      "domain": "numerics",
+      "classification": "documented",
+      "consumer": "accounting.method.book-gqa-cache",
+      "expected": {
+        "id": "book-gqa-cache",
+        "sources": [
+          {
+            "source": "book-scaling-inference",
+            "anchor": {
+              "kind": "text_quote",
+              "quote": "\\text{KV cache size} = 2 \\cdot \\text{bytes per float} \\cdot H \\cdot K \\cdot L \\cdot T",
+              "contains": [
+                "\\text{KV cache size} = 2 \\cdot \\text{bytes per float} \\cdot H \\cdot K \\cdot L \\cdot T"
+              ],
+              "sha256": "8fac0b7e03be295747c8a6fc6b07f81f5e3f3bc4a95fa62f16a27addbab71138",
+              "resolved_span": [
+                183,
+                183
+              ]
+            },
+            "relation": "methodology_reference"
+          }
+        ],
+        "assumptions": [
+          "Each ordinary GQA layer stores key and value vectors for each historical token and KV head.",
+          "Batch and bytes per element multiply independently; ownership and sequence scope remain explicit."
+        ],
+        "exclusions": [
+          "Not a universal cache formula for MLA, QSA, recurrence, allocator overhead or paged-cache fragmentation."
+        ]
+      },
+      "statement": "Analytical methodology with explicit assumptions and exclusions; no checkpoint, hardware or measured performance assertion.",
+      "evidence": [
+        {
+          "source": "book-scaling-inference",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "\\text{KV cache size} = 2 \\cdot \\text{bytes per float} \\cdot H \\cdot K \\cdot L \\cdot T",
+            "contains": [
+              "\\text{KV cache size} = 2 \\cdot \\text{bytes per float} \\cdot H \\cdot K \\cdot L \\cdot T"
+            ],
+            "sha256": "8fac0b7e03be295747c8a6fc6b07f81f5e3f3bc4a95fa62f16a27addbab71138",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "accounting.method.book-training-state",
+      "domain": "numerics",
+      "classification": "documented",
+      "consumer": "accounting.method.book-training-state",
+      "expected": {
+        "id": "book-training-state",
+        "sources": [
+          {
+            "source": "book-ultrascale",
+            "anchor": {
+              "kind": "span",
+              "start": 484,
+              "end": 488,
+              "contains": [
+                "m_{params}",
+                "m_{grad}",
+                "m_{params\\_fp32}",
+                "m_{opt}"
+              ],
+              "sha256": "f78e9fca0d9191ed08041490d7b7c136891c0483610dddc58958175690807ac9",
+              "resolved_span": [
+                484,
+                488
+              ]
+            },
+            "relation": "methodology_reference"
+          },
+          {
+            "source": "book-scaling-training",
+            "anchor": {
+              "kind": "text_quote",
+              "quote": "Optimizer state also sharded along batch.",
+              "contains": [
+                "Optimizer state also sharded along batch."
+              ],
+              "sha256": "4286696603c3e53dd4cf01924e89e395c107bcf16fff70a73e8b817ce39f4205",
+              "resolved_span": [
+                183,
+                183
+              ]
+            },
+            "relation": "methodology_reference"
+          },
+          {
+            "source": "book-ultrascale",
+            "anchor": {
+              "kind": "span",
+              "start": 477,
+              "end": 477,
+              "contains": [
+                "storing an additional copy of the model weights and gradients in FP32",
+                "making 12 bytes per parameter in total"
+              ],
+              "sha256": "a0d4e1dae9301e7a54de3b4703beb12e08b84f65a92d6430b36f95ff5ab21e89",
+              "resolved_span": [
+                477,
+                477
+              ]
+            },
+            "relation": "methodology_reference"
+          }
+        ],
+        "assumptions": [
+          "BF16 weights and gradients, FP32 master weights, FP32 Adam momentum and variance; logical persistent state is 16 bytes per parameter before sharding.",
+          "ZeRO ownership partitions only the state categories designated by the selected stage."
+        ],
+        "exclusions": [
+          "Hosted prose mentions an extra FP32 gradient copy that its displayed equation omits; this method follows the displayed categories.",
+          "Activation memory, temporary gathers, extra FP32 gradient copies, fragmentation and peak live allocation are excluded."
+        ]
+      },
+      "statement": "Analytical methodology with explicit assumptions and exclusions; no checkpoint, hardware or measured performance assertion.",
+      "evidence": [
+        {
+          "source": "book-ultrascale",
+          "anchor": {
+            "kind": "span",
+            "start": 484,
+            "end": 488,
+            "contains": [
+              "m_{params}",
+              "m_{grad}",
+              "m_{params\\_fp32}",
+              "m_{opt}"
+            ],
+            "sha256": "f78e9fca0d9191ed08041490d7b7c136891c0483610dddc58958175690807ac9",
+            "resolved_span": [
+              484,
+              488
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-scaling-training",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Optimizer state also sharded along batch.",
+            "contains": [
+              "Optimizer state also sharded along batch."
+            ],
+            "sha256": "4286696603c3e53dd4cf01924e89e395c107bcf16fff70a73e8b817ce39f4205",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-ultrascale",
+          "anchor": {
+            "kind": "span",
+            "start": 477,
+            "end": 477,
+            "contains": [
+              "storing an additional copy of the model weights and gradients in FP32",
+              "making 12 bytes per parameter in total"
+            ],
+            "sha256": "a0d4e1dae9301e7a54de3b4703beb12e08b84f65a92d6430b36f95ff5ab21e89",
+            "resolved_span": [
+              477,
+              477
+            ]
+          },
+          "relation": "documents"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "accounting.method.book-ring-allreduce",
+      "domain": "numerics",
+      "classification": "documented",
+      "consumer": "accounting.method.book-ring-allreduce",
+      "expected": {
+        "id": "book-ring-allreduce",
+        "sources": [
+          {
+            "source": "book-ultrascale",
+            "anchor": {
+              "kind": "span",
+              "start": 3336,
+              "end": 3350,
+              "contains": [
+                "ReduceScatter",
+                "AllGather"
+              ],
+              "sha256": "a502fd00cb1718de0e4769828c940efde2aa396fe0b2e133a5ff9381a549ed6b",
+              "resolved_span": [
+                3336,
+                3350
+              ]
+            },
+            "relation": "methodology_reference"
+          },
+          {
+            "source": "book-ultrascale",
+            "anchor": {
+              "kind": "text_quote",
+              "quote": "2 \\times (N-1) \\times \\frac{K}{N}",
+              "contains": [
+                "2 \\times (N-1) \\times \\frac{K}{N}"
+              ],
+              "sha256": "605927cfac2a9f75acf6366031e4b49495655b127c03e2f6ea6b563e66cc5a88",
+              "resolved_span": [
+                3360,
+                3360
+              ]
+            },
+            "relation": "methodology_reference"
+          }
+        ],
+        "assumptions": [
+          "Ring ReduceScatter followed by AllGather; equal chunks and payload measured in bytes.",
+          "Per-rank sent bytes are 2*(N-1)/N times payload; received bytes are separately equal, not added again.",
+          "One rank has zero inter-rank traffic."
+        ],
+        "exclusions": [
+          "Not a measurement, NCCL algorithm selection, latency, bidirectional total, protocol overhead or topology contention prediction."
+        ]
+      },
+      "statement": "Analytical methodology with explicit assumptions and exclusions; no checkpoint, hardware or measured performance assertion.",
+      "evidence": [
+        {
+          "source": "book-ultrascale",
+          "anchor": {
+            "kind": "span",
+            "start": 3336,
+            "end": 3350,
+            "contains": [
+              "ReduceScatter",
+              "AllGather"
+            ],
+            "sha256": "a502fd00cb1718de0e4769828c940efde2aa396fe0b2e133a5ff9381a549ed6b",
+            "resolved_span": [
+              3336,
+              3350
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-ultrascale",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "2 \\times (N-1) \\times \\frac{K}{N}",
+            "contains": [
+              "2 \\times (N-1) \\times \\frac{K}{N}"
+            ],
+            "sha256": "605927cfac2a9f75acf6366031e4b49495655b127c03e2f6ea6b563e66cc5a88",
+            "resolved_span": [
+              3360,
+              3360
+            ]
+          },
+          "relation": "documents"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "accounting.method.book-roofline",
+      "domain": "numerics",
+      "classification": "documented",
+      "consumer": "accounting.method.book-roofline",
+      "expected": {
+        "id": "book-roofline",
+        "sources": [
+          {
+            "source": "book-scaling-roofline",
+            "anchor": {
+              "kind": "text_quote",
+              "quote": "\\text{Arithmetic Intensity} = \\frac{\\text{Computation FLOPs}}{\\text{Communication Bytes}}",
+              "contains": [
+                "\\text{Arithmetic Intensity} = \\frac{\\text{Computation FLOPs}}{\\text{Communication Bytes}}"
+              ],
+              "sha256": "05fa99424e13e6fc239023a7203061b72b20670683604e2236dd3958c1a766a3",
+              "resolved_span": [
+                183,
+                183
+              ]
+            },
+            "relation": "methodology_reference"
+          },
+          {
+            "source": "book-scaling-roofline",
+            "anchor": {
+              "kind": "text_quote",
+              "quote": "T_\\text{lower}=\\max(T_\\text{math}, T_\\text{comms})",
+              "contains": [
+                "T_\\text{lower}=\\max(T_\\text{math}, T_\\text{comms})"
+              ],
+              "sha256": "05fa99424e13e6fc239023a7203061b72b20670683604e2236dd3958c1a766a3",
+              "resolved_span": [
+                183,
+                183
+              ]
+            },
+            "relation": "methodology_reference"
+          }
+        ],
+        "assumptions": [
+          "Achievable throughput is bounded by min(compute ceiling, bandwidth times arithmetic intensity).",
+          "Use matching precision, dense/sparse mode, transfer domain and per-device scope."
+        ],
+        "exclusions": [
+          "No claim of achieved performance, utilization, kernels, overlap, latency or runtime validation."
+        ]
+      },
+      "statement": "Analytical methodology with explicit assumptions and exclusions; no checkpoint, hardware or measured performance assertion.",
+      "evidence": [
+        {
+          "source": "book-scaling-roofline",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "\\text{Arithmetic Intensity} = \\frac{\\text{Computation FLOPs}}{\\text{Communication Bytes}}",
+            "contains": [
+              "\\text{Arithmetic Intensity} = \\frac{\\text{Computation FLOPs}}{\\text{Communication Bytes}}"
+            ],
+            "sha256": "05fa99424e13e6fc239023a7203061b72b20670683604e2236dd3958c1a766a3",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-scaling-roofline",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "T_\\text{lower}=\\max(T_\\text{math}, T_\\text{comms})",
+            "contains": [
+              "T_\\text{lower}=\\max(T_\\text{math}, T_\\text{comms})"
+            ],
+            "sha256": "05fa99424e13e6fc239023a7203061b72b20670683604e2236dd3958c1a766a3",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "accounting.example.book-gqa-cache-llama13b-8192-v1",
+      "domain": "numerics",
+      "classification": "derived",
+      "consumer": "accounting.example.book-gqa-cache-llama13b-8192-v1",
+      "expected": {
+        "id": "book-gqa-cache-llama13b-8192-v1",
+        "method": "book-gqa-cache",
+        "inputs": {
+          "batch": 1,
+          "context": 8192,
+          "layers": 40,
+          "kvHeads": 40,
+          "headDim": 128,
+          "kvBytes": 2
+        },
+        "expected": {
+          "total": 6710886400,
+          "decimalGB": 6.7108864,
+          "binaryGiB": 6.25
+        },
+        "published": {
+          "proseGB": 6.7,
+          "tableGiB": 6.7
+        },
+        "sources": [
+          {
+            "source": "book-scaling-inference",
+            "anchor": {
+              "kind": "text_quote",
+              "quote": "8192\\ (T) \\times 40\\ (K) \\times 128\\ (H) \\times 40\\ (L) \\times 2\\ (\\text{bytes}) \\times 2 = 6.7 \\text{GB}",
+              "contains": [
+                "8192\\ (T) \\times 40\\ (K) \\times 128\\ (H) \\times 40\\ (L) \\times 2\\ (\\text{bytes}) \\times 2 = 6.7 \\text{GB}"
+              ],
+              "sha256": "8fac0b7e03be295747c8a6fc6b07f81f5e3f3bc4a95fa62f16a27addbab71138",
+              "resolved_span": [
+                183,
+                183
+              ]
+            },
+            "relation": "documents"
+          },
+          {
+            "source": "book-scaling-inference",
+            "anchor": {
+              "kind": "text_quote",
+              "quote": "KV Cache Memory (GiB)</td> <td style=\"text-align: right\">6.7</td>",
+              "contains": [
+                "KV Cache Memory (GiB)</td> <td style=\"text-align: right\">6.7</td>"
+              ],
+              "sha256": "8fac0b7e03be295747c8a6fc6b07f81f5e3f3bc4a95fa62f16a27addbab71138",
+              "resolved_span": [
+                183,
+                183
+              ]
+            },
+            "relation": "documents"
+          }
+        ],
+        "units": "bytes; decimal GB; binary GiB",
+        "denominator": "one sequence, all layers",
+        "scope": "Anchored LLaMA-13B inference example: exact bytes reproduce prose rounded decimal GB, but table labels the same numeral GiB.",
+        "exclusions": [
+          "No runtime allocation measurement",
+          "No endorsement of the table unit label"
+        ]
+      },
+      "statement": "Anchored LLaMA-13B inference example: exact bytes reproduce prose rounded decimal GB, but table labels the same numeral GiB.",
+      "evidence": [
+        {
+          "source": "book-scaling-inference",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "8192\\ (T) \\times 40\\ (K) \\times 128\\ (H) \\times 40\\ (L) \\times 2\\ (\\text{bytes}) \\times 2 = 6.7 \\text{GB}",
+            "contains": [
+              "8192\\ (T) \\times 40\\ (K) \\times 128\\ (H) \\times 40\\ (L) \\times 2\\ (\\text{bytes}) \\times 2 = 6.7 \\text{GB}"
+            ],
+            "sha256": "8fac0b7e03be295747c8a6fc6b07f81f5e3f3bc4a95fa62f16a27addbab71138",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-scaling-inference",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "KV Cache Memory (GiB)</td> <td style=\"text-align: right\">6.7</td>",
+            "contains": [
+              "KV Cache Memory (GiB)</td> <td style=\"text-align: right\">6.7</td>"
+            ],
+            "sha256": "8fac0b7e03be295747c8a6fc6b07f81f5e3f3bc4a95fa62f16a27addbab71138",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        }
+      ],
+      "dependencies": [
+        "accounting.method.book-gqa-cache"
+      ]
+    },
+    {
+      "id": "function.accountingAssumptions",
+      "domain": "numerics",
+      "classification": "derived",
+      "consumer": "function.accountingAssumptions",
+      "expected": "030fd86326ea5da60bd8f2cbc6c82c48e8b9af2499cd649f796b99c0c64b92bf",
+      "statement": "Expose method identity, quantities, ownership, units and exclusions from the live ledgers; explanatory accounting metadata is not observed allocation or runtime evidence.",
+      "evidence": [
+        {
+          "source": "book-scaling-inference",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Attention parameter count: $L * 2 * D * H * (N + K)$",
+            "contains": [
+              "Attention parameter count: $L * 2 * D * H * (N + K)$"
+            ],
+            "sha256": "8fac0b7e03be295747c8a6fc6b07f81f5e3f3bc4a95fa62f16a27addbab71138",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-scaling-transformers",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "W_{Q}[\\red{D}, N, H]",
+            "contains": [
+              "W_{Q}[\\red{D}, N, H]"
+            ],
+            "sha256": "1ace83c54112010af0dbe10d75dcdf1944f8b15cde4a8c58ff1dfdd90e9a42eb",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-scaling-inference",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "\\text{KV cache size} = 2 \\cdot \\text{bytes per float} \\cdot H \\cdot K \\cdot L \\cdot T",
+            "contains": [
+              "\\text{KV cache size} = 2 \\cdot \\text{bytes per float} \\cdot H \\cdot K \\cdot L \\cdot T"
+            ],
+            "sha256": "8fac0b7e03be295747c8a6fc6b07f81f5e3f3bc4a95fa62f16a27addbab71138",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-ultrascale",
+          "anchor": {
+            "kind": "span",
+            "start": 484,
+            "end": 488,
+            "contains": [
+              "m_{params}",
+              "m_{grad}",
+              "m_{params\\_fp32}",
+              "m_{opt}"
+            ],
+            "sha256": "f78e9fca0d9191ed08041490d7b7c136891c0483610dddc58958175690807ac9",
+            "resolved_span": [
+              484,
+              488
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-scaling-training",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "Optimizer state also sharded along batch.",
+            "contains": [
+              "Optimizer state also sharded along batch."
+            ],
+            "sha256": "4286696603c3e53dd4cf01924e89e395c107bcf16fff70a73e8b817ce39f4205",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-ultrascale",
+          "anchor": {
+            "kind": "span",
+            "start": 477,
+            "end": 477,
+            "contains": [
+              "storing an additional copy of the model weights and gradients in FP32",
+              "making 12 bytes per parameter in total"
+            ],
+            "sha256": "a0d4e1dae9301e7a54de3b4703beb12e08b84f65a92d6430b36f95ff5ab21e89",
+            "resolved_span": [
+              477,
+              477
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-ultrascale",
+          "anchor": {
+            "kind": "span",
+            "start": 3336,
+            "end": 3350,
+            "contains": [
+              "ReduceScatter",
+              "AllGather"
+            ],
+            "sha256": "a502fd00cb1718de0e4769828c940efde2aa396fe0b2e133a5ff9381a549ed6b",
+            "resolved_span": [
+              3336,
+              3350
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-ultrascale",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "2 \\times (N-1) \\times \\frac{K}{N}",
+            "contains": [
+              "2 \\times (N-1) \\times \\frac{K}{N}"
+            ],
+            "sha256": "605927cfac2a9f75acf6366031e4b49495655b127c03e2f6ea6b563e66cc5a88",
+            "resolved_span": [
+              3360,
+              3360
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-scaling-roofline",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "\\text{Arithmetic Intensity} = \\frac{\\text{Computation FLOPs}}{\\text{Communication Bytes}}",
+            "contains": [
+              "\\text{Arithmetic Intensity} = \\frac{\\text{Computation FLOPs}}{\\text{Communication Bytes}}"
+            ],
+            "sha256": "05fa99424e13e6fc239023a7203061b72b20670683604e2236dd3958c1a766a3",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "book-scaling-roofline",
+          "anchor": {
+            "kind": "text_quote",
+            "quote": "T_\\text{lower}=\\max(T_\\text{math}, T_\\text{comms})",
+            "contains": [
+              "T_\\text{lower}=\\max(T_\\text{math}, T_\\text{comms})"
+            ],
+            "sha256": "05fa99424e13e6fc239023a7203061b72b20670683604e2236dd3958c1a766a3",
+            "resolved_span": [
+              183,
+              183
+            ]
+          },
+          "relation": "documents"
+        }
+      ],
+      "dependencies": [
+        "function.parameterLedger",
+        "function.cacheLedger",
+        "function.trainingLedger",
+        "function.networkLedger",
+        "function.roofline",
+        "accounting.method.book-gqa-parameters",
+        "accounting.method.book-gqa-cache",
+        "accounting.method.book-training-state",
+        "accounting.method.book-ring-allreduce",
+        "accounting.method.book-roofline"
       ]
     }
   ],

@@ -301,7 +301,8 @@ def judge_spacing_scale(stylesheet,policy):
 #: up from the prose it was added for.
 CHROME_TEXT_SELECTORS=('.chart text','.metric-note','.chart-caption','.source-role','.status-pill',
                        '.fact dt','.lens-tab .idx','.innovation-note','.innovation-table th',
-                       '.innovation-table td','.innovation-table a')
+                       '.innovation-table td','.innovation-table a','.accounting-assumptions summary',
+                       '.accounting-assumptions h4','.accounting-assumptions p','.accounting-citations a')
 
 #: Reading-size chrome rules that the probe does **not** measure. This is recorded debt, not an
 #: exemption on principle: each entry is chrome text at or above `reading_px` whose contrast is
@@ -447,7 +448,7 @@ PROBE=r"""
       const c = getComputedStyle(n).backgroundColor;
       if (c && c !== 'rgba(0, 0, 0, 0)' && c !== 'transparent') { bg = c; break; }
     }
-    out.texts.push({ surface: 'chrome', id: el.className && el.className.baseVal !== undefined ? el.className.baseVal : (el.className || el.tagName),
+    out.texts.push({ surface: 'chrome', accounting: !!el.closest('.accounting-assumptions'), id: el.className && el.className.baseVal !== undefined ? el.className.baseVal : (el.className || el.tagName),
       fill: st.color, alpha: chain(el),
       px: parseFloat(st.fontSize), weight: parseInt(st.fontWeight, 10) || 400,
       backdrop: bg ? [{ color: bg, alpha: 1 }] : null, text: (el.textContent || '').slice(0, 60) });
@@ -595,7 +596,20 @@ def run(root,record=False):
                 page.set_content((root/'dist'/('deepseek-v4.1.html' if dedicated else 'index.html')).read_text(),wait_until='load')
                 page.wait_for_function('window.STRATUM')
             page.evaluate('(p)=>STRATUM.setState(p)',case)
+            # Closed native details hide the prose from rendered measurement. Measure the
+            # expanded reader state for every model, lens and theme in the live matrix.
+            accounting_expected=page.evaluate("""() => {
+                const notes=document.querySelector('details.accounting-assumptions');
+                if(!notes)return 0;
+                notes.open=true;
+                return notes.querySelectorAll('summary,h4,p,.accounting-citations a').length;
+            }""")
             data=page.evaluate(PROBE)
+            measured=sum(1 for text in data['texts'] if text.get('accounting'))
+            if not accounting_expected or measured!=accounting_expected:
+                findings.append(Finding('ACCOUNTING_TEXT_MEASURED','aesthetics','FAIL',str(case),
+                                        f'{measured} accounting text elements measured against {accounting_expected} rendered elements.',
+                                        'Expand the disclosure and measure every heading, paragraph, summary and citation.'))
             scenario=f"{case['model']}/{case['view']}/{case['stage']}/{case['layer']}"
             if case.get("phase")=="prefill":scenario+="/prefill"
             label=f"{scenario}/{case['theme']}"

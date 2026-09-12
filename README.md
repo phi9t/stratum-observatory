@@ -63,6 +63,7 @@ npm run test:verifiers      # Evidence, signatures, contracts and negative tests
 npm run verify:schematics   # What the diagram means, over all 544 decoder layers
 npm run verify:aesthetics   # Measured legibility, type/spacing scales, composition drift
 npm run verify:presentations # Exports, accessibility, print, portability, preview coverage
+npm run verify:accounting   # Independent book-method arithmetic; source acceptance stays separate
 npm run verify:engineering  # Verifier/Node tests, two identical builds, real-browser tests
 npm run verify:science      # Expected exit 2 until evidence/reviews are completed
 npm run verify:runtime      # Expected exit 2 until actual experiments are attested
@@ -93,3 +94,11 @@ archive/kimi-baseline/ Historical source for reference only, not active verifica
 ```
 
 This is a deterministic **template-based architecture schematic system**, not an arbitrary-model importer, unrestricted graph auto-layout engine, model execution runtime, cluster simulator or benchmark suite. The original visual inspiration is Edward Z. Yang's DeepSeek diagram. This implementation uses newly authored layouts and application code; no upstream source-site assets or font files are bundled.
+
+
+The analysis panels on both portable pages include expandable **Accounting assumptions**.
+They explain the selected precision, ownership and units using current ledger values.
+The [book audit design](docs/design/BOOK-ACCOUNTING.md) and [source record](docs/design/BOOK-SOURCES.md)
+distinguish methods from checkpoint evidence. `verify:accounting` emits JSON and Markdown under
+`verification/reports/` and is required by engineering. Its arithmetic agreement cannot replace
+publication review or runtime measurements; specialized architectures carry explicit exclusions.

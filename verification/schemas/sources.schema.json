@@ -47,7 +47,8 @@
               "library_code",
               "paper",
               "tokenizer_code",
-              "checkpoint_metadata"
+              "checkpoint_metadata",
+              "methodology_reference"
             ]
           },
           "url": {

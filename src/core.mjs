@@ -113,3 +113,44 @@ export function formatParams(x){return x>=1e12?(x/1e12).toFixed(2)+'T':x>=1e9?(x
 export function formatBytes(x){if(!Number.isFinite(x))return'—';if(x===0)return'0 B';const units=['B','KiB','MiB','GiB','TiB','PiB'];let i=0;while(x>=1024&&i<5){x/=1024;i++;}return x.toFixed(i?2:0)+' '+units[i];}
 export function formatTime(sec){if(sec===0)return'0';return sec>=1?sec.toFixed(2)+' s':sec>=.001?(sec*1000).toFixed(2)+' ms':(sec*1e6).toFixed(1)+' μs';}
 export function evidenceSummary(){return{referenceRecords:Object.keys(SOURCES).length,snapshots:0,independentReviews:0,publication:'BLOCKED',runtime:'NOT_RUN',reason:'References inspected; immutable source bytes, exact semantic anchors and independent signatures are not accepted in this artifact.'};}
+
+/** Reader-facing method assumptions. Arithmetic audit results belong to their sampled report. */
+export function accountingAssumptions(id,settings={}){
+ const m=getModel(id),s=sanitizeState({...settings,model:m.id});
+ const row=(method,title,body,scope,applicability,sources,values={})=>({method,title,body,scope,applicability,sources,values});
+ if(s.view==='training'){
+  const l=trainingLedger(m,s),parameters=parameterLedger(m).resident;
+  return [row('book-training-state','Persistent training state',
+   `The selected baseline retains BF16 weights and gradients, FP32 master weights and Adam moments: ${l.bytesPerParameter} bytes per parameter (${formatBytes(l.total)} globally). An additional FP32 accumulation buffer adds ${formatBytes(l.master)}, giving ${(l.total+l.master)/parameters} bytes per parameter (${formatBytes(l.total+l.master)}). The hosted playbook prose mentions that extra copy; its displayed equations omit it.`,
+   'Logical persistent learner state. Activations, temporary gathers, allocator overhead and other RL models are excluded. Uniform division is an accounting assumption, not a verified sharding plan.',
+   'applicable',['book-ultrascale','book-scaling-training'],{baseline:l.total,accumulation:l.master,withAccumulation:l.total+l.master,bytesPerParameter:l.bytesPerParameter,alternativeBytesPerParameter:(l.total+l.master)/parameters})];
+ }
+ if(s.view==='hardware'){
+  const h=HARDWARE[s.hardware],l=roofline(s.hardware,s.intensity);
+  return [row('book-roofline','Matching roofline units',
+   `The selected per-GPU dense FP8 ceiling is ${formatNum(l.compute)} TFLOP/s. Decimal bandwidth ${h.hbmTBps} TB/s × ${s.intensity} FLOP/byte gives ${formatNum(l.memory,2)} TFLOP/s; the lower ceiling is ${formatNum(l.attainable,2)} TFLOP/s. The ridge is ${formatNum(l.ridge,2)} FLOP/byte.`,
+   'The intensity must describe actual HBM reads and writes at the same precision and device scope. This bound excludes communication, launch costs and measured utilization.',
+   'applicable',['book-scaling-roofline'],l)];
+ }
+ if(s.view==='network'){
+  const l=networkLedger(m,s),ring=s.traffic==='allreduce';
+  return [row('book-ring-allreduce','Ring traffic and direction',
+   ring?`For ${s.ranks} ranks, reduce-scatter plus all-gather sends 2 × (N − 1) / N × M bytes per rank: ${formatBytes(l.sent)} for the full BF16 gradient buffer. Each rank receives the same amount separately. Adding both directions would double this sent-byte figure.`:
+   `The selected ${s.traffic==='expert'?'expert dispatch':'cache handoff'} payload is outside the ring all-reduce method. STRATUM derives ${formatBytes(l.sent)} under its own operation-specific ownership assumptions.`,
+   `${l.scope} Network rates use decimal bytes per second and one-way NIC capacity; payload divided by useful rate is a bandwidth-only lower bound.`,
+   ring?'applicable':'specialized',['book-ultrascale'],{sent:l.sent,rate:l.rate,seconds:l.seconds})];
+ }
+ const cache=cacheLedger(m,s),params=parameterLedger(m),gqa=m.architecture==='gqa';
+ const notes=[row('book-gqa-cache','Cache storage and ownership',
+  gqa?`The GQA method stores both K and V: 2 × batch × context × layers × KV heads × head dimension × bytes per element. The selected ${m.name} scenario stores ${formatBytes(cache.total)}. KV heads, rather than query heads, determine this payload.`:
+  m.architecture==='ced-csa2'?`The generic GQA formula does not cover CSA2. STRATUM counts compressed cache storage at ${m.kvSourceLayers.length} unique source layers, plus the indexer and sliding-window state: ${formatBytes(cache.total)}. Shared cache can be read multiple times during execution; repeated reads consume bandwidth without duplicating retained storage.`:
+  `The generic GQA formula does not cover the complete ${m.name} cache. STRATUM separately accounts for its latent, recurrent or compressed mechanisms: ${formatBytes(cache.total)}. These terms require architecture-specific implementation evidence.`,
+  `${cache.exclusions.join('. ')}. Byte displays use binary KiB/GiB; book decimal GB examples are converted explicitly in the audit.`,
+  gqa?'applicable':'specialized',['book-scaling-inference'],{total:cache.total})];
+ if(s.view!=='serving')notes.push(row('book-gqa-parameters','Parameter scope',
+  gqa?`The book projection method counts Q, K, V and output matrices from their dimensions. STRATUM also includes scoped embeddings, feed-forward matrices and normalization parameters, giving ${formatParams(params.resident)} resident parameters for ${m.name}.`:
+  `The ordinary Transformer projection formula cannot validate the complete ${m.name} architecture. STRATUM's ${formatParams(params.resident)} resident-parameter scope still depends on its model-specific evidence.`,
+  `${params.scope} Method references supplement publisher code, independent implementation review and runtime evidence; they cannot replace those requirements.`,
+  gqa?'applicable':'specialized',['book-scaling-transformers','book-scaling-inference'],{resident:params.resident}));
+ return notes;
+}

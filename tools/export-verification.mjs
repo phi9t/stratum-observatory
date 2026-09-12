@@ -7,6 +7,9 @@ import {createHash} from 'node:crypto';
 const sha=v=>createHash('sha256').update(v).digest('hex');
 const stable=v=>JSON.stringify(v,(_,x)=>x&&!Array.isArray(x)&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,x[k]])):x);
 const fields={},functions={},scenes={};
+const accounting=JSON.parse(readFileSync(new URL('../verification/manifests/accounting-methods.json',import.meta.url),'utf8'));
+for(const method of accounting.methods)fields[`accounting.method.${method.id}`]=method;
+for(const example of accounting.examples.filter(x=>x.sources?.length))fields[`accounting.example.${example.id}`]=example;
 function walk(value,path){if(value&&typeof value==='object'&&!Array.isArray(value)){for(const k of Object.keys(value).sort())walk(value[k],`${path}.${k}`);}else fields[path]=value;}
 for(const[name,v]of Object.entries(core))if(typeof v==='function')functions[`function.${name}`]={sha256:sha(v.toString())};else if(name!=='SOURCES')walk(v,name);
 for(const file of [...readdirSync(new URL('../src/',import.meta.url)).filter(x=>/\.(mjs|css)$/.test(x)).map(x=>'src/'+x),'build.mjs','index.html'])functions[`file.${file}`]={sha256:sha(readFileSync(new URL('../'+file,import.meta.url)))};

@@ -980,6 +980,66 @@
       "cache": ".verification-cache/sha256/23ffdb2c0201b449963f83dca9b9783decceb57f5a1ab5bf49bbae77faddf63e.txt",
       "retrieved_at": "2026-09-12T22:50:51.173235+00:00",
       "etag": "\"be5bc3188dfcdf7db4ecc95a0db76a284b9f17561113ef0a1cbd00bd677b60f3\""
+    },
+    {
+      "id": "book-ultrascale",
+      "kind": "document",
+      "role": "methodology_reference",
+      "url": "https://phi9t.github.io/megatronlm/",
+      "version": "phi9t-hosted Ultra-Scale Playbook; credits Hugging Face/Tazi et al.; upstream publication date Feb 19, 2025; not an upstream edition identity; HTML snapshot 2026-09-12, exact edition pinned by sha256",
+      "license": "No redistribution permission inferred from public hosting; raw HTML retained only in ignored local evidence cache; no scripts or weights executed; attribution in docs/design/BOOK-SOURCES.md.",
+      "sha256": "a3e74b8f3f7f920e11bba7b6fa14d9bfde0516985603a8bf0a18168b0f414a0b",
+      "cache": ".verification-cache/sha256/a3e74b8f3f7f920e11bba7b6fa14d9bfde0516985603a8bf0a18168b0f414a0b.txt",
+      "retrieved_at": "2026-09-12T23:31:27.816689+00:00",
+      "etag": "\"6a725029-c119f\""
+    },
+    {
+      "id": "book-scaling-transformers",
+      "kind": "document",
+      "role": "methodology_reference",
+      "url": "https://jax-ml.github.io/scaling-book/transformers/",
+      "version": "How To Scale Your Model, Austin et al.; jax-ml hosted chapter; HTML snapshot 2026-09-12, exact edition pinned by sha256",
+      "license": "No redistribution permission inferred from public hosting; raw HTML retained only in ignored local evidence cache; no scripts or weights executed; attribution in docs/design/BOOK-SOURCES.md.",
+      "sha256": "f92c24612b9ecdbb1bc713a9b57a9543d8c0512d405b1591e4917706eecc452a",
+      "cache": ".verification-cache/sha256/f92c24612b9ecdbb1bc713a9b57a9543d8c0512d405b1591e4917706eecc452a.txt",
+      "retrieved_at": "2026-09-12T23:31:28.302565+00:00",
+      "etag": "\"6a999588-e90f\""
+    },
+    {
+      "id": "book-scaling-training",
+      "kind": "document",
+      "role": "methodology_reference",
+      "url": "https://jax-ml.github.io/scaling-book/training/",
+      "version": "How To Scale Your Model, Austin et al.; jax-ml hosted chapter; HTML snapshot 2026-09-12, exact edition pinned by sha256",
+      "license": "No redistribution permission inferred from public hosting; raw HTML retained only in ignored local evidence cache; no scripts or weights executed; attribution in docs/design/BOOK-SOURCES.md.",
+      "sha256": "7f7017e31d9b79437d99d4a62d80cc611612bdf523a2f7a41aaf617e21868cc7",
+      "cache": ".verification-cache/sha256/7f7017e31d9b79437d99d4a62d80cc611612bdf523a2f7a41aaf617e21868cc7.txt",
+      "retrieved_at": "2026-09-12T23:31:28.737668+00:00",
+      "etag": "\"6a999588-17bfa\""
+    },
+    {
+      "id": "book-scaling-inference",
+      "kind": "document",
+      "role": "methodology_reference",
+      "url": "https://jax-ml.github.io/scaling-book/inference/",
+      "version": "How To Scale Your Model, Austin et al.; jax-ml hosted chapter; HTML snapshot 2026-09-12, exact edition pinned by sha256",
+      "license": "No redistribution permission inferred from public hosting; raw HTML retained only in ignored local evidence cache; no scripts or weights executed; attribution in docs/design/BOOK-SOURCES.md.",
+      "sha256": "f7211ee61614c155eb9d94fe08df96056361f0075ec4836515938fe2aaf8fbd6",
+      "cache": ".verification-cache/sha256/f7211ee61614c155eb9d94fe08df96056361f0075ec4836515938fe2aaf8fbd6.txt",
+      "retrieved_at": "2026-09-12T23:31:29.222165+00:00",
+      "etag": "\"6a999588-1b6df\""
+    },
+    {
+      "id": "book-scaling-roofline",
+      "kind": "document",
+      "role": "methodology_reference",
+      "url": "https://jax-ml.github.io/scaling-book/roofline/",
+      "version": "How To Scale Your Model, Austin et al.; jax-ml hosted chapter; HTML snapshot 2026-09-12, exact edition pinned by sha256",
+      "license": "No redistribution permission inferred from public hosting; raw HTML retained only in ignored local evidence cache; no scripts or weights executed; attribution in docs/design/BOOK-SOURCES.md.",
+      "sha256": "e840410db6facea88d8201e53e783cca605c04d798225eaa1d84b50e3ee46637",
+      "cache": ".verification-cache/sha256/e840410db6facea88d8201e53e783cca605c04d798225eaa1d84b50e3ee46637.txt",
+      "retrieved_at": "2026-09-12T23:31:29.587941+00:00",
+      "etag": "\"6a999588-ce88\""
     }
   ]
 }

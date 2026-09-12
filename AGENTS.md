@@ -37,6 +37,7 @@ npm run verify:schematics             # Diagram semantics vs core.mjs over all 5
 npm run verify:presentations          # Exports, accessibility, print, portability, preview freshness
 npm run verify:aesthetics             # Measured legibility, type/spacing scales, composition, drift
 npm run verify:aesthetics -- --record  # Write a candidate composition baseline for review
+npm run verify:accounting             # Independent book-method arithmetic, separate source acceptance
 npm run verify:engineering            # Verifier tests + node tests + two builds + browser; writes receipt
 npm run verify:science                # Publication gate; exits 2 while BLOCKED
 npm run verify:runtime                # Runtime gate; exits 2 while experiments are NOT_RUN
@@ -125,3 +126,13 @@ Every model/view/hardware/stage axis in every sweep, test and gate is **derived 
 engineering artifact identity, repeat-build checks, browser/presentation coverage, preview
 identity, and Pages packaging. The dedicated page fixes V4.1 identity and defaults to CED;
 ordinary atlas model switching preserves the selected lens. `npm start` serves `dist/`.
+
+
+Book accounting: `verification/manifests/accounting-methods.json` pins methods/examples and is
+bound into the toolchain and publication consumer inventory. `tools/export-accounting.mjs`
+exports actual live ledger results; `verification/accounting.py` independently constructs
+expected values. Do not derive its oracle from the JavaScript ledger, substitute a generic
+Transformer formula for specialized architecture coverage, or use `methodology_reference`
+as publisher/framework/vendor authority. Reader notes come from `core.accountingAssumptions`;
+they describe the current scenario, not a scientific PASS badge. Engineering requires the
+accounting command. Source acceptance remains in publication.
