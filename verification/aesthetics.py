@@ -506,7 +506,10 @@ def cases(models,views,themes,focal):
             layers=LAYER_SAMPLE if view=='model' else (4,)
             for theme in themes:
                 for layer in layers:
-                    out.append({'model':model,'view':view,'theme':theme,'stage':'block','layer':layer})
+                    out.append({'model':model,'view':view,'theme':theme,'stage':'block','layer':layer,'phase':'decode'})
+        if meta.get('encoderLayers'):
+            for theme in themes:
+                out.append({'model':model,'view':'serving','theme':theme,'stage':'block','layer':4,'phase':'prefill'})
         for theme in themes:
             for stage in focal.get(model,()):
                 out.append({'model':model,'view':'model','theme':theme,'stage':stage,'layer':4})
@@ -587,9 +590,14 @@ def run(root,record=False):
         page.wait_for_function('window.STRATUM?.version === "3.0.0"')
         page.evaluate('document.fonts.ready')
         for case in cases(models,views,policy['themes'],focal):
+            dedicated=case['model']=='dsv41'
+            if bool(page.evaluate('document.body.dataset.pageModel'))!=dedicated:
+                page.set_content((root/'dist'/('deepseek-v4.1.html' if dedicated else 'index.html')).read_text(),wait_until='load')
+                page.wait_for_function('window.STRATUM')
             page.evaluate('(p)=>STRATUM.setState(p)',case)
             data=page.evaluate(PROBE)
             scenario=f"{case['model']}/{case['view']}/{case['stage']}/{case['layer']}"
+            if case.get("phase")=="prefill":scenario+="/prefill"
             label=f"{scenario}/{case['theme']}"
             for t in data['texts']:
                 key=sample_key(t)

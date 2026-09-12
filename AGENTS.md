@@ -28,7 +28,7 @@ npm test                              # Node model math + scene contract tests (
 node --test tests/core.test.mjs       # One test file
 node --test --test-name-pattern 'QSA' tests/core.test.mjs   # One test by name
 npm run build                         # index.html + src/ -> dist/index.html (deterministic)
-npm start                             # python3 -m http.server 8000; unbundled dev at localhost:8000
+npm start                             # Build and serve both portable pages at localhost:8000
 npm run test:verifiers                # uv run python -m unittest discover -s verification/tests -v
 uv run python -m unittest verification.tests.test_evidence -v   # One verifier module
 uv run python tests/browser.test.py   # Chromium suite; CHROMIUM_PATH optional, Playwright resolves it
@@ -117,3 +117,11 @@ pure ledgers (`parameterLedger`, `cacheLedger`, `servingLedger`, `trainingLedger
 Every model/view/hardware/stage axis in every sweep, test and gate is **derived from the application**, never transcribed. A literal encoding "there are nine models" or "there are seven views" is only acceptable where it fails loudly on divergence (`test_observatory.py`, `tests/core.test.mjs:5`, `tests/diagrams.test.mjs:56` are verified loud). A comment saying "keep in sync" is not. `previews/` is published output: every file in it must be produced by `npm run capture` and named by a capture record -- `PREVIEW_INVENTORY` enforces it, `PREVIEW_INTEGRITY` verifies each recorded `svg_sha256`, and scratch scripts write under `tests/`.
 
 `docs/verifiers/` holds the per-domain requirements (MODEL/GPU/NETWORK/EVIDENCE/…) and `AGENT_RUNBOOK.md` the evidence protocol; `docs/design/` records the design rationale.
+
+
+## Dedicated entry points
+
+`build.mjs` emits the atlas and `dist/deepseek-v4.1.html` from the same shell. Keep both inside
+engineering artifact identity, repeat-build checks, browser/presentation coverage, preview
+identity, and Pages packaging. The dedicated page fixes V4.1 identity and defaults to CED;
+ordinary atlas model switching preserves the selected lens. `npm start` serves `dist/`.

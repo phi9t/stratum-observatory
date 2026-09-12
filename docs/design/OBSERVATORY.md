@@ -1,7 +1,7 @@
 # STRATUM Observatory — design contract
 
 ## Purpose
-A comparative scientific instrument: inspect the same tensor-to-system causal chain across DeepSeek V2/V3, Qwen3 dense/MoE, Qwen3.8 dense/Flash-Next, and Kimi K3. The deliverable is a portable offline HTML application and reusable source. Eight exact checkpoint presets, not invented family-wide architectures.
+A comparative scientific instrument: inspect the same tensor-to-system causal chain across DeepSeek V2/V3, Qwen3 dense/MoE, Qwen3.8 dense/Flash-Next, and Kimi K3. The deliverable is a portable offline HTML application and reusable source. Nine exact checkpoint presets, not invented family-wide architectures.
 
 ## First principles
 1. Shape and dependency are the invariant; presentation is a projection. Core model definitions feed the diagram, accounting and comparisons.
@@ -30,3 +30,17 @@ Seven lenses (architecture, compare, training, serving, hardware, network, evide
 
 ## Release
 Run numeric and semantic tests, existing verifier self-tests, deterministic build twice and browser tests against the resulting HTML. Check representative images manually. Export fresh engineering results and separate blocked scientific/runtime reports. No certificates or source hashes are invented.
+
+
+## Dedicated DeepSeek V4.1 delivery
+
+`dist/deepseek-v4.1.html` is a dedicated entry point built from the shared application shell.
+It fixes the checkpoint identity, opens the whole-network CED view, and puts that view first
+in its architecture navigation. The atlas card and search open this page; its All models link
+returns to the atlas. Existing atlas hash scenarios and the STRATUM programmatic seam remain
+compatible. Serving exposes prefill/decode phase inspection with distinct participating depths.
+
+The build emits both portable HTML files. Engineering binds both file digests and compares both
+across repeated builds. Browser and presentation tests visit the dedicated page; captures bind
+its own artifact identity. `npm start` serves the current built pages so links have the same
+meaning in development, offline files, and Pages.

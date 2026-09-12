@@ -160,7 +160,7 @@ class ToolchainDigestTests(unittest.TestCase):
  def setUpClass(cls):cls.root=Path(__file__).resolve().parents[2]
  def digest_with(self,relative,content):
   """Copy the tree, change one file, and report whether the toolchain digest moved."""
-  from verification.engineering import toolchain_digest
+  from verification.engineering import toolchain_digest,delivery_artifacts
   before=toolchain_digest(self.root)
   with tempfile.TemporaryDirectory() as tmp:
    copy_root=Path(tmp)/'repo'
@@ -268,7 +268,7 @@ class ReleaseContractTests(unittest.TestCase):
   path=root/'verification/reports/engineering.json'
   if not path.exists():self.skipTest('no engineering receipt yet')
   receipt=loads(path.read_text())
-  from verification.engineering import toolchain_digest
+  from verification.engineering import toolchain_digest,delivery_artifacts
   if receipt.get('verifier_sha256')!=toolchain_digest(root):self.skipTest('receipt predates the current toolchain')
   self.assertIn('repeat_build_sha256',receipt)
   self.assertEqual(receipt['repeat_build_sha256'],receipt['artifact_sha256'])
@@ -305,14 +305,14 @@ class ReceiptTrustTests(unittest.TestCase):
   cls.root=Path(__file__).resolve().parents[2]
   cls.inv=loads(subprocess.run(['node','tools/export-verification.mjs'],cwd=cls.root,capture_output=True,text=True,check=True).stdout)
  def receipt(self,**over):
-  from verification.engineering import toolchain_digest
+  from verification.engineering import toolchain_digest,delivery_artifacts
   import hashlib
   from datetime import datetime,timezone
   from verification.evidence import digest
   target=loads((self.root/'verification/manifests/observatory.json').read_text())
   catalog=loads((self.root/'verification/manifests/sources.json').read_text())
   browser=loads((self.root/'tests/browser-results.json').read_text())
-  r={'schema':'stratum-engineering/v1','verifier_sha256':toolchain_digest(self.root),
+  r={'schema':'stratum-engineering/v1','verifier_sha256':toolchain_digest(self.root),'artifacts':delivery_artifacts(self.root),
      'consumer_sha256':digest(self.inv['functions']),'lock_sha256':digest({'target':target,'catalog':catalog}),
      'artifact_sha256':hashlib.sha256((self.root/'dist/index.html').read_bytes()).hexdigest(),
      'repeat_build_sha256':hashlib.sha256((self.root/'dist/index.html').read_bytes()).hexdigest(),
@@ -327,6 +327,9 @@ class ReceiptTrustTests(unittest.TestCase):
  def codes(self,receipt):
   from verification.runner import check_receipt
   return {f.code for f in check_receipt(self.root,receipt,self.lock(),self.inv)}
+ def test_missing_page_identity_is_rejected(self):
+  r=self.receipt();r.pop('artifacts')
+  self.assertIn('ARTIFACT_STALE',self.codes(r))
  def test_a_faithful_receipt_is_accepted(self):
   self.assertIn('ENGINEERING_CURRENT',self.codes(self.receipt()))
  def test_a_receipt_that_rewrites_its_browser_result_is_caught(self):

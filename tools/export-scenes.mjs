@@ -54,7 +54,7 @@ for(const [model,m] of Object.entries(core.MODELS)){
  for(const stage of core.focalStages(m))emit(`${model}/model/${stage}/4`,{model,view:'model',stage});
  for(const compare of Object.keys(core.MODELS))emit(`${model}/compare/${compare}/4`,{model,view:'compare',compare});
  for(const trainMode of ['fsdp','ddp','rl'])emit(`${model}/training/${trainMode}/4`,{model,view:'training',trainMode});
- for(const placement of ['split','colocated'])emit(`${model}/serving/${placement}/4`,{model,view:'serving',placement});
+ for(const placement of ['split','colocated'])for(const phase of m.encoderLayers?['prefill','decode']:['decode'])emit(`${model}/serving/${placement}-${phase}/4`,{model,view:'serving',placement,phase});
 }
 for(const hardware of Object.keys(core.HARDWARE))emit(`hw/${hardware}/block/4`,{view:'hardware',hardware});
 for(const fabric of ['ib','roce'])for(const library of ['nccl','nvshmem','nixl'])for(const traffic of ['expert','allreduce','handoff'])

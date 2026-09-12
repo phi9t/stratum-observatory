@@ -40,7 +40,7 @@ jobs:
         if: ${{ !github.event.repository.private }}
         uses: actions/attest-build-provenance@v2
         with:
-          subject-path: dist/index.html
+          subject-path: dist/*.html
       - name: Record the attestation in the receipt
         if: ${{ !github.event.repository.private }}
         run: |
@@ -50,6 +50,7 @@ jobs:
           data = json.loads(receipt.read_text())
           data['provenance'] = {
               'artifact_sha256': hashlib.sha256(pathlib.Path('dist/index.html').read_bytes()).hexdigest(),
+              'artifacts': data['artifacts'],
               'workflow': os.environ['GITHUB_WORKFLOW'],
               'run_id': os.environ['GITHUB_RUN_ID'],
               'repository': os.environ['GITHUB_REPOSITORY'],
@@ -62,7 +63,7 @@ jobs:
         with:
           name: engineering
           path: |
-            dist/index.html
+            dist/*.html
             verification/reports/
             tests/browser-results.json
   schematics:

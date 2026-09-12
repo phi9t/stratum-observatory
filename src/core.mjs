@@ -78,21 +78,21 @@ export function cacheLedger(id,settings={}){
  const gqa=(p.gqa+p.qsa)*B*S*2*m.kvHeads*m.headDim*s.kvBytes;
  const recurrent=linear*B*m.linearHeads*m.linearHeadDim*m.linearHeadDim*s.stateBytes;
  const conv=linear*B*(2*m.linearKeyHeads+m.linearHeads)*m.linearHeadDim*m.convKernel*2;
- const indexer=p.qsa ? p.qsa*B*Math.ceil(S/m.indexerCompression)*m.indexer*s.kvBytes : 0;
+ let indexer=p.qsa ? p.qsa*B*Math.ceil(S/m.indexerCompression)*m.indexer*s.kvBytes : 0;
  // FP4 E2M1 plus one E4M3 scale per 16 channels. The precision is trained in (QAT), so it is
  // an architectural fact and s.kvBytes deliberately does not apply. SWA KV is retained at FP8.
  let mainKV=0,windowKV=0;
  if(m.architecture==='ced-csa2'){
-  for(const l of m.kvSourceLayers){const ratio=l<m.encoderLayers?m.compressEncoder:m.compressDecoder;mainKV+=B*S*(m.headDim/ratio)*(0.5+1/16);}
+  for(const l of m.kvSourceLayers){const ratio=l<m.encoderLayers?m.compressEncoder:m.compressDecoder;mainKV+=B*S*(m.headDim/ratio)*(0.5+1/16);indexer+=B*S*(m.indexer/ratio)*(0.5+1/m.indexerScaleGroup);}
   windowKV=B*m.window*m.layers*m.headDim*1;
  }
  const history=mla+gqa+mainKV;
  const contextLinear=history+indexer;
  const bounded=recurrent+conv+windowKV;
  const total=contextLinear+bounded;
- const exclusions=['Page rounding, scale/metadata storage, fragmentation and temporary workspace','Output-token reserve, distributed replication and retained prefix snapshots'];
+ const exclusions=[m.architecture==='ced-csa2'?'Page rounding, additional metadata, fragmentation and temporary workspace':'Page rounding, scale/metadata storage, fragmentation and temporary workspace','Output-token reserve, distributed replication and retained prefix snapshots'];
  if(m.pleLayers.length)exclusions.push('PLE convolution, n-gram context and incomplete indexer-block bookkeeping');
- if(m.architecture==='ced-csa2')exclusions.push('Indexer K storage, candidate-pool bookkeeping and SWA Bounded Replay recomputation');
+ if(m.architecture==='ced-csa2')exclusions.push('Incomplete compression pairs, candidate-pool bookkeeping and SWA Bounded Replay recomputation');
  return {history,mla,gqa,recurrent,conv,indexer,mainKV,windowKV,contextLinear,bounded,total,global,linear,B,S,exclusions,partial:true,
    formula:m.architecture==='ced-csa2'?`${m.kvSourceLayers.length} Full-mode layers × B × S × (${m.headDim} / m) × b_FP4  +  B × ${m.window} × ${m.layers} × ${m.headDim} × b_FP8`:p.mla?`${p.mla} × B × S × (${m.kvRank} + ${m.ropeDim}) × b_KV`:`${global} × B × S × 2 × ${m.kvHeads} × ${m.headDim} × b_KV`};
 }
