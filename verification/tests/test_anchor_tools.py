@@ -22,7 +22,8 @@ class AnchorConfigTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)
         self.tool = load_tool('anchor-configs')
-        config = {'hidden_size': 5120, 'num_hidden_layers': 60}
+        config = {'hidden_size': 5120, 'num_hidden_layers': 60,
+                  'compress_ratios': [0, 0, 2, 2, 1], 'swiglu_limit': 10.0}
         raw = json.dumps(config).encode()
         (self.root/'config.json').write_bytes(raw)
         self.sources = {'ds2-config': {'id': 'ds2-config', 'role': 'publisher_config',
@@ -58,6 +59,39 @@ class AnchorConfigTests(unittest.TestCase):
         new, residue = self.tool.propose(self.target('MODELS.ds2.vocab', 102400), self.sources, self.root)
         self.assertIsNone(new['claims'][0]['evidence'][0]['anchor'])
         self.assertEqual(residue[0]['reason'], 'pointer does not resolve')
+
+    def test_array_index_pointer_selects_that_element(self):
+        """A per-layer list is addressable: the anchor pins one element, not the whole array.
+
+        DeepSeek-V4.1-Flash publishes compression as one ratio per layer, so the only pointer
+        that selects what `compressEncoder`/`compressDecoder` assert is an indexed one.
+        """
+        self.tool.POINTERS[('deepseek-ai/DeepSeek-V2', 'compressEncoder')] = '/compress_ratios/2'
+        new, residue = self.tool.propose(self.target('MODELS.ds2.compressEncoder', 2), self.sources, self.root)
+        entry = new['claims'][0]['evidence'][0]
+        self.assertEqual(entry['anchor']['pointer'], '/compress_ratios/2')
+        self.assertEqual(entry['relation'], 'equal')
+        self.assertEqual(residue, [])
+
+    def test_array_index_past_the_end_writes_no_anchor(self):
+        self.tool.POINTERS[('deepseek-ai/DeepSeek-V2', 'compressDecoder')] = '/compress_ratios/99'
+        new, residue = self.tool.propose(self.target('MODELS.ds2.compressDecoder', 1), self.sources, self.root)
+        self.assertIsNone(new['claims'][0]['evidence'][0]['anchor'])
+        self.assertEqual(residue[0]['reason'], 'pointer does not resolve')
+
+    def test_float_upstream_of_an_integer_value_is_not_called_equal(self):
+        """10.0 and 10 are the same number and not the same bytes.
+
+        `equal` is a byte comparison in runner.audit, so upgrading here would make the gate
+        assert something false. The anchor is still written: the key does name the quantity.
+        """
+        self.tool.POINTERS[('deepseek-ai/DeepSeek-V2', 'swigluLimit')] = '/swiglu_limit'
+        new, residue = self.tool.propose(self.target('MODELS.ds2.swigluLimit', 10), self.sources, self.root)
+        entry = new['claims'][0]['evidence'][0]
+        self.assertEqual(entry['anchor']['pointer'], '/swiglu_limit')
+        self.assertEqual(entry['relation'], 'documents')
+        self.assertEqual(residue[0]['reason'], 'upstream value differs from expected')
+        self.assertEqual(residue[0]['upstream'], '10.0')
 
     def test_existing_anchor_is_never_overwritten(self):
         t = self.target('MODELS.ds2.d', 5120)
@@ -110,6 +144,62 @@ class AnchorDocumentTests(unittest.TestCase):
         self.assertEqual(residue[0]['reason'], 'no authored quote')
 
 
+class RepoHostedPaperTests(unittest.TestCase):
+    """A model card lives in the publisher's repo, so its `kind` is `git`, not `document`.
+
+    What makes a source quotable is its ROLE -- prose a publisher wrote and we cite for what it
+    says -- not how it was transported. Keying the tool on `kind` skipped `dsv41-card` entirely,
+    which left the model's published headline figures (backbone parameters, activated parameters
+    per phase, bytes of KV per token) with no selector at all while the sentence stating each
+    sits in bytes already pinned by sha256.
+    """
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = Path(self.tmp.name)
+        self.tool = load_tool('anchor-documents')
+        raw = b'# Card\n\nA MoE model with 552B backbone parameters and a million-token context.\n'
+        (self.root/'README.md').write_bytes(raw)
+        config = b'{"hidden_size": 5120}\n'
+        (self.root/'config.json').write_bytes(config)
+        self.sources = {
+            'dsv41-card': {'id': 'dsv41-card', 'role': 'paper', 'kind': 'git',
+                           'repo': 'deepseek-ai/DeepSeek-V4.1-Flash', 'cache': 'README.md',
+                           'sha256': hashlib.sha256(raw).hexdigest()},
+            'dsv41-config': {'id': 'dsv41-config', 'role': 'publisher_config', 'kind': 'git',
+                             'repo': 'deepseek-ai/DeepSeek-V4.1-Flash', 'cache': 'config.json',
+                             'sha256': hashlib.sha256(config).hexdigest()},
+        }
+
+    def target(self, source, claim_id='MODELS.dsv41.total'):
+        return {'claims': [{'id': claim_id, 'domain': 'model', 'expected': 552000000000,
+                            'classification': 'documented', 'statement': 's', 'dependencies': [],
+                            'evidence': [{'source': source, 'anchor': None, 'relation': 'documents'}]}]}
+
+    def test_a_repo_hosted_paper_is_quotable(self):
+        self.tool.QUOTES[('dsv41-card', 'total')] = ('552B backbone parameters', ['552B'])
+        new, residue = self.tool.propose(self.target('dsv41-card'), self.sources, self.root)
+        anchor = new['claims'][0]['evidence'][0]['anchor']
+        self.assertEqual(anchor['kind'], 'text_quote')
+        self.assertEqual(anchor['contains'], ['552B'])
+        self.assertEqual(residue, [])
+
+    def test_a_repo_hosted_paper_with_no_authored_quote_is_residue(self):
+        # swaKvFormat is deliberately unauthored: the card names no format for the SWA KV.
+        new, residue = self.tool.propose(
+            self.target('dsv41-card', 'MODELS.dsv41.swaKvFormat'), self.sources, self.root)
+        self.assertIsNone(new['claims'][0]['evidence'][0]['anchor'])
+        self.assertEqual(residue[0]['reason'], 'no authored quote')
+
+    def test_publisher_configuration_is_still_not_this_tool_s_business(self):
+        """Widening by role must not make the quote tool start judging JSON."""
+        self.tool.QUOTES[('dsv41-config', 'total')] = ('552B backbone parameters', ['552B'])
+        new, residue = self.tool.propose(self.target('dsv41-config'), self.sources, self.root)
+        self.assertIsNone(new['claims'][0]['evidence'][0]['anchor'])
+        self.assertEqual(residue, [])
+
+
 class ResidueRecordTests(unittest.TestCase):
     """Every citation left unanchored must carry a recorded decision, not silence.
 
@@ -125,12 +215,26 @@ class ResidueRecordTests(unittest.TestCase):
 
     @staticmethod
     def residue_rows():
+        # The census is whatever tools/anchor-residue.py judges, read from the tool itself so a
+        # report added there cannot quietly escape this check.
         rows = []
-        for name in ('anchor-residue-config.json', 'anchor-residue-documents.json'):
-            path = ROOT/'verification/reports'/name
-            if path.exists():
-                rows.extend(json.loads(path.read_text()))
+        for path in load_tool('anchor-residue').census_reports(ROOT):
+            rows.extend(json.loads(path.read_text()))
         return rows
+
+    def test_the_census_reads_every_report_on_disk(self):
+        """The direction the old four-entry literal did not protect.
+
+        A census written by the documented `--only <id>` procedure lands in this directory under
+        this prefix. If the tool does not read it, its rows are never classified, and the count
+        reconciliation below simply runs against the smaller population and passes -- a tenth
+        checkpoint's unanchored citations invisible with every gate green."""
+        tool = load_tool('anchor-residue')
+        on_disk = sorted(p.name for p in (ROOT/'verification/reports').glob('anchor-residue-*.json'))
+        read = sorted(p.name for p in tool.census_reports(ROOT))
+        self.assertEqual(read, on_disk,
+                         'a census report on disk is read by no tool; its rows are classified by nothing')
+        self.assertTrue(on_disk, 'no census reports at all; the reconciliation below would be vacuous')
 
     @staticmethod
     def recorded_classes():

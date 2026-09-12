@@ -23,7 +23,7 @@ The source inspector attaches publisher configuration, publisher/reference imple
 
 ### Seven lenses
 
-**Architecture:** whole-model context, every one of the 504 decoder layers, stable attention/FFN regions, tensor contracts, delayed state feedback and optional input/residual/PLE close-ups.
+**Architecture:** whole-model context, every one of the 544 decoder layers, stable attention/FFN regions, tensor contracts, delayed state feedback and optional input/residual/PLE close-ups.
 
 **Compare:** aligned mechanisms and accounting under the same context, batch and element sizes. Native-context boundaries and parameter-scope differences remain visible.
 
@@ -59,6 +59,9 @@ Node.js 20+ and Python 3 are required for tests/build. The verifier uses Python'
 npm test                    # Model math, negative cases, semantic graph contracts
 npm run build               # Deterministic portable HTML
 npm run test:verifiers      # Evidence, signatures, contracts and negative tests
+npm run verify:schematics   # What the diagram means, over all 544 decoder layers
+npm run verify:aesthetics   # Measured legibility, type/spacing scales, composition drift
+npm run verify:presentations # Exports, accessibility, print, portability, preview coverage
 npm run verify:engineering  # All above, two identical builds, real-browser tests
 npm run verify:science      # Expected exit 2 until evidence/reviews are completed
 npm run verify:runtime      # Expected exit 2 until actual experiments are attested
@@ -66,7 +69,7 @@ npm run capture             # Fresh PNG and SVG previews of the current build
 npm run verify              # engineering, schematics, aesthetics, presentations AND publication; fail-closed
 ```
 
-`0` means PASS, `1` means a contradiction/malformed input, `2` means BLOCKED or required work NOT_RUN. GitHub Pages requires all four engineering-class gates and publication; this archive does not configure a remote repository or bypass the blocked gate.
+`0` means PASS, `1` means a contradiction/malformed input, `2` means BLOCKED or required work NOT_RUN. GitHub Pages deploys on the four engineering-class gates (engineering, schematics, aesthetics, presentations) and a `package` job; publication still runs on every push and still reports BLOCKED, so the page states its own scientific status rather than being withheld. This archive does not configure a remote repository or bypass a blocked gate.
 
 ## Source layout
 

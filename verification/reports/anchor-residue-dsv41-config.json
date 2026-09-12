@@ -1,0 +1,258 @@
+[
+  {
+    "claim": "MODELS.dsv41.active",
+    "source": "dsv41-config",
+    "expected": 8000000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.activeDecode",
+    "source": "dsv41-config",
+    "expected": 16000000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.architecture",
+    "source": "dsv41-config",
+    "expected": "ced-csa2",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.convKernel",
+    "source": "dsv41-config",
+    "expected": 4,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.denseLayers",
+    "source": "dsv41-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.encoderLayers",
+    "source": "dsv41-config",
+    "expected": 20,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.family",
+    "source": "dsv41-config",
+    "expected": "DeepSeek",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.gate",
+    "source": "dsv41-config",
+    "expected": false,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.generation",
+    "source": "dsv41-config",
+    "expected": "V4.1-Flash",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.id",
+    "source": "dsv41-config",
+    "expected": "dsv41",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.kvBytesPerToken",
+    "source": "dsv41-config",
+    "expected": 890,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.kvFormat",
+    "source": "dsv41-config",
+    "expected": "FP4 E2M1",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.kvRank",
+    "source": "dsv41-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.latent",
+    "source": "dsv41-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.linearHeadDim",
+    "source": "dsv41-config",
+    "expected": 128,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.linearHeads",
+    "source": "dsv41-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.linearKeyHeads",
+    "source": "dsv41-config",
+    "expected": 0,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.name",
+    "source": "dsv41-config",
+    "expected": "DeepSeek V4.1 Flash",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.ngram",
+    "source": "dsv41-config",
+    "expected": 196613849600,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.nopeDim",
+    "source": "dsv41-config",
+    "expected": 448,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.pleLayers",
+    "source": "dsv41-config",
+    "expected": [],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.qkNorm",
+    "source": "dsv41-config",
+    "expected": false,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.repo",
+    "source": "dsv41-config",
+    "expected": "deepseek-ai/DeepSeek-V4.1-Flash",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.residual",
+    "source": "dsv41-config",
+    "expected": "mhc",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.sources",
+    "source": "dsv41-config",
+    "expected": [
+      "dsv41-config",
+      "dsv41-code",
+      "dsv41-engram",
+      "dsv41-kernel",
+      "dsv41-vision",
+      "dsv41-card",
+      "dsv41-report"
+    ],
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.summary",
+    "source": "dsv41-config",
+    "expected": "Causal encoder-decoder. Sparse reads shared across layers.",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.swaKvFormat",
+    "source": "dsv41-config",
+    "expected": "FP8",
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.swaLayers",
+    "source": "dsv41-config",
+    "expected": 2,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.swigluLimit",
+    "source": "dsv41-config",
+    "expected": 10,
+    "pointer": "/text_config/swiglu_limit",
+    "upstream": "10.0",
+    "reason": "upstream value differs from expected"
+  },
+  {
+    "claim": "MODELS.dsv41.total",
+    "source": "dsv41-config",
+    "expected": 552000000000,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  },
+  {
+    "claim": "MODELS.dsv41.vision",
+    "source": "dsv41-config",
+    "expected": true,
+    "pointer": null,
+    "upstream": null,
+    "reason": "no mapped pointer"
+  }
+]

@@ -31,7 +31,24 @@ from verification.evidence import loads                                    # noq
 from verification.evidence import CONFIG_ONLY_PUBLISHERS                    # noqa: E402
 from verification.runner import PRESENTATION_SUFFIXES, required_roles      # noqa: E402
 
-REPORTS = ('anchor-residue-config.json', 'anchor-residue-documents.json')
+# The census this record was judged against. The first two are frozen exactly as Tasks 2 and 3
+# produced them, so the counts describe the population that was actually read. A later checkpoint
+# is censused in its OWN scoped report (`--only <id>` on the two authoring tools) rather than by
+# regenerating the first two, because regeneration would silently renumber 2,987 decisions that
+# were made against different bytes.
+#
+# Globbed, not listed. A four-entry literal here meant the tenth checkpoint's census -- written by
+# the documented `--only <id>` procedure into this same directory, under this same prefix -- would
+# be read by nothing, and `test_every_residue_row_has_a_decision` would reconcile its counts
+# against the smaller population and pass. The one direction the old literal protected was the one
+# nobody gets wrong: a name added *here* with no file behind it. The direction that loses rows is
+# a file on disk this tuple does not name, and a glob cannot have that failure.
+REPORTS_GLOB = 'anchor-residue-*.json'
+
+
+def census_reports(root: Path) -> list[Path]:
+    """Every census report on disk, in a stable order."""
+    return sorted((root/'verification/reports').glob(REPORTS_GLOB))
 
 # --- Field classes -----------------------------------------------------------------------
 # src/models.mjs:51 `common` splits into two halves. These fields default to a value that
@@ -89,6 +106,33 @@ QUANTITY_MISMATCH = {('MODELS.q38.vocab', 'q3-paper'),
 # relation is deliberately left `documents`, because `equal` would assert that the two strings
 # are the same bytes, which they are not.
 ACTIVATION_ALIAS = {('MODELS.q3827.linearGate', 'q3827-config')}
+# --- DeepSeek-V4.1-Flash (the ninth checkpoint) -------------------------------------------
+# Each row below was judged against the pinned config.json and README.md bytes one at a time,
+# and each is here because the general classes above would have attached a rationale that is
+# NOT true of it. A wrong reason recorded confidently is worse than a row with no reason.
+#
+# /text_config/swiglu_limit holds 10.0 against the displayed 10: the same number, not the same
+# bytes. Anchored; relation left `documents` for exactly the reason ACTIVATION_ALIAS is.
+NUMERIC_FORMAT_ALIAS = {('MODELS.dsv41.swigluLimit', 'dsv41-config')}
+# Figures the CARD publishes and config.json does not carry at all. The card citation on each of
+# these claims now carries a text_quote anchor; it is the config citation that stays unanchored.
+CARD_PUBLISHED_FIGURE = {(f'MODELS.dsv41.{f}', 'dsv41-config') for f in
+                         ('total', 'active', 'activeDecode', 'kvBytesPerToken', 'kvFormat')}
+# Values that follow from an EXPRESSION over these same bytes -- verification/ced.py FIELD_MAP
+# carries each one -- where no single span states the result.
+CONFIG_DERIVED = {(f'MODELS.dsv41.{f}', 'dsv41-config') for f in
+                  ('nopeDim', 'swaLayers', 'vision', 'ngram')}
+# The encoder/decoder boundary: ruling T11a, kept deliberately unanchored.
+INFERRED_BOUNDARY = {('MODELS.dsv41.encoderLayers', 'dsv41-config')}
+# STRATUM's own taxonomy and display labels, which are not on the PRESENTATION_SUFFIXES whitelist.
+TAXONOMY_LABEL = {('MODELS.dsv41.architecture', 'dsv41-config'),
+                  ('MODELS.dsv41.generation', 'dsv41-config'),
+                  ('MODELS.dsv41.generation', 'dsv41-card')}
+# The card states Engram's parameter count only as a round figure.
+ROUND_FIGURE_ONLY = {('MODELS.dsv41.ngram', 'dsv41-card')}
+# Named by neither the configuration nor the card, but stated outright in the publisher's code.
+DOCUMENTED_ONLY_IN_CODE = {('MODELS.dsv41.swaKvFormat', 'dsv41-config'),
+                           ('MODELS.dsv41.swaKvFormat', 'dsv41-card')}
 # A (source, field) quote key that several checkpoints share. Where the value diverges per
 # model the tools could author no quote at all; this is a tool cap, not a gap in the source.
 SHARED_QUOTE_KEY = {'q3-paper', 'hopper-tuning', 'blackwell-tuning'}
@@ -112,6 +156,13 @@ DECISIONS = {
     'architecture-fact': ('unresolved', 'shared-key'),
     'per-gpu-derived': ('unresolved', 'aggregate-only'),
     'sku-fact': ('unresolved', 'unauthored'),
+    'numeric-format-alias': ('re-pointed', 'numeric-format'),
+    'card-published-figure': ('unresolved', 'not-in-this-document'),
+    'config-derived-value': ('unresolved', 'derived-not-stated'),
+    'inferred-boundary': ('unresolved', 'inferred-boundary'),
+    'taxonomy-label': ('unresolved', 'our-own-label'),
+    'round-figure-only': ('unresolved', 'round-figure'),
+    'documented-only-in-code': ('unresolved', 'documented-only-in-code'),
 }
 
 RATIONALE = {
@@ -126,7 +177,7 @@ RATIONALE = {
         'of them, adding no information the dependencies do not already carry.'),
     'code-digest': (
         'A sha256 of `src/core.mjs` or of `parameterLedger` is a fingerprint of code we wrote. The Kimi '
-        'K3 paper does not document it, and these claims depend on all eight checkpoints, so citing one '
+        'K3 paper does not document it, and these claims depend on all nine checkpoints, so citing one '
         "model's paper is arbitrary as well as false. Dropped; the publisher/framework code citations "
         'on the same claims are untouched.'),
     'contract': (
@@ -221,6 +272,67 @@ RATIONALE = {
         'vendor-document quotes and stopped before these. Authoring a quote is anchoring, not one of the '
         'three resolutions this task may apply, so these stand unresolved. They are the highest-value '
         'remaining anchoring work in the residue.'),
+    'numeric-format': (
+        '`/text_config/swiglu_limit` holds `10.0` where the app displays `10`. The key names the same '
+        'quantity `verification/ced.py` FIELD_MAP already transcribes the field from, so the pointer is a '
+        'true selector and it is written. The relation stays `documents`: `runner.audit` compares the '
+        'upstream bytes with the displayed value for `equal`, and `10.0` and `10` are the same number '
+        'written two ways, not the same bytes. Same treatment, same reason, as `activation-alias`.'),
+    'not-in-this-document': (
+        'A figure the publisher states in the MODEL CARD and `config.json` does not carry at all: backbone '
+        'parameters, activated parameters per phase, bytes of KV per token, the main KV format. The card '
+        'citation on each of these claims now carries a `text_quote` anchor resolved against the pinned '
+        'README bytes; what stays unanchored is the CONFIGURATION citation, which is blanket provenance '
+        'for the checkpoint rather than a span stating this figure. Kept rather than dropped -- the config '
+        'is the document the rest of the claim set is anchored to, and citing it is not false -- and '
+        'unresolved, because no key in it names these quantities.'),
+    'derived-not-stated': (
+        'The value follows from an EXPRESSION over these same bytes and no single span states the result: '
+        '`nopeDim` is `head_dim - qk_rope_head_dim`, `swaLayers` counts the zero entries of '
+        '`compress_ratios`, `vision` is whether `vision_config` is present, `ngram` is '
+        '`sum(engram_num_embeddings) * engram_head_dim`. `verification/ced.py` FIELD_MAP carries each '
+        'expression and the CED verifier checks the arithmetic against the publisher bytes independently. '
+        'That is a different thing from an evidence anchor: `select_anchor` pins bytes, so a pointer here '
+        'would clear `CLAIM_ANCHOR` on our own arithmetic. Unresolved on purpose.'),
+    'inferred-boundary': (
+        'Rulings T11a and T13a, which say different things about different sources, and the row is here '
+        'because this CONFIGURATION citation is the one that stays unanchored. T11a: `config.json` does '
+        'mark a boundary at layer 20 -- `compress_ratios` changes 2 to 1 there, and `kv_source_layer_ids` '
+        'and `candidate_source_layer_id` agree -- but nothing in it states that the boundary is an '
+        'encoder/decoder split. "The index where the ratio changes" is our arithmetic, so a '
+        '`compress_ratios` pointer would clear `CLAIM_ANCHOR` on an inference. T13a: it does not follow '
+        'that no source says so. The model card states it in words -- "a 40-layer Transformer organized '
+        'as a 20-layer causal encoder followed by a 20-layer decoder" -- and the claim now cites the card '
+        'with a `text_quote` anchor on that sentence. The configuration citation keeps no selector, '
+        'exactly as the Qwen3 native-context case left its configuration citations unresolved while '
+        're-pointing the paper ones: one source stating a fact does not make another source state it.'),
+    'our-own-label': (
+        '`architecture` (`ced-csa2`) is STRATUM taxonomy and `generation` (`V4.1-Flash`) is a display '
+        'label; `verification/ced.py` NOT_IN_CONFIG records both as such. No publisher document states '
+        'our internal string. Unlike `id`, `name`, `family` and `sources` these two are not on the '
+        '`PRESENTATION_SUFFIXES` whitelist, so the `presentation-label` drop is not available to them: '
+        'widening that whitelist is a policy-root change, and dropping a citation from a `documented` '
+        'claim in the `model` domain would strip evidence from a claim whose roles are already reported '
+        'missing. Left unresolved so the label stays visible as a label.'),
+    'round-figure': (
+        'The card states "Engram conditional memory (196B parameters, sparsely accessed via token-based '
+        'lookup)". The app displays 196,613,849,600, which is 196.6B -- the same quantity at higher '
+        'precision, derived from `engram_num_embeddings` and `engram_head_dim`. A quote saying 196B does '
+        'not state the figure the claim asserts, and anchoring it would present a rounded corroboration '
+        'as a selector for an exact number. Unresolved; the citation is true provenance and stays.'),
+    'documented-only-in-code': (
+        'Neither of these two DOCUMENTARY sources names a format for the sliding-window KV: `config.json` '
+        'declares no cache format at all, and the model card describes SWA Bounded Replay and stops there. '
+        'The technical report does state it and cannot help, because it is a PDF and both '
+        '`verification/sources.py` and `verification/evidence.py` decode strictly as UTF-8 before any '
+        'other check -- the report is deliberately absent from the catalog rather than present and '
+        "unresolvable. The publisher's own CODE, however, states it outright: `Attention._window_kv` in "
+        '`model.py` is documented "The K stays fp8, quantized over the whole post-RoPE vector, RoPE tail '
+        'included" and calls `act_quant` with the fp8 block size before writing `window_kv_cache`. So the '
+        "claim IS anchored -- on that method and on kernel.py's `act_quant` -- and these two citations "
+        'stay unresolved, which is the honest split: a fact stated in one source is not stated in '
+        'another. An earlier draft of this record claimed no source stated it at all; that was wrong, '
+        'and reading the call site rather than the buffer declaration is what corrected it.'),
 }
 
 FINDINGS = """
@@ -303,6 +415,170 @@ claim of the last referent carrying a role its domain requires, so a drop always
 gap and never manufactures one. `CLAIM_ANCHOR` moved from 5,769 to 5,607 BLOCKED; no `CLAIM_ROLE`,
 `MODEL_DUAL_CODE` or `DOCUMENTED_NO_SOURCE` finding appeared, and the publication gate is still
 BLOCKED with no FAIL.
+
+## The ninth checkpoint: DeepSeek-V4.1-Flash
+
+The 138 rows of the `dsv41` census were judged after the model landed, and this section records
+what moved, what deliberately did not, and what is not censused at all. Nineteen citations gained a
+selector -- two of them citations added because a source turned out to state the fact -- four were
+dropped, and a **full audit of all 89 `python_symbol` anchors on `MODELS.dsv41.*` removed 20 false
+bindings and re-pointed 6**. `CLAIM_ANCHOR` therefore ends at **2,334** BLOCKED against **2,335**
+at the start: 21 citations resolved or dropped, and 20 anchors that resolved while saying nothing
+taken away. That is the intended direction, not a regression -- an anchor whose span does not carry
+the value is worse than no anchor, because it reports as evidence. `CLAIM_ROLE` is unchanged at 87
+and `MODEL_DUAL_CODE` at 75: the role check counts citations rather than anchors, and no framework
+implements `deepseek_v41`.
+
+| field | source | citations | selector | resolution |
+|---|---|---:|---|---|
+| compressEncoder | config | 1 | `/text_config/compress_ratios/2`, relation `equal` | re-pointed |
+| compressDecoder | config | 1 | `/text_config/compress_ratios/20`, relation `equal` | re-pointed |
+| swigluLimit | config | 1 | `/text_config/swiglu_limit`, relation `documents` (upstream holds `10.0`) | re-pointed |
+| total, active, activeDecode, kvBytesPerToken, kvFormat | card | 5 | `text_quote` on the card's Introduction | re-pointed |
+| encoderLayers | card | 1 | `text_quote` on the 20/20 split sentence (ruling T13a) | re-pointed |
+| engramLayers, engramTables, engramNgram, engramHeads, engramHeadDim | engram | 5 | `python_symbol EngramLayout`, the dataclass that reads all five | re-pointed |
+| streams, sinkhornIters | kernel | 2 | `python_symbol hc_split_sinkhorn_kernel(hc, sinkhorn_iters, eps)` | re-pointed |
+| kvFormat | kernel | 1 | `python_symbol fp4_act_quant` -- "E4M3 scales for compressed KV", output `float4_e2m1fn_x2` | re-pointed |
+| swaKvFormat | kernel, code | 2 | `python_symbol act_quant` and `python_symbol Attention._window_kv` -- "The K stays fp8" | re-pointed |
+| swigluLimit | code | 1 | `python_symbol Expert` replacing `Gate`, which never mentions `swiglu_limit` | corrected |
+| id, name, family, sources | config | 4 | none: no document states our internal label | dropped |
+
+### The 89-anchor audit
+
+Every `python_symbol` anchor on a `MODELS.dsv41.*` claim was checked against the symbol's own
+source span: does that span name the publisher parameter the claim transcribes, or implement
+precisely the mechanism the claim names? Per symbol:
+
+| symbol | anchors | kept | outcome | what moved, and why |
+|---|---|---:|---|---|
+| `Attention` | 12 -> 12 | 10 | 2 unresolved, 2 gained | `qkNorm` unanchored -- the `q_norm` there normalizes the query LATENT, not per-head Q/K, and the claim asserts an absence; `swaLayers` unanchored -- a count over `compress_ratios` is our arithmetic. Gained `indexSourceLayers` and `kvSourceLayers`, which this span reads by name. |
+| `Transformer` | 13 -> 7 | 7 | 6 unresolved | `architecture` (`ced-csa2` occurs 0 times in `model.py`); `generation`, `repo`, `summary` (our label, the source's own identifier, our prose); `maxContext` and `configMax`, because the span carries `max_seq_len`, a runtime cache cap defaulting to 4,096, and not `max_position_embeddings`. `d`, `layers`, `vocab` stand on `args.dim`, `range(args.n_layers)`, `args.vocab_size`; `id`, `name`, `family`, `sources` stand on the `ds2` precedent for presentation labels. |
+| `Indexer` | 7 -> 6 | 6 | 1 re-pointed | `indexSourceLayers` moved to `Attention`: this span reads `kv_source_layers`, `candidate_*`, `index_n_heads`, `index_head_dim` and `index_topk`, but never `index_source_layers`. |
+| `MoE` | 9 -> 6 | 6 | 3 unresolved | `routeScale` and `scoring` -- `route_scale` and `score_func` are `Gate`'s, and `Gate` carries both; `denseLayers` (absence). `shared` is the strongest binding in the whole set: this span asserts `args.n_shared_experts == 1`. |
+| `Gate` | 8 -> 4 | 4 | 4 unresolved | `expertFF`, `ff` and `shared` -- the router computes no FFN width and no shared-expert count, `MoE` does; `denseLayers` (absence). |
+| `Engram` | 6 -> 5 | 5 | 1 unresolved | `ngram`: `sum(engram_num_embeddings) * engram_head_dim` is a product no span states. |
+| `EngramLayout` | 5 -> 5 | 5 | 0 unresolved | The dataclass declares, and `from_args` reads, all five fields. |
+| `ViT` | 6 -> 4 | 4 | 2 re-pointed | `visionFF` moved to `MLP` (`args.vision_inter_dim`) and `visionPatch` to `PatchEmbed` (`args.vision_patch_size`); `ViT` itself reads neither. |
+| `Aligner` | 6 -> 2 | 2 | 4 unresolved | `visionLayers`, `visionHeads`, `visionFF`, `visionPatch`: the two-layer projector carries none of them. `vision` and `visionD` stand -- it is half the vision path and it reads `vision_dim`. |
+| `DSparkBlock` | 5 -> 3 | 3 | 2 re-pointed | `dsparkExperts` and `dsparkTopK` moved to `ModelArgs.get_moe_config`, the span that returns exactly those two counts for the draft layers. |
+| `Compressor` | 3 -> 2 | 2 | 1 re-pointed | `kvSourceLayers` moved to `Attention`, which reads the list and builds this class from it. |
+| `Block` | 3 -> 3 | 3 | 0 unresolved | Reads `hc_mult` and `hc_sinkhorn_iters`; its `hc_*` methods are the mHC residual. |
+| `hc_split_sinkhorn_kernel` (2), `fp4_act_quant`, `act_quant`, `Attention._window_kv`, `Expert` | 6 -> 6 | 6 | 0 unresolved | Added earlier this round; each is parameterised by, or documented as, the quantity its claim names. |
+| `ModelArgs.get_moe_config` (2), `MLP`, `PatchEmbed` | 0 -> 4 | 4 | 4 re-pointed in | The destinations of the six re-points above. |
+
+**The rule, in one sentence: a `python_symbol` anchor is honest when the symbol's own span either
+names the publisher parameter the claim transcribes -- at its declaration site or at a use site
+that gives it its meaning -- or implements precisely the mechanism the claim names; a class that
+merely sits nearby in the same file is not a referent.** That is the test to apply to the tenth
+checkpoint without re-deriving it.
+
+Two corollaries. `dspark_n_routed_experts` is declared in `ModelArgs` and returned by
+`ModelArgs.get_moe_config`, so that method -- where the value acquires its meaning for the draft
+layers -- is a referent, while `DSparkBlock`, which never reads it, is not. And **a textual hit is
+not a binding**: searching `Attention` for a QK-Norm matches `q_norm`, which is a different
+normalization, and that is how a false anchor survives review.
+
+### The fence: `contains` on every standing anchor
+
+Ruling T13c. The audit above was applied by hand, and nothing would have stopped the same bindings
+being written again -- except that `select_anchor` already enforces `contains` tokens on
+`python_symbol` anchors, and `verification/evidence.py` makes them mandatory for `span` and
+`text_quote` while leaving them optional here. So all **69** `python_symbol` anchors on
+`MODELS.dsv41.*` claims now declare the token that makes their symbol the right symbol: the
+attribute or key whose presence in the span is the evidence the audit read. `ff` names
+`args.moe_inter_dim`, `shared` names `args.n_shared_experts == 1`, `nopeDim` names
+`self.nope_head_dim = args.head_dim - args.rope_head_dim`, `swaKvFormat` names the sentence "stays
+fp8, quantized over the whole post-RoPE vector". Re-acquired against the publisher bytes: **69
+resolved, 0 refused**.
+
+This converts a review-time judgement into a resolution-time refusal. `Gate` with
+`contains: ['n_activated_experts']` resolves; `Gate` with `contains: ['args.moe_inter_dim']` is
+refused with "Required token not in selected code" -- so the false binding that survived three
+rounds of review could not have been recorded at all. The remaining asymmetry is deliberate and
+parked with a figure rather than guessed at: **5,837 `python_symbol` anchors on the other eight
+checkpoints carry no `contains`**, so making the token mandatory in `select_anchor` would refuse
+every one of them until each is authored. That is a decision about 5,837 anchors, not about this
+model.
+
+Every hash and span was resolved by a committed tool against the pinned bytes: the pointers by
+`anchor-configs.py`, the quotes by `anchor-documents.py`, and the `python_symbol` anchors by
+`python -m verification.sources acquire`, which re-fetched each publisher file it needed -- every
+re-fetched digest equal to the accepted one, so no accepted byte was overwritten -- and stamped
+what resolved. None was hand-written.
+
+Only `swigluLimit` appears in the census table below, as `numeric-format-alias`: the other pointer
+and quote resolutions were clean, and a clean resolution emits no residue row. The four drops
+appear as `presentation-label`, and `test_every_dropped_citation_is_gone_from_the_manifest` holds
+the record and the manifest together. The `python_symbol` rows appear nowhere in the census at all,
+for the reason the header states.
+
+`compress_ratios` is the one genuinely new selector shape: an INDEXED pointer. `ModelArgs` in the
+publisher's `model.py` documents the field as "one entry per layer, MTP layers included: 0 =
+sliding window only, r = KV compressed r-to-1", so the value at an index IS that layer's
+compression ratio. In the pinned bytes the runs are 0 at layers 0-1, **2 at layers 2-19**, **1 at
+layers 20-39**, and 0 at the three MTP layers: index 2 is an encoder layer holding 2, index 20 a
+decoder layer holding 1. Two things follow and both are recorded rather than smoothed over. First,
+`compressEncoder` is not uniform across the encoder -- layers 0 and 1 carry 0, not 2 -- so the
+anchor pins one layer's published ratio, which is the quantity the claim names, not a proof that
+every encoder layer shares it. Second, the pointer is emphatically NOT available to
+`encoderLayers`: see the `inferred-boundary` class.
+
+Not anchored, each for a reason and not for lack of looking:
+
+- **`encoderLayers`**: the CONFIGURATION and CODE citations stay `anchor:null`. Ruling T13a added
+  the card citation and its quote, because the publisher states the split in words; `config.json`
+  still does not, and `Transformer.__init__` builds one flat `nn.ModuleList` that encodes no
+  boundary. A field can be anchored in one source and honestly unanchorable in another.
+- **`ngram`**: the card states "196B parameters" against the displayed 196,613,849,600. Same
+  quantity, lower precision; a quote saying 196B does not state the number the claim asserts.
+- **`swaKvFormat`**, by the configuration and the card: neither names a cache format. The
+  publisher's code does, and the claim is anchored there instead -- see `documented-only-in-code`.
+- **Absence defaults** (`kvRank`, `latent`, `linearHeads`, `linearKeyHeads`, `pleLayers`, `gate`,
+  `denseLayers`): RULING (L/N). `config.json` carries `attention_bias: false` and would happily
+  match a falsy displayed value, which is exactly the coincidence an earlier audit found 91 of.
+- **`nopeDim`, `swaLayers`, `vision`, `ngram`, `residual`**: each follows from an expression over
+  the same bytes, and `verification/ced.py` FIELD_MAP already checks that arithmetic against the
+  publisher document. An anchor pins bytes, not arithmetic.
+
+**Not censused: 75 code citations, and what was done about the 64 there were.** Neither authoring
+tool enumerates `publisher_code` or `library_code` citations, so these are counted by
+`CLAIM_ANCHOR` and classified nowhere. Nine of the 64 were anchored by declaring a symbol and
+letting `verification.sources acquire` resolve it -- five on `EngramLayout`, two on
+`hc_split_sinkhorn_kernel`, one on `fp4_act_quant`, one on `act_quant` -- each chosen because the
+symbol READS the field the claim transcribes, or implements precisely the mechanism it names.
+Reading the CALL SITE rather than the declaration is what settled the last of them: this record
+nearly stated that nothing quantizes the sliding-window KV, on the strength of `window_kv_cache`
+being declared as a plain buffer, when `_window_kv` quantizes the tensor to fp8 before writing it
+in. What remains, and why each was refused rather than filled:
+
+- **`dsv41-kernel` on `indexer`, `indexerHeads`, `indexerBudget`, `candidateBlocks`,
+  `candidateBlockSize`, `candidateSource` (6 of the 8 remaining kernel citations).** `sparse_attn_kernel` takes `h` and `d` from the
+  MAIN attention's tensors and `topk` as a symbolic dimension; it names no head count, no head
+  width, no budget and no candidate block size, and `kernel.py` contains the string "candidate"
+  nowhere. Those six values are read by `Indexer` in `model.py`, which each claim already cites
+  with a resolved anchor. Binding them here would be a second anchor that resolves and says
+  nothing -- the precise failure mode this branch already committed once.
+- **`dsv41-kernel` on `compressEncoder`, `compressDecoder` (2).** No kernel symbol mentions a
+  compression ratio; `Compressor` in `model.py` carries them and is already anchored.
+- **`dsv41-engram` on `ngram` (1)** and **`dsv41-code` on `encoderLayers` (1)**: a derived product
+  and a boundary the code does not encode, per the classes above. `Transformer.__init__` builds one
+  flat `nn.ModuleList` over `range(args.n_layers)`; the only split it makes is the separate `mtp`
+  list.
+- **`nccl-api`, `nvshmem-api`, `nixl-api` on 15 network scene claims each (45).** Same reasoning as
+  `scene-signature`: the claim's `expected` is a digest of our own scene contract.
+- **The 20 citations the audit unanchored** are uncensused code citations too: `dsv41-code` on
+  `architecture`, `generation`, `repo`, `summary`, `maxContext`, `configMax`, `qkNorm`, `swaLayers`,
+  `ngram`, `denseLayers` (twice, on `Gate` and `MoE`), `routeScale`, `scoring`, `expertFF`, `ff`,
+  `shared`, and `dsv41-vision` on `visionLayers`, `visionHeads`, `visionFF`, `visionPatch`. Each
+  keeps its citation -- the file is the right provenance for the mechanism -- and none keeps a
+  selector, because no span in it carries the value. Where another span did, the anchor moved there
+  instead: six of them.
+
+A census that enumerates code citations is still the honest next step. What is now settled is that
+no new tool is needed to ANCHOR them: `acquire` resolves any declared `python_symbol`, so the only
+work per citation is the reading that decides whether a symbol carries the value -- which is the
+work that matters, and is how the first round of this branch came to bind `Attention` to Engram,
+DSpark and the vision encoder with hashes that all resolved.
 """
 
 
@@ -317,6 +593,20 @@ def field_class(row: dict) -> str:
         return 'quantity-mismatch'
     if key in ACTIVATION_ALIAS:
         return 'activation-alias'
+    if key in NUMERIC_FORMAT_ALIAS:
+        return 'numeric-format-alias'
+    if key in CARD_PUBLISHED_FIGURE:
+        return 'card-published-figure'
+    if key in CONFIG_DERIVED:
+        return 'config-derived-value'
+    if key in INFERRED_BOUNDARY:
+        return 'inferred-boundary'
+    if key in TAXONOMY_LABEL:
+        return 'taxonomy-label'
+    if key in ROUND_FIGURE_ONLY:
+        return 'round-figure-only'
+    if key in DOCUMENTED_ONLY_IN_CODE:
+        return 'documented-only-in-code'
     if namespace == 'scene':
         return 'scene-signature'
     if namespace in ('function', 'file'):
@@ -349,10 +639,8 @@ def decide(row: dict) -> tuple[str, str]:
 
 def residue_rows(root: Path) -> list[dict]:
     rows = []
-    for name in REPORTS:
-        path = root/'verification/reports'/name
-        if path.exists():
-            rows.extend(loads(path.read_text()))
+    for path in census_reports(root):
+        rows.extend(loads(path.read_text()))
     return rows
 
 
@@ -363,18 +651,27 @@ allowed: **re-pointed** to a source that states the fact, **dropped** so `CLAIM_
 gap honestly, or **reclassified** within the existing `PRESENTATION_SUFFIXES` whitelist. A row may
 also stand as **unresolved** with a stated reason. Inventing a quote is not a resolution.
 
-The unit of decision is the **class**, not the row. Writing 2,987 rows one per line produces a
-document nobody reads, and an unread table discards the same evidence a missing table would --
-only less visibly. Each row below is one `(source, reason, field-class)` group with its own count,
-and the counts reconcile to the residue total exactly. `verification/tests/test_anchor_tools.py`
-enforces both halves of that: every residue row falls inside a recorded class, and no class may
-overstate or understate its own count.
+The unit of decision is the **class**, not the row. Writing three thousand rows one per line
+produces a document nobody reads, and an unread table discards the same evidence a missing table
+would -- only less visibly. Each row below is one `(source, reason, field-class)` group with its own
+count, and the counts reconcile to the residue total exactly.
+`verification/tests/test_anchor_tools.py` enforces both halves of that: every residue row falls
+inside a recorded class, and no class may overstate or understate its own count.
 
-This file is generated by `tools/anchor-residue.py` from
-`verification/reports/anchor-residue-config.json` and `anchor-residue-documents.json`. Those two
-reports are the **census** these decisions were made against, exactly as Tasks 2 and 3 produced
-them; they are deliberately not regenerated, so that the counts below describe the population that
-was actually judged.
+This file is generated by `tools/anchor-residue.py` from the census reports under
+`verification/reports/`. `anchor-residue-config.json` and `anchor-residue-documents.json` are the
+population Tasks 2 and 3 judged, and are deliberately **not** regenerated: rerunning them against
+today's bytes would renumber 2,987 decisions that were made against different ones.
+DeepSeek-V4.1-Flash, added later, is censused separately in `anchor-residue-dsv41-config.json` and
+`anchor-residue-dsv41-documents.json` -- the same two tools run with `--only dsv41`, so the ninth
+checkpoint's rows are judged without disturbing the eight that came before.
+
+Both censuses share one blind spot, stated here rather than left to be discovered: the two
+authoring tools enumerate CONFIGURATION and DOCUMENTARY citations only. Citations of
+`publisher_code` and `library_code` sources -- which are anchored by `python_symbol` selectors --
+appear in neither report, so unanchored code citations are counted by `CLAIM_ANCHOR` in the
+publication report but are not classified below. For the ninth checkpoint those are enumerated by
+hand in the findings section that follows.
 """
 
 

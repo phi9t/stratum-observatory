@@ -254,7 +254,7 @@ def judge_type_scale(stylesheet,policy):
     """Every font-size must belong to a declared scale.
 
     Chrome and canvas have separate scales: canvas sizes are geometry-locked to authored node
-    boxes across 504 layers, so they are frozen and enumerated rather than designed.
+    boxes across 544 layers, so they are frozen and enumerated rather than designed.
     """
     typography=policy['typography']
     chrome=set(typography['chrome_scale']);canvas=set(typography['canvas_scale']);out=[]
@@ -292,8 +292,106 @@ def judge_spacing_scale(stylesheet,policy):
 
 # ---------------------------------------------------------------- in-page measurement
 
+#: The chrome text the probe measures. A list, not a string in the middle of the probe, because
+#: two independent checks now bind it: `judge_chrome_probe` requires every class token here to
+#: still exist in the stylesheet *and* in the markup that emits it, and `judge_chrome_coverage`
+#: requires every reading-size chrome rule in the stylesheet to be either listed here or recorded
+#: in `UNMEASURED_CHROME`. Without those, renaming a class silently removes it from measurement
+#: while the gate still reports PASS -- which is the failure this list was added to fix, one layer
+#: up from the prose it was added for.
+CHROME_TEXT_SELECTORS=('.chart text','.metric-note','.chart-caption','.source-role','.status-pill',
+                       '.fact dt','.lens-tab .idx','.innovation-note','.innovation-table th',
+                       '.innovation-table td','.innovation-table a')
+
+#: Reading-size chrome rules that the probe does **not** measure. This is recorded debt, not an
+#: exemption on principle: each entry is chrome text at or above `reading_px` whose contrast is
+#: therefore unverified by this gate. Eight of these measure between 4.89:1 and 6.87:1 when probed
+#: by hand, against the 7:1 the policy sets for reading-size prose -- so the list is a statement
+#: that the gate's coverage is incomplete, and shrinking it is real work rather than bookkeeping.
+#: It is inside `toolchain_digest`, so adding a line here invalidates every engineering receipt.
+UNMEASURED_CHROME=(
+    '#audit-output','#toast','#search-input',
+    '.analysis-copy p','.analysis-copy pre','.analysis-copy h4','.analysis-header h3',
+    '.button','.button.compact','.evidence-footer p','.formula','.identity-sub',
+    '.identity-metric strong','.inspector p','.inspector h3','.lens-tab','.model-card .variant',
+    '.principle p','.search-head','.search-head h2','.search-result span','.section-identity h2',
+    '.verifier-card h4','.brand','.icon-button','.metric-value',
+    '.command-button span:after','.workspace-actions #focus-button:before',
+    '.workspace-actions #export-svg:before','.workspace-actions #trace-button:before',
+    ':root','h1','h2',
+)
+
+CLASS_TOKEN=re.compile(r'\.([A-Za-z][\w-]*)')
+
+
+def judge_chrome_probe(stylesheet,markup,selectors=CHROME_TEXT_SELECTORS):
+    """Every class the probe measures by must still exist in the stylesheet and in the markup.
+
+    The failure this closes: rename `.innovation-note` in `src/styles.css` and `src/app.mjs`, and
+    `querySelectorAll` quietly matches nothing. Every measurement for that element disappears and
+    the gate reports PASS over a page it no longer looks at. A selector list is only evidence if
+    something ties it to the names the page actually uses.
+    """
+    css=Path(stylesheet).read_text();rendered='\n'.join(Path(m).read_text() for m in markup)
+    out=[]
+    for selector in selectors:
+        for token in CLASS_TOKEN.findall(selector):
+            where=[name for name,text in (('src/styles.css',css),('markup',rendered))
+                   if not re.search(rf'[.\'"\s]{re.escape(token)}\b',text)]
+            if where:
+                out.append(Finding('CHROME_PROBE_STALE','aesthetics','FAIL',selector,
+                                   f'The probe measures by .{token}, which no longer appears in '
+                                   f'{" and ".join(where)}.',
+                                   'A renamed class makes querySelectorAll match nothing and the '
+                                   'measurement silently vanish. Update CHROME_TEXT_SELECTORS with '
+                                   'the rename, or remove the entry deliberately.'))
+    return out or [Finding('CHROME_PROBE_LIVE','aesthetics','PASS','stylesheet',
+                           f'All {len(selectors)} measured chrome selectors still name classes the '
+                           f'stylesheet defines and the markup emits.')]
+
+
+def judge_chrome_coverage(stylesheet,policy,selectors=CHROME_TEXT_SELECTORS,
+                          recorded=UNMEASURED_CHROME):
+    """Reading-size chrome text is measured, or it is recorded as unmeasured. Never neither.
+
+    Scoped to the band where the AAA rule actually bites: `reading_px` up to `large_text_px`,
+    above which WCAG's large-text relaxation applies and the text is a heading rather than prose.
+    Static, so it cannot introduce a BLOCKED outcome on a gate the Pages deploy requires.
+
+    Known limitation, stated rather than hidden: text that reaches reading size by *inheritance*
+    declares no font-size of its own, so this attributes it to the ancestor rule that sets the
+    size. It catches a new rule and a renamed rule, which is what it is for.
+    """
+    lo,hi=policy['contrast']['reading_px'],policy['contrast']['large_text_px']
+    probed=set(selectors);known=set(recorded);out=[];checked=0
+    for d in stylesheet_declarations(stylesheet):
+        if d.canvas:continue
+        if d.prop=='font-size':size=_px(d.value)
+        elif d.prop=='font':
+            head=re.match(r'(-?\d*\.?\d+px)',d.value.strip());size=_px(head.group(1)) if head else None
+        else:continue
+        if size is None or not (lo<=size<hi):continue
+        for part in (x.strip() for x in d.selector.split(',')):
+            if not part:continue
+            checked+=1
+            if part in probed or part in known:continue
+            if any(part.startswith(p+' ') or part.startswith(p+':') for p in probed):continue
+            out.append(Finding('CHROME_UNMEASURED','aesthetics','FAIL',f'{part} {{{d.prop}}}',
+                               f'{size:g}px chrome text is neither measured by the probe nor '
+                               f'recorded as unmeasured, so its contrast is unverified and nothing '
+                               f'says so.',
+                               'Add the selector to CHROME_TEXT_SELECTORS so it is measured, or to '
+                               'UNMEASURED_CHROME to record that it is not. Do not leave '
+                               'reading-size prose in neither list.'))
+    return out or [Finding('CHROME_COVERAGE_OK','aesthetics','PASS','stylesheet',
+                           f'All {checked} reading-size chrome rules between {lo:g}px and {hi:g}px '
+                           f'are either measured ({len(probed)} selectors) or recorded as '
+                           f'unmeasured ({len(known)} selectors).')]
+
+
 PROBE=r"""
 () => {
+  const CHROME_TEXT = __CHROME_TEXT__;
   const rgba = el => getComputedStyle(el);
   const chain = el => { let a = 1; for (let n = el; n && n.nodeType === 1; n = n.parentElement) {
       const o = parseFloat(getComputedStyle(n).opacity); if (!Number.isNaN(o)) a *= o; } return a; };
@@ -339,7 +437,9 @@ PROBE=r"""
     }
   }
   // Chrome text lives outside #schematic and is invisible to geometryReport().
-  for (const el of document.querySelectorAll('.chart text, .metric-note, .chart-caption, .source-role, .status-pill, .fact dt, .lens-tab .idx')) {
+  // The innovation coverage is the one place this page runs reading-size prose, so its cells and
+  // citations are measured here rather than left to the eye; at >= reading_px they are held to AAA.
+  for (const el of document.querySelectorAll(CHROME_TEXT)) {
     const st = rgba(el); const box = el.getBoundingClientRect();
     if (!box.width || !box.height) continue;
     let bg = null;
@@ -361,26 +461,44 @@ PROBE=r"""
 """
 
 
+PROBE=PROBE.replace('__CHROME_TEXT__',json.dumps(', '.join(CHROME_TEXT_SELECTORS)))
+
 LAYER_SAMPLE=(1,2,4)
 
 
-def scenario_models(root):
+def scenario_inventory(root):
     """The application's own model table, so the sweep cannot drift from what ships.
 
     Read from the same Node inventory the science gate uses rather than a literal; the
     previous code probed a `window.__models` global that has never existed, so it always
     fell through to a hardcoded list and would not have noticed a ninth checkpoint.
+
+    The lens axis returns here too. `run()` held its own seven-element view literal while calling
+    this function for the models -- and `cases()` already takes `views` as a parameter precisely
+    so it need not. An eighth lens would have been contrast-checked in no state, baselined under
+    no label, and `COMPOSITION_STABLE` would have reported a compared count that simply got
+    smaller relative to the page.
     """
     inventory=loads(subprocess.run(['node','tools/export-verification.mjs'],cwd=root,text=True,
                                    capture_output=True,check=True,timeout=60).stdout)
-    return inventory['models']
+    return inventory['models'],inventory['samples']['focal_stages'],inventory['fields']['VIEWS']
 
 
-def cases(models,views,themes):
+def scenario_models(root):
+    """The model table alone, for a caller that does not need the focal-stage or lens lists."""
+    return scenario_inventory(root)[0]
+
+
+def cases(models,views,themes,focal):
     """Every model in every lens in both themes, plus the focal scenes each model actually has.
 
     Layer 4 alone left the first layer (often dense, or the one that establishes the residual
     stream) and the recurrent layers unmeasured.
+
+    `focal` is `core.focalStages` as the exporter publishes it, not re-derived here. This file
+    used to re-implement the predicate from `vision`/`residual`/`pleLayers`/`encoderLayers`, which
+    was the fifth copy of it; the copies in `app.mjs` and `diagrams.mjs` gated the N-gram page on
+    a model id instead, so the two forms agreed only by today's coincidence.
     """
     out=[]
     for model,meta in models.items():
@@ -390,9 +508,8 @@ def cases(models,views,themes):
                 for layer in layers:
                     out.append({'model':model,'view':view,'theme':theme,'stage':'block','layer':layer})
         for theme in themes:
-            if meta.get('vision'):out.append({'model':model,'view':'model','theme':theme,'stage':'inputs','layer':4})
-            if meta.get('residual') not in (None,'standard'):out.append({'model':model,'view':'model','theme':theme,'stage':'residual','layer':4})
-            if meta.get('pleLayers'):out.append({'model':model,'view':'model','theme':theme,'stage':'ple','layer':4})
+            for stage in focal.get(model,()):
+                out.append({'model':model,'view':'model','theme':theme,'stage':stage,'layer':4})
     return out
 
 
@@ -403,12 +520,62 @@ def sample_key(t):
             int(t.get('weight',400) or 400),backdrop)
 
 
+def judge_composition(current,recorded):
+    """Compare the measured composition against the baseline, and report what was actually compared.
+
+    The previous form asked `if label in recorded` for drift and then
+    `all(recorded.get(l,s)==s for l,s in current.items())` for stability -- vacuously true for
+    any label the baseline has never seen. So `COMPOSITION_STABLE` reported `len(current)`
+    scenarios as "matching the recorded baseline" whether or not they had been compared, and
+    `current - recorded` was covered by nothing at all. That is how a ninth checkpoint's 22
+    signatures reached a PASS line with no drift protection, and how `VERIFICATION.md` came to
+    quote the baselined count as though it were the measured one. Fixing the baseline left the
+    mechanism intact; this function is the mechanism.
+
+    A measured scenario with no recorded signature is FAIL -- the mirror of
+    `COMPOSITION_MISSING`, and for the same reason: the baseline is stale against our own bytes,
+    which is something we can know rather than something we cannot (ruling P1). The remedy is a
+    deliberate `--record` and promotion, never a silent pass. And `COMPOSITION_STABLE` counts the
+    compared set, so its figure cannot again be larger than the comparison behind it.
+    """
+    out=[];compared=sorted(recorded.keys()&current.keys())
+    for label in compared:
+        if recorded[label]!=current[label]:
+            out.append(Finding('COMPOSITION_DRIFT','aesthetics','FAIL',label,
+                               'Layout composition changed against the recorded baseline.',
+                               'Review the change, then re-record deliberately with --record.'))
+    for label in sorted(recorded.keys()-current.keys()):
+        out.append(Finding('COMPOSITION_MISSING','aesthetics','FAIL',label,
+                           'A baselined scenario no longer renders.',
+                           'Restore the scenario or re-record the baseline.'))
+    for label in sorted(current.keys()-recorded.keys()):
+        out.append(Finding('COMPOSITION_NEW','aesthetics','FAIL',label,
+                           'A measured scenario has no recorded signature, so nothing compares it '
+                           'and no drift in it can be detected.',
+                           'Re-record with --record and promote it only after checking both halves '
+                           'of a promotion: that every new signature belongs to a genuinely new '
+                           'scenario, and that no existing signature moved. Unbaselined is '
+                           'unprotected, not stable.'))
+    if out:return out
+    if not compared:
+        return [Finding('COMPOSITION_EMPTY','aesthetics','BLOCKED','baseline',
+                        'Zero scenarios were compared against the recorded baseline, so there is '
+                        'nothing here for a PASS to mean.',
+                        'A comparison count of zero is not stability. Confirm the scenario '
+                        'inventory and the recorded baseline are both non-empty before trusting '
+                        'this gate.')]
+    return [Finding('COMPOSITION_STABLE','aesthetics','PASS','baseline',
+                    f'{len(compared)} measured scenarios were each compared against a recorded '
+                    f'signature and all match; the measured, compared and baselined counts are '
+                    f'the same number.')]
+
+
 def run(root,record=False):
     sys.path.insert(0,str(root/'tests'))
     from playwright.sync_api import sync_playwright
     from browser_env import chromium_path
     policy=loads((root/POLICY_PATH).read_text())
-    models=scenario_models(root)
+    models,focal,views=scenario_inventory(root)
     artifact=root/'dist/index.html'
     findings=[];signatures={};truncations=[];crossing_report={}
     unique={}
@@ -419,8 +586,7 @@ def run(root,record=False):
         page.set_content(artifact.read_text(),wait_until='load')
         page.wait_for_function('window.STRATUM?.version === "3.0.0"')
         page.evaluate('document.fonts.ready')
-        views=['model','compare','training','serving','hardware','network','evidence']
-        for case in cases(models,views,policy['themes']):
+        for case in cases(models,views,policy['themes'],focal):
             page.evaluate('(p)=>STRATUM.setState(p)',case)
             data=page.evaluate(PROBE)
             scenario=f"{case['model']}/{case['view']}/{case['stage']}/{case['layer']}"
@@ -444,6 +610,8 @@ def run(root,record=False):
         browser.close()
     findings.extend(judge_type_scale(root/'src/styles.css',policy))
     findings.extend(judge_spacing_scale(root/'src/styles.css',policy))
+    findings.extend(judge_chrome_probe(root/'src/styles.css',(root/'src/app.mjs',root/'index.html')))
+    findings.extend(judge_chrome_coverage(root/'src/styles.css',policy))
     if errors:
         findings.append(Finding('AESTHETIC_RUNTIME','aesthetics','FAIL','page',f'{len(errors)} runtime errors while measuring: {errors[0][:200]}','Fix the page error; measurements taken during an exception are not trustworthy.'))
     for key,entry in sorted(unique.items(),key=lambda kv:str(kv[0])):
@@ -471,16 +639,7 @@ def run(root,record=False):
                                 f'Wrote {candidate.relative_to(root)} for review.',
                                 'Promote it deliberately; a new signature is not an approval.'))
     elif baseline_file.exists():
-        recorded=loads(baseline_file.read_text()).get('composition',{})
-        for label,sig in current.items():
-            if label in recorded and recorded[label]!=sig:
-                findings.append(Finding('COMPOSITION_DRIFT','aesthetics','FAIL',label,
-                                        'Layout composition changed against the recorded baseline.',
-                                        'Review the change, then re-record deliberately with --record.'))
-        for label in recorded.keys()-current.keys():
-            findings.append(Finding('COMPOSITION_MISSING','aesthetics','FAIL',label,'A baselined scenario no longer renders.','Restore the scenario or re-record the baseline.'))
-        if not (recorded.keys()-current.keys()) and all(recorded.get(l,s)==s for l,s in current.items()):
-            findings.append(Finding('COMPOSITION_STABLE','aesthetics','PASS','baseline',f'{len(current)} scenarios match the recorded composition baseline.'))
+        findings.extend(judge_composition(current,loads(baseline_file.read_text()).get('composition',{})))
     else:
         findings.append(Finding('BASELINE_ABSENT','aesthetics','BLOCKED','baseline',
                                 'No recorded composition baseline to compare against.','Record one with --record and promote it deliberately.'))
@@ -489,6 +648,14 @@ def run(root,record=False):
             'artifact_sha256':hashlib.sha256(artifact.read_bytes()).hexdigest(),
             'policy_sha256':hashlib.sha256((root/POLICY_PATH).read_bytes()).hexdigest(),
             'scenarios':len(signatures),'distinct_measurements':len(unique),
+            # The axes this run actually swept, so a reader -- and
+            # `test_aesthetics.CoverageTests` -- can reconcile the gate's coverage against the
+            # application instead of inferring it from a scenario count. A count of 180 looks
+            # identical whether it covers seven lenses or six, which is how a literal view list
+            # sat beside a derived model list here without anything noticing.
+            'axes':{'models':sorted(models),'views':list(views),
+                    'stages':sorted({c['stage'] for c in cases(models,views,policy['themes'],focal)}),
+                    'themes':list(policy['themes'])},
             'edge_crossings':{'max':max(crossing_report.values()) if crossing_report else 0,'budget':policy['layout']['max_edge_crossings']},
             'counts':{},'findings':[f.json() for f in findings],
             'scope':'Measured on this artifact in one Chromium build. WCAG ratios use specified colours and are an upper bound on legibility; they are not a substitute for a person reading the page.'}

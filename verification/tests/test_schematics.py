@@ -92,13 +92,13 @@ class SceneVersusModelTests(unittest.TestCase):
   self.assertIn('SCENE_MODEL_TILES',bad)
 
 class RealSceneTests(unittest.TestCase):
- """Every judge must hold over the actual 684-scene matrix."""
+ """Every judge must hold over the actual scene matrix."""
  @classmethod
  def setUpClass(cls):
   cls.data=s.export_scenes(ROOT)
  def test_the_matrix_covers_every_decoder_layer(self):
   layers=[x for x in self.data['scenes'] if x['key'].split('/')[1]=='model' and x['key'].split('/')[2]=='block']
-  self.assertEqual(len(layers),504)
+  self.assertEqual(len(layers),544)
  def test_row_alignment_across_presets(self):
   bad=[f for f in s.judge_row_alignment(self.data,4.0) if f.status!='PASS']
   self.assertEqual(bad,[],'\n'.join(f'{f.subject}: {f.message}' for f in bad[:10]))

@@ -154,6 +154,108 @@ class GateContractTests(unittest.TestCase):
   stages={k.split('/')[2] for k in scenarios}
   self.assertTrue({'inputs','residual','ple'}<=stages,'focal stages are not baselined')
 
+class CompositionBaselineTests(unittest.TestCase):
+ """The baseline is only drift protection over the scenarios it actually compares.
+
+ The gate used to report `len(current)` scenarios as "matching the recorded baseline" while
+ comparing only the labels the baseline already held, and `current - recorded` was covered by
+ nothing -- so a new checkpoint's signatures were unprotected behind a PASS line, and the public
+ record quoted the baselined count as the measured one.
+ """
+ def codes(self,findings,status):
+  return {f.code for f in findings if f.status==status}
+ def test_a_measured_scenario_with_no_recorded_signature_is_caught(self):
+  f=a.judge_composition({'x/dark':'1','new/dark':'2'},{'x/dark':'1'})
+  self.assertIn('COMPOSITION_NEW',self.codes(f,'FAIL'))
+  self.assertEqual(self.codes(f,'PASS'),set())
+ def test_the_stable_count_is_the_compared_count_and_not_the_measured_one(self):
+  """The exact defect: two measured, one baselined, and a PASS line saying two matched."""
+  f=a.judge_composition({'x/dark':'1','new/dark':'2'},{'x/dark':'1'})
+  self.assertNotIn('COMPOSITION_STABLE',{x.code for x in f})
+ def test_a_moved_signature_is_still_caught(self):
+  f=a.judge_composition({'x/dark':'2'},{'x/dark':'1'})
+  self.assertIn('COMPOSITION_DRIFT',self.codes(f,'FAIL'))
+ def test_a_vanished_scenario_is_still_caught(self):
+  f=a.judge_composition({},{'x/dark':'1'})
+  self.assertIn('COMPOSITION_MISSING',self.codes(f,'FAIL'))
+ def test_an_exact_match_passes_and_states_the_compared_number(self):
+  f=a.judge_composition({'x/dark':'1','y/dark':'2'},{'x/dark':'1','y/dark':'2'})
+  self.assertIn('COMPOSITION_STABLE',self.codes(f,'PASS'))
+  self.assertIn('2 measured scenarios',f[0].message)
+ def test_comparing_nothing_does_not_pass(self):
+  """The same defect this gate exists to catch, found in this gate's own PASS line: an empty
+  current set against an empty baseline used to return COMPOSITION_STABLE with '0 measured
+  scenarios', reporting success having compared nothing at all."""
+  f=a.judge_composition({},{})
+  self.assertEqual(self.codes(f,'PASS'),set())
+  self.assertIn('COMPOSITION_EMPTY',self.codes(f,'BLOCKED'))
+
+class ChromeProbeCoverageTests(unittest.TestCase):
+ """The probe's selector list is only evidence if something ties it to the page.
+
+ The failure these close is the one this gate had already been caught making one layer down: a
+ hardcoded selector string, no completeness guard, and a rename that removes an element from
+ measurement while the report still says PASS.
+ """
+ def setUp(self):
+  self.policy=json.loads((ROOT/'verification/baselines/aesthetics/policy.json').read_text())
+  self.css=ROOT/'src/styles.css'
+  self.markup=(ROOT/'src/app.mjs',ROOT/'index.html')
+ def test_the_shipped_probe_list_is_live_and_complete(self):
+  for judge in (a.judge_chrome_probe(self.css,self.markup),
+                a.judge_chrome_coverage(self.css,self.policy)):
+   bad=[f for f in judge if f.status!='PASS']
+   self.assertEqual(bad,[],'\n'.join(f'{f.subject}: {f.message}' for f in bad))
+ def test_the_probe_string_is_built_from_the_list(self):
+  """Otherwise the list is documentation and the probe still carries its own copy."""
+  self.assertNotIn('__CHROME_TEXT__',a.PROBE)
+  for selector in a.CHROME_TEXT_SELECTORS:
+   self.assertIn(selector,a.PROBE,f'{selector} is listed but not measured')
+ def test_a_renamed_class_is_caught_rather_than_silently_unmeasured(self):
+  """The exact reported failure: rename .innovation-note and measurement disappears."""
+  import tempfile
+  with tempfile.TemporaryDirectory() as tmp:
+   css=Path(tmp)/'x.css';css.write_text('.innovation-lede{font-size:12px;color:var(--text)}\n')
+   markup=Path(tmp)/'x.mjs';markup.write_text('`<p class="innovation-lede">…</p>`\n')
+   codes={f.code for f in a.judge_chrome_probe(css,(markup,)) if f.status!='PASS'}
+   self.assertIn('CHROME_PROBE_STALE',codes)
+ def test_a_class_kept_in_css_but_dropped_from_the_markup_is_caught(self):
+  """A selector that only the stylesheet still knows about measures nothing either."""
+  import tempfile
+  with tempfile.TemporaryDirectory() as tmp:
+   css=Path(tmp)/'x.css';css.write_text('.innovation-note{font-size:12px}\n.chart text{}\n')
+   markup=Path(tmp)/'x.mjs';markup.write_text('nothing renders these\n')
+   bad=[f for f in a.judge_chrome_probe(css,(markup,)) if f.status!='PASS']
+   self.assertTrue(bad)
+   self.assertIn('markup',bad[0].message)
+ def test_new_reading_size_prose_in_neither_list_is_caught(self):
+  import tempfile
+  with tempfile.TemporaryDirectory() as tmp:
+   css=Path(tmp)/'x.css';css.write_text('.brand-new-prose{font-size:12px;color:var(--muted)}\n')
+   findings=a.judge_chrome_coverage(css,self.policy)
+   self.assertEqual({f.code for f in findings if f.status!='PASS'},{'CHROME_UNMEASURED'})
+ def test_the_font_shorthand_is_not_a_way_around_the_coverage_guard(self):
+  import tempfile
+  with tempfile.TemporaryDirectory() as tmp:
+   css=Path(tmp)/'x.css';css.write_text('.sneaky{font:12px ui-monospace,Consolas,monospace}\n')
+   self.assertIn('CHROME_UNMEASURED',{f.code for f in a.judge_chrome_coverage(css,self.policy)})
+ def test_canvas_and_large_text_are_out_of_scope_deliberately(self):
+  """Canvas labels are held to AA on the semantic tints, and >= large_text_px is a heading under
+  WCAG's own relaxation. Including either would make the guard fire on text the AAA rule does not
+  reach, which is how a check gets turned off."""
+  import tempfile
+  with tempfile.TemporaryDirectory() as tmp:
+   css=Path(tmp)/'x.css'
+   css.write_text('.schematic .node-title{font-size:12px}\n.huge{font-size:32px}\n'
+                  '.tiny{font-size:10px}\n')
+   self.assertEqual([f for f in a.judge_chrome_coverage(css,self.policy) if f.status!='PASS'],[])
+ def test_the_recorded_debt_is_named_as_debt_and_not_as_coverage(self):
+  """A reader of the PASS message must be told the measured set is not everything."""
+  message=a.judge_chrome_coverage(self.css,self.policy)[0].message
+  self.assertIn('recorded as unmeasured',message)
+  self.assertTrue(set(a.UNMEASURED_CHROME).isdisjoint(a.CHROME_TEXT_SELECTORS),
+                  'a selector cannot be both measured and recorded as unmeasured')
+
 class StylesheetScaleTests(unittest.TestCase):
  """The scales must be enforced, or the ad-hoc values silently return."""
  def setUp(self):
@@ -226,28 +328,65 @@ class CoverageTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
   cls.root=ROOT
-  cls.models=a.scenario_models(ROOT)
+  cls.models,cls.focal,cls.views=a.scenario_inventory(ROOT)
  def test_model_list_comes_from_the_application_not_a_literal(self):
   import subprocess
   inv=json.loads(subprocess.run(['node','tools/export-verification.mjs'],cwd=ROOT,capture_output=True,text=True,check=True).stdout)
   self.assertEqual(set(self.models),set(inv['models']),'the gate measures a different model set than the application defines')
-  self.assertGreaterEqual(len(self.models),8)
+  # The floor that stood here was `assertGreaterEqual(len(self.models),8)`. It could not fire for
+  # the reason it was written -- it would have to drop below eight, not fail to reach nine -- and
+  # the assertEqual above is the real check. A bound that cannot detect the drift it names reads
+  # as coverage and is not.
+ def test_view_list_comes_from_the_application_not_a_literal(self):
+  """The mirror of the model check, for the axis that had no check at all.
+
+  `run()` held its own seven-element literal beside the derived model list, so a new lens was
+  measured in no theme and baselined under no label -- and the gate's own PASS line would have
+  reported a smaller compared count with nothing to compare it against."""
+  import subprocess
+  inv=json.loads(subprocess.run(['node','tools/export-verification.mjs'],cwd=ROOT,capture_output=True,text=True,check=True).stdout)
+  self.assertEqual(list(self.views),list(inv['fields']['VIEWS']),'the gate measures a different lens set than the application defines')
+  measured={c['view'] for c in a.cases(self.models,self.views,['dark'],self.focal)}
+  self.assertEqual(measured,set(inv['fields']['VIEWS']),'a lens the application ships is measured in no scenario')
+  # Both assertions above read the helper, so neither would see a literal smuggled back into
+  # `run()`. This one reads what `run()` actually swept, recorded in the report's own `axes`.
+  report=ROOT/'verification/reports/aesthetics.json'
+  if not report.exists():
+   self.skipTest('no aesthetics report; run npm run verify:aesthetics')
+  axes=json.loads(report.read_text()).get('axes')
+  self.assertIsNotNone(axes,'the aesthetics report records no swept axes, so its coverage cannot be reconciled')
+  self.assertEqual(list(axes['views']),list(inv['fields']['VIEWS']),
+                   'the gate swept a different lens set than the application defines')
+  self.assertEqual(set(axes['models']),set(inv['models']),
+                   'the gate swept a different model set than the application defines')
  def test_focal_stages_are_measured(self):
   # cases() has always promised focal stages in its docstring and emitted none, so the
   # inputs / residual / ple scenes have never been contrast-checked.
-  cases=a.cases(self.models,['model'],['dark'])
+  cases=a.cases(self.models,['model'],['dark'],self.focal)
   stages={c.get('stage') for c in cases}
   self.assertIn('inputs',stages)
   self.assertIn('residual',stages)
   self.assertIn('ple',stages)
+ def test_the_focal_stage_map_is_the_applications_own_and_not_re_derived(self):
+  """The sixth copy of the predicate lived here. `core.focalStages` is now the only one, so
+  the gate cannot generate a page the application does not offer -- which is how a signature
+  labelled `<mid>/model/ple` could be measured on the decoder block and baselined under that
+  name."""
+  import subprocess
+  inv=json.loads(subprocess.run(['node','tools/export-verification.mjs'],cwd=ROOT,capture_output=True,text=True,check=True).stdout)
+  self.assertEqual(self.focal,inv['samples']['focal_stages'])
+  self.assertEqual(set(self.focal),set(self.models),'a model has no focal-stage entry at all')
+  for mid,stages in self.focal.items():
+   measured={c['stage'] for c in a.cases(self.models,['model'],['dark'],self.focal) if c['model']==mid}-{'block'}
+   self.assertEqual(measured,set(stages),f'{mid} focal coverage')
  def test_focal_stages_only_where_the_model_has_them(self):
-  cases=a.cases(self.models,['model'],['dark'])
+  cases=a.cases(self.models,['model'],['dark'],self.focal)
   ple={c['model'] for c in cases if c.get('stage')=='ple'}
   self.assertEqual(ple,{'q38flash'},'ple is a Flash-Next-only scene')
   inputs={c['model'] for c in cases if c.get('stage')=='inputs'}
   self.assertTrue(inputs and inputs<=set(self.models))
  def test_more_than_one_layer_is_sampled(self):
-  layers={c.get('layer') for c in a.cases(self.models,['model'],['dark']) if c.get('stage')=='block'}
+  layers={c.get('layer') for c in a.cases(self.models,['model'],['dark'],self.focal) if c.get('stage')=='block'}
   self.assertGreater(len(layers),1,'only layer 4 was ever measured')
  def test_clearance_result_is_reported_even_when_it_passes(self):
   report=json.loads((ROOT/'verification/reports/aesthetics.json').read_text())
