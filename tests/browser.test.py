@@ -3,13 +3,33 @@
 No synthetic claim of upstream-code/GPU correctness is made by this suite.
 """
 from pathlib import Path
-import json, os
+import json, os, subprocess
 from playwright.sync_api import sync_playwright
 from browser_env import chromium_path
 
 ROOT=Path(__file__).resolve().parents[1]
-MODELS={'ds2':60,'ds3':61,'q38':36,'q330':48,'q3235':94,'q3827':64,'q38flash':48,'kimi3':93}
-VIEWS=['model','compare','training','serving','hardware','network','evidence']
+def app_models(root):
+    """Layer counts and focal stages read from the application's own table, not a literal.
+
+    A hardcoded list stops covering a checkpoint the moment one is added, silently: the ninth
+    preset shipped with 40 layers while this matrix still swept the same eight it always had.
+    The inventory comes from the same Node exporter the science gate uses -- and the focal-stage
+    map now comes from `core.focalStages` through it, rather than from a fourth re-derivation of
+    the same predicate here.
+
+    The view and hardware axes now come through the same door. They were literals in a file whose
+    own docstring argues against literals: `VIEWS` restated `models.mjs` and the roofline loop
+    restated `HARDWARE`, so an eighth lens or a fifth SKU would have been swept in no state while
+    `assertion(not failures...)` passed over the smaller matrix. Both are published by the
+    exporter already -- `fields.VIEWS` and `hardware` -- which is how `tests/sweep.py` reads them.
+    """
+    out=subprocess.run(['node','tools/export-verification.mjs'],cwd=root,text=True,
+                       capture_output=True,check=True,timeout=120).stdout
+    doc=json.loads(out)
+    return doc['models'],doc['samples']['focal_stages'],doc['fields']['VIEWS'],doc['hardware']
+
+APP,FOCUS,VIEWS,HARDWARE=app_models(ROOT)
+MODELS={k:m['layers'] for k,m in APP.items()}
 errors=[];requests=[];cases=[];responsive=[];failures=[]
 
 def check(page, patch, label='geometry'):
@@ -39,10 +59,10 @@ with sync_playwright() as p:
         for view in VIEWS:
             for theme in ['light','dark']:
                 check(page,{'model':model,'layer':min(4,L),'view':view,'stage':'block','theme':theme,'detail':'shapes'},'lens-theme')
-    for m in ['q3827','q38flash','kimi3']:
-        for stage in ['inputs']+(['residual'] if m!='q3827' else [])+(['ple'] if m=='q38flash' else []):
+    for m,stages in FOCUS.items():
+        for stage in stages:
             for theme in ['dark','light']: check(page,{'model':m,'view':'model','stage':stage,'theme':theme},'focus-stage')
-    for h in ['h100','h200','b200','gb300']:
+    for h in HARDWARE:
         for theme in ['dark','light']:
             for ai in [1,128,2048]: check(page,{'view':'hardware','hardware':h,'intensity':ai,'theme':theme},'hardware-roofline')
     for fabric in ['ib','roce']:
@@ -117,14 +137,14 @@ with sync_playwright() as p:
     page.evaluate('STRATUM.setState({model:"ds3",view:"model",layer:4,stage:"block",theme:"dark"})')
     with page.expect_download() as download:
         page.locator('#export-svg').click()
-    svgp=ROOT/'previews/test-export.svg';download.value.save_as(str(svgp))
+    svgp=ROOT/'tests/test-export.svg';download.value.save_as(str(svgp))
     assertion('<svg' in svgp.read_text(),'real SVG download')
     export_page=browser.new_page();export_page.on('pageerror',lambda e:errors.append(str(e)))
     export_page.set_content('<html><body></body></html>');parsed=export_page.evaluate('(text)=>{const d=new DOMParser().parseFromString(text,"image/svg+xml");if(d.querySelector("parsererror"))return false;document.body.appendChild(document.importNode(d.documentElement,true));return true}',svgp.read_text());assertion(parsed,'standalone SVG XML parses')
     assertion(export_page.locator('svg').count()==1,'independent SVG parses');assertion(export_page.locator('parsererror').count()==0,'no XML parser error');export_page.close()
     with page.expect_download() as download:
         page.locator('#export-config').click()
-    jp=ROOT/'previews/test-scenario.json';download.value.save_as(str(jp));conf=json.loads(jp.read_text())
+    jp=ROOT/'tests/test-scenario.json';download.value.save_as(str(jp));conf=json.loads(jp.read_text())
     assertion(conf['scientificStatus']=='BLOCKED' and conf['runtimeStatus']=='NOT_RUN','export cannot claim certification')
     assertion(conf['model']['id']=='ds3','config corresponds to selected model')
     page.locator('#audit-button').click();assertion(page.locator('#audit-output').is_visible(),'audit dialog');page.keyboard.press('Escape')
@@ -133,7 +153,7 @@ with sync_playwright() as p:
     assertion(page.locator('script[src]').count()==0,'no external script dependency')
     assertion(page.evaluate('STRATUM.geometryReport().geometry_defects')==0,'sanitized state remains valid')
     browser.close()
-report={'schema':'stratum-browser-tests/v2','browser':'Chromium','geometry_states':len(cases),'responsive_states':len(responsive),'device_scale_states':32,'geometry_defects':sum(len(f['defects'])+len(f['invalid_svg']) for f in failures),'runtime_errors':len(errors),'external_runtime_requests':len(requests),'interactive_checks':'passed','exports':'independent SVG rendering and JSON passed','models':MODELS,'failures':failures,'errors':errors,'requests':requests}
+report={'schema':'stratum-browser-tests/v2','browser':'Chromium','geometry_states':len(cases),'responsive_states':len(responsive),'device_scale_states':sum(1 for c in cases if c['label'].startswith('device-scale-')),'geometry_defects':sum(len(f['defects'])+len(f['invalid_svg']) for f in failures),'runtime_errors':len(errors),'external_runtime_requests':len(requests),'interactive_checks':'passed','exports':'independent SVG rendering and JSON passed','models':MODELS,'failures':failures,'errors':errors,'requests':requests}
 (ROOT/'tests/browser-results.json').write_text(json.dumps(report,indent=2)+'\n')
 (ROOT/'tests/browser-cases.json').write_text(json.dumps({'states':cases,'responsive':responsive},indent=2)+'\n')
 print(json.dumps(report,indent=2))

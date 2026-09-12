@@ -125,6 +125,36 @@ QUOTES[('q3-paper', 'architecture')] = ('The architecture of the Qwen3 dense mod
 # states the native value in its own sentence, and states it for "all models", so the shared
 # (source, field) key is safe across q38, q330 and q3235, all of which display 32,768.
 QUOTES[('q3-paper', 'maxContext')] = ('All models are pre-trained on hundreds of billions of tokens with a sequence length of 32,768 tokens.', ['32,768'])
+# --- DeepSeek-V4.1-Flash model card (repo-hosted prose; role `paper`, kind `git`) -------------
+# Four figures the configuration does not carry and the card states exactly, plus the KV format.
+# Each quote was read in its paragraph first and resolves once in the pinned bytes.
+QUOTES[('dsv41-card', 'total')] = ('552B backbone parameters', ['552B'])
+QUOTES[('dsv41-card', 'active')] = ('activate only **8B parameters per token during prefill**', ['8B'])
+QUOTES[('dsv41-card', 'activeDecode')] = ('**16B during decode**', ['16B'])
+QUOTES[('dsv41-card', 'kvBytesPerToken')] = ('**890 bytes per token**', ['890'])
+# The app displays the composite label 'FP4 E2M1'; the card names both halves of it in one
+# clause, about the MAIN KV cache specifically. The relation stays `documents`: 'FP4 E2M1' is
+# our label for what this sentence describes, not a string the card contains.
+QUOTES[('dsv41-card', 'kvFormat')] = (
+    '**FP4 main KV caching** (E2M1 format, one E4M3 scale per 16 channels)', ['FP4', 'E2M1'])
+# Ruling T13a. `encoderLayers` is anchorable after all, and not by arithmetic: the card STATES the
+# split in words. What ruling T11a forbids is a `/text_config/compress_ratios` pointer, because "the
+# index where the ratio changes" is our inference; it does not follow that no source says so. The
+# configuration citation on this claim stays unanchored -- no key in config.json names an
+# encoder/decoder boundary -- exactly as the Qwen3 native-context case left its config citation
+# unresolved while re-pointing the paper one.
+QUOTES[('dsv41-card', 'encoderLayers')] = (
+    'a 40-layer Transformer organized as a 20-layer causal encoder followed by a 20-layer decoder',
+    ['20-layer causal encoder', '20-layer decoder'])
+# Deliberately NOT authored, each for a reason recorded in docs/verifiers/ANCHOR_RESIDUE.md:
+#   ngram         the card states the round figure "196B parameters"; the app displays
+#                 196,613,849,600, derived from engram_num_embeddings x engram_head_dim. A quote
+#                 saying 196B does not state the figure the claim asserts.
+#   swaKvFormat   the card describes SWA Bounded Replay and never names a format for the SWA KV.
+#                 The publisher's CODE does state it -- Attention._window_kv: "The K stays fp8,
+#                 quantized over the whole post-RoPE vector" -- so the claim is anchored there and
+#                 in kernel.py's act_quant, not here.
+#   generation / repo / summary   our own label, the source's own identifier, and our prose.
 QUOTES[('q3-paper', 'qkNorm')] = ('Besides, we remove QKV-bias used in Qwen2 <cite class="ltx_cite ltx_citemacro_citep">(<a href="#bib.bib69" title="" class="ltx_ref">Yang et al., 2024a</a>)</cite> and introduce QK-Norm <cite class="ltx_cite ltx_citemacro_citep">(<a href="#bib.bib17" title="" class="ltx_ref">Dehghani et al., 2023</a>)</cite> to the attention mechanism to ensure stable training for Qwen3.', ['QK-Norm'])
 
 
@@ -138,7 +168,12 @@ def propose(target: dict, sources: dict, root: Path) -> tuple[dict, list[dict]]:
             if entry.get('anchor'):
                 continue
             source = sources.get(entry.get('source'))
-            if not source or source.get('kind') != 'document':
+            # Documentary PROSE is this tool's subject, and the role says so; `kind` only says
+            # how the bytes arrived. A model card lives in the publisher's git repo (kind
+            # 'git', role 'paper') and is quoted for what its sentences state, exactly like a
+            # paper fetched over HTTP. Configuration and code stay out: they are judged by
+            # anchor-configs.py and by python_symbol anchors respectively.
+            if not source or (source.get('kind') != 'document' and source.get('role') != 'paper'):
                 continue
             row = {'claim': cid, 'source': source['id'], 'expected': claim.get('expected'),
                    'quote': None, 'upstream': None, 'reason': ''}
@@ -167,6 +202,10 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--candidate', required=True)
     p.add_argument('--residue', required=True)
+    p.add_argument('--only', default=None,
+                   help='keep only residue rows whose claim id or source id contains this '
+                        'substring, so one model can be censused without disturbing the frozen '
+                        'census of the population judged before it')
     p.add_argument('--root', default=str(Path(__file__).resolve().parents[1]))
     a = p.parse_args(argv)
     root = Path(a.root).resolve()
@@ -181,6 +220,8 @@ def main(argv=None):
         {'schema': 'stratum-acquisition-candidate/v1', 'catalog': catalog, 'target': new,
          'results': [], 'review_policy': 'Candidate is NOT an accepted lock. Read every quote in '
                                          'its surrounding context before promoting.'}, indent=2) + '\n')
+    if a.only:
+        residue = [r for r in residue if a.only in r['claim'] or a.only in r['source']]
     safe_path(root, a.residue).write_text(json.dumps(residue, indent=2) + '\n')
     print(f'{a.candidate}: proposed quotes; {len(residue)} residue rows -> {a.residue}')
     return 0

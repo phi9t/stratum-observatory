@@ -158,6 +158,31 @@ POINTERS.update({
 })
 
 
+# --- DeepSeek-V4.1-Flash: /text_config/, plus one indexed list. ---
+# The bulk of this checkpoint's fields were anchored earlier in the branch. What is added here
+# is only what those rounds left without a selector and this document genuinely carries:
+#
+#   compressEncoder / compressDecoder   compress_ratios is "one entry per layer, MTP layers
+#     included: 0 = sliding window only, r = KV compressed r-to-1" (model.py, ModelArgs). The
+#     value at an index IS that layer's compression ratio, so an indexed pointer selects exactly
+#     what the claim asserts. In the pinned bytes the runs are 0 at layers 0-1, 2 at layers 2-19,
+#     1 at layers 20-39 and 0 at the three MTP layers: index 2 is an encoder layer carrying 2,
+#     index 20 a decoder layer carrying 1.
+#     NOT anchored, deliberately: `encoderLayers`. Ruling T11a -- config.json marks a boundary at
+#     layer 20 but never states it is an encoder/decoder split, so a compress_ratios pointer would
+#     clear CLAIM_ANCHOR on OUR arithmetic. verification/ced.py:_encoder_boundary asserts the
+#     number follows from the bytes; that is a different thing from a publisher saying so.
+#   swigluLimit   named outright by /text_config/swiglu_limit, and the same quantity
+#     verification/ced.py FIELD_MAP already transcribes it from. Upstream holds 10.0 against the
+#     displayed 10, so the relation stays `documents`; `equal` is a byte comparison.
+_dsv41 = 'deepseek-ai/DeepSeek-V4.1-Flash'
+POINTERS.update({
+    (_dsv41, 'compressEncoder'): '/text_config/compress_ratios/2',
+    (_dsv41, 'compressDecoder'): '/text_config/compress_ratios/20',
+    (_dsv41, 'swigluLimit'): '/text_config/swiglu_limit',
+})
+
+
 def propose(target: dict, sources: dict, root: Path) -> tuple[dict, list[dict]]:
     """Return (new_target, residue). Never writes an anchor that does not resolve."""
     out = copy.deepcopy(target)
@@ -204,6 +229,10 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--candidate', required=True)
     p.add_argument('--residue', required=True)
+    p.add_argument('--only', default=None,
+                   help='keep only residue rows whose claim id or source id contains this '
+                        'substring, so one model can be censused without disturbing the frozen '
+                        'census of the population judged before it')
     p.add_argument('--root', default=str(Path(__file__).resolve().parents[1]))
     a = p.parse_args(argv)
     root = Path(a.root).resolve()
@@ -220,6 +249,8 @@ def main(argv=None):
          'results': [], 'review_policy': 'Candidate is NOT an accepted lock. Read every proposed '
                                          'pointer against the cached bytes before promoting.'},
         indent=2) + '\n')
+    if a.only:
+        residue = [r for r in residue if a.only in r['claim'] or a.only in r['source']]
     safe_path(root, a.residue).write_text(json.dumps(residue, indent=2) + '\n')
     print(f'{a.candidate}: proposed anchors; {len(residue)} residue rows -> {a.residue}')
     return 0

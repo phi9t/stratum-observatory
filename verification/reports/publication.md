@@ -2,7 +2,7 @@
 
 **publication: BLOCKED**
 
-Generated: 2026-09-10T08:55:08.608600+00:00
+Generated: 2026-09-12T18:53:29.564513+00:00
 
 This report distinguishes software/contract tests from evidence-backed science. Missing evidence is not a contradiction, and a green engineering run is not scientific certification.
 
@@ -10,12 +10,12 @@ This report distinguishes software/contract tests from evidence-backed science. 
 
 | Item | Count |
 |---|---:|
-| inputs | 455 |
-| functions_and_files | 27 |
-| scene_contracts | 2520 |
-| claims | 3025 |
-| sources | 62 |
-| verified_sources | 60 |
+| inputs | 575 |
+| functions_and_files | 29 |
+| scene_contracts | 2881 |
+| claims | 3508 |
+| sources | 68 |
+| verified_sources | 66 |
 | verified_scientific_claims | 0 |
 | passed_presentation_bindings | 0 |
 
@@ -41,15 +41,22 @@ This report distinguishes software/contract tests from evidence-backed science. 
 
 | Code | Status | Count |
 |---|---|---:|
-| CLAIM_ANCHOR | BLOCKED | 2046 |
+| CED_ACTIVE_RATIO | PASS | 1 |
+| CED_FIELD_UNMAPPED | PASS | 1 |
+| CED_PUBLISHER_AGREEMENT | PASS | 1 |
+| CLAIM_ANCHOR | BLOCKED | 2334 |
+| CLAIM_MODEL_COVERAGE | PASS | 1 |
+| CLAIM_ROLE | BLOCKED | 87 |
 | CLAIM_SOURCE_BLOCKED | BLOCKED | 2 |
-| CONTRACT_CONSISTENT | PASS | 23 |
-| CONTRACT_EVIDENCE | BLOCKED | 31 |
+| CONTRACT_CONSISTENT | PASS | 24 |
+| CONTRACT_EVIDENCE | BLOCKED | 32 |
+| CONTRACT_MODEL_COVERAGE | PASS | 9 |
 | DOCUMENTED_NO_SOURCE | BLOCKED | 12 |
 | DOMAIN_INPUT | BLOCKED | 8 |
 | ENGINEERING_CURRENT | PASS | 1 |
+| MODEL_DUAL_CODE | BLOCKED | 75 |
 | RECEIPT_UNATTESTED | BLOCKED | 1 |
-| REVIEW_REQUIRED | BLOCKED | 3056 |
+| REVIEW_REQUIRED | BLOCKED | 3540 |
 | SOURCE_CACHE | BLOCKED | 2 |
 | SOURCE_UNFETCHED | BLOCKED | 2 |
 
@@ -87,6 +94,8 @@ This report distinguishes software/contract tests from evidence-backed science. 
 
 **REVIEW_REQUIRED / DEFAULT_STATE.oversub** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
+**REVIEW_REQUIRED / DEFAULT_STATE.phase** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
+
 **REVIEW_REQUIRED / DEFAULT_STATE.placement** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
 **REVIEW_REQUIRED / DEFAULT_STATE.ranks** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
@@ -100,7 +109,5 @@ This report distinguishes software/contract tests from evidence-backed science. 
 **REVIEW_REQUIRED / DEFAULT_STATE.trace** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
 **REVIEW_REQUIRED / DEFAULT_STATE.traffic** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
-
-**REVIEW_REQUIRED / DEFAULT_STATE.trainMode** — No signed semantic review. A reviewed boolean is not evidence. Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.
 
 The adjacent JSON report contains every finding and consumer ID. No raw source, signed review, GPU run or deployment measurement is inferred from a URL or a fixture.

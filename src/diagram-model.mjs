@@ -29,12 +29,12 @@ function stackOverview(g,m,s){
 }
 function residuals(g,m,s){
  const special=m.residual!=='standard';
- const normTitle=m.residual==='attnres'?'Depth read · RMSNorm':m.residual==='hyper'?'Stream read · RMSNorm':'RMSNorm';
- const desc=m.residual==='attnres'?'Block Attention Residuals retrieve across depth sources per token. The current partial block accumulator is updated and sealed at block boundaries; this is not an ordinary uniform residual sum.':m.residual==='hyper'?'The checkpoint carries four residual streams. A learned input mixer reads into one computation stream; an output gate writes back. It is not a single ordinary residual addition.':'Pre-normalization leaves a separate residual bypass untouched. After the attention output projection the update is added to the residual.';
- node(g,m,'norm1',270,112,468,40,normTitle,`${F(m.d)} channels`,desc,m.residual==='attnres'?'h = Σᵢ softmax(qᵀ norm(bᵢ))ᵢ bᵢ':m.residual==='hyper'?'h = H_pre(x₁,…,x₄)':'h = RMSNorm(x)',[],{kind:'pill'});
+ const normTitle=m.residual==='attnres'?'Depth read · RMSNorm':m.residual==='hyper'?'Stream read · RMSNorm':m.residual==='mhc'?'Mixed stream read · RMSNorm':'RMSNorm';
+ const desc=m.residual==='attnres'?'Block Attention Residuals retrieve across depth sources per token. The current partial block accumulator is updated and sealed at block boundaries; this is not an ordinary uniform residual sum.':m.residual==='hyper'?'The checkpoint carries four residual streams. A learned input mixer reads into one computation stream; an output gate writes back. It is not a single ordinary residual addition.':m.residual==='mhc'?`The checkpoint carries ${m.streams} residual streams mixed by manifold hyper-connections. The coefficients that mix the streams entering this sublayer were computed by the previous sublayer, so the matrix reading into attention came out of the previous block's feed-forward. It is made doubly stochastic by ${m.sinkhornIters} Sinkhorn iterations, which redistributes the streams without rescaling them. It is not a single ordinary residual addition.`:'Pre-normalization leaves a separate residual bypass untouched. After the attention output projection the update is added to the residual.';
+ node(g,m,'norm1',270,112,468,40,normTitle,`${F(m.d)} channels`,desc,m.residual==='attnres'?'h = Σᵢ softmax(qᵀ norm(bᵢ))ᵢ bᵢ':m.residual==='hyper'?'h = H_pre(x₁,…,x₄)':m.residual==='mhc'?'M = Sinkhorn(W_prev)\nh = RMSNorm(Σⱼ Mᵢⱼ xⱼ)':'h = RMSNorm(x)',[],{kind:'pill'});
  node(g,m,'norm2',886,112,486,40,normTitle,`${F(m.d)} channels`,desc,'h₂ = normalize(read(x₁))',[],{kind:'pill'});
- const stream=m.residual==='hyper'?'4 streams':m.residual==='attnres'?'depth bank + partial sum':'x';
- const stream2=m.residual==='hyper'?'4 streams':m.residual==='attnres'?'updated depth bank':'x₁';
+ const stream=m.residual==='hyper'?'4 streams':m.residual==='mhc'?`${m.streams} streams`:m.residual==='attnres'?'depth bank + partial sum':'x';
+ const stream2=m.residual==='hyper'?'4 streams':m.residual==='mhc'?`${m.streams} streams`:m.residual==='attnres'?'updated depth bank':'x₁';
  addLabel(g,`residual stream · ${stream}`,250,80,'muted',{size:12});
  addLabel(g,`residual stream · ${stream2}`,920,80,'muted',{size:12});
  // The stream arrives from outside the block and splits: normalized into attention, and
@@ -42,8 +42,9 @@ function residuals(g,m,s){
  addWire(g,[[206,86],[286,86],[286,112]],'', 'norm1');
  addWire(g,[[238,86],[238,899],[270,899]],'', 'merge-attn',{kind:'residual'});
  if(special){
-  node(g,m,'merge-attn',270,884,230,30,m.residual==='hyper'?'Gated stream write':'Update block accumulator','',desc,'update residual state',[],{kind:'pill',tone:'state'});
-  node(g,m,'merge-ffn',886,934,230,30,m.residual==='hyper'?'Gated stream write':'Update block accumulator','',desc,'update residual state',[],{kind:'pill',tone:'state'});
+  const writeTitle=m.residual==='hyper'?'Gated stream write':m.residual==='mhc'?'Mixed stream write':'Update block accumulator';
+  node(g,m,'merge-attn',270,884,230,30,writeTitle,'',desc,m.residual==='mhc'?'xᵢ′ = Σⱼ Mᵢⱼ xⱼ + Δ;  W_next = f(h)':'update residual state',[],{kind:'pill',tone:'state'});
+  node(g,m,'merge-ffn',886,934,230,30,writeTitle,'',desc,m.residual==='mhc'?'xᵢ′ = Σⱼ Mᵢⱼ xⱼ + Δ;  W_next = f(h)':'update residual state',[],{kind:'pill',tone:'state'});
  }else{
   addSum(g,'merge-attn',286,899,{info:modelInfo(m,'Attention residual add','Combine the attention output with the unchanged residual stream.','x₁ = x + Attention(RMSNorm(x))')});
   addLabel(g,'residual add',312,904,'muted',{size:12});
@@ -152,19 +153,62 @@ function sparseAttention(g,m,s){
  addWire(g,[[604,478],[604,572],[660,572],[660,600]],'index-select','attention',{kind:'state'});
  finishAttention(g,m,s,658,m.heads*m.headDim);
 }
+function csa2Attention(g,m,s,kind){
+ const sparse=kind!=='swa',scores=kind==='csa2-full'||kind==='csa2-reindex',l=s.layer-1;
+ // The hierarchical candidate pool is a decoder mechanism: the report's Hierarchical Sparse
+ // Indexer "is used only in the decoder of CED". Encoder scoring layers -- one-indexed 3, 9 and
+ // 15 -- precede the candidate source entirely and score the whole causally visible range, so
+ // they get no candidate-pool node and their prose must not name one.
+ const pooled=scores&&l>=m.candidateSource;
+ const kvOwner=m.kvSourceLayers.filter(x=>x<=l).pop(),idxOwner=m.indexSourceLayers.filter(x=>x<=l).pop();
+ const qWidth=m.nopeDim+m.ropeDim,headWidth=m.heads*m.vDim;
+ node(g,m,'qkv-proj',270,236,282,48,'Q/K/V projections',`${m.heads} Q heads · one latent KV × ${m.vDim}`,`Queries pass through a rank-${F(m.qRank)} bottleneck and expand to ${m.heads} heads of ${m.nopeDim} content plus ${m.ropeDim} rotary channels. Keys and values are a single ${m.vDim}-wide latent per position — kvHeads is ${m.kvHeads} — so one latent KV serves all ${m.heads} query heads. This is not one key/value pair per head.`,'[Q, k, v] = projections(h)',[['Query heads',String(m.heads)],['KV heads',String(m.kvHeads)],['Latent KV width',String(m.vDim)],['Query rank',F(m.qRank)]]);
+ addWire(g,[[286,152],[286,218],[286,236]],'norm1','qkv-proj');
+ node(g,m,'qk-position',270,332,282,32,'Partial RoPE',`${m.ropeDim} of ${qWidth} channels per head`,'Rotary position encoding acts on the decoupled positional channels of the query and the shared key. Content channels and the value latent are not rotated.','Q,k = RoPE(Q,k; position)',[],{kind:'pill'});
+ addWire(g,[[286,284],[286,332]],'qkv-proj','qk-position');
+ node(g,m,'window-kv',270,474,282,56,'Sliding-window KV',`${m.window} positions · one latent KV × ${m.vDim}`,`Every layer keeps a ${m.window}-position sliding window of the single ${m.vDim}-wide latent KV, written from this layer's own hidden state and stored as ${m.swaKvFormat}. One latent KV serves all ${m.heads} query heads, so the window is not ${m.heads} cached key/value pairs.`,'K_w, V_w = window(k, v)',[['Window',`${m.window} positions`],['KV heads',String(m.kvHeads)],['Stored as',m.swaKvFormat]],{tone:'state'});
+ addWire(g,[[286,364],[286,412],[350,412],[350,474]],'qk-position','window-kv');
+ addWire(g,[[286,412],[250,412],[250,629],[270,629]],'qk-position','attention');
+ addWire(g,[[350,530],[350,600]],'window-kv','attention');
+ labelShape(g,s,`Q · ${m.heads} × ${qWidth}`,366,452);
+ if(sparse){
+  if(scores){
+   node(g,m,'index-proj',588,236,150,48,'CSA2 indexer',`${m.indexerHeads} Q · 1 K · ${m.indexer}`,`A separate inexpensive indexer scores the compressed cache. It is not the full attention Q/K projection, and its output is a selection rather than a value. ${pooled?`This is a decoder layer, so it scores the hierarchical candidate pool layer ${m.candidateSource+1} maintains.`:'This is an encoder layer: the hierarchical candidate pool is a decoder-only mechanism, so the pass runs over the whole causally visible range and no candidate set is involved.'}`,'q_I, k_I = W_I h',[['Scope',pooled?'candidate pool':'full causal range']],{small:true});
+   addWire(g,[[286,218],[604,218],[604,236]],'norm1','index-proj');
+   if(pooled){
+    node(g,m,'index-blocks',588,332,150,42,'Candidate blocks',`${F(m.candidateBlocks)} × ${m.candidateBlockSize}`,`Indexer scores are taken over ${F(m.candidateBlocks)} candidate blocks of ${m.candidateBlockSize} positions, drawn from the candidate set layer ${m.candidateSource+1} establishes. Scoring a block is not reading it.`,'score(q_I, k_block)',[],{small:true,kind:'pill'});
+    addWire(g,[[604,284],[604,332]],'index-proj','index-blocks');
+   }
+  }
+  node(g,m,'index-select',588,430,150,48,scores?'Select blocks':'Reuse selection',scores?`${m.indexerBudget} token budget`:`computed at layer ${idxOwner+1}`,scores?`Top-scoring positions become a token mask of at most ${m.indexerBudget} selected positions, ${pooled?`taken from the candidate pool layer ${m.candidateSource+1} maintains`:'ranked over the whole causally visible range because this encoder layer has no candidate pool'}. The budget counts selected tokens, not resident cache capacity, and the incomplete current block still needs causal handling.`:`This layer runs no indexer: it reads the token selection layer ${idxOwner+1} already computed. Drawing an indexer projection here would assert a computation this layer does not perform.`,scores?'top blocks → token mask':`mask ← layer ${idxOwner+1}`,[['Mode',scores?'re-scored here':'reused'],['Scope',scores?(pooled?'candidate pool':'full causal range'):`layer ${idxOwner+1}`],['Budget',`${m.indexerBudget} tokens`]],{tone:'state',small:true});
+  if(pooled)addWire(g,[[604,374],[604,430]],'index-blocks','index-select');
+  else if(scores)addWire(g,[[604,284],[604,430]],'index-proj','index-select');
+  node(g,m,'compress-kv',588,510,150,56,'Compressed KV cache',kind==='csa2-full'?'written here':`owned by layer ${kvOwner+1}`,`The compressed KV cache holds one ${m.vDim}-wide latent per compressed position and is shared across layers instead of being rebuilt per layer. Layer ${kvOwner+1} compresses and owns it. ${kind==='csa2-full'?'This layer is that owner: it writes the cache from its own normalized hidden state.':kind==='csa2-reindex'?'This layer does not write it; it re-scores the same stored bytes with its own indexer, so the selection differs while the cache does not.':'This layer neither writes it nor re-scores it; it reads a selection made earlier in the stack.'} Stored as ${m.kvFormat}.`,'K_c, V_c = compress(h_owner)',[['Owned by',`layer ${kvOwner+1}`],['This layer',kind==='csa2-full'?'owns the cache':kind==='csa2-reindex'?'re-scores the cache':'reads a prior selection'],['Stored as',m.kvFormat]],{tone:'state',small:true});
+  addWire(g,[[604,478],[604,510]],'index-select','compress-kv',{kind:'control'});
+  addWire(g,[[604,566],[604,600]],'compress-kv','attention');
+  if(kind==='csa2-full')addWire(g,[[738,132],[784,132],[784,538],[738,538]],'norm1','compress-kv',{kind:'state'});
+  labelShape(g,s,`selected · ≤ ${F(m.indexerBudget)}`,620,592);
+ }
+ node(g,m,'attention',270,600,468,58,sparse?'CSA2 sparse attention':'Sliding-window attention',sparse?`${m.heads} Q heads · window ${m.window} + ≤ ${F(m.indexerBudget)} selected`:`${m.heads} Q heads · ${m.window}-position window only`,sparse?`Attention.forward concatenates the sliding-window KV and the selected compressed KV and runs one sparse_attn call over their union, with the per-head sink in the same softmax. Two cache paths, one attention: drawing two attention operations whose outputs are added would misrepresent the mechanism.`:`The first ${m.swaLayers} layers have no compressed path at all — their compression ratio is zero — so attention is the sliding window alone. The per-head sink joins the same softmax.`,sparse?'O = sparse_attn(Q, [K_w; K_sel], [V_w; V_sel], sink)':'O = sparse_attn(Q, K_w, V_w, sink)',[['Attention calls','1'],['KV paths',sparse?'window + compressed':'window only'],['KV heads',String(m.kvHeads)]],{tone:'compute'});
+ node(g,m,'attn-sink',562,690,176,44,'Per-head attention sink',`${m.heads} learned logits`,'Each head carries one learned logit that enters the softmax denominator with no value attached, which lets a head attend to nothing. It is a parameter, not a cached position, and it sits inside the same softmax rather than being a second attention.','softmax([qᵀk …, sink_h])',[],{tone:'state',small:true});
+ addWire(g,[[660,690],[660,658]],'attn-sink','attention',{kind:'state'});
+ node(g,m,'out-proj',270,818,468,48,'Grouped output projection',`${m.oGroups} groups · rank ${F(m.oRank)} · ${F(headWidth)} → ${F(m.d)}`,`The output projection is block-diagonal in ${m.oGroups} groups: each group maps its own slice of the concatenated head outputs through a rank-${F(m.oRank)} factor. It is one projection with a constrained weight, not a dense ${F(headWidth)} × ${F(m.d)} matrix and not two stacked projections.`,'Δx = Σ_g W_O,g concat(O_g)',[['Groups',String(m.oGroups)],['Rank per group',F(m.oRank)],['Head-space width',F(headWidth)]]);
+ addWire(g,[[286,658],[286,818]],'attention','out-proj');
+ labelShape(g,s,`attention output · ${F(headWidth)}`,302,718);
+}
 function feedForward(g,m,s){
  const kind=ffnKind(m,s.layer),latent=kind==='latent-moe',D=m.latent||m.d;
  if(kind==='dense'){
   node(g,m,'ffn-up',886,308,486,56,'Gate + up projections',`${F(m.d)} → 2 × ${F(m.ff)}`,'Two learned projections form the gated feed-forward intermediate. Dense layers execute this full FFN for every token.','u = W_up h; g = W_gate h');
-  node(g,m,'ffn-activation',886,472,486,36,m.id==='kimi3'?'SiTU activation':'SwiGLU',`${F(m.ff)} channels`,m.id==='kimi3'?'Kimi uses its source-defined capped SiTU activation rather than ordinary SwiGLU. Caps are part of the numerical contract.':'Apply SiLU to the gate branch and multiply by the up branch.','a = activation(g) ⊙ u',[],{kind:'pill'});
+  node(g,m,'ffn-activation',886,472,486,36,m.id==='kimi3'?'SiTU activation':m.swigluLimit?`Clamped SwiGLU · ±${m.swigluLimit}`:'SwiGLU',`${F(m.ff)} channels`,m.id==='kimi3'?'Kimi uses its source-defined capped SiTU activation rather than ordinary SwiGLU. Caps are part of the numerical contract.':m.swigluLimit?`Apply SiLU to the gate branch and multiply by the up branch, then clamp the product to ±${m.swigluLimit}. The clamp is part of the numerical contract, not an optimization, and an unclamped SwiGLU is a different function.`:'Apply SiLU to the gate branch and multiply by the up branch.','a = activation(g) ⊙ u',[],{kind:'pill'});
   node(g,m,'ffn-down',886,684,486,56,'Down projection',`${F(m.ff)} → ${F(m.d)}`,'Return the FFN activation to residual width before the residual-state update.','Δx = W_down a');
   addWire(g,[[902,152],[902,308]],'norm2','ffn-up');addWire(g,[[902,364],[902,472]],'ffn-up','ffn-activation');addWire(g,[[902,508],[902,684]],'ffn-activation','ffn-down');addWire(g,[[902,740],[902,m.residual==='standard'?937:934]],'ffn-down','merge-ffn');
   labelShape(g,s,`gate / up · 2 × ${F(m.ff)}`,918,420);labelShape(g,s,`activation · ${F(m.ff)}`,918,603);labelShape(g,s,`FFN output · ${F(m.d)}`,918,860);
   return;
  }
  const shared=m.shared>0,x=886,w=shared?282:486;
- node(g,m,'router',x,236,w,48,'Router',`${F(m.d)} → ${m.experts} scores`,m.id==='ds2'?'Softmax routing with grouped selection; V2 differs from V3’s sigmoid scoring and bias-corrected selection.':m.scoring==='sigmoid'?'Router scores come from the full-width hidden vector. Correction bias, where present, changes selection; selected mixture weights follow the source implementation, not the corrected ranking scores.':'Softmax scores select the top-k routed experts. No shared expert is added unless the checkpoint explicitly defines one.','scores = router(h)',[['Experts',String(m.experts)],['Selected / token',String(m.topK)]]);
- node(g,m,'top-k',x,318,w,32,'Top-k selection',`${m.topK} of ${m.experts} experts`,'Expert count and experts selected per token are separate axes. Routing is dynamic; the diagram shows grouped work rather than drawing hundreds of expert boxes.','I = topk(scores)',[],{kind:'pill'});
+ node(g,m,'router',x,236,w,48,'Router',`${F(m.d)} → ${m.experts} scores`,m.id==='ds2'?'Softmax routing with grouped selection; V2 differs from V3’s sigmoid scoring and bias-corrected selection.':m.scoring==='sqrtsoftplus'?`Router scores are sqrt-softplus of the linear score, scaled by ${m.routeScale}. A per-expert correction bias is added for selection only: it decides which experts run, while the mixture weights applied to their outputs come from the uncorrected scores. Ranking and weighting are deliberately different quantities.`:m.scoring==='sigmoid'?'Router scores come from the full-width hidden vector. Correction bias, where present, changes selection; selected mixture weights follow the source implementation, not the corrected ranking scores.':'Softmax scores select the top-k routed experts. No shared expert is added unless the checkpoint explicitly defines one.','scores = router(h)',[['Experts',String(m.experts)],['Selected / token',String(m.topK)]]);
+ node(g,m,'top-k',x,318,w,32,'Top-k selection',`${m.topK} of ${m.experts} experts`,`Expert count and experts selected per token are separate axes. Routing is dynamic; the diagram shows grouped work rather than drawing hundreds of expert boxes.${m.scoring==='sqrtsoftplus'?' Selection reads the bias-corrected scores; the weights that reach the expert outputs do not.':''}`,'I = topk(scores)',[],{kind:'pill'});
  addWire(g,[[902,152],[902,236]],'norm2','router');addWire(g,[[902,284],[902,318]],'router','top-k');
  let dispatchSource='top-k',outY=350;
  if(latent){node(g,m,'latent-down',x,392,w,48,'Latent down-projection',`${F(m.d)} → ${F(m.latent)}`,'Routed experts operate on a latent-width vector; shared experts still receive full-width normalized input. Router logits never become expert activations.','z = W_D h');addWire(g,[[1168,334],[1180,334],[1180,488],[1168,488]],'top-k','dispatch',{kind:'control'});dispatchSource='latent-down';outY=440;addWire(g,[[1372,132],[1402,132],[1402,416],[1168,416]],'norm2','latent-down',{kind:'state'});}
@@ -174,7 +218,7 @@ function feedForward(g,m,s){
  if(!latent)addWire(g,[[1372,132],[1402,132],[1402,dy+16],[x+w,dy+16]],'norm2','dispatch',{kind:'state'});
  const gy=latent?546:488,ay=gy+82,downY=gy+142;
  node(g,m,'expert-up',x,gy,w,48,'Expert gate / up',`${F(D)} → 2 × ${F(m.expertFF)}`,'Grouped execution of the selected experts. Every expert has distinct parameters; only the selected subset contributes to a token.','uᵢ = W_up,i z; gᵢ = W_gate,i z');
- node(g,m,'expert-activation',x,ay,w,32,m.id==='kimi3'?'SiTU · routed experts':'SwiGLU · routed experts',`${m.topK} selected experts`,'Apply the checkpoint’s expert activation independently per selected expert. Mixture weights are applied to expert outputs, not to routing logits.','aᵢ = activation(gᵢ) ⊙ uᵢ',[],{kind:'pill'});
+ node(g,m,'expert-activation',x,ay,w,32,m.id==='kimi3'?'SiTU · routed experts':m.swigluLimit?`Clamped SwiGLU · ±${m.swigluLimit}`:'SwiGLU · routed experts',`${m.topK} selected experts`,`Apply the checkpoint’s expert activation independently per selected expert. Mixture weights are applied to expert outputs, not to routing logits.${m.swigluLimit?` The SwiGLU product is clamped to ±${m.swigluLimit} inside every expert; the clamp is part of the numerical contract.`:''}`,'aᵢ = activation(gᵢ) ⊙ uᵢ',[],{kind:'pill'});
  node(g,m,'expert-down',x,downY,w,48,'Expert down-projection',`${F(m.expertFF)} → ${F(D)}`,'Map each selected expert’s intermediate back to the routed-path width.','eᵢ = W_down,i aᵢ');
  addWire(g,[[902,dy+32],[902,gy]],'dispatch','expert-up');addWire(g,[[902,gy+48],[902,ay]],'expert-up','expert-activation');addWire(g,[[902,ay+32],[902,downY]],'expert-activation','expert-down');
  let combineY=latent?800:736;
@@ -192,7 +236,7 @@ function feedForward(g,m,s){
  if(shared){
   const sx=1196,sw=176;
   node(g,m,'shared-up',sx,gy,sw,48,'Shared gate / up',`${F(m.d)} → 2 × ${F(m.expertFF)}`,'The shared expert branch consumes the full-width hidden input, independently of the selected routed experts.','u_s,g_s = W_s h',[['Shared experts',String(m.shared)]],{small:true});
-  node(g,m,'shared-activation',sx,ay,sw,32,m.id==='kimi3'?'SiTU':'SwiGLU',`${m.shared} always-on`, 'Shared expert activations follow the checkpoint. Qwen Flash-Next additionally gates its shared expert contribution.','a_s = act(g_s) ⊙ u_s',[],{kind:'pill',small:true});
+  node(g,m,'shared-activation',sx,ay,sw,32,m.id==='kimi3'?'SiTU':m.swigluLimit?`Clamped SwiGLU · ±${m.swigluLimit}`:'SwiGLU',`${m.shared} always-on`, `Shared expert activations follow the checkpoint. Qwen Flash-Next additionally gates its shared expert contribution.${m.swigluLimit?` The shared branch uses the same clamp at ±${m.swigluLimit} as the routed experts.`:''}`,'a_s = act(g_s) ⊙ u_s',[],{kind:'pill',small:true});
   node(g,m,'shared-down',sx,downY,sw,48,'Shared down',`${F(m.expertFF)} → ${F(m.d)}`,'Return full-width shared-expert outputs. Where multiple shared experts exist, their contribution is always active.','shared = Σ W_down,s a_s',[],{small:true});
   addWire(g,[[902,152],[902,214],[1212,214],[1212,gy]],'norm2','shared-up',{kind:'residual'});
   addWire(g,[[1212,gy+48],[1212,ay]],'shared-up','shared-activation');addWire(g,[[1212,ay+32],[1212,downY]],'shared-activation','shared-down');
@@ -205,16 +249,31 @@ function feedForward(g,m,s){
   addLabel(g,'routed + shared',932,882,'muted',{size:12});
  }else addWire(g,[[902,lastY],[902,937]],routedLast,'merge-ffn');
 }
+/** Exhaustive attention dispatch.
+ *
+ * Until 3.0.0 this was `else recurrent(g,m,s,kind)`, so every layer kind except three
+ * silently rendered as gated recurrence -- no error, no warning, a confident wrong diagram.
+ * An unknown kind is now a RangeError: a missing renderer is a defect to fix, never a
+ * mechanism to borrow from another architecture.
+ */
+export function attentionRenderer(kind){
+ if(kind==='mla')return mla;
+ if(kind==='gqa')return gqa;
+ if(kind==='qsa')return sparseAttention;
+ if(kind==='kda'||kind==='delta')return (g,m,s)=>recurrent(g,m,s,kind);
+ if(kind==='swa'||kind==='csa2-full'||kind==='csa2-reindex'||kind==='csa2-reuse')return (g,m,s)=>csa2Attention(g,m,s,kind);
+ throw new RangeError(`No attention renderer for layer kind '${kind}'. Add a renderer for it; do not fall through to another mechanism.`);
+}
 export function buildModel(s){
  const m=getModel(s.model),kind=layerKind(m,s.layer),ff=ffnKind(m,s.layer),g=makeScene();
  stackOverview(g,m,s);
  addGroup(g,'block-region',206,16,1216,986,'','');
  addLabel(g,`LAYER ${String(s.layer).padStart(2,'0')}`,238,48,'compute',{size:12,tracking:1.8});
- addLabel(g,`${kind==='kda'?'KDA':kind==='delta'?'GATED DELTANET':kind==='qsa'?'QSA':kind.toUpperCase()}  /  ${ff==='dense'?'DENSE FFN':ff==='latent-moe'?'LATENT MOE':'MOE'}`,386,48,'muted',{size:12,tracking:1});
+ addLabel(g,`${kind==='kda'?'KDA':kind==='delta'?'GATED DELTANET':kind==='qsa'?'QSA':kind.startsWith('csa2-')?`CSA2 · ${kind.slice(5).toUpperCase()}`:kind.toUpperCase()}  /  ${ff==='dense'?'DENSE FFN':ff==='latent-moe'?'LATENT MOE':'MOE'}`,386,48,'muted',{size:12,tracking:1});
  addGroup(g,'attention-region',258,174,498,704,'01  ATTENTION','',{headerInset:50});
  addGroup(g,'ffn-region',874,174,516,702,`02  ${ff==='dense'?'DENSE FFN':ff==='latent-moe'?'STABLE LATENT MOE':'MIXTURE OF EXPERTS'}`,'',{headerInset:50});
  residuals(g,m,s);
- if(kind==='mla')mla(g,m,s);else if(kind==='gqa')gqa(g,m,s);else if(kind==='qsa')sparseAttention(g,m,s);else recurrent(g,m,s,kind);
+ attentionRenderer(kind)(g,m,s);
  feedForward(g,m,s);
  if(m.pleLayers.includes(s.layer)){
    // An explicit input-side modifier, not a fabricated standalone residual sum.

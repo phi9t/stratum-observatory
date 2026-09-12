@@ -9,12 +9,12 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 383 verifier tests, 42 model/graph tests, two byte-identical builds, actual Chromium suite |
-| Schematics | PASS | 0 | 684 scenes including all 504 decoder layers; 2,737 checks against core.mjs |
-| Presentations | PASS | 0 | 12 checks — exports, accessibility, print, portability and preview freshness from a real file:// origin |
-| Aesthetics | PASS | 0 | 156 scenarios, 359 checks; type, spacing, contrast, clearance and composition |
-| Scientific publication | BLOCKED | 2 | Eight-model consumer inventory and strict evidence/review audit; **no FAIL** |
-| Runtime certification | BLOCKED | 2 | 28 of 31 obligations NOT_RUN; H100, B200 and GB300 re-probed on the private fleet under the hardware data model, each receipt binding the model, its contract record and its capture; **no FAIL** |
+| Engineering | PASS | 0 | 577 verifier tests (4 skipped), 90 model/graph tests, two byte-identical builds and 1,447 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Schematics | PASS | 0 | 755 scenes including all 544 decoder layers; 3,117 checks against core.mjs, of which 234 are recorded not-applicable passes |
+| Presentations | PASS | 0 | 26 checks over 10 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
+| Aesthetics | PASS | 0 | 180 scenarios, 413 checks; type, spacing, contrast, clearance, probe coverage and composition |
+| Scientific publication | BLOCKED | 2 | Nine-model consumer inventory and strict evidence/review audit; **no FAIL** |
+| Runtime certification | BLOCKED | 2 | Run on these bytes: 29 of 32 obligations NOT_RUN, **no FAIL and no `RUNTIME_STALE`** — the behavioural obligations have no receipts to go stale, and the three hardware receipts do not bind the claim manifest |
 
 ## Toolchain
 
@@ -26,8 +26,8 @@ Python pin, `tests/`, `.github/CODEOWNERS` and the aesthetics policy are all ins
 
 ## Browser evidence
 
-**1,336 rendered states**, including all **504 decoder layers** across eight checkpoints in both
-label modes, **56 responsive viewport/lens/theme combinations** and **32 device-scale cases at
+**1,447 rendered states**, including all **544 decoder layers** across nine checkpoints in both
+label modes, **56 responsive viewport/lens/theme combinations** and **36 device-scale cases at
 1.25 and 2**. **0 geometry defects, 0 runtime JavaScript errors, 0 external runtime requests.**
 Model/layer/scenario controls, search, keyboard navigation, tracing, focus, zoom, URL restore,
 SVG/XML rendering and JSON exports passed.
@@ -36,12 +36,38 @@ This result now reproduces under **macOS system fonts** as well as the Linux CI 
 is meaningful because no fonts are bundled and every geometry check is built on measured
 `getBBox()` bounds. The layout does not depend on a single font stack.
 
+The layer matrix is now derived from the application's own model table rather than a literal in
+`tests/browser.test.py`. The literal listed eight checkpoints and 504 layers, so when a ninth
+shipped the suite went on sweeping the same eight and reported success over a matrix that no longer
+described the artifact. A hardcoded inventory cannot notice what it omits.
+
+**One of the figures above was wrong, and this record published it.** `device_scale_states` was
+written as the literal `32` in a report dict whose every other entry is derived from what the run
+did. The loop behind it is two device-scale ratios by every checkpoint by both themes, so the
+true value became 36 when the ninth checkpoint shipped, and `tests/browser-cases.json` — written
+by the same run — recorded `device-scale-1.25: 18` and `device-scale-2: 18` the whole time. The
+receipt disagreed with its own case file, and the wrong number reached
+`tests/browser-results.json`, the signed engineering receipt and this document.
+
+Nothing caught it because nothing was looking: `verification/tests/test_reported_numbers.py`
+reconciled aesthetics scenarios, schematics scenes, decoder layers and both receipt test counts,
+and not one browser figure. The count is now derived from the recorded cases, all three browser
+figures are reconciled against the receipt, and a separate test compares the receipt's
+device-scale count against the case file the same run produced.
+
+The lens and hardware axes are derived through the same door. `VIEWS` and the roofline SKU list
+were literals in a file whose own docstring argues against literals; an eighth lens or a fifth
+SKU would have been swept in no state while the suite's final assertion passed over the smaller
+matrix. Both values are unchanged today — seven lenses, four SKUs — which is the point: a
+derivation that reproduces the literal exactly is the only evidence that the literal was still
+true.
+
 It is not Safari/Firefox certification, all-system-font coverage, an exhaustive state-space proof
 or GPU execution.
 
 ## Aesthetics evidence
 
-`npm run verify:aesthetics` passes: **359 checks, 0 failures** across 156 scenarios and 100
+`npm run verify:aesthetics` passes: **413 checks, 0 failures** across 180 scenarios and 114
 distinct measurements. The first run of this gate failed on 21 defects that shipped in the
 delivered artifact; all are now fixed at the source rather than by moving a threshold.
 
@@ -54,23 +80,202 @@ delivered artifact; all are now fixed at the source rather than by moving a thre
 - **24 ad-hoc font sizes became 8**, and 31 ad-hoc spacing values became one 2/4px rhythm. Both are
   now enforced statically, so they cannot silently return.
 
-AA (4.5:1) is the floor everywhere. Reading-size **chrome** prose is held to AAA (7:1). Canvas
+AA (4.5:1) is the floor everywhere. Reading-size **chrome** prose is held to AAA (7:1), and the
+written exposition described below is inside that measurement rather than beside it: its cells and
+citations were added to the probe's chrome selector list, so the 12px prose is measured at the 7:1
+threshold (**14.19:1** dark, **12.21:1** light) and the 11px citations at 4.5:1. Canvas
 labels stay at AA deliberately: they sit on the semantic tint fills that carry the colour grammar
 of `docs/design/OBSERVATORY.md`, and forcing 7:1 there would wash that grammar out of the diagram.
 
 Position must not depend on theme, and does not: composition is byte-identical between dark and
-light in every scenario. All 156 match the recorded composition baseline, which is what confirms
-the type and colour work was purely presentational and touched no scene geometry.
+light in every scenario. All **180** measured scenarios were each compared against a recorded
+signature and all match — the measured, the compared and the baselined counts are the same number,
+which is the only way this check means anything. That sentence is now the gate's own PASS message,
+computed from the compared set, rather than a property of this document.
+
+It was twice not. The baseline first held 156 signatures covering the eight original checkpoints,
+and the ninth checkpoint's 22 had no drift protection at all while the gate reported PASS over
+every scenario it measured. Re-recording the baseline closed that instance and left the mechanism
+intact: `aesthetics.py` asked `if label in recorded` for drift and
+`all(recorded.get(l,s)==s for l,s in current.items())` for stability, which is vacuously true for
+any label the baseline has never seen, so `COMPOSITION_STABLE` reported `len(current)` scenarios as
+matching whether or not they were compared and `current - recorded` was covered by nothing. A tenth
+checkpoint would have added unbaselined labels, left them uncompared, and reported the full
+measured count as matching anyway. The
+comparison is now a tested pure function: `COMPOSITION_NEW` FAILs on a measured scenario the
+baseline has never seen — the mirror of `COMPOSITION_MISSING`, and FAIL for the same reason, that a
+baseline stale against our own bytes is something we can know — and `COMPOSITION_STABLE` counts only
+what it compared. The promotion of the current baseline was checked in both directions when it was
+made: every one of the 22 new signatures belongs to a genuinely new `dsv41` scenario, and **not one
+of the 156 existing signatures moved**, which rules out a shared change having leaked into the other
+eight presets under cover of the new model.
+
+The layer sample is deliberate and worth naming, because it is narrower than the other gates: this
+gate measures decoder layers 1, 2 and 4, which for `dsv41` are two `swa` layers and one
+`csa2-reuse` layer. The `csa2-full` and `csa2-reindex` block layouts are covered by
+`verify:schematics` over all 544 layers and by the browser suite over all 544 in both label modes,
+not by rendered-text measurement here.
 
 Ratios are computed from specified colours against a resolved backdrop stack. That is an upper
 bound on legibility, not a guarantee of it: anti-aliasing and stem weight are not modelled, and an
 element whose backdrop cannot be resolved is reported BLOCKED rather than passed.
 
+**The measured set is now bound to the page, and its gaps are recorded rather than implied.** The
+probe used to select chrome text with a hardcoded selector string that nothing checked: renaming a
+class removed it from measurement while the gate went on reporting PASS over a page it no longer
+looked at — the same shape of defect this gate exists to catch, one layer up. Two static checks
+close it. `CHROME_PROBE_LIVE` requires every class the probe measures by to still exist in
+`src/styles.css` **and** in the markup that emits it, so a rename fails the gate instead of
+disappearing. `CHROME_COVERAGE_OK` requires every reading-size chrome rule in the stylesheet —
+all **39** between the 12px reading floor and the 24px large-text relaxation — to be either in the
+measured set (**11** selectors) or in `UNMEASURED_CHROME` (**33**).
+
+That second list is debt, not an exemption. It is what the gate does **not** measure, and probing
+those selectors by hand finds **8 distinct reading-size chrome elements between 4.89:1 and 6.87:1**
+against the 7:1 that reading-size prose is held to — `--muted` and `--accent` at 12px on
+`--surface`, `--canvas`, `--bg` and `--accent-bg`, plus the 14px skip link. They are pre-existing
+and are not fixed here: clearing them is a palette retune of the whole application, which does not
+belong in a commit that adds an exposition. `UNMEASURED_CHROME` is inside `toolchain_digest`, so
+adding a line to it invalidates every engineering receipt. The residual hole is named too: a new
+element reusing a token/size pair already recorded there would be allowed, because the list is
+keyed by selector rather than by measured ratio.
+
+## The delivered page, in more than one state
+
+`npm run verify:presentations` is the only suite that opens the artifact from a real `file://`
+origin, and until now it measured exactly one state: `page.goto` lands on the default
+`ds3`/`model`/`block` page and nothing navigated away from it. So the focal pages — which carry
+prose and a data table that exist in no other state — had their headings, control names, table
+semantics and citations checked by nothing, and the report's "9 headings ordered" was a true
+statement about a different page.
+
+`focal_states()` now reads the live model table and returns every checkpoint with an
+encoder/decoder split, so the list cannot go stale the way `tests/browser.test.py`'s hardcoded
+eight-checkpoint matrix did. The suite measures **2 states** and reports them in the receipt:
+`default` (9 headings, 132 controls, 4 citations) and `dsv41/ced` (**10 headings ordered, 84
+controls named, 1 table with scoped headers over 8 rows, 29 citations named**). `PROSE_SCOPE`
+fails if no focal state was measured, so "we only saw the page we opened" cannot recur silently.
+
+A new probe covers what a data table needs and no other check looks at: a real `<thead>`, `scope`
+on every column header, a `<th scope="row">` per body row, and external citations that have an
+accessible name and `rel="noopener"`. A five-column table of bare `<td>`s is perfectly legible,
+passes every contrast and geometry check, and is unnavigable. Its negatives are exercised against
+synthetic markup in a browser, not asserted.
+
 ## Diagram semantics
 
 `npm run verify:schematics` checks what the diagram means rather than where its boxes landed. The
 scene IR comes from the diagram builders and, per scene, `core.mjs` independently states what is
-true; the two are compared. 684 scenes, 2,737 checks, 504 decoder layers, no browser.
+true; the two are compared. 755 scenes, 3,117 checks, 544 decoder layers, no browser. Of those
+3,117, **234 are explicit not-applicable passes** — `SCENE_MODEL_SKIP` 211 and `MHC_SKIP` 23, both
+counted in the report's own `passed_codes` — so 2,882 are measurements and the rest are a check
+saying, in the report rather than by silence, that it did not apply here.
+
+It also judges the causal encoder-decoder architecture itself, under 25 codes that did not exist
+before. Two are worth naming because of what they compare rather than what they assert.
+`CED_MODE_DISAGREEMENT` derives the 40-layer mode assignment twice -- once from the pinned
+`kv_source_layer_ids` / `index_source_layer_ids` arrays, once generated from the technical
+report's §4.2.1 group structure, which is given the depths and the group sizes and no layer ids at
+all -- and requires the two to agree. `KV_BUDGET_DISAGREEMENT` re-derives main KV per token in
+Python, 720 B over four Full-mode layers, and compares it against what `cacheLedger` computes in
+JavaScript; `KV_RESIDUAL_IMPLAUSIBLE` then holds the published 890 B/token to implying between
+0.5 and 1.0 bytes per indexer channel, which the reported figure does at 0.531. The bound is the
+FP4-to-FP8 range and is deliberately not narrowed, because the report states no indexer precision
+and a tighter bound would be a guess wearing a check's clothing.
+
+Every judge in this gate reads only our own bytes, and none of them returns BLOCKED. That matters
+because `aggregate` turns a single BLOCKED into exit 2 and this gate is one of the four the Pages
+deploy requires, so a gate that could block would stop the page shipping for something that is not
+a software defect. Three checks that legitimately block -- the publisher transcription, the
+published active-parameter ratio, and claim-model coverage with nothing to compare -- were moved to
+the scientific audit for that reason.
+
+What enforces it, precisely. `verification/ced.py` has no schematics-domain BLOCKED constructor and
+no keyword that reaches one: its `_one` helper takes no `status` parameter, so writing a
+schematics-domain BLOCKED requires writing new code rather than passing an argument, and a test
+pins that signature. `schematics.py`'s own `_ok`/`_bad` likewise construct only PASS and FAIL. The
+judges the gate wires in are held in two exported lists, `SCHEMATICS_JUDGES` and `SCENE_JUDGES`,
+which `run()` iterates and which `test_no_schematics_judge_can_emit_blocked` and
+`test_no_scene_judge_can_emit_blocked` iterate too -- so wiring a judge brings it under the
+property test without anyone remembering to list it. Those tests sweep 31 deliberately broken model
+shapes against seven inventory states, including absent and degenerate ones, require every finding
+to be PASS or FAIL, and require both outcomes to occur so the sweep cannot pass by exercising
+nothing.
+
+Two residues, named rather than papered over. The five judges defined inside `schematics.py`
+itself are not in those lists; they are covered by that module having no BLOCKED constructor and by
+`test_the_gate_report_carries_only_pass_and_fail`, which reads the real report's status counts.
+And `aggregate` returns BLOCKED for an empty finding list, so a gate that produced no findings at
+all would block; it produces 3,117 across 755 scenes, and the scene count is itself asserted.
+
+## The written exposition
+
+The CED page carries prose, not only a diagram: eight records naming what each published mechanism
+replaces, how it works, one measured consequence and the bytes it is read from. Prose is where an
+unsupported assertion is easiest to write and hardest to see, so two rules make it checkable rather
+than merely well-written.
+
+**No figure is a string.** Each record's `effect` is a *function* of the model, evaluated at render
+time from `cacheLedger`, `servingLedger`, `parameterLedger` and `layerPartition`. A literal cannot
+drift from the data because there is no literal to drift: `src/innovations.mjs` contains no
+architectural number at all. `tests/core.test.mjs` asserts that every `effect` is a function, and
+then mutates one field per record and requires that record's rendered sentence to move — a record
+whose exposition ignored the field it is about would pass a type check while still being a literal
+in disguise.
+
+**The rule covers the authored sentences too, and it did not at first.** `replaces` and `mechanism`
+are the only prose here, and they shipped a draft saying "the bottom half of the stack is a causal
+encoder" — which asserts `encoderLayers === layers / 2` in a place nothing can check, directly
+beside a derived figure that the mutation test rendered as "10 of 40". Another said "one E4M3 scale
+per sixteen channels", duplicating `core.mjs`'s `1/16`, and named "FP4 E2M1" and "FP8" where
+`kvFormat` and `swaKvFormat` already hold them. Those sentences now carry **no quantity at all** —
+not a digit, and not a cardinal spelled as a word, which a digit scan alone would have missed — and
+a test enforces both halves: the shipped prose is clean, and the four sentences the rule was written
+for are rejected by it. The formats moved into `effect`, where they follow the model table.
+
+**Every record cites sources that resolve.** `COVERAGE_UNCITED` requires at least one source id per
+record and requires each one to resolve; an id that does not resolve renders as nothing, which reads
+on the page as an uncited assertion rather than as an error.
+
+**The exposition is checked against the computation, not against itself.** `COVERAGE_DERIVED` reads
+the numbers out of the rendered sentence and requires figures derived outside the page to be among
+them. Figures are compared as numbers, not matched as substrings, so a row writing 1,720 does not
+satisfy an assertion about 720.
+
+**5 of the 8 rows** are covered, and the gate's own PASS message says so rather than leaving the
+scope to be inferred. The FP4 row is checked against `derived_main_kv_bytes_per_token`, the *same*
+function `KV_BUDGET_DISAGREEMENT` holds `cacheLedger` to. The `ced`, `hier-indexer`, `mhc` and
+`dspark` rows are checked against configuration fields that `FIELD_MAP` pins to JSON pointers
+inside the publisher's own config document and that `CED_PUBLISHER_AGREEMENT` re-derives from those
+bytes — a provenance chain that does not pass through `core.mjs` at all. The judge checks the
+`FIELD_MAP` membership rather than trusting the claim, so a field that stops being pinned stops
+counting as evidence.
+
+The remaining **3** genuinely cannot be reached this way, and are recorded in
+`UNPINNED_COVERAGE_ROWS` with the check that does hold each quantity: `csa2` renders
+`layerPartition`, our own rule, held by `CED_MODE_DISAGREEMENT` and `CED_PARTITION_SUM`; `engram`
+renders a `parameterLedger` output, held by `ENGRAM_TOTAL_DERIVATION`; `swa-replay` renders
+`cacheLedger`'s bounded term, held by `KV_BOUNDED_INVARIANT` across two contexts. A second Python
+implementation of any of those would compare two transcriptions of one rule instead of two
+derivations. A test requires every row to be in one list or the other, so a row cannot be silently
+unchecked.
+
+The FP4 row is the one that needed this. The publisher's headline is **890 B/token**; the Full-mode
+layers account for **720 B/token**; the **170 B** difference is indexer K at a precision the report
+never states. The row prints all three, and `COVERAGE_DERIVED` fails if it prints only the
+published total — which is the version a reader would have no way to question.
+
+`PARAM_BAND_RATIO` closes the last of three implementations of the encoder/decoder
+compression-ratio rule. `ratioOf` in `src/diagram-meta.mjs` is checked against the drawing by
+`CED_BAND_RATIO` and `cacheLedger`'s copy by `KV_BUDGET_DISAGREEMENT`, but `parameterLedger`'s copy
+was unchecked for a structural reason rather than an oversight: only `function.parameterLedger`'s
+source hash reached the inventory, and a hash says a function changed, never whether it is right.
+The ledger is now sampled twice — once at the declared band ratios, once with every ratio at 1 —
+and the difference is exactly the compressor gate weights the ratio rule owns, **7,864,320
+parameters** over three gated encoder bands at 5120 × 512, re-derived in Python. Turning
+`l < encoderLayers` into `l <= encoderLayers` gates a fourth band and fails the check; removing the
+condition gates none and fails it too. A zero-versus-zero comparison is treated as a failure, not
+as agreement.
 
 Three rules were removed or narrowed during authoring because the data showed they were not
 contracts the IR makes: wire endpoints are semantic rather than geometric, wires fanning out from
@@ -78,15 +283,42 @@ one node legitimately share a trunk, and unwired nodes are annotation cards rath
 Each was corrected rather than accommodated by widening a tolerance.
 
 Row alignment holds in its strong form: `norm1` and `attention` sit at pixel-identical heights in
-all eight presets. Ten operations occupy a second row and every one has a structural cause — Kimi's
-latent MoE inserts a stage, Flash-Next's QSA history sits higher, and the 93/94-layer checkpoints
-need another row of layer tiles. A second row is permitted; a third is not.
+all nine presets, including the CSA2 block, whose `attention` box was deliberately authored at the
+same 600/58 geometry the other eight use. Of 55 shared operations, 10 occupy a second row and every
+one has a structural cause — Kimi's latent MoE inserts a stage, Flash-Next's QSA history sits
+higher, and the 93/94-layer checkpoints need another row of layer tiles. A second row is permitted;
+a third is not.
+
+One over-assertion was found in inspector prose rather than in a node and is now gone: the
+candidate-pool node told encoder Full layers 3, 9 and 15 that their indexer scores were "drawn from
+the candidate set layer 21 establishes", which is both anachronistic and wrong in kind — the
+report's Hierarchical Sparse Indexer is used only in the decoder of the causal encoder-decoder, so
+an encoder scoring layer has no candidate pool and ranks the whole causally visible range. The pool
+node and every sentence naming it are now gated on the layer reaching the candidate source, and a
+test asserts that no unpooled layer states the pool's shape or claims a source layer supplies it.
+Naming the pool in order to deny it is still allowed, because that is information a reader needs.
+
+The gate also carries an mHC-specific invariant (`verification/ced.py`): a four-stream residual
+drawn as a bare `+` passes every geometric check there is, so the residual rail must state the
+stream count `core.mjs` declares and no `kind:'sum'` node may close the residual path. It is
+judged on the 63 `dsv41` scenes and is a graph property, not a reviewer's impression.
+
+`verification/ced.py` now also carries `CED_SCENE_TOPOLOGY` for the encoder/decoder page. That page
+is the one view whose whole subject is a relation rather than a box, so the relation is checked:
+`tools/export-scenes.mjs` reports the 40 per-layer kinds `core.layerKind` produces and nothing
+else, `ced.py` re-derives the band runs from them in a second implementation, and the drawing is
+judged against that — the bands must tile layers 1–40 exactly, exactly one edge may run from
+`enc-out` into `dec-full`, no edge may run from a decoder node back into an encoder node, the
+candidate pool must feed exactly the four decoder-band Reindex layers and be established by exactly
+one source, and the Engram and DSpark nodes must name every layer they claim to reach. A back edge
+would make this an ordinary shared-KV Transformer, and a caption saying otherwise is not a check.
+Ten negative tests in `verification/tests/test_ced.py` show each of those can actually fail.
 
 ## Delivered artifacts
 
 `npm run verify:presentations` is the only suite that opens the artifact from a real `file://`
 origin — every other suite injects with `set_content()`, so the path a reader takes had never been
-exercised. Its 12 checks validate the exported SVG and the exported scenario against a schema the
+exercised. Its 26 checks validate the exported SVG and the exported scenario against a schema the
 page has declared all along with nothing defining it, check accessible names, heading order and
 visible focus, emulate print and reduced motion, and consume `previews/manifest.json` so previews
 cannot silently depict an artifact that no longer ships.
@@ -94,28 +326,125 @@ cannot silently depict an artifact that no longer ships.
 The artifact loads nothing from an external origin. Its 23 external URLs are arXiv and vendor-doc
 citations the reader clicks, which is the provenance feature, not a portability defect.
 
+**A fresh preview set is not a complete one, and this gate asked only the first question.**
+`tests/capture.py` built its case list from a hardcoded eight-model literal, so no published
+preview depicted the ninth checkpoint in any state — not its decoder block and not its
+encoder/decoder page — while `PREVIEW_FRESH` compared one artifact digest and reported the previews
+that did exist as current. A manifest depicting eight of nine checkpoints is exactly as fresh as one
+depicting all nine.
+
+Closing that left the same defect one layer in, and this document overstated the fix. It said the
+capture script reads the focus segments out of the rendered page, so its cases are the
+application's own inventory. It read them and then discarded them: `if stage=='ced'`. So the only
+focal pages ever published were the encoder/decoder ones, and `dsv41/model/residual` — the mHC
+4-stream residual this checkpoint exists to draw — was in no preview, nor were
+`dsv41/model/inputs`, `q38flash/model/inputs` or `q3827/model/inputs`. `judge_preview_coverage`
+asked for a decoder block plus, where applicable, a `ced` page, so it reported PASS over a
+requirement written to the same literal, and `focal_states` emitted the same single stage, so
+those three pages were measured by this gate in no state at all.
+
+`core.focalStages` is now the one derivation of which pages a checkpoint offers, and the capture
+script, this gate's coverage judge, its focal-state list, both exporters, the browser matrix and
+the aesthetics sweep all read it. `PREVIEW_COVERAGE` requires every model in the live table and
+every focal page that model offers; `PROSE_SCOPE` names the states it measured. **All nine
+checkpoints now appear in the 30 published previews, including every one of the 9 focal pages they
+offer**, and this gate measures **10 delivered states**: the default page plus every focal page in
+the application.
+
+**The manifest's own per-file digests had never been read, and the coverage question was only ever
+asked in one direction.** `tests/capture.py` records an `svg_sha256` for every capture; across
+every `.py` and `.mjs` in this repository there was exactly one reference to that key — the line
+that writes it. `PREVIEW_FRESH` compares a single artifact digest and `PREVIEW_COVERAGE` counts
+models, so a published SVG that had been hand-edited, truncated or left behind by an older build
+satisfied both while the manifest recorded precisely what was wrong with it. `PREVIEW_INTEGRITY`
+now verifies each published SVG against its recorded digest: **29 files, each hashing to what the
+manifest attests**, and a comparison count of zero reports BLOCKED rather than a pass.
+
+The reversed direction was worse, because it had no check at all. `PREVIEW_COVERAGE` walks the
+manifest asking whether each model appears; nothing walked `previews/` asking whether each
+published file is accounted for. Four files were not: `mobile.png`, captured deliberately but
+recorded in no manifest entry; `test-export.svg` and `test-scenario.json`, download scratch the
+browser suite wrote into the published directory; and `observatory-initial.png` and `overview.png`,
+the first written by a scratch script with no gate behind it and the second produced by nothing at
+all — last touched at the 3.0.0 baseline, so it depicted an eight-model page for three releases in
+the directory this project publishes as evidence. `PREVIEW_INVENTORY` now reports any published
+file no capture record names. The mobile capture is recorded (with a viewport and a state, and no
+`svg_sha256`, because it exports no SVG — an absent digest, never a fabricated one), the scratch
+writes go under `tests/`, and the two orphans are gone.
+
+This is the same shape of defect as the browser matrix that swept eight checkpoints, the
+composition baseline that held signatures for eight, the chrome probe whose selector list omitted
+the new page, the focal-state list that measured only the page it opened, and the claim manifest
+that carried eight model contracts for nine models — each recorded above or below. Every one was
+found on this branch, which makes it a class rather than an incident: a check written against a
+fixed set of eight things reports success when a ninth arrives. The remedy that works is the same
+each time — derive the set from the live model table, and make some check assert coverage rather
+than only freshness.
+
+## The contract inventory covered eight of nine checkpoints
+
+The tenth instance of that class, and the one in the most load-bearing artifact here.
+`observatory.json` carried exactly one `model.*` contract per model — `model.ds2` through
+`model.kimi-k3`, eight of them — and eight `model`-domain runtime obligations, and both stayed at
+eight while 482 claims for a ninth checkpoint were authored. This document reported
+`Domain contracts / runtime obligations | 31 / 31` over nine checkpoints, and the publication
+report showed eight `CONTRACT_CONSISTENT | model` passes. DeepSeek-V4.1-Flash — the only model here
+with four attention modes, two separately-quantized KV caches and a 4-stream residual — had no
+contract record to be internally consistent with and no obligation to be NOT_RUN against. Its
+absence was indistinguishable from having nothing to prove.
+
+Nothing in the audit could report it. `RUNTIME_MATRIX` builds its required set from
+`{gpu, scale_up, scale_out, communication}` and excludes the `model` domain. `RUNTIME_COVERAGE`
+asks only that each *domain* carry at least one obligation, and `model` carried eight.
+`DOMAIN_UNCOVERED` fires only on a domain with zero contracts. And no test asserted that a *model*
+has a contract at all — `CLAIM_MODEL_COVERAGE`, added on this branch, is exactly this enforcement
+one level up and was never applied to contracts.
+
+Both halves are closed. `model.dsv41` and `runtime.model.dsv41` are authored in the shape of the
+existing eight: the record's `layer_groups` are derived from `layerKind` over all 40 layers and
+partition `1..40` exactly once across `swa`, `csa2-full`, `csa2-reindex` and `csa2-reuse`; every
+scalar is *bound* to its `MODELS.dsv41.*` input rather than transcribed; `latent` equals `d`,
+exactly as it does for the seven other presets with no compressed expert path. Nothing was invented
+to make the record parse. And `judge_contract_model_coverage` now requires every model in the live
+inventory to have both a model-domain contract and a model-domain obligation, reading the
+association off each contract's own bindings and claims rather than off a naming convention —
+`model.kimi-k3` speaks for `MODELS.kimi3`, so a check keyed on `f'model.{mid}'` would have failed
+on the wrong thing. It reports FAIL, not BLOCKED: a model our own exporter emits with no record
+beside it is a wiring defect we can know about. Like its two neighbours it runs in the publication
+audit rather than in a Pages-deploying gate, because its zero-comparison path is BLOCKED.
+
+The honest consequence is a slightly worse-looking report: **32 contracts and 32 obligations**,
+one more `CONTRACT_EVIDENCE` BLOCKED, two more `REVIEW_REQUIRED` BLOCKED, and **29 of 32
+obligations NOT_RUN** rather than 28 of 31. That is the point. The nine
+`CONTRACT_MODEL_COVERAGE` passes are the only new PASSes, and they assert coverage of the
+inventory, not correctness of anything in it.
+
 ## Scientific inventory
 
 | Item | Count |
 |---|---:|
-| Input leaves | 455 |
-| Function/file identities | 27 |
-| Distinct sampled scene contracts | 2520 |
-| Claims including domain obligations | 3025 |
-| Candidate source entries | 62 |
-| Accepted raw-byte snapshots | 60 |
+| Input leaves | 575 |
+| Function/file identities | 29 |
+| Distinct sampled scene contracts | 2881 |
+| Claims including domain obligations | 3508 |
+| Candidate source entries | 68 |
+| Accepted raw-byte snapshots | 66 |
 | Scientifically certified claims under the signed policy | 0 |
 | Passed presentation bindings | 0 |
-| Domain contracts / runtime obligations | 31 / 31 |
+| Domain contracts / runtime obligations | 32 / 32 |
 
-The publication audit has **5,160 BLOCKED findings, 24 PASS and no FAIL contradictions**:
+The publication audit has **6,095 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
+from a fresh engineering receipt:
 
 | Code | Status | Count |
 |---|---|---:|
-| `REVIEW_REQUIRED` | BLOCKED | 3,056 |
-| `CLAIM_ANCHOR` | BLOCKED | 2,046 |
-| `CONTRACT_EVIDENCE` | BLOCKED | 31 |
-| `CONTRACT_CONSISTENT` | PASS | 23 |
+| `REVIEW_REQUIRED` | BLOCKED | 3,540 |
+| `CLAIM_ANCHOR` | BLOCKED | 2,334 |
+| `CLAIM_ROLE` | BLOCKED | 87 |
+| `MODEL_DUAL_CODE` | BLOCKED | 75 |
+| `CONTRACT_EVIDENCE` | BLOCKED | 32 |
+| `CONTRACT_CONSISTENT` | PASS | 24 |
+| `CONTRACT_MODEL_COVERAGE` | PASS | 9 |
 | `DOCUMENTED_NO_SOURCE` | BLOCKED | 12 |
 | `DOMAIN_INPUT` | BLOCKED | 8 |
 | `SOURCE_UNFETCHED` | BLOCKED | 2 |
@@ -125,7 +454,7 @@ The publication audit has **5,160 BLOCKED findings, 24 PASS and no FAIL contradi
 | `ENGINEERING_CURRENT` | PASS | 1 |
 
 Most of these are cascading source dependencies and absent independent reviews; this is **not** a
-claim that 5,160 facts are false. No review identity, accepted source hash or execution receipt was
+claim that 6,095 facts are false. No review identity, accepted source hash or execution receipt was
 invented.
 
 For the record, the evidence-anchor work began at **9,037 findings (9,013 BLOCKED)** with
@@ -134,12 +463,24 @@ paper and vendor-document citations as unique quotes, dropping 148 citations tha
 provenance, and letting derived scene claims carry provenance through their dependencies together
 removed 3,853 BLOCKED findings without a single fabricated anchor.
 
-Runtime certification reports the same population plus its obligations: **5,163 BLOCKED, 27 PASS,
-28 NOT_RUN, no FAIL.** The nine findings the three GPU receipts carried before this capture — 3
-`RUNTIME_SCHEMA` and 6 `RUNTIME_HARDWARE` — are gone: all three were re-probed on the fleet under
-the current hardware data model and now bind it, the contract record each attests, and the
-`stratum-hardware/v1` capture each rests on. Every BLOCKED finding that remains is a runtime
-obligation with no evidence at all, or a review that nobody independent has signed.
+Runtime certification was run on these bytes and reports the same population plus its
+obligations: **6,098 BLOCKED, 41 PASS, 29 NOT_RUN, no FAIL.**
+
+**Adding a ninth checkpoint did not make any receipt stale, and an earlier draft of this section
+was wrong to predict that it would.** The prediction came from reading the coupling rule instead of
+running the gate. Both obligation classes are immune to a claim-manifest edit, for two different
+reasons: the thirteen hardware-attribute obligations deliberately do not bind `lock_sha256` at all,
+and the eighteen behavioural ones have no receipt to retire — they are `RUNTIME_NOT_RUN`, and
+`runner.py` reports a missing experiment before it ever reaches the staleness branch. So the gate
+shows **zero `RUNTIME_STALE`** findings. The mechanism is real and is described under *Known and
+unclosed*; it fires when a manifest edit invalidates an obligation that actually holds a receipt,
+which is not the case here.
+
+The nine findings the three GPU receipts carried before this capture — 3 `RUNTIME_SCHEMA` and 6
+`RUNTIME_HARDWARE` — are gone: all three were re-probed on the fleet under the current hardware
+data model and now bind it, the contract record each attests, and the `stratum-hardware/v1` capture
+each rests on. Every BLOCKED finding that remains is a runtime obligation with no evidence at all,
+or a review that nobody independent has signed.
 
 **Verified scientific claims: 0.** Two claims previously passed — the stylesheet and the HTML
 entry point — because `presentation` claims skipped review entirely. Every claim is now reviewed,
@@ -152,8 +493,15 @@ and it is the judgement most worth checking.
 third-party reimplementations and no publisher at all. transformers is now `framework_code`, and
 dual-code independence compares organizations rather than repository names. Under the recorded
 `evidence/publisher-code/audit.json` exception described below, the Qwen checkpoints meet the
-corroboration requirement through independent implementations from three organizations.
-`MODEL_DUAL_CODE` and `CLAIM_ROLE` are both **0** findings.
+corroboration requirement through independent implementations from three organizations. For the
+eight Qwen, DeepSeek V2/V3 and Kimi presets, `MODEL_DUAL_CODE` and `CLAIM_ROLE` are **0** findings.
+
+**DeepSeek-V4.1-Flash has no independent implementation at all, and that is why those codes are no
+longer zero.** No framework implements `deepseek_v41`: `deepseek_v4` exists in transformers and
+SGLang and is a different model, so citing it would be corroboration by a near-name. The publisher
+ships configuration and four modeling files and nothing else corroborates them, which is
+`MODEL_DUAL_CODE` **75** and `CLAIM_ROLE` **87** BLOCKED. Both are the correct fail-closed report
+for a checkpoint this new, and neither can be cleared by reclassifying a shape claim as `assumed`.
 
 ## A correction to this project's own reasoning
 
@@ -175,24 +523,85 @@ in resistance to attack.
 
 ## What the remaining `CLAIM_ANCHOR` findings are
 
-2,046 evidence entries name a source but no selector within it. They are not oversights, and
-`docs/verifiers/ANCHOR_RESIDUE.md` records a decision for all **2,987** residue rows across **128**
+2,334 evidence entries name a source but no selector within it. They are not oversights, and
+`docs/verifiers/ANCHOR_RESIDUE.md` records a decision for all **3,125** residue rows across **144**
 classes — re-pointed, dropped, reclassified, or explicitly unresolved with a stated reason.
 
-**1,439** of the 2,046 are genuine citations on derived `scene.*` claims that no declared dependency
-supplies, kept because deleting them would strip 327 claims of their only evidence for a role their
+**1,586** of the 2,334 are genuine citations on derived `scene.*` claims that no declared dependency
+supplies, kept because deleting them would strip 360 claims of their only evidence for a role their
 domain requires:
 
-- **784** GPU vendor-document citations across **196** claims — the `h100`, `h200`, `b200` and
+- **856** GPU vendor-document citations across **214** claims — the `h100`, `h200`, `b200` and
   `gb300` product pages.
-- **655** communication citations across **131** claims — `nccl-api`, `nvshmem-api`, `nixl-api`,
+- **730** communication citations across **146** claims — `nccl-api`, `nvshmem-api`, `nixl-api`,
   `nccl` and `nvshmem`.
 
 They stay, and they keep reporting BLOCKED, which is the correct fail-closed report: the citation is
 true provenance for what the diagram draws, and it is still not a selector.
 
-The remaining 607 sit on `MODELS.*`, `HARDWARE.*`, contract records, functions and files, and each
-falls inside a class in `ANCHOR_RESIDUE.md`.
+The ninth checkpoint ends this count at 2,334 against 2,335 before it, and the near-zero net
+movement is two different things cancelling. Nineteen citations gained a selector and four were
+dropped; then an audit of **every one of the 89 `python_symbol` anchors on `MODELS.dsv41.*`**
+removed 20 that resolved against spans which do not carry the value they were cited for, and
+re-pointed 6 onto spans that do. Removing a false anchor raises `CLAIM_ANCHOR`, and that is the
+right direction: an anchor whose bytes do not state the claim is worse than no anchor, because it
+reports as evidence. What was anchored, each recorded in `ANCHOR_RESIDUE.md`:
+
+- **Configuration pointers (3).** `compressEncoder` and `compressDecoder` as indexed
+  `compress_ratios` pointers — the publisher documents that field as one compression ratio per
+  layer — and `swigluLimit`, whose relation stays `documents` rather than `equal` because upstream
+  holds `10.0` against the displayed `10`: the same number, not the same bytes.
+- **Model-card quotes (6).** `total`, `active`, `activeDecode`, `kvBytesPerToken` and `kvFormat` on
+  the card's own sentences, and `encoderLayers` on "a 40-layer Transformer organized as a 20-layer
+  causal encoder followed by a 20-layer decoder".
+- **Publisher-code symbols (10).** `EngramLayout` for the five Engram fields it reads,
+  `hc_split_sinkhorn_kernel` for `streams` and `sinkhornIters`, `fp4_act_quant` for `kvFormat`, and
+  `act_quant` plus `Attention._window_kv` for `swaKvFormat`. Each digest was resolved by
+  `verification.sources acquire` against re-fetched bytes whose digests equalled the accepted ones.
+- **Dropped (4).** The configuration citation on `id`, `name`, `family` and `sources`, which no
+  document states.
+
+The audit's own table is in `ANCHOR_RESIDUE.md`, per symbol. The largest corrections: `Gate`
+carried `expertFF`, `ff`, `shared` and `denseLayers`, though the router computes no FFN width and no
+expert count — `MoE` does, and asserts `n_shared_experts == 1` outright; `Aligner`, a two-layer
+projector, carried the vision layer count, head count, FFN width and patch size, which belong to
+`ViT`, `MLP` and `PatchEmbed`; `Transformer` carried `architecture`, `generation`, `repo` and
+`summary`, which are our own labels and prose, and `maxContext`/`configMax`, where the span holds
+`max_seq_len` — a runtime cache cap — rather than `max_position_embeddings`. Three absence or
+derived claims (`qkNorm`, `swaLayers`, `ngram`) lost anchors for the same reason the configuration
+citations on such claims never had them: an absence read off a span that merely lacks the mechanism
+is an inference, and a product no span states is arithmetic. Six anchors moved rather than
+disappearing, onto the span that does carry the value: `indexSourceLayers` and `kvSourceLayers` to
+`Attention`, `dsparkExperts` and `dsparkTopK` to `ModelArgs.get_moe_config`, `visionFF` to `MLP`,
+`visionPatch` to `PatchEmbed`. `swigluLimit` was the first instance of this class found and it
+moved the same way, from `Gate` to `Expert`.
+
+Those 63 standing anchors, and the 6 re-pointed ones, now carry `contains` tokens — the attribute
+or key whose presence in the span is what makes that symbol the right symbol, checked by
+`select_anchor` at resolution rather than by a reviewer. All **69 resolved, 0 refused**, and the
+false binding this class kept producing is now unrecordable: `Gate` with
+`contains: ['n_activated_experts']` resolves, `Gate` with `contains: ['args.moe_inter_dim']` is
+refused. `contains` is mandatory for `span` and `text_quote` anchors and optional for
+`python_symbol`, which is the asymmetry that allowed it; closing that in `select_anchor` would
+refuse the **5,837** `python_symbol` anchors on the other eight checkpoints until each is authored,
+so the figure is recorded here and the decision is not taken silently.
+
+One non-move belongs in the record too. `encoderLayers`' configuration and code citations stay
+unanchored: `config.json` marks a boundary at layer 20 but never calls it an encoder/decoder split,
+and `Transformer.__init__` builds one flat `nn.ModuleList`. Only the card states the split, so only
+the card carries the anchor.
+`CLAIM_ROLE` stayed at 87 and `MODEL_DUAL_CODE` at 75, because no framework implements
+`deepseek_v41` and nothing was reclassified to hide that.
+
+The remaining 748 sit on `MODELS.*`, `HARDWARE.*`, contract records, functions and files, and each
+falls inside a class in `ANCHOR_RESIDUE.md`. One of them was added deliberately:
+`MODELS.dsv41.encoderLayers` used to cite `dsv41-code`'s `Transformer` with relation `implements`,
+which was false — `Transformer.__init__` builds one flat `nn.ModuleList` and encodes the 20/20
+encoder/decoder split nowhere. That anchor is still `null` and the configuration citation has none
+either, so both keep reporting `CLAIM_ANCHOR` BLOCKED; the field is anchored only on the model card,
+which states the split in words. An honest BLOCKED beats a pointer that resolves against bytes which
+do not say what it claims, and a source that does say it is not a substitute for the two that do
+not.
 
 ## Two discrepancies between our data and its sources
 
@@ -266,7 +675,7 @@ Recorded so they are not mistaken for oversights:
   required re-probing real hardware — which happened three times while relabelling one wire. That
   coupling was too broad in one direction only: an H100's HBM capacity does not depend on our claim
   set or our source files. Obligations in the hardware-attribute domains (`gpu`, `scale_up`,
-  `scale_out` — 13 of 31) therefore bind
+  `scale_out` — 13 of 32) therefore bind
   - `probe_schema_sha256`, the hardware data model in `verification/schemas/hardware.schema.json`
     (mismatch → `RUNTIME_SCHEMA` **BLOCKED**: a superseded model is missing evidence, not a
     contradiction);
@@ -277,7 +686,7 @@ Recorded so they are not mistaken for oversights:
     artifacts, so a hand-written digest is `RUNTIME_HARDWARE_DRIFT` **FAIL** rather than an unchecked
     claim; an absent field or an unpinned record is `RUNTIME_HARDWARE` **BLOCKED**.
 
-  The other 18 obligations attest what our code *does* and keep binding the lock and the consumer
+  The other 19 obligations attest what our code *does* and keep binding the lock and the consumer
   inventory exactly as before; `verification/tests/test_runtime_binding.py` proves both directions,
   one obligation at a time. **A re-probe is now required when the hardware data model changes, when
   the hardware contract record changes, or when the receipt expires** — not when a claim, a diagram
@@ -325,17 +734,95 @@ Recorded so they are not mistaken for oversights:
 - **Two sources remain unfetched** — `ib-opensm` and `dynamo-nixl` — because their URLs redirect and
   the acquirer refuses to follow a redirect without inspecting the new origin. Pin the resolved
   origin; do not relax the guard.
-- **`REVIEW_REQUIRED` is 3,056 findings** and is independent of everything above. No amount of
-  source acquisition or hardware access reduces it: it needs a reviewer identity in the protected
-  trust root and an independent signer who is not the author.
+- **`REVIEW_REQUIRED` is 3,540 findings** and is independent of everything above.
+  No amount of source acquisition or hardware access reduces it: it needs a reviewer identity in
+  the protected trust root and an independent signer who is not the author.
+- **No framework implements `deepseek_v41`, so every `dsv41` model-domain claim is BLOCKED for
+  want of independent corroboration.** The architecture string appears in none of `transformers`,
+  SGLang or vLLM — the three implementations the other checkpoints are corroborated against — and
+  `deepseek_v4`, which exists in two of them, is a **different model**, so citing it would be
+  corroboration by near-name. `sources.json` therefore carries no `framework_code` entry for this
+  checkpoint at all, which is `MODEL_DUAL_CODE` **75** and `CLAIM_ROLE` **87** BLOCKED, the
+  correct fail-closed report for a checkpoint this new; neither can be cleared by reclassifying a
+  shape claim as `assumed`, and neither will close until someone independent ships an
+  implementation.
+- **The 170 B indexer residual is bounded, not derived.** The publisher's headline KV budget is
+  890 B/token and the Full-mode layers account for 720 B/token, re-derived twice. The difference is
+  indexer K at a precision the publisher never states, so all that can be checked is that the
+  published figure implies between 0.5 and 1.0 bytes per indexer channel. Narrowing that bound
+  would be a guess wearing a check's clothing, and the residual stays an inference about a quantity
+  no document carries.
+- **No DSpark parameter count is published.** The configuration pins the draft block size, the
+  draft expert count and the top-k; no document states the module's weights. The inspector says so
+  on the page — the count is unpublished and excluded from every weight total in this atlas — and
+  `parameterLedger` contains no DSpark term. Inventing one to make the published parameter total
+  reconcile is the failure this bullet records rather than commits.
+- **The technical report cannot be byte-pinned, so nothing is anchored to it.**
+  `DeepSeek_V41_Tech_Report.pdf` is displayed as a source in the application and is deliberately
+  absent from `verification/manifests/sources.json`: `sources.py` decodes strictly as UTF-8, so a
+  PDF is refused at acquisition rather than at anchoring, as the PDF bullet above describes. Its
+  `§2.2 / §2.3 / §4.2.1` anchor in `SOURCES` is a pointer for a reader, not evidence a gate can
+  check, and the report's own §4.2.1 group structure reaches a check only through the independent
+  re-derivation in `CED_MODE_DISAGREEMENT`.
+- **`CED_PUBLISHER_AGREEMENT` cannot run in CI.** It needs the acquired upstream bytes, and
+  `.verification-cache/` is git-ignored by design, so CI holds none and the check reports BLOCKED
+  there — naming the acquire command, never a vacuous PASS and never a comparison count of zero
+  reported as agreement. The transcription comparison therefore has local evidence only, which is
+  why it lives in the publication profile rather than in a software gate.
+- **Eight reading-size chrome elements are below the AAA floor the record holds prose to.** Probing
+  the `UNMEASURED_CHROME` list by hand finds **8 distinct elements between 4.89:1 and 6.87:1**
+  against 7:1 — `--muted` and `--accent` at 12px on four backdrops, plus the 14px skip link. They
+  are pre-existing and unfixed here: clearing them is an application-wide `--muted`/`--accent`
+  retune, not an edit that belongs in the commit that adds a checkpoint. They are recorded debt
+  inside `toolchain_digest`, not an exemption.
+- **`contains` is still optional for `python_symbol` anchors.** Making it mandatory in
+  `select_anchor` is what would make a symbol cited for a value its span does not carry
+  unrecordable rather than merely findable by audit — an audit removed 20 such bindings on this
+  checkpoint. Requiring it now would refuse
+  the **5,837** `python_symbol` anchors on the other eight checkpoints until each is authored, so
+  the figure is recorded and the decision is deliberately not taken silently.
+- **61 `dsv41` citations remain unanchored** — 30 on the five publisher-code files, 26 on the
+  configuration and 5 on the model card — each inside a class with a recorded decision in
+  `docs/verifiers/ANCHOR_RESIDUE.md`. They are `CLAIM_ANCHOR` BLOCKED, which is the correct report:
+  an absence read off a span that merely lacks the mechanism is an inference, a product no span
+  states is arithmetic, and our own labels and prose are not in any publisher document at all.
+
+## Transcription against publisher bytes
+
+`MODELS.dsv41` is a hand transcription of the publisher's `config.json`, and transcription error
+is the dominant failure mode when adding an architecture. `CED_PUBLISHER_AGREEMENT` re-derives
+54 of its 79 fields from the acquired publisher bytes -- 45 by JSON pointer, 9 by an expression
+over the same document -- and compares them, with 0 unresolved pointers and 0 disagreements. The
+other 25 fields are recorded with the reason each has no publisher counterpart, and
+`CED_FIELD_UNMAPPED` fails on any field in neither list, so adding a field to the model table
+forces a decision about how it gets verified.
+
+It runs in the **publication** profile (`npm run verify:science`), not in a software gate. The
+check needs the acquired upstream bytes; `.verification-cache/` is git-ignored by design, so CI
+holds none, and it reports BLOCKED naming the acquire command wherever they are absent -- never a
+vacuous PASS, and never a comparison count of zero reported as agreement. It also blocks on
+*partial* agreement: a mapped field that stops resolving, through an upstream rename or a
+truncated document, is a field nothing compared, and reporting the fields that did resolve as
+agreement would be the same defect in smaller print.
+
+Two further checks live there for the same structural reason rather than for want of a software
+home. `CED_ACTIVE_RATIO` compares the published 8B/16B actives against the 20/40 depth split and
+reports BLOCKED, not FAIL, on a mismatch, because the actives are published rounded to whole
+billions and the embedding and Engram terms are depth-independent. `CLAIM_MODEL_COVERAGE` requires
+every claim naming two or more models to name all nine -- 25 do -- and blocks if it finds no
+multi-model claim at all, since zero comparisons is not agreement. Both have an honest BLOCKED
+outcome, and a *software* gate returning BLOCKED would stop the page shipping, which is precisely
+what the amended Pages contract above exists to prevent. Publication is already BLOCKED offline,
+so that is its expected state there. No local coverage is lost: every local `verify:science` run
+executes all three, and CI could never have executed the transcription comparison either way.
 
 ## Artifact identity
 
-Portable HTML SHA-256: `595b73f22f37051d664fd76e794449fa079808f3f151fb0853e5dd546d913f07`
+Portable HTML SHA-256: `fecceb9e48bcd462541716bb8e1c1738d3b66ef58f146fad5d55b2e445de2926`
 
-Scientific lock SHA-256: `b34e0e4b8aecdefe02d0902543f3dd6603f76bf90ef858569fb35765a1040589`
+Scientific lock SHA-256: `4a92ee6958a5f8c1ad108167f9261ab11cf065d5016c13a04b0c8c8bab6f9349`
 
-Verifier identity SHA-256: `09e5dc466dbfc5c987d77fc9b3f1b13ff99b8a38fa64f18528a18427a8287fdb`
+Verifier identity SHA-256: `3568b6df160da709010d2fca84ba9a2c193de8baeb90e0b1fbdaa8480e424418`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -367,5 +854,30 @@ scientific audit. Each must genuinely pass; none is `continue-on-error`. The `pu
 still runs on every push and still reports BLOCKED — the published page states its own
 scientific status rather than being withheld, which is the point: a reader can see both that
 the software is verified and that the science is not.
+
+**Publication completeness is an offline gate, and CI gates on contradictions only.** The
+publication audit answers two questions. *Completeness* — is every claim backed by cached upstream
+bytes and an independent signed review? — cannot run in CI by construction: `.verification-cache/`
+is git-ignored because all 68 source licences forbid redistributing the bytes, so CI would report
+`verified_sources: 0`; and no reviewer identity exists, because inventing one is forbidden. A CI job
+asking that question could only ever be red, and a check that can never pass is noise a reader stops
+reading. It used to be exactly that: a permanently failing `publication` job whose red X was
+indistinguishable from a contradiction, because `aggregate()` collapses BLOCKED and FAIL into one
+exit code and GitHub renders both the same.
+
+So completeness runs on a trusted machine — `npm run verify:science`, exit 2, **6,095 BLOCKED and
+38 PASS findings, 0 FAIL** — and its report is committed as `verification/reports/publication.json`.
+This document states its figures, and `verification/tests/test_reported_numbers.py`, which runs
+inside the *green* engineering gate, fails if the record drifts from the report **or if the report
+was generated on other bytes**: it re-derives the scientific lock and the consumer inventory from the
+working tree and compares them to the two digests the report binds. "Offline" cannot quietly become
+"stale". BLOCKED is enforced by a check that can pass, instead of announced by one that never could.
+
+*Contradictions* — does any claim disagree with the evidence it cites? — is the half CI can honestly
+answer, and `publication-contradictions` answers it on every push, on CI's own bytes: it runs the
+full audit, fails on exit 1, on any FAIL finding, or on a missing or empty report, and accepts exit
+2. That is not `continue-on-error` and is stricter than one. Nothing deploys on it — a test asserts
+it can never enter the deploy gate's requirements, and that no job named `publication` exists to be
+mistaken for a completeness result.
 
 Success is not all-green; success is each gate telling the truth about what it actually checked.

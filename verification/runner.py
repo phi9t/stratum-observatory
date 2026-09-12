@@ -7,6 +7,7 @@ from pathlib import Path
 from .model import Finding, aggregate, exit_code
 from .evidence import (CONFIG_ONLY_PUBLISHERS,canonical,digest,loads,safe_path,pointer,check_source,check_anchor,
                        select_anchor,dual_code_roles,check_dependencies,check_coverage,check_review,HEX64)
+from .ced import judge_active_ratio,judge_claim_model_coverage,judge_contract_model_coverage,judge_publisher_agreement
 from .domains.contracts import DOMAINS, validate
 from .hardware import HARDWARE_DOMAINS, hardware_sha256 as attested_sha256, load as load_hardware, schema_sha256 as hardware_schema_sha256
 
@@ -321,9 +322,42 @@ def audit(root:Path,target:dict,inventory:dict,catalog:dict,*,profile='publicati
     for domain,rows in bydomain.items():
         if not rows:add('DOMAIN_UNCOVERED',domain,'BLOCKED',domain,'No source-bound contract for this required area. Register a complete contract. This release has no blanket domain-waiver switch.')
     findings.extend(check_receipt(root,receipt,lock,inventory))
+    # Transcription fidelity: every field of a hand-transcribed architecture re-derived from the
+    # publisher's own acquired bytes and compared. Evidence work, so it lives here rather than in
+    # a software gate -- and BLOCKED where the git-ignored cache is absent, never a vacuous PASS.
+    findings.extend(judge_publisher_agreement(inventory.get('models',{}),root=root,catalog=catalog))
+    # Two more evidence checks whose honest outcome can be BLOCKED, and which therefore cannot
+    # live in a Pages-deploying software gate (ruling T789b): the published active-parameter
+    # ratio against the depth split, and the claim manifest's multi-model completeness.
+    findings.extend(judge_active_ratio(inventory.get('models',{})))
+    findings.extend(judge_claim_model_coverage(claims,inventory.get('models',{})))
     obligations=target.get('runtime_obligations',[])
+    # The same enforcement one level up, and the reason this file could report 31/31 over nine
+    # checkpoints: nothing above asks whether a *model* has a contract at all. RUNTIME_MATRIX
+    # excludes the model domain, RUNTIME_COVERAGE asks only that the domain have some obligation,
+    # and DOMAIN_UNCOVERED fires only on an empty domain.
+    findings.extend(judge_contract_model_coverage(inventory.get('models',{}),contracts,obligations))
     if profile=='runtime':
+        # The runtime matrix is about physical scenarios: a registered SKU, fabric or library has
+        # to appear in it. The other domains are deliberately outside it -- a `numerics.*` or
+        # `release.*` contract has no host to probe, and demanding a hardware obligation for one
+        # would be a category error that inflated the BLOCKED count for a bad reason.
+        #
+        # What was wrong was not the membership but that it was a bare literal covering 4 of 12
+        # domains, with the other 8 falling into neither set and nothing saying so. A thirteenth
+        # domain would have joined them silently. The partition is now closed and checked below,
+        # so adding a domain forces a decision instead of defaulting to "not in the matrix".
         matrix_domains={'gpu','scale_up','scale_out','communication'}
+        off_matrix={'model','training','serving','numerics','storage','measurement',
+                    'visualization','release'}
+        unpartitioned=set(DOMAINS)-matrix_domains-off_matrix
+        if unpartitioned:
+            add('RUNTIME_MATRIX_PARTITION','evidence','FAIL','runtime',
+                f'Contract domains in neither the runtime matrix nor its recorded exclusions: '
+                f'{sorted(unpartitioned)}.',
+                'RUNTIME_MATRIX only demands obligations for domains it names, so a domain in '
+                'neither set is exempt by omission rather than by decision. Put it in the matrix '
+                'or record why it is outside one.')
         required={r['id'] for r in contracts if r.get('domain') in matrix_domains}
         declared={o.get('contract') for o in obligations}
         for missing in required-declared:

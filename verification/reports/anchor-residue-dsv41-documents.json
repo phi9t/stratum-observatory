@@ -1,0 +1,858 @@
+[
+  {
+    "claim": "MODELS.dsv41.generation",
+    "source": "dsv41-card",
+    "expected": "V4.1-Flash",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "MODELS.dsv41.ngram",
+    "source": "dsv41-card",
+    "expected": 196613849600,
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "MODELS.dsv41.repo",
+    "source": "dsv41-card",
+    "expected": "deepseek-ai/DeepSeek-V4.1-Flash",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "MODELS.dsv41.summary",
+    "source": "dsv41-card",
+    "expected": "Causal encoder-decoder. Sparse reads shared across layers.",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "MODELS.dsv41.swaKvFormat",
+    "source": "dsv41-card",
+    "expected": "FP8",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.compute-nic.5865e8f1383130f9",
+    "source": "h100",
+    "expected": "5865e8f1383130f908449de27d40f3b01df1e320421294dd80630a8400089794",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.compute-nic.5865e8f1383130f9",
+    "source": "h200",
+    "expected": "5865e8f1383130f908449de27d40f3b01df1e320421294dd80630a8400089794",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.compute-nic.5865e8f1383130f9",
+    "source": "b200",
+    "expected": "5865e8f1383130f908449de27d40f3b01df1e320421294dd80630a8400089794",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.compute-nic.5865e8f1383130f9",
+    "source": "gb300",
+    "expected": "5865e8f1383130f908449de27d40f3b01df1e320421294dd80630a8400089794",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.cuda-core.70e71920fb5ba76b",
+    "source": "h100",
+    "expected": "70e71920fb5ba76b2e819a0694f69d4f79ddb86f6bef607dcf87fe6080e4dcb1",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.cuda-core.70e71920fb5ba76b",
+    "source": "h200",
+    "expected": "70e71920fb5ba76b2e819a0694f69d4f79ddb86f6bef607dcf87fe6080e4dcb1",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.cuda-core.70e71920fb5ba76b",
+    "source": "b200",
+    "expected": "70e71920fb5ba76b2e819a0694f69d4f79ddb86f6bef607dcf87fe6080e4dcb1",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.cuda-core.70e71920fb5ba76b",
+    "source": "gb300",
+    "expected": "70e71920fb5ba76b2e819a0694f69d4f79ddb86f6bef607dcf87fe6080e4dcb1",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-0.3d56d7486d6d2867",
+    "source": "h100",
+    "expected": "3d56d7486d6d28675807d6c34210fb05bcccf613afc45ab2817c877b302e9000",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-0.3d56d7486d6d2867",
+    "source": "h200",
+    "expected": "3d56d7486d6d28675807d6c34210fb05bcccf613afc45ab2817c877b302e9000",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-0.3d56d7486d6d2867",
+    "source": "b200",
+    "expected": "3d56d7486d6d28675807d6c34210fb05bcccf613afc45ab2817c877b302e9000",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-0.3d56d7486d6d2867",
+    "source": "gb300",
+    "expected": "3d56d7486d6d28675807d6c34210fb05bcccf613afc45ab2817c877b302e9000",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-1.c89583876cb9178d",
+    "source": "h100",
+    "expected": "c89583876cb9178d7bd8d2fa0910f84a2c966490087e91b05e44e7cf67da7804",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-1.c89583876cb9178d",
+    "source": "h200",
+    "expected": "c89583876cb9178d7bd8d2fa0910f84a2c966490087e91b05e44e7cf67da7804",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-1.c89583876cb9178d",
+    "source": "b200",
+    "expected": "c89583876cb9178d7bd8d2fa0910f84a2c966490087e91b05e44e7cf67da7804",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-1.c89583876cb9178d",
+    "source": "gb300",
+    "expected": "c89583876cb9178d7bd8d2fa0910f84a2c966490087e91b05e44e7cf67da7804",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-2.b2b3fac6dcb0bbd9",
+    "source": "h100",
+    "expected": "b2b3fac6dcb0bbd916de5a29cf274e35950fe551ed86b6de411e3666db0356da",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-2.b2b3fac6dcb0bbd9",
+    "source": "h200",
+    "expected": "b2b3fac6dcb0bbd916de5a29cf274e35950fe551ed86b6de411e3666db0356da",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-2.b2b3fac6dcb0bbd9",
+    "source": "b200",
+    "expected": "b2b3fac6dcb0bbd916de5a29cf274e35950fe551ed86b6de411e3666db0356da",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-2.b2b3fac6dcb0bbd9",
+    "source": "gb300",
+    "expected": "b2b3fac6dcb0bbd916de5a29cf274e35950fe551ed86b6de411e3666db0356da",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-3.e75f03fc6dbfc180",
+    "source": "h100",
+    "expected": "e75f03fc6dbfc180df4d6b5986584aa579cf71e4c6796376f748894ffd6d51ea",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-3.e75f03fc6dbfc180",
+    "source": "h200",
+    "expected": "e75f03fc6dbfc180df4d6b5986584aa579cf71e4c6796376f748894ffd6d51ea",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-3.e75f03fc6dbfc180",
+    "source": "b200",
+    "expected": "e75f03fc6dbfc180df4d6b5986584aa579cf71e4c6796376f748894ffd6d51ea",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-3.e75f03fc6dbfc180",
+    "source": "gb300",
+    "expected": "e75f03fc6dbfc180df4d6b5986584aa579cf71e4c6796376f748894ffd6d51ea",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-4.669127966d3633d3",
+    "source": "h100",
+    "expected": "669127966d3633d31f4a51a13979b3c8b836fe98350f39cf3c059179e0c3679d",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-4.669127966d3633d3",
+    "source": "h200",
+    "expected": "669127966d3633d31f4a51a13979b3c8b836fe98350f39cf3c059179e0c3679d",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-4.669127966d3633d3",
+    "source": "b200",
+    "expected": "669127966d3633d31f4a51a13979b3c8b836fe98350f39cf3c059179e0c3679d",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-4.669127966d3633d3",
+    "source": "gb300",
+    "expected": "669127966d3633d31f4a51a13979b3c8b836fe98350f39cf3c059179e0c3679d",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-5.abebb008219ae59f",
+    "source": "h100",
+    "expected": "abebb008219ae59ff22bde6def132474517658e0e0b3895c753e12f4c402191c",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-5.abebb008219ae59f",
+    "source": "h200",
+    "expected": "abebb008219ae59ff22bde6def132474517658e0e0b3895c753e12f4c402191c",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-5.abebb008219ae59f",
+    "source": "b200",
+    "expected": "abebb008219ae59ff22bde6def132474517658e0e0b3895c753e12f4c402191c",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-5.abebb008219ae59f",
+    "source": "gb300",
+    "expected": "abebb008219ae59ff22bde6def132474517658e0e0b3895c753e12f4c402191c",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-6.023beb0ed519e018",
+    "source": "h100",
+    "expected": "023beb0ed519e01886e6892d3e4947acb4abb32ec04cbbf73051284fbba87d45",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-6.023beb0ed519e018",
+    "source": "h200",
+    "expected": "023beb0ed519e01886e6892d3e4947acb4abb32ec04cbbf73051284fbba87d45",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-6.023beb0ed519e018",
+    "source": "b200",
+    "expected": "023beb0ed519e01886e6892d3e4947acb4abb32ec04cbbf73051284fbba87d45",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-6.023beb0ed519e018",
+    "source": "gb300",
+    "expected": "023beb0ed519e01886e6892d3e4947acb4abb32ec04cbbf73051284fbba87d45",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-7.c8e06a5769877686",
+    "source": "h100",
+    "expected": "c8e06a576987768608da698d87a201493198c8bd3670468644b54ec433a2cc17",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-7.c8e06a5769877686",
+    "source": "h200",
+    "expected": "c8e06a576987768608da698d87a201493198c8bd3670468644b54ec433a2cc17",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-7.c8e06a5769877686",
+    "source": "b200",
+    "expected": "c8e06a576987768608da698d87a201493198c8bd3670468644b54ec433a2cc17",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-7.c8e06a5769877686",
+    "source": "gb300",
+    "expected": "c8e06a576987768608da698d87a201493198c8bd3670468644b54ec433a2cc17",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-scheduler.49e2aa7b894893e2",
+    "source": "h100",
+    "expected": "49e2aa7b894893e2c3b5a9239c3c7a5d68304f0ec9b07ea1ff7364c0a010f3ab",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-scheduler.49e2aa7b894893e2",
+    "source": "h200",
+    "expected": "49e2aa7b894893e2c3b5a9239c3c7a5d68304f0ec9b07ea1ff7364c0a010f3ab",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-scheduler.49e2aa7b894893e2",
+    "source": "b200",
+    "expected": "49e2aa7b894893e2c3b5a9239c3c7a5d68304f0ec9b07ea1ff7364c0a010f3ab",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.gpu-scheduler.49e2aa7b894893e2",
+    "source": "gb300",
+    "expected": "49e2aa7b894893e2c3b5a9239c3c7a5d68304f0ec9b07ea1ff7364c0a010f3ab",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.graph.2cd9822586e50ac0",
+    "source": "h100",
+    "expected": "2cd9822586e50ac0f723519733a00e574b5e1def1fa218e96c21f53ab5718e6b",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.graph.2cd9822586e50ac0",
+    "source": "h200",
+    "expected": "2cd9822586e50ac0f723519733a00e574b5e1def1fa218e96c21f53ab5718e6b",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.graph.2cd9822586e50ac0",
+    "source": "b200",
+    "expected": "2cd9822586e50ac0f723519733a00e574b5e1def1fa218e96c21f53ab5718e6b",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.graph.2cd9822586e50ac0",
+    "source": "gb300",
+    "expected": "2cd9822586e50ac0f723519733a00e574b5e1def1fa218e96c21f53ab5718e6b",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.hbm.4aecf26c9a4a9f23",
+    "source": "h100",
+    "expected": "4aecf26c9a4a9f23d7abaf908b578f32c91b763bfd2cd220a277e4b3c174bdce",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.hbm.4aecf26c9a4a9f23",
+    "source": "h200",
+    "expected": "4aecf26c9a4a9f23d7abaf908b578f32c91b763bfd2cd220a277e4b3c174bdce",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.hbm.4aecf26c9a4a9f23",
+    "source": "b200",
+    "expected": "4aecf26c9a4a9f23d7abaf908b578f32c91b763bfd2cd220a277e4b3c174bdce",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.hbm.4aecf26c9a4a9f23",
+    "source": "gb300",
+    "expected": "4aecf26c9a4a9f23d7abaf908b578f32c91b763bfd2cd220a277e4b3c174bdce",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.host-io.12e48e4e6785a841",
+    "source": "h100",
+    "expected": "12e48e4e6785a841fc3e082ed9feba35fa01292db9553834c0a1ec0d7006959e",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.host-io.12e48e4e6785a841",
+    "source": "h200",
+    "expected": "12e48e4e6785a841fc3e082ed9feba35fa01292db9553834c0a1ec0d7006959e",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.host-io.12e48e4e6785a841",
+    "source": "b200",
+    "expected": "12e48e4e6785a841fc3e082ed9feba35fa01292db9553834c0a1ec0d7006959e",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.host-io.12e48e4e6785a841",
+    "source": "gb300",
+    "expected": "12e48e4e6785a841fc3e082ed9feba35fa01292db9553834c0a1ec0d7006959e",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.l2.008ff09f8c643c4a",
+    "source": "h100",
+    "expected": "008ff09f8c643c4ac21801093bf04fb47bee55b01c49440a11d9a98de0b5288e",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.l2.008ff09f8c643c4a",
+    "source": "h200",
+    "expected": "008ff09f8c643c4ac21801093bf04fb47bee55b01c49440a11d9a98de0b5288e",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.l2.008ff09f8c643c4a",
+    "source": "b200",
+    "expected": "008ff09f8c643c4ac21801093bf04fb47bee55b01c49440a11d9a98de0b5288e",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.l2.008ff09f8c643c4a",
+    "source": "gb300",
+    "expected": "008ff09f8c643c4ac21801093bf04fb47bee55b01c49440a11d9a98de0b5288e",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.nv-fabric.1e77c41e55a73a7a",
+    "source": "h100",
+    "expected": "1e77c41e55a73a7a90293495e9161a7d4f11417cff11440145f9b9527eee0f34",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.nv-fabric.1e77c41e55a73a7a",
+    "source": "h200",
+    "expected": "1e77c41e55a73a7a90293495e9161a7d4f11417cff11440145f9b9527eee0f34",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.nv-fabric.1e77c41e55a73a7a",
+    "source": "b200",
+    "expected": "1e77c41e55a73a7a90293495e9161a7d4f11417cff11440145f9b9527eee0f34",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.nv-fabric.1e77c41e55a73a7a",
+    "source": "gb300",
+    "expected": "1e77c41e55a73a7a90293495e9161a7d4f11417cff11440145f9b9527eee0f34",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.on-chip.f96ccee5de6b1be4",
+    "source": "h100",
+    "expected": "f96ccee5de6b1be4a721cacdb62456cb63c132186e5d96d29a177ea705f98ae6",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.on-chip.f96ccee5de6b1be4",
+    "source": "h200",
+    "expected": "f96ccee5de6b1be4a721cacdb62456cb63c132186e5d96d29a177ea705f98ae6",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.on-chip.f96ccee5de6b1be4",
+    "source": "b200",
+    "expected": "f96ccee5de6b1be4a721cacdb62456cb63c132186e5d96d29a177ea705f98ae6",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.on-chip.f96ccee5de6b1be4",
+    "source": "gb300",
+    "expected": "f96ccee5de6b1be4a721cacdb62456cb63c132186e5d96d29a177ea705f98ae6",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.tensor-core.5581b73d729aea9d",
+    "source": "h100",
+    "expected": "5581b73d729aea9de825927c078be433aa05e1aa9a97c82ed434c2b26dcb9261",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.tensor-core.5581b73d729aea9d",
+    "source": "h200",
+    "expected": "5581b73d729aea9de825927c078be433aa05e1aa9a97c82ed434c2b26dcb9261",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.tensor-core.5581b73d729aea9d",
+    "source": "b200",
+    "expected": "5581b73d729aea9de825927c078be433aa05e1aa9a97c82ed434c2b26dcb9261",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.hardware.block.tensor-core.5581b73d729aea9d",
+    "source": "gb300",
+    "expected": "5581b73d729aea9de825927c078be433aa05e1aa9a97c82ed434c2b26dcb9261",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.graph.3850c76585fb10bb",
+    "source": "nccl",
+    "expected": "3850c76585fb10bb53f6c586d2b76255e34c822ff22346ee592dbb9c48645e6e",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.graph.3850c76585fb10bb",
+    "source": "nvshmem",
+    "expected": "3850c76585fb10bb53f6c586d2b76255e34c822ff22346ee592dbb9c48645e6e",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.leaf-a.7c87a1fa3f2612b7",
+    "source": "nccl",
+    "expected": "7c87a1fa3f2612b73d5c318ce29799b3e42207ddadd88d672118d8729e3584a1",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.leaf-a.7c87a1fa3f2612b7",
+    "source": "nvshmem",
+    "expected": "7c87a1fa3f2612b73d5c318ce29799b3e42207ddadd88d672118d8729e3584a1",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.leaf-b.809adcb880c482b5",
+    "source": "nccl",
+    "expected": "809adcb880c482b52d9a085ccf73e40cc75e301262c6265243873dd42f1e4d7d",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.leaf-b.809adcb880c482b5",
+    "source": "nvshmem",
+    "expected": "809adcb880c482b52d9a085ccf73e40cc75e301262c6265243873dd42f1e4d7d",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.library-nccl.abcce3caf3ad8d28",
+    "source": "nccl",
+    "expected": "abcce3caf3ad8d28cbf63323ac62575e53df58b05fa5dd054f6b895ceeed30d9",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.library-nccl.abcce3caf3ad8d28",
+    "source": "nvshmem",
+    "expected": "abcce3caf3ad8d28cbf63323ac62575e53df58b05fa5dd054f6b895ceeed30d9",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.library-nixl.c5c6e533aa019f6d",
+    "source": "nccl",
+    "expected": "c5c6e533aa019f6d8a7e3c751251aefb70b1fd7bf241ca1fa00478e85ba6fe83",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.library-nixl.c5c6e533aa019f6d",
+    "source": "nvshmem",
+    "expected": "c5c6e533aa019f6d8a7e3c751251aefb70b1fd7bf241ca1fa00478e85ba6fe83",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.library-nvshmem.0cc24b0897d22949",
+    "source": "nccl",
+    "expected": "0cc24b0897d22949abd98af18fa360202f5c50098e9d01109e0800f7e795e6d9",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.library-nvshmem.0cc24b0897d22949",
+    "source": "nvshmem",
+    "expected": "0cc24b0897d22949abd98af18fa360202f5c50098e9d01109e0800f7e795e6d9",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.nic-0.6c83dcf25ada84a2",
+    "source": "nccl",
+    "expected": "6c83dcf25ada84a24fa296f0276c8d9cada6820b8c91858b5deaaf0d9d1cd4dd",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.nic-0.6c83dcf25ada84a2",
+    "source": "nvshmem",
+    "expected": "6c83dcf25ada84a24fa296f0276c8d9cada6820b8c91858b5deaaf0d9d1cd4dd",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.nic-1.6c83dcf25ada84a2",
+    "source": "nccl",
+    "expected": "6c83dcf25ada84a24fa296f0276c8d9cada6820b8c91858b5deaaf0d9d1cd4dd",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.nic-1.6c83dcf25ada84a2",
+    "source": "nvshmem",
+    "expected": "6c83dcf25ada84a24fa296f0276c8d9cada6820b8c91858b5deaaf0d9d1cd4dd",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.nic-2.6c83dcf25ada84a2",
+    "source": "nccl",
+    "expected": "6c83dcf25ada84a24fa296f0276c8d9cada6820b8c91858b5deaaf0d9d1cd4dd",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.nic-2.6c83dcf25ada84a2",
+    "source": "nvshmem",
+    "expected": "6c83dcf25ada84a24fa296f0276c8d9cada6820b8c91858b5deaaf0d9d1cd4dd",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.nic-3.6c83dcf25ada84a2",
+    "source": "nccl",
+    "expected": "6c83dcf25ada84a24fa296f0276c8d9cada6820b8c91858b5deaaf0d9d1cd4dd",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.nic-3.6c83dcf25ada84a2",
+    "source": "nvshmem",
+    "expected": "6c83dcf25ada84a24fa296f0276c8d9cada6820b8c91858b5deaaf0d9d1cd4dd",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.rank-0.2e66f7c244163223",
+    "source": "nccl",
+    "expected": "2e66f7c2441632232e8ef624adaf4c27a263753e00865645af788df683e64748",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.rank-0.2e66f7c244163223",
+    "source": "nvshmem",
+    "expected": "2e66f7c2441632232e8ef624adaf4c27a263753e00865645af788df683e64748",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.rank-1.ba5d157264b4a67c",
+    "source": "nccl",
+    "expected": "ba5d157264b4a67ce783a4d7005f42f70a5112f33e2684b4df2f951ba12a6f33",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.rank-1.ba5d157264b4a67c",
+    "source": "nvshmem",
+    "expected": "ba5d157264b4a67ce783a4d7005f42f70a5112f33e2684b4df2f951ba12a6f33",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.rank-2.2c65b20f9cc9d858",
+    "source": "nccl",
+    "expected": "2c65b20f9cc9d85852df3b79cdfbada3bbfe1ae6f1f9ff25b336419dcd3679e2",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.rank-2.2c65b20f9cc9d858",
+    "source": "nvshmem",
+    "expected": "2c65b20f9cc9d85852df3b79cdfbada3bbfe1ae6f1f9ff25b336419dcd3679e2",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.rank-3.e9be69a571d55f26",
+    "source": "nccl",
+    "expected": "e9be69a571d55f26ad82aa220c173dfb769be51c9e8487d161ccce29c7e7cfff",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.rank-3.e9be69a571d55f26",
+    "source": "nvshmem",
+    "expected": "e9be69a571d55f26ad82aa220c173dfb769be51c9e8487d161ccce29c7e7cfff",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.spine.09908e50a3b9f160",
+    "source": "nccl",
+    "expected": "09908e50a3b9f160a911d1de9a339a5d74439d710f7c1d515a293c78d935742d",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  },
+  {
+    "claim": "scene.dsv41.network.block.spine.09908e50a3b9f160",
+    "source": "nvshmem",
+    "expected": "09908e50a3b9f160a911d1de9a339a5d74439d710f7c1d515a293c78d935742d",
+    "quote": null,
+    "upstream": null,
+    "reason": "no authored quote"
+  }
+]

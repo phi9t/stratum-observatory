@@ -1,7 +1,7 @@
 import json,subprocess,unittest
 from pathlib import Path
 from verification.domains.contracts import validate
-from verification.evidence import check_source,check_coverage
+from verification.evidence import check_source,check_coverage,HEX40
 ROOT=Path(__file__).resolve().parents[2]
 class ObservatoryTests(unittest.TestCase):
  def dense(self):return {'layers':2,'layer_groups':{'gqa':[1,2]},'experts':0,'top_k':0,'shared':0,'d':4096,'latent':4096,'heads':32,'kv_heads':8,'head_dim':128,'index_base':1}
@@ -25,20 +25,35 @@ class ObservatoryTests(unittest.TestCase):
   r=subprocess.run(['node','tools/export-verification.mjs'],cwd=ROOT,capture_output=True,text=True)
   self.assertEqual(r.returncode,0,r.stderr)
   inv=json.loads(r.stdout)
-  self.assertEqual(len(inv['models']),8)
-  self.assertEqual(inv['samples']['decoder_layers'],504)
+  self.assertEqual(len(inv['models']),9)
+  self.assertEqual(inv['samples']['decoder_layers'],544)
   for path in ['src/models.mjs','src/diagram-model.mjs','src/diagram-systems.mjs','src/diagram-meta.mjs']:
    self.assertIn('file.'+path,inv['functions'])
   manifest=json.loads((ROOT/'verification/manifests/observatory.json').read_text())
   self.assertEqual(check_coverage(inv,manifest['claims']),[])
  def test_paper_sources_are_pinned_to_full_text(self):
-  """An /abs/ landing page carries the abstract only; architecture facts are not on it."""
+  """An /abs/ landing page carries the abstract only; architecture facts are not on it.
+
+  This is an arXiv-specific concern: arXiv's /abs/ page and /html/ rendering are two
+  different documents at two different URLs for the same paper. A git-pinned source
+  (kind='git') has no such split -- the URL already names the exact raw bytes at an
+  immutable commit, so the /html/ requirement does not apply to it."""
   catalog=json.loads((ROOT/'verification/manifests/sources.json').read_text())
-  papers=[s for s in catalog['sources'] if s['role']=='paper']
-  self.assertTrue(papers,'catalog has no paper sources')
+  papers=[s for s in catalog['sources'] if s['role']=='paper' and s.get('kind')=='document']
+  self.assertTrue(papers,'catalog has no document-kind paper sources')
   for s in papers:
    with self.subTest(source=s['id']):
     self.assertIn('/html/',s['url'],f"{s['id']} is pinned to a landing page, not the paper")
+  # The other branch of the role's partition: a paper pinned as kind='git' has no /abs/
+  # vs /html/ split to guard against, but it must still be pinned to an exact immutable
+  # commit rather than a movable ref -- that is what makes "no split" true in the first
+  # place, so this is not a free pass, it is the actual guarantee being relied on.
+  gitpapers=[s for s in catalog['sources'] if s['role']=='paper' and s.get('kind')=='git']
+  self.assertTrue(gitpapers,'catalog has no git-kind paper sources')
+  for s in gitpapers:
+   with self.subTest(source=s['id']):
+    self.assertTrue(HEX40.fullmatch(str(s.get('revision',''))),
+                     f"{s['id']} is kind='git' but not pinned to a full 40-hex commit")
  def test_paper_source_versions_are_not_pending(self):
   """Bytes are locked, so a version reading 'pending' is a stale lie about the snapshot."""
   catalog=json.loads((ROOT/'verification/manifests/sources.json').read_text())
