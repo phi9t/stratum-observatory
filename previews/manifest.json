@@ -1,8 +1,10 @@
 {
-  "artifact_sha256": "fecceb9e48bcd462541716bb8e1c1738d3b66ef58f146fad5d55b2e445de2926",
+  "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
   "captures": [
     {
       "name": "ds2",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "ds2",
         "view": "model",
@@ -34,6 +36,8 @@
     },
     {
       "name": "ds3",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "ds3",
         "view": "model",
@@ -65,6 +69,8 @@
     },
     {
       "name": "q38",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "q38",
         "view": "model",
@@ -96,6 +102,8 @@
     },
     {
       "name": "q330",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "q330",
         "view": "model",
@@ -127,6 +135,8 @@
     },
     {
       "name": "q3235",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "q3235",
         "view": "model",
@@ -158,6 +168,8 @@
     },
     {
       "name": "q3827",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "q3827",
         "view": "model",
@@ -189,6 +201,8 @@
     },
     {
       "name": "q3827-inputs",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "q3827",
         "view": "model",
@@ -220,6 +234,8 @@
     },
     {
       "name": "q38flash",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -251,6 +267,8 @@
     },
     {
       "name": "q38flash-inputs",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -282,6 +300,8 @@
     },
     {
       "name": "q38flash-residual",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -313,6 +333,8 @@
     },
     {
       "name": "q38flash-ple",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -344,6 +366,8 @@
     },
     {
       "name": "kimi3",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -375,6 +399,8 @@
     },
     {
       "name": "kimi3-inputs",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -406,6 +432,8 @@
     },
     {
       "name": "kimi3-residual",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -437,6 +465,8 @@
     },
     {
       "name": "dsv41",
+      "artifact": "deepseek-v4.1.html",
+      "artifact_sha256": "555ef82954687e85242131f635e558a3ee0c9c1bd847b57204f7dfc47d9168f8",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -464,10 +494,12 @@
         "trace": false,
         "phase": "decode"
       },
-      "svg_sha256": "38842cb596beb05c8d60e4dd06bbb86f98759fc32c04be328135eeefb05b8442"
+      "svg_sha256": "8124c0c336944499715e86c4cd9f8c5f28bba7594aecac50f4560e2e3fe75580"
     },
     {
       "name": "dsv41-inputs",
+      "artifact": "deepseek-v4.1.html",
+      "artifact_sha256": "555ef82954687e85242131f635e558a3ee0c9c1bd847b57204f7dfc47d9168f8",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -499,6 +531,8 @@
     },
     {
       "name": "dsv41-residual",
+      "artifact": "deepseek-v4.1.html",
+      "artifact_sha256": "555ef82954687e85242131f635e558a3ee0c9c1bd847b57204f7dfc47d9168f8",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -526,10 +560,12 @@
         "trace": false,
         "phase": "decode"
       },
-      "svg_sha256": "7491c9ba16d0db9dd11e083f7d6de10f629cd686b94a12cd2d4503e35a7a9d9f"
+      "svg_sha256": "f3e4d59fbf31f4bad13165a4785c80ee8759d11bda4dcbe251a735d1f41cda5f"
     },
     {
       "name": "dsv41-ced",
+      "artifact": "deepseek-v4.1.html",
+      "artifact_sha256": "555ef82954687e85242131f635e558a3ee0c9c1bd847b57204f7dfc47d9168f8",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -557,10 +593,78 @@
         "trace": false,
         "phase": "decode"
       },
-      "svg_sha256": "95b89a8a3a3207cb007572e5a905cd1480b4852666dbe304dc096e2102eac814"
+      "svg_sha256": "cc908837d67de8bbfd8928c4f25ec72c55addc958cc34412813667fdfe141706"
+    },
+    {
+      "name": "dsv41-serving-prefill",
+      "artifact": "deepseek-v4.1.html",
+      "artifact_sha256": "555ef82954687e85242131f635e558a3ee0c9c1bd847b57204f7dfc47d9168f8",
+      "state": {
+        "model": "dsv41",
+        "view": "serving",
+        "stage": "block",
+        "layer": 4,
+        "hardware": "h200",
+        "context": 32768,
+        "batch": 1,
+        "kvBytes": 2,
+        "stateBytes": 4,
+        "weightBytes": 2,
+        "ranks": 8,
+        "placement": "split",
+        "trainMode": "fsdp",
+        "traffic": "expert",
+        "fabric": "ib",
+        "library": "nccl",
+        "utilization": 70,
+        "oversub": 1,
+        "intensity": 128,
+        "compare": "kimi3",
+        "theme": "dark",
+        "detail": "shapes",
+        "zoom": 1,
+        "trace": false,
+        "phase": "prefill"
+      },
+      "svg_sha256": "44832d659fed3e952190a8e66540bddc3e87584eeecefddb44f82bc7bf3ee0eb"
+    },
+    {
+      "name": "dsv41-serving-decode",
+      "artifact": "deepseek-v4.1.html",
+      "artifact_sha256": "555ef82954687e85242131f635e558a3ee0c9c1bd847b57204f7dfc47d9168f8",
+      "state": {
+        "model": "dsv41",
+        "view": "serving",
+        "stage": "block",
+        "layer": 4,
+        "hardware": "h200",
+        "context": 32768,
+        "batch": 1,
+        "kvBytes": 2,
+        "stateBytes": 4,
+        "weightBytes": 2,
+        "ranks": 8,
+        "placement": "split",
+        "trainMode": "fsdp",
+        "traffic": "expert",
+        "fabric": "ib",
+        "library": "nccl",
+        "utilization": 70,
+        "oversub": 1,
+        "intensity": 128,
+        "compare": "kimi3",
+        "theme": "dark",
+        "detail": "shapes",
+        "zoom": 1,
+        "trace": false,
+        "phase": "decode"
+      },
+      "svg_sha256": "7b51fa93636dfd15c25a3eaba91cd43c1edbab2dd39b49acc6fd06d78f52cdb7"
     },
     {
       "name": "flash-qsa",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -592,6 +696,8 @@
     },
     {
       "name": "kimi-mla",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -623,6 +729,8 @@
     },
     {
       "name": "comparison",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "q38flash",
         "view": "compare",
@@ -654,6 +762,8 @@
     },
     {
       "name": "training",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "ds3",
         "view": "training",
@@ -685,6 +795,8 @@
     },
     {
       "name": "agentic-rl",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "kimi3",
         "view": "training",
@@ -716,6 +828,8 @@
     },
     {
       "name": "serving",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "q38flash",
         "view": "serving",
@@ -747,6 +861,8 @@
     },
     {
       "name": "hardware-b200",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "ds3",
         "view": "hardware",
@@ -778,6 +894,8 @@
     },
     {
       "name": "hardware-gb300",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "ds3",
         "view": "hardware",
@@ -809,6 +927,8 @@
     },
     {
       "name": "network-roce",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "kimi3",
         "view": "network",
@@ -840,6 +960,8 @@
     },
     {
       "name": "evidence",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "q38flash",
         "view": "evidence",
@@ -871,6 +993,8 @@
     },
     {
       "name": "paper",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -902,6 +1026,8 @@
     },
     {
       "name": "mobile",
+      "artifact": "index.html",
+      "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
       "viewport": {
         "width": 390,
         "height": 844

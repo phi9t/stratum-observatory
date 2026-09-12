@@ -130,6 +130,9 @@ def check_receipt(root, receipt, expected_lock, inventory):
         if t.tzinfo is None or not timedelta(0)<=datetime.now(timezone.utc)-t<=timedelta(hours=24):add('RECEIPT_EXPIRED','FAIL','Engineering receipt is future-dated or older than 24 hours.')
         actual=hashlib.sha256((root/'dist/index.html').read_bytes()).hexdigest()
         if actual!=receipt.get('artifact_sha256'):add('ARTIFACT_STALE','FAIL','Portable HTML differs from the tested artifact.')
+        from .engineering import delivery_artifacts
+        if delivery_artifacts(root)!=receipt.get('artifacts'):
+            add('ARTIFACT_STALE','FAIL','Delivered page set differs from the tested artifacts.')
         for name in ('verifier-tests','node-tests','build','browser'):
             if receipt.get('commands',{}).get(name,{}).get('exit')!=0:add('ENGINEERING_COMMAND','FAIL',f'Missing/failing command: {name}.')
         b=receipt.get('browser',{})
@@ -155,7 +158,7 @@ def check_receipt(root, receipt, expected_lock, inventory):
         out.append(Finding('RECEIPT_UNATTESTED','release','BLOCKED','engineering',
                            'Engineering receipt is self-produced and carries no build attestation.',
                            'Run the gate in CI with attest-build-provenance, and protect the branch so the runner cannot be replaced.'))
-    elif provenance.get('artifact_sha256')!=receipt.get('artifact_sha256'):
+    elif provenance.get('artifact_sha256')!=receipt.get('artifact_sha256') or provenance.get('artifacts')!=receipt.get('artifacts'):
         out.append(Finding('RECEIPT_ATTESTATION','release','FAIL','engineering',
                            'Build attestation does not cover the artifact this receipt binds.',
                            'Attest the artifact that was actually tested.'))

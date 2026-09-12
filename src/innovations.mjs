@@ -60,10 +60,10 @@ export const INNOVATIONS=[
   replaces:'Retaining keys and values at the precision the layer computes in',
   mechanism:'Main KV is stored at a low precision with a shared exponent scale per channel group, and that precision is trained in rather than applied at serving time — so it is an architectural property, not a deployment option, and a KV-element setting does not apply to it. Only the Full-mode layers store main KV; sliding-window KV is retained at its own, coarser-quantised format.',
   effect:m=>{const derived=cacheLedger(m,{context:1,batch:1}).mainKV;const reported=m.kvBytesPerToken;
-   return `${formatNum(derived)} B/token of ${m.kvFormat} main KV derived over ${m.kvSourceLayers.length} Full-mode layers against ${formatNum(reported)} B/token reported — a ${formatNum(reported-derived)} B difference that is indexer K at a precision the publisher never states; window KV is retained as ${m.swaKvFormat}`;},
-  sources:['dsv41-report','dsv41-card','dsv41-kernel']},
+   return `${formatNum(derived)} B/token of ${m.kvFormat} main KV derived over ${m.kvSourceLayers.length} Full-mode layers against ${formatNum(reported)} B/token reported — ${formatNum(cacheLedger(m,{context:1,batch:1}).indexer)} B/token of ${m.indexerKvFormat} indexer K derived from SGLang packing completes the reported budget; window KV is retained as ${m.swaKvFormat}`;},
+  sources:['dsv41-report','dsv41-card','dsv41-kernel','dsv41-sglang-cache']},
 
- {id:'swa-replay',title:'SWA Bounded Replay',
+ {id:'swa-replay',title:'Bounded sliding-window state',
   replaces:'A cache whose every term grows with the sequence',
   mechanism:'Every layer also attends over a short sliding window of raw KV, and the window-only layers attend over nothing else — no compressed cache, no indexer, no candidate pool. A window is a fixed span, so the state it retains is a function of window length, depth and head dimension; what leaves the window is not retained at all, and the bounded term of the ledger does not move with context.',
   effect:m=>{const near=cacheLedger(m,{context:SHORT_CONTEXT,batch:1}),far=cacheLedger(m,{context:m.maxContext,batch:1});

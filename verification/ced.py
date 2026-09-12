@@ -368,8 +368,8 @@ def _one(out,code,subject,ok,passed,failed,remedy):
 def judge_architecture(models:dict,samples:dict|None=None)->list[Finding]:
     """Structural invariants for every CED preset in the live model inventory.
 
-    `samples` is the second half of `inventory()`; only CED_PARTITION_SUM reads it, and reports
-    BLOCKED rather than silently skipping when a caller forgets to pass it.
+    `samples` is the second half of `inventory()`; partition and serving-phase checks read it, and report
+    FAIL rather than silently skipping when a caller forgets to pass it.
     """
     out=list(judge_architecture_tag(models))
     for mid,m in sorted(models.items()):
@@ -555,12 +555,25 @@ def _judge_preset(mid,m,samples):
              'Every layer has exactly one kind. A partition that does not tile the depth means '
              'layerKind returns something layerPartition does not count.')
 
-    _one(out,'CED_PHASE_DEPTH',mid,0<enc<depth,
-         f'The phase split runs {enc} layers for the prompt and all {depth} after it.',
-         f'encoderLayers is {enc} in a {depth}-layer model: a split covering every layer or none '
-         f'is not a split.',
-         'The encoder depth is strictly between zero and the total; otherwise drop the phase '
-         'distinction rather than draw one.')
+    phase_samples=(samples or {}).get('serving_phases')
+    phases=phase_samples.get(mid) if isinstance(phase_samples,dict) else None
+    expected={'prefill':enc,'decode':depth}
+    valid=isinstance(phases,dict) and all(
+        isinstance(phases.get(phase),dict)
+        and phases[phase].get('phase')==phase
+        and type(phases[phase].get('phaseLayers')) is int
+        and phases[phase]['phaseLayers']==count
+        for phase,count in expected.items())
+    actual={phase:phases.get(phase,{}).get('phaseLayers')
+            if isinstance(phases.get(phase),dict) else None
+            for phase in expected} if isinstance(phases,dict) else None
+    _one(out,'CED_PHASE_DEPTH',mid,0<enc<depth and valid,
+         f'The exported serving ledger covers {enc} prefill layers and {depth} decode layers.',
+         f'Exported serving depths {actual} do not establish prefill={enc}, decode={depth} '
+         f'with a nonempty encoder shorter than the full stack.',
+         'Export both actual servingLedger phase results in samples.serving_phases. Check '
+         'their phase identities and participating depths against the model; absent or '
+         'malformed samples are a software wiring failure, not missing scientific evidence.')
 
     return out
 
@@ -713,8 +726,7 @@ def judge_contract_model_coverage(models,contracts,obligations,domain:str='evide
 #: architectural fact rather than a display setting, which is why `s.kvBytes` does not apply.
 FP4_BYTES_PER_CHANNEL=0.5+1/16
 #: Any real KV precision lies in this range: FP4 without scales at the floor, FP8 at the ceiling.
-#: Deliberately wide. The report states no indexer precision, so a tighter bound would be a guess
-#: wearing a check's clothing.
+#: Historical physical plausibility bound, retained alongside the stricter SGLang layout checks.
 FP4_FLOOR,FP8_CEILING=0.5,1.0
 
 
@@ -734,8 +746,7 @@ def derived_main_kv_bytes_per_token(m:dict)->float:
 def indexer_channels_per_token(m:dict)->float:
     """Indexer K is stored by the same Full-mode layers, at index_head_dim.
 
-    Channels, not bytes: the precision is exactly what the report does not state, and it is what
-    KV_RESIDUAL_IMPLAUSIBLE bounds rather than assumes.
+    Channels before packing. SGLang layout checks convert these independently to bytes.
     """
     return sum(m['indexer']/(m['compressEncoder'] if l<m['encoderLayers'] else m['compressDecoder'])
                for l in m['kvSourceLayers'])
@@ -798,6 +809,26 @@ def judge_kv_budget(models:dict,samples:dict)->list[Finding]:
                  f'from the pinned ratios and head dimension.',
                  'One of the two implementations of the band-ratio rule drifted. Fix the '
                  'implementation, never the expectation.')
+        # Pinned SGLang ac1a5698 get_dsv4_indexer_bytes_per_token: FP4 values plus
+        # one byte scale per 32 channels. This is logical complete-pair payload, not pages.
+        indexer_expected=channels*(0.5+1/32)
+        stored=(a or {}).get('indexer')
+        denom=(a or {}).get('B',0)*(a or {}).get('S',0)
+        valid=isinstance(stored,(int,float)) and not isinstance(stored,bool) and denom>0
+        _one(out,'KV_INDEXER_DISAGREEMENT',mid,
+             valid and abs(stored/denom-indexer_expected)<=1e-9
+             and m.get('indexerScaleGroup')==32 and m.get('indexerKvFormat')=='FP4 E2M1',
+             f'Packed indexer payload agrees at {indexer_expected:g} B/token including byte scales.',
+             'Missing or inconsistent packed indexer payload, format or scale-group width.',
+             'Reconcile the actual SGLang FP4 pool layout and source ownership; do not infer precision from the headline.')
+        combined=(a or {}).get('contextLinear')
+        combined_valid=isinstance(combined,(int,float)) and not isinstance(combined,bool) and denom>0
+        _one(out,'KV_TOTAL_DISAGREEMENT',mid,
+             combined_valid and abs(combined/denom-derived-indexer_expected)<=1e-9
+             and abs(derived+indexer_expected-m['kvBytesPerToken'])<=1e-9,
+             f'Main KV {derived:g} + indexer {indexer_expected:g} = {m["kvBytesPerToken"]} B/token reported.',
+             'The reported compressed-cache budget differs from main KV plus packed indexer state.',
+             'Keep the amortized compressed payload separate from window state, pending pairs and page allocation.')
         residual=m['kvBytesPerToken']-derived
         per_channel=residual/channels if channels else float('inf')
         _one(out,'KV_RESIDUAL_IMPLAUSIBLE',mid,
@@ -808,9 +839,8 @@ def judge_kv_budget(models:dict,samples:dict)->list[Finding]:
              f'Reported {m["kvBytesPerToken"]} B/token less {derived:g} B/token of main KV leaves '
              f'{residual:g} B over {channels:g} indexer channels = {per_channel:.3f} B/channel, '
              f'outside [{FP4_FLOOR}, {FP8_CEILING}].',
-             'The report states no indexer precision, so the unexplained residual is held only to '
-             'lying between FP4 and FP8. Re-read the published total; do not pick a precision that '
-             'makes it come out exactly, and do not narrow the bound to fit.')
+             'This broad physical bound is not exact reconciliation. KV_INDEXER_DISAGREEMENT and '
+             'KV_TOTAL_DISAGREEMENT separately enforce the pinned SGLang packing.')
     return out
 
 
@@ -1188,6 +1218,8 @@ NOT_IN_CONFIG={
  'active':'Published in the model card, not the config.',
  'activeDecode':'Published in the model card, not the config.',
  'kvBytesPerToken':'Published in the model card; held accountable by KV_RESIDUAL_IMPLAUSIBLE.',
+ 'indexerKvFormat':'SGLang V4.1 forces FP4 in DeepSeekV4TokenToKVPool._make_indexer_pool; not a publisher config field.',
+ 'indexerScaleGroup':'SGLang get_dsv4_indexer_bytes_per_token allocates one byte scale per 32 channels; not a publisher config field.',
  'kvFormat':'Stated in the technical report (§2.4), not the config.',
  'swaKvFormat':'Stated in the technical report (§2.4), not the config.',
 }

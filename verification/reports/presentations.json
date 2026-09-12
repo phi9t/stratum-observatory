@@ -1,8 +1,8 @@
 {
   "schema": "stratum-presentations/v1",
   "status": "PASS",
-  "generated_at": "2026-09-12T18:53:23.953905+00:00",
-  "artifact_sha256": "fecceb9e48bcd462541716bb8e1c1738d3b66ef58f146fad5d55b2e445de2926",
+  "generated_at": "2026-09-12T23:01:44.494614+00:00",
+  "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
   "delivery": {
     "models": [
       "ds2",
@@ -30,7 +30,7 @@
     ]
   },
   "counts": {
-    "PASS": 26
+    "PASS": 33
   },
   "findings": [
     {
@@ -38,7 +38,16 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "index.html",
-      "message": "209 KiB, valid utf-8, nothing loaded from an external origin; 23 source citations are clickable by design.",
+      "message": "215 KiB, valid utf-8, nothing loaded from an external origin; 26 source citations are clickable by design.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PORTABILITY_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "deepseek-v4.1.html",
+      "message": "215 KiB, valid utf-8, nothing loaded from an external origin; 26 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -47,7 +56,16 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "30 captures match the built artifact.",
+      "message": "32 captures match the built artifacts.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PREVIEW_ARTIFACT",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "previews",
+      "message": "Every capture binds its delivered entry point.",
       "remedy": "",
       "evidence": []
     },
@@ -56,7 +74,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "All 9 checkpoints appear in the 30 published previews, including every one of the 9 focal pages they offer.",
+      "message": "All 9 checkpoints appear in the 32 published previews, including every one of the 9 focal pages they offer.",
       "remedy": "",
       "evidence": []
     },
@@ -65,7 +83,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "29 published SVG previews each hash to the digest the manifest records.",
+      "message": "31 published SVG previews each hash to the digest the manifest records.",
       "remedy": "",
       "evidence": []
     },
@@ -74,7 +92,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "Every one of the 30 published preview files is named by a capture record.",
+      "message": "Every one of the 32 published preview files is named by a capture record.",
       "remedy": "",
       "evidence": []
     },
@@ -146,7 +164,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/inputs",
-      "message": "8 headings ordered, 52 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "8 headings ordered, 44 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -155,7 +173,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/residual",
-      "message": "8 headings ordered, 53 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "9 headings ordered, 45 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -164,7 +182,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/ced",
-      "message": "10 headings ordered, 84 controls named, 1 table(s) with scoped headers over 8 rows, 29 citations named.",
+      "message": "10 headings ordered, 77 controls named, 1 table(s) with scoped headers over 8 rows, 30 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -264,6 +282,51 @@
       "status": "PASS",
       "subject": "scene",
       "message": "Measured visualization record over 29 nodes satisfies the scene contract.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "EXPORT_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "svg",
+      "message": "Export is namespaced, self-contained and carries a backdrop.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "SCENARIO_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "export",
+      "message": "Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "DEDICATED_FOCUS",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dedicated",
+      "message": "Dedicated page keyboard entry has visible focus.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "DEDICATED_PRINT",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dedicated",
+      "message": "Dedicated page print contrast meets AA.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "DEDICATED_MOTION",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dedicated",
+      "message": "Dedicated navigation honors reduced motion.",
       "remedy": "",
       "evidence": []
     }

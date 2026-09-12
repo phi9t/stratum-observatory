@@ -935,6 +935,51 @@
       "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
       "retrieved_at": "2026-09-10T21:30:01.595507+00:00",
       "etag": "\"211b83857abd5e8420df3a4f10db1096294227e6\""
+    },
+    {
+      "id": "dsv41-sglang",
+      "role": "framework_code",
+      "kind": "git",
+      "provider": "github",
+      "repo": "sgl-project/sglang",
+      "path": "python/sglang/srt/models/deepseek_v4.py",
+      "revision": "ac1a56987c5c552f9f4284f5a98db5d65541fafa",
+      "url": "https://raw.githubusercontent.com/sgl-project/sglang/ac1a56987c5c552f9f4284f5a98db5d65541fafa/python/sglang/srt/models/deepseek_v4.py",
+      "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
+      "sha256": "f801fc032dc4fae476ace0de365741472ba3ae12ae96cd360224817d643fc216",
+      "cache": ".verification-cache/sha256/f801fc032dc4fae476ace0de365741472ba3ae12ae96cd360224817d643fc216.txt",
+      "retrieved_at": "2026-09-12T22:50:50.311540+00:00",
+      "etag": "\"53917bcf344803d557dde759551e35bf60a93f9532ab6e93795a6b164201e1d5\""
+    },
+    {
+      "id": "dsv41-sglang-cache",
+      "role": "framework_code",
+      "kind": "git",
+      "provider": "github",
+      "repo": "sgl-project/sglang",
+      "path": "python/sglang/srt/mem_cache/deepseek_v4_memory_pool.py",
+      "revision": "ac1a56987c5c552f9f4284f5a98db5d65541fafa",
+      "url": "https://raw.githubusercontent.com/sgl-project/sglang/ac1a56987c5c552f9f4284f5a98db5d65541fafa/python/sglang/srt/mem_cache/deepseek_v4_memory_pool.py",
+      "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
+      "sha256": "e87817052053fef8db323eae94dc1b8300e097ef03002102b84f2021b9176dce",
+      "cache": ".verification-cache/sha256/e87817052053fef8db323eae94dc1b8300e097ef03002102b84f2021b9176dce.txt",
+      "retrieved_at": "2026-09-12T22:50:50.740332+00:00",
+      "etag": "\"5bc256ed565d4c955df986ad168f117a3a7b1d89f6af95e4fd2045d075744c8e\""
+    },
+    {
+      "id": "dsv41-sglang-config",
+      "role": "framework_code",
+      "kind": "git",
+      "provider": "github",
+      "repo": "sgl-project/sglang",
+      "path": "python/sglang/srt/configs/deepseek_v41.py",
+      "revision": "ac1a56987c5c552f9f4284f5a98db5d65541fafa",
+      "url": "https://raw.githubusercontent.com/sgl-project/sglang/ac1a56987c5c552f9f4284f5a98db5d65541fafa/python/sglang/srt/configs/deepseek_v41.py",
+      "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
+      "sha256": "23ffdb2c0201b449963f83dca9b9783decceb57f5a1ab5bf49bbae77faddf63e",
+      "cache": ".verification-cache/sha256/23ffdb2c0201b449963f83dca9b9783decceb57f5a1ab5bf49bbae77faddf63e.txt",
+      "retrieved_at": "2026-09-12T22:50:51.173235+00:00",
+      "etag": "\"be5bc3188dfcdf7db4ecc95a0db76a284b9f17561113ef0a1cbd00bd677b60f3\""
     }
   ]
 }

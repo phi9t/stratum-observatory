@@ -1,13 +1,17 @@
 {
   "schema": "stratum-engineering/v1",
   "status": "PASS",
-  "started_at": "2026-09-12T18:48:38.317404+00:00",
-  "completed_at": "2026-09-12T18:53:04.248263+00:00",
-  "consumer_sha256": "24dfddf0b0d10d344c376b3c0a26422c3dc6c2b182901ce7238cabb03a826013",
-  "verifier_sha256": "3568b6df160da709010d2fca84ba9a2c193de8baeb90e0b1fbdaa8480e424418",
-  "lock_sha256": "4a92ee6958a5f8c1ad108167f9261ab11cf065d5016c13a04b0c8c8bab6f9349",
-  "artifact_sha256": "fecceb9e48bcd462541716bb8e1c1738d3b66ef58f146fad5d55b2e445de2926",
-  "repeat_build_sha256": "fecceb9e48bcd462541716bb8e1c1738d3b66ef58f146fad5d55b2e445de2926",
+  "started_at": "2026-09-12T23:02:24.679081+00:00",
+  "completed_at": "2026-09-12T23:06:37.458776+00:00",
+  "consumer_sha256": "34fce277bb6acd708fc0e50816e20a24273672ccc5544ecfd8f812c9fbacab2c",
+  "verifier_sha256": "57f67dad3d03eb4ddfe4ac1cccb9a1b7890d2aa973fc9a84df79288eb1613d44",
+  "lock_sha256": "78467d42b7635c5236e78f00fd3e5cc779a213dd796a4f5087b9cb21287868f0",
+  "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
+  "artifacts": {
+    "deepseek-v4.1.html": "555ef82954687e85242131f635e558a3ee0c9c1bd847b57204f7dfc47d9168f8",
+    "index.html": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427"
+  },
+  "repeat_build_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
   "deterministic_build": true,
   "commands": {
     "verifier-tests": {
@@ -48,7 +52,7 @@
   "browser": {
     "schema": "stratum-browser-tests/v2",
     "browser": "Chromium",
-    "geometry_states": 1447,
+    "geometry_states": 1451,
     "responsive_states": 56,
     "device_scale_states": 36,
     "geometry_defects": 0,
@@ -72,8 +76,8 @@
     "requests": []
   },
   "test_counts": {
-    "verifier": 577,
-    "atlas": 90,
+    "verifier": 587,
+    "atlas": 100,
     "verifier_skipped": 4,
     "atlas_skipped": 0
   },

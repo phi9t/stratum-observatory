@@ -300,7 +300,7 @@ def dsv41_model(**overrides):
          'engramNgram': 4, 'engramHeads': 8, 'ngram': 196613849600,
          'mtp': 3, 'dsparkTargets': [37, 38, 39], 'dsparkBlock': 5, 'dsparkExperts': 128,
          'dsparkTopK': 3, 'experts': 384, 'topK': 6, 'streams': 4, 'headDim': 512, 'd': 5120,
-         'indexer': 128, 'kvBytesPerToken': 890, 'active': 8e9, 'activeDecode': 16e9,
+         'indexer': 128, 'indexerScaleGroup': 32, 'indexerKvFormat': 'FP4 E2M1', 'kvBytesPerToken': 890, 'active': 8e9, 'activeDecode': 16e9,
          'indexerBudget': 512, 'candidateBlocks': 2048, 'candidateBlockSize': 8,
          'sinkhornIters': 20, 'residual': 'mhc'}
     m.update(overrides)
@@ -346,8 +346,10 @@ def innovation_rows_fixture(derived=720, reported=890, encoder=20, depth=40,
 def samples_fixture(main_per_token=720, bounded=128 * 40 * 512, S=32768,
                     param_main=PARAM_MAIN, param_unit=None, innovations=None):
     return {'partitions': {'dsv41': {'swa': 2, 'csa2-full': 4, 'csa2-reindex': 4, 'csa2-reuse': 30}},
+            'serving_phases': {'dsv41': {'prefill': {'phase': 'prefill', 'phaseLayers': 20},
+                                        'decode': {'phase': 'decode', 'phaseLayers': 40}}},
             'logical_state': {'dsv41': {'mainKV': main_per_token * S, 'bounded': bounded,
-                                        'contextLinear': main_per_token * S, 'B': 1, 'S': S}},
+                                        'indexer': 170 * S, 'contextLinear': (main_per_token + 170) * S, 'B': 1, 'S': S}},
             'logical_state_far': {'dsv41': {'bounded': bounded, 'B': 1, 'S': S * 4}},
             'parameters': {'dsv41': {'main': param_main}},
             'parameters_unit_ratio': {'dsv41': {'main': param_main - PARAM_GATES
@@ -437,6 +439,27 @@ class ArchitectureInvariantTests(unittest.TestCase):
     def test_a_phase_split_covering_every_layer_is_not_a_split(self):
         f = judge_architecture(dsv41_model(encoderLayers=40))
         self.assertIn('CED_PHASE_DEPTH', codes(f, 'FAIL'))
+
+    def test_wrong_exported_serving_depth_fails_with_unchanged_model(self):
+        for phase, wrong_depth in [('prefill', 40), ('decode', 20)]:
+            with self.subTest(phase=phase):
+                s = samples_fixture()
+                s['serving_phases']['dsv41'][phase]['phaseLayers'] = wrong_depth
+                self.assertIn('CED_PHASE_DEPTH', codes(judge_architecture(dsv41_model(), s), 'FAIL'))
+
+    def test_missing_or_mislabeled_serving_phase_fails_closed(self):
+        for broken in (None, {}, {'prefill': {'phase': 'prefill', 'phaseLayers': 20}},
+                       {'prefill': {'phase': 'decode', 'phaseLayers': 20},
+                        'decode': {'phase': 'decode', 'phaseLayers': 40}}):
+            s = samples_fixture()
+            s['serving_phases']['dsv41'] = broken
+            self.assertIn('CED_PHASE_DEPTH', codes(judge_architecture(dsv41_model(), s), 'FAIL'))
+
+    def test_mutated_live_serving_sample_cannot_pass_phase_depth(self):
+        models, samples = inventory(ROOT)
+        self.assertNotIn('CED_PHASE_DEPTH', codes(judge_architecture(models, samples), 'FAIL'))
+        samples['serving_phases']['dsv41']['prefill']['phaseLayers'] = models['dsv41']['layers']
+        self.assertIn('CED_PHASE_DEPTH', codes(judge_architecture(models, samples), 'FAIL'))
 
     def test_a_partition_that_does_not_tile_the_depth_is_caught(self):
         s = samples_fixture()
@@ -692,6 +715,22 @@ class KvBudgetTests(unittest.TestCase):
         self.assertIn('KV_RESIDUAL_IMPLAUSIBLE', codes(f, 'PASS'))
         self.assertIn('KV_BOUNDED_INVARIANT', codes(f, 'PASS'))
 
+    def test_missing_or_wrong_packed_indexer_payload_is_caught(self):
+        for value in (None, 0, 168 * 32768):
+            sample = samples_fixture()
+            sample['logical_state']['dsv41']['indexer'] = value
+            findings = judge_kv_budget(dsv41_model(), sample)
+            self.assertIn('KV_INDEXER_DISAGREEMENT', codes(findings, 'FAIL'))
+
+    def test_combined_subtotal_cannot_silently_drop_indexer_payload(self):
+        sample = samples_fixture()
+        sample['logical_state']['dsv41']['contextLinear'] = sample['logical_state']['dsv41']['mainKV']
+        self.assertIn('KV_TOTAL_DISAGREEMENT', codes(judge_kv_budget(dsv41_model(), sample), 'FAIL'))
+
+    def test_a_plausible_but_wrong_headline_does_not_pass_exact_reconciliation(self):
+        findings = judge_kv_budget(dsv41_model(kvBytesPerToken=900), samples_fixture())
+        self.assertIn('KV_TOTAL_DISAGREEMENT', codes(findings, 'FAIL'))
+
     def test_a_ledger_that_drifts_from_the_python_derivation_is_caught(self):
         f = judge_kv_budget(dsv41_model(kvBytesPerToken=890), samples_fixture(main_per_token=640))
         self.assertIn('KV_BUDGET_DISAGREEMENT', codes(f, 'FAIL'))
@@ -716,7 +755,8 @@ class KvBudgetTests(unittest.TestCase):
         self.assertEqual((FP4_FLOOR, FP8_CEILING), (0.5, 1.0))
         for reported in (880, 1040):
             f = judge_kv_budget(dsv41_model(kvBytesPerToken=reported), samples_fixture())
-            self.assertEqual(codes(f, 'FAIL'), set(), reported)
+            self.assertNotIn('KV_RESIDUAL_IMPLAUSIBLE', codes(f, 'FAIL'), reported)
+            self.assertIn('KV_TOTAL_DISAGREEMENT', codes(f, 'FAIL'), reported)
         for reported in (879, 1041):
             f = judge_kv_budget(dsv41_model(kvBytesPerToken=reported), samples_fixture())
             self.assertIn('KV_RESIDUAL_IMPLAUSIBLE', codes(f, 'FAIL'), reported)
