@@ -78,7 +78,12 @@ def exercise_page(page, artifact):
             });
             addEventListener('afterprint',()=>accountingPrintProbe.push({event:'after',open:document.querySelector('details.accounting-assumptions').open}));
         }""")
+        page.emulate_media(media='print')
+        assert panel.locator('summary,h4,p,a').evaluate_all(
+            "xs=>xs.length>0 && xs.every(e=>getComputedStyle(e).color==='rgb(34, 34, 34)')"
+        ), 'Printed accounting prose must use dark ink, not screen-theme colors'
         pdf = page.pdf()
+        page.emulate_media(media='screen')
         assert pdf.startswith(b'%PDF'), 'Real Chromium print must produce a PDF'
         events = page.evaluate('accountingPrintProbe')
         assert any(e['event']=='before' and e['open'] and e['visible'] for e in events), 'Print must expose closed notes'

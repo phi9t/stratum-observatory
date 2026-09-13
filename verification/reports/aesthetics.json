@@ -1,8 +1,8 @@
 {
   "schema": "stratum-aesthetics/v1",
   "status": "PASS",
-  "generated_at": "2026-09-12T23:43:10.345612+00:00",
-  "artifact_sha256": "c0a4d3fa27524912dbea5299568c861e7af0abeea5eee6d97914d56e34bae0b9",
+  "generated_at": "2026-09-13T00:04:42.488973+00:00",
+  "artifact_sha256": "9eb7a654323149b2fd22c068989a33cc6eba45bc1c3a4de6bab1fb1546542727",
   "policy_sha256": "e885ca418d6e2883f6725e3ac23e7e14dd39a911966832705f969ecc29d45f66",
   "scenarios": 182,
   "distinct_measurements": 120,

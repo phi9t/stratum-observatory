@@ -815,11 +815,11 @@ executes all three, and CI could never have executed the transcription compariso
 
 ## Artifact identity
 
-Portable HTML SHA-256: `c0a4d3fa27524912dbea5299568c861e7af0abeea5eee6d97914d56e34bae0b9`
+Portable HTML SHA-256: `9eb7a654323149b2fd22c068989a33cc6eba45bc1c3a4de6bab1fb1546542727`
 
-Scientific lock SHA-256: `67573f7cdb32853f86d1c6751f22e8f268e6953ab7b0e24ded7a631bd821a08f`
+Scientific lock SHA-256: `3809252d06f344f77d8fe3014f24944f99a526eed8af7140076081f7e9291cb6`
 
-Verifier identity SHA-256: `8199234ed609a23eb743b7f0fc270e917540ca7cf6f7aa0dfe086796f5307fe0`
+Verifier identity SHA-256: `a8a7ef50d7ce28c07fcc002dee8ce7513a1669d7d3e6760e40b89bb71a106dc0`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -899,7 +899,7 @@ V4.1 dispatch and storage anchors. Main KV and packed indexer payload reconcile 
 window state and allocation overhead remain separate. [Research and source scope](docs/design/V41-SERVING-RESEARCH.md)
 record the development-branch serving implementation and Miles plugin. Neither is a runtime receipt.
 
-Dedicated HTML SHA-256: `61ee06b12af7bb499a4ceedf0923186551c6dc8eba4f2a8774491b641e7c3664`
+Dedicated HTML SHA-256: `b5d5720b6279a5f0f234533c427b8d2cb7ae9ff53e4c12dfff88abe41ea7f247`
 
 CED phase depths follow the report-level scheme. The pinned reference forward still visits all backbone layers; encoder-only prefill execution is not certified by that code. This distinction is visible in the CED caption and serving inspector.
 
