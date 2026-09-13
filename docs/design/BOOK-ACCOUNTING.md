@@ -33,3 +33,8 @@ are part of the aesthetics text measurement, not an unmeasured disclosure.
 The final record review also found an obsolete dedicated-page artifact hash in the public
 verification document. The document was corrected, and its digest check now covers every
 delivered HTML page; the regression failed on the obsolete hash before that correction.
+
+Inspection of a rasterized Chromium PDF exposed pale screen-theme text in the new disclosure.
+An explicit print ink color fixes the delivered page; the reader journey now verifies print
+text color as well as disclosure visibility and restoration. The negative check failed on
+the old artifact, and the corrected PDF and both page journeys were inspected again.

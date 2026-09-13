@@ -28,3 +28,4 @@ body.focus-mode .site-header,body.focus-mode .identity,body.focus-mode .model-st
 @media print{.accounting-assumptions{break-inside:auto}.accounting-assumptions>section{display:block!important}}
 summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 @media(max-width:520px){.accounting-assumptions{margin:24px 16px 16px}}
+@media print{.accounting-assumptions,.accounting-assumptions *{color:#222!important}}
