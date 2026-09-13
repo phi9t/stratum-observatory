@@ -320,8 +320,9 @@ class SoftwareGateNumberTests(RecordTestCase):
         artifact = ROOT/'dist/index.html'
         if not artifact.exists():
             self.skipTest('no built artifact; run npm run build')
-        self.assertIn(hashlib.sha256(artifact.read_bytes()).hexdigest(), self.text,
-                      'VERIFICATION.md quotes a stale portable-HTML digest')
+        for page in sorted((ROOT/'dist').glob('*.html')):
+            self.assertIn(hashlib.sha256(page.read_bytes()).hexdigest(), self.text,
+                          f'VERIFICATION.md quotes a stale {page.name} digest')
 
 
 class ResidueNarrativeTests(RecordTestCase):
