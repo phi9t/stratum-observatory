@@ -10,6 +10,7 @@ again.
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
 | Engineering | PASS | 0 | 615 verifier tests (9 skipped), 103 model/graph tests, two byte-identical builds of both portable entry points and 1,451 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Accounting arithmetic | PASS | 0 | 399 live scenarios; 309 agreement, 82 explained differences, 186 unsupported findings, zero contradictions; required by engineering |
 | Schematics | PASS | 0 | 757 scenes including all 544 decoder layers; 3,129 checks against core.mjs, of which 238 are recorded not-applicable passes |
 | Presentations | PASS | 0 | 35 checks over 10 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
 | Aesthetics | PASS | 0 | 182 scenarios, 427 checks; type, spacing, contrast, clearance, probe coverage and composition |
@@ -818,7 +819,7 @@ Portable HTML SHA-256: `c0a4d3fa27524912dbea5299568c861e7af0abeea5eee6d97914d56e
 
 Scientific lock SHA-256: `67573f7cdb32853f86d1c6751f22e8f268e6953ab7b0e24ded7a631bd821a08f`
 
-Verifier identity SHA-256: `5dc4474c4e5be39b8fdc90d63e96cbed547c339e3f8fa7a1c3cedd20efc21e15`
+Verifier identity SHA-256: `8199234ed609a23eb743b7f0fc270e917540ca7cf6f7aa0dfe086796f5307fe0`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -898,7 +899,7 @@ V4.1 dispatch and storage anchors. Main KV and packed indexer payload reconcile 
 window state and allocation overhead remain separate. [Research and source scope](docs/design/V41-SERVING-RESEARCH.md)
 record the development-branch serving implementation and Miles plugin. Neither is a runtime receipt.
 
-Dedicated HTML SHA-256: `555ef82954687e85242131f635e558a3ee0c9c1bd847b57204f7dfc47d9168f8`
+Dedicated HTML SHA-256: `61ee06b12af7bb499a4ceedf0923186551c6dc8eba4f2a8774491b641e7c3664`
 
 CED phase depths follow the report-level scheme. The pinned reference forward still visits all backbone layers; encoder-only prefill execution is not certified by that code. This distinction is visible in the CED caption and serving inspector.
 

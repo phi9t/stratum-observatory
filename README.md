@@ -64,7 +64,7 @@ npm run verify:schematics   # What the diagram means, over all 544 decoder layer
 npm run verify:aesthetics   # Measured legibility, type/spacing scales, composition drift
 npm run verify:presentations # Exports, accessibility, print, portability, preview coverage
 npm run verify:accounting   # Independent book-method arithmetic; source acceptance stays separate
-npm run verify:engineering  # Verifier/Node tests, two identical builds, real-browser tests
+npm run verify:engineering  # Verifier/Node/accounting checks, two identical builds, browser tests
 npm run verify:science      # Expected exit 2 until evidence/reviews are completed
 npm run verify:runtime      # Expected exit 2 until actual experiments are attested
 npm run capture             # Fresh PNG and SVG previews of the current build

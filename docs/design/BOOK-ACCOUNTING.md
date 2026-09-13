@@ -30,3 +30,6 @@ alongside the displayed equations; dependent publication bindings were regenerat
 review found no remaining implementation blocker. Reader verification exercises real Chromium
 PDF printing and file-origin offline operation on both portable pages. Expanded assumptions
 are part of the aesthetics text measurement, not an unmeasured disclosure.
+The final record review also found an obsolete dedicated-page artifact hash in the public
+verification document. The document was corrected, and its digest check now covers every
+delivered HTML page; the regression failed on the obsolete hash before that correction.
