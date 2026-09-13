@@ -167,6 +167,8 @@ with sync_playwright() as p:
     delivery.on('pageerror',lambda e:errors.append(str(e)))
     delivery.on('request',lambda req:requests.append(req.url) if req.url.startswith(('http://','https://')) else None)
     exercise(delivery,ROOT)
+    from accounting_panel import exercise as exercise_accounting
+    exercise_accounting(delivery,ROOT)
     delivery.close()
     browser.close()
 report={'schema':'stratum-browser-tests/v2','browser':'Chromium','geometry_states':len(cases),'responsive_states':len(responsive),'device_scale_states':sum(1 for c in cases if c['label'].startswith('device-scale-')),'geometry_defects':sum(len(f['defects'])+len(f['invalid_svg']) for f in failures),'runtime_errors':len(errors),'external_runtime_requests':len(requests),'interactive_checks':'passed','exports':'independent SVG rendering and JSON passed','models':MODELS,'failures':failures,'errors':errors,'requests':requests}

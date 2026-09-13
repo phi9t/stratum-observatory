@@ -1,8 +1,8 @@
 {
   "schema": "stratum-presentations/v1",
   "status": "PASS",
-  "generated_at": "2026-09-12T23:01:44.494614+00:00",
-  "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
+  "generated_at": "2026-09-13T00:04:42.404454+00:00",
+  "artifact_sha256": "9eb7a654323149b2fd22c068989a33cc6eba45bc1c3a4de6bab1fb1546542727",
   "delivery": {
     "models": [
       "ds2",
@@ -27,10 +27,28 @@
       "q38flash/inputs",
       "q38flash/residual",
       "q38flash/ple"
-    ]
+    ],
+    "accounting": {
+      "deepseek-v4.1.html": {
+        "origin": "file://",
+        "keyboard": true,
+        "dynamic_controls": true,
+        "mobile_width": 390,
+        "print_restored": true,
+        "external_requests": 0
+      },
+      "index.html": {
+        "origin": "file://",
+        "keyboard": true,
+        "dynamic_controls": true,
+        "mobile_width": 390,
+        "print_restored": true,
+        "external_requests": 0
+      }
+    }
   },
   "counts": {
-    "PASS": 33
+    "PASS": 35
   },
   "findings": [
     {
@@ -38,7 +56,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "index.html",
-      "message": "215 KiB, valid utf-8, nothing loaded from an external origin; 26 source citations are clickable by design.",
+      "message": "223 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -47,7 +65,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "deepseek-v4.1.html",
-      "message": "215 KiB, valid utf-8, nothing loaded from an external origin; 26 source citations are clickable by design.",
+      "message": "223 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -146,7 +164,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "page",
-      "message": "132 controls named, 9 headings ordered, 2 live regions.",
+      "message": "135 controls named, 11 headings ordered, 2 live regions.",
       "remedy": "",
       "evidence": []
     },
@@ -155,7 +173,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "default",
-      "message": "9 headings ordered, 132 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "message": "11 headings ordered, 135 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -164,7 +182,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/inputs",
-      "message": "8 headings ordered, 44 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "10 headings ordered, 47 controls named, 0 table(s) with scoped headers over 0 rows, 10 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -173,7 +191,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/residual",
-      "message": "9 headings ordered, 45 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "11 headings ordered, 48 controls named, 0 table(s) with scoped headers over 0 rows, 10 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -182,7 +200,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/ced",
-      "message": "10 headings ordered, 77 controls named, 1 table(s) with scoped headers over 8 rows, 30 citations named.",
+      "message": "12 headings ordered, 80 controls named, 1 table(s) with scoped headers over 8 rows, 33 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -191,7 +209,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "kimi3/inputs",
-      "message": "8 headings ordered, 48 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "message": "10 headings ordered, 51 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -200,7 +218,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "kimi3/residual",
-      "message": "8 headings ordered, 49 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "message": "10 headings ordered, 52 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -209,7 +227,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "q3827/inputs",
-      "message": "8 headings ordered, 47 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "message": "10 headings ordered, 50 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -218,7 +236,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "q38flash/inputs",
-      "message": "8 headings ordered, 49 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "message": "10 headings ordered, 52 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -227,7 +245,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "q38flash/residual",
-      "message": "8 headings ordered, 50 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "message": "10 headings ordered, 53 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -236,7 +254,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "q38flash/ple",
-      "message": "8 headings ordered, 49 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "message": "10 headings ordered, 52 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -327,6 +345,24 @@
       "status": "PASS",
       "subject": "dedicated",
       "message": "Dedicated navigation honors reduced motion.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "ACCOUNTING_DELIVERY",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "deepseek-v4.1.html",
+      "message": "Native keyboard disclosure, dynamic controls, 390px layout, offline delivery and actual print restoration passed.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "ACCOUNTING_DELIVERY",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "index.html",
+      "message": "Native keyboard disclosure, dynamic controls, 390px layout, offline delivery and actual print restoration passed.",
       "remedy": "",
       "evidence": []
     }

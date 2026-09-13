@@ -1,6 +1,6 @@
 # STRATUM Observatory 3.0 — delivered-artifact verification
 
-Generated from the fresh engineering receipt and the five adjacent gate reports in
+Generated from the fresh engineering receipt and the adjacent gate reports in
 `verification/reports/`. Every figure below is read out of one of those files;
 `verification/tests/test_reported_numbers.py` fails if this document and the reports drift apart
 again.
@@ -9,17 +9,18 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 587 verifier tests (4 skipped), 100 model/graph tests, two byte-identical builds of both portable entry points and 1,451 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Engineering | PASS | 0 | 615 verifier tests (9 skipped), 103 model/graph tests, two byte-identical builds of both portable entry points and 1,451 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Accounting arithmetic | PASS | 0 | 399 live scenarios; 309 agreement, 82 explained differences, 186 unsupported findings, zero contradictions; required by engineering |
 | Schematics | PASS | 0 | 757 scenes including all 544 decoder layers; 3,129 checks against core.mjs, of which 238 are recorded not-applicable passes |
-| Presentations | PASS | 0 | 33 checks over 10 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
-| Aesthetics | PASS | 0 | 182 scenarios, 415 checks; type, spacing, contrast, clearance, probe coverage and composition |
+| Presentations | PASS | 0 | 35 checks over 10 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
+| Aesthetics | PASS | 0 | 182 scenarios, 427 checks; type, spacing, contrast, clearance, probe coverage and composition |
 | Scientific publication | BLOCKED | 2 | Nine-model consumer inventory and strict evidence/review audit; **no FAIL** |
 | Runtime certification | BLOCKED | 2 | Run on these bytes: 29 of 32 obligations NOT_RUN, **no FAIL and no `RUNTIME_STALE`** — the behavioural obligations have no receipts to go stale, and the three hardware receipts do not bind the claim manifest |
 
 ## Toolchain
 
 CPython 3.13.12 and Playwright 1.55.0, both provisioned by uv from `uv.lock`.
-OpenSSL 3.0.17 verifies review signatures. `uv sync --frozen` then
+OpenSSL 3.6.2 verifies review signatures. `uv sync --frozen` then
 `uv run --frozen playwright install chromium` reproduces it. The interpreter, the lock, the
 Python pin, `tests/`, `.github/CODEOWNERS` and the aesthetics policy are all inside
 `toolchain_digest`, so a receipt cannot outlive any of them.
@@ -67,7 +68,7 @@ or GPU execution.
 
 ## Aesthetics evidence
 
-`npm run verify:aesthetics` passes: **415 checks, 0 failures** across 182 scenarios and 114
+`npm run verify:aesthetics` passes: **427 checks, 0 failures** across 182 scenarios and 120
 distinct measurements. The first run of this gate failed on 21 defects that shipped in the
 delivered artifact; all are now fixed at the source rather than by moving a threshold.
 
@@ -127,8 +128,8 @@ looked at — the same shape of defect this gate exists to catch, one layer up. 
 close it. `CHROME_PROBE_LIVE` requires every class the probe measures by to still exist in
 `src/styles.css` **and** in the markup that emits it, so a rename fails the gate instead of
 disappearing. `CHROME_COVERAGE_OK` requires every reading-size chrome rule in the stylesheet —
-all **39** between the 12px reading floor and the 24px large-text relaxation — to be either in the
-measured set (**11** selectors) or in `UNMEASURED_CHROME` (**33**).
+all **43** between the 12px reading floor and the 24px large-text relaxation — to be either in the
+measured set (**15** selectors) or in `UNMEASURED_CHROME` (**33**).
 
 That second list is debt, not an exemption. It is what the gate does **not** measure, and probing
 those selectors by hand finds **8 distinct reading-size chrome elements between 4.89:1 and 6.87:1**
@@ -423,22 +424,22 @@ inventory, not correctness of anything in it.
 
 | Item | Count |
 |---|---:|
-| Input leaves | 577 |
-| Function/file identities | 29 |
+| Input leaves | 583 |
+| Function/file identities | 30 |
 | Distinct sampled scene contracts | 2883 |
-| Claims including domain obligations | 3512 |
-| Candidate source entries | 71 |
-| Accepted raw-byte snapshots | 69 |
+| Claims including domain obligations | 3519 |
+| Candidate source entries | 76 |
+| Accepted raw-byte snapshots | 74 |
 | Scientifically certified claims under the signed policy | 0 |
 | Passed presentation bindings | 0 |
 | Domain contracts / runtime obligations | 32 / 32 |
 
-The publication audit has **6,103 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
-from a fresh engineering receipt:
+The publication audit has **6,110 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
+from the current source and consumer bytes with a fresh engineering receipt:
 
 | Code | Status | Count |
 |---|---|---:|
-| `REVIEW_REQUIRED` | BLOCKED | 3,544 |
+| `REVIEW_REQUIRED` | BLOCKED | 3,551 |
 | `CLAIM_ANCHOR` | BLOCKED | 2,334 |
 | `CLAIM_ROLE` | BLOCKED | 89 |
 | `MODEL_DUAL_CODE` | BLOCKED | 77 |
@@ -454,7 +455,7 @@ from a fresh engineering receipt:
 | `ENGINEERING_CURRENT` | PASS | 1 |
 
 Most of these are cascading source dependencies and absent independent reviews; this is **not** a
-claim that 6,103 facts are false. No review identity, accepted source hash or execution receipt was
+claim that 6,110 facts are false. No review identity, accepted source hash or execution receipt was
 invented.
 
 For the record, the evidence-anchor work began at **9,037 findings (9,013 BLOCKED)** with
@@ -464,7 +465,7 @@ provenance, and letting derived scene claims carry provenance through their depe
 removed 3,853 BLOCKED findings without a single fabricated anchor.
 
 Runtime certification was run on these bytes and reports the same population plus its
-obligations: **6,106 BLOCKED, 41 PASS, 29 NOT_RUN, no FAIL.**
+obligations: **6,113 BLOCKED, 41 PASS, 29 NOT_RUN, no FAIL.**
 
 **Adding a ninth checkpoint did not make any receipt stale, and an earlier draft of this section
 was wrong to predict that it would.** The prediction came from reading the coupling rule instead of
@@ -814,11 +815,11 @@ executes all three, and CI could never have executed the transcription compariso
 
 ## Artifact identity
 
-Portable HTML SHA-256: `766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427`
+Portable HTML SHA-256: `9eb7a654323149b2fd22c068989a33cc6eba45bc1c3a4de6bab1fb1546542727`
 
-Scientific lock SHA-256: `78467d42b7635c5236e78f00fd3e5cc779a213dd796a4f5087b9cb21287868f0`
+Scientific lock SHA-256: `3809252d06f344f77d8fe3014f24944f99a526eed8af7140076081f7e9291cb6`
 
-Verifier identity SHA-256: `57f67dad3d03eb4ddfe4ac1cccb9a1b7890d2aa973fc9a84df79288eb1613d44`
+Verifier identity SHA-256: `a8a7ef50d7ce28c07fcc002dee8ce7513a1669d7d3e6760e40b89bb71a106dc0`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -854,14 +855,14 @@ the software is verified and that the science is not.
 **Publication completeness is an offline gate, and CI gates on contradictions only.** The
 publication audit answers two questions. *Completeness* — is every claim backed by cached upstream
 bytes and an independent signed review? — cannot run in CI by construction: `.verification-cache/`
-is git-ignored because all 71 source licences forbid redistributing the bytes, so CI would report
+is git-ignored because redistribution of the source bytes is not authorized, so CI would report
 `verified_sources: 0`; and no reviewer identity exists, because inventing one is forbidden. A CI job
 asking that question could only ever be red, and a check that can never pass is noise a reader stops
 reading. It used to be exactly that: a permanently failing `publication` job whose red X was
 indistinguishable from a contradiction, because `aggregate()` collapses BLOCKED and FAIL into one
 exit code and GitHub renders both the same.
 
-So completeness runs on a trusted machine — `npm run verify:science`, exit 2, **6,103 BLOCKED and
+So completeness runs on a trusted machine — `npm run verify:science`, exit 2, **6,110 BLOCKED and
 38 PASS findings, 0 FAIL** — and its report is committed as `verification/reports/publication.json`.
 This document states its figures, and `verification/tests/test_reported_numbers.py`, which runs
 inside the *green* engineering gate, fails if the record drifts from the report **or if the report
@@ -898,6 +899,25 @@ V4.1 dispatch and storage anchors. Main KV and packed indexer payload reconcile 
 window state and allocation overhead remain separate. [Research and source scope](docs/design/V41-SERVING-RESEARCH.md)
 record the development-branch serving implementation and Miles plugin. Neither is a runtime receipt.
 
-Dedicated HTML SHA-256: `555ef82954687e85242131f635e558a3ee0c9c1bd847b57204f7dfc47d9168f8`
+Dedicated HTML SHA-256: `b5d5720b6279a5f0f234533c427b8d2cb7ae9ff53e4c12dfff88abe41ea7f247`
 
 CED phase depths follow the report-level scheme. The pinned reference forward still visits all backbone layers; encoder-only prefill execution is not certified by that code. This distinction is visible in the CED caption and serving inspector.
+
+
+## Book accounting
+
+`npm run verify:accounting` reports 399 accounting scenarios: 309 agreement,
+82 explained_difference, 186 unsupported and 0 contradiction findings. These are
+arithmetic classifications, with explicit units, denominators and exclusions, not
+publication or runtime acceptance. The independent Python calculations reproduce the
+anchored cache example as 6,710,886,400 bytes, 6.7108864 decimal GB and 6.25 binary GiB.
+The published table's GiB label is recorded as an explained difference.
+
+The 16-byte training baseline remains unchanged. An additional FP32 gradient accumulation
+buffer would make 20 bytes per parameter. CSA2 unique cache owners and repeated execution
+reads remain separate. Both portable pages expose these assumptions through native details
+controls, tested with Chromium keyboard navigation, narrow viewport, print and offline delivery.
+
+The engineering run skipped four receipt-dependent checks while creating its receipt and five
+optional runtime-candidate tests because that ignored candidate is absent in this worktree.
+The receipt-dependent public-record checks passed on the completed receipt afterward.

@@ -1,11 +1,11 @@
 {
   "schema": "stratum-aesthetics/v1",
   "status": "PASS",
-  "generated_at": "2026-09-12T23:02:01.177614+00:00",
-  "artifact_sha256": "766cd4569701f282db5778d60a85424b2275dcd1c36ce152acf9187325f95427",
+  "generated_at": "2026-09-13T00:04:42.488973+00:00",
+  "artifact_sha256": "9eb7a654323149b2fd22c068989a33cc6eba45bc1c3a4de6bab1fb1546542727",
   "policy_sha256": "e885ca418d6e2883f6725e3ac23e7e14dd39a911966832705f969ecc29d45f66",
   "scenarios": 182,
-  "distinct_measurements": 114,
+  "distinct_measurements": 120,
   "axes": {
     "models": [
       "ds2",
@@ -44,7 +44,7 @@
     "budget": 8
   },
   "counts": {
-    "PASS": 415
+    "PASS": 427
   },
   "findings": [
     {
@@ -1708,7 +1708,7 @@
       "domain": "aesthetics",
       "status": "PASS",
       "subject": "stylesheet",
-      "message": "All 11 measured chrome selectors still name classes the stylesheet defines and the markup emits.",
+      "message": "All 15 measured chrome selectors still name classes the stylesheet defines and the markup emits.",
       "remedy": "",
       "evidence": []
     },
@@ -1717,7 +1717,7 @@
       "domain": "aesthetics",
       "status": "PASS",
       "subject": "stylesheet",
-      "message": "All 39 reading-size chrome rules between 12px and 24px are either measured (11 selectors) or recorded as unmeasured (33 selectors).",
+      "message": "All 43 reading-size chrome rules between 12px and 24px are either measured (15 selectors) or recorded as unmeasured (33 selectors).",
       "remedy": "",
       "evidence": []
     },
@@ -1887,7 +1887,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "innovation-note (25 occurrences)",
+      "subject": "A (233 occurrences)",
       "message": "Contrast 14.19:1 against 7.0:1 at 12.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -1896,7 +1896,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "innovation-note (25 occurrences)",
+      "subject": "A (233 occurrences)",
       "message": "12.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -1916,6 +1916,60 @@
       "status": "PASS",
       "subject": "innovation-name (8 occurrences)",
       "message": "12.00px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "P (290 occurrences)",
+      "message": "Contrast 14.19:1 against 7.0:1 at 14.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "P (290 occurrences)",
+      "message": "14.00px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "SUMMARY (91 occurrences)",
+      "message": "Contrast 14.19:1 against 7.0:1 at 14.0px weight 600.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "SUMMARY (91 occurrences)",
+      "message": "14.00px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "H4 (145 occurrences)",
+      "message": "Contrast 14.19:1 against 7.0:1 at 14.0px weight 700.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "H4 (145 occurrences)",
+      "message": "14.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
     },
@@ -1995,7 +2049,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "innovation-note (25 occurrences)",
+      "subject": "A (233 occurrences)",
       "message": "Contrast 12.21:1 against 7.0:1 at 12.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2004,7 +2058,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "innovation-note (25 occurrences)",
+      "subject": "A (233 occurrences)",
       "message": "12.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2024,6 +2078,60 @@
       "status": "PASS",
       "subject": "innovation-name (8 occurrences)",
       "message": "12.00px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "P (290 occurrences)",
+      "message": "Contrast 12.21:1 against 7.0:1 at 14.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "P (290 occurrences)",
+      "message": "14.00px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "SUMMARY (91 occurrences)",
+      "message": "Contrast 12.21:1 against 7.0:1 at 14.0px weight 600.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "SUMMARY (91 occurrences)",
+      "message": "14.00px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "H4 (145 occurrences)",
+      "message": "Contrast 12.21:1 against 7.0:1 at 14.0px weight 700.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "H4 (145 occurrences)",
+      "message": "14.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
     },

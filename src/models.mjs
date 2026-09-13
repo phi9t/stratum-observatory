@@ -4,6 +4,11 @@ const SG='https://github.com/sgl-project/sglang/blob/2c05ed4e7776c876478f4b2db61
 const TR='https://github.com/huggingface/transformers/blob/c93057d4835cd31752bb56f59989dd27696eb45b/src/transformers/models/';
 const VL='https://github.com/vllm-project/vllm/blob/6865e67f0be02d53694517f6f71d7fb96492792d/vllm/models/qwen4_exp/nvidia/';
 export const SOURCES={
+ "book-ultrascale":{"title": "Ultra-Scale Playbook \u00b7 phi9t hosted edition", "url": "https://phi9t.github.io/megatronlm/", "role": "methodology_reference", "anchor": "Dated snapshot and exact method anchors in the accounting evidence registry"},
+ "book-scaling-transformers":{"title": "JAX Scaling Book \u00b7 Transformers", "url": "https://jax-ml.github.io/scaling-book/transformers/", "role": "methodology_reference", "anchor": "Dated snapshot and exact method anchors in the accounting evidence registry"},
+ "book-scaling-training":{"title": "JAX Scaling Book \u00b7 Training", "url": "https://jax-ml.github.io/scaling-book/training/", "role": "methodology_reference", "anchor": "Dated snapshot and exact method anchors in the accounting evidence registry"},
+ "book-scaling-inference":{"title": "JAX Scaling Book \u00b7 Inference", "url": "https://jax-ml.github.io/scaling-book/inference/", "role": "methodology_reference", "anchor": "Dated snapshot and exact method anchors in the accounting evidence registry"},
+ "book-scaling-roofline":{"title": "JAX Scaling Book \u00b7 Roofline methods", "url": "https://jax-ml.github.io/scaling-book/roofline/", "role": "methodology_reference", "anchor": "Dated snapshot and exact method anchors in the accounting evidence registry"},
  'ds2-config':{title:'DeepSeek-V2 • released configuration',url:HF+'deepseek-ai/DeepSeek-V2/blob/main/config.json',role:'publisher_config',anchor:'hidden_size; num_hidden_layers; n_routed_experts; qk_rope_head_dim'},
  'ds2-code':{title:'DeepSeek-V2 • publisher model implementation',url:HF+'deepseek-ai/DeepSeek-V2/blob/main/modeling_deepseek.py',role:'publisher_code',anchor:'DeepseekV2Attention; DeepseekV2MoE; MoEGate'},
  'ds2-paper':{title:'DeepSeek-V2 technical report',url:'https://arxiv.org/abs/2405.04434',role:'report',anchor:'MLA and DeepSeekMoE'},

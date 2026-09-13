@@ -533,6 +533,24 @@ def run(root):
         duration=page.locator('#atlas-link').evaluate("e=>getComputedStyle(e).transitionDuration")
         quiet=duration in ('0s','0s, 0s')
         findings.append((_ok if quiet else _bad)('DEDICATED_MOTION','dedicated','Dedicated navigation honors reduced motion.',*(() if quiet else ('Honor reduced motion.',))))
+        # Exercise native disclosure and actual Chromium printing on every delivered page.
+        from accounting_panel import exercise_page as exercise_accounting_page
+        from .engineering import delivery_artifacts
+        from playwright.sync_api import Error as BrowserError
+        checks['accounting']={}
+        for name in delivery_artifacts(root):
+            accounting_page=browser.new_page(viewport={'width':1440,'height':1000})
+            accounting_page.on('pageerror',lambda e:errors.append(str(e)))
+            try:
+                result=exercise_accounting_page(accounting_page,root/'dist'/name)
+                checks['accounting'][name]=result
+                findings.append(_ok('ACCOUNTING_DELIVERY',name,
+                                    'Native keyboard disclosure, dynamic controls, 390px layout, offline delivery and actual print restoration passed.'))
+            except (AssertionError,BrowserError) as exc:
+                findings.append(_bad('ACCOUNTING_DELIVERY',name,str(exc),
+                                     'Restore accessible disclosure, responsive notes, live accounting and printable assumptions on this entry point.'))
+            finally:
+                accounting_page.close()
         if errors:findings.append(_bad('DELIVERY_RUNTIME','all pages',str(errors),'Fix all delivered page errors.'))
         browser.close()
 

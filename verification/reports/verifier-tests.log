@@ -1,3 +1,24 @@
+test_case_inventory (test_accounting.AccountingTests.test_case_inventory) ... ok
+test_double_kv (test_accounting.AccountingTests.test_double_kv) ... ok
+test_duplicate_cache_owners (test_accounting.AccountingTests.test_duplicate_cache_owners) ... ok
+test_examples (test_accounting.AccountingTests.test_examples) ... ok
+test_joint_axis_and_case_omission (test_accounting.AccountingTests.test_joint_axis_and_case_omission) ... ok
+test_live (test_accounting.AccountingTests.test_live) ... ok
+test_main_writes_failure_reports (test_accounting.AccountingTests.test_main_writes_failure_reports) ... ok
+test_missing_gradient (test_accounting.AccountingTests.test_missing_gradient) ... ok
+test_missing_identity (test_accounting.AccountingTests.test_missing_identity) ... ok
+test_negative_settings_and_dimensions (test_accounting.AccountingTests.test_negative_settings_and_dimensions) ... ok
+test_nonpositive_example_inputs (test_accounting.AccountingTests.test_nonpositive_example_inputs) ... ok
+test_precision (test_accounting.AccountingTests.test_precision) ... ok
+test_rank_direction (test_accounting.AccountingTests.test_rank_direction) ... ok
+test_tied_embeddings_and_norm_policy (test_accounting.AccountingTests.test_tied_embeddings_and_norm_policy) ... ok
+test_unknown_architecture (test_accounting.AccountingTests.test_unknown_architecture) ... ok
+test_wrong_kv_heads (test_accounting.AccountingTests.test_wrong_kv_heads) ... ok
+test_each_method_is_a_real_exact_consumer (test_accounting_bindings.AccountingBindings.test_each_method_is_a_real_exact_consumer) ... ok
+test_mutated_method_fails_in_publication_runner (test_accounting_bindings.AccountingBindings.test_mutated_method_fails_in_publication_runner) ... ok
+test_unknown_method_source_fails_in_publication_runner (test_accounting_bindings.AccountingBindings.test_unknown_method_source_fails_in_publication_runner) ... ok
+test_reviewed_subject_is_not_rewritten (test_accounting_bindings.AccountingMigrationGuards.test_reviewed_subject_is_not_rewritten) ... ok
+test_unexpected_consumer_drift_is_not_refreshed (test_accounting_bindings.AccountingMigrationGuards.test_unexpected_consumer_drift_is_not_refreshed) ... ok
 test_a_class_kept_in_css_but_dropped_from_the_markup_is_caught (test_aesthetics.ChromeProbeCoverageTests.test_a_class_kept_in_css_but_dropped_from_the_markup_is_caught)
 A selector that only the stylesheet still knows about measures nothing either. ... ok
 test_a_renamed_class_is_caught_rather_than_silently_unmeasured (test_aesthetics.ChromeProbeCoverageTests.test_a_renamed_class_is_caught_rather_than_silently_unmeasured)
@@ -464,6 +485,7 @@ test_a_faithful_receipt_is_accepted (test_integration.ReceiptTrustTests.test_a_f
 test_a_receipt_asserting_determinism_without_two_hashes_is_caught (test_integration.ReceiptTrustTests.test_a_receipt_asserting_determinism_without_two_hashes_is_caught) ... ok
 test_a_receipt_that_rewrites_its_browser_result_is_caught (test_integration.ReceiptTrustTests.test_a_receipt_that_rewrites_its_browser_result_is_caught) ... ok
 test_an_unattested_receipt_is_blocked_not_passed (test_integration.ReceiptTrustTests.test_an_unattested_receipt_is_blocked_not_passed) ... ok
+test_missing_accounting_command_is_rejected (test_integration.ReceiptTrustTests.test_missing_accounting_command_is_rejected) ... ok
 test_missing_page_identity_is_rejected (test_integration.ReceiptTrustTests.test_missing_page_identity_is_rejected) ... ok
 test_a_current_receipt_carries_both_build_hashes (test_integration.ReleaseContractTests.test_a_current_receipt_carries_both_build_hashes) ... skipped 'no engineering receipt yet'
 test_a_nondeterministic_build_is_caught (test_integration.ReleaseContractTests.test_a_nondeterministic_build_is_caught) ... ok
@@ -474,6 +496,7 @@ test_changed_revision_invalidates_review (test_integration.ReviewSubjectTests.te
 test_changed_role_invalidates_review (test_integration.ReviewSubjectTests.test_changed_role_invalidates_review) ... ok
 test_identity_projection_classifies_every_schema_field (test_integration.ReviewSubjectTests.test_identity_projection_classifies_every_schema_field) ... ok
 test_refetch_metadata_does_not_invalidate_review (test_integration.ReviewSubjectTests.test_refetch_metadata_does_not_invalidate_review) ... ok
+test_accounting_methods_are_covered (test_integration.ToolchainDigestTests.test_accounting_methods_are_covered) ... ok
 test_browser_suite_is_covered (test_integration.ToolchainDigestTests.test_browser_suite_is_covered) ... ok
 test_codeowners_is_covered (test_integration.ToolchainDigestTests.test_codeowners_is_covered) ... ok
 test_pyproject_is_covered (test_integration.ToolchainDigestTests.test_pyproject_is_covered) ... ok
@@ -483,6 +506,10 @@ test_yaml_workflows_are_covered (test_integration.ToolchainDigestTests.test_yaml
 test_a_value_contradicting_upstream_is_caught (test_integration.UpstreamComparisonTests.test_a_value_contradicting_upstream_is_caught) ... ok
 test_equal_relations_are_registered (test_integration.UpstreamComparisonTests.test_equal_relations_are_registered) ... ok
 test_the_shipped_values_agree_with_upstream (test_integration.UpstreamComparisonTests.test_the_shipped_values_agree_with_upstream) ... ok
+test_allowed_snapshot (test_methodology_sources.MethodologySources.test_allowed_snapshot) ... ok
+test_cannot_masquerade_as_code_or_vendor (test_methodology_sources.MethodologySources.test_cannot_masquerade_as_code_or_vendor) ... ok
+test_tampered_snapshot_fails (test_methodology_sources.MethodologySources.test_tampered_snapshot_fails) ... ok
+test_wrong_origin_and_path (test_methodology_sources.MethodologySources.test_wrong_origin_and_path) ... ok
 test_dense_model_is_not_forced_to_invent_experts (test_observatory.ObservatoryTests.test_dense_model_is_not_forced_to_invent_experts) ... ok
 test_dense_with_routed_topk_is_rejected (test_observatory.ObservatoryTests.test_dense_with_routed_topk_is_rejected) ... ok
 test_every_scene_claim_still_declares_dependencies (test_observatory.ObservatoryTests.test_every_scene_claim_still_declares_dependencies) ... ok
@@ -533,6 +560,7 @@ And the real page, so the negatives above are not tests of a probe nothing runs.
 test_unscoped_headers_are_caught_in_both_directions (test_presentations.ProseProbeTests.test_unscoped_headers_are_caught_in_both_directions) ... ok
 test_a_scenario_claiming_certification_is_rejected (test_presentations.ScenarioSchemaTests.test_a_scenario_claiming_certification_is_rejected) ... ok
 test_schema_exists_and_accepts_a_real_export (test_presentations.ScenarioSchemaTests.test_schema_exists_and_accepts_a_real_export) ... ok
+test_accounting_report_is_current_and_classified (test_reported_numbers.AccountingNumberTests.test_accounting_report_is_current_and_classified) ... ok
 test_blocked_total_is_current (test_reported_numbers.PublicationNumberTests.test_blocked_total_is_current) ... ok
 test_claim_anchor_count_is_current (test_reported_numbers.PublicationNumberTests.test_claim_anchor_count_is_current) ... ok
 test_claim_role_is_not_reported_as_blocking (test_reported_numbers.PublicationNumberTests.test_claim_role_is_not_reported_as_blocking) ... ok
@@ -674,11 +702,11 @@ Nothing between probes can detect a re-capped GPU or a swapped NIC. Kept deliber
 test_only_hardware_attribute_domains_are_relaxed (test_runtime_binding.RuntimeBindingTests.test_only_hardware_attribute_domains_are_relaxed)
 Every obligation, both directions: a stale lock and a stale consumer digest still ... ok
 test_the_hardware_domain_set_is_a_closed_subset_of_the_registered_domains (test_runtime_binding.RuntimeBindingTests.test_the_hardware_domain_set_is_a_closed_subset_of_the_registered_domains) ... ok
-test_artifact_digests_match_the_files_on_disk (test_runtime_evidence.RuntimeEvidenceTests.test_artifact_digests_match_the_files_on_disk) ... ok
-test_candidate_matches_the_runtime_schema (test_runtime_evidence.RuntimeEvidenceTests.test_candidate_matches_the_runtime_schema) ... ok
-test_every_environment_fingerprint_names_a_checksummed_artifact (test_runtime_evidence.RuntimeEvidenceTests.test_every_environment_fingerprint_names_a_checksummed_artifact) ... ok
-test_every_receipt_record_satisfies_its_domain (test_runtime_evidence.RuntimeEvidenceTests.test_every_receipt_record_satisfies_its_domain) ... ok
-test_the_normalized_record_is_reproducible_from_a_checksummed_file (test_runtime_evidence.RuntimeEvidenceTests.test_the_normalized_record_is_reproducible_from_a_checksummed_file) ... ok
+test_artifact_digests_match_the_files_on_disk (test_runtime_evidence.RuntimeEvidenceTests.test_artifact_digests_match_the_files_on_disk) ... skipped 'no runtime candidate built yet'
+test_candidate_matches_the_runtime_schema (test_runtime_evidence.RuntimeEvidenceTests.test_candidate_matches_the_runtime_schema) ... skipped 'no runtime candidate built yet'
+test_every_environment_fingerprint_names_a_checksummed_artifact (test_runtime_evidence.RuntimeEvidenceTests.test_every_environment_fingerprint_names_a_checksummed_artifact) ... skipped 'no runtime candidate built yet'
+test_every_receipt_record_satisfies_its_domain (test_runtime_evidence.RuntimeEvidenceTests.test_every_receipt_record_satisfies_its_domain) ... skipped 'no runtime candidate built yet'
+test_the_normalized_record_is_reproducible_from_a_checksummed_file (test_runtime_evidence.RuntimeEvidenceTests.test_the_normalized_record_is_reproducible_from_a_checksummed_file) ... skipped 'no runtime candidate built yet'
 test_absent_runtime_manifest_still_reports_not_run (test_runtime_receipts.RuntimeReceiptTests.test_absent_runtime_manifest_still_reports_not_run) ... ok
 test_boolean_environment_fingerprint_is_not_an_environment (test_runtime_receipts.RuntimeReceiptTests.test_boolean_environment_fingerprint_is_not_an_environment) ... ok
 test_declared_value_without_a_probe_artifact_is_blocked (test_runtime_receipts.RuntimeReceiptTests.test_declared_value_without_a_probe_artifact_is_blocked) ... ok
@@ -720,6 +748,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 587 tests in 168.335s
+Ran 615 tests in 162.711s
 
-OK (skipped=4)
+OK (skipped=9)
