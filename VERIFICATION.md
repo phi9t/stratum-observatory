@@ -9,18 +9,18 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 615 verifier tests (9 skipped), 103 model/graph tests, two byte-identical builds of both portable entry points and 1,451 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Engineering | PASS | 0 | 616 verifier tests (10 skipped), 103 model/graph tests, two byte-identical builds of both portable entry points and 1,451 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
 | Accounting arithmetic | PASS | 0 | 399 live scenarios; 309 agreement, 82 explained differences, 186 unsupported findings, zero contradictions; required by engineering |
 | Schematics | PASS | 0 | 757 scenes including all 544 decoder layers; 3,129 checks against core.mjs, of which 238 are recorded not-applicable passes |
 | Presentations | PASS | 0 | 35 checks over 10 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
 | Aesthetics | PASS | 0 | 182 scenarios, 427 checks; type, spacing, contrast, clearance, probe coverage and composition |
 | Scientific publication | BLOCKED | 2 | Nine-model consumer inventory and strict evidence/review audit; **no FAIL** |
-| Runtime certification | BLOCKED | 2 | Run on these bytes: 29 of 32 obligations NOT_RUN, **no FAIL and no `RUNTIME_STALE`** — the behavioural obligations have no receipts to go stale, and the three hardware receipts do not bind the claim manifest |
+| Runtime certification | BLOCKED | 2 | Run on these bytes: 32 of 32 obligations NOT_RUN, **no FAIL and no `RUNTIME_STALE`**; all private hardware receipts were withdrawn for publication |
 
 ## Toolchain
 
 CPython 3.13.12 and Playwright 1.55.0, both provisioned by uv from `uv.lock`.
-OpenSSL 3.6.2 verifies review signatures. `uv sync --frozen` then
+OpenSSL 3.6.0 verifies review signatures. `uv sync --frozen` then
 `uv run --frozen playwright install chromium` reproduces it. The interpreter, the lock, the
 Python pin, `tests/`, `.github/CODEOWNERS` and the aesthetics policy are all inside
 `toolchain_digest`, so a receipt cannot outlive any of them.
@@ -415,8 +415,8 @@ beside it is a wiring defect we can know about. Like its two neighbours it runs 
 audit rather than in a Pages-deploying gate, because its zero-comparison path is BLOCKED.
 
 The honest consequence is a slightly worse-looking report: **32 contracts and 32 obligations**,
-one more `CONTRACT_EVIDENCE` BLOCKED, two more `REVIEW_REQUIRED` BLOCKED, and **29 of 32
-obligations NOT_RUN** rather than 28 of 31. That is the point. The nine
+one more `CONTRACT_EVIDENCE` BLOCKED, two more `REVIEW_REQUIRED` BLOCKED, and **32 of 32
+obligations NOT_RUN** after private hardware receipts were withdrawn. That is the point. The nine
 `CONTRACT_MODEL_COVERAGE` passes are the only new PASSes, and they assert coverage of the
 inventory, not correctness of anything in it.
 
@@ -477,11 +477,9 @@ shows **zero `RUNTIME_STALE`** findings. The mechanism is real and is described 
 unclosed*; it fires when a manifest edit invalidates an obligation that actually holds a receipt,
 which is not the case here.
 
-The nine findings the three GPU receipts carried before this capture — 3 `RUNTIME_SCHEMA` and 6
-`RUNTIME_HARDWARE` — are gone: all three were re-probed on the fleet under the current hardware
-data model and now bind it, the contract record each attests, and the `stratum-hardware/v1` capture
-each rests on. Every BLOCKED finding that remains is a runtime obligation with no evidence at all,
-or a review that nobody independent has signed.
+Private hardware captures and their receipts are withheld from the public distribution.
+No redacted capture is accepted as evidence. All runtime obligations remain NOT_RUN until
+new shareable evidence is captured and independently reviewed.
 
 **Verified scientific claims: 0.** Two claims previously passed — the stylesheet and the HTML
 entry point — because `presentation` claims skipped review entirely. Every claim is now reviewed,
@@ -635,14 +633,9 @@ false in order to look greener.
 
 Recorded so they are not mistaken for oversights:
 
-- **Build attestation cannot run on this repository.** `actions/attest-build-provenance` is
-  unavailable for user-owned private repositories, and this repository is private because its
-  runtime evidence carries hardware identifiers from a private compute fleet. The workflow
-  therefore skips the attestation step rather than failing the run, and `RECEIPT_UNATTESTED`
-  stays BLOCKED permanently here. That is the honest report, not a waiver: skipping the step
-  changes whether the finding can ever be cleared, never whether it is disclosed. Publishing
-  the source repository, or moving it to an organization, is what would make attestation
-  possible.
+- **Build attestation is not present in the local receipt.** `RECEIPT_UNATTESTED` remains
+  BLOCKED. The public snapshot excludes private hardware captures; configuring public CI
+  and its attestation remains a separate release action.
 - The engineering receipt is **self-produced**. This is now a finding rather than a sentence:
   `RECEIPT_UNATTESTED` BLOCKS on any receipt without a build attestation. CI attests the exact
   tested artifact; branch protection remains the repository owner's to configure, and
@@ -819,7 +812,7 @@ Portable HTML SHA-256: `9eb7a654323149b2fd22c068989a33cc6eba45bc1c3a4de6bab1fb15
 
 Scientific lock SHA-256: `3809252d06f344f77d8fe3014f24944f99a526eed8af7140076081f7e9291cb6`
 
-Verifier identity SHA-256: `a8a7ef50d7ce28c07fcc002dee8ce7513a1669d7d3e6760e40b89bb71a106dc0`
+Verifier identity SHA-256: `02ca868a343afb9ce5e395330c1dbb0ddd6de7f72988a7ed5cc22b6a4fefb9ef`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -893,7 +886,7 @@ Corrected scientific consumers: shared post-RoPE KV and inverse output RoPE; pre
 versus current post-vector/Sinkhorn mHC ownership; mHC comparison identity; bounded sliding-window
 state and derived FP4 indexer storage; actual exported phase-depth validation. The active
 manifest binds these consumers to the existing pinned publisher anchors and shared ledgers.
-Existing source snapshots, independent review subjects, trust roots and hardware receipts are unchanged.
+Existing source snapshots, independent review subjects and trust roots are unchanged. Private hardware receipts were subsequently withdrawn for public distribution.
 Three SGLang snapshots were added at ac1a56987c5c552f9f4284f5a98db5d65541fafa, with exact
 V4.1 dispatch and storage anchors. Main KV and packed indexer payload reconcile to 890 B/token;
 window state and allocation overhead remain separate. [Research and source scope](docs/design/V41-SERVING-RESEARCH.md)
@@ -918,6 +911,19 @@ buffer would make 20 bytes per parameter. CSA2 unique cache owners and repeated 
 reads remain separate. Both portable pages expose these assumptions through native details
 controls, tested with Chromium keyboard navigation, narrow viewport, print and offline delivery.
 
-The engineering run skipped four receipt-dependent checks while creating its receipt and five
-optional runtime-candidate tests because that ignored candidate is absent in this worktree.
+The engineering run skipped four receipt-dependent checks while creating its receipt, five
+optional runtime-candidate tests, and the accepted-hardware test class because private receipts
+are withheld. Synthetic runtime binding tests ran and passed.
 The receipt-dependent public-record checks passed on the completed receipt afterward.
+
+## Public distribution privacy
+
+Raw hardware captures and accepted runtime receipts are withheld, not redacted and re-signed.
+The originals remain in an ignored private local backup. Synthetic test captures do not certify
+any machine. `npm run verify:privacy` scans current publishable files, and `npm run package:public`
+creates a snapshot without Git history, ignored files, local ownership or filesystem timestamps.
+The pre-scrub Git history contains personal commit metadata and historical private captures.
+Existing public branches require a history rewrite and an audit of every reachable commit;
+private recovery bundles and unrevised local worktree refs must never be pushed. The clean
+archive also supports initializing a new repository. Public citations and code-owner handles
+remain as attribution and review ownership.

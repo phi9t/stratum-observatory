@@ -102,3 +102,14 @@ The [book audit design](docs/design/BOOK-ACCOUNTING.md) and [source record](docs
 distinguish methods from checkpoint evidence. `verify:accounting` emits JSON and Markdown under
 `verification/reports/` and is required by engineering. Its arithmetic agreement cannot replace
 publication review or runtime measurements; specialized architectures carry explicit exclusions.
+
+## Publishing a clean source snapshot
+
+Run `npm run verify:privacy` and `npm run package:public`. The latter writes
+`.publication/stratum-public.tar.gz` from current tracked and non-ignored files, excluding
+Git history and local caches. Extract it into a new directory and initialize a new repository
+with your chosen public commit identity. The pre-scrub history contains personal author
+metadata and private hardware captures. Publish only audited, rewritten branches; never
+restore or push the private recovery bundle or old local worktree refs. The public runtime
+receipt manifest is empty; withdrawn hardware evidence is not replaced with fabricated values.
+See [publication privacy](docs/PUBLICATION.md) for scope and limitations.

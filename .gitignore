@@ -12,3 +12,10 @@ tests/smoke-initial.png
 tests/sweep-report.json
 tests/sweep-shots/
 .venv/
+
+# Raw hardware probes and local publication staging are private.
+evidence/runtime/
+.publication/
+.env
+.env.*
+*.key

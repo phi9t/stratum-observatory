@@ -42,6 +42,19 @@ def _openssl_identity():
     out=subprocess.run([found,'version'],capture_output=True,text=True,timeout=10)
     return out.stdout.strip() or found
 
+def public_argv(command):
+    """Keep the invocation reproducible without exposing the local interpreter location."""
+    return [Path(command[0]).name, *command[1:]]
+
+
+def public_log(text, root):
+    """Software logs are diagnostic output, not raw scientific evidence."""
+    for path, label in sorted(((str(root), '<repo>'), (str(Path.home()), '<home>'),
+                               (sys.executable, Path(sys.executable).name)), key=lambda x: -len(x[0])):
+        text = text.replace(path, label)
+    return text
+
+
 def main():
     root=Path(__file__).resolve().parents[1];out=root/'verification/reports';out.mkdir(exist_ok=True)
     receipt=out/'engineering.json';receipt.unlink(missing_ok=True)
@@ -55,18 +68,18 @@ def main():
     # failure that did not happen, which is the one thing this gate must never do.
     for name,cmd in steps:
         result=subprocess.run(cmd,cwd=root,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=600)
-        (out/f'{name}.log').write_text(result.stdout);commands[name]={'argv':cmd,'exit':result.returncode}
+        (out/f'{name}.log').write_text(public_log(result.stdout, root));commands[name]={'argv':public_argv(cmd),'exit':result.returncode}
         print(result.stdout[-1800:])
         if result.returncode:return result.returncode
     artifact=root/'dist/index.html';a=hashlib.sha256(artifact.read_bytes()).hexdigest();pages=delivery_artifacts(root)
     result=subprocess.run(['npm','run','build'],cwd=root,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=120)
-    (out/'repeat-build.log').write_text(result.stdout)
+    (out/'repeat-build.log').write_text(public_log(result.stdout, root))
     if result.returncode:return result.returncode
     b=hashlib.sha256(artifact.read_bytes()).hexdigest()
     if a!=b or pages!=delivery_artifacts(root):print('FAIL: nondeterministic build');return 1
     old=root/'tests/browser-results.json';old.unlink(missing_ok=True)
     result=subprocess.run([sys.executable,'tests/browser.test.py'],cwd=root,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=600)
-    (out/'browser.log').write_text(result.stdout);commands['browser']={'argv':[sys.executable,'tests/browser.test.py'],'exit':result.returncode};print(result.stdout)
+    (out/'browser.log').write_text(public_log(result.stdout, root));commands['browser']={'argv':public_argv([sys.executable,'tests/browser.test.py']),'exit':result.returncode};print(result.stdout)
     if result.returncode:return result.returncode
     browser=loads(old.read_text())
     if any(browser.get(k)!=0 for k in ('geometry_defects','runtime_errors','external_runtime_requests')):return 1

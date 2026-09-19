@@ -560,6 +560,13 @@ And the real page, so the negatives above are not tests of a probe nothing runs.
 test_unscoped_headers_are_caught_in_both_directions (test_presentations.ProseProbeTests.test_unscoped_headers_are_caught_in_both_directions) ... ok
 test_a_scenario_claiming_certification_is_rejected (test_presentations.ScenarioSchemaTests.test_a_scenario_claiming_certification_is_rejected) ... ok
 test_schema_exists_and_accepts_a_real_export (test_presentations.ScenarioSchemaTests.test_schema_exists_and_accepts_a_real_export) ... ok
+test_archive_excludes_history_and_ignored_files_and_normalizes_ownership (test_publication_privacy.PrivacyTests.test_archive_excludes_history_and_ignored_files_and_normalizes_ownership) ... ok
+test_argv_preserves_arguments_without_publishing_interpreter_path (test_publication_privacy.PrivacyTests.test_argv_preserves_arguments_without_publishing_interpreter_path) ... ok
+test_current_public_files_are_clean (test_publication_privacy.PrivacyTests.test_current_public_files_are_clean) ... ok
+test_detects_identifiers_without_echoing_them (test_publication_privacy.PrivacyTests.test_detects_identifiers_without_echoing_them) ... ok
+test_log_paths_are_removed_without_changing_test_results (test_publication_privacy.PrivacyTests.test_log_paths_are_removed_without_changing_test_results) ... ok
+test_private_capture_is_rejected_even_without_recognized_text (test_publication_privacy.PrivacyTests.test_private_capture_is_rejected_even_without_recognized_text) ... ok
+test_versions_and_loopback_are_not_machine_identity (test_publication_privacy.PrivacyTests.test_versions_and_loopback_are_not_machine_identity) ... ok
 test_accounting_report_is_current_and_classified (test_reported_numbers.AccountingNumberTests.test_accounting_report_is_current_and_classified) ... ok
 test_blocked_total_is_current (test_reported_numbers.PublicationNumberTests.test_blocked_total_is_current) ... ok
 test_claim_anchor_count_is_current (test_reported_numbers.PublicationNumberTests.test_claim_anchor_count_is_current) ... ok
@@ -667,12 +674,7 @@ Without this, every demotion assertion below would be trivially true. ... ok
 test_the_role_pass_demotes_a_claim_that_had_already_reached_pass (test_runner_order.VerifiedDependencyTests.test_the_role_pass_demotes_a_claim_that_had_already_reached_pass)
 scene.x.b has no evidence of its own and its only input is a vendor document, so the ... ok
 test_unresolvable_anchors_block_the_input_claim (test_runner_order.VerifiedDependencyTests.test_unresolvable_anchors_block_the_input_claim) ... ok
-test_each_binds_the_contract_record_it_attests (test_runtime_binding.CapturedHardwareTests.test_each_binds_the_contract_record_it_attests) ... ok
-test_each_binds_the_current_hardware_data_model (test_runtime_binding.CapturedHardwareTests.test_each_binds_the_current_hardware_data_model) ... ok
-test_each_carried_hardware_digest_re_derives_from_the_capture (test_runtime_binding.CapturedHardwareTests.test_each_carried_hardware_digest_re_derives_from_the_capture) ... ok
-test_each_names_the_hardware_record_it_rests_on (test_runtime_binding.CapturedHardwareTests.test_each_names_the_hardware_record_it_rests_on) ... ok
-test_no_accepted_receipt_rests_on_a_fixture_capture (test_runtime_binding.CapturedHardwareTests.test_no_accepted_receipt_rests_on_a_fixture_capture) ... ok
-test_the_repository_carries_accepted_hardware_receipts_to_check (test_runtime_binding.CapturedHardwareTests.test_the_repository_carries_accepted_hardware_receipts_to_check) ... ok
+setUpClass (test_runtime_binding.CapturedHardwareTests) ... skipped 'Public distribution withholds private hardware receipts; binding logic is tested with isolated fixtures'
 test_a_behavioural_receipt_with_a_stale_consumer_digest_still_fails (test_runtime_binding.RuntimeBindingTests.test_a_behavioural_receipt_with_a_stale_consumer_digest_still_fails) ... ok
 test_a_behavioural_receipt_with_a_stale_lock_still_fails (test_runtime_binding.RuntimeBindingTests.test_a_behavioural_receipt_with_a_stale_lock_still_fails) ... ok
 test_a_changed_contract_record_fails_the_receipt (test_runtime_binding.RuntimeBindingTests.test_a_changed_contract_record_fails_the_receipt) ... ok
@@ -748,6 +750,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 615 tests in 162.711s
+Ran 616 tests in 152.865s
 
-OK (skipped=9)
+OK (skipped=10)

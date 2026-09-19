@@ -17,7 +17,9 @@
     "verify:runtime": "uv run --frozen python -m verification.runner --profile runtime",
     "verify:sources": "uv run --frozen python -m verification.sources acquire",
     "capture": "uv run --frozen python tests/capture.py",
-    "verify:accounting": "uv run --frozen python -m verification.accounting"
+    "verify:accounting": "uv run --frozen python -m verification.accounting",
+    "verify:privacy": "uv run --frozen python -m verification.privacy",
+    "package:public": "uv run --frozen python tools/export-public.py"
   },
   "engines": {
     "node": ">=20"

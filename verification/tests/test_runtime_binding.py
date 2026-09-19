@@ -10,13 +10,15 @@ Every other obligation attests what our own code DOES, and keeps binding the loc
 consumer inventory exactly as before. The tests below are written in both directions on
 purpose: the relaxation is only safe if it cannot leak into the behavioural set.
 """
-import copy,subprocess,unittest
+import copy,subprocess,unittest,json,tempfile,hashlib
+from unittest.mock import patch
 from datetime import datetime,timezone
 from pathlib import Path
 
 from verification import hardware
 from verification.evidence import loads
 from verification.runner import audit,contract_sha256
+from verification.tests.test_hardware import probe,FIXTURES
 
 ROOT=Path(__file__).resolve().parents[2]
 NOW=datetime.now(timezone.utc).isoformat()
@@ -25,11 +27,30 @@ NOW=datetime.now(timezone.utc).isoformat()
 class RuntimeBindingTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
-  cls.root=ROOT
+  cls.directory=tempfile.TemporaryDirectory(prefix="stratum-runtime-test-")
+  cls.addClassCleanup(cls.directory.cleanup)
+  cls.root=Path(cls.directory.name)
   cls.target=loads((ROOT/'verification/manifests/observatory.json').read_text())
   cls.catalog=loads((ROOT/'verification/manifests/sources.json').read_text())
   cls.inv=loads(subprocess.run(['node','tools/export-verification.mjs'],cwd=ROOT,capture_output=True,text=True,check=True).stdout)
-  cls.accepted=loads((ROOT/'verification/manifests/runtime.json').read_text())
+  # Synthetic captures live only in a temporary test root, never in accepted evidence.
+  captured=probe.build_record(FIXTURES/'probe-baseline')
+  dest=cls.root/cls.HARDWARE_ARTIFACT;dest.parent.mkdir(parents=True)
+  dest.write_text(json.dumps(captured))
+  contract=next(c for c in cls.target['contracts'] if c['id']=='gpu.H100-SXM')
+  record=copy.deepcopy(contract['record'])
+  record_path=dest.with_name('record.json');record_path.write_text(json.dumps(record))
+  obligation=next(o for o in cls.target['runtime_obligations'] if o['id']=='runtime.gpu.H100-SXM')
+  cls.accepted={'runtime.gpu.H100-SXM':{
+   'executed_at':NOW,'exit_code':0,'lock_sha256':'0'*64,'consumer_sha256':'1'*64,
+   'record':record,'record_artifact':{'path':str(record_path.relative_to(cls.root)),'pointer':''},
+   'environment':{k:{'value':'synthetic-test-value','method':'fixture'} for k in obligation['environment']},
+   'artifacts':[{'path':str(p.relative_to(cls.root)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest()}
+                for p in (dest,record_path)]}}
+  # Only this isolated audit accepts fixture-marked captures. The production loader still
+  # rejects them, covered independently by FixtureBoundaryTests.
+  loader=patch('verification.runner.load_hardware',side_effect=lambda p:hardware.load(p,allow_fixtures=True))
+  loader.start();cls.addClassCleanup(loader.stop)
 
  # -- helpers ------------------------------------------------------------------------------
  def findings(self,runtime,*,target=None,inv=None,subject=None):
@@ -42,21 +63,16 @@ class RuntimeBindingTests(unittest.TestCase):
  def contract(self,target,cid):
   return next(c for c in target['contracts'] if c['id']==cid)
 
- HARDWARE_ARTIFACT='evidence/runtime/gpu.H100-SXM/hardware.json'
+ HARDWARE_ARTIFACT='synthetic/hardware.json'
 
  def hardware_receipt(self,*,target=None,inv=None,**over):
-  """The accepted H100 receipt, with every binding field restated from the current bytes.
-
-  Based on the real receipt so its artifacts, digests and record all still check out. The
-  binding fields are recomputed rather than trusted so that a test which edits the manifest,
-  the inventory or the data model measures the rule it names and not a stale digest.
-  """
+  """Bind a synthetic test receipt to the current contract and fixture bytes."""
   target=target or self.target;inv=inv or self.inv
   r=copy.deepcopy(self.accepted['runtime.gpu.H100-SXM'])
   r['probe_schema_sha256']=hardware.schema_sha256()
   r['contract_sha256']=contract_sha256(self.contract(target,'gpu.H100-SXM'),inv.get('fields',{}))
   r['hardware_artifact']={'path':self.HARDWARE_ARTIFACT}
-  r['hardware_sha256']=hardware.load(ROOT/self.HARDWARE_ARTIFACT)['hardware_sha256']
+  r['hardware_sha256']=hardware.load(self.root/self.HARDWARE_ARTIFACT,allow_fixtures=True)['hardware_sha256']
   r.update(over)
   return {'runtime.gpu.H100-SXM':r}
 
@@ -178,10 +194,10 @@ class RuntimeBindingTests(unittest.TestCase):
 
  def test_a_hardware_record_that_is_not_a_valid_capture_fails(self):
   import json,tempfile
-  broken=json.loads((ROOT/self.HARDWARE_ARTIFACT).read_text())
+  broken=json.loads((self.root/self.HARDWARE_ARTIFACT).read_text())
   broken['attested']['kernel']={'release':'6.6.0-never-probed','sources':['kernel.txt']}
-  path=ROOT/'verification/candidates/broken-hardware.json'
-  path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(broken))
+  path=self.root/'verification/candidates/broken-hardware.json'
+  path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(broken))
   try:
    r=self.hardware_receipt(hardware_artifact={'path':'verification/candidates/broken-hardware.json'})
    r['runtime.gpu.H100-SXM']['artifacts'].append(
@@ -262,6 +278,8 @@ class CapturedHardwareTests(unittest.TestCase):
   cls.target=loads((ROOT/'verification/manifests/observatory.json').read_text())
   cls.accepted=loads((ROOT/'verification/manifests/runtime.json').read_text())
   cls.inv=loads(subprocess.run(['node','tools/export-verification.mjs'],cwd=ROOT,capture_output=True,text=True,check=True).stdout)
+  if not cls.accepted:
+   raise unittest.SkipTest('Public distribution withholds private hardware receipts; binding logic is tested with isolated fixtures')
 
  def receipts(self):
   return [(o,self.accepted[o['id']]) for o in self.target['runtime_obligations']
