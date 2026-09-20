@@ -4,7 +4,7 @@ export const DEFAULT_STATE={model:'ds3',view:'model',stage:'block',layer:4,hardw
 export function getModel(id){if(typeof id==='object'&&id?.id)return id;const m=MODELS[id];if(!m)throw new RangeError(`Unknown model: ${id}`);return m;}
 export function sanitizeState(input={}){
  const s={...DEFAULT_STATE};
- const choices={model:Object.keys(MODELS),compare:Object.keys(MODELS),view:VIEWS,hardware:Object.keys(HARDWARE),stage:['block','inputs','residual','ple','ced'],placement:['split','colocated'],trainMode:['fsdp','ddp','rl'],traffic:['expert','allreduce','handoff'],fabric:['ib','roce'],library:['nccl','nvshmem','nixl'],theme:['dark','light'],detail:['shapes','operators'],phase:['prefill','decode']};
+ const choices={model:Object.keys(MODELS),compare:Object.keys(MODELS),view:VIEWS,hardware:Object.keys(HARDWARE),stage:['block',...new Set(Object.keys(MODELS).flatMap(focalStages))],placement:['split','colocated'],trainMode:['fsdp','ddp','rl'],traffic:['expert','allreduce','handoff'],fabric:['ib','roce'],library:['nccl','nvshmem','nixl'],theme:['dark','light'],detail:['shapes','operators'],phase:['prefill','decode']};
  for(const [k,opts]of Object.entries(choices))if(opts.includes(input[k]))s[k]=input[k];
  const numeric={context:[1,1048576],batch:[1,256],ranks:[1,4096],utilization:[1,100],oversub:[1,16],intensity:[1,2048],layer:[1,MODELS[s.model].layers]};
  for(const[k,[lo,hi]]of Object.entries(numeric)){const x=Number(input[k]);if(Number.isFinite(x)&&x>=lo)s[k]=Math.min(hi,Math.floor(x));}
@@ -33,7 +33,7 @@ export function sanitizeState(input={}){
  * other side -- `tests/capture.py` and `verification/presentations.py` each read the stage list
  * and then threw it away for the literal `'ced'`, so the mHC residual page was depicted in no
  * preview and measured by the presentations gate in no state. */
-export function focalStages(id){const m=getModel(id),out=[];if(m.vision)out.push('inputs');if(m.residual!=='standard')out.push('residual');if(m.pleLayers.length)out.push('ple');if(m.encoderLayers)out.push('ced');return out;}
+export function focalStages(id){const m=getModel(id),out=[];if(m.vision)out.push('inputs');if(m.residual!=='standard')out.push('residual');if(m.pleLayers.length)out.push('ple');if(m.encoderLayers)out.push('ced');if(m.architecture==='ced-csa2')out.push('encoder','decoder','engram','csa2','dspark');return out;}
 export function layerKind(id,layer){const m=getModel(id);if(!Number.isInteger(layer)||layer<1||layer>m.layers)throw new RangeError('Layer is one-indexed and must exist.');if(m.architecture==='ced-csa2'){const l=layer-1;if(l<m.swaLayers)return'swa';if(m.kvSourceLayers.includes(l))return'csa2-full';if(m.indexSourceLayers.includes(l))return'csa2-reindex';return'csa2-reuse';}if(m.architecture==='hybrid-kda')return layer%4===0||layer===m.layers?'mla':'kda';if(m.architecture.startsWith('hybrid'))return layer%m.globalEvery===0?(m.architecture==='hybrid-qsa'?'qsa':'gqa'):'delta';return m.architecture;}
 export function layerPartition(id){const m=getModel(id),r={mla:0,gqa:0,kda:0,delta:0,qsa:0,swa:0,'csa2-full':0,'csa2-reindex':0,'csa2-reuse':0};for(let l=1;l<=m.layers;l++)r[layerKind(m,l)]++;return r;}
 export function ffnKind(id,layer){const m=getModel(id);return !m.experts||layer<=m.denseLayers?'dense':m.latent?'latent-moe':'moe';}

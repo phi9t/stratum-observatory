@@ -1,8 +1,8 @@
 # Schematics — PASS
 
-Generated: 2026-09-20T03:28:27.177132+00:00
+Generated: 2026-09-20T04:16:43.495916+00:00
 
-757 scenes, including 544 decoder layers.
+762 scenes, including 544 decoder layers.
 
 The scene IR is checked against core.mjs. A collision-free picture is not proof that the depicted mathematics is right.
 
@@ -36,18 +36,18 @@ The scene IR is checked against core.mjs. A collision-free picture is not proof 
 | ENGRAM_HASH_COLUMNS | 1 |
 | ENGRAM_LAYER_BOUNDS | 1 |
 | ENGRAM_TOTAL_DERIVATION | 1 |
-| IR_OK | 757 |
+| IR_OK | 762 |
 | KV_BOUNDED_INVARIANT | 9 |
 | KV_BUDGET_DISAGREEMENT | 1 |
 | KV_INDEXER_DISAGREEMENT | 1 |
 | KV_RESIDUAL_IMPLAUSIBLE | 1 |
 | KV_TOTAL_DISAGREEMENT | 1 |
-| LANE_OK | 757 |
+| LANE_OK | 762 |
 | MHC_COEFF_COUNT | 1 |
 | MHC_OK | 40 |
-| MHC_SKIP | 25 |
+| MHC_SKIP | 30 |
 | PARAM_BAND_RATIO | 1 |
-| RAIL_OK | 757 |
+| RAIL_OK | 762 |
 | ROW_OK | 1 |
 | SCENE_MODEL_OK | 544 |
-| SCENE_MODEL_SKIP | 213 |
+| SCENE_MODEL_SKIP | 218 |

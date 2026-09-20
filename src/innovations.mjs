@@ -52,7 +52,7 @@ export const INNOVATIONS=[
 
  {id:'dspark',title:'DSpark speculative decoding',
   replaces:'A single accepted token per target forward pass',
-  mechanism:'A draft head re-runs the last decoder layers over a fixed block of future positions, routed through its own small expert set rather than the backbone\'s. The target then verifies the whole block in a single pass, so an accepted draft costs no additional target forward. Its parameter count is unpublished, so it is excluded from the calculated backbone rather than guessed at.',
+  mechanism:'Draft-specific blocks consume captured attention inputs from late target layers and use their own expert routing to propose future tokens. The report describes confidence-scheduled target verification; the inspected publisher code provides draft forward but no complete acceptance coordinator. Draft parameters are unpublished and excluded from calculated backbone totals.',
   effect:m=>`${m.dsparkBlock}-token draft blocks · ${m.dsparkTopK} of ${m.dsparkExperts} draft experts per token · ${m.dsparkTargets.length} target layers`,
   sources:['dsv41-code','dsv41-report','dsv41-card']},
 

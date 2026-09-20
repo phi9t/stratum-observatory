@@ -57,7 +57,7 @@ test('every focal stage has exactly one builder, and an unoffered page throws ra
  // generated `<mid>/model/ple/4`, buildScene fell through to buildModel, and a signature
  // labelled as one page was baselined on another.
  const offered=new Set(Object.keys(MODELS).flatMap(id=>focalStages(id)));
- assert.deepEqual([...offered].sort(),['ced','inputs','ple','residual'],'every focal stage a model offers');
+ assert.deepEqual([...offered].sort(),['ced','csa2','decoder','dspark','encoder','engram','inputs','ple','residual'],'every focal stage a model offers');
  for(const id of Object.keys(MODELS)){
   const stages=focalStages(id);
   assert.deepEqual(stages,[...new Set(stages)],`${id} lists a stage twice`);

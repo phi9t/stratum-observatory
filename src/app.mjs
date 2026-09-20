@@ -1,6 +1,7 @@
 import {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DEFAULT_STATE,sanitizeState,getModel,focalStages,layerKind,layerPartition,ffnKind,parameterLedger,cacheLedger,servingLedger,trainingLedger,networkLedger,roofline,formatNum,formatParams,formatBytes,formatTime,evidenceSummary,accountingAssumptions} from './core.mjs';
 import {buildScene} from './diagrams.mjs';
 import {structuralReport} from './scene.mjs';
+import {chapterContent,DEEP_DIVE_TITLES} from './deepdives.mjs';
 import {innovationRows} from './innovations.mjs';
 import {PAGES,MODEL_VIEWS,pageForModel,pageForView,pageHref,sectionHref} from './pages.mjs';
 const $=id=>document.getElementById(id),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -32,10 +33,11 @@ function controls(){let html='',s=state,m=getModel(s.model);const context=()=>se
   // Which pages exist is `core.focalStages`; only the labels are the UI's business. The literal
   // this replaces gated the N-gram tab on `m.id==='q38flash'` while three gates derived the same
   // page from `pleLayers`, so the two predicates agreed only by today's coincidence.
-  const STAGE_LABEL={block:'Decoder block',inputs:'Inputs',residual:'Residual',ple:'N-gram memory',ced:'Encoder / decoder'};
-  const stageOrder=pageInfo?.stage==='ced'?['ced','block',...focalStages(m).filter(k=>k!=='ced')]:['block',...focalStages(m)];
+  const STAGE_LABEL={block:'Decoder block',inputs:'Inputs',residual:'Residual',ple:'N-gram memory',ced:'Overview',...DEEP_DIVE_TITLES};
+  const stageOrder=pageInfo?.stage==='ced'?['ced',...focalStages(m).filter(k=>DEEP_DIVE_TITLES[k]),'block',...focalStages(m).filter(k=>k!=='ced'&&!DEEP_DIVE_TITLES[k])]:['block',...focalStages(m)];
   const stages=stageOrder.map(k=>[k,STAGE_LABEL[k]]);html+=segments('stage','Focus',stages);
-  if(s.stage==='block'){html+=selectControl('layer','Decoder layer',Array.from({length:m.layers},(_,i)=>[i+1,`${String(i+1).padStart(2,'0')} · ${layerKind(m,i+1).toUpperCase()} · ${ffnKind(m,i+1)==='dense'?'dense':'MoE'}`]));html+=segments('detail','Edge labels',[['shapes','Tensor shapes'],['operators','Compact']]);}
+  if(['block','csa2'].includes(s.stage)){html+=selectControl('layer','Decoder layer',Array.from({length:m.layers},(_,i)=>[i+1,`${String(i+1).padStart(2,'0')} · ${layerKind(m,i+1).toUpperCase()} · ${ffnKind(m,i+1)==='dense'?'dense':'MoE'}`]));if(s.stage==='block')html+=segments('detail','Edge labels',[['shapes','Tensor shapes'],['operators','Compact']]);}
+  if(s.stage==='csa2')html+=context()+batch();
  }else if(s.view==='compare')html+=selectControl('compare','Compare against',modelValues())+context()+batch()+kv();
  else if(s.view==='training')html+=segments('trainMode','Scenario',[['fsdp','Fully sharded'],['ddp','Replicated DP'],['rl','Actor–learner']])+ranks()+hw();
  else if(s.view==='serving')html+=(m.encoderLayers?segments('phase','Phase scenario',[['prefill','Prefill'],['decode','Decode']]):'')+segments('placement','Execution pools',[['split','Prefill / decode split'],['colocated','Colocated']])+context()+batch()+kv()+selectControl('weightBytes','Weight element',[[2,'2 bytes'],[1,'1 byte · assumption'],[4,'4 bytes']])+ranks()+hw();
@@ -63,7 +65,7 @@ function render(){
  renderScene();renderInspector();renderAnalysis();renderPrinciples();
  $('scene-caption').textContent=scene.caption;$('trace-button').setAttribute('aria-pressed',String(state.trace));$('trace-button').textContent=state.trace?'Clear trace':'Trace dependencies';
  $('scene-legend').innerHTML='<span><i class="legend-dot"></i>Computation / selection</span><span><i class="legend-dot state"></i>Retained state</span><span><i class="legend-dot comm"></i>Communication</span><span><i class="legend-dot neutral"></i>Logical dependency</span>';
- applyZoom();document.title=pageInfo?.view?`${pageInfo.title} — STRATUM`:`${m.name} · ${VIEW_NAMES[state.view]} — STRATUM`;
+ applyZoom();document.title=pageInfo?.view?`${pageInfo.title} — STRATUM`:`${m.name} · ${state.view==='model'&&DEEP_DIVE_TITLES[state.stage]||VIEW_NAMES[state.view]} — STRATUM`;
 }
 function traceSet(){const nodes=new Set(selected?[selected]:[]),edges=new Set();if(state.trace&&selected){let queue=[selected];while(queue.length){const id=queue.shift();for(const e of scene.edges)if(e.target===id){edges.add(e.id);if(e.source&&!nodes.has(e.source)){nodes.add(e.source);queue.push(e.source);}}}}return{nodes,edges};}
 function renderScene(){const tr=traceSet();const markers=['flow','state','residual','comm','control','delay','host','nvlink','inactive'].map(k=>`<marker id="arrow-${k}" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 8 4 L 0 8 Z" style="fill:${k==='comm'?'var(--purple)':k==='state'||k==='delay'?'var(--amber)':'var(--wire)'}"/></marker>`).join('');
@@ -97,7 +99,10 @@ function innovationCoverage(){const rows=innovationRows(getModel(state.model));
   +`<p class="innovation-note">Each row names what the mechanism replaces, how it works, and its derived consequence. Every figure in <em>Derived effect</em> is computed from the model table by the same ledgers behind the schematics, so none of them is a literal on this page and none can drift from the architecture it describes. Every row links the implementation or report bytes it is read from. A link is provenance, not acceptance: the scientific publication gate remains BLOCKED and no figure here is certified.</p>`
   +`<div class="table-scroll"><table class="comparison-table innovation-table"><thead><tr><th scope="col">Innovation</th><th scope="col">Replaces</th><th scope="col">Mechanism</th><th scope="col">Derived effect</th><th scope="col">Evidence</th></tr></thead><tbody>${rows.map(r=>`<tr><th scope="row" class="innovation-name">${esc(r.title)}</th><td>${esc(r.replaces)}</td><td>${esc(r.mechanism)}</td><td class="innovation-effect">${esc(r.effect)}</td><td class="innovation-evidence">${r.sources.map(citation).join('')}</td></tr>`).join('')}</tbody></table></div>`;}
 function renderAnalysis(){const m=getModel(state.model),h=HARDWARE[state.hardware],cache=cacheLedger(m,state),params=parameterLedger(m);let html='';
- if(['model','compare'].includes(state.view)){
+ const chapter=state.view==='model'?chapterContent(m,state):null;
+ if(chapter){
+  html=analysisHeader(chapter.title,chapter.summary)+`<div class="analysis-split"><div class="analysis-copy"><h4>Worked trace</h4>${chapter.trace.map(([title,body])=>`<p><strong>${esc(title)}.</strong> ${esc(body)}</p>`).join('')}</div><div class="analysis-copy"><h4>Evidence boundary</h4><p>${esc(chapter.caveat)}</p><p>${esc(chapter.scope)}</p><h4>Source anchors</h4><p>${chapter.anchors.map(esc).join(' · ')}</p><p>${chapter.sources.map(citation).join(' · ')}</p></div></div><div class="table-scroll"><table class="comparison-table"><thead><tr><th scope="col">Object</th><th scope="col">Shape / quantity</th><th scope="col">Ownership / meaning</th></tr></thead><tbody>${chapter.rows.map(([label,value,owner])=>`<tr><th scope="row">${esc(label)}</th><td>${esc(value)}</td><td>${esc(owner)}</td></tr>`).join('')}</tbody></table></div><p class="innovation-note">${esc(chapter.symbols)}</p>`;
+ }else if(['model','compare'].includes(state.view)){
   html=analysisHeader('Mechanism → state growth','Same batch and element sizes · logical payload, not measured allocation');
   html+=`<div class="analysis-split"><div class="chart-box">${stateChart(state.model,state.compare)}<p class="chart-caption">Select a point to change context. Values beyond a checkpoint’s native context are accounting extrapolations, not validated context extension. Auxiliary state exclusions remain in effect.</p></div><div class="analysis-copy"><span class="eyebrow">THE STRUCTURAL CONSEQUENCE</span><h4>${cache.linear?'Fixed current state does not mean stateless.':'Every new token extends global history.'}</h4><p>${cache.linear?'Recurrent attention retains a current matrix and convolution history per sequence. Global layers still retain token history. Branching, prefix snapshots and auxiliary n-gram state add separate storage obligations.':'MLA and GQA compress different axes: MLA retains a content latent plus a shared key; GQA reduces the number of KV heads. Neither makes autoregressive history independent of sequence length.'}</p><pre>${esc(cache.formula)}\n+ ${cache.linear?'current recurrent / convolution state':'no recurrent matrix'}${cache.indexer?'\n+ compressed index keys':''}</pre><p>${esc(params.scope)}</p></div></div>`;
   if(state.view==='compare')html+=comparisonTable();

@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {PAGES} from './src/pages.mjs';
 import {landingHTML,dataHTML} from './src/landing.mjs';
-const files=['models','core','scene','diagram-model','diagram-systems','diagram-meta','diagrams','innovations','pages','app'];
+const files=['models','core','scene','diagram-model','diagram-systems','diagram-meta','deepdives','diagram-deepdives','diagrams','innovations','pages','app'];
 const modules=[];
 for(const name of files){let code=fs.readFileSync(`src/${name}.mjs`,'utf8');const exports=new Set();
  code=code.replace(/^import\s*\{([^}]+)\}\s*from\s*['"]\.\/([^'"]+)['"];?\s*$/gm,(_,names,dep)=>`const {${names.replace(/\s+as\s+/g,':')}} = __modules[${JSON.stringify(dep)}];`);

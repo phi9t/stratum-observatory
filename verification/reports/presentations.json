@@ -1,8 +1,8 @@
 {
   "schema": "stratum-presentations/v1",
   "status": "PASS",
-  "generated_at": "2026-09-20T03:33:46.007630+00:00",
-  "artifact_sha256": "b4c050bf9e6a73021c506f29cca4e4d02089b871f2e8f8b3ecee1925e5d8e868",
+  "generated_at": "2026-09-20T04:21:01.165952+00:00",
+  "artifact_sha256": "93841c168277a625a852edbdba0d3d77f6a4aa3059742801e380732cbd3de446",
   "delivery": {
     "models": [
       "ds2",
@@ -21,6 +21,11 @@
       "dsv41/inputs",
       "dsv41/residual",
       "dsv41/ced",
+      "dsv41/encoder",
+      "dsv41/decoder",
+      "dsv41/engram",
+      "dsv41/csa2",
+      "dsv41/dspark",
       "kimi3/inputs",
       "kimi3/residual",
       "q3827/inputs",
@@ -91,7 +96,7 @@
     }
   },
   "counts": {
-    "PASS": 82
+    "PASS": 88
   },
   "findings": [
     {
@@ -99,7 +104,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "foundations.html",
-      "message": "226 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "message": "256 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -126,7 +131,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "qwen3.8.html",
-      "message": "226 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "message": "256 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -135,7 +140,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "kimi-k3.html",
-      "message": "226 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "message": "256 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -144,7 +149,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "deepseek-v4.1.html",
-      "message": "226 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "message": "256 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -153,7 +158,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "hardware.html",
-      "message": "226 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "message": "256 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -162,7 +167,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "networking.html",
-      "message": "226 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "message": "256 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -171,7 +176,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "33 captures match the built artifacts.",
+      "message": "38 captures match the built artifacts.",
       "remedy": "",
       "evidence": []
     },
@@ -189,7 +194,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "All 9 checkpoints appear in the 33 published previews, including every one of the 9 focal pages they offer.",
+      "message": "All 9 checkpoints appear in the 38 published previews, including every one of the 14 focal pages they offer.",
       "remedy": "",
       "evidence": []
     },
@@ -198,7 +203,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "30 published SVG previews each hash to the digest the manifest records.",
+      "message": "35 published SVG previews each hash to the digest the manifest records.",
       "remedy": "",
       "evidence": []
     },
@@ -207,7 +212,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "Every one of the 33 published preview files is named by a capture record.",
+      "message": "Every one of the 38 published preview files is named by a capture record.",
       "remedy": "",
       "evidence": []
     },
@@ -279,7 +284,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/inputs",
-      "message": "10 headings ordered, 47 controls named, 0 table(s) with scoped headers over 0 rows, 10 citations named.",
+      "message": "10 headings ordered, 52 controls named, 0 table(s) with scoped headers over 0 rows, 10 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -288,7 +293,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/residual",
-      "message": "11 headings ordered, 48 controls named, 0 table(s) with scoped headers over 0 rows, 10 citations named.",
+      "message": "11 headings ordered, 53 controls named, 0 table(s) with scoped headers over 0 rows, 10 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -297,7 +302,52 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/ced",
-      "message": "12 headings ordered, 80 controls named, 1 table(s) with scoped headers over 8 rows, 33 citations named.",
+      "message": "12 headings ordered, 85 controls named, 1 table(s) with scoped headers over 8 rows, 33 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/encoder",
+      "message": "12 headings ordered, 56 controls named, 1 table(s) with scoped headers over 4 rows, 13 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/decoder",
+      "message": "12 headings ordered, 55 controls named, 1 table(s) with scoped headers over 4 rows, 13 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/engram",
+      "message": "12 headings ordered, 53 controls named, 1 table(s) with scoped headers over 4 rows, 11 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/csa2",
+      "message": "12 headings ordered, 59 controls named, 1 table(s) with scoped headers over 4 rows, 13 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/dspark",
+      "message": "12 headings ordered, 55 controls named, 1 table(s) with scoped headers over 4 rows, 13 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -432,7 +482,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/dsv41/entry",
-      "message": "12 headings ordered, 80 controls named, 1 table(s) with scoped headers over 8 rows, 33 citations named.",
+      "message": "12 headings ordered, 85 controls named, 1 table(s) with scoped headers over 8 rows, 33 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -459,7 +509,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "states",
-      "message": "Measured 21 states from a real file:// origin: default, dsv41/inputs, dsv41/residual, dsv41/ced, kimi3/inputs, kimi3/residual, q3827/inputs, q38flash/inputs, q38flash/residual, q38flash/ple, foundations/ds2/entry, foundations/ds3/entry, foundations/q38/entry, foundations/q330/entry, foundations/q3235/entry, qwen38/q3827/entry, qwen38/q38flash/entry, kimi3/kimi3/entry, dsv41/dsv41/entry, hardware/ds3/entry, network/ds3/entry.",
+      "message": "Measured 26 states from a real file:// origin: default, dsv41/inputs, dsv41/residual, dsv41/ced, dsv41/encoder, dsv41/decoder, dsv41/engram, dsv41/csa2, dsv41/dspark, kimi3/inputs, kimi3/residual, q3827/inputs, q38flash/inputs, q38flash/residual, q38flash/ple, foundations/ds2/entry, foundations/ds3/entry, foundations/q38/entry, foundations/q330/entry, foundations/q3235/entry, qwen38/q3827/entry, qwen38/q38flash/entry, kimi3/kimi3/entry, dsv41/dsv41/entry, hardware/ds3/entry, network/ds3/entry.",
       "remedy": "",
       "evidence": []
     },
@@ -766,6 +816,15 @@
       "status": "PASS",
       "subject": "networking.html",
       "message": "Dedicated navigation honors reduced motion.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "DEEPDIVE_DELIVERY",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "V4.1",
+      "message": "Chapter navigation, reload, exports, mobile and live CSA2 controls passed.",
       "remedy": "",
       "evidence": []
     },

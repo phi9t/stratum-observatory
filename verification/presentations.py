@@ -549,6 +549,9 @@ def run(root):
         checks['accounting']={}
         from landing_page import exercise as exercise_landing
         exercise_landing(page,root)
+        from deepdive_navigation import exercise as exercise_deepdives
+        exercise_deepdives(page,root)
+        findings.append(_ok('DEEPDIVE_DELIVERY','V4.1','Chapter navigation, reload, exports, mobile and live CSA2 controls passed.'))
         findings.append(_ok('LANDING_DELIVERY','directory','Landing routes, offline guides, responsive layout, keyboard, print and reading contrast passed.'))
         for name in [p['file'] for p in page_inventory(root)]:
             accounting_page=browser.new_page(viewport={'width':1440,'height':1000})

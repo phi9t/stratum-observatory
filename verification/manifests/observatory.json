@@ -23011,7 +23011,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "function.focalStages",
-      "expected": "ff1e26ccf8f0f08005649897b0a38b4a34f321debed5b00a9cf5f2eac51de742",
+      "expected": "48b0d46619577824873a71725b459fa7555c10e202d501e87a30fc7bfe263571",
       "statement": "function.focalStages: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23059,7 +23059,16 @@
         "MODELS.dsv41.vision",
         "MODELS.dsv41.residual",
         "MODELS.dsv41.pleLayers",
-        "MODELS.dsv41.encoderLayers"
+        "MODELS.dsv41.encoderLayers",
+        "MODELS.ds2.architecture",
+        "MODELS.ds3.architecture",
+        "MODELS.q38.architecture",
+        "MODELS.q330.architecture",
+        "MODELS.q3235.architecture",
+        "MODELS.q3827.architecture",
+        "MODELS.q38flash.architecture",
+        "MODELS.kimi3.architecture",
+        "MODELS.dsv41.architecture"
       ]
     },
     {
@@ -23512,7 +23521,7 @@
       "domain": "model",
       "classification": "presentation",
       "consumer": "function.sanitizeState",
-      "expected": "c7db0d0b9b867fee17ecb1920601539250a35b4baf306a8d525a2c1322413cf0",
+      "expected": "21b5b77dc0ee76703c24c5e5955f64645f212f43e9cd9cbc0027f58996bf014b",
       "statement": "function.sanitizeState: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -23689,7 +23698,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/app.mjs",
-      "expected": "14ef4b901551c13f6131795fe53b58518f4663e26beadda6be79511ed8c96c3a",
+      "expected": "d7d231fc9b1b69803bc55bd5a1617661743f629ed6c39cf6c228ba32e8918ad6",
       "statement": "file.src/app.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23701,7 +23710,8 @@
         "MODELS.q3827.d",
         "MODELS.q38flash.d",
         "MODELS.kimi3.d",
-        "MODELS.dsv41.d"
+        "MODELS.dsv41.d",
+        "file.src/deepdives.mjs"
       ]
     },
     {
@@ -23709,7 +23719,7 @@
       "domain": "model",
       "classification": "derived",
       "consumer": "file.src/core.mjs",
-      "expected": "4ea9cb022c5038310c472ac7edd704f4c868981ffb6ca5dd1f854c1965816678",
+      "expected": "697daef7e0aa7726fd2cd8e0adc17b9d0e1dcf7caf50aae6deb869c27c029cca",
       "statement": "file.src/core.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -23837,7 +23847,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/diagrams.mjs",
-      "expected": "5b10095b7d0db346b9b38c349a22c6addc242705a25160f74b20515459354f88",
+      "expected": "dd692ae3f76f99d722eadb585baae1c0e8f27cc2893261a812dfcf2e1fcad301",
       "statement": "file.src/diagrams.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23849,7 +23859,8 @@
         "MODELS.q3827.d",
         "MODELS.q38flash.d",
         "MODELS.kimi3.d",
-        "MODELS.dsv41.d"
+        "MODELS.dsv41.d",
+        "file.src/diagram-deepdives.mjs"
       ]
     },
     {
@@ -23857,7 +23868,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/innovations.mjs",
-      "expected": "ede1c767085d4a7c27580535f89196984428b28d9455d4cec06a534d2b10e5af",
+      "expected": "17b7d734d8d892cbdea00d7460e571f7f5f8963a23134608311ddc2c89e82a91",
       "statement": "file.src/innovations.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23869,7 +23880,8 @@
         "MODELS.q3827.d",
         "MODELS.q38flash.d",
         "MODELS.kimi3.d",
-        "MODELS.dsv41.d"
+        "MODELS.dsv41.d",
+        "deepdive.dspark"
       ]
     },
     {
@@ -23877,7 +23889,7 @@
       "domain": "model",
       "classification": "derived",
       "consumer": "file.src/models.mjs",
-      "expected": "79115ed9fafbbd1e9891001f46dde1e0f1a3fb942c25028f415b49757d2d128b",
+      "expected": "897126c7bcb965a7a3b8e4e2bb0cd201b7a8d19749194a83e49a613ded20701a",
       "statement": "file.src/models.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -23941,7 +23953,7 @@
       "domain": "visualization",
       "classification": "presentation",
       "consumer": "file.src/styles.css",
-      "expected": "e27ab376a6bdebc4a9b059ff68d52197d4b7f278f86ada776ba89d63bd54b8ac",
+      "expected": "db3c92664c617af85034c4d7db71859b14bb11afde96d2c9d93973cb2b7f8845",
       "statement": "file.src/styles.css: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": []
@@ -23951,7 +23963,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.build.mjs",
-      "expected": "ad451e67a2244f3bc4b17d3da79a50c4aed0843ba77b2278711c1fc31ecdc8cc",
+      "expected": "afff7f25aea04c1233da78050a0ec1571c8f5fcdac81f135d9ef90bb2507a41c",
       "statement": "file.build.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23963,7 +23975,8 @@
         "MODELS.q3827.d",
         "MODELS.q38flash.d",
         "MODELS.kimi3.d",
-        "MODELS.dsv41.d"
+        "MODELS.dsv41.d",
+        "file.src/diagram-deepdives.mjs"
       ]
     },
     {
@@ -149942,6 +149955,1372 @@
         "data.topic.masking",
         "data.topic.storage",
         "file.src/models.mjs"
+      ]
+    },
+    {
+      "id": "deepdive.report-boundary",
+      "domain": "model",
+      "classification": "documented",
+      "statement": "V4.1 report sections 2.2 and 2.4.3: encoder-only prefill and dSpark load/profile-aware verification scheduling. Inspected pinned PDF identity in docs/research/DEEPSEEK_V41_DEEPDIVES.md. PDF selectors are unsupported by this verifier; source acceptance and independent review remain BLOCKED.",
+      "evidence": [],
+      "dependencies": []
+    },
+    {
+      "id": "deepdive.encoder",
+      "consumer": "deepdive.encoder",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "scope": "Source inspection and derived accounting; no measured throughput or runtime certification.",
+        "symbols": "B = sequences; T = token positions; residual copies, layer depth and token time are separate axes.",
+        "title": "Encoder: causal context becomes retained state",
+        "question": "What crosses the boundary from prompt processing into the decoder?",
+        "summary": "Follow the causal stack from embeddings to the residual-stream handoff. Cache ownership belongs to configured source layers; most layers read state that an earlier producer wrote.",
+        "trace": [
+          [
+            "Embed and expand",
+            "Token embeddings of width 5,120 expand into 4 residual copies. Engram contributes before layers 2, 15."
+          ],
+          [
+            "Process causal layers",
+            "Encoder layers 1\u201320 preserve causal visibility. The first 2 use only a 128-position window; later encoder source layers compress at ratio 2."
+          ],
+          [
+            "Publish and reuse",
+            "Encoder cache producers are layers 3, 9, 15. Reuse layers consume a prior selection; they do not rebuild the compressed cache."
+          ],
+          [
+            "Hand off",
+            "The residual [B, T, 4, 5,120] after layer 20 enters layer 21. No separate cross-attention module is inserted at this boundary."
+          ],
+          [
+            "Position trace \u00b7 illustrative input",
+            "For a text sequence [a, b, c], follow position 2 (zero-based). Its local attention can read positions 0\u20132, never a future position 3. That same position crosses encoder layers 1\u201320; the output residual at position 2 becomes the input at decoder layer 21. Layer depth does not advance token time."
+          ]
+        ],
+        "rows": [
+          [
+            "Input",
+            "Token IDs / embedded positions",
+            "Causal token order; image spans have their own input path"
+          ],
+          [
+            "Residual",
+            "[B, T, 4, 5,120]",
+            "Updated through depth; not a KV cache"
+          ],
+          [
+            "Compressed source",
+            "ratio 2 at encoder Full layers",
+            "Only configured producers write global cache"
+          ],
+          [
+            "Local window",
+            "128 positions per layer",
+            "Distinct from the compressed global history"
+          ]
+        ],
+        "caveat": "The model report describes encoder-only prefill. The inspected publisher Transformer.forward iterates the whole backbone. This chapter explains the architecture and labels that execution distinction; it does not certify the optimization.",
+        "sources": [
+          "dsv41-config",
+          "dsv41-code",
+          "dsv41-card",
+          "dsv41-report",
+          "dsv41-sglang"
+        ],
+        "anchors": [
+          "Transformer.forward",
+          "Block.forward",
+          "Attention._compress_kv",
+          "DeepseekV4Model._forward_layers_hc_pre_from_prev"
+        ],
+        "stage": "encoder"
+      },
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Transformer.forward",
+            "sha256": "ecffa476cb5c3a236955ad55060befca9e9d0b7a68163c9e97242bc0137145a5",
+            "resolved_span": [
+              1242,
+              1272
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Block.forward",
+            "sha256": "96a6886371ddf9631e2818d3270f3f721a98a8e48e2995dc5e9cd8238379adc6",
+            "resolved_span": [
+              968,
+              994
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Attention._compress_kv",
+            "sha256": "a641a6863a0ad781b68f587d3dd5fd6c98a9b9a70cd921babccde998e55823bc",
+            "resolved_span": [
+              739,
+              763
+            ]
+          },
+          "relation": "implements"
+        }
+      ],
+      "dependencies": [
+        "MODELS.dsv41.architecture",
+        "MODELS.dsv41.candidateBlockSize",
+        "MODELS.dsv41.candidateBlocks",
+        "MODELS.dsv41.candidateSource",
+        "MODELS.dsv41.compressDecoder",
+        "MODELS.dsv41.compressEncoder",
+        "MODELS.dsv41.d",
+        "MODELS.dsv41.dsparkBlock",
+        "MODELS.dsv41.dsparkExperts",
+        "MODELS.dsv41.dsparkTargets",
+        "MODELS.dsv41.dsparkTopK",
+        "MODELS.dsv41.encoderLayers",
+        "MODELS.dsv41.engramHeadDim",
+        "MODELS.dsv41.engramHeads",
+        "MODELS.dsv41.engramLayers",
+        "MODELS.dsv41.engramNgram",
+        "MODELS.dsv41.indexSourceLayers",
+        "MODELS.dsv41.indexerBudget",
+        "MODELS.dsv41.kvSourceLayers",
+        "MODELS.dsv41.mtp",
+        "MODELS.dsv41.streams",
+        "MODELS.dsv41.swaLayers",
+        "MODELS.dsv41.vocab",
+        "MODELS.dsv41.window",
+        "function.cacheLedger",
+        "function.parameterLedger",
+        "function.layerKind",
+        "deepdive.report-boundary"
+      ]
+    },
+    {
+      "id": "deepdive.decoder",
+      "consumer": "deepdive.decoder",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "scope": "Source inspection and derived accounting; no measured throughput or runtime certification.",
+        "symbols": "B = sequences; T = token positions; residual copies, layer depth and token time are separate axes.",
+        "title": "Decoder: read shared history, produce a token",
+        "question": "Which state is shared across depth, and which work is repeated?",
+        "summary": "The boundary layer projects compressed global state from the incoming encoder representation. Later decoder layers share that producer\u2019s cache while maintaining their own query computation and local window paths.",
+        "trace": [
+          [
+            "Receive the handoff",
+            "Layer 21 receives [B, T, 4, 5,120]; it is the boundary Full layer in this checkpoint."
+          ],
+          [
+            "Publish decoder state",
+            "Its compression ratio is 1. Later decoder readers consume that cache rather than projecting a new global cache from every layer\u2019s hidden state."
+          ],
+          [
+            "Select and attend",
+            "Decoder selecting layers 21, 25, 29, 33, 37 score or refresh selections. Reuse layers inherit selection. Each attention call combines local-window and selected compressed positions."
+          ],
+          [
+            "Produce logits",
+            "Residual collapse and normalization feed the vocabulary projection of width 129,280. Sampling follows the logits; dSpark reads captured attention inputs alongside this path."
+          ],
+          [
+            "Ownership trace \u00b7 checkpoint layers",
+            "At a fixed token position, layer 21 publishes the decoder global compressed state. Layer 22 reads that same producer state and inherited selection while computing its own query and local-window path. Advancing one layer does not append a new token to the shared global history."
+          ]
+        ],
+        "rows": [
+          [
+            "Boundary state",
+            "[B, T, 4, 5,120]",
+            "Encoder output enters first decoder layer"
+          ],
+          [
+            "Global producer",
+            "layer 21",
+            "Shared compressed KV ownership"
+          ],
+          [
+            "Local state",
+            "128-position window at each layer",
+            "Not made shared by global KV reuse"
+          ],
+          [
+            "Output logits",
+            "[B, 129,280] at the selected final position",
+            "Logits are not accepted speculative tokens"
+          ]
+        ],
+        "caveat": "The inspected SGLang reference offers optional bounded replay as a separate feature-gated serving path. The inspected extend path excludes speculative execution; its behavior must not be assumed to apply to dSpark verification.",
+        "sources": [
+          "dsv41-config",
+          "dsv41-code",
+          "dsv41-card",
+          "dsv41-report",
+          "dsv41-sglang"
+        ],
+        "anchors": [
+          "Attention._compress_kv",
+          "Attention.forward",
+          "Transformer.forward",
+          "DeepseekV4Model._forward_layers_hc_pre_from_prev"
+        ],
+        "stage": "decoder"
+      },
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Attention.forward",
+            "sha256": "5489aa384be2137703f2dc3f026f7b392e83ffee1d6653f17f2c627888e8cf75",
+            "resolved_span": [
+              765,
+              789
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Attention._compress_kv",
+            "sha256": "a641a6863a0ad781b68f587d3dd5fd6c98a9b9a70cd921babccde998e55823bc",
+            "resolved_span": [
+              739,
+              763
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Transformer.forward",
+            "sha256": "ecffa476cb5c3a236955ad55060befca9e9d0b7a68163c9e97242bc0137145a5",
+            "resolved_span": [
+              1242,
+              1272
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-sglang",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DeepseekV4Model._forward_layers_hc_pre_from_prev",
+            "sha256": "f10dc6eece7c4431e789eccf89480590b3148d5783b22d804730d7ddd4af8257",
+            "resolved_span": [
+              3614,
+              3739
+            ]
+          },
+          "relation": "implements"
+        }
+      ],
+      "dependencies": [
+        "MODELS.dsv41.architecture",
+        "MODELS.dsv41.candidateBlockSize",
+        "MODELS.dsv41.candidateBlocks",
+        "MODELS.dsv41.candidateSource",
+        "MODELS.dsv41.compressDecoder",
+        "MODELS.dsv41.compressEncoder",
+        "MODELS.dsv41.d",
+        "MODELS.dsv41.dsparkBlock",
+        "MODELS.dsv41.dsparkExperts",
+        "MODELS.dsv41.dsparkTargets",
+        "MODELS.dsv41.dsparkTopK",
+        "MODELS.dsv41.encoderLayers",
+        "MODELS.dsv41.engramHeadDim",
+        "MODELS.dsv41.engramHeads",
+        "MODELS.dsv41.engramLayers",
+        "MODELS.dsv41.engramNgram",
+        "MODELS.dsv41.indexSourceLayers",
+        "MODELS.dsv41.indexerBudget",
+        "MODELS.dsv41.kvSourceLayers",
+        "MODELS.dsv41.mtp",
+        "MODELS.dsv41.streams",
+        "MODELS.dsv41.swaLayers",
+        "MODELS.dsv41.vocab",
+        "MODELS.dsv41.window",
+        "function.cacheLedger",
+        "function.parameterLedger",
+        "function.layerKind"
+      ]
+    },
+    {
+      "id": "deepdive.engram",
+      "consumer": "deepdive.engram",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "scope": "Source inspection and derived accounting; no measured throughput or runtime certification.",
+        "symbols": "B = sequences; T = token positions; residual copies, layer depth and token time are separate axes.",
+        "title": "Engram: retrieve by token history, gate by context",
+        "question": "How do discrete lookup rows become a contextual residual update?",
+        "summary": "Token identities choose the rows. The current hidden state decides how strongly their values enter each residual copy. This is conditional learned memory, separate from the autoregressive KV cache and from expert routing.",
+        "trace": [
+          [
+            "Build causal n-grams",
+            "Normalized token IDs form orders 2\u20134. Sequence starts and dead/image tokens bound the lookback; image positions receive no contribution."
+          ],
+          [
+            "Hash and retrieve",
+            "3 orders \u00d7 8 heads = 24 lookups per site. Each row contributes 256 channels, yielding 6144 retrieved channels."
+          ],
+          [
+            "Project key and value",
+            "The retrieved vector projects to 25600 channels: a 5120-wide key for each residual copy and a shared 5120-wide value."
+          ],
+          [
+            "Gate and inject",
+            "Each residual copy computes a normalized content score against its key. A signed-square-root transform and sigmoid gate the shared value before residual addition at layers 2, 15."
+          ],
+          [
+            "Gate trace \u00b7 illustrative scalar channel",
+            "Suppose a valid text position retrieves rows that project to a shared value channel V = 2. For a residual copy with h = 3 and normalized content score 1, the signed-root score is 1, sigmoid is approximately 0.7311, and the updated channel is approximately 3 + 0.7311 \u00d7 2 = 4.4621. At a masked image position the gate is forced to 0, so that channel remains 3. These are illustrative values, not checkpoint outputs; hash IDs require the actual tokenizer and table layout."
+          ]
+        ],
+        "rows": [
+          [
+            "Hash IDs",
+            "[B, T, 24]",
+            "Token-history lookup identity"
+          ],
+          [
+            "Retrieved vectors",
+            "[B, T, 6144]",
+            "Concatenated hash-head embeddings"
+          ],
+          [
+            "Keys / value",
+            "[B, T, 4, 5,120] / [B, T, 5120]",
+            "Per-copy keys; shared value"
+          ],
+          [
+            "Table residency",
+            "196.6B parameters",
+            "Separate from backbone projections; not an access-bandwidth measurement"
+          ]
+        ],
+        "caveat": "Hash-row collisions are part of the lookup design. Table residency does not imply that every row is read for every token. Host/device placement and transfer cost require a particular serving implementation and measurements.",
+        "sources": [
+          "dsv41-config",
+          "dsv41-code",
+          "dsv41-engram",
+          "dsv41-card"
+        ],
+        "anchors": [
+          "EngramLayout",
+          "NgramHashState.forward",
+          "Engram.__init__",
+          "Engram.forward"
+        ],
+        "stage": "engram"
+      },
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Engram.forward",
+            "sha256": "9515a7d8f463d1598b6b1662749ab2c0e82d06f36ec6e6a24e897ad08061a28f",
+            "resolved_span": [
+              350,
+              365
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Engram.__init__",
+            "sha256": "4fba7bc0d85554e0d1a78540572b9b5b35447ff84c1a72c4ce14aa2638e6ad57",
+            "resolved_span": [
+              335,
+              348
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-engram",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "EngramLayout",
+            "sha256": "1f98a9793d1541624ef2cf5b581026d15c401f4e52c3ce6f76320f655e565321",
+            "resolved_span": [
+              87,
+              126
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-engram",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "NgramHashState.forward",
+            "sha256": "10be9fc70bcf3d75fb59c206bf2797e889e5beba5d1742356e9de22d79df8dcf",
+            "resolved_span": [
+              160,
+              184
+            ]
+          },
+          "relation": "implements"
+        }
+      ],
+      "dependencies": [
+        "MODELS.dsv41.architecture",
+        "MODELS.dsv41.candidateBlockSize",
+        "MODELS.dsv41.candidateBlocks",
+        "MODELS.dsv41.candidateSource",
+        "MODELS.dsv41.compressDecoder",
+        "MODELS.dsv41.compressEncoder",
+        "MODELS.dsv41.d",
+        "MODELS.dsv41.dsparkBlock",
+        "MODELS.dsv41.dsparkExperts",
+        "MODELS.dsv41.dsparkTargets",
+        "MODELS.dsv41.dsparkTopK",
+        "MODELS.dsv41.encoderLayers",
+        "MODELS.dsv41.engramHeadDim",
+        "MODELS.dsv41.engramHeads",
+        "MODELS.dsv41.engramLayers",
+        "MODELS.dsv41.engramNgram",
+        "MODELS.dsv41.indexSourceLayers",
+        "MODELS.dsv41.indexerBudget",
+        "MODELS.dsv41.kvSourceLayers",
+        "MODELS.dsv41.mtp",
+        "MODELS.dsv41.streams",
+        "MODELS.dsv41.swaLayers",
+        "MODELS.dsv41.vocab",
+        "MODELS.dsv41.window",
+        "function.cacheLedger",
+        "function.parameterLedger",
+        "function.layerKind"
+      ]
+    },
+    {
+      "id": "deepdive.csa2",
+      "consumer": "deepdive.csa2",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "scope": "Source inspection and derived accounting; no measured throughput or runtime certification.",
+        "symbols": "B = sequences; T = token positions; residual copies, layer depth and token time are separate axes.",
+        "title": "CSA2: separate cache ownership from sparse selection",
+        "question": "What does Full write, what does Reindex recompute, and what does Reuse inherit?",
+        "summary": "Compressed storage and attention selection have different owners and lifetimes. The selected read set narrows what attention reads; it does not shrink the resident cache to the selection budget.",
+        "trace": [
+          [
+            "Inspect the selected layer",
+            "Layer 4 is CSA2-REUSE. Full producers: 3, 9, 15, 21. Index-source layers: 3, 9, 15, 21, 25, 29, 33, 37."
+          ],
+          [
+            "Separate responsibilities",
+            "Full publishes main KV, indexer keys and selection. Reindex reads existing KV/indexer keys and recomputes selected positions. Reuse consumes the previously computed selection."
+          ],
+          [
+            "Apply decoder hierarchy",
+            "Layer 21 establishes a pool of up to 2,048 blocks \u00d7 8 compressed positions. Later decoder indexers re-score within that pool; encoder Full layers rank the causally visible range directly."
+          ],
+          [
+            "Read the attention union",
+            "Attention joins the 128-position local window with up to 512 selected compressed positions and the attention sink in the same normalization."
+          ],
+          [
+            "Selection trace \u00b7 illustrative scores",
+            "At a decoder selection step, suppose two causally eligible compressed positions inside the candidate mask have scores 0.2 and 0.8 and the illustrative read budget is one. The latter is selected; the unselected position remains stored. A Reuse layer reads this same selected ID, while a Reindex layer can change the selection using its own query. The checkpoint budget is 512, not this miniature example's budget."
+          ]
+        ],
+        "rows": [
+          [
+            "Selected read budget",
+            "512 positions",
+            "Not the retained cache capacity"
+          ],
+          [
+            "Main compressed KV",
+            "22.50 MiB",
+            "Logical payload for current context and sequences"
+          ],
+          [
+            "Indexer keys",
+            "5.31 MiB",
+            "Packed key payload and declared scale bytes"
+          ],
+          [
+            "Local window state",
+            "2.50 MiB",
+            "Separate bounded subtotal; allocation overhead excluded"
+          ]
+        ],
+        "caveat": "The reference indexer computes score tensors before candidate masking. A bounded candidate pool does not establish context-independent execution time in that implementation. Payload accounting is not allocated GPU memory.",
+        "sources": [
+          "dsv41-config",
+          "dsv41-code",
+          "dsv41-kernel",
+          "dsv41-sglang-cache",
+          "dsv41-report"
+        ],
+        "anchors": [
+          "Attention._compress_topk_idxs",
+          "Attention._compress_kv",
+          "Indexer.forward",
+          "select_candidate_blocks",
+          "get_dsv4_indexer_bytes_per_token"
+        ],
+        "stage": "csa2"
+      },
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Attention._compress_topk_idxs",
+            "sha256": "1e7300b9f7dae72be6e3c7fd14863e038b67f1c3a3da23cbb45a822e2293d811",
+            "resolved_span": [
+              722,
+              737
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Attention._compress_kv",
+            "sha256": "a641a6863a0ad781b68f587d3dd5fd6c98a9b9a70cd921babccde998e55823bc",
+            "resolved_span": [
+              739,
+              763
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Indexer.forward",
+            "sha256": "46dd0ccf82f7f0e2e67b501c92c7d23733dbd7d88535269f8e9cd3b3345e40a3",
+            "resolved_span": [
+              527,
+              580
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "select_candidate_blocks",
+            "sha256": "201875b7a0e3ca4a75eb71150b9b6d04c94f4c10aeefd3b2a56a229bc5e3f5d7",
+            "resolved_span": [
+              583,
+              610
+            ]
+          },
+          "relation": "implements"
+        }
+      ],
+      "dependencies": [
+        "MODELS.dsv41.architecture",
+        "MODELS.dsv41.candidateBlockSize",
+        "MODELS.dsv41.candidateBlocks",
+        "MODELS.dsv41.candidateSource",
+        "MODELS.dsv41.compressDecoder",
+        "MODELS.dsv41.compressEncoder",
+        "MODELS.dsv41.d",
+        "MODELS.dsv41.dsparkBlock",
+        "MODELS.dsv41.dsparkExperts",
+        "MODELS.dsv41.dsparkTargets",
+        "MODELS.dsv41.dsparkTopK",
+        "MODELS.dsv41.encoderLayers",
+        "MODELS.dsv41.engramHeadDim",
+        "MODELS.dsv41.engramHeads",
+        "MODELS.dsv41.engramLayers",
+        "MODELS.dsv41.engramNgram",
+        "MODELS.dsv41.indexSourceLayers",
+        "MODELS.dsv41.indexerBudget",
+        "MODELS.dsv41.kvSourceLayers",
+        "MODELS.dsv41.mtp",
+        "MODELS.dsv41.streams",
+        "MODELS.dsv41.swaLayers",
+        "MODELS.dsv41.vocab",
+        "MODELS.dsv41.window",
+        "function.cacheLedger",
+        "function.parameterLedger",
+        "function.layerKind"
+      ]
+    },
+    {
+      "id": "deepdive.dspark",
+      "consumer": "deepdive.dspark",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "scope": "Source inspection and derived accounting; no measured throughput or runtime certification.",
+        "symbols": "B = sequences; T = token positions; residual copies, layer depth and token time are separate axes.",
+        "title": "dSpark: propose future tokens, expose the verification boundary",
+        "question": "What does the MTP draft compute, and what must the target coordinator decide?",
+        "summary": "The draft consumes captured backbone features and a seed token. It predicts a block of future tokens with a draft-specific attention and expert path. Draft proposals remain distinct from accepted continuation.",
+        "trace": [
+          [
+            "Capture target inputs",
+            "Before attention at layers 38, 39, 40, the reference takes the mean across residual copies. Concatenation yields [B, T, 15360]. These are attention inputs, not layer outputs."
+          ],
+          [
+            "Initialize the draft",
+            "A seed token and noise placeholders form 5 draft positions. Shared embeddings expand to 4 residual copies. On initial prefill, the reference seeds draft history and returns no predictions."
+          ],
+          [
+            "Run the MTP blocks",
+            "3 draft blocks use 3 of 128 routed draft experts per token. Draft attention combines captured local history with the entire draft block; it is not an ordinary triangular next-token loop."
+          ],
+          [
+            "Emit proposals and scores",
+            "The shared vocabulary head produces [B, 5, 129,280] logits. Sequential Markov bias conditions each sampled proposal on the preceding token. Returned IDs have 6 positions including the seed; confidence scores have 5 positions."
+          ],
+          [
+            "Proposal trace \u00b7 illustrative token IDs",
+            "Starting from seed a, the 5-position draft input is [a, noise, noise, noise, noise]. The sequential head samples proposal y1 conditioned on a, then y2 conditioned on y1, continuing through y5. Returned IDs are [a, y1, \u2026, y5], with 5 confidence scores. These positions are proposals; no accepted-prefix length is assumed."
+          ]
+        ],
+        "rows": [
+          [
+            "Captured features",
+            "[B, T, 15360]",
+            "Concatenated pre-attention backbone features"
+          ],
+          [
+            "Draft residual",
+            "[B, 5, 4, 5120]",
+            "Draft positions differ from target-layer depth"
+          ],
+          [
+            "Returned IDs",
+            "[B, 6]",
+            "Seed followed by proposed tokens"
+          ],
+          [
+            "Confidence scores",
+            "[B, 5]",
+            "Raw scores; no sigmoid/calibration established here"
+          ]
+        ],
+        "caveat": "The publisher reference implements draft forward only: no complete verification, acceptance or rollback loop is provided. The technical report describes conditional acceptance probabilities, prefix-survival estimates, and verification length chosen using profiled engine throughput and current load. The exact acceptance and rollback coordinator remains unavailable in the inspected code. Draft parameter count is unpublished and excluded from the backbone ledger; no acceptance rate or speedup is inferred.",
+        "sources": [
+          "dsv41-config",
+          "dsv41-code",
+          "dsv41-card",
+          "dsv41-report",
+          "dsv41-sglang"
+        ],
+        "anchors": [
+          "Transformer.forward_spec",
+          "DSparkBlock.forward_embed",
+          "DSparkAttention.forward",
+          "DSparkBlock.forward_head",
+          "DSparkConfidenceHead.forward"
+        ],
+        "stage": "dspark"
+      },
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Transformer.forward_spec",
+            "sha256": "450d088624c24be14b4d1ff261b75ad2d1edd67d278a87d28473dcad2cbb92ae",
+            "resolved_span": [
+              1275,
+              1282
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Transformer.forward",
+            "sha256": "ecffa476cb5c3a236955ad55060befca9e9d0b7a68163c9e97242bc0137145a5",
+            "resolved_span": [
+              1242,
+              1272
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DSparkBlock",
+            "sha256": "a1a89b2d5919a603e725dd4bfe729cc9648a2122d12ea11015813bace483d0dc",
+            "resolved_span": [
+              1100,
+              1156
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DSparkAttention",
+            "sha256": "24bad2c5353b978e24ba9f54256ba82c2b53909ab8f6dbfdc6d48882c0c3bf73",
+            "resolved_span": [
+              1032,
+              1074
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DSparkConfidenceHead.forward",
+            "sha256": "65eec8a28a386f768d7350c25db0ceb2d84b56f6364d414c0d13a499f2f068a2",
+            "resolved_span": [
+              1095,
+              1097
+            ]
+          },
+          "relation": "implements"
+        }
+      ],
+      "dependencies": [
+        "MODELS.dsv41.architecture",
+        "MODELS.dsv41.candidateBlockSize",
+        "MODELS.dsv41.candidateBlocks",
+        "MODELS.dsv41.candidateSource",
+        "MODELS.dsv41.compressDecoder",
+        "MODELS.dsv41.compressEncoder",
+        "MODELS.dsv41.d",
+        "MODELS.dsv41.dsparkBlock",
+        "MODELS.dsv41.dsparkExperts",
+        "MODELS.dsv41.dsparkTargets",
+        "MODELS.dsv41.dsparkTopK",
+        "MODELS.dsv41.encoderLayers",
+        "MODELS.dsv41.engramHeadDim",
+        "MODELS.dsv41.engramHeads",
+        "MODELS.dsv41.engramLayers",
+        "MODELS.dsv41.engramNgram",
+        "MODELS.dsv41.indexSourceLayers",
+        "MODELS.dsv41.indexerBudget",
+        "MODELS.dsv41.kvSourceLayers",
+        "MODELS.dsv41.mtp",
+        "MODELS.dsv41.streams",
+        "MODELS.dsv41.swaLayers",
+        "MODELS.dsv41.vocab",
+        "MODELS.dsv41.window",
+        "function.cacheLedger",
+        "function.parameterLedger",
+        "function.layerKind",
+        "deepdive.report-boundary"
+      ]
+    },
+    {
+      "id": "file.src/deepdives.mjs",
+      "consumer": "file.src/deepdives.mjs",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ffeb066e0709f2818e9dc135ed7d8f6f00e860e749a8e1c9ab6de6c0f29e4275",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.encoder",
+        "deepdive.decoder",
+        "deepdive.engram",
+        "deepdive.csa2",
+        "deepdive.dspark"
+      ]
+    },
+    {
+      "id": "file.src/diagram-deepdives.mjs",
+      "consumer": "file.src/diagram-deepdives.mjs",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "4e086bf57659b118c636651ffbb3523fb95b5ef7e29e6bb1912e8fbb71895362",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "file.src/deepdives.mjs",
+        "file.src/diagram-meta.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.encoder.encoder-embed.2c0e08cb6954e35c",
+      "consumer": "scene.dsv41.model.encoder.encoder-embed.2c0e08cb6954e35c",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "2c0e08cb6954e35c9de2ede1b0a0bba3b276f0f714bbfa9ff45c4bf5b70946ea",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.encoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.encoder.encoder-window.4961f07db590e6d3",
+      "consumer": "scene.dsv41.model.encoder.encoder-window.4961f07db590e6d3",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "4961f07db590e6d380f1d1e288b9f9b566538c2a6286a1f673f654652efc8c2b",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.encoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.encoder.encoder-band-3.7d672f8949bcdf24",
+      "consumer": "scene.dsv41.model.encoder.encoder-band-3.7d672f8949bcdf24",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "7d672f8949bcdf24fb0bce7733e50f6a17eec605b46597531a50a4f953acd518",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.encoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.encoder.encoder-band-9.be19ca8e56e4f69b",
+      "consumer": "scene.dsv41.model.encoder.encoder-band-9.be19ca8e56e4f69b",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "be19ca8e56e4f69b13e191af38572f8299419cf0ca34854feb91fad14f410d8c",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.encoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.encoder.encoder-band-15.49f40b20176406be",
+      "consumer": "scene.dsv41.model.encoder.encoder-band-15.49f40b20176406be",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "49f40b20176406bedefc6ac790aa877ccfe9230a898e4ef3e8b3f3e5827dd738",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.encoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.encoder.encoder-handoff.7da1ac1246200a20",
+      "consumer": "scene.dsv41.model.encoder.encoder-handoff.7da1ac1246200a20",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "7da1ac1246200a20610d479fd36396a032a2f2ec06051f84c967404a12726a4b",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.encoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.encoder.encoder-causal.5215150eeaad4ff9",
+      "consumer": "scene.dsv41.model.encoder.encoder-causal.5215150eeaad4ff9",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "5215150eeaad4ff90d96f8a05f212c876ad2807dcb623c1e63b60ce105606888",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.encoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.encoder.encoder-engram.13dda01e4586025d",
+      "consumer": "scene.dsv41.model.encoder.encoder-engram.13dda01e4586025d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "13dda01e4586025dc8ac78fe8797e2e6bd616bcfc2ee68566730f85260b8c1d5",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.encoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.encoder.graph.2f2b5d998c790161",
+      "consumer": "scene.dsv41.model.encoder.graph.2f2b5d998c790161",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "2f2b5d998c790161cc15d767047e048f33f30c1595af625f8d958b0b307911ea",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.encoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.decoder.decoder-handoff.1cf29ad9804c21d7",
+      "consumer": "scene.dsv41.model.decoder.decoder-handoff.1cf29ad9804c21d7",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1cf29ad9804c21d7b3759c26503ae28c5be2c4a632037075d0d9f492dc371b8a",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.decoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.decoder.decoder-producer.6eb15cff2064b892",
+      "consumer": "scene.dsv41.model.decoder.decoder-producer.6eb15cff2064b892",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "6eb15cff2064b892d51ddcf779d812502a288aaaffc0fc05b1be1fe7f3b41450",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.decoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.decoder.decoder-readers.caf7fede889562ec",
+      "consumer": "scene.dsv41.model.decoder.decoder-readers.caf7fede889562ec",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "caf7fede889562ecf75a729944d5e6f04b0bc84596504fa6abc0bdadfe92cfb7",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.decoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.decoder.decoder-attend.c819c53b68fd7080",
+      "consumer": "scene.dsv41.model.decoder.decoder-attend.c819c53b68fd7080",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "c819c53b68fd70806a3b09b3ea1aa19e341714b765b60497e15b4c5c20cbc22b",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.decoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.decoder.decoder-residual.2ab4315fa4809981",
+      "consumer": "scene.dsv41.model.decoder.decoder-residual.2ab4315fa4809981",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "2ab4315fa48099810ea3539ed3bffe3c22151344f84f1969c2e1fd55964cbab2",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.decoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.decoder.decoder-logits.bfd9bd1c8d9e4dd6",
+      "consumer": "scene.dsv41.model.decoder.decoder-logits.bfd9bd1c8d9e4dd6",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "bfd9bd1c8d9e4dd6a8f39110929ad768deb283ad92b76dd1e92a6d469fd6967b",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.decoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.decoder.decoder-boundary.ccac6805e6d8cc78",
+      "consumer": "scene.dsv41.model.decoder.decoder-boundary.ccac6805e6d8cc78",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ccac6805e6d8cc781ccaa2d260c94f17cbfa595fc89f3789f88bbbf57a566769",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.decoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.decoder.graph.cc749c8c82afaf3f",
+      "consumer": "scene.dsv41.model.decoder.graph.cc749c8c82afaf3f",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "cc749c8c82afaf3fed8ff9ce8530ad503dedbeb80bbeaefd50d60808010958cc",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.decoder",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.engram.engram-history.9be5b2794a74cf4c",
+      "consumer": "scene.dsv41.model.engram.engram-history.9be5b2794a74cf4c",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "9be5b2794a74cf4c314c6a61b5351e59fa209dfbf184de350d502a5c510c5fad",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.engram",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.engram.engram-hash.0fa52fc91b308f40",
+      "consumer": "scene.dsv41.model.engram.engram-hash.0fa52fc91b308f40",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "0fa52fc91b308f40b6635f49dbafdd3b8e95a267828b8afa34a2505f97936a86",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.engram",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.engram.engram-table.1c7b78a3796f31dd",
+      "consumer": "scene.dsv41.model.engram.engram-table.1c7b78a3796f31dd",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1c7b78a3796f31dd26fee738e184cb514da1ee3b1025f198373e9dc6c9a108e8",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.engram",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.engram.engram-project.98c5c7b8ae12f7d2",
+      "consumer": "scene.dsv41.model.engram.engram-project.98c5c7b8ae12f7d2",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "98c5c7b8ae12f7d236eccae41678af082ff3014e8f31730de273af396ac82759",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.engram",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.engram.engram-gate.595f113233c6cec0",
+      "consumer": "scene.dsv41.model.engram.engram-gate.595f113233c6cec0",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "595f113233c6cec0c4a4ae3c534eea1ee8e4b412eea4d097761be18b015b51fc",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.engram",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.engram.engram-write.521c0ef817df7cfd",
+      "consumer": "scene.dsv41.model.engram.engram-write.521c0ef817df7cfd",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "521c0ef817df7cfd1ba9231e7e4ba454653f1e6df0373570eec83e91dd351964",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.engram",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.engram.engram-context.863c83ec8fe54ed4",
+      "consumer": "scene.dsv41.model.engram.engram-context.863c83ec8fe54ed4",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "863c83ec8fe54ed432518d84a1cb727edfca62bf21674b0c887be95967efa960",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.engram",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.engram.graph.5656693f50d14f21",
+      "consumer": "scene.dsv41.model.engram.graph.5656693f50d14f21",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "5656693f50d14f210af89f1120b07f91003d9bfa391c634c55d5c358514ff805",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.engram",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.csa2.csa2-full.949dee75fed17c1f",
+      "consumer": "scene.dsv41.model.csa2.csa2-full.949dee75fed17c1f",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "949dee75fed17c1f9416efdee11668cf8aab5fffece0627192d39ce5363a13d4",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.csa2",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.csa2.csa2-reindex.bb5926febdc22a8e",
+      "consumer": "scene.dsv41.model.csa2.csa2-reindex.bb5926febdc22a8e",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "bb5926febdc22a8e3a31317346904a016362caa0c6263274108d4db870ab60e2",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.csa2",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.csa2.csa2-reuse.61bed3ae1d3eb1f0",
+      "consumer": "scene.dsv41.model.csa2.csa2-reuse.61bed3ae1d3eb1f0",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "61bed3ae1d3eb1f074772d89da8c1439b9c72189583cf5fb7df1d9e29fb168ae",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.csa2",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.csa2.csa2-owners.3333636b9d7a4ae0",
+      "consumer": "scene.dsv41.model.csa2.csa2-owners.3333636b9d7a4ae0",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "3333636b9d7a4ae0ce267f169dac81e478186811889f245e54efb3c8fe8a0df7",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.csa2",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.csa2.csa2-candidates.b884e1e461cedef1",
+      "consumer": "scene.dsv41.model.csa2.csa2-candidates.b884e1e461cedef1",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "b884e1e461cedef1f6f2b8295d58d2efd67e784822e2d0d0ff029d56da2cfc58",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.csa2",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.csa2.csa2-select.361b1858f46802d2",
+      "consumer": "scene.dsv41.model.csa2.csa2-select.361b1858f46802d2",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "361b1858f46802d275127f67531b73eb37bc25b25106c6035a95b2c3214e3dae",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.csa2",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.csa2.csa2-window.810220e6c316bf1e",
+      "consumer": "scene.dsv41.model.csa2.csa2-window.810220e6c316bf1e",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "810220e6c316bf1e5c5570cd0fde03e3b27e4d28e2e56e6dd6189c20519291a7",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.csa2",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.csa2.csa2-union.2c40cdcd4eb00c83",
+      "consumer": "scene.dsv41.model.csa2.csa2-union.2c40cdcd4eb00c83",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "2c40cdcd4eb00c8327025b6203f2bd92a1a64bbbe750014c2c93bc38433e6941",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.csa2",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.csa2.graph.046184b3383af5a4",
+      "consumer": "scene.dsv41.model.csa2.graph.046184b3383af5a4",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "046184b3383af5a4cdf9d2aa3f669bcc485c36c1fab789ec5387a93b4d4c8113",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.csa2",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-features.26d3ca9bc4e24fa9",
+      "consumer": "scene.dsv41.model.dspark.dspark-features.26d3ca9bc4e24fa9",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "26d3ca9bc4e24fa9f683860cea627b1123d8633d624f8175d50c5602b04a1284",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.dspark",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-draft.df0231b4adcdc511",
+      "consumer": "scene.dsv41.model.dspark.dspark-draft.df0231b4adcdc511",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "df0231b4adcdc511c132b449f6d641c88316f4c8e8b98f6d66ef91f35a7861ba",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.dspark",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-markov.d198aaa234078af5",
+      "consumer": "scene.dsv41.model.dspark.dspark-markov.d198aaa234078af5",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "d198aaa234078af59f11eed2580a05cc6d9b0ea8a0cefcba6fc5f44b369d9248",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.dspark",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-confidence.f9da41154af63320",
+      "consumer": "scene.dsv41.model.dspark.dspark-confidence.f9da41154af63320",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f9da41154af63320475770f2097bae366ccd9aef33be2c4d137b78f5c9fd6e81",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.dspark",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-schedule.05b306752b39e0c4",
+      "consumer": "scene.dsv41.model.dspark.dspark-schedule.05b306752b39e0c4",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "05b306752b39e0c425acf608c89c2a640fbdfbc3e53130643370a2853d55d6bc",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.dspark",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-verification.64b2e2c39d0efbb8",
+      "consumer": "scene.dsv41.model.dspark.dspark-verification.64b2e2c39d0efbb8",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "64b2e2c39d0efbb8680438e5f9ab04378df9282cee3a6f6a986e99dd3a15d391",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.dspark",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-seed.7488bc9fc841b335",
+      "consumer": "scene.dsv41.model.dspark.dspark-seed.7488bc9fc841b335",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "7488bc9fc841b3353f9b7beb497c097be3dc30802dfa381412100b2e6681bef0",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.dspark",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.dspark.graph.cc25bd5694a31d51",
+      "consumer": "scene.dsv41.model.dspark.graph.cc25bd5694a31d51",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "cc25bd5694a31d510f6acddcecbc4da0ac733e6ca9b861d4b29998e5ac959347",
+      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.dspark",
+        "file.src/diagram-deepdives.mjs"
       ]
     }
   ],

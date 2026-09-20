@@ -2,9 +2,10 @@ import {sanitizeState,getModel} from './core.mjs';
 import {buildModel} from './diagram-model.mjs';
 import {buildTraining,buildServing,buildHardware,buildNetwork} from './diagram-systems.mjs';
 import {buildCompare,buildEvidence,buildInputs,buildResidual,buildPLE,buildCED} from './diagram-meta.mjs';
+import {buildEncoder,buildDecoder,buildEngram,buildCSA2,buildDSpark} from './diagram-deepdives.mjs';
 /** One builder per focal stage. Its keys are the values `focalStages` can return, asserted by
  * tests rather than assumed, so wiring a stage into one without the other cannot compile away. */
-const FOCAL={inputs:buildInputs,residual:buildResidual,ple:buildPLE,ced:buildCED};
+const FOCAL={inputs:buildInputs,residual:buildResidual,ple:buildPLE,ced:buildCED,encoder:buildEncoder,decoder:buildDecoder,engram:buildEngram,csa2:buildCSA2,dspark:buildDSpark};
 export function buildScene(input){
  const s=sanitizeState(input),m=getModel(s.model);
  if(s.view!=='model')return({compare:buildCompare,training:buildTraining,serving:buildServing,hardware:buildHardware,network:buildNetwork,evidence:buildEvidence})[s.view](s);
