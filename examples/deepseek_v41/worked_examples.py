@@ -142,8 +142,9 @@ def replay_example() -> dict[str, Any]:
 
 def run_worked_examples() -> dict[str, dict[str, Any]]:
     """Return strict JSON-compatible traces calculated by the checked-in CPU code."""
+    from .residual_example import residual_example
     with torch.no_grad():
-        return dict(replay=replay_example(), selection=selection_example(), query=query_example())
+        return dict(residual=residual_example(), replay=replay_example(), selection=selection_example(), query=query_example())
 
 
 if __name__ == '__main__':

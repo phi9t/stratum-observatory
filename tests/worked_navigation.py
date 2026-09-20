@@ -1,5 +1,6 @@
 """Reader-visible values must be the saved CPU values on the delivered artifact."""
 import json
+from decimal import Context, ROUND_HALF_UP
 from pathlib import Path
 
 
@@ -11,14 +12,16 @@ def text(value):
     if isinstance(value, bool):
         return str(value).lower()
     if isinstance(value, float):
-        return format(value, '.6g')
+        # JavaScript toPrecision rounds exact ties away from zero.
+        rounded = float(Context(prec=6, rounding=ROUND_HALF_UP).create_decimal_from_float(value))
+        return format(rounded, '.6g')
     return str(value)
 
 
 def exercise(page, root):
     examples = json.loads((Path(root)/'examples/deepseek_v41/worked-results.json').read_text())['examples']
     url = (Path(root)/'dist/deepseek-v4.1.html').as_uri()
-    stages = {'decoder':['replay'], 'csa2':['selection','query'],
+    stages = {'residual':['residual'], 'decoder':['replay'], 'csa2':['selection','query'],
               'module-csa2-selection':['selection'], 'module-csa2-attention':['query']}
     for stage, ids in stages.items():
         page.goto(url + '#stage=' + stage)

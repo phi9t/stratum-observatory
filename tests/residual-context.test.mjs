@@ -1,0 +1,20 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {buildScene} from '../src/diagrams.mjs';
+import {DEFAULT_STATE,getModel} from '../src/core.mjs';
+import {structuralReport} from '../src/scene.mjs';
+import {chapterContent} from '../src/deepdives.mjs';
+test('mHC context preserves both state paths through attention, MoE and the model boundary',()=>{
+ const m=getModel('dsv41'),g=buildScene({...DEFAULT_STATE,model:'dsv41',stage:'residual'});
+ assert.deepEqual(structuralReport(g),[]);
+ const nodes=Object.fromEntries(g.nodes.map(n=>[n.id,n]));
+ for(const id of ['embedding','expand','encoder','handoff','decoder','head','incoming','attention-read','attention-mixer','attention-write','ffn-read','ffn-mixer','ffn-write','outgoing'])assert.ok(nodes[id],id);
+ assert.match(nodes.handoff.sub,new RegExp(String(m.encoderLayers)));
+ for(const [source,target] of [['incoming','attention-read'],['incoming','attention-mixer'],['incoming','attention-write'],['attention-mixer','ffn-read'],['attention-write','ffn-mixer'],['attention-write','ffn-write'],['ffn-mixer','outgoing']])assert.ok(g.edges.some(e=>e.source===source&&e.target===target),`${source} → ${target}`);
+ assert.match(nodes['attention-write'].info.formula,/M_ij X_i/);
+ assert.match(nodes.expand.info.formula,/\[1, 0, 0, 0\]/);
+ assert.ok(!g.nodes.some(n=>['depth-bank','depth-warning','depth-boundary'].includes(n.id)));
+ const chapter=chapterContent('dsv41',{...DEFAULT_STATE,stage:'residual'});
+ assert.ok(chapter.math.length>=3);
+ assert.ok(chapter.sources.includes('dsv41-kernel'));
+});

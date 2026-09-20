@@ -1,12 +1,12 @@
 {
-  "artifact_sha256": "03f84fe40cc1d071a97b72c8d8668e4e16c52e6095f372225e5a7e46780ddaf8",
+  "artifact_sha256": "98be3fc6bf564a0ede8cfe10be30b9fb7f4d6e83122c4ab1b5d583ff9cb47ee1",
   "captures": [
     {
       "name": "ds2",
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "04bf4b6102808375a4949930fb1b4e4038957879b00b85c209b6383c698dc120",
+      "artifact_sha256": "5f7f346f04cc714e8fcbf8c788d1597f7e24e9569a10e1af8d0d9fc36c8a5f83",
       "state": {
         "model": "ds2",
         "view": "model",
@@ -41,7 +41,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "04bf4b6102808375a4949930fb1b4e4038957879b00b85c209b6383c698dc120",
+      "artifact_sha256": "5f7f346f04cc714e8fcbf8c788d1597f7e24e9569a10e1af8d0d9fc36c8a5f83",
       "state": {
         "model": "ds3",
         "view": "model",
@@ -76,7 +76,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "04bf4b6102808375a4949930fb1b4e4038957879b00b85c209b6383c698dc120",
+      "artifact_sha256": "5f7f346f04cc714e8fcbf8c788d1597f7e24e9569a10e1af8d0d9fc36c8a5f83",
       "state": {
         "model": "q38",
         "view": "model",
@@ -111,7 +111,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "04bf4b6102808375a4949930fb1b4e4038957879b00b85c209b6383c698dc120",
+      "artifact_sha256": "5f7f346f04cc714e8fcbf8c788d1597f7e24e9569a10e1af8d0d9fc36c8a5f83",
       "state": {
         "model": "q330",
         "view": "model",
@@ -146,7 +146,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "04bf4b6102808375a4949930fb1b4e4038957879b00b85c209b6383c698dc120",
+      "artifact_sha256": "5f7f346f04cc714e8fcbf8c788d1597f7e24e9569a10e1af8d0d9fc36c8a5f83",
       "state": {
         "model": "q3235",
         "view": "model",
@@ -181,7 +181,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "149ec721d9d7e0590a15c3f5ef73104045f1bb8e89555c8bd75dbfe20a9dc0b7",
+      "artifact_sha256": "5162b5303a9f9a0e5d55ebce6a3053c02589ceb2da6c216c25b22829edda4afd",
       "state": {
         "model": "q3827",
         "view": "model",
@@ -216,7 +216,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "149ec721d9d7e0590a15c3f5ef73104045f1bb8e89555c8bd75dbfe20a9dc0b7",
+      "artifact_sha256": "5162b5303a9f9a0e5d55ebce6a3053c02589ceb2da6c216c25b22829edda4afd",
       "state": {
         "model": "q3827",
         "view": "model",
@@ -251,7 +251,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "149ec721d9d7e0590a15c3f5ef73104045f1bb8e89555c8bd75dbfe20a9dc0b7",
+      "artifact_sha256": "5162b5303a9f9a0e5d55ebce6a3053c02589ceb2da6c216c25b22829edda4afd",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -286,7 +286,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "149ec721d9d7e0590a15c3f5ef73104045f1bb8e89555c8bd75dbfe20a9dc0b7",
+      "artifact_sha256": "5162b5303a9f9a0e5d55ebce6a3053c02589ceb2da6c216c25b22829edda4afd",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -321,7 +321,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "149ec721d9d7e0590a15c3f5ef73104045f1bb8e89555c8bd75dbfe20a9dc0b7",
+      "artifact_sha256": "5162b5303a9f9a0e5d55ebce6a3053c02589ceb2da6c216c25b22829edda4afd",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -349,14 +349,14 @@
         "trace": false,
         "phase": "decode"
       },
-      "svg_sha256": "9fb2d5e00eff16e42015d4d2e05ad8a1d24911c26da05160a99e2da30edc991c"
+      "svg_sha256": "485a0658c86bc47de5b513f750b25379a7bf9955ba06ee9477df5d6ef24985ad"
     },
     {
       "name": "q38flash-ple",
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "149ec721d9d7e0590a15c3f5ef73104045f1bb8e89555c8bd75dbfe20a9dc0b7",
+      "artifact_sha256": "5162b5303a9f9a0e5d55ebce6a3053c02589ceb2da6c216c25b22829edda4afd",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -391,7 +391,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "e22ac97379c0fd29ed2dcd0d813bf4dd47b8a6de505c625b16ad8972421e19ac",
+      "artifact_sha256": "64dd0bdf8f56b280fc03e0c2400ed5b580e356fe05f59724432c8436fc24fe44",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -426,7 +426,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "e22ac97379c0fd29ed2dcd0d813bf4dd47b8a6de505c625b16ad8972421e19ac",
+      "artifact_sha256": "64dd0bdf8f56b280fc03e0c2400ed5b580e356fe05f59724432c8436fc24fe44",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -461,7 +461,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "e22ac97379c0fd29ed2dcd0d813bf4dd47b8a6de505c625b16ad8972421e19ac",
+      "artifact_sha256": "64dd0bdf8f56b280fc03e0c2400ed5b580e356fe05f59724432c8436fc24fe44",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -489,7 +489,7 @@
         "trace": false,
         "phase": "decode"
       },
-      "svg_sha256": "9a1c514a15090b8f826a8fd991a71f5d7a89549c42e5ae2cc20c9ff26a5bfd06"
+      "svg_sha256": "1ae222987288a0a52cf75a7ea392089b49a1f69ab0bd72ad1deef8d8b3381be6"
     },
     {
       "name": "dsv41",
@@ -498,7 +498,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -533,7 +533,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -561,14 +561,14 @@
         "trace": false,
         "phase": "decode"
       },
-      "svg_sha256": "94f93d01c7814081ccb856d1868ac3f2fe690d7412dfa4d3776cd183f972eb87"
+      "svg_sha256": "a4206402597778d281dd58eadcd6e90c876f606ea620db2a339a292b9b720b11"
     },
     {
       "name": "dsv41-serving-prefill",
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "serving",
@@ -603,7 +603,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "serving",
@@ -634,13 +634,50 @@
       "svg_sha256": "745a06a607201a1034c8b5b658ba29700caf72a73c6947579e581b7d350cc868"
     },
     {
+      "name": "dsv41-residual",
+      "accounting_expanded": true,
+      "pytorch_expanded": [
+        "config"
+      ],
+      "artifact": "deepseek-v4.1.html",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
+      "state": {
+        "model": "dsv41",
+        "view": "model",
+        "stage": "residual",
+        "layer": 4,
+        "hardware": "h200",
+        "context": 32768,
+        "batch": 1,
+        "kvBytes": 2,
+        "stateBytes": 4,
+        "weightBytes": 2,
+        "ranks": 8,
+        "placement": "split",
+        "trainMode": "fsdp",
+        "traffic": "expert",
+        "fabric": "ib",
+        "library": "nccl",
+        "utilization": 70,
+        "oversub": 1,
+        "intensity": 128,
+        "compare": "kimi3",
+        "theme": "dark",
+        "detail": "shapes",
+        "zoom": 1,
+        "trace": false,
+        "phase": "decode"
+      },
+      "svg_sha256": "a8f9c4e412f21573e0e45a1cdeadb6339b1eb7016a9e4dd243f822b426a5ff5c"
+    },
+    {
       "name": "dsv41-encoder",
       "accounting_expanded": true,
       "pytorch_expanded": [
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -677,7 +714,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -714,7 +751,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -751,7 +788,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -788,7 +825,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -823,7 +860,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -854,48 +891,13 @@
       "svg_sha256": "bdca60954dfb67957b7372db8df064cdc771c63e6aad457ecc42b10d039575bb"
     },
     {
-      "name": "dsv41-residual",
-      "accounting_expanded": true,
-      "pytorch_expanded": [],
-      "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
-      "state": {
-        "model": "dsv41",
-        "view": "model",
-        "stage": "residual",
-        "layer": 4,
-        "hardware": "h200",
-        "context": 32768,
-        "batch": 1,
-        "kvBytes": 2,
-        "stateBytes": 4,
-        "weightBytes": 2,
-        "ranks": 8,
-        "placement": "split",
-        "trainMode": "fsdp",
-        "traffic": "expert",
-        "fabric": "ib",
-        "library": "nccl",
-        "utilization": 70,
-        "oversub": 1,
-        "intensity": 128,
-        "compare": "kimi3",
-        "theme": "dark",
-        "detail": "shapes",
-        "zoom": 1,
-        "trace": false,
-        "phase": "decode"
-      },
-      "svg_sha256": "f9398be8ec624996a7052a2cf18fc8aa0b47105b0df8493482d54c395f4b9ea6"
-    },
-    {
       "name": "dsv41-module-backbone-mhc",
       "accounting_expanded": true,
       "pytorch_expanded": [
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -932,7 +934,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -969,7 +971,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -1006,7 +1008,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -1043,7 +1045,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -1080,7 +1082,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -1117,7 +1119,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -1154,7 +1156,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -1191,7 +1193,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
+      "artifact_sha256": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -1226,7 +1228,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "149ec721d9d7e0590a15c3f5ef73104045f1bb8e89555c8bd75dbfe20a9dc0b7",
+      "artifact_sha256": "5162b5303a9f9a0e5d55ebce6a3053c02589ceb2da6c216c25b22829edda4afd",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -1261,7 +1263,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "e22ac97379c0fd29ed2dcd0d813bf4dd47b8a6de505c625b16ad8972421e19ac",
+      "artifact_sha256": "64dd0bdf8f56b280fc03e0c2400ed5b580e356fe05f59724432c8436fc24fe44",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -1296,7 +1298,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "04bf4b6102808375a4949930fb1b4e4038957879b00b85c209b6383c698dc120",
+      "artifact_sha256": "5f7f346f04cc714e8fcbf8c788d1597f7e24e9569a10e1af8d0d9fc36c8a5f83",
       "state": {
         "model": "ds3",
         "view": "training",
@@ -1331,7 +1333,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "e22ac97379c0fd29ed2dcd0d813bf4dd47b8a6de505c625b16ad8972421e19ac",
+      "artifact_sha256": "64dd0bdf8f56b280fc03e0c2400ed5b580e356fe05f59724432c8436fc24fe44",
       "state": {
         "model": "kimi3",
         "view": "training",
@@ -1366,7 +1368,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "149ec721d9d7e0590a15c3f5ef73104045f1bb8e89555c8bd75dbfe20a9dc0b7",
+      "artifact_sha256": "5162b5303a9f9a0e5d55ebce6a3053c02589ceb2da6c216c25b22829edda4afd",
       "state": {
         "model": "q38flash",
         "view": "serving",
@@ -1401,7 +1403,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "hardware.html",
-      "artifact_sha256": "f9edc8baf0707f23d79a0072c9d1dbf2675d74801d8397bd16ee112e5c469d4f",
+      "artifact_sha256": "2d17358855b5582f7ad5c4c0e02091e9de7ca5243b56acea56c164942fee0411",
       "state": {
         "model": "ds3",
         "view": "hardware",
@@ -1436,7 +1438,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "hardware.html",
-      "artifact_sha256": "f9edc8baf0707f23d79a0072c9d1dbf2675d74801d8397bd16ee112e5c469d4f",
+      "artifact_sha256": "2d17358855b5582f7ad5c4c0e02091e9de7ca5243b56acea56c164942fee0411",
       "state": {
         "model": "ds3",
         "view": "hardware",
@@ -1471,7 +1473,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "networking.html",
-      "artifact_sha256": "73d601d68f31b4e997afc3d14649af75a1b0d13f90be64edec4beddf50a30615",
+      "artifact_sha256": "aaaac7109b0d83053892eae959120021a653509f0fd4e65fc9b2b45a065caf21",
       "state": {
         "model": "kimi3",
         "view": "network",
@@ -1506,7 +1508,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "149ec721d9d7e0590a15c3f5ef73104045f1bb8e89555c8bd75dbfe20a9dc0b7",
+      "artifact_sha256": "5162b5303a9f9a0e5d55ebce6a3053c02589ceb2da6c216c25b22829edda4afd",
       "state": {
         "model": "q38flash",
         "view": "evidence",
@@ -1541,7 +1543,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "149ec721d9d7e0590a15c3f5ef73104045f1bb8e89555c8bd75dbfe20a9dc0b7",
+      "artifact_sha256": "5162b5303a9f9a0e5d55ebce6a3053c02589ceb2da6c216c25b22829edda4afd",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -1574,7 +1576,7 @@
     {
       "name": "mobile",
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "149ec721d9d7e0590a15c3f5ef73104045f1bb8e89555c8bd75dbfe20a9dc0b7",
+      "artifact_sha256": "5162b5303a9f9a0e5d55ebce6a3053c02589ceb2da6c216c25b22829edda4afd",
       "viewport": {
         "width": 390,
         "height": 844
@@ -1611,7 +1613,7 @@
       "name": "home",
       "guide": "home",
       "artifact": "index.html",
-      "artifact_sha256": "03f84fe40cc1d071a97b72c8d8668e4e16c52e6095f372225e5a7e46780ddaf8",
+      "artifact_sha256": "98be3fc6bf564a0ede8cfe10be30b9fb7f4d6e83122c4ab1b5d583ff9cb47ee1",
       "viewport": {
         "width": 1440,
         "height": 1000
@@ -1621,7 +1623,7 @@
       "name": "data",
       "guide": "data",
       "artifact": "data-representation.html",
-      "artifact_sha256": "4e651dbf58079d1bf7d4f17ad4f5312b107c0e4f1bcb427a53a43eef5004a609",
+      "artifact_sha256": "1c0bc18eafbff1b9b1d1d1ff4a921283baa38f476b90a7db01982adae3c77c0d",
       "viewport": {
         "width": 1440,
         "height": 1000

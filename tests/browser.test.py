@@ -40,6 +40,7 @@ def check(page, patch, label='geometry'):
     view=patch.get('view',current['view'])
     dedicated=page_for_model(ROOT,model,view)
     if page.evaluate('document.body.dataset.pageId || null')!=(dedicated['id'] if dedicated else None):
+        page.evaluate('delete window.STRATUM')
         page.set_content((ROOT/'dist'/artifact_name(ROOT,model,view)).read_text(),wait_until='load')
         page.wait_for_function('window.STRATUM')
         patch={**current,**patch}
@@ -105,6 +106,7 @@ with sync_playwright() as p:
         dense.on('pageerror',lambda err:errors.append(str(err)))
         dense.on('request',lambda req:requests.append(req.url) if req.url.startswith(('http://','https://')) else None)
         dense.set_content((ROOT/'dist/foundations.html').read_text(),wait_until='load')
+        dense.wait_for_function('window.STRATUM')
         dense.evaluate('document.fonts.ready')
         for model in MODELS:
             for theme in ['light','dark']:

@@ -1,23 +1,23 @@
 {
   "schema": "stratum-engineering/v1",
   "status": "PASS",
-  "started_at": "2026-09-20T20:55:54.018492+00:00",
-  "completed_at": "2026-09-20T21:05:51.669165+00:00",
-  "consumer_sha256": "97cb5fba97378c1b76707565e820b45fd0ad18ef33d8863e83bd8882d5ec18ee",
-  "verifier_sha256": "4d87157c706ef4828e7e10f79845ebdb74e0651a4c0dcf7c669d14db37f3f707",
-  "lock_sha256": "584e64ce99f9efc97d14cc523d51880a551636744a27708f87ddc9151bf5ed7c",
-  "artifact_sha256": "03f84fe40cc1d071a97b72c8d8668e4e16c52e6095f372225e5a7e46780ddaf8",
+  "started_at": "2026-09-20T21:56:10.348903+00:00",
+  "completed_at": "2026-09-20T22:05:07.500238+00:00",
+  "consumer_sha256": "1d5b8dc25ff032e63de5d06b9f397ac01b7fc64d260235a9372e547982e28f89",
+  "verifier_sha256": "e91e5d1ac4a6fca418d8762397918e343500784e0f3970cca0bf88a91d2fd227",
+  "lock_sha256": "da9d4299c04ac7e45e04fd5a852c575ed1445c7a91d4bc7681fb4ccec8894e5e",
+  "artifact_sha256": "98be3fc6bf564a0ede8cfe10be30b9fb7f4d6e83122c4ab1b5d583ff9cb47ee1",
   "artifacts": {
-    "data-representation.html": "4e651dbf58079d1bf7d4f17ad4f5312b107c0e4f1bcb427a53a43eef5004a609",
-    "deepseek-v4.1.html": "4d8ed393ee7312d8a8f5ead74d2436e0b49e4ad23824854a3faec69c6029ddd5",
-    "foundations.html": "04bf4b6102808375a4949930fb1b4e4038957879b00b85c209b6383c698dc120",
-    "hardware.html": "f9edc8baf0707f23d79a0072c9d1dbf2675d74801d8397bd16ee112e5c469d4f",
-    "index.html": "03f84fe40cc1d071a97b72c8d8668e4e16c52e6095f372225e5a7e46780ddaf8",
-    "kimi-k3.html": "e22ac97379c0fd29ed2dcd0d813bf4dd47b8a6de505c625b16ad8972421e19ac",
-    "networking.html": "73d601d68f31b4e997afc3d14649af75a1b0d13f90be64edec4beddf50a30615",
-    "qwen3.8.html": "149ec721d9d7e0590a15c3f5ef73104045f1bb8e89555c8bd75dbfe20a9dc0b7"
+    "data-representation.html": "1c0bc18eafbff1b9b1d1d1ff4a921283baa38f476b90a7db01982adae3c77c0d",
+    "deepseek-v4.1.html": "53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15",
+    "foundations.html": "5f7f346f04cc714e8fcbf8c788d1597f7e24e9569a10e1af8d0d9fc36c8a5f83",
+    "hardware.html": "2d17358855b5582f7ad5c4c0e02091e9de7ca5243b56acea56c164942fee0411",
+    "index.html": "98be3fc6bf564a0ede8cfe10be30b9fb7f4d6e83122c4ab1b5d583ff9cb47ee1",
+    "kimi-k3.html": "64dd0bdf8f56b280fc03e0c2400ed5b580e356fe05f59724432c8436fc24fe44",
+    "networking.html": "aaaac7109b0d83053892eae959120021a653509f0fd4e65fc9b2b45a065caf21",
+    "qwen3.8.html": "5162b5303a9f9a0e5d55ebce6a3053c02589ceb2da6c216c25b22829edda4afd"
   },
-  "repeat_build_sha256": "03f84fe40cc1d071a97b72c8d8668e4e16c52e6095f372225e5a7e46780ddaf8",
+  "repeat_build_sha256": "98be3fc6bf564a0ede8cfe10be30b9fb7f4d6e83122c4ab1b5d583ff9cb47ee1",
   "deterministic_build": true,
   "commands": {
     "verifier-tests": {
@@ -123,8 +123,8 @@
   },
   "test_counts": {
     "verifier": 629,
-    "atlas": 152,
-    "pytorch": 55,
+    "atlas": 153,
+    "pytorch": 59,
     "verifier_skipped": 10,
     "atlas_skipped": 0
   },

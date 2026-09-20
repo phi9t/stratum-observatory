@@ -21,12 +21,12 @@ test('every V4.1 block restores the attention output position basis before proje
 test('mHC read collapses the stream axis with a vector and write retains separate gates',()=>{
  const m=MODELS.dsv41,scene=buildScene({model:m.id,stage:'residual'});
  assert.deepEqual(structuralReport(scene),[]);
- const read=facts(scene.nodes.find(n=>n.id==='depth-read'));
- assert.equal(read['Read coefficients'],`[B, S, ${m.streams}]`);
- assert.equal(read['Output'],`[B, S, ${m.d}]`);
- const write=facts(scene.nodes.find(n=>n.id==='depth-write'));
- assert.equal(write['Residual mix'],`[B, S, ${m.streams}, ${m.streams}]`);
- assert.equal(write['Output gate'],`[B, S, ${m.streams}]`);
+ const read=facts(scene.nodes.find(n=>n.id==='attention-read'));
+ assert.equal(read['Read coefficients'],`[B, T, ${m.streams}]`);
+ assert.equal(read['Output'],`[B, T, ${m.d}]`);
+ const write=facts(scene.nodes.find(n=>n.id==='attention-write'));
+ assert.equal(write['Residual mix'],`[B, T, ${m.streams}, ${m.streams}]`);
+ assert.equal(write['Output gate'],`[B, T, ${m.streams}]`);
  assert.equal(write['Coefficient owner'],'current sublayer');
 });
 

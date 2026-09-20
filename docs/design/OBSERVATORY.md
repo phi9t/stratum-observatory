@@ -71,9 +71,9 @@ links clamp out-of-range layers into their own range. Both tile clicks and keybo
 selection keep the reader in the chapter. Worked explanations, mathematics, source
 citations and checked-in Python remain beneath the detailed schematic.
 
-The portable build gzip-compresses only the embedded Python-source JSON using Node's
+The portable build gzip-compresses the preset data, CPU traces and embedded Python-source JSON using Node's
 built-in zlib. A modern browser's native DecompressionStream restores the exact UTF-8
-source before the application modules initialize. This preserves readable displayed
+data before dependent application modules initialize. This preserves readable displayed
 code and byte-exact downloads within the existing single-file size budget, without
 external assets or an added runtime package. Browser tests check restored code against
 the checked-in files; engineering checks repeat-build byte identity.
@@ -101,3 +101,21 @@ All reader-facing numbers omit thousands separators, including controls and pros
 Numeric quantities and tensor shapes use code glyphs at the surrounding type size;
 existing mathematical contracts retain their code formatting. This is typography,
 not a change to model arithmetic, tensor axes or computation.
+
+
+## V4.1 residual state
+
+The Residual chapter places the expanded attention/MoE layer beside the whole backbone:
+embedding expansion, encoder, boundary, decoder, final weighted collapse and output head.
+Both the residual tensor and pending read gate cross the encoder/decoder boundary.
+A sublayer reads the previous gate, predicts its own next-read gate, and writes using its
+current output gate and residual matrix. The matrix axes are input stream then output
+stream: `X_next,j = sum_i M_ij X_i + q_j y`. Stream mixing never crosses token positions.
+Initial read weights are the one-hot vector; final collapse uses the last FFN gate.
+Sinkhorn balancing applies only to the residual matrix and is approximate at finite rounds.
+
+Visible equations precede a CPU trace from `residual_example.py`. The fixture preserves
+the stream count and mixing algorithm, shrinks hidden width, and explicitly injects linear
+stand-ins for attention and FFN. Matrix rows are displayed per stream; a disclosure contains
+all intermediate tensors. Independent scalar arithmetic, wrong-gate and transposed-matrix
+checks complement exact agreement with the checked-in `TransformerBlock`.

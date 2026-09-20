@@ -82,8 +82,8 @@ function residuals(g,m,s){
  addWire(g,[[238,86],[238,899],[270,899]],engram?'engram-input':'', 'merge-attn',{kind:'residual'});
  if(special){
   const writeTitle=m.residual==='hyper'?'Gated stream write':m.residual==='mhc'?'Mixed stream write':'Update block accumulator';
-  node(g,m,'merge-attn',270,884,230,30,writeTitle,'',desc,m.residual==='mhc'?'xᵢ′ = postᵢ Δ + Σⱼ combᵢⱼ xⱼ; next_pre = pre':'update residual state',m.residual==='mhc'?[['Output gate','current sublayer vector'],['Residual mix','current sublayer matrix']]:[],{kind:'pill',tone:'state'});
-  node(g,m,'merge-ffn',886,934,230,30,writeTitle,'',desc,m.residual==='mhc'?'xᵢ′ = postᵢ Δ + Σⱼ combᵢⱼ xⱼ; next_pre = pre':'update residual state',m.residual==='mhc'?[['Output gate','current sublayer vector'],['Residual mix','current sublayer matrix']]:[],{kind:'pill',tone:'state'});
+  node(g,m,'merge-attn',270,884,230,30,writeTitle,'',desc,m.residual==='mhc'?'xⱼ′ = postⱼ Δ + Σᵢ combᵢⱼ xᵢ; next_pre = pre':'update residual state',m.residual==='mhc'?[['Output gate','current sublayer vector'],['Residual mix','current sublayer matrix']]:[],{kind:'pill',tone:'state'});
+  node(g,m,'merge-ffn',886,934,230,30,writeTitle,'',desc,m.residual==='mhc'?'xⱼ′ = postⱼ Δ + Σᵢ combᵢⱼ xᵢ; next_pre = pre':'update residual state',m.residual==='mhc'?[['Output gate','current sublayer vector'],['Residual mix','current sublayer matrix']]:[],{kind:'pill',tone:'state'});
  }else{
   addSum(g,'merge-attn',286,899,{info:modelInfo(m,'Attention residual add','Combine the attention output with the unchanged residual stream.','x₁ = x + Attention(RMSNorm(x))')});
   addLabel(g,'residual add',312,904,'muted',{size:12});

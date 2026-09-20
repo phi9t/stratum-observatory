@@ -110,3 +110,5 @@ summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 
 /* Numerical notation keeps the surrounding type size and uses code glyphs. */
 .numeric-token{font:inherit;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-variant-numeric:tabular-nums}
+
+.worked-residual-table th:nth-child(1){width:45%}.worked-residual-table th:nth-child(2){width:55%}

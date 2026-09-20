@@ -45,6 +45,10 @@ test_tensor_annotations_explain_their_axes (pytorch_quality.PythonProgramQuality
 test_manual_joint_softmax_includes_zero_value_sink (pytorch_query.QueryExampleTest.test_manual_joint_softmax_includes_zero_value_sink) ... ok
 test_raising_sink_reduces_output_without_changing_dictionary (pytorch_query.QueryExampleTest.test_raising_sink_reduces_output_without_changing_dictionary) ... ok
 test_two_queries_use_actual_core_without_mutating_shared_inputs (pytorch_query.QueryExampleTest.test_two_queries_use_actual_core_without_mutating_shared_inputs) ... ok
+test_full_block_exactly_matches_staged_trace (pytorch_residual_example.ResidualExampleTest.test_full_block_exactly_matches_staged_trace) ... ok
+test_scalar_projection_split_sinkhorn_and_two_sublayers (pytorch_residual_example.ResidualExampleTest.test_scalar_projection_split_sinkhorn_and_two_sublayers) ... ok
+test_schema_is_finite_deterministic_and_keeps_stream_axis (pytorch_residual_example.ResidualExampleTest.test_schema_is_finite_deterministic_and_keeps_stream_axis) ... ok
+test_wrong_current_premix_and_transpose_are_detectable (pytorch_residual_example.ResidualExampleTest.test_wrong_current_premix_and_transpose_are_detectable) ... ok
 test_hierarchy_uses_source_candidates_and_later_scores (pytorch_worked.WorkedExamplesTest.test_hierarchy_uses_source_candidates_and_later_scores) ... ok
 test_replay_does_not_mutate_caches (pytorch_worked.WorkedExamplesTest.test_replay_does_not_mutate_caches) ... ok
 test_replay_missing_dependency_matches_independent_scalar_layers (pytorch_worked.WorkedExamplesTest.test_replay_missing_dependency_matches_independent_scalar_layers) ... ok
@@ -55,6 +59,6 @@ test_changed_source_fingerprint_fails_before_numbers (pytorch_worked_artifact.Wo
 test_saved_intermediates_and_outputs_match_current_cpu (pytorch_worked_artifact.WorkedArtifactTests.test_saved_intermediates_and_outputs_match_current_cpu) ... ok
 
 ----------------------------------------------------------------------
-Ran 55 tests in 0.335s
+Ran 59 tests in 0.372s
 
 OK

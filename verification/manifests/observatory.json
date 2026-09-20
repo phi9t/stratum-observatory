@@ -23701,7 +23701,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/app.mjs",
-      "expected": "827452bd7855ef72261c1f56d52fa84f57f8242c6ab06110df977be4bad5ab1b",
+      "expected": "a8661fb33c3f47a18a1bceba0b71b34269bf8906ecf5cd6568bc7f4abee562b9",
       "statement": "file.src/app.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23771,7 +23771,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/diagram-meta.mjs",
-      "expected": "4fb65cb4e9bb31f4579b9bd92357557c9eaf27bd6a2dba0f283be9c86a298fca",
+      "expected": "391d9ee2e6e30f90bc2594a47c3a331dabbaa94e052f5ef8a269f68499350c85",
       "statement": "file.src/diagram-meta.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23791,7 +23791,7 @@
       "domain": "model",
       "classification": "derived",
       "consumer": "file.src/diagram-model.mjs",
-      "expected": "8fcc409b2bbe12b45dfddaead778d53e528fd3a901dbf3c964b1013f106969e6",
+      "expected": "960fb99309467fe04be9b64e3af9b6ca10d4926646d8ac7a76e09ae4e0c9d6da",
       "statement": "file.src/diagram-model.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -23963,7 +23963,7 @@
       "domain": "visualization",
       "classification": "presentation",
       "consumer": "file.src/styles.css",
-      "expected": "96a96ea59ed71d49ab7336216ca6f5295e184b9284b4b9eabe3781c33c4661ab",
+      "expected": "8c2e8ee7249d25186df1285e14bd4eb3103b1c562e2c3d9336f609718fb30710",
       "statement": "file.src/styles.css: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": []
@@ -23973,7 +23973,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.build.mjs",
-      "expected": "271952f3a99eff6d9594c3be45a086afcf5e5ef00e5ab2fafc8411d86197cf46",
+      "expected": "e7e30f5b57a60424abda1afb28e532d596be590a25aadd5424cefce083359e2e",
       "statement": "file.build.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -139669,64 +139669,6 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.residual.depth-version.4dcd2717635c42a1",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.residual.depth-version.4dcd2717635c42a1",
-      "expected": "4dcd2717635c42a1b1546cda6560a0eff8375e216bb9685a3d29e24a3eb70c3c",
-      "statement": "scene.dsv41.model.residual.depth-version.4dcd2717635c42a1: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
-      "evidence": [
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Block",
-            "sha256": "d80574b76e96acc93b4e489dbcea46a4b64e76f37626f346db26dd4b1bca444f",
-            "resolved_span": [
-              907,
-              994
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/diagrams.mjs",
-        "file.src/core.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.residual.depth-warning.c7a9018900922efd",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.residual.depth-warning.c7a9018900922efd",
-      "expected": "c7a9018900922efd9cf33f1b9b6d2022bab4edb30db6b54d3d481b8dfd55a92d",
-      "statement": "scene.dsv41.model.residual.depth-warning.c7a9018900922efd: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
-      "evidence": [
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Block",
-            "sha256": "d80574b76e96acc93b4e489dbcea46a4b64e76f37626f346db26dd4b1bca444f",
-            "resolved_span": [
-              907,
-              994
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/diagrams.mjs",
-        "file.src/core.mjs"
-      ]
-    },
-    {
       "id": "scene.dsv41.network.block.graph.3850c76585fb10bb",
       "domain": "model",
       "classification": "derived",
@@ -142613,64 +142555,6 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.residual.depth-compute.1d392a827b21e37d",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.residual.depth-compute.1d392a827b21e37d",
-      "expected": "1d392a827b21e37d17ec5e868b7f3a564aec1fc76e4313a1dfe8b166a40dc140",
-      "statement": "scene.dsv41.model.residual.depth-compute.1d392a827b21e37d: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
-      "evidence": [
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Block",
-            "sha256": "d80574b76e96acc93b4e489dbcea46a4b64e76f37626f346db26dd4b1bca444f",
-            "resolved_span": [
-              907,
-              994
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/diagrams.mjs",
-        "file.src/core.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.residual.graph.f6fbbc425a1baffa",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.residual.graph.f6fbbc425a1baffa",
-      "expected": "f6fbbc425a1baffac7c06d5cffaa6bfb44865462b6804835d884f4c16c257a71",
-      "statement": "scene.dsv41.model.residual.graph.f6fbbc425a1baffa: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
-      "evidence": [
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Transformer",
-            "sha256": "ba3f2971ecd0472ac541d4c470be148fa375d8c5a6aa2e9d8298e1403322b7d3",
-            "resolved_span": [
-              1183,
-              1282
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/diagrams.mjs",
-        "file.src/core.mjs"
-      ]
-    },
-    {
       "id": "scene.dsv41.model.ced.candidate-pool.cb959338ad9b655c",
       "domain": "model",
       "classification": "derived",
@@ -143017,11 +142901,11 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.ced.enc-out.896804eafb9c5161",
+      "id": "scene.dsv41.model.ced.enc-out.23fed55828fb1229",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.dsv41.model.ced.enc-out.896804eafb9c5161",
-      "expected": "896804eafb9c5161c76a275b3abbb128950b2b1b713570f8bf6b062c230eab18",
+      "consumer": "scene.dsv41.model.ced.enc-out.23fed55828fb1229",
+      "expected": "23fed55828fb122989f8dee7ed38ae673adba69758054af9a80ea04bdf456bf2",
       "statement": "scene.dsv41.model.ced.enc-out.6f9174c9b23f5204: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
       "evidence": [
         {
@@ -143083,11 +142967,11 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.ced.logits.79ea1c4fc31051d1",
+      "id": "scene.dsv41.model.ced.logits.7a81e8ba3abd5e38",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.dsv41.model.ced.logits.79ea1c4fc31051d1",
-      "expected": "79ea1c4fc31051d11eab36e799acb70bc4cd934a849ece80735b43ed3888e028",
+      "consumer": "scene.dsv41.model.ced.logits.7a81e8ba3abd5e38",
+      "expected": "7a81e8ba3abd5e382236418b2e1b4583c114889e475055f6d9b59104bf605c43",
       "statement": "scene.dsv41.model.ced.logits.e5cc19220d68504b: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
       "evidence": [
         {
@@ -143114,11 +142998,11 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.ced.mhc-expand.92878e8a9157e98b",
+      "id": "scene.dsv41.model.ced.mhc-expand.c661b0fc1f1dd47f",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.dsv41.model.ced.mhc-expand.92878e8a9157e98b",
-      "expected": "92878e8a9157e98b688daf4b7465445637600b2e7dc6b9f914d4a8a546c7ab5e",
+      "consumer": "scene.dsv41.model.ced.mhc-expand.c661b0fc1f1dd47f",
+      "expected": "c661b0fc1f1dd47f2a641d13143362e32f402604d489de7799ef48a2b4555b65",
       "statement": "scene.dsv41.model.ced.mhc-expand.92878e8a9157e98b: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
       "evidence": [
         {
@@ -143314,181 +143198,6 @@
       "consumer": "scene.dsv41.compare.block.b-residual.eba58b466ea7eff8",
       "expected": "eba58b466ea7eff813772a19fbe4fddedb51ad914957372261684e7068ec53c4",
       "statement": "scene.dsv41.compare.block.b-residual.eba58b466ea7eff8: revised V4.1 projection, residual, or serving state contract; bound to the pinned publisher implementation and current ledgers. Independent scientific review remains required.",
-      "evidence": [
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Block",
-            "sha256": "d80574b76e96acc93b4e489dbcea46a4b64e76f37626f346db26dd4b1bca444f",
-            "resolved_span": [
-              907,
-              994
-            ],
-            "contains": [
-              "Hyper-Connections",
-              "args.hc_mult"
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/core.mjs",
-        "MODELS.dsv41.streams",
-        "file.src/diagram-meta.mjs",
-        "file.src/diagram-model.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.residual.depth-0.fa7f97a54f755758",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.residual.depth-0.fa7f97a54f755758",
-      "expected": "fa7f97a54f75575887ce3aa4b3fb9112adea3e7bcfbbc347beddddb7fc8d5251",
-      "statement": "scene.dsv41.model.residual.depth-0.0beb9b242b5bf72a: revised V4.1 projection, residual, or serving state contract; bound to the pinned publisher implementation and current ledgers. Independent scientific review remains required.",
-      "evidence": [
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Block",
-            "sha256": "d80574b76e96acc93b4e489dbcea46a4b64e76f37626f346db26dd4b1bca444f",
-            "resolved_span": [
-              907,
-              994
-            ],
-            "contains": [
-              "Hyper-Connections",
-              "args.hc_mult"
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/core.mjs",
-        "MODELS.dsv41.streams",
-        "file.src/diagram-meta.mjs",
-        "file.src/diagram-model.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.residual.depth-1.7bbad0f84ce76c14",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.residual.depth-1.7bbad0f84ce76c14",
-      "expected": "7bbad0f84ce76c14f30ac31b88f060c97049d322a1619116fe1b1f93bd0c58ad",
-      "statement": "scene.dsv41.model.residual.depth-1.dbf0a343e7e7f10b: revised V4.1 projection, residual, or serving state contract; bound to the pinned publisher implementation and current ledgers. Independent scientific review remains required.",
-      "evidence": [
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Block",
-            "sha256": "d80574b76e96acc93b4e489dbcea46a4b64e76f37626f346db26dd4b1bca444f",
-            "resolved_span": [
-              907,
-              994
-            ],
-            "contains": [
-              "Hyper-Connections",
-              "args.hc_mult"
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/core.mjs",
-        "MODELS.dsv41.streams",
-        "file.src/diagram-meta.mjs",
-        "file.src/diagram-model.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.residual.depth-2.73e958a36f91c9dd",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.residual.depth-2.73e958a36f91c9dd",
-      "expected": "73e958a36f91c9dd6c1ce4bf3ef6fd1ebfd11a3708f1dc7631801769401370af",
-      "statement": "scene.dsv41.model.residual.depth-2.73e958a36f91c9dd: revised V4.1 projection, residual, or serving state contract; bound to the pinned publisher implementation and current ledgers. Independent scientific review remains required.",
-      "evidence": [
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Block",
-            "sha256": "d80574b76e96acc93b4e489dbcea46a4b64e76f37626f346db26dd4b1bca444f",
-            "resolved_span": [
-              907,
-              994
-            ],
-            "contains": [
-              "Hyper-Connections",
-              "args.hc_mult"
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/core.mjs",
-        "MODELS.dsv41.streams",
-        "file.src/diagram-meta.mjs",
-        "file.src/diagram-model.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.residual.depth-read.b5d1929bc3de053a",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.residual.depth-read.b5d1929bc3de053a",
-      "expected": "b5d1929bc3de053a6c17986b8632e979949d1cc0c46ed59385bffd57c2abf6ff",
-      "statement": "scene.dsv41.model.residual.depth-read.41ac2272f5ead43a: revised V4.1 projection, residual, or serving state contract; bound to the pinned publisher implementation and current ledgers. Independent scientific review remains required.",
-      "evidence": [
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Block",
-            "sha256": "d80574b76e96acc93b4e489dbcea46a4b64e76f37626f346db26dd4b1bca444f",
-            "resolved_span": [
-              907,
-              994
-            ],
-            "contains": [
-              "Hyper-Connections",
-              "args.hc_mult"
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/core.mjs",
-        "MODELS.dsv41.streams",
-        "file.src/diagram-meta.mjs",
-        "file.src/diagram-model.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.residual.depth-write.0b1cf3fc53f68ca5",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.residual.depth-write.0b1cf3fc53f68ca5",
-      "expected": "0b1cf3fc53f68ca5bc1d074dff12e8d151d231c673c0af8f49fdcd064fbaf122",
-      "statement": "scene.dsv41.model.residual.depth-write.0b1cf3fc53f68ca5: revised V4.1 projection, residual, or serving state contract; bound to the pinned publisher implementation and current ledgers. Independent scientific review remains required.",
       "evidence": [
         {
           "source": "dsv41-code",
@@ -146365,7 +146074,7 @@
         "trace": [
           [
             "Capture target inputs",
-            "Before attention at layers 38, 39, 40, the reference takes the mean across residual copies. Concatenation yields [B, T, 15360]. These are attention inputs, not layer outputs."
+            "Before attention at layers 38, 39, 40, the reference takes the mean across residual copies. Concatenation yields [B, T, 15360]. These taps precede attention; they are stream means, not the weighted attention read or layer outputs."
           ],
           [
             "Initialize the draft",
@@ -146706,7 +146415,7 @@
       "consumer": "file.src/deepdives.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "289c0361d9080100b96df34d71a4f7450aaeb22da9478b054c600dba448f5ba7",
+      "expected": "9d33b908299666e54627691f1e916611488de39afd5ada11fa919b4b71cc2401",
       "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
       "evidence": [],
       "dependencies": [
@@ -147052,7 +146761,8 @@
         "title": "Single-pass mHC and the flat encoder/decoder stack",
         "stages": [
           "encoder",
-          "decoder"
+          "decoder",
+          "residual"
         ],
         "sources": [
           "dsv41-code",
@@ -147819,7 +147529,7 @@
       "consumer": "file.src/pytorch-backbone.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "a6461d53e4b7f0611f2b381e66e578ffdd04861cfbdc7184e3f73a4c29c781fb",
+      "expected": "979a0febd9012b7ba21c5dc527369f2e7dca24792e2ccc43643440e8112a2ee8",
       "statement": "Teaching example delivery fingerprint; identity is not source acceptance.",
       "evidence": [],
       "dependencies": [
@@ -150831,7 +150541,7 @@
       "consumer": "file.src/pytorch-source.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "c12bd749a7ce923172b1d089a7150eac197944784c7a9b91560665a720a8c65f",
+      "expected": "4a9ecb096afe773e083ae2dc53faac3a3df60c01864577a11ab12fa967e536b1",
       "dependencies": [
         "file.examples/deepseek_v41/config.py",
         "file.examples/deepseek_v41/backbone_mhc.py",
@@ -151489,11 +151199,11 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.encoder.merge-attn.39c125f51fd60fed",
+      "id": "scene.dsv41.model.encoder.merge-attn.7d2fb90e933174cd",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.dsv41.model.encoder.merge-attn.39c125f51fd60fed",
-      "expected": "39c125f51fd60fedd60c2513c028ca53d6e72feee0ab13e1c5b158df6856fcd9",
+      "consumer": "scene.dsv41.model.encoder.merge-attn.7d2fb90e933174cd",
+      "expected": "7d2fb90e933174cdfed49cab621d91bb705d03fc7b062da819f7de637d62860b",
       "statement": "scene.dsv41.model.block.merge-attn.39c125f51fd60fed: revised V4.1 projection, residual, or serving state contract; bound to the pinned publisher implementation and current ledgers. Independent scientific review remains required.",
       "evidence": [
         {
@@ -151524,11 +151234,11 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.encoder.merge-ffn.39c125f51fd60fed",
+      "id": "scene.dsv41.model.encoder.merge-ffn.7d2fb90e933174cd",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.dsv41.model.encoder.merge-ffn.39c125f51fd60fed",
-      "expected": "39c125f51fd60fedd60c2513c028ca53d6e72feee0ab13e1c5b158df6856fcd9",
+      "consumer": "scene.dsv41.model.encoder.merge-ffn.7d2fb90e933174cd",
+      "expected": "7d2fb90e933174cdfed49cab621d91bb705d03fc7b062da819f7de637d62860b",
       "statement": "scene.dsv41.model.block.merge-ffn.39c125f51fd60fed: revised V4.1 projection, residual, or serving state contract; bound to the pinned publisher implementation and current ledgers. Independent scientific review remains required.",
       "evidence": [
         {
@@ -153276,11 +152986,11 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.decoder.merge-attn.39c125f51fd60fed",
+      "id": "scene.dsv41.model.decoder.merge-attn.7d2fb90e933174cd",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.dsv41.model.decoder.merge-attn.39c125f51fd60fed",
-      "expected": "39c125f51fd60fedd60c2513c028ca53d6e72feee0ab13e1c5b158df6856fcd9",
+      "consumer": "scene.dsv41.model.decoder.merge-attn.7d2fb90e933174cd",
+      "expected": "7d2fb90e933174cdfed49cab621d91bb705d03fc7b062da819f7de637d62860b",
       "statement": "scene.dsv41.model.block.merge-attn.39c125f51fd60fed: revised V4.1 projection, residual, or serving state contract; bound to the pinned publisher implementation and current ledgers. Independent scientific review remains required.",
       "evidence": [
         {
@@ -153311,11 +153021,11 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.decoder.merge-ffn.39c125f51fd60fed",
+      "id": "scene.dsv41.model.decoder.merge-ffn.7d2fb90e933174cd",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.dsv41.model.decoder.merge-ffn.39c125f51fd60fed",
-      "expected": "39c125f51fd60fedd60c2513c028ca53d6e72feee0ab13e1c5b158df6856fcd9",
+      "consumer": "scene.dsv41.model.decoder.merge-ffn.7d2fb90e933174cd",
+      "expected": "7d2fb90e933174cdfed49cab621d91bb705d03fc7b062da819f7de637d62860b",
       "statement": "scene.dsv41.model.block.merge-ffn.39c125f51fd60fed: revised V4.1 projection, residual, or serving state contract; bound to the pinned publisher implementation and current ledgers. Independent scientific review remains required.",
       "evidence": [
         {
@@ -155326,7 +155036,7 @@
       "consumer": "file.src/worked-examples.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "1f1cf01409f0a7517cde0cb1717bdef5f5a52d650fbb806e8c38b38cb5e25974",
+      "expected": "ba91d091bbaab782a891b7b774920e6bb45264d09c1c7f65f57019b621778e76",
       "dependencies": [
         "file.src/worked-results.mjs"
       ],
@@ -155338,7 +155048,7 @@
       "consumer": "file.src/worked-results.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "2b75bf5032b668d5761e228041044ff03a2707707acfe5e28115652a6b2a442f",
+      "expected": "0e59ffa4e2db12bea922d8a8cd67ff9e7124b2caa1cd0ea7abac9eb41ffb1df7",
       "dependencies": [
         "worked.replay",
         "worked.selection",
@@ -155352,7 +155062,7 @@
       "consumer": "file.examples/deepseek_v41/worked_examples.py",
       "domain": "model",
       "classification": "derived",
-      "expected": "a5e9685b08e2d646fbba35e3b84552de9cb298af02bcf33a74d17e1d12dce109",
+      "expected": "4831fd50569727ebd67eafaa47aca1bd8ad4e926b2bc6bab17a68edb10ef3905",
       "dependencies": [
         "file.examples/deepseek_v41/config.py",
         "file.examples/deepseek_v41/csa2_attention.py",
@@ -156438,6 +156148,1654 @@
       ],
       "evidence": [],
       "statement": "Contiguous producer/reuse bundles derived from the checkpoint layer kinds. Shared by the overview and chapter selectors. Identity is not scientific acceptance."
+    },
+    {
+      "id": "deepdive.residual",
+      "consumer": "deepdive.residual",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "stage": "residual",
+        "title": "Residual state: read, compute, mix, carry",
+        "question": "How does one token move through the full backbone?",
+        "summary": "Each token retains 4 streams through all 40 layers. Attention and MoE each read a hidden-width vector, then update every stream. The read gate travels one sublayer ahead.",
+        "math": [
+          [
+            "State and initialization",
+            "X \u2208 R^[B,T,4,5120]\np_prev \u2208 R^[B,T,4]\nX_i = embedding; p_prev = [1, 0, 0, 0]",
+            "B indexes sequences, T token positions, i input streams, j output streams, and D hidden channels. The stream copies start equal and can diverge after learned gated writes."
+          ],
+          [
+            "Read the previous gate; write current coefficients",
+            "h = \u03a3_i p_prev,i X_i\ny = F(RMSNorm(h))\nX_next,j = \u03a3_i M_ij X_i + q_j y\nnext read gate = p_next",
+            "F is attention or MoE. M has input-stream rows and output-stream columns: its contraction is M\u1d40X. Only the stream index is summed. q broadcasts the same sublayer output into separately gated streams."
+          ],
+          [
+            "Predict the coefficients from incoming state",
+            "v = flatten_streams_and_channels(X)\nz = W v / sqrt(mean(v\u00b2) + eps_norm)\np_next = sigmoid(a_pre z_pre + b_pre) + eps_hc\nq = 2 sigmoid(a_post z_post + b_post)\nL = reshape(a_mix z_mix + b_mix, [4, 4])",
+            "This RMS statistic spans all streams and channels together. The learned projection produces next-read gates, current-write gates and matrix logits. The separate sublayer RMSNorm has learned channel weights. Read and write gates are not probability distributions."
+          ],
+          [
+            "Balance the residual matrix",
+            "M = softmax_rows(L) + eps_hc\nM /= sum_over_input_streams(M) + eps_hc\nrepeat 19 times:\n    M /= sum_over_output_streams(M) + eps_hc\n    M /= sum_over_input_streams(M) + eps_hc",
+            "Finite Sinkhorn rounds target approximately unit row and column sums. Epsilon and a finite iteration count prevent an exact doubly stochastic guarantee. This balancing applies only to M."
+          ]
+        ],
+        "trace": [
+          [
+            "Attention",
+            "Read with the preceding FFN gate. Predict p_attn, q_attn and M_attn from the incoming residual; write with q_attn and M_attn."
+          ],
+          [
+            "MoE",
+            "Read the attention-updated residual with p_attn. Predict p_ffn, q_ffn and M_ffn, then update the residual again."
+          ],
+          [
+            "Boundary and output",
+            "Both X and p_ffn cross layer 20. After layer 40, p_ffn collapses the streams before final normalization and the vocabulary head."
+          ]
+        ],
+        "rows": [
+          [
+            "Residual",
+            "[B, T, 4, 5120]",
+            "Carried through depth"
+          ],
+          [
+            "Read / write gates",
+            "[B, T, 4]",
+            "Previous read gate; current output gate"
+          ],
+          [
+            "Mixing matrix",
+            "[B, T, 4, 4]",
+            "Input stream \u00d7 output stream"
+          ],
+          [
+            "Mixer projection",
+            "24 coefficients",
+            "Read gate + write gate + matrix"
+          ]
+        ],
+        "caveat": "The publisher runs a flat block list. Encoder/decoder labels partition attention regimes; they do not create separate residual networks. Engram injects before its configured blocks without replacing the pending gate. dSpark observes stream means, not this weighted read.",
+        "scope": "The CPU fixture below validates residual mechanics with reduced hidden width and explicit linear stand-ins for attention and MoE. It is not a checkpoint execution or a GPU performance result.",
+        "symbols": "Matrix axes and gate timing follow the pinned publisher implementation.",
+        "sources": [
+          "dsv41-config",
+          "dsv41-code",
+          "dsv41-kernel"
+        ],
+        "anchors": [
+          "Block.hc_mixes",
+          "Block.hc_pre",
+          "Block.hc_post",
+          "Block.forward",
+          "hc_split_sinkhorn_kernel",
+          "make_identity_pre_mix",
+          "Transformer.forward",
+          "ParallelHead.forward"
+        ]
+      },
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "MODELS.dsv41.streams",
+        "MODELS.dsv41.d",
+        "MODELS.dsv41.layers",
+        "MODELS.dsv41.encoderLayers",
+        "MODELS.dsv41.sinkhornIters",
+        "MODELS.dsv41.vocab",
+        "MODELS.dsv41.engramLayers",
+        "MODELS.dsv41.dsparkTargets"
+      ],
+      "evidence": [
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "RMSNorm",
+            "sha256": "666a2006cad316cd77b5d6e522e8a2bbfbe8d60da7070070bf91e28f6f20dde3",
+            "resolved_span": [
+              281,
+              293
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Block.hc_mixes",
+            "sha256": "996c24d150c0e957e4bd7eda5aac3c72852d64f1db71b4376dc977f19db18ed9",
+            "resolved_span": [
+              948,
+              955
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Block.hc_pre",
+            "sha256": "73c61f96e2ba71a339802a8c5e12b107a0d9eb93e8083fadce3babc4329c1cd9",
+            "resolved_span": [
+              957,
+              960
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Block.hc_post",
+            "sha256": "46b0c3e9420b92cc19499568abf65a5bb37ad8be8fb3eef0b19b92412cc4bba8",
+            "resolved_span": [
+              962,
+              966
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Block.forward",
+            "sha256": "96a6886371ddf9631e2818d3270f3f721a98a8e48e2995dc5e9cd8238379adc6",
+            "resolved_span": [
+              968,
+              994
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "make_identity_pre_mix",
+            "sha256": "13af261af57911efc5ffddbd121b5d70285c97041d29ddff0ebef39ce3131221",
+            "resolved_span": [
+              1159,
+              1163
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Transformer.forward",
+            "sha256": "ecffa476cb5c3a236955ad55060befca9e9d0b7a68163c9e97242bc0137145a5",
+            "resolved_span": [
+              1242,
+              1272
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-kernel",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "hc_split_sinkhorn",
+            "sha256": "a3b6efd0f2e340ecf11b88cbad9b1f43e241095d88708c5e55f6dc969e98783f",
+            "resolved_span": [
+              465,
+              474
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-kernel",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "hc_split_sinkhorn_kernel",
+            "sha256": "d176a0a7b5a62eadc3195e3f667af2060b0f2f40b3213b01bb3379a36c19c119",
+            "resolved_span": [
+              407,
+              462
+            ]
+          },
+          "relation": "implements"
+        }
+      ],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "worked.residual",
+      "consumer": "worked.residual",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "title": "Residual streams: read, carry, write, then hand off input weights",
+        "scope": "CPU illustrative fixture with injected linear attention and FFN stand-ins. Residual mechanics use the executable mHC modules; this is not checkpoint or GPU parity. Final collapse illustrates a stack exit after this block.",
+        "settings": {
+          "batch": 1,
+          "tokens": 1,
+          "streams": 4,
+          "hidden_dim": 2,
+          "norm_epsilon": 1e-20,
+          "mixing_epsilon": 1e-06,
+          "sinkhorn_iterations": 20
+        },
+        "inputs": [
+          {
+            "id": "residual",
+            "title": "Incoming nonidentical residual streams",
+            "operation": "X",
+            "shape": [
+              1,
+              1,
+              4,
+              2
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "streams",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  [
+                    1,
+                    -1
+                  ],
+                  [
+                    2,
+                    0.5
+                  ],
+                  [
+                    -0.5,
+                    1.5
+                  ],
+                  [
+                    0.25,
+                    -2
+                  ]
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "previous_p",
+            "title": "Input weights inherited from the preceding sublayer",
+            "operation": "p_previous",
+            "shape": [
+              1,
+              1,
+              4
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "streams"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.699999988079071,
+                  0.10000000149011612,
+                  0.15000000596046448,
+                  0.05000000074505806
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_linear",
+            "title": "Injected attention stand-in weights",
+            "operation": "W_attention",
+            "shape": [
+              2,
+              2
+            ],
+            "axes": [
+              "output_hidden_dim",
+              "input_hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                0.5,
+                -0.25
+              ],
+              [
+                0.75,
+                0.5
+              ]
+            ]
+          },
+          {
+            "id": "ffn_linear",
+            "title": "Injected FFN stand-in weights",
+            "operation": "W_FFN",
+            "shape": [
+              2,
+              2
+            ],
+            "axes": [
+              "output_hidden_dim",
+              "input_hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                -0.25,
+                0.75
+              ],
+              [
+                0.5,
+                0.25
+              ]
+            ]
+          }
+        ],
+        "steps": [
+          {
+            "id": "attention_flattened",
+            "title": "Attention: Flatten residual streams",
+            "operation": "flatten(X)",
+            "shape": [
+              1,
+              1,
+              8
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "streams_times_hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  1,
+                  -1,
+                  2,
+                  0.5,
+                  -0.5,
+                  1.5,
+                  0.25,
+                  -2
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_inverse_rms",
+            "title": "Attention: Inverse RMS across all streams and channels",
+            "operation": "rsqrt(mean(flatten(X)\u00b2) + \u03b5_norm)",
+            "shape": [
+              1,
+              1,
+              1
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "singleton"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.7901836633682251
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_projection",
+            "title": "Attention: Coefficient projection before RMS scaling",
+            "operation": "flatten(X) W\u1d40",
+            "shape": [
+              1,
+              1,
+              24
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "coefficients"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.6328125,
+                  -1.515625,
+                  0.828125,
+                  -0.6015625,
+                  1.3828125,
+                  0.671875,
+                  -0.578125,
+                  0.5078125,
+                  -1.4609375,
+                  0.8828125,
+                  -1.625,
+                  1.4375,
+                  0.7265625,
+                  -0.1640625,
+                  0.5625,
+                  -1.40625,
+                  0.578125,
+                  -1.5703125,
+                  1.4921875,
+                  -0.65625,
+                  -0.109375,
+                  0.6171875,
+                  -0.6328125,
+                  0.6328125
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_coefficients",
+            "title": "Attention: RMS-scaled coefficients",
+            "operation": "(flatten(X) W\u1d40) \u00d7 inverse_rms",
+            "shape": [
+              1,
+              1,
+              24
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "coefficients"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.5000380873680115,
+                  -1.1976220607757568,
+                  0.6543708443641663,
+                  -0.47534486651420593,
+                  1.092675805091858,
+                  0.5309046506881714,
+                  -0.45682492852211,
+                  0.40126514434814453,
+                  -1.1544089317321777,
+                  0.6975840330123901,
+                  -1.2840484380722046,
+                  1.1358890533447266,
+                  0.5741178393363953,
+                  -0.12963950634002686,
+                  0.444478303194046,
+                  -1.1111958026885986,
+                  0.45682492852211,
+                  -1.2408353090286255,
+                  1.1791021823883057,
+                  -0.5185580253601074,
+                  -0.08642634004354477,
+                  0.4876914918422699,
+                  -0.5000380873680115,
+                  0.5000380873680115
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_next_p",
+            "title": "Attention: Input weights for the following sublayer",
+            "operation": "sigmoid(\u03b1_p c_p + \u03b2_p) + \u03b5_mix",
+            "shape": [
+              1,
+              1,
+              4
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "streams"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.46879640221595764,
+                  0.2996833622455597,
+                  0.5503758788108826,
+                  0.4408610463142395
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_q",
+            "title": "Attention: Current output write weights",
+            "operation": "2 sigmoid(\u03b1_q c_q + \u03b2_q)",
+            "shape": [
+              1,
+              1,
+              4
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "streams"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  1.4400181770324707,
+                  1.3131996393203735,
+                  1.0161892175674438,
+                  0.9629913568496704
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_matrix",
+            "title": "Attention: Current carry matrix: input rows, output columns",
+            "operation": "Sinkhorn(softmax_rows(\u03b1_M c_M + \u03b2_M) + \u03b5_mix)",
+            "shape": [
+              1,
+              1,
+              4,
+              4
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "input_streams",
+              "output_streams"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  [
+                    0.041935283690690994,
+                    0.35829752683639526,
+                    0.050312191247940063,
+                    0.5494540333747864
+                  ],
+                  [
+                    0.4413112998008728,
+                    0.2927323281764984,
+                    0.2207156866788864,
+                    0.04523969069123268
+                  ],
+                  [
+                    0.2193913757801056,
+                    0.05386481434106827,
+                    0.6170154213905334,
+                    0.1097274124622345
+                  ],
+                  [
+                    0.29736101627349854,
+                    0.29510435461997986,
+                    0.11195572465658188,
+                    0.29557791352272034
+                  ]
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_row_sums",
+            "title": "Attention: Approximate row sums",
+            "operation": "sum over output streams",
+            "shape": [
+              1,
+              1,
+              4
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "input_streams"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.9999990463256836,
+                  0.9999989867210388,
+                  0.9999990463256836,
+                  0.9999990463256836
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_column_sums",
+            "title": "Attention: Approximate column sums",
+            "operation": "sum over input streams",
+            "shape": [
+              1,
+              1,
+              4
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "output_streams"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.9999989867210388,
+                  0.9999990463256836,
+                  0.9999989867210388,
+                  0.9999990463256836
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_read",
+            "title": "Attention: Read using previous input weights",
+            "operation": "\u03a3\u1d62 p_previous[i] X[i,:]",
+            "shape": [
+              1,
+              1,
+              2
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.8374999761581421,
+                  -0.5249999761581421
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_normalized",
+            "title": "Attention: Normalize collapsed read",
+            "operation": "RMSNorm(read)",
+            "shape": [
+              1,
+              1,
+              2
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  1.1982449293136597,
+                  -0.7511385679244995
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_output",
+            "title": "Attention: Injected linear stand-in output",
+            "operation": "linear stand-in(normalized); illustrative, not checkpoint attention or MoE",
+            "shape": [
+              1,
+              1,
+              2
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.7869070768356323,
+                  0.5231143832206726
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_carried",
+            "title": "Attention: Carry input streams into output streams",
+            "operation": "carried[j,d] = \u03a3\u1d62 M[i,j] X[i,d]",
+            "shape": [
+              1,
+              1,
+              4,
+              2
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "streams",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  [
+                    0.8892024755477905,
+                    -0.08691459894180298
+                  ],
+                  [
+                    0.9906058311462402,
+                    -0.7213428616523743
+                  ],
+                  [
+                    0.2112247794866562,
+                    0.7616572976112366
+                  ],
+                  [
+                    0.658964216709137,
+                    -0.9533988833427429
+                  ]
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_written",
+            "title": "Attention: Write sublayer output into every stream",
+            "operation": "written[j,d] = q[j] y[d]",
+            "shape": [
+              1,
+              1,
+              4,
+              2
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "streams",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  [
+                    1.1331604719161987,
+                    0.7532942295074463
+                  ],
+                  [
+                    1.033366084098816,
+                    0.686953604221344
+                  ],
+                  [
+                    0.7996464967727661,
+                    0.5315831899642944
+                  ],
+                  [
+                    0.7577847242355347,
+                    0.5037546157836914
+                  ]
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_residual",
+            "title": "Attention: Residual after carry and write",
+            "operation": "X_next = M\u1d40 X + q y",
+            "shape": [
+              1,
+              1,
+              4,
+              2
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "streams",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  [
+                    2.0223629474639893,
+                    0.6663796305656433
+                  ],
+                  [
+                    2.0239720344543457,
+                    -0.03438925743103027
+                  ],
+                  [
+                    1.0108712911605835,
+                    1.2932405471801758
+                  ],
+                  [
+                    1.4167490005493164,
+                    -0.4496442675590515
+                  ]
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "ffn_flattened",
+            "title": "FFN: Flatten residual streams",
+            "operation": "flatten(X)",
+            "shape": [
+              1,
+              1,
+              8
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "streams_times_hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  2.0223629474639893,
+                  0.6663796305656433,
+                  2.0239720344543457,
+                  -0.03438925743103027,
+                  1.0108712911605835,
+                  1.2932405471801758,
+                  1.4167490005493164,
+                  -0.4496442675590515
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "ffn_inverse_rms",
+            "title": "FFN: Inverse RMS across all streams and channels",
+            "operation": "rsqrt(mean(flatten(X)\u00b2) + \u03b5_norm)",
+            "shape": [
+              1,
+              1,
+              1
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "singleton"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.7687944769859314
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "ffn_projection",
+            "title": "FFN: Coefficient projection before RMS scaling",
+            "operation": "flatten(X) W\u1d40",
+            "shape": [
+              1,
+              1,
+              24
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "coefficients"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  -0.18021419644355774,
+                  -0.5664926767349243,
+                  0.1787768453359604,
+                  0.19748267531394958,
+                  -0.5544964671134949,
+                  0.19077308475971222,
+                  0.9607598781585693,
+                  -0.6770605444908142,
+                  0.06820902228355408,
+                  -0.3180695176124573,
+                  -0.2993636727333069,
+                  0.445905864238739,
+                  -0.30607330799102783,
+                  0.46391355991363525,
+                  1.2091830968856812,
+                  -0.4286373257637024,
+                  -1.1380977630615234,
+                  -0.06964632868766785,
+                  -0.050940513610839844,
+                  0.21536868810653687,
+                  -0.057650089263916016,
+                  0.7123367190361023,
+                  0.004032909870147705,
+                  -0.18021419644355774
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "ffn_coefficients",
+            "title": "FFN: RMS-scaled coefficients",
+            "operation": "(flatten(X) W\u1d40) \u00d7 inverse_rms",
+            "shape": [
+              1,
+              1,
+              24
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "coefficients"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  -0.13854767382144928,
+                  -0.43551644682884216,
+                  0.13744264841079712,
+                  0.15182359516620636,
+                  -0.42629382014274597,
+                  0.1466652899980545,
+                  0.7386268973350525,
+                  -0.5205203890800476,
+                  0.05243872106075287,
+                  -0.2445300817489624,
+                  -0.23014913499355316,
+                  0.3428099751472473,
+                  -0.2353074699640274,
+                  0.35665419697761536,
+                  0.9296132922172546,
+                  -0.32953399419784546,
+                  -0.8749632835388184,
+                  -0.05354371294379234,
+                  -0.039162784814834595,
+                  0.16557425260543823,
+                  -0.04432107135653496,
+                  0.5476405620574951,
+                  0.0031004787888377905,
+                  -0.13854767382144928
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "ffn_next_p",
+            "title": "FFN: Input weights for the following sublayer",
+            "operation": "sigmoid(\u03b1_p c_p + \u03b2_p) + \u03b5_mix",
+            "shape": [
+              1,
+              1,
+              4
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "streams"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.3907240927219391,
+                  0.3851480185985565,
+                  0.4859350919723511,
+                  0.5189698338508606
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "ffn_q",
+            "title": "FFN: Current output write weights",
+            "operation": "2 sigmoid(\u03b1_q c_q + \u03b2_q)",
+            "shape": [
+              1,
+              1,
+              4
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "streams"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.9029463529586792,
+                  1.178080439567566,
+                  1.4337326288223267,
+                  0.6349542737007141
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "ffn_matrix",
+            "title": "FFN: Current carry matrix: input rows, output columns",
+            "operation": "Sinkhorn(softmax_rows(\u03b1_M c_M + \u03b2_M) + \u03b5_mix)",
+            "shape": [
+              1,
+              1,
+              4,
+              4
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "input_streams",
+              "output_streams"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  [
+                    0.2567514479160309,
+                    0.16290734708309174,
+                    0.20491546392440796,
+                    0.3754248023033142
+                  ],
+                  [
+                    0.2286672741174698,
+                    0.3529295325279236,
+                    0.3235209584236145,
+                    0.09488130360841751
+                  ],
+                  [
+                    0.11792973428964615,
+                    0.2289591282606125,
+                    0.2879997491836548,
+                    0.3651103675365448
+                  ],
+                  [
+                    0.3966505527496338,
+                    0.2552030384540558,
+                    0.18356280028820038,
+                    0.16458262503147125
+                  ]
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "ffn_row_sums",
+            "title": "FFN: Approximate row sums",
+            "operation": "sum over output streams",
+            "shape": [
+              1,
+              1,
+              4
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "input_streams"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.9999990463256836,
+                  0.9999990463256836,
+                  0.9999990463256836,
+                  0.9999989867210388
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "ffn_column_sums",
+            "title": "FFN: Approximate column sums",
+            "operation": "sum over input streams",
+            "shape": [
+              1,
+              1,
+              4
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "output_streams"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.9999990463256836,
+                  0.9999990463256836,
+                  0.9999989867210388,
+                  0.9999990463256836
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "ffn_read",
+            "title": "FFN: Read using previous input weights",
+            "operation": "\u03a3\u1d62 p_previous[i] X[i,:]",
+            "shape": [
+              1,
+              1,
+              2
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  2.7355756759643555,
+                  0.8156282901763916
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "ffn_normalized",
+            "title": "FFN: Normalize collapsed read",
+            "operation": "RMSNorm(read)",
+            "shape": [
+              1,
+              1,
+              2
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  1.3552567958831787,
+                  0.40407794713974
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "ffn_output",
+            "title": "FFN: Injected linear stand-in output",
+            "operation": "linear stand-in(normalized); illustrative, not checkpoint attention or MoE",
+            "shape": [
+              1,
+              1,
+              2
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  -0.03575575351715088,
+                  0.7786478996276855
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "ffn_carried",
+            "title": "FFN: Carry input streams into output streams",
+            "operation": "carried[j,d] = \u03a3\u1d62 M[i,j] X[i,d]",
+            "shape": [
+              1,
+              1,
+              4,
+              2
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "streams",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  [
+                    1.663226842880249,
+                    0.1373901069164276
+                  ],
+                  [
+                    1.6367841958999634,
+                    0.2777698040008545
+                  ],
+                  [
+                    1.6204038858413696,
+                    0.4153408408164978
+                  ],
+                  [
+                    1.5535341501235962,
+                    0.6450844407081604
+                  ]
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "ffn_written",
+            "title": "FFN: Write sublayer output into every stream",
+            "operation": "written[j,d] = q[j] y[d]",
+            "shape": [
+              1,
+              1,
+              4,
+              2
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "streams",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  [
+                    -0.032285526394844055,
+                    0.7030772566795349
+                  ],
+                  [
+                    -0.04212315380573273,
+                    0.9173098802566528
+                  ],
+                  [
+                    -0.051264189183712006,
+                    1.1163729429244995
+                  ],
+                  [
+                    -0.022703267633914948,
+                    0.4944058060646057
+                  ]
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "ffn_residual",
+            "title": "FFN: Residual after carry and write",
+            "operation": "X_next = M\u1d40 X + q y",
+            "shape": [
+              1,
+              1,
+              4,
+              2
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "streams",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  [
+                    1.6309412717819214,
+                    0.8404673337936401
+                  ],
+                  [
+                    1.594660997390747,
+                    1.1950796842575073
+                  ],
+                  [
+                    1.5691397190093994,
+                    1.5317137241363525
+                  ],
+                  [
+                    1.5308308601379395,
+                    1.1394902467727661
+                  ]
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "final_collapse",
+            "title": "Illustrative stack-exit collapse",
+            "operation": "\u03a3\u1d62 p_FFN[i] X_final[i,:]",
+            "shape": [
+              1,
+              1,
+              2
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  2.8083837032318115,
+                  2.1243479251861572
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "final_normalized",
+            "title": "Illustrative stack-exit normalization",
+            "operation": "RMSNorm(final collapse)",
+            "shape": [
+              1,
+              1,
+              2
+            ],
+            "axes": [
+              "batch",
+              "tokens",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  1.1278797388076782,
+                  0.853162944316864
+                ]
+              ]
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        "file.examples/deepseek_v41/residual_example.py",
+        "pytorch.backbone-mhc"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "file.src/diagram-residual.mjs",
+      "consumer": "file.src/diagram-residual.mjs",
+      "domain": "visualization",
+      "classification": "derived",
+      "expected": "905ae35c64afaebd287ffd102a3a6bed5b64bba78027d9cbd46f30ab6e714c61",
+      "dependencies": [
+        "deepdive.residual",
+        "MODELS.dsv41.streams"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "file.examples/deepseek_v41/residual_example.py",
+      "consumer": "file.examples/deepseek_v41/residual_example.py",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "faf73cd2831cb2d46cfe40b88f2ed79333e33960114185ade884e7c8d5a96c36",
+      "dependencies": [
+        "file.examples/deepseek_v41/backbone_mhc.py",
+        "file.examples/deepseek_v41/config.py"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.embedding.6c5a9e151710be7e",
+      "consumer": "scene.dsv41.model.residual.embedding.6c5a9e151710be7e",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "6c5a9e151710be7ef5c8f437f4e89f1d2b39476b397496a2afc8f4daad2838b1",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.expand.24f3889b23c6b892",
+      "consumer": "scene.dsv41.model.residual.expand.24f3889b23c6b892",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "24f3889b23c6b89262dcc88dbd00fcf4a574b3d6ddc4e0fc8ab71eda3075a376",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.encoder.4fa72305cd60c5b7",
+      "consumer": "scene.dsv41.model.residual.encoder.4fa72305cd60c5b7",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "4fa72305cd60c5b7709156daf83d7a76760d868b323fddd3cff1c022ccbe2fa4",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.handoff.5e2c0825204d39f5",
+      "consumer": "scene.dsv41.model.residual.handoff.5e2c0825204d39f5",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "5e2c0825204d39f5930873fa480941487c8eee103213a854dbccd1b6fafcf1c0",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.decoder.e0c7dc07e0d96740",
+      "consumer": "scene.dsv41.model.residual.decoder.e0c7dc07e0d96740",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "e0c7dc07e0d96740ccb9820dddd525ad94d4bfcb28890ae0ac7512154f5abfb0",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.collapse.6f9931b7b36cd8f0",
+      "consumer": "scene.dsv41.model.residual.collapse.6f9931b7b36cd8f0",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "6f9931b7b36cd8f030e97dbf05ff241cbb4f248623adae9705bb7b3e4d90a821",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.head.dec7e775343a5c4e",
+      "consumer": "scene.dsv41.model.residual.head.dec7e775343a5c4e",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "dec7e775343a5c4e0135a43b7dbd1a1522f5261e8f9d0cb8ea6dddfd6d5cd8fd",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.incoming.3fcbd782749f43bc",
+      "consumer": "scene.dsv41.model.residual.incoming.3fcbd782749f43bc",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "3fcbd782749f43bcc71dd19dd04f6996e9099d251c06cf1c9a6f46154e5b25a9",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.attention-read.1a791917ae43a6d2",
+      "consumer": "scene.dsv41.model.residual.attention-read.1a791917ae43a6d2",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1a791917ae43a6d2f885cf8f49c4fa9cec53d3db561161a8412d984e4edaca40",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.attention-mixer.52a719d12793ff79",
+      "consumer": "scene.dsv41.model.residual.attention-mixer.52a719d12793ff79",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "52a719d12793ff796f368bb8bf15b1d795097c89e52b0f485bae2dbfb6cc2ae2",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.attention-compute.f4ff15d908b03a76",
+      "consumer": "scene.dsv41.model.residual.attention-compute.f4ff15d908b03a76",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f4ff15d908b03a7619cbf2528e396d39e43da273fa3c3b90473db521acdac04d",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.attention-write.dddddcd3282e2c00",
+      "consumer": "scene.dsv41.model.residual.attention-write.dddddcd3282e2c00",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "dddddcd3282e2c00a7716274f5038f9b1bcad94ba134e6c055896668cc82df44",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.ffn-read.4bb5048b6acba37e",
+      "consumer": "scene.dsv41.model.residual.ffn-read.4bb5048b6acba37e",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "4bb5048b6acba37e4db48441b8acea02080efb5f4b351ef74a41ec00fa84c6e2",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.ffn-mixer.e95ea1697d1e5a0a",
+      "consumer": "scene.dsv41.model.residual.ffn-mixer.e95ea1697d1e5a0a",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "e95ea1697d1e5a0a394ef5cc0d791dcb4fc06ef695f48e86468a6a12eb2922ef",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.ffn-compute.08b10d966fa64aad",
+      "consumer": "scene.dsv41.model.residual.ffn-compute.08b10d966fa64aad",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "08b10d966fa64aad41faf8e41f1af4e3c4ed5dbb8e26e7772f6c41b697d779fe",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.ffn-write.1eff10183fdf1bd1",
+      "consumer": "scene.dsv41.model.residual.ffn-write.1eff10183fdf1bd1",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1eff10183fdf1bd1632240fc3546bf91ca50db5d2bfacaf70d62c4a1b04f80e5",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.outgoing.da28857fb902865c",
+      "consumer": "scene.dsv41.model.residual.outgoing.da28857fb902865c",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "da28857fb902865c18b728281994b9d220cbf5d3171e32f2fa839e1db66c127d",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "scene.dsv41.model.residual.graph.224bc47a13e30516",
+      "consumer": "scene.dsv41.model.residual.graph.224bc47a13e30516",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "224bc47a13e305160b70e9a0ae802ec383f4069af99dce8afc23dd5e044af972",
+      "dependencies": [
+        "deepdive.residual",
+        "file.src/diagram-residual.mjs"
+      ],
+      "evidence": [],
+      "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
     }
   ],
   "contracts": [

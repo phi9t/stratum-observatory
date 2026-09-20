@@ -28,7 +28,7 @@ def exercise(page,root):
     assert page.locator('[data-setting="stage"][data-value="block"]').count()==0
     assert page.locator('#identity-metrics .identity-metric').nth(1).locator('strong').inner_text()==f"{model['encoderLayers']} + {model['layers']-model['encoderLayers']}"
     assert page.locator('#identity-metrics').get_by_text('encoder + decoder layers',exact=True).count()==1
-    expected=['encoder','decoder','engram','csa2','dspark']
+    expected=['encoder','decoder','engram','csa2','dspark','residual']
     for stage in expected:
         page.locator(f'button[data-setting="stage"][data-value="{stage}"]').click()
         assert page.evaluate('STRATUM.getState().stage')==stage

@@ -594,6 +594,7 @@ def run(root,record=False):
             from .delivery import page_for_model,artifact_name
             dedicated=page_for_model(root,case['model'],case['view'])
             if page.evaluate('document.body.dataset.pageId || null')!=(dedicated['id'] if dedicated else None):
+                page.evaluate('delete window.STRATUM')
                 page.set_content((root/'dist'/artifact_name(root,case['model'],case['view'])).read_text(),wait_until='load')
                 page.wait_for_function('window.STRATUM')
             page.evaluate('(p)=>STRATUM.setState(p)',case)

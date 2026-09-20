@@ -1,8 +1,8 @@
 # Presentations — PASS
 
-Generated: 2026-09-20T20:55:32.129502+00:00
+Generated: 2026-09-20T21:24:16.967976+00:00
 
-Artifact `04bf4b6102808375…`
+Artifact `5f7f346f04cc714e…`
 
 Exports, delivered-page accessibility, print, portability and preview freshness.
 
@@ -10,14 +10,14 @@ Exports, delivered-page accessibility, print, portability and preview freshness.
 
 | Code | Status | Subject | Detail |
 |---|---|---|---|
-| PORTABILITY_OK | PASS | foundations.html | 392 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
-| PORTABILITY_OK | PASS | index.html | 40 KiB, valid utf-8, nothing loaded from an external origin; 0 source citations are clickable by |
+| PORTABILITY_OK | PASS | foundations.html | 390 KiB, valid utf-8, nothing loaded from an external origin; 1 source citations are clickable b |
+| PORTABILITY_OK | PASS | index.html | 41 KiB, valid utf-8, nothing loaded from an external origin; 0 source citations are clickable by |
 | PORTABILITY_OK | PASS | data-representation.html | 40 KiB, valid utf-8, nothing loaded from an external origin; 7 source citations are clickable by |
-| PORTABILITY_OK | PASS | qwen3.8.html | 392 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
-| PORTABILITY_OK | PASS | kimi-k3.html | 392 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
-| PORTABILITY_OK | PASS | deepseek-v4.1.html | 392 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
-| PORTABILITY_OK | PASS | hardware.html | 392 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
-| PORTABILITY_OK | PASS | networking.html | 392 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
+| PORTABILITY_OK | PASS | qwen3.8.html | 390 KiB, valid utf-8, nothing loaded from an external origin; 1 source citations are clickable b |
+| PORTABILITY_OK | PASS | kimi-k3.html | 390 KiB, valid utf-8, nothing loaded from an external origin; 1 source citations are clickable b |
+| PORTABILITY_OK | PASS | deepseek-v4.1.html | 390 KiB, valid utf-8, nothing loaded from an external origin; 1 source citations are clickable b |
+| PORTABILITY_OK | PASS | hardware.html | 390 KiB, valid utf-8, nothing loaded from an external origin; 1 source citations are clickable b |
+| PORTABILITY_OK | PASS | networking.html | 390 KiB, valid utf-8, nothing loaded from an external origin; 1 source citations are clickable b |
 | PREVIEW_FRESH | PASS | previews | 47 captures match the built artifacts. |
 | PREVIEW_ARTIFACT | PASS | previews | Every capture binds its delivered entry point. |
 | PREVIEW_COVERAGE | PASS | previews | All 9 checkpoints appear in the 47 published previews, including every one of the 23 focal pages |
@@ -31,14 +31,14 @@ Exports, delivered-page accessibility, print, portability and preview freshness.
 | A11Y_OK | PASS | page | 132 controls named, 9 headings ordered, 2 live regions. |
 | PROSE_OK | PASS | default | 9 headings ordered, 132 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
 | PROSE_OK | PASS | dsv41/inputs | 8 headings ordered, 52 controls named, 0 table(s) with scoped headers over 0 rows, 10 citations  |
-| PROSE_OK | PASS | dsv41/residual | 9 headings ordered, 53 controls named, 0 table(s) with scoped headers over 0 rows, 10 citations  |
+| PROSE_OK | PASS | dsv41/residual | 19 headings ordered, 66 controls named, 3 table(s) with scoped headers over 51 rows, 11 citation |
 | PROSE_OK | PASS | dsv41/ced | 10 headings ordered, 88 controls named, 1 table(s) with scoped headers over 8 rows, 36 citations |
 | PROSE_OK | PASS | dsv41/encoder | 14 headings ordered, 110 controls named, 1 table(s) with scoped headers over 4 rows, 18 citation |
 | PROSE_OK | PASS | dsv41/decoder | 15 headings ordered, 114 controls named, 2 table(s) with scoped headers over 16 rows, 19 citatio |
 | PROSE_OK | PASS | dsv41/engram | 13 headings ordered, 58 controls named, 1 table(s) with scoped headers over 4 rows, 13 citations |
 | PROSE_OK | PASS | dsv41/csa2 | 15 headings ordered, 75 controls named, 3 table(s) with scoped headers over 24 rows, 18 citation |
 | PROSE_OK | PASS | dsv41/dspark | 13 headings ordered, 80 controls named, 1 table(s) with scoped headers over 6 rows, 28 citations |
-| PROSE_OK | PASS | dsv41/module-backbone-mhc | 11 headings ordered, 78 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
+| PROSE_OK | PASS | dsv41/module-backbone-mhc | 11 headings ordered, 79 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
 | PROSE_OK | PASS | dsv41/module-backbone-moe | 11 headings ordered, 62 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations  |
 | PROSE_OK | PASS | dsv41/module-engram-write | 11 headings ordered, 58 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
 | PROSE_OK | PASS | dsv41/module-csa2-compressio | 11 headings ordered, 56 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations  |
