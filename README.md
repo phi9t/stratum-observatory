@@ -115,7 +115,8 @@ See [publication privacy](docs/PUBLICATION.md) for scope and limitations.
 ### V4.1 PyTorch examples
 
 The Encoder, Decoder, Engram, CSA2 and dSpark chapters include expandable reference
-implementations and Python downloads. These are authored, source-linked teaching
+implementations with syntax highlighting, line numbers, copy controls and Python downloads.
+Module signatures name tensor axes with `Annotated`, and operation notes explain the math. These are authored, source-linked teaching
 adaptations with explicit shape contracts and omissions; they do not load weights or
 reproduce a production serving stack. The dSpark chapter keeps the DeepSpec evaluator
 separate from the V4.1 draft path.

@@ -6,6 +6,7 @@ import subprocess
 
 
 def exercise(page,root):
+    page.context.grant_permissions(['clipboard-read','clipboard-write'])
     artifact=Path(root)/'dist/deepseek-v4.1.html'
     page.goto(artifact.as_uri());page.wait_for_function('window.STRATUM')
     examples=json.loads(subprocess.check_output(['node','--input-type=module','-e',
@@ -32,6 +33,13 @@ def exercise(page,root):
             summary.focus();summary.press('Enter')
             assert panel.evaluate('el=>el.open')
             assert panel.locator('code').text_content()==example['code']
+            assert panel.locator('.python-keyword').count()>0
+            assert panel.locator('.python-string').count()>0
+            assert panel.locator('.code-line').count()==len(example['code'].split('\n'))
+            copy=panel.get_by_role('button',name=f'Copy {example["title"]} Python')
+            copy.click()
+            assert page.evaluate('navigator.clipboard.readText()')==example['program']
+            assert 'Python copied' in page.locator('#toast').inner_text()
             with page.expect_download() as pending:
                 panel.get_by_role('button',name='Download Python').click()
             downloaded=Path(pending.value.path()).read_text()
@@ -48,6 +56,14 @@ def exercise(page,root):
             page.set_viewport_size({'width':1840,'height':1400})
             summary.press('Enter')
             assert not panel.evaluate('el=>el.open')
+        # Exercise the denied-clipboard boundary: the existing download remains available.
+        first_panel=page.locator('.pytorch-example').first
+        first_panel.locator('summary').click()
+        page.evaluate("() => {window.originalCopy=navigator.clipboard.writeText.bind(navigator.clipboard);navigator.clipboard.writeText=async()=>{throw new Error('denied')};}")
+        first_panel.locator('[data-copy-example]').click()
+        assert 'Clipboard unavailable' in page.locator('#toast').inner_text()
+        page.evaluate('() => {navigator.clipboard.writeText=window.originalCopy;}')
+        first_panel.locator('summary').click()
         page.evaluate("window.dispatchEvent(new Event('beforeprint'))")
         assert page.locator('.pytorch-example:not([open]),.pytorch-license:not([open])').count()==0
         assert page.locator('.pytorch-license').inner_text().find('Permission is hereby granted')>=0

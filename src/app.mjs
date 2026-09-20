@@ -2,6 +2,7 @@ import {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DEFAULT_STATE,sanitizeState,get
 import {buildScene} from './diagrams.mjs';
 import {structuralReport} from './scene.mjs';
 import {chapterContent,DEEP_DIVE_TITLES} from './deepdives.mjs';
+import {highlightPython} from './python-highlight.mjs';
 import {chapterExamples,exampleProgram,PYTORCH_LICENSE} from './pytorch.mjs';
 import {innovationRows} from './innovations.mjs';
 import {PAGES,MODEL_VIEWS,pageForModel,pageForView,pageHref,sectionHref} from './pages.mjs';
@@ -101,7 +102,16 @@ function innovationCoverage(){const rows=innovationRows(getModel(state.model));
   +`<div class="table-scroll"><table class="comparison-table innovation-table"><thead><tr><th scope="col">Innovation</th><th scope="col">Replaces</th><th scope="col">Mechanism</th><th scope="col">Derived effect</th><th scope="col">Evidence</th></tr></thead><tbody>${rows.map(r=>`<tr><th scope="row" class="innovation-name">${esc(r.title)}</th><td>${esc(r.replaces)}</td><td>${esc(r.mechanism)}</td><td class="innovation-effect">${esc(r.effect)}</td><td class="innovation-evidence">${r.sources.map(citation).join('')}</td></tr>`).join('')}</tbody></table></div>`;}
 function pytorchExamples(stage){
  const examples=chapterExamples(stage);
- return `<section class="pytorch-section" aria-label="PyTorch implementations"><h4>PyTorch implementations</h4><p>Readable reference math with explicit tensor shapes. Expand a module to inspect its source anchors and simplifications. Download includes any shared helpers; these examples do not load checkpoint weights.</p>${examples.map(x=>`<details class="pytorch-example" data-example="${esc(x.id)}"><summary>${esc(x.title)}</summary><div class="pytorch-body"><p>${esc(x.summary)}</p><p><strong>Simplifications.</strong> ${esc(x.limitations)}</p><p><strong>Source symbols.</strong> ${x.symbols.map(esc).join(' · ')}</p><p>${x.sources.map(citation).join(' · ')}</p>${x.requires.length?`<p>Uses shared helpers: ${x.requires.map(esc).join(', ')}. Included in the download.</p>`:''}<div class="pytorch-actions"><button class="button" data-download-example="${esc(x.id)}">Download Python</button></div><pre class="pytorch-code" tabindex="0" role="region" aria-label="${esc(x.title)} Python code"><code>${esc(x.code)}</code></pre></div></details>`).join('')}<details class="pytorch-license"><summary>Source license notices · MIT</summary><p>${esc(PYTORCH_LICENSE)}</p></details></section>`;
+ return `<section class="pytorch-section" aria-label="PyTorch implementations"><h4>PyTorch implementations</h4><p>Typed reference modules with named tensor axes and operation notes. Expand a module to inspect its source anchors and simplifications. Download includes any shared helpers; these examples do not load checkpoint weights.</p>${examples.map(x=>`<details class="pytorch-example" data-example="${esc(x.id)}"><summary>${esc(x.title)}</summary><div class="pytorch-body"><p>${esc(x.summary)}</p><p><strong>Simplifications.</strong> ${esc(x.limitations)}</p><p><strong>Source symbols.</strong> ${x.symbols.map(esc).join(' · ')}</p><p>${x.sources.map(citation).join(' · ')}</p>${x.requires.length?`<p>Uses shared helpers: ${x.requires.map(esc).join(', ')}. Included in the download.</p>`:''}<div class="pytorch-actions"><span class="code-language">Python · PyTorch</span><button class="button" data-copy-example="${esc(x.id)}" aria-label="Copy ${esc(x.title)} Python">Copy code</button><button class="button" data-download-example="${esc(x.id)}">Download Python</button></div><pre class="pytorch-code" tabindex="0" role="region" aria-label="${esc(x.title)} Python code"><code>${highlightPython(x.code)}</code></pre></div></details>`).join('')}<details class="pytorch-license"><summary>Source license notices · MIT</summary><p>${esc(PYTORCH_LICENSE)}</p></details></section>`;
+}
+async function copyPythonExample(id){
+ const text=exampleProgram(id);
+ try{
+  await navigator.clipboard.writeText(text);
+  toast('Python copied with source links and license notices.');
+ }catch{
+  toast('Clipboard unavailable. Use Download Python to keep the source links and license notices.');
+ }
 }
 function renderAnalysis(){const m=getModel(state.model),h=HARDWARE[state.hardware],cache=cacheLedger(m,state),params=parameterLedger(m);let html='';
  const chapter=state.view==='model'?chapterContent(m,state):null;
@@ -161,6 +171,7 @@ function chooseModel(id,patch={}){
 // One delegated input/action path keeps every visible control real and testable.
 document.addEventListener('click',event=>{const el=event.target.closest('button,a,[data-node],[data-layer],[data-context]');if(!el)return;
  if(el.dataset.model){if(el.tagName!=='A')chooseModel(el.dataset.model);return;}if(el.dataset.view){chooseView(el.dataset.view);return;}if(el.dataset.setting){setState({[el.dataset.setting]:el.dataset.value});return;}if(el.dataset.node){selectNode(el.dataset.node);return;}if(el.dataset.layer){setState({layer:Number(el.dataset.layer),stage:'block'});return;}if(el.dataset.context){setState({context:Number(el.dataset.context)});return;}if(el.dataset.result){executeSearch(Number(el.dataset.result));return;}
+ if(el.dataset.copyExample){copyPythonExample(el.dataset.copyExample);return;}
  if(el.dataset.downloadExample){const key=el.dataset.downloadExample;download(`stratum-v41-${key}.py`,exampleProgram(key),'text/x-python');return;}
  const id=el.id;if(id==='theme-button')setState({theme:state.theme==='dark'?'light':'dark'});if(id==='search-button')openSearch();if(id==='search-close')$('search-dialog').close();if(id==='search-close'||id==='audit-close')el.closest('dialog').close();if(id==='trace-button')setState({trace:!state.trace});if(id==='focus-button')toggleFocus();if(id==='zoom-in')setState({zoom:Math.min(2,state.zoom+.15)});if(id==='zoom-out')setState({zoom:Math.max(.75,state.zoom-.15)});if(id==='zoom-reset')setState({zoom:1});if(id==='export-svg'){download(`stratum-${state.model}-${state.view}.svg`,exportSVG(),'image/svg+xml');toast('Vector schematic exported.');}if(id==='export-config'){download(`stratum-${state.model}-scenario.json`,exportConfig(),'application/json');toast('Scenario and evidence boundary exported.');}if(id==='audit-button'){const r=geometryReport();$('audit-output').innerHTML=`<p>${r.geometry_defects===0?'No geometric defects detected in this rendered state.':`${r.geometry_defects} geometric defect(s) detected.`}</p><p class="chart-caption">This is not a scientific or runtime certificate. It checks the current browser’s text bounds and scene geometry.</p><pre>${esc(JSON.stringify(r,null,2))}</pre>`;$('audit-dialog').showModal();}
 });

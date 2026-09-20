@@ -1,12 +1,12 @@
 {
-  "artifact_sha256": "328164b23fafbdcf8ce5e5b2ccf7cbf0b58b6c0c0778bc8614d8fdf4d6a2f065",
+  "artifact_sha256": "7ab6e30672ff5c7040adf115414b1bb35e0e80971bf4b3f7ed5ff16f1b192a71",
   "captures": [
     {
       "name": "ds2",
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2",
+      "artifact_sha256": "a1e0e9752fc5280fd281cfd60bf325266cf7d4c5e20eb87803908e21d15e10de",
       "state": {
         "model": "ds2",
         "view": "model",
@@ -41,7 +41,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2",
+      "artifact_sha256": "a1e0e9752fc5280fd281cfd60bf325266cf7d4c5e20eb87803908e21d15e10de",
       "state": {
         "model": "ds3",
         "view": "model",
@@ -76,7 +76,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2",
+      "artifact_sha256": "a1e0e9752fc5280fd281cfd60bf325266cf7d4c5e20eb87803908e21d15e10de",
       "state": {
         "model": "q38",
         "view": "model",
@@ -111,7 +111,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2",
+      "artifact_sha256": "a1e0e9752fc5280fd281cfd60bf325266cf7d4c5e20eb87803908e21d15e10de",
       "state": {
         "model": "q330",
         "view": "model",
@@ -146,7 +146,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2",
+      "artifact_sha256": "a1e0e9752fc5280fd281cfd60bf325266cf7d4c5e20eb87803908e21d15e10de",
       "state": {
         "model": "q3235",
         "view": "model",
@@ -181,7 +181,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
+      "artifact_sha256": "16230409371c84d91f16a4ee443db5b0a148f89fc48e087507c29449f62bdf66",
       "state": {
         "model": "q3827",
         "view": "model",
@@ -216,7 +216,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
+      "artifact_sha256": "16230409371c84d91f16a4ee443db5b0a148f89fc48e087507c29449f62bdf66",
       "state": {
         "model": "q3827",
         "view": "model",
@@ -251,7 +251,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
+      "artifact_sha256": "16230409371c84d91f16a4ee443db5b0a148f89fc48e087507c29449f62bdf66",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -286,7 +286,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
+      "artifact_sha256": "16230409371c84d91f16a4ee443db5b0a148f89fc48e087507c29449f62bdf66",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -321,7 +321,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
+      "artifact_sha256": "16230409371c84d91f16a4ee443db5b0a148f89fc48e087507c29449f62bdf66",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -356,7 +356,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
+      "artifact_sha256": "16230409371c84d91f16a4ee443db5b0a148f89fc48e087507c29449f62bdf66",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -391,7 +391,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "42af80ada8a7b9247d66ebfedd564e8f79ec61a7f4a80beeed74a8f1728bcb0f",
+      "artifact_sha256": "5e37d354959abb833db3b605d1fc9697790cf699c037ed17249cb20ced96750f",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -426,7 +426,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "42af80ada8a7b9247d66ebfedd564e8f79ec61a7f4a80beeed74a8f1728bcb0f",
+      "artifact_sha256": "5e37d354959abb833db3b605d1fc9697790cf699c037ed17249cb20ced96750f",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -461,7 +461,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "42af80ada8a7b9247d66ebfedd564e8f79ec61a7f4a80beeed74a8f1728bcb0f",
+      "artifact_sha256": "5e37d354959abb833db3b605d1fc9697790cf699c037ed17249cb20ced96750f",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -496,7 +496,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
+      "artifact_sha256": "33096c3e7e7b38531e81bf02a8d06d01f4441ac15e20aed246da520607ac5c1a",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -531,7 +531,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
+      "artifact_sha256": "33096c3e7e7b38531e81bf02a8d06d01f4441ac15e20aed246da520607ac5c1a",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -566,7 +566,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
+      "artifact_sha256": "33096c3e7e7b38531e81bf02a8d06d01f4441ac15e20aed246da520607ac5c1a",
       "state": {
         "model": "dsv41",
         "view": "serving",
@@ -601,7 +601,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
+      "artifact_sha256": "33096c3e7e7b38531e81bf02a8d06d01f4441ac15e20aed246da520607ac5c1a",
       "state": {
         "model": "dsv41",
         "view": "serving",
@@ -638,7 +638,7 @@
         "backbone-mhc"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
+      "artifact_sha256": "33096c3e7e7b38531e81bf02a8d06d01f4441ac15e20aed246da520607ac5c1a",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -675,7 +675,7 @@
         "backbone-mhc"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
+      "artifact_sha256": "33096c3e7e7b38531e81bf02a8d06d01f4441ac15e20aed246da520607ac5c1a",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -712,7 +712,7 @@
         "engram-write"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
+      "artifact_sha256": "33096c3e7e7b38531e81bf02a8d06d01f4441ac15e20aed246da520607ac5c1a",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -749,7 +749,7 @@
         "csa2-compression"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
+      "artifact_sha256": "33096c3e7e7b38531e81bf02a8d06d01f4441ac15e20aed246da520607ac5c1a",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -786,7 +786,7 @@
         "dspark-attention"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
+      "artifact_sha256": "33096c3e7e7b38531e81bf02a8d06d01f4441ac15e20aed246da520607ac5c1a",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -821,7 +821,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
+      "artifact_sha256": "33096c3e7e7b38531e81bf02a8d06d01f4441ac15e20aed246da520607ac5c1a",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -856,7 +856,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
+      "artifact_sha256": "33096c3e7e7b38531e81bf02a8d06d01f4441ac15e20aed246da520607ac5c1a",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -891,7 +891,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
+      "artifact_sha256": "16230409371c84d91f16a4ee443db5b0a148f89fc48e087507c29449f62bdf66",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -926,7 +926,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "42af80ada8a7b9247d66ebfedd564e8f79ec61a7f4a80beeed74a8f1728bcb0f",
+      "artifact_sha256": "5e37d354959abb833db3b605d1fc9697790cf699c037ed17249cb20ced96750f",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -961,7 +961,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2",
+      "artifact_sha256": "a1e0e9752fc5280fd281cfd60bf325266cf7d4c5e20eb87803908e21d15e10de",
       "state": {
         "model": "ds3",
         "view": "training",
@@ -996,7 +996,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "42af80ada8a7b9247d66ebfedd564e8f79ec61a7f4a80beeed74a8f1728bcb0f",
+      "artifact_sha256": "5e37d354959abb833db3b605d1fc9697790cf699c037ed17249cb20ced96750f",
       "state": {
         "model": "kimi3",
         "view": "training",
@@ -1031,7 +1031,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
+      "artifact_sha256": "16230409371c84d91f16a4ee443db5b0a148f89fc48e087507c29449f62bdf66",
       "state": {
         "model": "q38flash",
         "view": "serving",
@@ -1066,7 +1066,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "hardware.html",
-      "artifact_sha256": "3aaa3fd45e1ddb8219b8be512835d83aed9264837b544786854bb724b29de666",
+      "artifact_sha256": "a301c4d50f00acd5fc87ca2398ccb87c05d0b370206ec7dff50f2099635d0eef",
       "state": {
         "model": "ds3",
         "view": "hardware",
@@ -1101,7 +1101,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "hardware.html",
-      "artifact_sha256": "3aaa3fd45e1ddb8219b8be512835d83aed9264837b544786854bb724b29de666",
+      "artifact_sha256": "a301c4d50f00acd5fc87ca2398ccb87c05d0b370206ec7dff50f2099635d0eef",
       "state": {
         "model": "ds3",
         "view": "hardware",
@@ -1136,7 +1136,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "networking.html",
-      "artifact_sha256": "05aa914debe120086ba3a171de1161255e8857f141a2321023a6548eefffaf04",
+      "artifact_sha256": "03082b514766892fe878af68b83070658a5bc7c8897e5d66ce25f968136a438e",
       "state": {
         "model": "kimi3",
         "view": "network",
@@ -1171,7 +1171,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
+      "artifact_sha256": "16230409371c84d91f16a4ee443db5b0a148f89fc48e087507c29449f62bdf66",
       "state": {
         "model": "q38flash",
         "view": "evidence",
@@ -1206,7 +1206,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
+      "artifact_sha256": "16230409371c84d91f16a4ee443db5b0a148f89fc48e087507c29449f62bdf66",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -1239,7 +1239,7 @@
     {
       "name": "mobile",
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
+      "artifact_sha256": "16230409371c84d91f16a4ee443db5b0a148f89fc48e087507c29449f62bdf66",
       "viewport": {
         "width": 390,
         "height": 844
@@ -1276,7 +1276,7 @@
       "name": "home",
       "guide": "home",
       "artifact": "index.html",
-      "artifact_sha256": "328164b23fafbdcf8ce5e5b2ccf7cbf0b58b6c0c0778bc8614d8fdf4d6a2f065",
+      "artifact_sha256": "7ab6e30672ff5c7040adf115414b1bb35e0e80971bf4b3f7ed5ff16f1b192a71",
       "viewport": {
         "width": 1440,
         "height": 1000
@@ -1286,7 +1286,7 @@
       "name": "data",
       "guide": "data",
       "artifact": "data-representation.html",
-      "artifact_sha256": "3f0d68088464a519db559d07b1e5fd57fbca01decb04b2f0eb4545899919a1c1",
+      "artifact_sha256": "e288644184fbcb54ad8a1742e35671354ce93b96f1b2dac1375dacf59285e77e",
       "viewport": {
         "width": 1440,
         "height": 1000

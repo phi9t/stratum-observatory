@@ -1,8 +1,8 @@
 {
   "schema": "stratum-presentations/v1",
   "status": "PASS",
-  "generated_at": "2026-09-20T07:08:35.612260+00:00",
-  "artifact_sha256": "bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2",
+  "generated_at": "2026-09-20T07:44:10.889704+00:00",
+  "artifact_sha256": "a1e0e9752fc5280fd281cfd60bf325266cf7d4c5e20eb87803908e21d15e10de",
   "delivery": {
     "models": [
       "ds2",
@@ -104,7 +104,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "foundations.html",
-      "message": "294 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
+      "message": "326 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -113,7 +113,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "index.html",
-      "message": "35 KiB, valid utf-8, nothing loaded from an external origin; 0 source citations are clickable by design.",
+      "message": "36 KiB, valid utf-8, nothing loaded from an external origin; 0 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -122,7 +122,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "data-representation.html",
-      "message": "34 KiB, valid utf-8, nothing loaded from an external origin; 7 source citations are clickable by design.",
+      "message": "35 KiB, valid utf-8, nothing loaded from an external origin; 7 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -131,7 +131,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "qwen3.8.html",
-      "message": "294 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
+      "message": "326 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -140,7 +140,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "kimi-k3.html",
-      "message": "294 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
+      "message": "326 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -149,7 +149,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "deepseek-v4.1.html",
-      "message": "294 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
+      "message": "326 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -158,7 +158,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "hardware.html",
-      "message": "294 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
+      "message": "326 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -167,7 +167,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "networking.html",
-      "message": "294 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
+      "message": "326 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -311,7 +311,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/encoder",
-      "message": "13 headings ordered, 61 controls named, 1 table(s) with scoped headers over 4 rows, 16 citations named.",
+      "message": "13 headings ordered, 63 controls named, 1 table(s) with scoped headers over 4 rows, 16 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -320,7 +320,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/decoder",
-      "message": "13 headings ordered, 60 controls named, 1 table(s) with scoped headers over 4 rows, 16 citations named.",
+      "message": "13 headings ordered, 62 controls named, 1 table(s) with scoped headers over 4 rows, 16 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -329,7 +329,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/engram",
-      "message": "13 headings ordered, 56 controls named, 1 table(s) with scoped headers over 4 rows, 13 citations named.",
+      "message": "13 headings ordered, 57 controls named, 1 table(s) with scoped headers over 4 rows, 13 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -338,7 +338,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/csa2",
-      "message": "13 headings ordered, 66 controls named, 1 table(s) with scoped headers over 4 rows, 17 citations named.",
+      "message": "13 headings ordered, 69 controls named, 1 table(s) with scoped headers over 4 rows, 17 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -347,7 +347,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/dspark",
-      "message": "13 headings ordered, 74 controls named, 1 table(s) with scoped headers over 6 rows, 28 citations named.",
+      "message": "13 headings ordered, 77 controls named, 1 table(s) with scoped headers over 6 rows, 28 citations named.",
       "remedy": "",
       "evidence": []
     },

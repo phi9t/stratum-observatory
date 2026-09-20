@@ -71,6 +71,70 @@ class DSparkExamplesTest(unittest.TestCase):
         # Returned state owns storage; stale speculative slots cannot be read via it.
         self.assertEqual(target.untyped_storage().nbytes(), target.numel() * target.element_size())
 
+    def test_heads_bfloat16_and_autocast_keep_confidence_float32(self):
+        module = self.ns['DSparkOutputHeads'](3, 5, 2).to(torch.bfloat16)
+        hidden = torch.randn(2, 3, 3, dtype=torch.bfloat16, requires_grad=True)
+        base_logits = torch.randn(2, 3, 5, dtype=torch.bfloat16, requires_grad=True)
+        with torch.autocast('cpu', dtype=torch.bfloat16):
+            token_ids, logits, confidence = module(
+                hidden, base_logits, torch.tensor([0, 1]), 0.8)
+        self.assertEqual(confidence.dtype, torch.float32)
+        self.assertEqual(logits.dtype, torch.float32)
+        previous_embeddings = module.markov_embed(token_ids[:, :-1]).float()
+        expected = torch.nn.functional.linear(
+            torch.cat((hidden.float(), previous_embeddings), -1),
+            module.confidence.weight.float()).squeeze(-1)
+        torch.testing.assert_close(confidence, expected)
+        (confidence.square().mean() + logits.square().mean()).backward()
+        for tensor in [hidden, base_logits, *module.parameters()]:
+            self.assertIsNotNone(tensor.grad)
+            self.assertTrue(torch.isfinite(tensor.grad).all())
+
+    def test_projected_attention_gradients_are_finite(self):
+        query = torch.randn(2, 3, 2, 4, dtype=torch.bfloat16, requires_grad=True)
+        history = torch.randn(2, 2, 4, dtype=torch.bfloat16, requires_grad=True)
+        draft = torch.randn(2, 3, 4, dtype=torch.bfloat16, requires_grad=True)
+        sink = torch.zeros(2, requires_grad=True)
+        with torch.autocast('cpu', dtype=torch.bfloat16):
+            output = self.ns['dspark_projected_attention'](query, history, draft, sink, 0.5)
+        self.assertEqual(output.dtype, query.dtype)
+        output.float().square().mean().backward()
+        for tensor in (query, history, draft, sink):
+            self.assertTrue(torch.isfinite(tensor.grad).all())
+
+    def test_bad_scalar_and_head_shape_contracts(self):
+        module = self.ns['DSparkOutputHeads'](2, 3, 2)
+        hidden, logits, seed = torch.zeros(1, 2, 2), torch.zeros(1, 2, 3), torch.tensor([0])
+        for temperature in (-1., 0., float('nan'), float('inf')):
+            with self.subTest(temperature=temperature), self.assertRaises(ValueError):
+                module(hidden, logits, seed, temperature)
+        with self.assertRaises(ValueError):
+            module(hidden, logits[:, :1], seed, 1.)
+        with self.assertRaises(ValueError):
+            module(hidden[:, :0], logits[:, :0], seed, 1.)
+        for threshold in (-1., 0., float('nan'), float('inf')):
+            with self.subTest(threshold=threshold), self.assertRaises(ValueError):
+                self.ns['deepspec_confident_prefix'](torch.zeros(2), threshold)
+
+    def test_invalid_verification_and_cache_inputs_fail_clearly(self):
+        verify = self.ns['deepspec_verify_probabilities']
+        proposal = torch.tensor([0])
+        draft = torch.tensor([[0.5, 0.5]])
+        target = torch.tensor([[0.5, 0.5], [0.5, 0.5]])
+        for uniforms in (torch.zeros(2), torch.tensor([float('nan')]), torch.tensor([1.])):
+            with self.subTest(uniforms=uniforms), self.assertRaises(ValueError):
+                verify(proposal, draft, target, uniforms)
+        with self.assertRaises(ValueError):
+            verify(proposal, draft, target[:1], torch.zeros(1))
+        with self.assertRaises(ValueError):
+            verify(torch.tensor([2]), draft, target, torch.zeros(1))
+        with self.assertRaises(ValueError):
+            verify(proposal, draft * 0.5, target, torch.zeros(1))
+        crop = self.ns['deepspec_reuse_state']
+        for start, accepted in ((-1, 0), (0, -1), (5, 2), (1, 4)):
+            with self.subTest(start=start, accepted=accepted), self.assertRaises(ValueError):
+                crop(torch.arange(6), torch.arange(5), torch.arange(4), start, accepted)
+
 
 if __name__ == '__main__':
     unittest.main()

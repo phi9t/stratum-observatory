@@ -45,3 +45,18 @@ summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 @media print{.pytorch-section,.pytorch-section *{color:#222!important;background:white!important}.pytorch-section,.pytorch-example{break-inside:auto}.pytorch-code{max-height:none;overflow:visible;white-space:pre-wrap;overflow-wrap:anywhere}.pytorch-actions{display:none}}
 .pytorch-license summary{font-size:14px;padding:12px 0;cursor:pointer;color:var(--text)}
 .pytorch-license summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+:root{--code-keyword:#d9b5f4;--code-function:#9fd9f4;--code-string:#a8d5ab;--code-number:#f0c38a;--code-comment:#a6b6be;--code-type:#9addcc}
+:root[data-theme=light]{--code-keyword:#66388d;--code-function:#205776;--code-string:#315e32;--code-number:#79441b;--code-comment:#3f505a;--code-type:#255e50}
+.pytorch-actions{align-items:center;flex-wrap:wrap}
+.code-language{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;color:var(--text);margin-right:auto}
+.pytorch-code code{font:inherit;counter-reset:code-line}
+.code-line{counter-increment:code-line}
+.code-line::before{content:counter(code-line);display:inline-block;width:4ch;margin-right:16px;padding-right:12px;border-right:1px solid var(--line);text-align:right;color:var(--code-comment);user-select:none}
+.python-keyword,.python-constant{color:var(--code-keyword)}
+.python-function,.python-builtin{color:var(--code-function)}
+.python-string{color:var(--code-string)}
+.python-number{color:var(--code-number)}
+.python-comment{color:var(--code-comment);font-style:italic}
+.python-type{color:var(--code-type)}
+.python-operator{color:var(--text)}
+@media print{.pytorch-code span{color:#222!important}.code-line::before{color:#444!important}}

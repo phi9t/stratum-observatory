@@ -3,21 +3,21 @@
   "target": "stratum-observatory-3",
   "profile": "runtime",
   "status": "BLOCKED",
-  "generated_at": "2026-09-20T07:16:50.940785+00:00",
-  "lock_sha256": "2ada7b2be3d834c6d620cd759a1c2dd794422f30059e0be0e0cca1cc54cbd10a",
-  "consumer_sha256": "1b7b218e62a2121448f9fbfd2bf7b0947dd3b3d1171edf5ebbf7fb6ef81fa016",
+  "generated_at": "2026-09-20T07:55:51.491887+00:00",
+  "lock_sha256": "562ffb37e39a737041226cdc68b94bfb7da7e3c2a379ff56f513e41d42b63f23",
+  "consumer_sha256": "6394cbe65658f1a813c723b5da6c3f203d69f75f4f48b01e35174351f0dd60d2",
   "coverage": {
     "inputs": 601,
-    "functions_and_files": 38,
+    "functions_and_files": 39,
     "scene_contracts": 2926,
-    "claims": 3589,
+    "claims": 3590,
     "sources": 83,
     "verified_sources": 81,
     "verified_scientific_claims": 0,
     "passed_presentation_bindings": 0
   },
   "counts": {
-    "BLOCKED": 6296,
+    "BLOCKED": 6297,
     "PASS": 38,
     "NOT_RUN": 32
   },
@@ -53629,6 +53629,15 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "file.src/pytorch.mjs",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "file.src/python-highlight.mjs",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []

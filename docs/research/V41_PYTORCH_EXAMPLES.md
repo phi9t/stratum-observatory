@@ -28,3 +28,23 @@ Native disclosures support keyboard access. Each download includes attribution,
 source URLs and any declared dependencies. Printing opens both code and MIT notices
 and restores the previous disclosure states afterward. Expanded code is measured by
 the aesthetics gate; readable text uses existing tokens and scales.
+
+## Typed modules and code presentation
+
+The module names now describe their role (`RMSNorm`, `TransformerBlock`,
+`CausalEncoderDecoder`, `MixtureOfExperts`, `EngramMemory`) without teaching prefixes.
+Parameters and return values are annotated. Standard-library `Annotated` metadata names
+tensor axes; adjacent comments explain contractions, broadcasting, gathers, normalization
+and cache ownership. The shape metadata documents the contract; explicit guards validate
+selected input boundaries. It does not claim to be a symbolic shape checker.
+
+Reduced-precision checks exercise BF16 parameters, CPU autocast, output dtype and finite
+backpropagation. FP32-sensitive contractions disable autocast locally. The examples retain
+plain PyTorch operations and explicit scalar inputs, without configuration switches for
+unused architectures. They remain unfused reference modules, with checkpoint loading,
+quantization and production serving integration bounded by each record's scope.
+
+The offline Python display lexer is lossless and escapes HTML. It supplies theme-aware
+syntax tokens and nonselectable CSS line numbers. The native Clipboard API copies the
+standalone program with attribution; if clipboard permission is unavailable, the UI
+points to the Python download. Neither the lexer nor the page executes Python.
