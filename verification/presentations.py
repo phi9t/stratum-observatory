@@ -106,7 +106,7 @@ def judge_preview_artifacts(root):
     root=Path(root);out=[]
     captures=loads((root/'previews/manifest.json').read_text()).get('captures',[])
     for capture in captures:
-        expected=artifact_name(root,capture.get('state',{}).get('model'))
+        expected=artifact_name(root,capture.get('state',{}).get('model'),capture.get('state',{}).get('view'))
         page=root/'dist'/expected
         if capture.get('artifact')!=expected or not page.is_file() or capture.get('artifact_sha256')!=hashlib.sha256(page.read_bytes()).hexdigest():
             out.append(_bad('PREVIEW_ARTIFACT',capture.get('name','preview'),
@@ -436,14 +436,14 @@ def run(root):
         states=[{'label':'default','patch':None}]+[{'label':f"{c['model']}/{c['stage']}",'patch':c}
                                                    for c in focal_states(root,models,focal)]
         for entry in page_inventory(root):
-            for model in entry['models']:
-                patch={'model':model,'view':'model','stage':entry['stage']}
+            for model in entry['models'] or [entry['defaultModel']]:
+                patch={'model':model,'view':entry.get('view','model'),'stage':entry['stage']}
                 if not any(st['patch']==patch for st in states):
-                    states.append({'label':f"{model}/entry",'patch':patch})
+                    states.append({'label':f"{entry['id']}/{model}/entry",'patch':patch})
         checks['states']=[st['label'] for st in states]
         for st in states:
             if st['patch']:
-                target=root/'dist'/artifact_name(root,st['patch']['model'])
+                target=root/'dist'/artifact_name(root,st['patch']['model'],st['patch']['view'])
                 page.goto(target.resolve().as_uri(),wait_until='load')
                 page.wait_for_function('window.STRATUM')
                 page.evaluate('(p)=>STRATUM.setState(p)',st['patch'])

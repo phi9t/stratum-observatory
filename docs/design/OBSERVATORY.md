@@ -26,7 +26,7 @@ A comparative scientific instrument: inspect the same tensor-to-system causal ch
 DeepSeek base decoder totals exclude MTP; Qwen3 variants distinguish dense vs MoE; Qwen3.8-27B is hybrid dense, Flash-Next adds QSA/PLE/hyperconnections; Kimi K3 uses vector-decay KDA, gated NoPE MLA, latent MoE and depth attention residuals. Estimated storage uses declared uniform precision, not a validated quantization recipe. Parameter and cache subtotals declare excluded vision/MTP/auxiliary states. No chosen hardware implies an actual publisher deployment.
 
 ## Interaction
-Seven lenses (architecture, compare, training, serving, hardware, network, evidence), exact preset selector, layer/motif selection, shared context/batch/precision/hardware controls, component inspector, dependency trace, focus mode, zoom, keyboard, URL restore, portable SVG/JSON exports. No decorative fake control.
+Global Models, GPU Hardware and Networking navigation; four model tabs (architecture, training, serving, evidence), exact preset selector, layer/motif selection, shared context/batch/precision/hardware controls, component inspector, dependency trace, focus mode, zoom, keyboard, URL restore, portable SVG/JSON exports. No decorative fake control.
 
 ## Release
 Run numeric and semantic tests, existing verifier self-tests, deterministic build twice and browser tests against the resulting HTML. Check representative images manually. Export fresh engineering results and separate blocked scientific/runtime reports. No certificates or source hashes are invented.
@@ -40,7 +40,9 @@ in its architecture navigation. The atlas card and search open this page; its Al
 returns to the atlas. Existing atlas hash scenarios and the STRATUM programmatic seam remain
 compatible. Serving exposes prefill/decode phase inspection with distinct participating depths.
 
-The build emits both portable HTML files. Engineering binds both file digests and compares both
+The build emits every registered portable HTML file. Engineering binds each file digest and compares them
 across repeated builds. Browser and presentation tests visit the dedicated page; captures bind
 its own artifact identity. `npm start` serves the current built pages so links have the same
 meaning in development, offline files, and Pages.
+
+See [Site sections](SITE_SECTIONS.md) for canonical URLs, workload ownership and legacy bookmarks.

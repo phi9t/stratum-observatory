@@ -2,7 +2,7 @@
 
 **publication: BLOCKED**
 
-Generated: 2026-09-20T02:19:53.815064+00:00
+Generated: 2026-09-20T02:41:45.988767+00:00
 
 This report distinguishes software/contract tests from evidence-backed science. Missing evidence is not a contradiction, and a green engineering run is not scientific certification.
 

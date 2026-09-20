@@ -37,14 +37,16 @@ errors=[];requests=[];cases=[];responsive=[];failures=[]
 def check(page, patch, label='geometry'):
     current=page.evaluate('STRATUM.getState()')
     model=patch.get('model',current['model'])
-    dedicated=page_for_model(ROOT,model)
+    view=patch.get('view',current['view'])
+    dedicated=page_for_model(ROOT,model,view)
     if page.evaluate('document.body.dataset.pageId || null')!=(dedicated['id'] if dedicated else None):
-        page.set_content((ROOT/'dist'/artifact_name(ROOT,model)).read_text(),wait_until='load')
+        page.set_content((ROOT/'dist'/artifact_name(ROOT,model,view)).read_text(),wait_until='load')
         page.wait_for_function('window.STRATUM')
         patch={**current,**patch}
     r=page.evaluate('(p)=>{STRATUM.setState(p);return STRATUM.geometryReport()}',patch)
     invalid=page.locator('svg').evaluate_all('''els=>els.flatMap(e=>[e,...e.querySelectorAll('*')]).filter(e=>[...e.attributes].some(a=>/(^|[^a-z])(?:NaN|Infinity)([^a-z]|$)/.test(a.value))).map(e=>e.outerHTML.slice(0,180))''')
     record={'state':page.evaluate('STRATUM.getState()'),'defects':r['geometry_defects'],'label':label}
+    assertion(record['state']['model']==model and record['state']['view']==view,'Delivered page changed the requested model or view')
     cases.append(record)
     if len(cases)%100==0: print('Geometry states:',len(cases),flush=True)
     if r['geometry_defects'] or invalid:
@@ -135,10 +137,11 @@ with sync_playwright() as p:
     assertion(page.evaluate('STRATUM.getState().context')==131072,'context control')
     page.locator('button[data-setting="placement"][data-value="colocated"]').click()
     assertion(page.evaluate('STRATUM.getState().placement')=='colocated','placement control')
-    page.locator('#lens-tabs button[data-view="network"]').click();page.select_option('#control-library','nvshmem');page.locator('button[data-setting="fabric"][data-value="roce"]').click()
+    page.locator('#site-nav a[data-section="network"]').click();page.wait_for_function('window.STRATUM && STRATUM.getState().view==="network"');page.select_option('#control-library','nvshmem');page.locator('button[data-setting="fabric"][data-value="roce"]').click()
     assertion(page.evaluate('STRATUM.getState().fabric')=='roce','fabric control')
-    page.locator('#lens-tabs button[data-view="network"]').focus();page.keyboard.press('ArrowRight')
-    assertion(page.evaluate('STRATUM.getState().view')=='evidence','keyboard lens navigation')
+    page.locator('.inspector-related [data-view="evidence"]').click();page.wait_for_function('window.STRATUM && STRATUM.getState().view==="evidence"')
+    page.locator('#lens-tabs button[data-view="evidence"]').focus();page.keyboard.press('ArrowRight')
+    assertion(page.evaluate('STRATUM.getState().view')=='model','keyboard lens navigation')
     page.locator('body').click(position={'x':3,'y':3});page.keyboard.press('1')
     assertion(page.evaluate('STRATUM.getState().view')=='model','numeric lens shortcut')
     # URL state is restored by the built artifact itself.
@@ -166,6 +169,8 @@ with sync_playwright() as p:
     page.evaluate('STRATUM.setState({model:"<svg/onload=1>",layer:999999,batch:-2})')
     assertion(page.locator('script[src]').count()==0,'no external script dependency')
     assertion(page.evaluate('STRATUM.geometryReport().geometry_defects')==0,'sanitized state remains valid')
+    from site_navigation import exercise as exercise_site_navigation
+    exercise_site_navigation(page,ROOT)
     from dedicated_navigation import exercise as exercise_navigation
     exercise_navigation(page,ROOT)
     from dedicated_page import exercise

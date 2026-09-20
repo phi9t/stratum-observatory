@@ -9,10 +9,10 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 616 verifier tests (10 skipped), 103 model/graph tests, two byte-identical builds of all four portable entry points and 1,451 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Engineering | PASS | 0 | 616 verifier tests (10 skipped), 103 model/graph tests, two byte-identical builds of all six portable entry points and 1,451 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
 | Accounting arithmetic | PASS | 0 | 399 live scenarios; 309 agreement, 82 explained differences, 186 unsupported findings, zero contradictions; required by engineering |
 | Schematics | PASS | 0 | 757 scenes including all 544 decoder layers; 3,129 checks against core.mjs, of which 238 are recorded not-applicable passes |
-| Presentations | PASS | 0 | 53 checks over 14 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
+| Presentations | PASS | 0 | 69 checks over 16 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
 | Aesthetics | PASS | 0 | 182 scenarios, 427 checks; type, spacing, contrast, clearance, probe coverage and composition |
 | Scientific publication | BLOCKED | 2 | Nine-model consumer inventory and strict evidence/review audit; **no FAIL** |
 | Runtime certification | BLOCKED | 2 | Run on these bytes: 32 of 32 obligations NOT_RUN, **no FAIL and no `RUNTIME_STALE`**; all private hardware receipts were withdrawn for publication |
@@ -348,8 +348,8 @@ those three pages were measured by this gate in no state at all.
 script, this gate's coverage judge, its focal-state list, both exporters, the browser matrix and
 the aesthetics sweep all read it. `PREVIEW_COVERAGE` requires every model in the live table and
 every focal page that model offers; `PROSE_SCOPE` names the states it measured. **All nine
-checkpoints now appear in the 30 published previews, including every one of the 9 focal pages they
-offer**, and this gate measures **14 delivered states**: the atlas, dedicated entry states, and every focal page in
+checkpoints now appear in the 29 published previews, including every one of the 9 focal pages they
+offer**, and this gate measures **16 delivered states**: the atlas, dedicated entry states, and every focal page in
 the application.
 
 **The manifest's own per-file digests had never been read, and the coverage question was only ever
@@ -808,11 +808,11 @@ executes all three, and CI could never have executed the transcription compariso
 
 ## Artifact identity
 
-Portable HTML SHA-256: `9b209a13e65edbabcabd85c15c5b8f64120eacdeaf621bb6f0e740cfbc2dbc77`
+Portable HTML SHA-256: `812871d4801189636bb06973492ea478caa19be1dafdf67232aca5e9f0bdf52b`
 
-Scientific lock SHA-256: `de8eb263dcd33db393fb822106abb2946cf7b5dca5b26b8a030a7aa5318dd667`
+Scientific lock SHA-256: `af22581da5b0d603a91f1d95a8c24173b8a0effbb51883d00d73375890f7046d`
 
-Verifier identity SHA-256: `de617a69f55f74a11b05e073f20ea21b0cc8f4c92dab3f4153c34cb9c75022af`
+Verifier identity SHA-256: `2c2234f8d1063619c330fc5f315a8fb7de8fd1a73fcde4e2b8071768555b4c57`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -892,7 +892,7 @@ V4.1 dispatch and storage anchors. Main KV and packed indexer payload reconcile 
 window state and allocation overhead remain separate. [Research and source scope](docs/design/V41-SERVING-RESEARCH.md)
 record the development-branch serving implementation and Miles plugin. Neither is a runtime receipt.
 
-Dedicated HTML SHA-256: `ea549b802995facac84e4cd6d5b31bcee01ee6101d018069c51e1ceadd6fca0f`
+Dedicated HTML SHA-256: `36a41b696d1ffcec7d5f814a6742aa405058e7fffc6f5970abb98b1c588f3508`
 
 CED phase depths follow the report-level scheme. The pinned reference forward still visits all backbone layers; encoder-only prefill execution is not certified by that code. This distinction is visible in the CED caption and serving inspector.
 
@@ -934,11 +934,24 @@ The atlas links to Qwen3.8, Kimi K3, and DeepSeek V4.1. Qwen3.8 keeps its 27B an
 Flash-Next variants on one page; the other pages fix their checkpoint identity. A shared
 registry drives page builds, artifact identity, browser routing and preview selection.
 Chromium exercises real atlas links, variant switches, reloads, identity enforcement,
-scenario exports and return links. All four portable files are included in the software gates.
+scenario exports and return links. All six portable files are included in the software gates.
 
-- `deepseek-v4.1.html` SHA-256: `ea549b802995facac84e4cd6d5b31bcee01ee6101d018069c51e1ceadd6fca0f`
-- `index.html` SHA-256: `9b209a13e65edbabcabd85c15c5b8f64120eacdeaf621bb6f0e740cfbc2dbc77`
-- `kimi-k3.html` SHA-256: `45a64671e3500ad823fc37bb7c418ca9fa0ef52802e7f916f8c74e09f11ab0bf`
-- `qwen3.8.html` SHA-256: `998d2ef1238ae6e407831aea25b3628428b8f2c9237c8060222030ac048f49c1`
+- `deepseek-v4.1.html` SHA-256: `36a41b696d1ffcec7d5f814a6742aa405058e7fffc6f5970abb98b1c588f3508`
+- `index.html` SHA-256: `812871d4801189636bb06973492ea478caa19be1dafdf67232aca5e9f0bdf52b`
+- `kimi-k3.html` SHA-256: `6b45fe3b8749664351400d238c0a16b6b587793068b4930cb9f535b1b93ab6a9`
+- `qwen3.8.html` SHA-256: `dede6e9c8dd8a90cd8367ec8bc95c328129c685ac16f0c2fb97bf24c7d8c8eaf`
 
 Publication coverage: 3552 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
+
+## Shared systems sections
+
+Site navigation provides Models, GPU Hardware and Networking. Model tabs expose Architecture,
+Training, Serving and Evidence. Compare has no navigation/search entry or published preview;
+its pure scene remains covered by internal legacy sweeps. Old Compare bookmarks open Architecture.
+Hardware and Networking use canonical shared pages without model identity banners. Networking
+exposes a workload-model selector, and links preserve the originating scenario. Old model-page
+system bookmarks redirect to these shared pages. Repeated local arrow-key navigation keeps focus
+in the model tabs. All six files receive artifact identity and portable delivery checks.
+
+- `hardware.html` SHA-256: `5c119c2cf8b3995ecc2e589c55927333be0af22811f29af8d5965a6aa55459cb`
+- `networking.html` SHA-256: `00e658583107045492162fdca3db88ae06d214e0f8a72aca6d2be901c9661e44`

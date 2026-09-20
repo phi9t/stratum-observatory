@@ -1,19 +1,21 @@
 {
   "schema": "stratum-engineering/v1",
   "status": "PASS",
-  "started_at": "2026-09-20T02:14:53.831952+00:00",
-  "completed_at": "2026-09-20T02:19:34.201506+00:00",
-  "consumer_sha256": "9200d667813f8005f6d3cf847fd8dd4d1b378bde81bc0c52057e33b12afd633e",
-  "verifier_sha256": "de617a69f55f74a11b05e073f20ea21b0cc8f4c92dab3f4153c34cb9c75022af",
-  "lock_sha256": "de8eb263dcd33db393fb822106abb2946cf7b5dca5b26b8a030a7aa5318dd667",
-  "artifact_sha256": "9b209a13e65edbabcabd85c15c5b8f64120eacdeaf621bb6f0e740cfbc2dbc77",
+  "started_at": "2026-09-20T02:35:46.506506+00:00",
+  "completed_at": "2026-09-20T02:40:37.112785+00:00",
+  "consumer_sha256": "1dbbbf4fff3dedddae4fc63d8c8e654fe0b16417a12d2ffaf273b7f898bf09ae",
+  "verifier_sha256": "2c2234f8d1063619c330fc5f315a8fb7de8fd1a73fcde4e2b8071768555b4c57",
+  "lock_sha256": "af22581da5b0d603a91f1d95a8c24173b8a0effbb51883d00d73375890f7046d",
+  "artifact_sha256": "812871d4801189636bb06973492ea478caa19be1dafdf67232aca5e9f0bdf52b",
   "artifacts": {
-    "deepseek-v4.1.html": "ea549b802995facac84e4cd6d5b31bcee01ee6101d018069c51e1ceadd6fca0f",
-    "index.html": "9b209a13e65edbabcabd85c15c5b8f64120eacdeaf621bb6f0e740cfbc2dbc77",
-    "kimi-k3.html": "45a64671e3500ad823fc37bb7c418ca9fa0ef52802e7f916f8c74e09f11ab0bf",
-    "qwen3.8.html": "998d2ef1238ae6e407831aea25b3628428b8f2c9237c8060222030ac048f49c1"
+    "deepseek-v4.1.html": "36a41b696d1ffcec7d5f814a6742aa405058e7fffc6f5970abb98b1c588f3508",
+    "hardware.html": "5c119c2cf8b3995ecc2e589c55927333be0af22811f29af8d5965a6aa55459cb",
+    "index.html": "812871d4801189636bb06973492ea478caa19be1dafdf67232aca5e9f0bdf52b",
+    "kimi-k3.html": "6b45fe3b8749664351400d238c0a16b6b587793068b4930cb9f535b1b93ab6a9",
+    "networking.html": "00e658583107045492162fdca3db88ae06d214e0f8a72aca6d2be901c9661e44",
+    "qwen3.8.html": "dede6e9c8dd8a90cd8367ec8bc95c328129c685ac16f0c2fb97bf24c7d8c8eaf"
   },
-  "repeat_build_sha256": "9b209a13e65edbabcabd85c15c5b8f64120eacdeaf621bb6f0e740cfbc2dbc77",
+  "repeat_build_sha256": "812871d4801189636bb06973492ea478caa19be1dafdf67232aca5e9f0bdf52b",
   "deterministic_build": true,
   "commands": {
     "verifier-tests": {

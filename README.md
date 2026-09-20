@@ -2,7 +2,7 @@
 
 **Nine exact model variants. Seven connected lenses. One offline scientific interface.**
 
-Open `dist/index.html` in a full desktop browser. It contains the application, styles and vector graphics: no installation, network service, API key, CDN, fonts, model weights or telemetry. External source links require connectivity. Some attachment viewers disable JavaScript; use a full browser. Run `npm start` to build and serve the portable pages at `http://localhost:8000`. The atlas links to dedicated [Qwen3.8](https://phi9t.github.io/stratum-pages/qwen3.8.html), [Kimi K3](https://phi9t.github.io/stratum-pages/kimi-k3.html), and [DeepSeek V4.1 Flash](https://phi9t.github.io/stratum-pages/deepseek-v4.1.html) pages. Qwen3.8 offers 27B and Flash-Next variants; DeepSeek opens the whole-network causal encoder/decoder view. “All models” returns to the [atlas](https://phi9t.github.io/stratum-pages/). The same filenames work offline under `dist/`. Every page shares model definitions, accounting, and verification code.
+Open `dist/index.html` in a full desktop browser. It contains the application, styles and vector graphics: no installation, network service, API key, CDN, fonts, model weights or telemetry. External source links require connectivity. Some attachment viewers disable JavaScript; use a full browser. Run `npm start` to build and serve the portable pages at `http://localhost:8000`. The atlas links to dedicated [Qwen3.8](https://phi9t.github.io/stratum-pages/qwen3.8.html), [Kimi K3](https://phi9t.github.io/stratum-pages/kimi-k3.html), and [DeepSeek V4.1 Flash](https://phi9t.github.io/stratum-pages/deepseek-v4.1.html) pages. Qwen3.8 offers 27B and Flash-Next variants; DeepSeek opens the whole-network causal encoder/decoder view. “All models” returns to the [atlas](https://phi9t.github.io/stratum-pages/). The same filenames work offline under `dist/`. Every page shares model definitions, accounting, and verification code. Site navigation links Models, [GPU Hardware](https://phi9t.github.io/stratum-pages/hardware.html), and [Networking](https://phi9t.github.io/stratum-pages/networking.html). Model tabs are Architecture, Training, Serving, and Evidence; Networking has an explicit workload-model selector.
 
 ## Experience
 
@@ -22,25 +22,23 @@ Choose a checkpoint, choose a lens, and inspect an operation. Every model keeps 
 
 The source inspector attaches publisher configuration, publisher/reference implementation, independent serving implementation and document references. Exact checkpoint IDs and commit pins are in `src/models.mjs` and `evidence/reference-registry.json`. These are **reference mappings, not accepted raw-byte evidence or signed scientific approvals**.
 
-### Seven lenses
+### Model lenses and shared sections
 
 **Architecture:** whole-model context, every one of the 544 decoder layers, stable attention/FFN regions, tensor contracts, delayed state feedback and optional input/residual/PLE close-ups.
-
-**Compare:** aligned mechanisms and accounting under the same context, batch and element sizes. Native-context boundaries and parameter-scope differences remain visible.
 
 **Training:** FSDP, replicated DDP and an illustrative agentic-RL lifecycle. Adam persistent-state accounting and dependencies are educational scenarios, not reconstructions of a publisher's production run.
 
 **Serving:** token history versus recurrent matrices, convolution history, indexer state, weight replicas and prefill/decode ownership. Hybrid prefix state must restore at a compatible boundary. Precision controls are arithmetic assumptions, not validated quantization recipes.
 
-**Hardware:** logical H100/H200/B200 eight-GPU systems and GB300 NVL72; per-GPU versus rack identity; NVLink versus scale-out interfaces; dense-FP8 roofline ceilings. The GB300 drawing groups GPUs visually, not into claimed physical trays.
+**Shared GPU Hardware:** logical H100/H200/B200 eight-GPU systems and GB300 NVL72; per-GPU versus rack identity; NVLink versus scale-out interfaces; dense-FP8 roofline ceilings. The GB300 drawing groups GPUs visually, not into claimed physical trays.
 
-**Networking:** InfiniBand or RoCE; expert dispatch, ring all-reduce or cache handoff; NCCL, NVSHMEM or NIXL responsibilities; registration, progress and completion. Choosing a library describes a scenario and obligations, not certification that every combination is supported on a particular stack.
+**Shared Networking:** InfiniBand or RoCE; expert dispatch, ring all-reduce or cache handoff; NCCL, NVSHMEM or NIXL responsibilities; registration, progress and completion. Choosing a library describes a scenario and obligations, not certification that every combination is supported on a particular stack.
 
 **Evidence:** publisher → reference implementation → independent framework → consumers → review/runtime boundary. Engineering, publication and runtime statuses are separate.
 
 ### Controls
 
-Click an operator to inspect its equation, dimensions, sources and related lenses. Trace dependencies, select a layer in the grid, compare checkpoints, change context/batch/precision/placement/network assumptions, switch graphite/paper themes, zoom, or focus the canvas. Export the current SVG and complete scenario JSON.
+Click an operator to inspect its equation, dimensions, sources and related lenses. Trace dependencies, select a layer in the grid, change context/batch/precision/placement/network assumptions, switch graphite/paper themes, zoom, or focus the canvas. Export the current SVG and complete scenario JSON.
 
 Keyboard: `1`–`7` choose lens; `/` or `Ctrl/Cmd+K` search; `F` focuses the canvas; `0` resets zoom; `Escape` closes focus/trace/dialogs. Operator and layer selection are keyboard accessible. The URL fragment persists the scenario. Mobile preserves a legible schematic width in a scrollable viewport instead of shrinking or wrapping labels.
 
@@ -96,7 +94,7 @@ archive/kimi-baseline/ Historical source for reference only, not active verifica
 This is a deterministic **template-based architecture schematic system**, not an arbitrary-model importer, unrestricted graph auto-layout engine, model execution runtime, cluster simulator or benchmark suite. The original visual inspiration is Edward Z. Yang's DeepSeek diagram. This implementation uses newly authored layouts and application code; no upstream source-site assets or font files are bundled.
 
 
-The analysis panels on both portable pages include expandable **Accounting assumptions**.
+The analysis panels on every portable page include expandable **Accounting assumptions**.
 They explain the selected precision, ownership and units using current ledger values.
 The [book audit design](docs/design/BOOK-ACCOUNTING.md) and [source record](docs/design/BOOK-SOURCES.md)
 distinguish methods from checkpoint evidence. `verify:accounting` emits JSON and Markdown under

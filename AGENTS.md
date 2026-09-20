@@ -28,7 +28,7 @@ npm test                              # Node model math + scene contract tests (
 node --test tests/core.test.mjs       # One test file
 node --test --test-name-pattern 'QSA' tests/core.test.mjs   # One test by name
 npm run build                         # index.html + src/ -> dist/index.html (deterministic)
-npm start                             # Build and serve both portable pages at localhost:8000
+npm start                             # Build and serve all portable pages at localhost:8000
 npm run test:verifiers                # uv run python -m unittest discover -s verification/tests -v
 uv run python -m unittest verification.tests.test_evidence -v   # One verifier module
 uv run python tests/browser.test.py   # Chromium suite; CHROMIUM_PATH optional, Playwright resolves it
@@ -126,7 +126,9 @@ Every model/view/hardware/stage axis in every sweep, test and gate is **derived 
 one shell. Keep every registered page inside engineering artifact identity, repeat-build checks,
 browser/presentation coverage, preview identity, and Pages packaging. Qwen3.8 permits its 27B and
 Flash-Next variants; Kimi K3 and DeepSeek V4.1 fix checkpoint identity. V4.1 defaults to CED.
-Atlas cards link to each dedicated page; every page links back. `npm start` serves `dist/`.
+Atlas cards link to each dedicated model page; every page links back. Shared hardware/network
+sections have fixed views and no fixed checkpoint; Networking exposes its workload model.
+Global section links preserve scenario state. Model tabs exclude Compare and shared sections. `npm start` serves `dist/`.
 
 
 Book accounting: `verification/manifests/accounting-methods.json` pins methods/examples and is

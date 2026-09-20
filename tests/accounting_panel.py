@@ -34,35 +34,43 @@ def exercise_page(page, artifact):
         for link in links.all():
             assert link.inner_text().strip(), 'Citation needs an accessible name'
             assert link.get_attribute('href').startswith('https://')
-        page.locator('[data-view="training"]').first.click()
-        assert panel.evaluate('e=>e.open'), 'Disclosure state must survive a lens change'
-        training = panel.locator('[data-accounting-method="book-training-state"]')
-        assert training.count() == 1
-        assert '16 bytes per parameter' in training.inner_text()
-        assert '20 bytes per parameter' in training.inner_text()
-        before = training.inner_text()
-        ranks = page.locator('#control-ranks')
-        options = ranks.locator('option').evaluate_all('xs=>xs.map(x=>x.value)')
-        alternate = next(x for x in options if x != ranks.input_value())
-        ranks.select_option(alternate)
-        assert page.evaluate('STRATUM.getState().ranks') == int(alternate)
-        assert panel.evaluate('e=>e.open')
-        assert training.inner_text() == before, 'Global persistent totals must not change with rank count'
-        if not page.evaluate('document.body.dataset.pageModel'):
-            current = page.evaluate('STRATUM.getState().model')
-            cards = page.locator('#model-strip button[data-model]').all()
-            next(card for card in cards if card.get_attribute('data-model') != current).click()
-            assert page.evaluate('STRATUM.getState().view') == 'training'
-            assert training.inner_text() != before, 'Training totals must follow the selected model'
+        view=page.evaluate('STRATUM.getState().view')
+        if view not in ('hardware','network'):
+            page.locator('[data-view="training"]').first.click()
+            assert panel.evaluate('e=>e.open'), 'Disclosure state must survive a lens change'
+            training = panel.locator('[data-accounting-method="book-training-state"]')
+            assert training.count() == 1
+            assert '16 bytes per parameter' in training.inner_text()
+            assert '20 bytes per parameter' in training.inner_text()
+            before = training.inner_text()
+            ranks = page.locator('#control-ranks')
+            options = ranks.locator('option').evaluate_all('xs=>xs.map(x=>x.value)')
+            alternate = next(x for x in options if x != ranks.input_value())
+            ranks.select_option(alternate)
+            assert page.evaluate('STRATUM.getState().ranks') == int(alternate)
             assert panel.evaluate('e=>e.open')
-        # A visible hardware control must update the derived prose, on both entry points.
-        page.locator('[data-view="hardware"]').first.click()
-        hardware = panel.locator('[data-accounting-method="book-roofline"]')
-        before = hardware.inner_text()
-        intensity = page.locator('#control-intensity')
-        options = intensity.locator('option').evaluate_all('xs=>xs.map(x=>x.value)')
-        intensity.select_option(next(x for x in options if x != intensity.input_value()))
-        assert hardware.inner_text() != before, 'Derived notes must follow scenario controls'
+            assert training.inner_text() == before, 'Global persistent totals must not change with rank count'
+            if not page.evaluate('document.body.dataset.pageModel'):
+                current = page.evaluate('STRATUM.getState().model')
+                cards = page.locator('#model-strip button[data-model]').all()
+                next(card for card in cards if card.get_attribute('data-model') != current).click()
+                assert page.evaluate('STRATUM.getState().view') == 'training'
+                assert training.inner_text() != before, 'Training totals must follow the selected model'
+                assert panel.evaluate('e=>e.open')
+        elif view=='hardware':
+            hardware=panel.locator('[data-accounting-method="book-roofline"]')
+            before=hardware.inner_text()
+            intensity=page.locator('#control-intensity')
+            options=intensity.locator('option').evaluate_all('xs=>xs.map(x=>x.value)')
+            intensity.select_option(next(x for x in options if x!=intensity.input_value()))
+            assert hardware.inner_text()!=before,'Derived notes must follow arithmetic intensity'
+        else:
+            before=page.evaluate('JSON.parse(STRATUM.exportConfig()).model.id')
+            model=page.locator('#control-model')
+            options=model.locator('option').evaluate_all('xs=>xs.map(x=>x.value)')
+            model.select_option(next(x for x in options if x!=before))
+            assert page.evaluate('JSON.parse(STRATUM.exportConfig()).model.id')!=before
+            assert panel.evaluate('e=>e.open')
         page.set_viewport_size({'width': 390, 'height': 900})
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'), 'Disclosure causes mobile page overflow'
         assert panel.evaluate('e=>e.scrollWidth<=e.clientWidth+1'), 'Expanded notes overflow their container'

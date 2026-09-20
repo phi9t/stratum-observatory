@@ -65,7 +65,6 @@ def per_model_cases(page):
 EXTRA_CASES=[
  ('flash-qsa',{'model':'q38flash','layer':4}),
  ('kimi-mla',{'model':'kimi3','layer':4}),
- ('comparison',{'model':'q38flash','view':'compare','compare':'ds3'}),
  ('training',{'model':'ds3','view':'training'}),
  ('agentic-rl',{'model':'kimi3','view':'training','trainMode':'rl'}),
  ('serving',{'model':'q38flash','view':'serving'}),
@@ -83,7 +82,7 @@ with sync_playwright() as p:
  manifest=[]
  for name,patch in per_model_cases(page)+EXTRA_CASES:
   state={**BASE,**patch}
-  artifact=ROOT/'dist'/artifact_name(ROOT,state['model'])
+  artifact=ROOT/'dist'/artifact_name(ROOT,state['model'],state['view'])
   page.goto(artifact.as_uri(),wait_until='load');page.wait_for_function('window.STRATUM')
   page.evaluate('(s)=>STRATUM.setState(s)',state)
   page.locator('.accounting-assumptions').evaluate('(el)=>el.open=true')
@@ -94,6 +93,8 @@ with sync_playwright() as p:
   svg=page.evaluate('STRATUM.exportSVG()');(OUT/f'{name}.svg').write_text(svg)
   manifest.append({'name':name,'accounting_expanded':True,'artifact':artifact.name,'artifact_sha256':hashlib.sha256(artifact.read_bytes()).hexdigest(),'state':page.evaluate('STRATUM.getState()'),'svg_sha256':hashlib.sha256(svg.encode()).hexdigest()})
   print(name,flush=True)
+ artifact=ROOT/'dist'/artifact_name(ROOT,'q38flash','serving')
+ page.goto(artifact.as_uri(),wait_until='load');page.wait_for_function('window.STRATUM')
  page.set_viewport_size({'width':390,'height':844})
  page.evaluate('(s)=>STRATUM.setState(s)',{**BASE,'model':'q38flash','view':'serving'})
  page.screenshot(path=str(OUT/'mobile.png'),full_page=True)

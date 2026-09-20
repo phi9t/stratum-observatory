@@ -10,11 +10,13 @@ def page_inventory(root):
         'const {PAGES}=await import(process.argv[1]);console.log(JSON.stringify(PAGES));',
         registry.as_uri()],text=True))
 
-def page_for_model(root,model):
+def page_for_model(root,model,view=None):
+    shared=next((p for p in page_inventory(root) if p.get('view') and p['view']==view),None)
+    if shared:return shared
     return next((p for p in page_inventory(root) if model in p['models']),None)
 
-def artifact_name(root,model):
-    page=page_for_model(root,model)
+def artifact_name(root,model,view=None):
+    page=page_for_model(root,model,view)
     return page['file'] if page else 'index.html'
 
 def artifact_names(root):

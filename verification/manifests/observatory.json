@@ -23689,7 +23689,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/app.mjs",
-      "expected": "ba14b19ac2debd3a75185484ec9ef55c8eb333909565604667f8e5e9bcb7b201",
+      "expected": "3a38f2c2a5f697112b2d64a7bf49e2aebabc8d0c72c05afca36558c1fe5961e8",
       "statement": "file.src/app.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23941,7 +23941,7 @@
       "domain": "visualization",
       "classification": "presentation",
       "consumer": "file.src/styles.css",
-      "expected": "6e25af9d1305593f3f253859f1e97130a66a91d6296244e0bb9d323cd341d2ce",
+      "expected": "e27ab376a6bdebc4a9b059ff68d52197d4b7f278f86ada776ba89d63bd54b8ac",
       "statement": "file.src/styles.css: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": []
@@ -23971,7 +23971,7 @@
       "domain": "visualization",
       "classification": "presentation",
       "consumer": "file.index.html",
-      "expected": "1ccf394f79cb547498b03e9f1d86bd0a779dbce88913d1a43d26a29c500c9a24",
+      "expected": "2d6009fa3974646efe1c434ce0163a5914eb86d09d3e41b664471986fd974360",
       "statement": "file.index.html: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": []
@@ -149820,7 +149820,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/pages.mjs",
-      "expected": "af902b01e0080cba27178137e8d89d72d425e4a07fbac66916b1c2bda8fc4a11",
+      "expected": "d2ed8e867fe926a5c41babb059af020efef74bc6addeb37f865a7e447cec8f22",
       "statement": "file.src/pages.mjs: local entry-point routing identity; browser navigation must preserve exact checkpoint ownership and atlas return links. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [

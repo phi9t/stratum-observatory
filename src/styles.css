@@ -29,3 +29,5 @@ body.focus-mode .site-header,body.focus-mode .identity,body.focus-mode .model-st
 summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 @media(max-width:520px){.accounting-assumptions{margin:24px 16px 16px}}
 @media print{.accounting-assumptions,.accounting-assumptions *{color:#222!important}}
+
+[hidden]{display:none!important}#site-nav{gap:24px}body.focus-mode #site-nav{display:none}@media print{#site-nav{display:none!important}}

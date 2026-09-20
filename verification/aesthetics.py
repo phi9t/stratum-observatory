@@ -592,9 +592,9 @@ def run(root,record=False):
         page.evaluate('document.fonts.ready')
         for case in cases(models,views,policy['themes'],focal):
             from .delivery import page_for_model,artifact_name
-            dedicated=page_for_model(root,case['model'])
+            dedicated=page_for_model(root,case['model'],case['view'])
             if page.evaluate('document.body.dataset.pageId || null')!=(dedicated['id'] if dedicated else None):
-                page.set_content((root/'dist'/artifact_name(root,case['model'])).read_text(),wait_until='load')
+                page.set_content((root/'dist'/artifact_name(root,case['model'],case['view'])).read_text(),wait_until='load')
                 page.wait_for_function('window.STRATUM')
             page.evaluate('(p)=>STRATUM.setState(p)',case)
             # Closed native details hide the prose from rendered measurement. Measure the

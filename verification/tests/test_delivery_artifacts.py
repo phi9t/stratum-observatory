@@ -22,10 +22,10 @@ class DeliveryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);fixture(root);(root/'previews').mkdir()
             for entry in page_inventory(root):
-                for model in entry['models']:
+                for model in entry['models'] or [entry['defaultModel']]:
                     with self.subTest(model=model):
                         (root/'previews/manifest.json').write_text(json.dumps({'captures':[
-                            {'name':model,'state':{'model':model}}]}))
+                            {'name':model,'state':{'model':model,'view':entry.get('view','model')}}]}))
                         self.assertTrue(any(f.status=='FAIL' for f in judge_preview_artifacts(root)))
 
     def test_dedicated_page_mutation_changes_delivery_identity(self):
