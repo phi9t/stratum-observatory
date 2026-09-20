@@ -43,7 +43,7 @@ summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 .pytorch-code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;line-height:1.7;padding:16px;margin:0;background:var(--canvas);color:var(--text);overflow:auto;white-space:pre;tab-size:4;border:1px solid var(--line);border-radius:6px;max-height:640px}
 @media(max-width:520px){.pytorch-section{padding:16px}.pytorch-body{padding:0 12px 12px}.pytorch-code{padding:12px}}
 @media print{.pytorch-section,.pytorch-section *{color:#222!important;background:white!important}.pytorch-section,.pytorch-example{break-inside:auto}.pytorch-code{max-height:none;overflow:visible;white-space:pre-wrap;overflow-wrap:anywhere}.pytorch-actions{display:none}}
-.pytorch-license summary{font-size:14px;padding:12px 0;cursor:pointer;color:var(--text)}
+.worked-code summary,.pytorch-license summary{font-size:14px;padding:12px 0;cursor:pointer;color:var(--text)}
 .pytorch-license summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 :root{--code-keyword:#d9b5f4;--code-function:#9fd9f4;--code-string:#a8d5ab;--code-number:#f0c38a;--code-comment:#a6b6be;--code-type:#9addcc}
 :root[data-theme=light]{--code-keyword:#66388d;--code-function:#205776;--code-string:#315e32;--code-number:#79441b;--code-comment:#3f505a;--code-type:#255e50}
@@ -60,3 +60,16 @@ summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 .python-type{color:var(--code-type)}
 .python-operator{color:var(--text)}
 @media print{.pytorch-code span{color:#222!important}.code-line::before{color:#444!important}}
+
+/* CPU trace tables and the supporting token-by-depth illustration. */
+.worked-table{min-width:960px;table-layout:fixed}
+.worked-table th,.worked-table td{white-space:normal;overflow-wrap:anywhere;vertical-align:top}
+.worked-table th:nth-child(1){width:18%}.worked-table th:nth-child(2){width:34%}.worked-table th:nth-child(3){width:12%}.worked-table th:nth-child(4){width:36%}
+.worked-table caption{padding:16px;text-align:left}
+.worked-table th,.worked-table td,.worked-table code,.worked-table caption{font-size:14px;line-height:1.7;color:var(--text)}
+.worked-table code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.worked-diagram{display:block;width:100%;min-width:900px;max-width:1100px;height:auto}
+.worked-diagram text{font:20px ui-monospace,SFMono-Regular,Consolas,monospace;fill:var(--text)}
+.worked-wire{fill:none;stroke:var(--accent);stroke-width:2}
+.worked-cell{fill:var(--surface);stroke:var(--line);stroke-width:2}
+.worked-missing{stroke:var(--amber);stroke-dasharray:5 4}

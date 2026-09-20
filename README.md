@@ -134,3 +134,16 @@ dependency group. Engineering runs the same command before building. The browser
 the delivered code and downloads against the checked-in Python files (the build generates `src/pytorch-source.mjs`),
 including keyboard access, mobile overflow and print disclosures. No Python runtime or
 external assets are shipped in the HTML. Upstream MIT notices accompany the examples.
+
+### CPU-computed worked traces
+
+The Decoder replay and CSA2 selection/query walkthroughs display inputs, intermediate
+tensors and outputs from `examples/deepseek_v41/worked_examples.py`. Run
+`npm run generate:worked` after editing Python or the locked toolchain. This executes
+the CPU code and saves `examples/deepseek_v41/worked-results.json`; the build checks
+source fingerprints and embeds those results without browser-side model arithmetic.
+`npm run check:worked` recomputes every saved value with a float32 tolerance of 1e-6.
+Engineering runs this comparison and independent scalar-oracle tests. The UI rounds
+to six significant digits; saved tensors retain full precision. The replay example
+is a reduced attention/residual experiment, not full-checkpoint parity or a serving
+implementation. Global KV and the sink remain fixed while local dependencies change.

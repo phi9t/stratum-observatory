@@ -45,3 +45,18 @@ softmax arithmetic, including the sink. This demonstrates query-dependent weight
 without mutating the cache. Real decoder layers also compute fresh local KV, residual
 updates and expert outputs, so the example does not describe the whole decoder as a
 query-only network. CPU agreement is not checkpoint parity or GPU certification.
+
+## Computed reader traces
+
+The replay dependency diagram and its accompanying tensor table now consume the
+same saved CPU trace. Each depth row shows the actual residual result; omitted local
+positions are null rather than zero. Full history and truncated replay call the same
+sparse-attention core with identical global KV and sink. A scalar oracle independently
+checks every attention and residual intermediate and the final target difference.
+
+The selection example computes candidate-source scores, causal masks, per-block
+maxima, newest-block pinning and candidate masks through the same helper used by
+selection. It shows the source layer's direct top-k separately from the later query's
+masked top-k. The query example shows scaled logits, joint weights (including sink),
+weighted contributions and outputs. All three use deliberately small input vectors,
+not checkpoint activations, and do not vary with page hardware/scenario controls.

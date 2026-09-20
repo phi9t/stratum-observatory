@@ -151,9 +151,11 @@ def exercise(page,root):
         page.select_option('#control-layer',layer)
         assert page.evaluate('STRATUM.getState().layer')==int(layer)
         assert f'Layer {layer} is' in page.locator('#analysis-panel').inner_text()
-    before=page.locator('#analysis-panel tbody').inner_text()
+    fixed_cpu=page.locator('[data-worked-values]').all_text_contents()
+    before=page.locator('#analysis-panel > .table-scroll > table > tbody').inner_text()
     page.select_option('#control-context','131072')
-    assert page.locator('#analysis-panel tbody').inner_text()!=before
+    assert page.locator('#analysis-panel > .table-scroll > table > tbody').inner_text()!=before
+    assert page.locator('[data-worked-values]').all_text_contents()==fixed_cpu
     page.locator('button[data-setting="stage"][data-value="ced"]').click()
     assert page.locator('.innovation-table').count()==1
 

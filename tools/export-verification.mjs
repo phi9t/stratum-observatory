@@ -2,6 +2,7 @@
 import * as core from '../src/core.mjs';
 import {buildScene} from '../src/diagrams.mjs';
 import {chapterContent,DEEP_DIVE_TITLES} from '../src/deepdives.mjs';
+import {WORKED_RESULTS} from '../src/worked-results.mjs';
 import {PYTORCH_EXAMPLES} from '../src/pytorch.mjs';
 import {innovationRows} from '../src/innovations.mjs';
 import {PAGES} from '../src/pages.mjs';
@@ -13,6 +14,7 @@ const stable=v=>JSON.stringify(v,(_,x)=>x&&!Array.isArray(x)&&typeof x==='object
 const fields={},functions={},scenes={};
 for(const topic of DATA_TOPICS)fields[`data.topic.${topic.id}`]=topic;
 for(const stage of Object.keys(DEEP_DIVE_TITLES))fields[`deepdive.${stage}`]=chapterContent('dsv41',{...core.DEFAULT_STATE,model:'dsv41',stage});
+for(const [id,result] of Object.entries(WORKED_RESULTS))fields[`worked.${id}`]=result;
 for(const example of PYTORCH_EXAMPLES)fields[`pytorch.${example.id}`]=example;
 const accounting=JSON.parse(readFileSync(new URL('../verification/manifests/accounting-methods.json',import.meta.url),'utf8'));
 for(const method of accounting.methods)fields[`accounting.method.${method.id}`]=method;

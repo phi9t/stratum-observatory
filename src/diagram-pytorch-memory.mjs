@@ -1,3 +1,4 @@
+import {WORKED_RESULTS} from './worked-results.mjs';
 import {makeScene,addNode,addGroup,addLabel,addWire,makeInfo} from './scene.mjs';
 
 // These are operation graphs of the adjacent readable programs, not fused execution traces.
@@ -104,6 +105,8 @@ function selection(m,e){
 }
 
 function attention(m,e){
+ const experiment=WORKED_RESULTS.query,settings=experiment.settings,values=Object.fromEntries(experiment.inputs.map(row=>[row.id,row.values]));
+ const queryShape=`[${settings.batch},${values.queries.length},${settings.heads},${settings.head_dim}]`;
  const g=memoryScene(e,1660);
  op(g,e,'local-cache',0,110,'Local shared KV history','local_kv [B,L,D]', 'sparse_attention adapts Attention.forward and sparse_attn_kernel with absolute history instead of a ring buffer. The same latent supplies key and value.','D = m.headDim',[['Checkpoint latent width',String(m.headDim)]],'state');
  op(g,e,'compressed-cache',1,110,'Compressed shared KV','compressed_kv [B,C,D]', 'sparse_attention receives published, already projected and rotated latents. Compression and cache publication are outside this program.','cache_compressed = compressed_kv.float()',[],'state');
@@ -121,9 +124,9 @@ function attention(m,e){
  op(g,e,'weighted-sum',0,1400,'Weighted shared-value sum','output [B,T,H,D]', 'sparse_attention / sparse_attn_kernel use the gathered latents as values. The sink contributes denominator mass only; all-invalid selections yield zero with a finite sink.','output = einsum(bthk,btkd→bthd,probability,gathered)');
  op(g,e,'output',0,1560,'Restore query dtype','[B,T,H,D]', 'sparse_attention returns query dtype. Inverse output RoPE, grouped output projections and quantization remain outside this readable program.','return output.to(query.dtype)',[],'compute');
  addGroup(g,'query-experiment',1000,990,400,560,'FIXED-DICTIONARY EXPERIMENT','Alternative queries at the same position');
- op(g,e,'fixed-dictionary',2,1060,'Hold selected KV fixed','local [1,2,2] · compressed [1,1,2]', 'run_query_example keeps local KV, selected compressed KV, positions and the illustrative sink logit unchanged. These are CPU fixture vectors, not checkpoint activations. The same dictionary supplies keys and values.','M = [[2,0],[0,1],[1,2]]; sink = 0.5',[],'state');
- op(g,e,'alternative-queries',2,1230,'Read with alternative queries','Q [1,2,1,2] · same position', 'run_query_example calls sparse_attention with Q₁=[2,0] and Q₂=[0,2] at the same absolute position. Its token axis represents counterfactual alternatives, not successive tokens or layers. Each query has its own joint normalization over the unchanged dictionary and zero-valued sink.','pᵢ = softmax([QᵢMᵀ/√D, sink])');
- op(g,e,'query-readouts',2,1400,'Different weights · readouts','O [1,2,1,2] · unchanged KV', 'The CPU example exposes the weights for inspection and returns outputs from the actual sparse_attention core. Real Attention layers still produce fresh local KV and queries and apply output projections; this experiment does not describe a query-only model.','Oᵢ = Σⱼ pᵢⱼ Mⱼ; sink value = 0',[['Normalization','Local + compressed + sink share the denominator']]);
+ op(g,e,'fixed-dictionary',2,1060,'Hold selected KV fixed',`local [${settings.batch},${settings.local_positions},${settings.head_dim}] · compressed [${settings.batch},${settings.compressed_positions},${settings.head_dim}]`, 'run_query_example keeps local KV, selected compressed KV, positions and the illustrative sink logit unchanged. These are CPU fixture vectors, not checkpoint activations. The same dictionary supplies keys and values.',`M = ${JSON.stringify(values.dictionary)}; sink = ${values.sink[0]}`,[],'state');
+ op(g,e,'alternative-queries',2,1230,'Read with alternative queries',`Q ${queryShape} · same position`, `run_query_example calls sparse_attention with Q₁=${JSON.stringify(values.queries[0])} and Q₂=${JSON.stringify(values.queries[1])} at the same absolute position. Its token axis represents counterfactual alternatives, not successive tokens or layers. Each query has its own joint normalization over the unchanged dictionary and zero-valued sink.`,'pᵢ = softmax([QᵢMᵀ/√D, sink])');
+ op(g,e,'query-readouts',2,1400,'Different weights · readouts',`O ${queryShape} · unchanged KV`, 'The CPU example exposes the weights for inspection and returns outputs from the actual sparse_attention core. Real Attention layers still produce fresh local KV and queries and apply output projections; this experiment does not describe a query-only model.','Oᵢ = Σⱼ pᵢⱼ Mⱼ; sink value = 0',[['Normalization','Local + compressed + sink share the denominator']]);
  down(g,'fixed-dictionary','alternative-queries');down(g,'alternative-queries','query-readouts');
  down(g,'local-cache','cache');wire(g,'compressed-cache','cache',[[720,186],[720,240],[320,240],[320,300]]);
  down(g,'positions','local-indices');down(g,'selected','compressed-indices');down(g,'local-indices','indices');

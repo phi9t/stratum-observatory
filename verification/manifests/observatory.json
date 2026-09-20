@@ -23701,7 +23701,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/app.mjs",
-      "expected": "29116473130b1be69bd65950c6adbac6aa93a27a67e076ca535e3147894e7ffb",
+      "expected": "c5211aae12a98071a137a48cf810d3ef120d116863ff0510f3eb9927e30b0648",
       "statement": "file.src/app.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23717,7 +23717,8 @@
         "file.src/deepdives.mjs",
         "file.src/pytorch.mjs",
         "file.src/python-highlight.mjs",
-        "function.layerNumbers"
+        "function.layerNumbers",
+        "file.src/worked-examples.mjs"
       ]
     },
     {
@@ -23962,7 +23963,7 @@
       "domain": "visualization",
       "classification": "presentation",
       "consumer": "file.src/styles.css",
-      "expected": "15857b2d65d0841f45fed60ec259fababd78ce84341aecf8632cc405c4110eff",
+      "expected": "d5fcd8e96cdfe3865e37e8da85880fbaee878782c418d69aadcf111f93548689",
       "statement": "file.src/styles.css: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": []
@@ -23972,7 +23973,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.build.mjs",
-      "expected": "4a86ea47dbc788cd60f20a70e7e749afab131a85945f39948aaa3a07c764f0c2",
+      "expected": "271952f3a99eff6d9594c3be45a086afcf5e5ef00e5ab2fafc8411d86197cf46",
       "statement": "file.build.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23987,7 +23988,8 @@
         "MODELS.dsv41.d",
         "file.src/diagram-deepdives.mjs",
         "file.src/pytorch.mjs",
-        "file.src/python-highlight.mjs"
+        "file.src/python-highlight.mjs",
+        "file.src/worked-results.mjs"
       ]
     },
     {
@@ -146221,8 +146223,8 @@
             "Indexer.forward computes query-dependent compressed-position scores and masks positions beyond the causal frontier. select_candidate_blocks takes the maximum score within each block, pins the newest reachable block, selects blocks and expands them into a position mask. Later decoder indexers compute their own position scores, apply that mask and select final top-k positions. The candidate-source layer itself selects directly from its causal scores. Selected IDs are sorted by position; unselected global KV remains stored."
           ],
           [
-            "Selection trace \u00b7 illustrative scores",
-            "At a decoder selection step, suppose two causally eligible compressed positions inside the candidate mask have scores 0.2 and 0.8 and the illustrative read budget is one. The latter is selected; the unselected position remains stored. A Reuse layer reads this same selected ID, while a Reindex layer can change the selection using its own query. The checkpoint budget is 512, not this miniature example's budget."
+            "Selection trace \u00b7 CPU execution",
+            "The computed walkthrough below shows position scores, causal masking, block maxima, the newest-block rule, and final selected IDs. Candidate-source and later-selector queries differ. Its reduced numerical sizes are listed with the fixture, separate from checkpoint settings."
           ]
         ],
         "rows": [
@@ -146704,7 +146706,7 @@
       "consumer": "file.src/deepdives.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "b7f1dc8dea0eaa7fe020c2a9c214060df0c5d8bfbd070f5ad11ce6534ef10dc6",
+      "expected": "784ab953ab4e3284e1703dfc2aba970913ad22767d475cfeee57b504005d04a3",
       "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
       "evidence": [],
       "dependencies": [
@@ -147420,7 +147422,7 @@
         "summary": "The candidate producer scores blocks by their best position and keeps the newest reachable block. Reindex layers mask their position scores to that pool; reuse layers consume the resulting indices. Authored adaptation of DeepSeek publisher code (MIT).",
         "limitations": "Query and index keys are already projected and rotated. FP4 quantization, distributed reduction and cache publication are omitted. visible is the completed-group count floor((query_position + 1) / ratio), shaped [B,T,1]. The candidate budget must cover the requested sparse selection; unavailable picks are represented by -1.",
         "sourceFile": "examples/deepseek_v41/csa2_selection.py",
-        "code": "from typing import Annotated\nimport torch\nfrom torch import Tensor\nfrom torch.nn import functional as F\n\nfrom .config import V41Config\n\n\nIndexQuery = Annotated[Tensor, \"batch query_tokens heads head_dim\"]\nIndexKeys = Annotated[Tensor, \"batch compressed_positions head_dim\"]\nIndexHeadWeights = Annotated[Tensor, \"batch query_tokens heads\"]\nIndexScores = Annotated[Tensor, \"batch query_tokens compressed_positions\"]\nVisibleGroups = Annotated[Tensor, \"batch query_tokens singleton; completed group count\"]\nCandidateMask = Annotated[Tensor, \"batch query_tokens compressed_positions; boolean\"]\nSparseIndices = Annotated[Tensor, \"batch query_tokens selected_positions; integer or -1\"]\n\n\ndef compute_index_scores(\n    query: IndexQuery, keys: IndexKeys, head_weights: IndexHeadWeights,\n) -> IndexScores:\n    \"\"\"Score [B,T,H,D] queries against [B,C,D] keys with [B,T,H] learned weights.\"\"\"\n    if query.ndim != 4 or keys.ndim != 3 or head_weights.shape != query.shape[:-1]:\n        raise ValueError(\"query, keys and head weights have incompatible ranks or shapes\")\n    if keys.shape[0] != query.shape[0] or keys.shape[-1] != query.shape[-1]:\n        raise ValueError(\"query and keys must share batch and head width\")\n    heads, width = query.shape[-2:]\n    if heads == 0 or width == 0:\n        raise ValueError(\"query must have positive head count and head width\")\n    with torch.autocast(device_type=query.device.type, enabled=False):\n        # Contract head_dim, rectify each head score, then sum weighted heads.\n        products = torch.einsum('bthd,bcd->bthc', query.float(), keys.float()).relu()\n        weights = head_weights.float() * (width ** -0.5 * heads ** -0.5)\n        return (products * weights[..., None]).sum(dim=2)\n\n\ndef select_candidate_blocks(\n    scores: IndexScores, visible: VisibleGroups, config: V41Config,\n) -> CandidateMask:\n    \"\"\"Return [B,T,C] mask; visible [B,T,1] counts only completed causal groups.\"\"\"\n    top_blocks, block_size = config.candidate_blocks, config.candidate_block_size\n    if scores.ndim != 3 or visible.shape != (*scores.shape[:2], 1):\n        raise ValueError(\"scores and visible counts must be [B,T,C] and [B,T,1]\")\n    width = scores.shape[-1]\n    causal = torch.arange(width, device=scores.device) < visible\n    if width == 0:\n        return causal\n    masked = scores.float().masked_fill(~causal, -torch.inf)\n    padded = F.pad(masked, (0, -width % block_size), value=-torch.inf)\n    # Padding is unreachable; each block takes its best compressed-position score.\n    block_scores = padded.unflatten(-1, (-1, block_size)).amax(-1)\n    # Pin the newest reachable block, even when its scores are below older blocks.\n    newest = (visible - 1) // block_size\n    block_ids = torch.arange(block_scores.shape[-1], device=scores.device)\n    block_scores = block_scores.masked_fill(block_ids == newest, torch.inf)\n    values, indices = block_scores.topk(min(top_blocks, block_scores.shape[-1]), dim=-1)\n    keep = torch.zeros_like(block_scores, dtype=torch.bool)\n    keep.scatter_(-1, indices, values > -torch.inf)\n    return keep.repeat_interleave(block_size, -1)[..., :width] & causal\n\n\ndef select_sparse_indices(\n    scores: IndexScores, visible: VisibleGroups, candidates: CandidateMask, config: V41Config,\n) -> SparseIndices:\n    \"\"\"Return position-ordered compressed indices, padding unavailable picks with -1.\"\"\"\n    topk = config.index_topk\n    if scores.ndim != 3 or visible.shape != (*scores.shape[:2], 1):\n        raise ValueError(\"scores and visible counts must be [B,T,C] and [B,T,1]\")\n    if candidates.shape != scores.shape or candidates.dtype != torch.bool:\n        raise ValueError(\"candidate mask must be boolean and match scores\")\n    allowed = candidates & (torch.arange(scores.shape[-1], device=scores.device) < visible)\n    masked = scores.float().masked_fill(~allowed, -torch.inf)\n    indices = masked.topk(min(topk, scores.shape[-1]), dim=-1).indices.sort(-1).values\n    # Gather validity at selected positions; masked top-k filler becomes sentinel -1.\n    return indices.masked_fill(~allowed.gather(-1, indices), -1)\n"
+        "code": "from typing import Annotated, TypedDict\nimport torch\nfrom torch import Tensor\nfrom torch.nn import functional as F\n\nfrom .config import V41Config\n\n\nIndexQuery = Annotated[Tensor, \"batch query_tokens heads head_dim\"]\nIndexKeys = Annotated[Tensor, \"batch compressed_positions head_dim\"]\nIndexHeadWeights = Annotated[Tensor, \"batch query_tokens heads\"]\nIndexScores = Annotated[Tensor, \"batch query_tokens compressed_positions\"]\nVisibleGroups = Annotated[Tensor, \"batch query_tokens singleton; completed group count\"]\nCandidateMask = Annotated[Tensor, \"batch query_tokens compressed_positions; boolean\"]\nSparseIndices = Annotated[Tensor, \"batch query_tokens selected_positions; integer or -1\"]\n\n\nclass CandidateBlockTrace(TypedDict):\n    causal_scores: IndexScores\n    block_maxima: Annotated[Tensor, \"batch query_tokens candidate_blocks\"]\n    newest_block: VisibleGroups\n    pinned_block_scores: Annotated[Tensor, \"batch query_tokens candidate_blocks\"]\n    candidate_mask: CandidateMask\n\n\ndef compute_index_scores(\n    query: IndexQuery, keys: IndexKeys, head_weights: IndexHeadWeights,\n) -> IndexScores:\n    \"\"\"Score [B,T,H,D] queries against [B,C,D] keys with [B,T,H] learned weights.\"\"\"\n    if query.ndim != 4 or keys.ndim != 3 or head_weights.shape != query.shape[:-1]:\n        raise ValueError(\"query, keys and head weights have incompatible ranks or shapes\")\n    if keys.shape[0] != query.shape[0] or keys.shape[-1] != query.shape[-1]:\n        raise ValueError(\"query and keys must share batch and head width\")\n    heads, width = query.shape[-2:]\n    if heads == 0 or width == 0:\n        raise ValueError(\"query must have positive head count and head width\")\n    with torch.autocast(device_type=query.device.type, enabled=False):\n        # Contract head_dim, rectify each head score, then sum weighted heads.\n        products = torch.einsum('bthd,bcd->bthc', query.float(), keys.float()).relu()\n        weights = head_weights.float() * (width ** -0.5 * heads ** -0.5)\n        return (products * weights[..., None]).sum(dim=2)\n\n\ndef candidate_block_trace(\n    scores: IndexScores, visible: VisibleGroups, config: V41Config,\n) -> CandidateBlockTrace:\n    \"\"\"Compute the candidate mask and its named intermediate tensors.\"\"\"\n    top_blocks, block_size = config.candidate_blocks, config.candidate_block_size\n    if scores.ndim != 3 or visible.shape != (*scores.shape[:2], 1):\n        raise ValueError(\"scores and visible counts must be [B,T,C] and [B,T,1]\")\n    width = scores.shape[-1]\n    causal = torch.arange(width, device=scores.device) < visible\n    if width == 0:\n        empty = scores.float()\n        return dict(causal_scores=empty, block_maxima=empty, pinned_block_scores=empty,\n                    newest_block=(visible - 1) // block_size, candidate_mask=causal)\n    masked = scores.float().masked_fill(~causal, -torch.inf)\n    padded = F.pad(masked, (0, -width % block_size), value=-torch.inf)\n    # Padding is unreachable; each block takes its best compressed-position score.\n    block_scores = padded.unflatten(-1, (-1, block_size)).amax(-1)\n    # Pin the newest reachable block, even when its scores are below older blocks.\n    newest = (visible - 1) // block_size\n    block_ids = torch.arange(block_scores.shape[-1], device=scores.device)\n    block_maxima = block_scores\n    block_scores = block_scores.masked_fill(block_ids == newest, torch.inf)\n    values, indices = block_scores.topk(min(top_blocks, block_scores.shape[-1]), dim=-1)\n    keep = torch.zeros_like(block_scores, dtype=torch.bool)\n    keep.scatter_(-1, indices, values > -torch.inf)\n    candidates = keep.repeat_interleave(block_size, -1)[..., :width] & causal\n    return dict(causal_scores=masked, block_maxima=block_maxima,\n                newest_block=newest, pinned_block_scores=block_scores, candidate_mask=candidates)\n\n\ndef select_candidate_blocks(\n    scores: IndexScores, visible: VisibleGroups, config: V41Config,\n) -> CandidateMask:\n    \"\"\"Return [B,T,C] mask; visible [B,T,1] counts only completed causal groups.\"\"\"\n    return candidate_block_trace(scores, visible, config)[\"candidate_mask\"]\n\n\ndef select_sparse_indices(\n    scores: IndexScores, visible: VisibleGroups, candidates: CandidateMask, config: V41Config,\n) -> SparseIndices:\n    \"\"\"Return position-ordered compressed indices, padding unavailable picks with -1.\"\"\"\n    topk = config.index_topk\n    if scores.ndim != 3 or visible.shape != (*scores.shape[:2], 1):\n        raise ValueError(\"scores and visible counts must be [B,T,C] and [B,T,1]\")\n    if candidates.shape != scores.shape or candidates.dtype != torch.bool:\n        raise ValueError(\"candidate mask must be boolean and match scores\")\n    allowed = candidates & (torch.arange(scores.shape[-1], device=scores.device) < visible)\n    masked = scores.float().masked_fill(~allowed, -torch.inf)\n    indices = masked.topk(min(topk, scores.shape[-1]), dim=-1).indices.sort(-1).values\n    # Gather validity at selected positions; masked top-k filler becomes sentinel -1.\n    return indices.masked_fill(~allowed.gather(-1, indices), -1)\n"
       },
       "statement": "Authored, reduced-shape PyTorch teaching implementation, bounded by the displayed simplifications and symbol anchors. CPU tests check local mathematical behavior, not checkpoint parity or production runtime acceptance.",
       "evidence": [
@@ -148138,7 +148140,7 @@
       "consumer": "file.src/diagram-pytorch-memory.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "fd12ceaf5847b50b4e48ff03b1544133982a15f2ce77dbb4db885eee00450f8f",
+      "expected": "6a355e10d2c08fb99d7a8faa537c53628d6afce6da76ca2bc9ec0c25766cc963",
       "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
       "evidence": [],
       "dependencies": [
@@ -148226,7 +148228,8 @@
         "MODELS.dsv41.vocab",
         "MODELS.dsv41.window",
         "MODELS.dsv41.indexerScaleGroup",
-        "MODELS.dsv41.indexerKvFormat"
+        "MODELS.dsv41.indexerKvFormat",
+        "worked.query"
       ]
     },
     {
@@ -150518,7 +150521,7 @@
       "consumer": "file.examples/deepseek_v41/csa2_selection.py",
       "domain": "model",
       "classification": "derived",
-      "expected": "e1ec64e41dcd482674fda499b00ed5a705fd972c3dcb42a7c1185ea948b6322f",
+      "expected": "dc0204c7420c4eb7835d5361d48b3e380367d55289c50ed2ef2e59cc2e04cc84",
       "dependencies": [
         "file.examples/deepseek_v41/config.py"
       ],
@@ -150828,7 +150831,7 @@
       "consumer": "file.src/pytorch-source.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "efcbc7f6fdc51bff4fb439c9231871e74d55790e8aa0645faaa82b59b4ca852e",
+      "expected": "c12bd749a7ce923172b1d089a7150eac197944784c7a9b91560665a720a8c65f",
       "dependencies": [
         "file.examples/deepseek_v41/config.py",
         "file.examples/deepseek_v41/backbone_mhc.py",
@@ -150839,7 +150842,8 @@
         "file.examples/deepseek_v41/csa2_attention.py",
         "file.examples/deepseek_v41/dspark_attention.py",
         "file.examples/deepseek_v41/dspark_heads.py",
-        "file.examples/deepseek_v41/deepspec_verifier.py"
+        "file.examples/deepseek_v41/deepspec_verifier.py",
+        "file.examples/deepseek_v41/worked_examples.py"
       ],
       "evidence": [],
       "statement": "Local Python consumer identity; CPU checks do not establish publisher parity or source acceptance."
@@ -155236,6 +155240,1112 @@
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
+    },
+    {
+      "id": "file.src/worked-examples.mjs",
+      "consumer": "file.src/worked-examples.mjs",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "c3036971bcdfe0aab1feb8ce2305dd2948684ec7ba2e877c99438c8b7b981639",
+      "dependencies": [
+        "file.src/worked-results.mjs"
+      ],
+      "evidence": [],
+      "statement": "CPU-computed illustrative trace and its presentation; current execution and independent scalar oracles check intermediates. Reduced fixtures do not assert full checkpoint parity, production replay or scientific acceptance. Primary-source mechanism dependencies are retained."
+    },
+    {
+      "id": "file.src/worked-results.mjs",
+      "consumer": "file.src/worked-results.mjs",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "2b75bf5032b668d5761e228041044ff03a2707707acfe5e28115652a6b2a442f",
+      "dependencies": [
+        "worked.replay",
+        "worked.selection",
+        "worked.query"
+      ],
+      "evidence": [],
+      "statement": "CPU-computed illustrative trace and its presentation; current execution and independent scalar oracles check intermediates. Reduced fixtures do not assert full checkpoint parity, production replay or scientific acceptance. Primary-source mechanism dependencies are retained."
+    },
+    {
+      "id": "file.examples/deepseek_v41/worked_examples.py",
+      "consumer": "file.examples/deepseek_v41/worked_examples.py",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "a5e9685b08e2d646fbba35e3b84552de9cb298af02bcf33a74d17e1d12dce109",
+      "dependencies": [
+        "file.examples/deepseek_v41/config.py",
+        "file.examples/deepseek_v41/csa2_attention.py",
+        "file.examples/deepseek_v41/csa2_selection.py"
+      ],
+      "evidence": [],
+      "statement": "CPU-computed illustrative trace and its presentation; current execution and independent scalar oracles check intermediates. Reduced fixtures do not assert full checkpoint parity, production replay or scientific acceptance. Primary-source mechanism dependencies are retained."
+    },
+    {
+      "id": "worked.replay",
+      "consumer": "worked.replay",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "title": "A local replay window has dependencies through depth",
+        "scope": "Tiny illustrative local dependency experiment with a simple residual update. This is not a full V4.1 decoder. Global KV and sink stay fixed in both runs.",
+        "settings": {
+          "layers": 2,
+          "window": 2,
+          "head_dim": 2,
+          "replay_start": 2,
+          "target_position": 3
+        },
+        "inputs": [
+          {
+            "id": "initial_hidden",
+            "title": "Initial local hidden vectors",
+            "operation": "h\u2070",
+            "shape": [
+              4,
+              2
+            ],
+            "axes": [
+              "positions",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                0
+              ]
+            ]
+          },
+          {
+            "id": "global_kv",
+            "title": "Separate fixed global dictionary",
+            "operation": "compressed KV",
+            "shape": [
+              1,
+              2
+            ],
+            "axes": [
+              "compressed_position",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                0.5,
+                1.5
+              ]
+            ]
+          },
+          {
+            "id": "sink",
+            "title": "Fixed sink logit",
+            "operation": "s",
+            "shape": [
+              1
+            ],
+            "axes": [
+              "heads"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              0.5
+            ]
+          }
+        ],
+        "steps": [
+          {
+            "id": "full_attention_1",
+            "title": "Full attention at depth 1",
+            "operation": "csa2_attention.sparse_attention(local hidden, fixed global KV, fixed sink)",
+            "shape": [
+              4,
+              2
+            ],
+            "axes": [
+              "positions",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                0.5371884703636169,
+                0.41878002882003784
+              ],
+              [
+                0.32308024168014526,
+                0.8407713770866394
+              ],
+              [
+                0.5183315873146057,
+                1.0342680215835571
+              ],
+              [
+                1.5769597291946411,
+                0.28958871960639954
+              ]
+            ]
+          },
+          {
+            "id": "full_hidden_1",
+            "title": "Full residual at depth 1",
+            "operation": "h_next = h + attention(h)",
+            "shape": [
+              4,
+              2
+            ],
+            "axes": [
+              "positions",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                1.5371885299682617,
+                0.41878002882003784
+              ],
+              [
+                0.32308024168014526,
+                1.8407714366912842
+              ],
+              [
+                1.518331527709961,
+                2.0342679023742676
+              ],
+              [
+                3.5769596099853516,
+                0.28958871960639954
+              ]
+            ]
+          },
+          {
+            "id": "full_attention_2",
+            "title": "Full attention at depth 2",
+            "operation": "csa2_attention.sparse_attention(local hidden, fixed global KV, fixed sink)",
+            "shape": [
+              4,
+              2
+            ],
+            "axes": [
+              "positions",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                1.0233731269836426,
+                0.6325063109397888
+              ],
+              [
+                0.48429763317108154,
+                1.4540419578552246
+              ],
+              [
+                1.2034732103347778,
+                1.919378399848938
+              ],
+              [
+                3.5586960315704346,
+                0.30372485518455505
+              ]
+            ]
+          },
+          {
+            "id": "full_hidden_2",
+            "title": "Full residual at depth 2",
+            "operation": "h_next = h + attention(h)",
+            "shape": [
+              4,
+              2
+            ],
+            "axes": [
+              "positions",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                2.5605616569519043,
+                1.0512863397598267
+              ],
+              [
+                0.8073778748512268,
+                3.294813394546509
+              ],
+              [
+                2.721804618835449,
+                3.953646183013916
+              ],
+              [
+                7.135655403137207,
+                0.5933135747909546
+              ]
+            ]
+          },
+          {
+            "id": "truncated_attention_1",
+            "title": "Truncated attention at depth 1",
+            "operation": "csa2_attention.sparse_attention(local hidden, fixed global KV, fixed sink)",
+            "shape": [
+              2,
+              2
+            ],
+            "axes": [
+              "positions",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                0.6247835159301758,
+                1.0413057804107666
+              ],
+              [
+                1.5769597291946411,
+                0.28958871960639954
+              ]
+            ]
+          },
+          {
+            "id": "truncated_hidden_1",
+            "title": "Truncated residual at depth 1",
+            "operation": "h_next = h + attention(h)",
+            "shape": [
+              2,
+              2
+            ],
+            "axes": [
+              "positions",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                1.6247835159301758,
+                2.0413057804107666
+              ],
+              [
+                3.5769596099853516,
+                0.28958871960639954
+              ]
+            ]
+          },
+          {
+            "id": "truncated_attention_2",
+            "title": "Truncated attention at depth 2",
+            "operation": "csa2_attention.sparse_attention(local hidden, fixed global KV, fixed sink)",
+            "shape": [
+              2,
+              2
+            ],
+            "axes": [
+              "positions",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                1.4815326929092407,
+                1.9575612545013428
+              ],
+              [
+                3.554863691329956,
+                0.30796363949775696
+              ]
+            ]
+          },
+          {
+            "id": "truncated_hidden_2",
+            "title": "Truncated residual at depth 2",
+            "operation": "h_next = h + attention(h)",
+            "shape": [
+              2,
+              2
+            ],
+            "axes": [
+              "positions",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                3.106316089630127,
+                3.9988670349121094
+              ],
+              [
+                7.131823539733887,
+                0.5975523591041565
+              ]
+            ]
+          },
+          {
+            "id": "final_difference",
+            "title": "Final target difference",
+            "operation": "full target \u2212 truncated target",
+            "shape": [
+              2
+            ],
+            "axes": [
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              0.0038318634033203125,
+              -0.004238784313201904
+            ]
+          }
+        ],
+        "full": [
+          {
+            "depth": 0,
+            "positions": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "shape": [
+              4,
+              2
+            ],
+            "dtype": "torch.float32",
+            "axes": [
+              "positions",
+              "head_dim"
+            ],
+            "missing_positions": [],
+            "values": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                0
+              ]
+            ]
+          },
+          {
+            "depth": 1,
+            "positions": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "shape": [
+              4,
+              2
+            ],
+            "dtype": "torch.float32",
+            "axes": [
+              "positions",
+              "head_dim"
+            ],
+            "missing_positions": [],
+            "values": [
+              [
+                1.5371885299682617,
+                0.41878002882003784
+              ],
+              [
+                0.32308024168014526,
+                1.8407714366912842
+              ],
+              [
+                1.518331527709961,
+                2.0342679023742676
+              ],
+              [
+                3.5769596099853516,
+                0.28958871960639954
+              ]
+            ]
+          },
+          {
+            "depth": 2,
+            "positions": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "shape": [
+              4,
+              2
+            ],
+            "dtype": "torch.float32",
+            "axes": [
+              "positions",
+              "head_dim"
+            ],
+            "missing_positions": [],
+            "values": [
+              [
+                2.5605616569519043,
+                1.0512863397598267
+              ],
+              [
+                0.8073778748512268,
+                3.294813394546509
+              ],
+              [
+                2.721804618835449,
+                3.953646183013916
+              ],
+              [
+                7.135655403137207,
+                0.5933135747909546
+              ]
+            ]
+          }
+        ],
+        "truncated": [
+          {
+            "depth": 0,
+            "positions": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "shape": [
+              4,
+              2
+            ],
+            "dtype": "torch.float32",
+            "axes": [
+              "positions",
+              "head_dim"
+            ],
+            "missing_positions": [
+              0,
+              1
+            ],
+            "values": [
+              null,
+              null,
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                0
+              ]
+            ]
+          },
+          {
+            "depth": 1,
+            "positions": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "shape": [
+              4,
+              2
+            ],
+            "dtype": "torch.float32",
+            "axes": [
+              "positions",
+              "head_dim"
+            ],
+            "missing_positions": [
+              0,
+              1
+            ],
+            "values": [
+              null,
+              null,
+              [
+                1.6247835159301758,
+                2.0413057804107666
+              ],
+              [
+                3.5769596099853516,
+                0.28958871960639954
+              ]
+            ]
+          },
+          {
+            "depth": 2,
+            "positions": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "shape": [
+              4,
+              2
+            ],
+            "dtype": "torch.float32",
+            "axes": [
+              "positions",
+              "head_dim"
+            ],
+            "missing_positions": [
+              0,
+              1
+            ],
+            "values": [
+              null,
+              null,
+              [
+                3.106316089630127,
+                3.9988670349121094
+              ],
+              [
+                7.131823539733887,
+                0.5975523591041565
+              ]
+            ]
+          }
+        ],
+        "missing_dependency": {
+          "position": 1,
+          "via_position": 2,
+          "target_position": 3,
+          "from_depth": 0,
+          "via_depth": 1,
+          "target_depth": 2
+        }
+      },
+      "dependencies": [
+        "file.examples/deepseek_v41/worked_examples.py",
+        "file.examples/deepseek_v41/csa2_attention.py",
+        "deepdive.decoder"
+      ],
+      "evidence": [],
+      "statement": "CPU-computed illustrative trace and its presentation; current execution and independent scalar oracles check intermediates. Reduced fixtures do not assert full checkpoint parity, production replay or scientific acceptance. Primary-source mechanism dependencies are retained."
+    },
+    {
+      "id": "worked.selection",
+      "consumer": "worked.selection",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "title": "Candidate blocks, then fresh sparse selection",
+        "scope": "Reduced CPU fixture. Candidate-source and later-selector queries differ; the later selector cannot recover keys excluded by the shared candidate mask.",
+        "settings": {
+          "heads": 1,
+          "head_dim": 2,
+          "block_size": 2,
+          "candidate_blocks": 2,
+          "topk": 2,
+          "visible_groups": 5
+        },
+        "inputs": [
+          {
+            "id": "keys",
+            "title": "Compressed index keys",
+            "operation": "K_index",
+            "shape": [
+              6,
+              2
+            ],
+            "axes": [
+              "compressed_position",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                9,
+                1
+              ],
+              [
+                8,
+                2
+              ],
+              [
+                4,
+                9
+              ],
+              [
+                3,
+                8
+              ],
+              [
+                1,
+                7
+              ],
+              [
+                0,
+                10
+              ]
+            ]
+          },
+          {
+            "id": "source_queries",
+            "title": "Candidate-source query heads",
+            "operation": "Q_source",
+            "shape": [
+              1,
+              2
+            ],
+            "axes": [
+              "heads",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "id": "selector_queries",
+            "title": "Later-selector query heads",
+            "operation": "Q_selector",
+            "shape": [
+              1,
+              2
+            ],
+            "axes": [
+              "heads",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "head_weights",
+            "title": "Head weights",
+            "operation": "w",
+            "shape": [
+              1
+            ],
+            "axes": [
+              "heads"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              1
+            ]
+          }
+        ],
+        "steps": [
+          {
+            "id": "source_scores",
+            "title": "Candidate-source scores",
+            "operation": "csa2_selection.compute_index_scores: \u03a3 w\u2095 ReLU(q\u2095 \u00b7 k) / \u221a(D H)",
+            "shape": [
+              6
+            ],
+            "axes": [
+              "compressed_position"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              6.3639607429504395,
+              5.656854152679443,
+              2.8284270763397217,
+              2.1213202476501465,
+              0.7071067690849304,
+              0
+            ]
+          },
+          {
+            "id": "source_selected_indices",
+            "title": "Source-layer direct sparse selection",
+            "operation": "csa2_selection.select_sparse_indices: top-k across all completed causal groups",
+            "shape": [
+              2
+            ],
+            "axes": [
+              "selected_position"
+            ],
+            "dtype": "torch.int64",
+            "values": [
+              0,
+              1
+            ]
+          },
+          {
+            "id": "causal_scores",
+            "title": "Completed causal groups only",
+            "operation": "score if j < visible else \u2212\u221e",
+            "shape": [
+              6
+            ],
+            "axes": [
+              "compressed_position"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              6.3639607429504395,
+              5.656854152679443,
+              2.8284270763397217,
+              2.1213202476501465,
+              0.7071067690849304,
+              "-inf"
+            ]
+          },
+          {
+            "id": "block_maxima",
+            "title": "Maximum score per candidate block",
+            "operation": "csa2_selection.candidate_block_trace: max within each block",
+            "shape": [
+              3
+            ],
+            "axes": [
+              "block"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              6.3639607429504395,
+              2.8284270763397217,
+              0.7071067690849304
+            ]
+          },
+          {
+            "id": "newest_block",
+            "title": "Newest reachable block",
+            "operation": "floor((visible \u2212 1) / block_size)",
+            "shape": [
+              1
+            ],
+            "axes": [
+              "singleton"
+            ],
+            "dtype": "torch.int64",
+            "values": [
+              2
+            ]
+          },
+          {
+            "id": "pinned_block_scores",
+            "title": "Pin the newest reachable block",
+            "operation": "replace newest block score with +\u221e",
+            "shape": [
+              3
+            ],
+            "axes": [
+              "block"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              6.3639607429504395,
+              2.8284270763397217,
+              "inf"
+            ]
+          },
+          {
+            "id": "candidate_mask",
+            "title": "Expand retained blocks and reapply causality",
+            "operation": "top candidate blocks \u2229 causal positions",
+            "shape": [
+              6
+            ],
+            "axes": [
+              "compressed_position"
+            ],
+            "dtype": "torch.bool",
+            "values": [
+              true,
+              true,
+              false,
+              false,
+              true,
+              false
+            ]
+          },
+          {
+            "id": "selector_scores",
+            "title": "Fresh later-selector scores",
+            "operation": "csa2_selection.compute_index_scores: \u03a3 w\u2095 ReLU(q\u2095 \u00b7 k) / \u221a(D H)",
+            "shape": [
+              6
+            ],
+            "axes": [
+              "compressed_position"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              0.7071067690849304,
+              1.4142135381698608,
+              6.3639607429504395,
+              5.656854152679443,
+              4.949747562408447,
+              7.071067810058594
+            ]
+          },
+          {
+            "id": "selected_indices",
+            "title": "Final position-ordered selection",
+            "operation": "csa2_selection.select_sparse_indices: top-k within candidates, then sort positions",
+            "shape": [
+              2
+            ],
+            "axes": [
+              "selected_position"
+            ],
+            "dtype": "torch.int64",
+            "values": [
+              1,
+              4
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        "file.examples/deepseek_v41/worked_examples.py",
+        "pytorch.csa2-selection"
+      ],
+      "evidence": [],
+      "statement": "CPU-computed illustrative trace and its presentation; current execution and independent scalar oracles check intermediates. Reduced fixtures do not assert full checkpoint parity, production replay or scientific acceptance. Primary-source mechanism dependencies are retained."
+    },
+    {
+      "id": "worked.query",
+      "consumer": "worked.query",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "title": "Changing a query over fixed KV",
+        "scope": "CPU illustrative vectors. Query alternatives share one position and unchanged KV; these are not successive decoder layers.",
+        "settings": {
+          "batch": 1,
+          "local_positions": 2,
+          "compressed_positions": 1,
+          "head_dim": 2,
+          "heads": 1,
+          "window": 2,
+          "position": 1
+        },
+        "inputs": [
+          {
+            "id": "queries",
+            "title": "Query alternatives",
+            "operation": "Q",
+            "shape": [
+              2,
+              2
+            ],
+            "axes": [
+              "alternatives",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                2
+              ]
+            ]
+          },
+          {
+            "id": "dictionary",
+            "title": "Local rows then compressed row",
+            "operation": "[local KV; compressed KV]",
+            "shape": [
+              3,
+              2
+            ],
+            "axes": [
+              "dictionary",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          },
+          {
+            "id": "sink",
+            "title": "Fixed sink logit",
+            "operation": "s",
+            "shape": [
+              1
+            ],
+            "axes": [
+              "heads"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              0.5
+            ]
+          }
+        ],
+        "steps": [
+          {
+            "id": "logits",
+            "title": "Scaled logits, including sink",
+            "operation": "[QK\u1d40 / \u221aD; s]",
+            "shape": [
+              2,
+              4
+            ],
+            "axes": [
+              "alternatives",
+              "dictionary_plus_sink"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                2.8284270763397217,
+                0,
+                1.4142135381698608,
+                0.5
+              ],
+              [
+                0,
+                1.4142135381698608,
+                2.8284270763397217,
+                0.5
+              ]
+            ]
+          },
+          {
+            "id": "weights",
+            "title": "Joint softmax weights",
+            "operation": "softmax(logits)",
+            "shape": [
+              2,
+              4
+            ],
+            "axes": [
+              "alternatives",
+              "dictionary_plus_sink"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                0.714453399181366,
+                0.04222830384969711,
+                0.17369557917118073,
+                0.069622702896595
+              ],
+              [
+                0.04222830384969711,
+                0.17369557917118073,
+                0.714453399181366,
+                0.069622702896595
+              ]
+            ]
+          },
+          {
+            "id": "contributions",
+            "title": "Weighted value contributions",
+            "operation": "p\u1d62 V\u1d62; sink value is zero",
+            "shape": [
+              2,
+              3,
+              2
+            ],
+            "axes": [
+              "alternatives",
+              "dictionary",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  1.428906798362732,
+                  0
+                ],
+                [
+                  0,
+                  0.04222830384969711
+                ],
+                [
+                  0.17369557917118073,
+                  0.34739115834236145
+                ]
+              ],
+              [
+                [
+                  0.08445660769939423,
+                  0
+                ],
+                [
+                  0,
+                  0.17369557917118073
+                ],
+                [
+                  0.714453399181366,
+                  1.428906798362732
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "outputs",
+            "title": "Attention outputs",
+            "operation": "csa2_attention.run_query_example \u2192 sparse_attention: \u03a3 p\u1d62 V\u1d62",
+            "shape": [
+              2,
+              2
+            ],
+            "axes": [
+              "alternatives",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                1.6026023626327515,
+                0.38961946964263916
+              ],
+              [
+                0.7989100217819214,
+                1.6026023626327515
+              ]
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        "file.examples/deepseek_v41/worked_examples.py",
+        "pytorch.csa2-attention"
+      ],
+      "evidence": [],
+      "statement": "CPU-computed illustrative trace and its presentation; current execution and independent scalar oracles check intermediates. Reduced fixtures do not assert full checkpoint parity, production replay or scientific acceptance. Primary-source mechanism dependencies are retained."
     }
   ],
   "contracts": [

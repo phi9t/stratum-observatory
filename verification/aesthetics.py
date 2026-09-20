@@ -299,10 +299,10 @@ def judge_spacing_scale(stylesheet,policy):
 #: in `UNMEASURED_CHROME`. Without those, renaming a class silently removes it from measurement
 #: while the gate still reports PASS -- which is the failure this list was added to fix, one layer
 #: up from the prose it was added for.
-CHROME_TEXT_SELECTORS=('.chart text','.metric-note','.chart-caption','.source-role','.status-pill',
+CHROME_TEXT_SELECTORS=('.worked-table th','.worked-table td','.worked-table code','.worked-table caption','.worked-diagram text','.chart text','.metric-note','.chart-caption','.source-role','.status-pill',
                        '.fact dt','.lens-tab .idx','.innovation-note','.innovation-table th',
                        '.innovation-table td','.innovation-table a','.accounting-assumptions summary',
-                       '.accounting-assumptions h4','.accounting-assumptions p','.accounting-citations a','.pytorch-section h4','.pytorch-section p','.pytorch-example summary','.pytorch-code','.pytorch-license summary','.pytorch-code span','.code-language')
+                       '.accounting-assumptions h4','.accounting-assumptions p','.accounting-citations a','.pytorch-section h4','.pytorch-section p','.pytorch-example summary','.pytorch-code','.worked-code summary','.pytorch-license summary','.pytorch-code span','.code-language')
 
 #: Reading-size chrome rules that the probe does **not** measure. This is recorded debt, not an
 #: exemption on principle: each entry is chrome text at or above `reading_px` whose contrast is
@@ -605,7 +605,7 @@ def run(root,record=False):
                 notes.open=true;
                 return notes.querySelectorAll('summary,h4,p,.accounting-citations a').length;
             }""")
-            page.evaluate("() => document.querySelectorAll('.pytorch-example,.pytorch-license').forEach(el=>el.open=true)")
+            page.evaluate("() => document.querySelectorAll('.pytorch-example,.pytorch-license,.worked-code').forEach(el=>el.open=true)")
             data=page.evaluate(PROBE)
             measured=sum(1 for text in data['texts'] if text.get('accounting'))
             if not accounting_expected or measured!=accounting_expected:
@@ -634,7 +634,7 @@ def run(root,record=False):
         browser.close()
     findings.extend(judge_type_scale(root/'src/styles.css',policy))
     findings.extend(judge_spacing_scale(root/'src/styles.css',policy))
-    findings.extend(judge_chrome_probe(root/'src/styles.css',(root/'src/app.mjs',root/'index.html')))
+    findings.extend(judge_chrome_probe(root/'src/styles.css',(root/'src/app.mjs',root/'src/worked-examples.mjs',root/'index.html')))
     findings.extend(judge_chrome_coverage(root/'src/styles.css',policy))
     if errors:
         findings.append(Finding('AESTHETIC_RUNTIME','aesthetics','FAIL','page',f'{len(errors)} runtime errors while measuring: {errors[0][:200]}','Fix the page error; measurements taken during an exception are not trustworthy.'))

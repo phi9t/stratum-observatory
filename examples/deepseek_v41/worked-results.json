@@ -1,0 +1,1055 @@
+{
+  "schema": "stratum-cpu-worked/v1",
+  "device": "cpu",
+  "torch_version": "2.8.0",
+  "source_sha256": {
+    "examples/deepseek_v41/__init__.py": "a518655e43dc5a23293b1dc2b41df1633033d72e2eb1d81d338f39a4e65c39ff",
+    "examples/deepseek_v41/backbone_mhc.py": "7766d4441f1b71bac0555486f942165d880434baed1505500eccb8e3afd9251a",
+    "examples/deepseek_v41/backbone_moe.py": "6d210bd79ff144279e01451706f17fa2e3232c861ffa7b8007e742b094c76d43",
+    "examples/deepseek_v41/config.py": "07434f1286ba8556e1c9c9defc04b651a30be300b5182834c45fd8358e42b0b6",
+    "examples/deepseek_v41/csa2_attention.py": "c9c9d3a0c1445ff1b8134041a76c7587cb70d83b8c4cf7e0bbd6351a8aefde3a",
+    "examples/deepseek_v41/csa2_compression.py": "5fb82ae9c431a34a8f6e954fe0018bd64e79132c3d78326372e933d7ec1293d2",
+    "examples/deepseek_v41/csa2_selection.py": "dc0204c7420c4eb7835d5361d48b3e380367d55289c50ed2ef2e59cc2e04cc84",
+    "examples/deepseek_v41/deepspec_verifier.py": "b08299907801b38ed3897cabcf2f886f6d59c50d5a4b2a83b84c31302e1cec43",
+    "examples/deepseek_v41/dspark_attention.py": "523c3471458d94987a4a2ab4fde1f6b5c0b1c2896bcf9ec912e6875e6fadf87d",
+    "examples/deepseek_v41/dspark_heads.py": "f69035c3689664c874a6123ed74d9ffc21a1bd6c8532f2b86e6588f18a361bed",
+    "examples/deepseek_v41/engram_write.py": "00041b40757bc3c1ccc0bc014346441ddb84c9f3bfff4cbd125a2f00474ad00a",
+    "examples/deepseek_v41/validate.py": "8801484bc9ef17fa8be6fed37f0e8a990aa417ea3d8b6e23f0a35519706a6861",
+    "examples/deepseek_v41/worked_examples.py": "a5e9685b08e2d646fbba35e3b84552de9cb298af02bcf33a74d17e1d12dce109",
+    "tools/export-worked.py": "2500c96b483c8627c8c74f6eb66787c55349d562e8dad157c26b140609990b83",
+    "uv.lock": "593e653f663ee6ba23ae6c135f0c6c15fcade273dc411ee2a502cf730dece33b"
+  },
+  "payload_sha256": "5f08c7cfc5f0ba71e0f708c3427a10e96ff8b4fd4810a2f41b5b225710a583f2",
+  "payload": "{\"replay\":{\"title\":\"A local replay window has dependencies through depth\",\"scope\":\"Tiny illustrative local dependency experiment with a simple residual update. This is not a full V4.1 decoder. Global KV and sink stay fixed in both runs.\",\"settings\":{\"layers\":2,\"window\":2,\"head_dim\":2,\"replay_start\":2,\"target_position\":3},\"inputs\":[{\"id\":\"initial_hidden\",\"title\":\"Initial local hidden vectors\",\"operation\":\"h\\u2070\",\"shape\":[4,2],\"axes\":[\"positions\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[1.0,0.0],[0.0,1.0],[1.0,1.0],[2.0,0.0]]},{\"id\":\"global_kv\",\"title\":\"Separate fixed global dictionary\",\"operation\":\"compressed KV\",\"shape\":[1,2],\"axes\":[\"compressed_position\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[0.5,1.5]]},{\"id\":\"sink\",\"title\":\"Fixed sink logit\",\"operation\":\"s\",\"shape\":[1],\"axes\":[\"heads\"],\"dtype\":\"torch.float32\",\"values\":[0.5]}],\"steps\":[{\"id\":\"full_attention_1\",\"title\":\"Full attention at depth 1\",\"operation\":\"csa2_attention.sparse_attention(local hidden, fixed global KV, fixed sink)\",\"shape\":[4,2],\"axes\":[\"positions\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[0.5371884703636169,0.41878002882003784],[0.32308024168014526,0.8407713770866394],[0.5183315873146057,1.0342680215835571],[1.5769597291946411,0.28958871960639954]]},{\"id\":\"full_hidden_1\",\"title\":\"Full residual at depth 1\",\"operation\":\"h_next = h + attention(h)\",\"shape\":[4,2],\"axes\":[\"positions\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[1.5371885299682617,0.41878002882003784],[0.32308024168014526,1.8407714366912842],[1.518331527709961,2.0342679023742676],[3.5769596099853516,0.28958871960639954]]},{\"id\":\"full_attention_2\",\"title\":\"Full attention at depth 2\",\"operation\":\"csa2_attention.sparse_attention(local hidden, fixed global KV, fixed sink)\",\"shape\":[4,2],\"axes\":[\"positions\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[1.0233731269836426,0.6325063109397888],[0.48429763317108154,1.4540419578552246],[1.2034732103347778,1.919378399848938],[3.5586960315704346,0.30372485518455505]]},{\"id\":\"full_hidden_2\",\"title\":\"Full residual at depth 2\",\"operation\":\"h_next = h + attention(h)\",\"shape\":[4,2],\"axes\":[\"positions\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[2.5605616569519043,1.0512863397598267],[0.8073778748512268,3.294813394546509],[2.721804618835449,3.953646183013916],[7.135655403137207,0.5933135747909546]]},{\"id\":\"truncated_attention_1\",\"title\":\"Truncated attention at depth 1\",\"operation\":\"csa2_attention.sparse_attention(local hidden, fixed global KV, fixed sink)\",\"shape\":[2,2],\"axes\":[\"positions\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[0.6247835159301758,1.0413057804107666],[1.5769597291946411,0.28958871960639954]]},{\"id\":\"truncated_hidden_1\",\"title\":\"Truncated residual at depth 1\",\"operation\":\"h_next = h + attention(h)\",\"shape\":[2,2],\"axes\":[\"positions\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[1.6247835159301758,2.0413057804107666],[3.5769596099853516,0.28958871960639954]]},{\"id\":\"truncated_attention_2\",\"title\":\"Truncated attention at depth 2\",\"operation\":\"csa2_attention.sparse_attention(local hidden, fixed global KV, fixed sink)\",\"shape\":[2,2],\"axes\":[\"positions\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[1.4815326929092407,1.9575612545013428],[3.554863691329956,0.30796363949775696]]},{\"id\":\"truncated_hidden_2\",\"title\":\"Truncated residual at depth 2\",\"operation\":\"h_next = h + attention(h)\",\"shape\":[2,2],\"axes\":[\"positions\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[3.106316089630127,3.9988670349121094],[7.131823539733887,0.5975523591041565]]},{\"id\":\"final_difference\",\"title\":\"Final target difference\",\"operation\":\"full target \\u2212 truncated target\",\"shape\":[2],\"axes\":[\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[0.0038318634033203125,-0.004238784313201904]}],\"full\":[{\"depth\":0,\"positions\":[0,1,2,3],\"shape\":[4,2],\"dtype\":\"torch.float32\",\"axes\":[\"positions\",\"head_dim\"],\"missing_positions\":[],\"values\":[[1.0,0.0],[0.0,1.0],[1.0,1.0],[2.0,0.0]]},{\"depth\":1,\"positions\":[0,1,2,3],\"shape\":[4,2],\"dtype\":\"torch.float32\",\"axes\":[\"positions\",\"head_dim\"],\"missing_positions\":[],\"values\":[[1.5371885299682617,0.41878002882003784],[0.32308024168014526,1.8407714366912842],[1.518331527709961,2.0342679023742676],[3.5769596099853516,0.28958871960639954]]},{\"depth\":2,\"positions\":[0,1,2,3],\"shape\":[4,2],\"dtype\":\"torch.float32\",\"axes\":[\"positions\",\"head_dim\"],\"missing_positions\":[],\"values\":[[2.5605616569519043,1.0512863397598267],[0.8073778748512268,3.294813394546509],[2.721804618835449,3.953646183013916],[7.135655403137207,0.5933135747909546]]}],\"truncated\":[{\"depth\":0,\"positions\":[0,1,2,3],\"shape\":[4,2],\"dtype\":\"torch.float32\",\"axes\":[\"positions\",\"head_dim\"],\"missing_positions\":[0,1],\"values\":[null,null,[1.0,1.0],[2.0,0.0]]},{\"depth\":1,\"positions\":[0,1,2,3],\"shape\":[4,2],\"dtype\":\"torch.float32\",\"axes\":[\"positions\",\"head_dim\"],\"missing_positions\":[0,1],\"values\":[null,null,[1.6247835159301758,2.0413057804107666],[3.5769596099853516,0.28958871960639954]]},{\"depth\":2,\"positions\":[0,1,2,3],\"shape\":[4,2],\"dtype\":\"torch.float32\",\"axes\":[\"positions\",\"head_dim\"],\"missing_positions\":[0,1],\"values\":[null,null,[3.106316089630127,3.9988670349121094],[7.131823539733887,0.5975523591041565]]}],\"missing_dependency\":{\"position\":1,\"via_position\":2,\"target_position\":3,\"from_depth\":0,\"via_depth\":1,\"target_depth\":2}},\"selection\":{\"title\":\"Candidate blocks, then fresh sparse selection\",\"scope\":\"Reduced CPU fixture. Candidate-source and later-selector queries differ; the later selector cannot recover keys excluded by the shared candidate mask.\",\"settings\":{\"heads\":1,\"head_dim\":2,\"block_size\":2,\"candidate_blocks\":2,\"topk\":2,\"visible_groups\":5},\"inputs\":[{\"id\":\"keys\",\"title\":\"Compressed index keys\",\"operation\":\"K_index\",\"shape\":[6,2],\"axes\":[\"compressed_position\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[9.0,1.0],[8.0,2.0],[4.0,9.0],[3.0,8.0],[1.0,7.0],[0.0,10.0]]},{\"id\":\"source_queries\",\"title\":\"Candidate-source query heads\",\"operation\":\"Q_source\",\"shape\":[1,2],\"axes\":[\"heads\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[1.0,0.0]]},{\"id\":\"selector_queries\",\"title\":\"Later-selector query heads\",\"operation\":\"Q_selector\",\"shape\":[1,2],\"axes\":[\"heads\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[0.0,1.0]]},{\"id\":\"head_weights\",\"title\":\"Head weights\",\"operation\":\"w\",\"shape\":[1],\"axes\":[\"heads\"],\"dtype\":\"torch.float32\",\"values\":[1.0]}],\"steps\":[{\"id\":\"source_scores\",\"title\":\"Candidate-source scores\",\"operation\":\"csa2_selection.compute_index_scores: \\u03a3 w\\u2095 ReLU(q\\u2095 \\u00b7 k) / \\u221a(D H)\",\"shape\":[6],\"axes\":[\"compressed_position\"],\"dtype\":\"torch.float32\",\"values\":[6.3639607429504395,5.656854152679443,2.8284270763397217,2.1213202476501465,0.7071067690849304,0.0]},{\"id\":\"source_selected_indices\",\"title\":\"Source-layer direct sparse selection\",\"operation\":\"csa2_selection.select_sparse_indices: top-k across all completed causal groups\",\"shape\":[2],\"axes\":[\"selected_position\"],\"dtype\":\"torch.int64\",\"values\":[0,1]},{\"id\":\"causal_scores\",\"title\":\"Completed causal groups only\",\"operation\":\"score if j < visible else \\u2212\\u221e\",\"shape\":[6],\"axes\":[\"compressed_position\"],\"dtype\":\"torch.float32\",\"values\":[6.3639607429504395,5.656854152679443,2.8284270763397217,2.1213202476501465,0.7071067690849304,\"-inf\"]},{\"id\":\"block_maxima\",\"title\":\"Maximum score per candidate block\",\"operation\":\"csa2_selection.candidate_block_trace: max within each block\",\"shape\":[3],\"axes\":[\"block\"],\"dtype\":\"torch.float32\",\"values\":[6.3639607429504395,2.8284270763397217,0.7071067690849304]},{\"id\":\"newest_block\",\"title\":\"Newest reachable block\",\"operation\":\"floor((visible \\u2212 1) / block_size)\",\"shape\":[1],\"axes\":[\"singleton\"],\"dtype\":\"torch.int64\",\"values\":[2]},{\"id\":\"pinned_block_scores\",\"title\":\"Pin the newest reachable block\",\"operation\":\"replace newest block score with +\\u221e\",\"shape\":[3],\"axes\":[\"block\"],\"dtype\":\"torch.float32\",\"values\":[6.3639607429504395,2.8284270763397217,\"inf\"]},{\"id\":\"candidate_mask\",\"title\":\"Expand retained blocks and reapply causality\",\"operation\":\"top candidate blocks \\u2229 causal positions\",\"shape\":[6],\"axes\":[\"compressed_position\"],\"dtype\":\"torch.bool\",\"values\":[true,true,false,false,true,false]},{\"id\":\"selector_scores\",\"title\":\"Fresh later-selector scores\",\"operation\":\"csa2_selection.compute_index_scores: \\u03a3 w\\u2095 ReLU(q\\u2095 \\u00b7 k) / \\u221a(D H)\",\"shape\":[6],\"axes\":[\"compressed_position\"],\"dtype\":\"torch.float32\",\"values\":[0.7071067690849304,1.4142135381698608,6.3639607429504395,5.656854152679443,4.949747562408447,7.071067810058594]},{\"id\":\"selected_indices\",\"title\":\"Final position-ordered selection\",\"operation\":\"csa2_selection.select_sparse_indices: top-k within candidates, then sort positions\",\"shape\":[2],\"axes\":[\"selected_position\"],\"dtype\":\"torch.int64\",\"values\":[1,4]}]},\"query\":{\"title\":\"Changing a query over fixed KV\",\"scope\":\"CPU illustrative vectors. Query alternatives share one position and unchanged KV; these are not successive decoder layers.\",\"settings\":{\"batch\":1,\"local_positions\":2,\"compressed_positions\":1,\"head_dim\":2,\"heads\":1,\"window\":2,\"position\":1},\"inputs\":[{\"id\":\"queries\",\"title\":\"Query alternatives\",\"operation\":\"Q\",\"shape\":[2,2],\"axes\":[\"alternatives\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[2.0,0.0],[0.0,2.0]]},{\"id\":\"dictionary\",\"title\":\"Local rows then compressed row\",\"operation\":\"[local KV; compressed KV]\",\"shape\":[3,2],\"axes\":[\"dictionary\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[2.0,0.0],[0.0,1.0],[1.0,2.0]]},{\"id\":\"sink\",\"title\":\"Fixed sink logit\",\"operation\":\"s\",\"shape\":[1],\"axes\":[\"heads\"],\"dtype\":\"torch.float32\",\"values\":[0.5]}],\"steps\":[{\"id\":\"logits\",\"title\":\"Scaled logits, including sink\",\"operation\":\"[QK\\u1d40 / \\u221aD; s]\",\"shape\":[2,4],\"axes\":[\"alternatives\",\"dictionary_plus_sink\"],\"dtype\":\"torch.float32\",\"values\":[[2.8284270763397217,0.0,1.4142135381698608,0.5],[0.0,1.4142135381698608,2.8284270763397217,0.5]]},{\"id\":\"weights\",\"title\":\"Joint softmax weights\",\"operation\":\"softmax(logits)\",\"shape\":[2,4],\"axes\":[\"alternatives\",\"dictionary_plus_sink\"],\"dtype\":\"torch.float32\",\"values\":[[0.714453399181366,0.04222830384969711,0.17369557917118073,0.069622702896595],[0.04222830384969711,0.17369557917118073,0.714453399181366,0.069622702896595]]},{\"id\":\"contributions\",\"title\":\"Weighted value contributions\",\"operation\":\"p\\u1d62 V\\u1d62; sink value is zero\",\"shape\":[2,3,2],\"axes\":[\"alternatives\",\"dictionary\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[[1.428906798362732,0.0],[0.0,0.04222830384969711],[0.17369557917118073,0.34739115834236145]],[[0.08445660769939423,0.0],[0.0,0.17369557917118073],[0.714453399181366,1.428906798362732]]]},{\"id\":\"outputs\",\"title\":\"Attention outputs\",\"operation\":\"csa2_attention.run_query_example \\u2192 sparse_attention: \\u03a3 p\\u1d62 V\\u1d62\",\"shape\":[2,2],\"axes\":[\"alternatives\",\"head_dim\"],\"dtype\":\"torch.float32\",\"values\":[[1.6026023626327515,0.38961946964263916],[0.7989100217819214,1.6026023626327515]]}]}}",
+  "examples": {
+    "replay": {
+      "title": "A local replay window has dependencies through depth",
+      "scope": "Tiny illustrative local dependency experiment with a simple residual update. This is not a full V4.1 decoder. Global KV and sink stay fixed in both runs.",
+      "settings": {
+        "layers": 2,
+        "window": 2,
+        "head_dim": 2,
+        "replay_start": 2,
+        "target_position": 3
+      },
+      "inputs": [
+        {
+          "id": "initial_hidden",
+          "title": "Initial local hidden vectors",
+          "operation": "h\u2070",
+          "shape": [
+            4,
+            2
+          ],
+          "axes": [
+            "positions",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              1.0
+            ],
+            [
+              2.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "id": "global_kv",
+          "title": "Separate fixed global dictionary",
+          "operation": "compressed KV",
+          "shape": [
+            1,
+            2
+          ],
+          "axes": [
+            "compressed_position",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              0.5,
+              1.5
+            ]
+          ]
+        },
+        {
+          "id": "sink",
+          "title": "Fixed sink logit",
+          "operation": "s",
+          "shape": [
+            1
+          ],
+          "axes": [
+            "heads"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            0.5
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "id": "full_attention_1",
+          "title": "Full attention at depth 1",
+          "operation": "csa2_attention.sparse_attention(local hidden, fixed global KV, fixed sink)",
+          "shape": [
+            4,
+            2
+          ],
+          "axes": [
+            "positions",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              0.5371884703636169,
+              0.41878002882003784
+            ],
+            [
+              0.32308024168014526,
+              0.8407713770866394
+            ],
+            [
+              0.5183315873146057,
+              1.0342680215835571
+            ],
+            [
+              1.5769597291946411,
+              0.28958871960639954
+            ]
+          ]
+        },
+        {
+          "id": "full_hidden_1",
+          "title": "Full residual at depth 1",
+          "operation": "h_next = h + attention(h)",
+          "shape": [
+            4,
+            2
+          ],
+          "axes": [
+            "positions",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              1.5371885299682617,
+              0.41878002882003784
+            ],
+            [
+              0.32308024168014526,
+              1.8407714366912842
+            ],
+            [
+              1.518331527709961,
+              2.0342679023742676
+            ],
+            [
+              3.5769596099853516,
+              0.28958871960639954
+            ]
+          ]
+        },
+        {
+          "id": "full_attention_2",
+          "title": "Full attention at depth 2",
+          "operation": "csa2_attention.sparse_attention(local hidden, fixed global KV, fixed sink)",
+          "shape": [
+            4,
+            2
+          ],
+          "axes": [
+            "positions",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              1.0233731269836426,
+              0.6325063109397888
+            ],
+            [
+              0.48429763317108154,
+              1.4540419578552246
+            ],
+            [
+              1.2034732103347778,
+              1.919378399848938
+            ],
+            [
+              3.5586960315704346,
+              0.30372485518455505
+            ]
+          ]
+        },
+        {
+          "id": "full_hidden_2",
+          "title": "Full residual at depth 2",
+          "operation": "h_next = h + attention(h)",
+          "shape": [
+            4,
+            2
+          ],
+          "axes": [
+            "positions",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              2.5605616569519043,
+              1.0512863397598267
+            ],
+            [
+              0.8073778748512268,
+              3.294813394546509
+            ],
+            [
+              2.721804618835449,
+              3.953646183013916
+            ],
+            [
+              7.135655403137207,
+              0.5933135747909546
+            ]
+          ]
+        },
+        {
+          "id": "truncated_attention_1",
+          "title": "Truncated attention at depth 1",
+          "operation": "csa2_attention.sparse_attention(local hidden, fixed global KV, fixed sink)",
+          "shape": [
+            2,
+            2
+          ],
+          "axes": [
+            "positions",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              0.6247835159301758,
+              1.0413057804107666
+            ],
+            [
+              1.5769597291946411,
+              0.28958871960639954
+            ]
+          ]
+        },
+        {
+          "id": "truncated_hidden_1",
+          "title": "Truncated residual at depth 1",
+          "operation": "h_next = h + attention(h)",
+          "shape": [
+            2,
+            2
+          ],
+          "axes": [
+            "positions",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              1.6247835159301758,
+              2.0413057804107666
+            ],
+            [
+              3.5769596099853516,
+              0.28958871960639954
+            ]
+          ]
+        },
+        {
+          "id": "truncated_attention_2",
+          "title": "Truncated attention at depth 2",
+          "operation": "csa2_attention.sparse_attention(local hidden, fixed global KV, fixed sink)",
+          "shape": [
+            2,
+            2
+          ],
+          "axes": [
+            "positions",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              1.4815326929092407,
+              1.9575612545013428
+            ],
+            [
+              3.554863691329956,
+              0.30796363949775696
+            ]
+          ]
+        },
+        {
+          "id": "truncated_hidden_2",
+          "title": "Truncated residual at depth 2",
+          "operation": "h_next = h + attention(h)",
+          "shape": [
+            2,
+            2
+          ],
+          "axes": [
+            "positions",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              3.106316089630127,
+              3.9988670349121094
+            ],
+            [
+              7.131823539733887,
+              0.5975523591041565
+            ]
+          ]
+        },
+        {
+          "id": "final_difference",
+          "title": "Final target difference",
+          "operation": "full target \u2212 truncated target",
+          "shape": [
+            2
+          ],
+          "axes": [
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            0.0038318634033203125,
+            -0.004238784313201904
+          ]
+        }
+      ],
+      "full": [
+        {
+          "depth": 0,
+          "positions": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "shape": [
+            4,
+            2
+          ],
+          "dtype": "torch.float32",
+          "axes": [
+            "positions",
+            "head_dim"
+          ],
+          "missing_positions": [],
+          "values": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              1.0
+            ],
+            [
+              2.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "depth": 1,
+          "positions": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "shape": [
+            4,
+            2
+          ],
+          "dtype": "torch.float32",
+          "axes": [
+            "positions",
+            "head_dim"
+          ],
+          "missing_positions": [],
+          "values": [
+            [
+              1.5371885299682617,
+              0.41878002882003784
+            ],
+            [
+              0.32308024168014526,
+              1.8407714366912842
+            ],
+            [
+              1.518331527709961,
+              2.0342679023742676
+            ],
+            [
+              3.5769596099853516,
+              0.28958871960639954
+            ]
+          ]
+        },
+        {
+          "depth": 2,
+          "positions": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "shape": [
+            4,
+            2
+          ],
+          "dtype": "torch.float32",
+          "axes": [
+            "positions",
+            "head_dim"
+          ],
+          "missing_positions": [],
+          "values": [
+            [
+              2.5605616569519043,
+              1.0512863397598267
+            ],
+            [
+              0.8073778748512268,
+              3.294813394546509
+            ],
+            [
+              2.721804618835449,
+              3.953646183013916
+            ],
+            [
+              7.135655403137207,
+              0.5933135747909546
+            ]
+          ]
+        }
+      ],
+      "truncated": [
+        {
+          "depth": 0,
+          "positions": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "shape": [
+            4,
+            2
+          ],
+          "dtype": "torch.float32",
+          "axes": [
+            "positions",
+            "head_dim"
+          ],
+          "missing_positions": [
+            0,
+            1
+          ],
+          "values": [
+            null,
+            null,
+            [
+              1.0,
+              1.0
+            ],
+            [
+              2.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "depth": 1,
+          "positions": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "shape": [
+            4,
+            2
+          ],
+          "dtype": "torch.float32",
+          "axes": [
+            "positions",
+            "head_dim"
+          ],
+          "missing_positions": [
+            0,
+            1
+          ],
+          "values": [
+            null,
+            null,
+            [
+              1.6247835159301758,
+              2.0413057804107666
+            ],
+            [
+              3.5769596099853516,
+              0.28958871960639954
+            ]
+          ]
+        },
+        {
+          "depth": 2,
+          "positions": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "shape": [
+            4,
+            2
+          ],
+          "dtype": "torch.float32",
+          "axes": [
+            "positions",
+            "head_dim"
+          ],
+          "missing_positions": [
+            0,
+            1
+          ],
+          "values": [
+            null,
+            null,
+            [
+              3.106316089630127,
+              3.9988670349121094
+            ],
+            [
+              7.131823539733887,
+              0.5975523591041565
+            ]
+          ]
+        }
+      ],
+      "missing_dependency": {
+        "position": 1,
+        "via_position": 2,
+        "target_position": 3,
+        "from_depth": 0,
+        "via_depth": 1,
+        "target_depth": 2
+      }
+    },
+    "selection": {
+      "title": "Candidate blocks, then fresh sparse selection",
+      "scope": "Reduced CPU fixture. Candidate-source and later-selector queries differ; the later selector cannot recover keys excluded by the shared candidate mask.",
+      "settings": {
+        "heads": 1,
+        "head_dim": 2,
+        "block_size": 2,
+        "candidate_blocks": 2,
+        "topk": 2,
+        "visible_groups": 5
+      },
+      "inputs": [
+        {
+          "id": "keys",
+          "title": "Compressed index keys",
+          "operation": "K_index",
+          "shape": [
+            6,
+            2
+          ],
+          "axes": [
+            "compressed_position",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              9.0,
+              1.0
+            ],
+            [
+              8.0,
+              2.0
+            ],
+            [
+              4.0,
+              9.0
+            ],
+            [
+              3.0,
+              8.0
+            ],
+            [
+              1.0,
+              7.0
+            ],
+            [
+              0.0,
+              10.0
+            ]
+          ]
+        },
+        {
+          "id": "source_queries",
+          "title": "Candidate-source query heads",
+          "operation": "Q_source",
+          "shape": [
+            1,
+            2
+          ],
+          "axes": [
+            "heads",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "id": "selector_queries",
+          "title": "Later-selector query heads",
+          "operation": "Q_selector",
+          "shape": [
+            1,
+            2
+          ],
+          "axes": [
+            "heads",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "id": "head_weights",
+          "title": "Head weights",
+          "operation": "w",
+          "shape": [
+            1
+          ],
+          "axes": [
+            "heads"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            1.0
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "id": "source_scores",
+          "title": "Candidate-source scores",
+          "operation": "csa2_selection.compute_index_scores: \u03a3 w\u2095 ReLU(q\u2095 \u00b7 k) / \u221a(D H)",
+          "shape": [
+            6
+          ],
+          "axes": [
+            "compressed_position"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            6.3639607429504395,
+            5.656854152679443,
+            2.8284270763397217,
+            2.1213202476501465,
+            0.7071067690849304,
+            0.0
+          ]
+        },
+        {
+          "id": "source_selected_indices",
+          "title": "Source-layer direct sparse selection",
+          "operation": "csa2_selection.select_sparse_indices: top-k across all completed causal groups",
+          "shape": [
+            2
+          ],
+          "axes": [
+            "selected_position"
+          ],
+          "dtype": "torch.int64",
+          "values": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "causal_scores",
+          "title": "Completed causal groups only",
+          "operation": "score if j < visible else \u2212\u221e",
+          "shape": [
+            6
+          ],
+          "axes": [
+            "compressed_position"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            6.3639607429504395,
+            5.656854152679443,
+            2.8284270763397217,
+            2.1213202476501465,
+            0.7071067690849304,
+            "-inf"
+          ]
+        },
+        {
+          "id": "block_maxima",
+          "title": "Maximum score per candidate block",
+          "operation": "csa2_selection.candidate_block_trace: max within each block",
+          "shape": [
+            3
+          ],
+          "axes": [
+            "block"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            6.3639607429504395,
+            2.8284270763397217,
+            0.7071067690849304
+          ]
+        },
+        {
+          "id": "newest_block",
+          "title": "Newest reachable block",
+          "operation": "floor((visible \u2212 1) / block_size)",
+          "shape": [
+            1
+          ],
+          "axes": [
+            "singleton"
+          ],
+          "dtype": "torch.int64",
+          "values": [
+            2
+          ]
+        },
+        {
+          "id": "pinned_block_scores",
+          "title": "Pin the newest reachable block",
+          "operation": "replace newest block score with +\u221e",
+          "shape": [
+            3
+          ],
+          "axes": [
+            "block"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            6.3639607429504395,
+            2.8284270763397217,
+            "inf"
+          ]
+        },
+        {
+          "id": "candidate_mask",
+          "title": "Expand retained blocks and reapply causality",
+          "operation": "top candidate blocks \u2229 causal positions",
+          "shape": [
+            6
+          ],
+          "axes": [
+            "compressed_position"
+          ],
+          "dtype": "torch.bool",
+          "values": [
+            true,
+            true,
+            false,
+            false,
+            true,
+            false
+          ]
+        },
+        {
+          "id": "selector_scores",
+          "title": "Fresh later-selector scores",
+          "operation": "csa2_selection.compute_index_scores: \u03a3 w\u2095 ReLU(q\u2095 \u00b7 k) / \u221a(D H)",
+          "shape": [
+            6
+          ],
+          "axes": [
+            "compressed_position"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            0.7071067690849304,
+            1.4142135381698608,
+            6.3639607429504395,
+            5.656854152679443,
+            4.949747562408447,
+            7.071067810058594
+          ]
+        },
+        {
+          "id": "selected_indices",
+          "title": "Final position-ordered selection",
+          "operation": "csa2_selection.select_sparse_indices: top-k within candidates, then sort positions",
+          "shape": [
+            2
+          ],
+          "axes": [
+            "selected_position"
+          ],
+          "dtype": "torch.int64",
+          "values": [
+            1,
+            4
+          ]
+        }
+      ]
+    },
+    "query": {
+      "title": "Changing a query over fixed KV",
+      "scope": "CPU illustrative vectors. Query alternatives share one position and unchanged KV; these are not successive decoder layers.",
+      "settings": {
+        "batch": 1,
+        "local_positions": 2,
+        "compressed_positions": 1,
+        "head_dim": 2,
+        "heads": 1,
+        "window": 2,
+        "position": 1
+      },
+      "inputs": [
+        {
+          "id": "queries",
+          "title": "Query alternatives",
+          "operation": "Q",
+          "shape": [
+            2,
+            2
+          ],
+          "axes": [
+            "alternatives",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ]
+        },
+        {
+          "id": "dictionary",
+          "title": "Local rows then compressed row",
+          "operation": "[local KV; compressed KV]",
+          "shape": [
+            3,
+            2
+          ],
+          "axes": [
+            "dictionary",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              2.0
+            ]
+          ]
+        },
+        {
+          "id": "sink",
+          "title": "Fixed sink logit",
+          "operation": "s",
+          "shape": [
+            1
+          ],
+          "axes": [
+            "heads"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            0.5
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "id": "logits",
+          "title": "Scaled logits, including sink",
+          "operation": "[QK\u1d40 / \u221aD; s]",
+          "shape": [
+            2,
+            4
+          ],
+          "axes": [
+            "alternatives",
+            "dictionary_plus_sink"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              2.8284270763397217,
+              0.0,
+              1.4142135381698608,
+              0.5
+            ],
+            [
+              0.0,
+              1.4142135381698608,
+              2.8284270763397217,
+              0.5
+            ]
+          ]
+        },
+        {
+          "id": "weights",
+          "title": "Joint softmax weights",
+          "operation": "softmax(logits)",
+          "shape": [
+            2,
+            4
+          ],
+          "axes": [
+            "alternatives",
+            "dictionary_plus_sink"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              0.714453399181366,
+              0.04222830384969711,
+              0.17369557917118073,
+              0.069622702896595
+            ],
+            [
+              0.04222830384969711,
+              0.17369557917118073,
+              0.714453399181366,
+              0.069622702896595
+            ]
+          ]
+        },
+        {
+          "id": "contributions",
+          "title": "Weighted value contributions",
+          "operation": "p\u1d62 V\u1d62; sink value is zero",
+          "shape": [
+            2,
+            3,
+            2
+          ],
+          "axes": [
+            "alternatives",
+            "dictionary",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              [
+                1.428906798362732,
+                0.0
+              ],
+              [
+                0.0,
+                0.04222830384969711
+              ],
+              [
+                0.17369557917118073,
+                0.34739115834236145
+              ]
+            ],
+            [
+              [
+                0.08445660769939423,
+                0.0
+              ],
+              [
+                0.0,
+                0.17369557917118073
+              ],
+              [
+                0.714453399181366,
+                1.428906798362732
+              ]
+            ]
+          ]
+        },
+        {
+          "id": "outputs",
+          "title": "Attention outputs",
+          "operation": "csa2_attention.run_query_example \u2192 sparse_attention: \u03a3 p\u1d62 V\u1d62",
+          "shape": [
+            2,
+            2
+          ],
+          "axes": [
+            "alternatives",
+            "head_dim"
+          ],
+          "dtype": "torch.float32",
+          "values": [
+            [
+              1.6026023626327515,
+              0.38961946964263916
+            ],
+            [
+              0.7989100217819214,
+              1.6026023626327515
+            ]
+          ]
+        }
+      ]
+    }
+  }
+}

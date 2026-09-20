@@ -70,3 +70,10 @@ the chapter owning the requested absolute layer, preserving that layer. Explicit
 links clamp out-of-range layers into their own range. Both tile clicks and keyboard
 selection keep the reader in the chapter. Worked explanations, mathematics, source
 citations and checked-in Python remain beneath the detailed schematic.
+
+The portable build gzip-compresses only the embedded Python-source JSON using Node's
+built-in zlib. A modern browser's native DecompressionStream restores the exact UTF-8
+source before the application modules initialize. This preserves readable displayed
+code and byte-exact downloads within the existing single-file size budget, without
+external assets or an added runtime package. Browser tests check restored code against
+the checked-in files; engineering checks repeat-build byte identity.

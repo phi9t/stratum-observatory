@@ -181,6 +181,8 @@ with sync_playwright() as p:
     exercise_navigation(page,ROOT)
     from deepdive_navigation import exercise as exercise_deepdives
     exercise_deepdives(page,ROOT)
+    from worked_navigation import exercise as exercise_worked
+    exercise_worked(page,ROOT)
     from dedicated_page import exercise
     delivery=browser.new_page()
     delivery.on('pageerror',lambda e:errors.append(str(e)))

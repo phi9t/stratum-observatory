@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, TypedDict
 import torch
 from torch import Tensor
 from torch.nn import functional as F
@@ -13,6 +13,14 @@ IndexScores = Annotated[Tensor, "batch query_tokens compressed_positions"]
 VisibleGroups = Annotated[Tensor, "batch query_tokens singleton; completed group count"]
 CandidateMask = Annotated[Tensor, "batch query_tokens compressed_positions; boolean"]
 SparseIndices = Annotated[Tensor, "batch query_tokens selected_positions; integer or -1"]
+
+
+class CandidateBlockTrace(TypedDict):
+    causal_scores: IndexScores
+    block_maxima: Annotated[Tensor, "batch query_tokens candidate_blocks"]
+    newest_block: VisibleGroups
+    pinned_block_scores: Annotated[Tensor, "batch query_tokens candidate_blocks"]
+    candidate_mask: CandidateMask
 
 
 def compute_index_scores(
@@ -33,17 +41,19 @@ def compute_index_scores(
         return (products * weights[..., None]).sum(dim=2)
 
 
-def select_candidate_blocks(
+def candidate_block_trace(
     scores: IndexScores, visible: VisibleGroups, config: V41Config,
-) -> CandidateMask:
-    """Return [B,T,C] mask; visible [B,T,1] counts only completed causal groups."""
+) -> CandidateBlockTrace:
+    """Compute the candidate mask and its named intermediate tensors."""
     top_blocks, block_size = config.candidate_blocks, config.candidate_block_size
     if scores.ndim != 3 or visible.shape != (*scores.shape[:2], 1):
         raise ValueError("scores and visible counts must be [B,T,C] and [B,T,1]")
     width = scores.shape[-1]
     causal = torch.arange(width, device=scores.device) < visible
     if width == 0:
-        return causal
+        empty = scores.float()
+        return dict(causal_scores=empty, block_maxima=empty, pinned_block_scores=empty,
+                    newest_block=(visible - 1) // block_size, candidate_mask=causal)
     masked = scores.float().masked_fill(~causal, -torch.inf)
     padded = F.pad(masked, (0, -width % block_size), value=-torch.inf)
     # Padding is unreachable; each block takes its best compressed-position score.
@@ -51,11 +61,21 @@ def select_candidate_blocks(
     # Pin the newest reachable block, even when its scores are below older blocks.
     newest = (visible - 1) // block_size
     block_ids = torch.arange(block_scores.shape[-1], device=scores.device)
+    block_maxima = block_scores
     block_scores = block_scores.masked_fill(block_ids == newest, torch.inf)
     values, indices = block_scores.topk(min(top_blocks, block_scores.shape[-1]), dim=-1)
     keep = torch.zeros_like(block_scores, dtype=torch.bool)
     keep.scatter_(-1, indices, values > -torch.inf)
-    return keep.repeat_interleave(block_size, -1)[..., :width] & causal
+    candidates = keep.repeat_interleave(block_size, -1)[..., :width] & causal
+    return dict(causal_scores=masked, block_maxima=block_maxima,
+                newest_block=newest, pinned_block_scores=block_scores, candidate_mask=candidates)
+
+
+def select_candidate_blocks(
+    scores: IndexScores, visible: VisibleGroups, config: V41Config,
+) -> CandidateMask:
+    """Return [B,T,C] mask; visible [B,T,1] counts only completed causal groups."""
+    return candidate_block_trace(scores, visible, config)["candidate_mask"]
 
 
 def select_sparse_indices(

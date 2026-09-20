@@ -147,3 +147,11 @@ hand-edit that generated copy. `npm run validate:pytorch` runs the CPU program a
 `npm run test:pytorch` checks independent math, precision, gradients and source delivery.
 
 CED chapter selectors use `core.layerNumbers`: Encoder owns absolute layers 1..encoderLayers; Decoder owns encoderLayers+1..layers. Legacy model-view block links resolve to the owning chapter without renumbering. Both chapters use the shared detailed block renderer. Keep the full-backbone verification sweep, even though each chapter shows only its half.
+
+Worked traces: numerical inputs, intermediates and outputs come from the CPU program
+`examples/deepseek_v41/worked_examples.py`, saved with source fingerprints in
+`worked-results.json`. Regenerate with `npm run generate:worked`; never hand-edit
+`src/worked-results.mjs`. Build rejects stale recipe hashes. CPU artifact tests compare
+current execution with saved values; independent scalar tests check the math. Browser
+tests compare displayed values and replay nodes with that same artifact. Teaching
+fixtures do not establish checkpoint parity, scientific acceptance or GPU performance.

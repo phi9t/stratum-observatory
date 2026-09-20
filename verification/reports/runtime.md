@@ -2,7 +2,7 @@
 
 **runtime: BLOCKED**
 
-Generated: 2026-09-20T17:48:44.814135+00:00
+Generated: 2026-09-20T19:07:11.826626+00:00
 
 This report distinguishes software/contract tests from evidence-backed science. Missing evidence is not a contradiction, and a green engineering run is not scientific certification.
 
@@ -10,10 +10,10 @@ This report distinguishes software/contract tests from evidence-backed science. 
 
 | Item | Count |
 |---|---:|
-| inputs | 601 |
-| functions_and_files | 57 |
+| inputs | 604 |
+| functions_and_files | 60 |
 | scene_contracts | 3109 |
-| claims | 3791 |
+| claims | 3797 |
 | sources | 83 |
 | verified_sources | 81 |
 | verified_scientific_claims | 0 |
@@ -46,7 +46,7 @@ This report distinguishes software/contract tests from evidence-backed science. 
 | CED_PUBLISHER_AGREEMENT | PASS | 1 |
 | CLAIM_ANCHOR | BLOCKED | 2334 |
 | CLAIM_MODEL_COVERAGE | PASS | 1 |
-| CLAIM_ROLE | BLOCKED | 313 |
+| CLAIM_ROLE | BLOCKED | 320 |
 | CLAIM_SOURCE_BLOCKED | BLOCKED | 2 |
 | CONTRACT_CONSISTENT | PASS | 24 |
 | CONTRACT_EVIDENCE | BLOCKED | 32 |
@@ -55,9 +55,9 @@ This report distinguishes software/contract tests from evidence-backed science. 
 | DOCUMENTED_NO_SOURCE | BLOCKED | 17 |
 | DOMAIN_INPUT | BLOCKED | 8 |
 | ENGINEERING_CURRENT | PASS | 1 |
-| MODEL_DUAL_CODE | BLOCKED | 299 |
+| MODEL_DUAL_CODE | BLOCKED | 304 |
 | RECEIPT_UNATTESTED | BLOCKED | 1 |
-| REVIEW_REQUIRED | BLOCKED | 3823 |
+| REVIEW_REQUIRED | BLOCKED | 3829 |
 | RUNTIME_NOT_RUN | NOT_RUN | 32 |
 | SOURCE_CACHE | BLOCKED | 2 |
 | SOURCE_UNFETCHED | BLOCKED | 2 |

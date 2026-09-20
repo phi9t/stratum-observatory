@@ -21,7 +21,9 @@
     "verify:privacy": "uv run --frozen python -m verification.privacy",
     "package:public": "uv run --frozen python tools/export-public.py",
     "test:pytorch": "uv run --frozen --group examples python -m unittest discover -s tests -p \"pytorch_*.py\" -v",
-    "validate:pytorch": "uv run --frozen --group examples python -m examples.deepseek_v41.validate"
+    "validate:pytorch": "uv run --frozen --group examples python -m examples.deepseek_v41.validate",
+    "generate:worked": "uv run --frozen --group examples python tools/export-worked.py && npm run build",
+    "check:worked": "uv run --frozen --group examples python tools/export-worked.py --check"
   },
   "engines": {
     "node": ">=20"
