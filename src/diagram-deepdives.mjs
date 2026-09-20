@@ -1,61 +1,15 @@
 /** Focused V4.1 mechanism diagrams; token time, layer depth and ownership remain explicit. */
 import {getModel,layerKind,formatNum} from './core.mjs';
-import {layerBands} from './diagram-meta.mjs';
+import {buildModel} from './diagram-model.mjs';
 import {chapterContent} from './deepdives.mjs';
 import {makeScene,addNode,addLabel,addWire,makeInfo} from './scene.mjs';
 function start(s){const m=getModel(s.model),c=chapterContent(m,s),g=makeScene(1440,1260);addLabel(g,`V4.1 / ${s.stage.toUpperCase()} DEEP DIVE`,36,38,'compute',{size:11,tracking:1.3});addLabel(g,c.question,36,88,'text',{size:22});addLabel(g,'Inspect an operator for shapes, ownership, implementation anchors and evidence.',36,124,'muted',{size:13});return{m,c,g};}
 function box(g,c,id,x,y,w,title,sub,body,formula='',tone='compute',facts=[],category='V4.1 mechanism'){return addNode(g,id,x,y,w,84,title,sub,{tone,info:makeInfo(category,title,body,formula,facts,c.sources)});}
 function flow(g,source,target,x=70){const a=g.nodes.find(n=>n.id===source),b=g.nodes.find(n=>n.id===target);addWire(g,[[x,a.y+a.h],[x,b.y]],source,target);}
-function note(g,c,title,sub,body){box(g,c,`${c.stage}-boundary`,984,180,420,title,sub,body,'','state');}
 function finish(g,c,first){g.caption=c.caveat;g.defaultSelected=first;return g;}
-export function buildEncoder(s){const {g,m,c}=start(s),end=m.encoderLayers,bands=layerBands(m,1,end);
- box(g,c,'encoder-embed',36,180,880,'Embed and expand',`token IDs → [B, T, ${m.streams}, ${m.d}]`,'Transformer.forward embeds text, fills image spans, then expands the residual copies. Token IDs also feed the separate Engram lookup path.','h = repeat(embed(ids), streams)');
- let previous='encoder-embed';
- bands.forEach((b,i)=>{const id=b.kind==='swa'?'encoder-window':`encoder-band-${b.lo}`,y=340+i*160;
-  const title=b.kind==='swa'?`Layers ${b.lo}–${b.hi}: local window only`:`Layers ${b.lo}–${b.hi}: Full then Reuse`;
-  box(g,c,id,36,y,880,title,b.kind==='swa'?`${m.window}-position window · no global compressed cache`:`L${b.lo} publishes compressed state; following layers reuse it`,b.kind==='swa'?'These layers have no compressed path or indexer. Each layer performs causal sliding-window attention and its own residual/feed-forward work.':`Layer ${b.lo} is Full: it writes main compressed KV, index keys and selected positions. Layers after it in this band reuse that cache and selection while computing their own queries, local window attention, residuals and experts. Encoder selection sees the causal range directly; the decoder candidate pool has not been created.`,b.kind==='swa'?'h_next = Block(h, local_window)':`KV / indices ← Full_L${b.lo}; Reuse consumes them`);
-  flow(g,previous,id);previous=id;
- });
- const handoffY=340+bands.length*160;
- box(g,c,'encoder-handoff',36,handoffY,880,'Hand off the residual',`after layer ${end} → layer ${end+1}`,'This residual enters the decoder boundary producer. There is no inserted conventional cross-attention module; the modules form a flat causal stack.','h_encoder_out → decoder boundary');flow(g,previous,'encoder-handoff');
- box(g,c,'encoder-causal',984,180,420,'Causal visibility','token time is not layer depth','Every encoder layer preserves causal token visibility. The encoder is not a bidirectional context encoder.','positions ≤ current token','state');
- box(g,c,'encoder-engram',984,340,420,'Engram insertion sites',`before layers ${m.engramLayers.map(x=>x+1).join(', ')}`,'Apply Engram only before its configured layers inside the bands. This side path uses token history for lookup and the local residual for gating.','h ← h + gated memory','state');
- m.engramLayers.filter(l=>l<end).forEach((l,i)=>{const band=bands.findIndex(b=>l+1>=b.lo&&l+1<=b.hi),id=bands[band].kind==='swa'?'encoder-window':`encoder-band-${bands[band].lo}`,y=382+band*160,lane=956-i*16;addWire(g,[[984,370+i*24],[lane,370+i*24],[lane,y],[916,y]],'encoder-engram',id,{kind:'state'});});
- g.height=Math.max(g.height,handoffY+180);return finish(g,c,'encoder-handoff');}
-export function buildDecoder(s){const {g,m,c}=start(s),source=m.kvSourceLayers.find(x=>x>=m.encoderLayers)+1;
- const rows=[
- ['decoder-handoff','Receive encoder output',`[B, T, ${m.streams}, ${m.d}]`,'The first decoder layer consumes the incoming encoder residual. Its pre-attention projection is the boundary cache producer.','h_encoder_out'],
- ['decoder-producer','Project the shared global cache',`layer ${source} · compression ratio ${m.compressDecoder}`,'Attention._compress_kv publishes the decoder compressed cache at this Full layer. Later decoder layers do not regenerate global KV from their own hidden state.','KV_shared ← project(h_boundary)'],
- ['decoder-readers','Read shared KV, refresh selection',`selecting layers ${m.indexSourceLayers.filter(x=>x>=m.encoderLayers).map(x=>x+1).join(', ')}`,'Reindex layers recompute sparse positions against existing index keys; Reuse layers inherit prior indices. Global storage ownership and selection ownership are different.','read KV_shared at selected indices'],
- ['decoder-attend','Join local and selected history',`${m.heads} query heads · local window ${m.window}`,'Attention.forward concatenates local-window KV and selected compressed KV into the sparse attention operation, with the sink in the same normalization. Local windows remain layer-specific.','O = attention(Q, window ∪ selected, sink)'],
- ['decoder-residual','Update residuals and experts',`${m.streams} streams · ${m.topK} routed + ${m.shared} shared expert`,'Each block still performs residual mixing and its feed-forward computation. Sharing a global cache does not remove these operations. Shared experts do not consume router top-k slots.','h_next = Block_layer(h, shared state)'],
- ['decoder-logits','Collapse, normalize, project',`vocabulary width ${formatNum(m.vocab)}`,'Transformer.forward collapses the residual copies, normalizes, projects the selected output position into vocabulary logits and then samples. dSpark features are captured before target attention, not from these output logits.','logits = head(norm(collapse(h)))'],
- ];rows.forEach(([id,t,sub,b,f],i)=>{box(g,c,id,36,180+i*160,880,t,sub,b,f);if(i)flow(g,rows[i-1][0],id);});
- note(g,c,'Replay is approximate','feature-gated; separate from MTP',c.caveat);
- addLabel(g,'ILLUSTRATION · LOCAL-ONLY DEPENDENCIES',984,322,'muted',{size:11});
- addLabel(g,'Token time →     depth ↓',984,356,'text',{size:13});
- addLabel(g,'D = 2 layers · W = 2 positions',984,386,'muted',{size:13});
- // Small dependency cone: every edge is a causal local read, not a global-cache path.
- const tokens=['t − 2','t − 1','t'];
- for(let depth=0;depth<=2;depth++)for(let token=depth;token<=2;token++){
-  const id=`replay-${depth}-${token}`,omitted=token===0;
-  addNode(g,id,984+token*144,420+depth*142,132,68,tokens[token],depth?`depth ${depth}`:'input',{
-   tone:omitted?'state':'compute',info:makeInfo('Illustrative local-only dependency','Local state at '+tokens[token],
-    depth?`At illustrative depth ${depth}, this position reads itself and the preceding position from the previous depth. Residual and positionwise operations do not expand token reach. This is not the V4.1 global attention graph.`:'Boundary input for the toy local-only stack. A replay beginning at t − 1 omits t − 2, although that input reaches the output through the preceding-position reads.',
-    'h[d,i] = F_d(h[d−1,i−1], h[d−1,i])',[],c.sources)});
- }
- for(let depth=1;depth<=2;depth++)for(let token=depth;token<=2;token++)for(const parent of [token-1,token]){
-  const source=`replay-${depth-1}-${parent}`,target=`replay-${depth}-${token}`;
-  const x=1050+parent*144,tx=1050+token*144,y=420+(depth-1)*142+68,ty=420+depth*142;
-  addWire(g,parent===token?[[x,y],[x,ty]]:[[x,y],[x,y+36],[tx-36,y+36],[tx-36,ty]],source,target);
- }
- box(g,c,'replay-truncation',984,862,420,'Truncate the left boundary','replay starts at s = t − 1',
-  'In this local-only illustration, t − 2 affects depth 1 at t − 1, which affects depth 2 at t. Keeping only t − 1 and t drops that path. For D local-only layers with a causal W-position window including self, the exact structural dependency radius is D × (W − 1); the input interval contains D × (W − 1) + 1 positions. A shorter replay without restored boundary states is generally approximate, even when the final layer sees its complete immediate window.',
-  'radius = D × (W − 1); replay keys = [max(s, i−W+1), i]','state');
- box(g,c,'replay-global',984,1022,420,'Global KV is separate','availability ≠ local reconstruction',
-  'Real V4.1 also reads selected shared global KV. That stored global history does not reconstruct missing layer-local window states. Holding the global cache available does not make truncated local replay exact. The toy cone isolates local dependency depth; it is not a finite receptive-field claim for V4.1. The report describes approximate reconstruction; the inspected SGLang path is feature-gated and uses extend_without_speculative.',
-  'shared global KV ≠ layer-local window KV','state');
- return finish(g,c,'decoder-producer');}
+function detailedChapter(s){const g=buildModel(s),c=chapterContent(getModel(s.model),s);g.caption+=` ${c.caveat}`;return g;}
+export function buildEncoder(s){return detailedChapter({...s,stage:'encoder'});}
+export function buildDecoder(s){return detailedChapter({...s,stage:'decoder'});}
 export function buildEngram(s){const {g,m,c}=start(s),heads=(m.engramNgram-1)*m.engramHeads,width=heads*m.engramHeadDim;
  const rows=[
  ['engram-history','Normalize causal token history',`orders 2–${m.engramNgram} · boundary-aware lookback`,'EngramLayout builds the compressed token map and hash layout. NgramHashState.forward prevents lookback across sequence starts and dead/image tokens.','token IDs → normalized IDs'],

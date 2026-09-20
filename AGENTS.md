@@ -145,3 +145,5 @@ Constructors share `V41Config`; numerical CPU fixtures replace sizes, not archit
 modes. Edit the Python files, then build to regenerate `src/pytorch-source.mjs`; never
 hand-edit that generated copy. `npm run validate:pytorch` runs the CPU program and
 `npm run test:pytorch` checks independent math, precision, gradients and source delivery.
+
+CED chapter selectors use `core.layerNumbers`: Encoder owns absolute layers 1..encoderLayers; Decoder owns encoderLayers+1..layers. Legacy model-view block links resolve to the owning chapter without renumbering. Both chapters use the shared detailed block renderer. Keep the full-backbone verification sweep, even though each chapter shows only its half.

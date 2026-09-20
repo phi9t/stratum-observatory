@@ -1,12 +1,16 @@
-import {getModel,layerKind,layerPartition,ffnKind,parameterLedger,formatNum,formatParams} from './core.mjs';
+import {getModel,layerKind,layerPartition,layerNumbers,ffnKind,parameterLedger,formatNum,formatParams} from './core.mjs';
 import {makeScene,addNode,addGroup,addLabel,addWire,addSum,makeInfo} from './scene.mjs';
 const F=formatNum;
 function modelInfo(m,title,body,formula='',facts=[],links=[]){return makeInfo('Model architecture',title,body,formula,facts,m.sources,links);}
 function labelShape(g,s,text,x,y,tone='state'){if(s.detail==='shapes')addLabel(g,text,x,y,tone);}
 function node(g,m,id,x,y,w,h,title,sub,body,formula='',facts=[],options={}){return addNode(g,id,x,y,w,h,title,sub,{info:modelInfo(m,title,body,formula,facts),...options});}
 function stackOverview(g,m,s){
+ const encoder=!!m.encoderLayers&&s.stage==='encoder',decoder=!!m.encoderLayers&&s.stage==='decoder',layers=layerNumbers(m,s.stage);
  addLabel(g,'MODEL TOPOLOGY',20,34,'muted',{size:11,tracking:1.5});
- if(m.vision){
+ if(decoder){
+  node(g,m,'decoder-handoff',20,70,166,52,'Encoder output',`after layer ${m.encoderLayers}`,`The residual after encoder layer ${m.encoderLayers} enters decoder layer ${m.encoderLayers+1}. The causal stack carries ${m.streams} residual streams across this boundary; it does not insert conventional cross-attention or repeat the embedding lookup. The first decoder layer projects the shared compressed cache from this incoming representation.`,'h_decoder,in = h_encoder,out',[['Residual shape',`[B, T, ${m.streams}, ${m.d}]`]],{tone:'state'});
+  addWire(g,[[40,122],[40,164]],'decoder-handoff','overview-block');
+ }else if(m.vision){
   node(g,m,'text-input',20,70,74,42,'Text','tokens','The tokenizer and embedding lookup produce residual-width text embeddings. Tokenizer revision and special tokens are separate evidence obligations.','E[token_id]',[],{small:true});
   node(g,m,'vision-input',112,70,74,42,'Vision','patches','A native vision tower maps patches to visual representations before projection and interleaving with text. Use the Inputs control for the expanded path.','patches → ViT → connector',[],{small:true,tone:'compute'});
   addWire(g,[[57,112],[57,138],[50,138],[50,164]],'text-input','overview-block');
@@ -15,19 +19,31 @@ function stackOverview(g,m,s){
   node(g,m,'embedding',20,70,166,52,'Embedding',`${F(m.vocab)} × ${F(m.d)}`,'Untied vocabulary embedding. The complete weight table is resident even though a token performs a lookup.','x₀ = E[token]',[['Width',F(m.d)]]);
   addWire(g,[[40,122],[40,164]],'embedding','overview-block');
  }
- node(g,m,'overview-block',20,164,166,58,'Decoder stack',`${m.layers} layers · d = ${F(m.d)}`,'Select a layer in the grid. Attention and feed-forward motifs are derived from the selected checkpoint, not from a family name.','xₗ₊₁ = Blockₗ(xₗ)',Object.entries(layerPartition(m)).filter(x=>x[1]).map(([k,v])=>[k.toUpperCase(),String(v)]),{tone:'compute'});
+ const partition=encoder||decoder?layers.reduce((counts,l)=>{const kind=layerKind(m,l);counts[kind]=(counts[kind]||0)+1;return counts;},{}):layerPartition(m);
+ node(g,m,'overview-block',20,164,166,58,encoder?'Encoder stack':'Decoder stack',`${layers.length} layers · d = ${F(m.d)}`,encoder||decoder?`Select an absolute layer in the ${encoder?'encoder':'decoder'} range ${layers[0]}–${layers.at(-1)}. Every layer preserves causal token visibility and retains its own attention, residual mixing and experts. Cache and selection ownership refer to absolute layers across the complete stack.`:'Select a layer in the grid. Attention and feed-forward motifs are derived from the selected checkpoint, not from a family name.','xₗ₊₁ = Blockₗ(xₗ)',Object.entries(partition).filter(x=>x[1]).map(([k,v])=>[k.toUpperCase(),String(v)]),{tone:'compute'});
  addLabel(g,'SELECT A LAYER',20,253,'muted',{size:10.5,tracking:1});
- for(let l=1;l<=m.layers;l++){const i=l-1;g.decorations.push({kind:'layer',layer:l,id:`layer-${l}`,x:20+(i%6)*28,y:274+Math.floor(i/6)*27,w:23,h:21,attention:layerKind(m,l),active:l===s.layer,dense:ffnKind(m,l)==='dense'});}
- const gy=274+Math.ceil(m.layers/6)*27;
+ layers.forEach((l,i)=>{g.decorations.push({kind:'layer',layer:l,id:`layer-${l}`,x:20+(i%6)*28,y:274+Math.floor(i/6)*27,w:23,h:21,attention:layerKind(m,l),active:l===s.layer,dense:ffnKind(m,l)==='dense'});});
+ const gy=274+Math.ceil(layers.length/6)*27;
  addLabel(g,'Numbers are one-indexed.',20,gy+20,'muted',{size:10.5});
  addLabel(g,'Amber = recurrent layer',20,gy+39,'state',{size:10.5});
  const oy=Math.max(gy+75,755);
+ if(encoder){
+  node(g,m,'encoder-handoff',20,oy,166,52,'Decoder handoff',`layer ${m.encoderLayers} → ${m.encoderLayers+1}`,`Pass the residual after encoder layer ${m.encoderLayers} directly to decoder layer ${m.encoderLayers+1}. This boundary does not normalize into vocabulary logits: the decoder continues the causal stack and its boundary layer produces the shared global cache.`,'h_encoder,out → h_decoder,in',[['Residual shape',`[B, T, ${m.streams}, ${m.d}]`]],{tone:'state'});
+  addWire(g,[[20,193],[12,193],[12,oy+26],[20,oy+26]],'overview-block','encoder-handoff',{kind:'residual'});
+  return;
+ }
+ if(decoder){
+  node(g,m,'residual-collapse',20,oy-80,166,52,'Collapse streams',`${m.streams} × ${F(m.d)} → ${F(m.d)}`,`Transformer.forward applies the final block's hc_pre before final RMSNorm. Block.hc_pre sums the ${m.streams} residual copies weighted by pre_mix from the final feed-forward sublayer. These input-dependent coefficients are not a uniform mean; the final FFN returns them for this next read.`,'h = Σⱼ pre_final,j xⱼ',[['Input',`[B, T, ${m.streams}, ${m.d}]`],['Output',`[B, T, ${m.d}]`]],{tone:'state'});
+  addWire(g,[[20,193],[12,193],[12,oy-54],[20,oy-54]],'overview-block','residual-collapse',{kind:'residual'});
+  addWire(g,[[40,oy-28],[40,oy]],'residual-collapse','final-norm');
+ }
  node(g,m,'final-norm',20,oy,166,34,'Final RMSNorm', '', 'Normalize the final decoder representation before the output vocabulary projection.','RMSNorm(x)',[],{kind:'pill'});
  node(g,m,'lm-head',20,oy+69,166,52,'LM head',`${F(m.d)} → ${F(m.vocab)}`,'Untied output vocabulary projection. Softmax/sampling behavior does not change the block architecture.','logits = W_lm x',[],{});
  addWire(g,[[40,oy+34],[40,oy+69]],'final-norm','lm-head');
  addLabel(g,'logits / sampling',20,oy+154,'muted',{size:11});
 }
 function residuals(g,m,s){
+ const engram=m.id==='dsv41'&&s.stage==='encoder'&&m.engramLayers.includes(s.layer-1);
  const special=m.residual!=='standard';
  const normTitle=m.residual==='attnres'?'Depth read · RMSNorm':m.residual==='hyper'?'Stream read · RMSNorm':m.residual==='mhc'?'Mixed stream read · RMSNorm':'RMSNorm';
  const desc=m.residual==='attnres'?'Block Attention Residuals retrieve across depth sources per token. The current partial block accumulator is updated and sealed at block boundaries; this is not an ordinary uniform residual sum.':m.residual==='hyper'?'The checkpoint carries four residual streams. A learned input mixer reads into one computation stream; an output gate writes back. It is not a single ordinary residual addition.':m.residual==='mhc'?`The checkpoint carries ${m.streams} residual streams mixed by manifold hyper-connections. The coefficients that mix the streams entering this sublayer were computed by the previous sublayer, so attention reads with the previous block's feed-forward pre_mix vector. This length-${m.streams} sigmoid gate collapses the stream axis before RMSNorm. The current sublayer independently produces a post gate and a residual comb matrix; only comb receives ${m.sinkhornIters} Sinkhorn iterations.`:'Pre-normalization leaves a separate residual bypass untouched. After the attention output projection the update is added to the residual.';
@@ -39,8 +55,15 @@ function residuals(g,m,s){
  addLabel(g,`residual stream · ${stream2}`,920,80,'muted',{size:12});
  // The stream arrives from outside the block and splits: normalized into attention, and
  // straight down the left rail as the mainline that bypasses it.
- addWire(g,[[206,86],[286,86],[286,112]],'', 'norm1');
- addWire(g,[[238,86],[238,899],[270,899]],'', 'merge-attn',{kind:'residual'});
+ if(engram){
+  node(g,m,'engram-history',20,470,166,52,'N-gram lookup','causal token history','NgramHashState derives hash IDs from causal token history, respecting sequence boundaries and excluding image positions. Engram reads those table rows and projects per-copy keys plus a shared value. The current residual does not select the hash rows.','ids = hash(token history); K,V = W lookup(ids)',[],{tone:'state'});
+  node(g,m,'engram-residual',20,550,166,52,'Incoming residual',`${m.streams} streams · layer ${s.layer}`,`The residual arriving before absolute layer ${s.layer} supplies the contextual match for Engram's per-copy gate and the unchanged addend. This is the input to the selected layer, before its attention normalization.`,'x: [B, T, streams, D]',[],{tone:'state'});
+  node(g,m,'engram-input',20,630,166,52,'Engram input write',`before layer ${s.layer}`,'Engram.forward matches the current residual to the retrieved per-copy keys using a normalized weighted dot product, then signed square root and sigmoid. The masked gate scales the shared retrieved value, which is added to each residual copy before this layer begins. Both attention and its residual bypass consume the updated copies.','xⱼ ← xⱼ + gateⱼ(xⱼ,Kⱼ) · value',[],{tone:'compute'});
+  addWire(g,[[186,496],[194,496],[194,646],[186,646]],'engram-history','engram-input',{kind:'state'});
+  addWire(g,[[40,602],[40,630]],'engram-residual','engram-input',{kind:'residual'});
+ }
+ addWire(g,engram?[[186,666],[202,666],[202,86],[286,86],[286,112]]:[[206,86],[286,86],[286,112]],engram?'engram-input':'', 'norm1');
+ addWire(g,[[238,86],[238,899],[270,899]],engram?'engram-input':'', 'merge-attn',{kind:'residual'});
  if(special){
   const writeTitle=m.residual==='hyper'?'Gated stream write':m.residual==='mhc'?'Mixed stream write':'Update block accumulator';
   node(g,m,'merge-attn',270,884,230,30,writeTitle,'',desc,m.residual==='mhc'?'xᵢ′ = postᵢ Δ + Σⱼ combᵢⱼ xⱼ; next_pre = pre':'update residual state',m.residual==='mhc'?[['Output gate','current sublayer vector'],['Residual mix','current sublayer matrix']]:[],{kind:'pill',tone:'state'});

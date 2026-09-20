@@ -32,7 +32,7 @@ PDF source acceptance remains blocked by the existing UTF-8 evidence pipeline.
 
 ## What the examples establish
 
-The replay cone isolates local causal dependencies. For a window containing the
+The replay explanation isolates local causal dependencies. For a window containing the
 current token and its preceding W−1 tokens, D layers can depend on inputs as far
 back as D(W−1) positions. This is an inclusive-index dependency calculation, not a
 claim that the full V4.1 network has only a local receptive field. Truncating the

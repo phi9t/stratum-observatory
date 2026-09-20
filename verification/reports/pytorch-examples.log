@@ -47,6 +47,6 @@ test_raising_sink_reduces_output_without_changing_dictionary (pytorch_query.Quer
 test_two_queries_use_actual_core_without_mutating_shared_inputs (pytorch_query.QueryExampleTest.test_two_queries_use_actual_core_without_mutating_shared_inputs) ... ok
 
 ----------------------------------------------------------------------
-Ran 47 tests in 0.415s
+Ran 47 tests in 0.334s
 
 OK

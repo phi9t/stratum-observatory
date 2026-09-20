@@ -17,9 +17,10 @@ test('every deep dive is distinct, connected, inspectable and contract-clean',()
  }assert.equal(signatures.size,chapters.length);
 });
 test('encoder and decoder distinguish token causality and compressed-state ownership',()=>{
- const encoder=scene('encoder'),decoder=scene('decoder');assert.ok(encoder.nodes.some(n=>n.id==='encoder-causal'));
- assert.ok(decoder.edges.some(e=>e.source==='decoder-handoff'&&e.target==='decoder-producer'));
- assert.ok(decoder.edges.some(e=>e.source==='decoder-producer'&&e.target==='decoder-readers'));
+ const encoder=scene('encoder'),decoder=scene('decoder');
+ for(const g of [encoder,decoder])for(const id of ['norm1','attention','router','out-proj','merge-ffn'])assert.ok(g.nodes.some(n=>n.id===id));
+ assert.deepEqual(encoder.decorations.filter(d=>d.kind==='layer').map(d=>d.layer),Array.from({length:MODELS.dsv41.encoderLayers},(_,i)=>i+1));
+ assert.ok(decoder.decorations.every(d=>d.kind!=='layer'||d.layer>MODELS.dsv41.encoderLayers));
  assert.match(decoder.caption,/reference|report/i);
 });
 test('Engram separates token lookup from contextual gating',()=>{

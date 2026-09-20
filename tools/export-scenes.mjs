@@ -22,16 +22,17 @@ function expectations(state){
  const m=core.getModel(state.model);
  const out={model:m.id,layers:m.layers,experts:m.experts,topK:m.topK,shared:m.shared,denseLayers:m.denseLayers,
   vision:!!m.vision,residual:m.residual,streams:m.streams||0,latent:!!m.latent,architecture:m.architecture,
-  partition:core.layerPartition(m.id)};
- if(state.view==='model'&&state.stage==='block'){
+  partition:core.layerPartition(m.id),layerKinds:Array.from({length:m.layers},(_,i)=>core.layerKind(m.id,i+1))};
+ if(state.view==='model'&&['block','encoder','decoder'].includes(state.stage)){
   out.layerKind=core.layerKind(m.id,state.layer);
   out.ffnKind=core.ffnKind(m.id,state.layer);
+  out.allowedLayers=core.layerNumbers(m,state.stage);
+  out.allowedLayerKinds=out.allowedLayers.map(layer=>out.layerKinds[layer-1]);
  }
  if(m.encoderLayers){
   // Raw material for verification/ced.py, which re-derives the band runs itself. Reporting the
   // bands from here instead would hand the judge the builder's own grouping rule back.
   out.encoderLayers=m.encoderLayers;
-  out.layerKinds=Array.from({length:m.layers},(_,i)=>core.layerKind(m.id,i+1));
   out.engramLayers=m.engramLayers;out.dsparkTargets=m.dsparkTargets;
   out.candidateSource=m.candidateSource;out.indexSourceLayers=m.indexSourceLayers;
   // The band compression ratios, so ced.py can re-derive which ratio each band owes and compare

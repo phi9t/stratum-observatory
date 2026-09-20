@@ -135,8 +135,8 @@ def judge_lanes(scene):
 def judge_scene_vs_model(scene,expect,state):
     """The picture must agree with core.mjs, which computed it independently."""
     out=[];ids={n['id'] for n in scene['nodes']}
-    if state.get('view')!='model' or state.get('stage')!='block':
-        return [_ok('SCENE_MODEL_SKIP','scene','Only the decoder-block lens depicts a single layer.')]
+    if state.get('view')!='model' or state.get('stage') not in ('block','encoder','decoder'):
+        return [_ok('SCENE_MODEL_SKIP','scene','Only the block, encoder and decoder lenses depict a single layer.')]
     dense_layer=expect.get('denseLayers',0) and state.get('layer',1)<=expect['denseLayers']
     if not expect.get('experts') and 'router' in ids:
         out.append(_bad('SCENE_MODEL_ROUTER',expect['model'],'A dense checkpoint is drawn with a router.',
@@ -147,18 +147,27 @@ def judge_scene_vs_model(scene,expect,state):
         out.append(_bad('SCENE_MODEL_SHARED',expect['model'],'A shared expert is drawn for a checkpoint that declares none.',
                         'Shared experts exist only where the configuration declares them.'))
     tiles=[d for d in scene['decorations'] if d.get('kind')=='layer']
-    if tiles:
-        if len(tiles)!=expect['layers']:
-            out.append(_bad('SCENE_MODEL_TILES',expect['model'],f"{len(tiles)} layer tiles drawn for a {expect['layers']}-layer checkpoint.",
-                            'The selector must show every decoder layer.'))
-        drawn=Counter(d['attention'] for d in tiles)
-        declared={k:v for k,v in (expect.get('partition') or {}).items() if v}
-        if declared and dict(drawn)!=declared:
-            out.append(_bad('SCENE_MODEL_TILES',expect['model'],f'Layer tiles show {dict(drawn)} against a declared partition of {declared}.',
-                            'The tile mechanism must come from layerKind, not from a hand-written schedule.'))
-        active=[d for d in tiles if d.get('active')]
-        if len(active)!=1 or active[0]['layer']!=state.get('layer'):
-            out.append(_bad('SCENE_MODEL_TILES',expect['model'],'The selected layer tile does not match the selected layer.','Bind the active tile to the state.'))
+    # Derive the scope here rather than accepting the exporter's allowedLayers as an oracle.
+    first,last=1,expect['layers']
+    if expect.get('encoderLayers'):
+        if state.get('stage')=='encoder':last=expect['encoderLayers']
+        elif state.get('stage')=='decoder':first=expect['encoderLayers']+1
+    allowed=list(range(first,last+1))
+    if Counter((d.get('layer'),d.get('id')) for d in tiles)!=Counter((i,f'layer-{i}') for i in allowed):
+        out.append(_bad('SCENE_MODEL_TILES',expect['model'],f'Layer tile identities do not match the required absolute layers {first}–{last}.',
+                        'Draw every layer in the selected stage exactly once, with its absolute layer id.'))
+    kinds=expect.get('layerKinds')
+    drawn=Counter(d['attention'] for d in tiles)
+    declared=dict(Counter(kinds[i-1] for i in allowed)) if kinds else {k:v for k,v in (expect.get('partition') or {}).items() if v}
+    if declared and dict(drawn)!=declared:
+        out.append(_bad('SCENE_MODEL_TILES',expect['model'],f'Layer tiles show {dict(drawn)} against a declared partition of {declared}.',
+                        'The tile mechanism must come from layerKind, not from a hand-written schedule.'))
+    if kinds and any(d.get('layer') in allowed and d.get('attention')!=kinds[d['layer']-1] for d in tiles):
+        out.append(_bad('SCENE_MODEL_TILES',expect['model'],'A layer tile shows the wrong attention mechanism for its absolute layer.',
+                        'Preserve the absolute attention schedule within each stage.'))
+    active=[d for d in tiles if d.get('active')]
+    if len(active)!=1 or active[0]['layer']!=state.get('layer') or state.get('layer') not in allowed:
+        out.append(_bad('SCENE_MODEL_TILES',expect['model'],'The selected layer tile does not match the selected layer and stage.','Bind the active tile to the state.'))
     return out or [_ok('SCENE_MODEL_OK',expect['model'],'Routing, shared experts and the layer selector agree with core.mjs.')]
 
 

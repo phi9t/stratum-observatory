@@ -9,11 +9,11 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 619 verifier tests (10 skipped), 142 model/graph tests, two byte-identical builds of all eight portable entry points and 1,479 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Engineering | PASS | 0 | 629 verifier tests (10 skipped), 148 model/graph tests, two byte-identical builds of all eight portable entry points and 1,479 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
 | Accounting arithmetic | PASS | 0 | 399 live scenarios; 309 agreement, 82 explained differences, 186 unsupported findings, zero contradictions; required by engineering |
-| Schematics | PASS | 0 | 771 scenes including all 544 decoder layers; 3,199 checks against core.mjs, of which 266 are recorded not-applicable passes |
+| Schematics | PASS | 0 | 771 scenes including all 544 decoder layers; 3,199 checks against core.mjs, of which 262 are recorded not-applicable passes |
 | Presentations | PASS | 0 | 97 checks over 35 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
-| Aesthetics | PASS | 0 | 210 scenarios, 519 checks; type, spacing, contrast, clearance, probe coverage and composition |
+| Aesthetics | PASS | 0 | 210 scenarios, 515 checks; type, spacing, contrast, clearance, probe coverage and composition |
 | Scientific publication | BLOCKED | 2 | Nine-model consumer inventory and strict evidence/review audit; **no FAIL** |
 | Runtime certification | BLOCKED | 2 | Run on these bytes: 32 of 32 obligations NOT_RUN, **no FAIL and no `RUNTIME_STALE`**; all private hardware receipts were withdrawn for publication |
 
@@ -68,7 +68,7 @@ or GPU execution.
 
 ## Aesthetics evidence
 
-`npm run verify:aesthetics` passes: **519 checks, 0 failures** across 210 scenarios and 152
+`npm run verify:aesthetics` passes: **515 checks, 0 failures** across 210 scenarios and 150
 distinct measurements. The first run of this gate failed on 21 defects that shipped in the
 delivered artifact; all are now fixed at the source rather than by moving a threshold.
 
@@ -168,8 +168,8 @@ synthetic markup in a browser, not asserted.
 `npm run verify:schematics` checks what the diagram means rather than where its boxes landed. The
 scene IR comes from the diagram builders and, per scene, `core.mjs` independently states what is
 true; the two are compared. 771 scenes, 3,199 checks, 544 decoder layers, no browser. Of those
-3,199, **266 are explicit not-applicable passes** — `SCENE_MODEL_SKIP` 227 and `MHC_SKIP` 39, both
-counted in the report's own `passed_codes` — so 2,933 are applicable checks and the rest are a check
+3,199, **262 are explicit not-applicable passes** — `SCENE_MODEL_SKIP` 225 and `MHC_SKIP` 37, both
+counted in the report's own `passed_codes` — so 2,937 are applicable checks and the rest are a check
 saying, in the report rather than by silence, that it did not apply here.
 
 It also judges the causal encoder-decoder architecture itself, under 25 codes that did not exist
@@ -425,24 +425,24 @@ inventory, not correctness of anything in it.
 | Item | Count |
 |---|---:|
 | Input leaves | 601 |
-| Function/file identities | 56 |
-| Distinct sampled scene contracts | 3103 |
-| Claims including domain obligations | 3784 |
+| Function/file identities | 57 |
+| Distinct sampled scene contracts | 3109 |
+| Claims including domain obligations | 3791 |
 | Candidate source entries | 83 |
 | Accepted raw-byte snapshots | 81 |
 | Scientifically certified claims under the signed policy | 0 |
 | Passed presentation bindings | 0 |
 | Domain contracts / runtime obligations | 32 / 32 |
 
-The publication audit has **6,845 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
+The publication audit has **6,834 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
 from the current source and consumer bytes with a fresh engineering receipt:
 
 | Code | Status | Count |
 |---|---|---:|
-| `REVIEW_REQUIRED` | BLOCKED | 3,816 |
+| `REVIEW_REQUIRED` | BLOCKED | 3,823 |
 | `CLAIM_ANCHOR` | BLOCKED | 2,334 |
-| `CLAIM_ROLE` | BLOCKED | 322 |
-| `MODEL_DUAL_CODE` | BLOCKED | 308 |
+| `CLAIM_ROLE` | BLOCKED | 313 |
+| `MODEL_DUAL_CODE` | BLOCKED | 299 |
 | `CONTRACT_EVIDENCE` | BLOCKED | 32 |
 | `CONTRACT_CONSISTENT` | PASS | 24 |
 | `CONTRACT_MODEL_COVERAGE` | PASS | 9 |
@@ -455,7 +455,7 @@ from the current source and consumer bytes with a fresh engineering receipt:
 | `ENGINEERING_CURRENT` | PASS | 1 |
 
 Most of these are cascading source dependencies and absent independent reviews; this is **not** a
-claim that 6,845 facts are false. No review identity, accepted source hash or execution receipt was
+claim that 6,834 facts are false. No review identity, accepted source hash or execution receipt was
 invented.
 
 For the record, the evidence-anchor work began at **9,037 findings (9,013 BLOCKED)** with
@@ -465,7 +465,7 @@ provenance, and letting derived scene claims carry provenance through their depe
 removed 3,853 BLOCKED findings without a single fabricated anchor.
 
 Runtime certification was run on these bytes and reports the same population plus its
-obligations: **6,845 BLOCKED, 38 PASS, 32 NOT_RUN, no FAIL.**
+obligations: **6,834 BLOCKED, 38 PASS, 32 NOT_RUN, no FAIL.**
 
 **Adding a ninth checkpoint did not make any receipt stale, and an earlier draft of this section
 was wrong to predict that it would.** The prediction came from reading the coupling rule instead of
@@ -810,9 +810,9 @@ executes all three, and CI could never have executed the transcription compariso
 
 Portable HTML SHA-256: `7ab6e30672ff5c7040adf115414b1bb35e0e80971bf4b3f7ed5ff16f1b192a71`
 
-Scientific lock SHA-256: `2eba7501a1b373feb9b508a9ee56f968df2b3cceb688a27154f5d4cf82b25158`
+Scientific lock SHA-256: `c9e0fa63ac7c2237c658ec200ed6707f121a445ffd97d3a890197b56a7f0caa2`
 
-Verifier identity SHA-256: `18c355ce8d7aff605b66b846e618bcf705f313d7a1637db3f9f342a109253a50`
+Verifier identity SHA-256: `9f2224da392e0d82d6c65dcdf2ffaca25b13226847d3fedfa0479cef38db8b33`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -855,7 +855,7 @@ reading. It used to be exactly that: a permanently failing `publication` job who
 indistinguishable from a contradiction, because `aggregate()` collapses BLOCKED and FAIL into one
 exit code and GitHub renders both the same.
 
-So completeness runs on a trusted machine — `npm run verify:science`, exit 2, **6,845 BLOCKED and
+So completeness runs on a trusted machine — `npm run verify:science`, exit 2, **6,834 BLOCKED and
 38 PASS findings, 0 FAIL** — and its report is committed as `verification/reports/publication.json`.
 This document states its figures, and `verification/tests/test_reported_numbers.py`, which runs
 inside the *green* engineering gate, fails if the record drifts from the report **or if the report
@@ -892,7 +892,7 @@ V4.1 dispatch and storage anchors. Main KV and packed indexer payload reconcile 
 window state and allocation overhead remain separate. [Research and source scope](docs/design/V41-SERVING-RESEARCH.md)
 record the development-branch serving implementation and Miles plugin. Neither is a runtime receipt.
 
-Dedicated HTML SHA-256: `e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01`
+Dedicated HTML SHA-256: `d6e2b2a3919dc81df0d9fc36624497b7901acf2a481616bbdd2a24057294840e`
 
 CED phase depths follow the report-level scheme. The pinned reference forward still visits all backbone layers; encoder-only prefill execution is not certified by that code. This distinction is visible in the CED caption and serving inspector.
 
@@ -936,12 +936,12 @@ registry drives page builds, artifact identity, browser routing and preview sele
 Chromium exercises real landing links, variant switches, reloads, identity enforcement,
 scenario exports and return links. All eight portable files are included in the software gates.
 
-- `deepseek-v4.1.html` SHA-256: `e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01`
+- `deepseek-v4.1.html` SHA-256: `d6e2b2a3919dc81df0d9fc36624497b7901acf2a481616bbdd2a24057294840e`
 - `index.html` SHA-256: `7ab6e30672ff5c7040adf115414b1bb35e0e80971bf4b3f7ed5ff16f1b192a71`
-- `kimi-k3.html` SHA-256: `f905118043afd42a5ddcc4135df3f261710452760b60eb6b68e5f201e5734200`
-- `qwen3.8.html` SHA-256: `daf96132f11ea1c94ee67745f61a8ad1dd51b5fc4670c1c1742232267db6a214`
+- `kimi-k3.html` SHA-256: `14fd21e59699b3b56c6e00334f6ca841656b31f991fbb671f69d2d1a0c67a006`
+- `qwen3.8.html` SHA-256: `acbd27749248a230c8eaa4850b26ffb2347e991225936ed33c4cf2dccf645ad1`
 
-Publication coverage: 3816 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
+Publication coverage: 3823 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
 
 ## Shared systems sections
 
@@ -953,10 +953,10 @@ exposes a workload-model selector, and links preserve the originating scenario. 
 system bookmarks redirect to these shared pages. Repeated local arrow-key navigation keeps focus
 in the model tabs. All eight files receive artifact identity and portable delivery checks.
 
-- `hardware.html` SHA-256: `6445aa1d051549c33af1eb87ab4e7277a53c784119ebe2fb187b9fd209762f35`
-- `networking.html` SHA-256: `b16645bdd525b93370ec823c8711904c190f11647b3882d67641ac3e0a830e3f`
+- `hardware.html` SHA-256: `c26de61e1518a175196c55d22b61de9cfe04a33441787e9ed046837b17068354`
+- `networking.html` SHA-256: `f3f3084b0ec32dc687c0012ab6ab4ec5403103a8fef2b5da15296de34b890379`
 
-- `foundations.html` SHA-256: `2f94ba5018e0a7cbd1a0fc4679011af7a61d2d93331eaf5bde8ce3837a2863ba`
+- `foundations.html` SHA-256: `3d7f48d244663569de2ab50c4d5e3fd080c0ed0b5ef982b2b9ff347f6b257750`
 
 - `data-representation.html` SHA-256: `e288644184fbcb54ad8a1742e35671354ce93b96f1b2dac1375dacf59285e77e`
 
@@ -1066,8 +1066,8 @@ not checkpoint weights or upstream runtime execution.
 
 ## Replay dependencies and fixed-cache queries
 
-Decoder includes a token-by-depth local dependency cone, distinguishing exact local-only
-reach from approximate truncated replay. The CSA2 walkthrough distinguishes candidate-source
+Decoder retains the mathematical explanation of local dependency depth, distinguishing exact
+local-only reach from approximate truncated replay; its main diagram now shows the selected block. The CSA2 walkthrough distinguishes candidate-source
 selection from later masked selectors. The attention module includes a fixed-dictionary
 query experiment with an independent scalar softmax oracle, cache immutability checks and
 a negative test for separately normalized local/global outputs. It runs the actual authored
@@ -1077,3 +1077,18 @@ The article credit is separate from the primary implementation citations. Origin
 and prose were added; no article assets were copied. Both dark/light signatures for Decoder
 and CSA2 attention were inspected before promotion; other composition signatures are unchanged.
 Source scope and teaching assumptions are recorded in `docs/research/V41_REPLAY_AND_QUERIES.md`.
+
+## Detailed encoder and decoder layers
+
+The V4.1 Encoder and Decoder chapters now render the detailed attention, residual and
+MoE graph. Their selectors show only absolute layers 1–20 and 21–40 respectively,
+derived from the model boundary. Legacy block links preserve the requested layer and
+open its owning chapter. The identity header distinguishes the encoder and decoder counts.
+
+Engram insertion layers retain the token-history and contextual-gating branches into the
+updated block residual. Decoder output explicitly collapses residual streams with the final
+FFN pre_mix before normalization and vocabulary projection. Python schematic checks now
+independently reject missing, duplicated, misidentified, wrong-kind or out-of-chapter tiles.
+The full 544-layer backbone sweep remains intact; decoder_layers is the legacy report field
+name for that cross-model sweep, including the V4.1 encoder. Chromium checks chapter
+selection, keyboard tiles, boundary clamping, legacy URLs, reloads and delivered titles.

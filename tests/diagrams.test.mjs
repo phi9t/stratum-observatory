@@ -70,11 +70,11 @@ test('every focal stage has exactly one builder, and an unoffered page throws ra
   const block=JSON.stringify(buildScene({...DEFAULT_STATE,model:id,view:'model',stage:'block'}));
   for(const stage of ['inputs','residual','ple','ced'].filter(x=>!stages.includes(x))){
    const s=sanitizeState({model:id,view:'model',stage});
-   assert.equal(s.stage,'block',`${id} kept a stage it cannot render`);
+   assert.equal(s.stage,sanitizeState({...DEFAULT_STATE,model:id,stage:'block'}).stage,`${id} kept a stage it cannot render`);
    assert.equal(JSON.stringify(buildScene({...DEFAULT_STATE,model:id,view:'model',stage})),block,`${id}/${stage}`);
   }
   // Every offered stage is a genuinely different page, so no builder is a silent alias for the block.
-  for(const stage of stages)assert.notEqual(JSON.stringify(buildScene({...DEFAULT_STATE,model:id,view:'model',stage})),block,`${id}/${stage} is the decoder block under another name`);
+  for(const stage of stages.filter(stage=>!(MODELS[id].encoderLayers&&stage===sanitizeState({...DEFAULT_STATE,model:id,stage:'block'}).stage)))assert.notEqual(JSON.stringify(buildScene({...DEFAULT_STATE,model:id,view:'model',stage})),block,`${id}/${stage} is the decoder block under another name`);
  }});
 
 test('the N-gram page is offered exactly where the model has n-gram layers',()=>{

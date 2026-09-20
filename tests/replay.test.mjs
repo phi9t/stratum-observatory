@@ -5,17 +5,9 @@ import {buildScene} from '../src/diagrams.mjs';
 import {chapterContent} from '../src/deepdives.mjs';
 import {structuralReport} from '../src/scene.mjs';
 const state=stage=>({...DEFAULT_STATE,model:'dsv41',view:'model',stage});
-test('decoder local-only illustration preserves the full token-by-layer dependency cone',()=>{
- const g=buildScene(state('decoder'));
- for(const [a,b] of [['0-0','1-1'],['0-1','1-1'],['0-1','1-2'],['0-2','1-2'],['1-1','2-2'],['1-2','2-2']])
-  assert.ok(g.edges.some(e=>e.source===`replay-${a}`&&e.target===`replay-${b}`),`${a} → ${b}`);
- assert.deepEqual(structuralReport(g),[]);
- const boundary=g.nodes.find(n=>n.id==='replay-truncation');
- assert.match(boundary.info.body,/t − 2/);
- assert.match(boundary.info.formula,/D.*W.*1/);
- assert.ok(!g.edges.some(e=>e.source==='decoder-producer'&&e.target.startsWith('replay-')),'global KV is not a missing local-state reconstruction edge');
+test('decoder retains the bounded-replay mathematical explanation alongside the detailed block',()=>{
  const c=chapterContent('dsv41',state('decoder'));
- assert.ok(c.trace.some(([title,body])=>/replay/i.test(title)&&/approximate/.test(body)&&/local-only/.test(body)));
+ assert.ok(c.trace.some(([title,body])=>/replay/i.test(title)&&/approximate/.test(body)&&/local-only/.test(body)&&/W − 1/.test(body)));
 });
 test('CSA2 candidate selection distinguishes position scores, block maxima and final position selection',()=>{
  const g=buildScene(state('csa2'));

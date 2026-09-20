@@ -24,6 +24,6 @@ test('each executable example has its own reachable source-linked schematic',()=
 });
 test('unknown module cannot masquerade as a supported schematic',()=>{
  assert.equal(moduleExample('module-does-not-exist'),null);
- assert.equal(sanitizeState({model:'dsv41',stage:'module-does-not-exist'}).stage,'block');
+ assert.equal(sanitizeState({model:'dsv41',stage:'module-does-not-exist'}).stage,'encoder');
  assert.throws(()=>moduleStage('does-not-exist'),RangeError);
 });

@@ -35,7 +35,7 @@ def exercise(page, root):
     page.goto(artifact.as_uri()+'#model=ds3&stage=ple&context=8192')
     page.wait_for_function('window.STRATUM')
     assert page.evaluate('STRATUM.getState().model') == 'dsv41'
-    assert page.evaluate('STRATUM.getState().stage') == 'block'
+    assert page.evaluate('STRATUM.getState().stage') == 'encoder'
     assert page.evaluate('STRATUM.getState().context') == 8192
     for width in [390,768,1840]:
         page.set_viewport_size({'width':width,'height':1000})

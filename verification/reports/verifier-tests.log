@@ -740,9 +740,19 @@ test_panel_layout_without_wires_counts_zero (test_schematics.OrphanMetricTests.t
 test_unwired_node_is_counted (test_schematics.OrphanMetricTests.test_unwired_node_is_counted) ... ok
 test_a_third_row_is_rejected (test_schematics.RealSceneTests.test_a_third_row_is_rejected) ... ok
 test_core_operations_are_pixel_identical_across_every_preset (test_schematics.RealSceneTests.test_core_operations_are_pixel_identical_across_every_preset) ... ok
+test_every_layer_scene_matches_its_model_and_stage (test_schematics.RealSceneTests.test_every_layer_scene_matches_its_model_and_stage) ... ok
+test_exported_allowed_layers_preserve_absolute_stage_identity (test_schematics.RealSceneTests.test_exported_allowed_layers_preserve_absolute_stage_identity) ... ok
 test_row_alignment_across_presets (test_schematics.RealSceneTests.test_row_alignment_across_presets) ... ok
 test_the_matrix_covers_every_decoder_layer (test_schematics.RealSceneTests.test_the_matrix_covers_every_decoder_layer) ... ok
+test_decoder_rejects_extra_encoder_tile (test_schematics.SceneVersusModelTests.test_decoder_rejects_extra_encoder_tile) ... ok
+test_decoder_rejects_missing_selector (test_schematics.SceneVersusModelTests.test_decoder_rejects_missing_selector) ... ok
+test_decoder_rejects_missing_tile (test_schematics.SceneVersusModelTests.test_decoder_rejects_missing_tile) ... ok
+test_decoder_rejects_wrong_active_tile (test_schematics.SceneVersusModelTests.test_decoder_rejects_wrong_active_tile) ... ok
+test_decoder_rejects_wrong_kind_even_when_counts_match (test_schematics.SceneVersusModelTests.test_decoder_rejects_wrong_kind_even_when_counts_match) ... ok
+test_decoder_rejects_wrong_tile_id (test_schematics.SceneVersusModelTests.test_decoder_rejects_wrong_tile_id) ... ok
 test_dense_model_must_not_draw_a_router (test_schematics.SceneVersusModelTests.test_dense_model_must_not_draw_a_router) ... ok
+test_encoder_and_decoder_scoped_tiles_pass (test_schematics.SceneVersusModelTests.test_encoder_and_decoder_scoped_tiles_pass) ... ok
+test_encoder_rejects_boundary_crossing_with_same_partition (test_schematics.SceneVersusModelTests.test_encoder_rejects_boundary_crossing_with_same_partition) ... ok
 test_layer_tiles_must_match_the_partition (test_schematics.SceneVersusModelTests.test_layer_tiles_must_match_the_partition) ... ok
 test_shared_expert_absent_when_the_model_declares_none (test_schematics.SceneVersusModelTests.test_shared_expert_absent_when_the_model_declares_none) ... ok
 test_delay_kind_and_delay_flag_must_agree (test_schematics.StateRailTests.test_delay_kind_and_delay_flag_must_agree) ... ok
@@ -753,6 +763,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 619 tests in 403.840s
+Ran 629 tests in 463.557s
 
 OK (skipped=10)

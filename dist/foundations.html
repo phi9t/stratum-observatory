@@ -293,6 +293,8 @@ function sanitizeState(input={}){
  // Clamping here is also what lets the stage dispatch be exhaustive-or-throw rather than
  // fail-open (ruling T2g).
  if(s.stage!=='block'&&!focalStages(s.model).includes(s.stage))s.stage='block';
+ if(s.view==='model'&&MODELS[s.model].encoderLayers&&s.stage==='block')s.stage=s.layer<=MODELS[s.model].encoderLayers?'encoder':'decoder';
+ const layers=layerNumbers(s.model,s.stage);s.layer=Math.max(layers[0],Math.min(layers.at(-1),s.layer));
  return s;
 }
 /** The focal pages a checkpoint actually offers, in the order the control strip shows them.
@@ -308,6 +310,8 @@ function sanitizeState(input={}){
  * and then threw it away for the literal `'ced'`, so the mHC residual page was depicted in no
  * preview and measured by the presentations gate in no state. */
 function focalStages(id){const m=getModel(id),out=[];if(m.vision)out.push('inputs');if(m.residual!=='standard')out.push('residual');if(m.pleLayers.length)out.push('ple');if(m.encoderLayers)out.push('ced');if(m.architecture==='ced-csa2')out.push('encoder','decoder','engram','csa2','dspark',...PYTORCH_EXAMPLES.map(x=>moduleStage(x.id)));return out;}
+/** Absolute layer IDs offered by a chapter; the checkpoint still owns the full stack. */
+function layerNumbers(id,stage){const m=getModel(id),first=m.encoderLayers&&stage==='decoder'?m.encoderLayers+1:1,last=m.encoderLayers&&stage==='encoder'?m.encoderLayers:m.layers;return Array.from({length:last-first+1},(_,i)=>first+i);}
 function layerKind(id,layer){const m=getModel(id);if(!Number.isInteger(layer)||layer<1||layer>m.layers)throw new RangeError('Layer is one-indexed and must exist.');if(m.architecture==='ced-csa2'){const l=layer-1;if(l<m.swaLayers)return'swa';if(m.kvSourceLayers.includes(l))return'csa2-full';if(m.indexSourceLayers.includes(l))return'csa2-reindex';return'csa2-reuse';}if(m.architecture==='hybrid-kda')return layer%4===0||layer===m.layers?'mla':'kda';if(m.architecture.startsWith('hybrid'))return layer%m.globalEvery===0?(m.architecture==='hybrid-qsa'?'qsa':'gqa'):'delta';return m.architecture;}
 function layerPartition(id){const m=getModel(id),r={mla:0,gqa:0,kda:0,delta:0,qsa:0,swa:0,'csa2-full':0,'csa2-reindex':0,'csa2-reuse':0};for(let l=1;l<=m.layers;l++)r[layerKind(m,l)]++;return r;}
 function ffnKind(id,layer){const m=getModel(id);return !m.experts||layer<=m.denseLayers?'dense':m.latent?'latent-moe':'moe';}
@@ -429,7 +433,7 @@ function accountingAssumptions(id,settings={}){
  return notes;
 }
 
-return {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DEFAULT_STATE,getModel,sanitizeState,focalStages,layerKind,layerPartition,ffnKind,parameterLedger,cacheLedger,servingLedger,trainingLedger,networkLedger,roofline,formatNum,formatParams,formatBytes,formatTime,evidenceSummary,accountingAssumptions};
+return {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DEFAULT_STATE,getModel,sanitizeState,focalStages,layerNumbers,layerKind,layerPartition,ffnKind,parameterLedger,cacheLedger,servingLedger,trainingLedger,networkLedger,roofline,formatNum,formatParams,formatBytes,formatTime,evidenceSummary,accountingAssumptions};
 })();
 __modules["scene.mjs"] = (() => {
 /** Visual IR. Geometry is template-authored; rendered text bounds are release-tested. */
@@ -445,15 +449,19 @@ function structuralReport(scene){const out=[],ids=new Set();for(const n of scene
 return {makeScene,addNode,addGroup,addLabel,addWire,addSum,makeInfo,structuralReport};
 })();
 __modules["diagram-model.mjs"] = (() => {
-const {getModel,layerKind,layerPartition,ffnKind,parameterLedger,formatNum,formatParams} = __modules["core.mjs"];
+const {getModel,layerKind,layerPartition,layerNumbers,ffnKind,parameterLedger,formatNum,formatParams} = __modules["core.mjs"];
 const {makeScene,addNode,addGroup,addLabel,addWire,addSum,makeInfo} = __modules["scene.mjs"];
 const F=formatNum;
 function modelInfo(m,title,body,formula='',facts=[],links=[]){return makeInfo('Model architecture',title,body,formula,facts,m.sources,links);}
 function labelShape(g,s,text,x,y,tone='state'){if(s.detail==='shapes')addLabel(g,text,x,y,tone);}
 function node(g,m,id,x,y,w,h,title,sub,body,formula='',facts=[],options={}){return addNode(g,id,x,y,w,h,title,sub,{info:modelInfo(m,title,body,formula,facts),...options});}
 function stackOverview(g,m,s){
+ const encoder=!!m.encoderLayers&&s.stage==='encoder',decoder=!!m.encoderLayers&&s.stage==='decoder',layers=layerNumbers(m,s.stage);
  addLabel(g,'MODEL TOPOLOGY',20,34,'muted',{size:11,tracking:1.5});
- if(m.vision){
+ if(decoder){
+  node(g,m,'decoder-handoff',20,70,166,52,'Encoder output',`after layer ${m.encoderLayers}`,`The residual after encoder layer ${m.encoderLayers} enters decoder layer ${m.encoderLayers+1}. The causal stack carries ${m.streams} residual streams across this boundary; it does not insert conventional cross-attention or repeat the embedding lookup. The first decoder layer projects the shared compressed cache from this incoming representation.`,'h_decoder,in = h_encoder,out',[['Residual shape',`[B, T, ${m.streams}, ${m.d}]`]],{tone:'state'});
+  addWire(g,[[40,122],[40,164]],'decoder-handoff','overview-block');
+ }else if(m.vision){
   node(g,m,'text-input',20,70,74,42,'Text','tokens','The tokenizer and embedding lookup produce residual-width text embeddings. Tokenizer revision and special tokens are separate evidence obligations.','E[token_id]',[],{small:true});
   node(g,m,'vision-input',112,70,74,42,'Vision','patches','A native vision tower maps patches to visual representations before projection and interleaving with text. Use the Inputs control for the expanded path.','patches → ViT → connector',[],{small:true,tone:'compute'});
   addWire(g,[[57,112],[57,138],[50,138],[50,164]],'text-input','overview-block');
@@ -462,19 +470,31 @@ function stackOverview(g,m,s){
   node(g,m,'embedding',20,70,166,52,'Embedding',`${F(m.vocab)} × ${F(m.d)}`,'Untied vocabulary embedding. The complete weight table is resident even though a token performs a lookup.','x₀ = E[token]',[['Width',F(m.d)]]);
   addWire(g,[[40,122],[40,164]],'embedding','overview-block');
  }
- node(g,m,'overview-block',20,164,166,58,'Decoder stack',`${m.layers} layers · d = ${F(m.d)}`,'Select a layer in the grid. Attention and feed-forward motifs are derived from the selected checkpoint, not from a family name.','xₗ₊₁ = Blockₗ(xₗ)',Object.entries(layerPartition(m)).filter(x=>x[1]).map(([k,v])=>[k.toUpperCase(),String(v)]),{tone:'compute'});
+ const partition=encoder||decoder?layers.reduce((counts,l)=>{const kind=layerKind(m,l);counts[kind]=(counts[kind]||0)+1;return counts;},{}):layerPartition(m);
+ node(g,m,'overview-block',20,164,166,58,encoder?'Encoder stack':'Decoder stack',`${layers.length} layers · d = ${F(m.d)}`,encoder||decoder?`Select an absolute layer in the ${encoder?'encoder':'decoder'} range ${layers[0]}–${layers.at(-1)}. Every layer preserves causal token visibility and retains its own attention, residual mixing and experts. Cache and selection ownership refer to absolute layers across the complete stack.`:'Select a layer in the grid. Attention and feed-forward motifs are derived from the selected checkpoint, not from a family name.','xₗ₊₁ = Blockₗ(xₗ)',Object.entries(partition).filter(x=>x[1]).map(([k,v])=>[k.toUpperCase(),String(v)]),{tone:'compute'});
  addLabel(g,'SELECT A LAYER',20,253,'muted',{size:10.5,tracking:1});
- for(let l=1;l<=m.layers;l++){const i=l-1;g.decorations.push({kind:'layer',layer:l,id:`layer-${l}`,x:20+(i%6)*28,y:274+Math.floor(i/6)*27,w:23,h:21,attention:layerKind(m,l),active:l===s.layer,dense:ffnKind(m,l)==='dense'});}
- const gy=274+Math.ceil(m.layers/6)*27;
+ layers.forEach((l,i)=>{g.decorations.push({kind:'layer',layer:l,id:`layer-${l}`,x:20+(i%6)*28,y:274+Math.floor(i/6)*27,w:23,h:21,attention:layerKind(m,l),active:l===s.layer,dense:ffnKind(m,l)==='dense'});});
+ const gy=274+Math.ceil(layers.length/6)*27;
  addLabel(g,'Numbers are one-indexed.',20,gy+20,'muted',{size:10.5});
  addLabel(g,'Amber = recurrent layer',20,gy+39,'state',{size:10.5});
  const oy=Math.max(gy+75,755);
+ if(encoder){
+  node(g,m,'encoder-handoff',20,oy,166,52,'Decoder handoff',`layer ${m.encoderLayers} → ${m.encoderLayers+1}`,`Pass the residual after encoder layer ${m.encoderLayers} directly to decoder layer ${m.encoderLayers+1}. This boundary does not normalize into vocabulary logits: the decoder continues the causal stack and its boundary layer produces the shared global cache.`,'h_encoder,out → h_decoder,in',[['Residual shape',`[B, T, ${m.streams}, ${m.d}]`]],{tone:'state'});
+  addWire(g,[[20,193],[12,193],[12,oy+26],[20,oy+26]],'overview-block','encoder-handoff',{kind:'residual'});
+  return;
+ }
+ if(decoder){
+  node(g,m,'residual-collapse',20,oy-80,166,52,'Collapse streams',`${m.streams} × ${F(m.d)} → ${F(m.d)}`,`Transformer.forward applies the final block's hc_pre before final RMSNorm. Block.hc_pre sums the ${m.streams} residual copies weighted by pre_mix from the final feed-forward sublayer. These input-dependent coefficients are not a uniform mean; the final FFN returns them for this next read.`,'h = Σⱼ pre_final,j xⱼ',[['Input',`[B, T, ${m.streams}, ${m.d}]`],['Output',`[B, T, ${m.d}]`]],{tone:'state'});
+  addWire(g,[[20,193],[12,193],[12,oy-54],[20,oy-54]],'overview-block','residual-collapse',{kind:'residual'});
+  addWire(g,[[40,oy-28],[40,oy]],'residual-collapse','final-norm');
+ }
  node(g,m,'final-norm',20,oy,166,34,'Final RMSNorm', '', 'Normalize the final decoder representation before the output vocabulary projection.','RMSNorm(x)',[],{kind:'pill'});
  node(g,m,'lm-head',20,oy+69,166,52,'LM head',`${F(m.d)} → ${F(m.vocab)}`,'Untied output vocabulary projection. Softmax/sampling behavior does not change the block architecture.','logits = W_lm x',[],{});
  addWire(g,[[40,oy+34],[40,oy+69]],'final-norm','lm-head');
  addLabel(g,'logits / sampling',20,oy+154,'muted',{size:11});
 }
 function residuals(g,m,s){
+ const engram=m.id==='dsv41'&&s.stage==='encoder'&&m.engramLayers.includes(s.layer-1);
  const special=m.residual!=='standard';
  const normTitle=m.residual==='attnres'?'Depth read · RMSNorm':m.residual==='hyper'?'Stream read · RMSNorm':m.residual==='mhc'?'Mixed stream read · RMSNorm':'RMSNorm';
  const desc=m.residual==='attnres'?'Block Attention Residuals retrieve across depth sources per token. The current partial block accumulator is updated and sealed at block boundaries; this is not an ordinary uniform residual sum.':m.residual==='hyper'?'The checkpoint carries four residual streams. A learned input mixer reads into one computation stream; an output gate writes back. It is not a single ordinary residual addition.':m.residual==='mhc'?`The checkpoint carries ${m.streams} residual streams mixed by manifold hyper-connections. The coefficients that mix the streams entering this sublayer were computed by the previous sublayer, so attention reads with the previous block's feed-forward pre_mix vector. This length-${m.streams} sigmoid gate collapses the stream axis before RMSNorm. The current sublayer independently produces a post gate and a residual comb matrix; only comb receives ${m.sinkhornIters} Sinkhorn iterations.`:'Pre-normalization leaves a separate residual bypass untouched. After the attention output projection the update is added to the residual.';
@@ -486,8 +506,15 @@ function residuals(g,m,s){
  addLabel(g,`residual stream · ${stream2}`,920,80,'muted',{size:12});
  // The stream arrives from outside the block and splits: normalized into attention, and
  // straight down the left rail as the mainline that bypasses it.
- addWire(g,[[206,86],[286,86],[286,112]],'', 'norm1');
- addWire(g,[[238,86],[238,899],[270,899]],'', 'merge-attn',{kind:'residual'});
+ if(engram){
+  node(g,m,'engram-history',20,470,166,52,'N-gram lookup','causal token history','NgramHashState derives hash IDs from causal token history, respecting sequence boundaries and excluding image positions. Engram reads those table rows and projects per-copy keys plus a shared value. The current residual does not select the hash rows.','ids = hash(token history); K,V = W lookup(ids)',[],{tone:'state'});
+  node(g,m,'engram-residual',20,550,166,52,'Incoming residual',`${m.streams} streams · layer ${s.layer}`,`The residual arriving before absolute layer ${s.layer} supplies the contextual match for Engram's per-copy gate and the unchanged addend. This is the input to the selected layer, before its attention normalization.`,'x: [B, T, streams, D]',[],{tone:'state'});
+  node(g,m,'engram-input',20,630,166,52,'Engram input write',`before layer ${s.layer}`,'Engram.forward matches the current residual to the retrieved per-copy keys using a normalized weighted dot product, then signed square root and sigmoid. The masked gate scales the shared retrieved value, which is added to each residual copy before this layer begins. Both attention and its residual bypass consume the updated copies.','xⱼ ← xⱼ + gateⱼ(xⱼ,Kⱼ) · value',[],{tone:'compute'});
+  addWire(g,[[186,496],[194,496],[194,646],[186,646]],'engram-history','engram-input',{kind:'state'});
+  addWire(g,[[40,602],[40,630]],'engram-residual','engram-input',{kind:'residual'});
+ }
+ addWire(g,engram?[[186,666],[202,666],[202,86],[286,86],[286,112]]:[[206,86],[286,86],[286,112]],engram?'engram-input':'', 'norm1');
+ addWire(g,[[238,86],[238,899],[270,899]],engram?'engram-input':'', 'merge-attn',{kind:'residual'});
  if(special){
   const writeTitle=m.residual==='hyper'?'Gated stream write':m.residual==='mhc'?'Mixed stream write':'Update block accumulator';
   node(g,m,'merge-attn',270,884,230,30,writeTitle,'',desc,m.residual==='mhc'?'xᵢ′ = postᵢ Δ + Σⱼ combᵢⱼ xⱼ; next_pre = pre':'update residual state',m.residual==='mhc'?[['Output gate','current sublayer vector'],['Residual mix','current sublayer matrix']]:[],{kind:'pill',tone:'state'});
@@ -1087,62 +1114,16 @@ return {pythonTokens,highlightPython};
 __modules["diagram-deepdives.mjs"] = (() => {
 /** Focused V4.1 mechanism diagrams; token time, layer depth and ownership remain explicit. */
 const {getModel,layerKind,formatNum} = __modules["core.mjs"];
-const {layerBands} = __modules["diagram-meta.mjs"];
+const {buildModel} = __modules["diagram-model.mjs"];
 const {chapterContent} = __modules["deepdives.mjs"];
 const {makeScene,addNode,addLabel,addWire,makeInfo} = __modules["scene.mjs"];
 function start(s){const m=getModel(s.model),c=chapterContent(m,s),g=makeScene(1440,1260);addLabel(g,`V4.1 / ${s.stage.toUpperCase()} DEEP DIVE`,36,38,'compute',{size:11,tracking:1.3});addLabel(g,c.question,36,88,'text',{size:22});addLabel(g,'Inspect an operator for shapes, ownership, implementation anchors and evidence.',36,124,'muted',{size:13});return{m,c,g};}
 function box(g,c,id,x,y,w,title,sub,body,formula='',tone='compute',facts=[],category='V4.1 mechanism'){return addNode(g,id,x,y,w,84,title,sub,{tone,info:makeInfo(category,title,body,formula,facts,c.sources)});}
 function flow(g,source,target,x=70){const a=g.nodes.find(n=>n.id===source),b=g.nodes.find(n=>n.id===target);addWire(g,[[x,a.y+a.h],[x,b.y]],source,target);}
-function note(g,c,title,sub,body){box(g,c,`${c.stage}-boundary`,984,180,420,title,sub,body,'','state');}
 function finish(g,c,first){g.caption=c.caveat;g.defaultSelected=first;return g;}
-function buildEncoder(s){const {g,m,c}=start(s),end=m.encoderLayers,bands=layerBands(m,1,end);
- box(g,c,'encoder-embed',36,180,880,'Embed and expand',`token IDs → [B, T, ${m.streams}, ${m.d}]`,'Transformer.forward embeds text, fills image spans, then expands the residual copies. Token IDs also feed the separate Engram lookup path.','h = repeat(embed(ids), streams)');
- let previous='encoder-embed';
- bands.forEach((b,i)=>{const id=b.kind==='swa'?'encoder-window':`encoder-band-${b.lo}`,y=340+i*160;
-  const title=b.kind==='swa'?`Layers ${b.lo}–${b.hi}: local window only`:`Layers ${b.lo}–${b.hi}: Full then Reuse`;
-  box(g,c,id,36,y,880,title,b.kind==='swa'?`${m.window}-position window · no global compressed cache`:`L${b.lo} publishes compressed state; following layers reuse it`,b.kind==='swa'?'These layers have no compressed path or indexer. Each layer performs causal sliding-window attention and its own residual/feed-forward work.':`Layer ${b.lo} is Full: it writes main compressed KV, index keys and selected positions. Layers after it in this band reuse that cache and selection while computing their own queries, local window attention, residuals and experts. Encoder selection sees the causal range directly; the decoder candidate pool has not been created.`,b.kind==='swa'?'h_next = Block(h, local_window)':`KV / indices ← Full_L${b.lo}; Reuse consumes them`);
-  flow(g,previous,id);previous=id;
- });
- const handoffY=340+bands.length*160;
- box(g,c,'encoder-handoff',36,handoffY,880,'Hand off the residual',`after layer ${end} → layer ${end+1}`,'This residual enters the decoder boundary producer. There is no inserted conventional cross-attention module; the modules form a flat causal stack.','h_encoder_out → decoder boundary');flow(g,previous,'encoder-handoff');
- box(g,c,'encoder-causal',984,180,420,'Causal visibility','token time is not layer depth','Every encoder layer preserves causal token visibility. The encoder is not a bidirectional context encoder.','positions ≤ current token','state');
- box(g,c,'encoder-engram',984,340,420,'Engram insertion sites',`before layers ${m.engramLayers.map(x=>x+1).join(', ')}`,'Apply Engram only before its configured layers inside the bands. This side path uses token history for lookup and the local residual for gating.','h ← h + gated memory','state');
- m.engramLayers.filter(l=>l<end).forEach((l,i)=>{const band=bands.findIndex(b=>l+1>=b.lo&&l+1<=b.hi),id=bands[band].kind==='swa'?'encoder-window':`encoder-band-${bands[band].lo}`,y=382+band*160,lane=956-i*16;addWire(g,[[984,370+i*24],[lane,370+i*24],[lane,y],[916,y]],'encoder-engram',id,{kind:'state'});});
- g.height=Math.max(g.height,handoffY+180);return finish(g,c,'encoder-handoff');}
-function buildDecoder(s){const {g,m,c}=start(s),source=m.kvSourceLayers.find(x=>x>=m.encoderLayers)+1;
- const rows=[
- ['decoder-handoff','Receive encoder output',`[B, T, ${m.streams}, ${m.d}]`,'The first decoder layer consumes the incoming encoder residual. Its pre-attention projection is the boundary cache producer.','h_encoder_out'],
- ['decoder-producer','Project the shared global cache',`layer ${source} · compression ratio ${m.compressDecoder}`,'Attention._compress_kv publishes the decoder compressed cache at this Full layer. Later decoder layers do not regenerate global KV from their own hidden state.','KV_shared ← project(h_boundary)'],
- ['decoder-readers','Read shared KV, refresh selection',`selecting layers ${m.indexSourceLayers.filter(x=>x>=m.encoderLayers).map(x=>x+1).join(', ')}`,'Reindex layers recompute sparse positions against existing index keys; Reuse layers inherit prior indices. Global storage ownership and selection ownership are different.','read KV_shared at selected indices'],
- ['decoder-attend','Join local and selected history',`${m.heads} query heads · local window ${m.window}`,'Attention.forward concatenates local-window KV and selected compressed KV into the sparse attention operation, with the sink in the same normalization. Local windows remain layer-specific.','O = attention(Q, window ∪ selected, sink)'],
- ['decoder-residual','Update residuals and experts',`${m.streams} streams · ${m.topK} routed + ${m.shared} shared expert`,'Each block still performs residual mixing and its feed-forward computation. Sharing a global cache does not remove these operations. Shared experts do not consume router top-k slots.','h_next = Block_layer(h, shared state)'],
- ['decoder-logits','Collapse, normalize, project',`vocabulary width ${formatNum(m.vocab)}`,'Transformer.forward collapses the residual copies, normalizes, projects the selected output position into vocabulary logits and then samples. dSpark features are captured before target attention, not from these output logits.','logits = head(norm(collapse(h)))'],
- ];rows.forEach(([id,t,sub,b,f],i)=>{box(g,c,id,36,180+i*160,880,t,sub,b,f);if(i)flow(g,rows[i-1][0],id);});
- note(g,c,'Replay is approximate','feature-gated; separate from MTP',c.caveat);
- addLabel(g,'ILLUSTRATION · LOCAL-ONLY DEPENDENCIES',984,322,'muted',{size:11});
- addLabel(g,'Token time →     depth ↓',984,356,'text',{size:13});
- addLabel(g,'D = 2 layers · W = 2 positions',984,386,'muted',{size:13});
- // Small dependency cone: every edge is a causal local read, not a global-cache path.
- const tokens=['t − 2','t − 1','t'];
- for(let depth=0;depth<=2;depth++)for(let token=depth;token<=2;token++){
-  const id=`replay-${depth}-${token}`,omitted=token===0;
-  addNode(g,id,984+token*144,420+depth*142,132,68,tokens[token],depth?`depth ${depth}`:'input',{
-   tone:omitted?'state':'compute',info:makeInfo('Illustrative local-only dependency','Local state at '+tokens[token],
-    depth?`At illustrative depth ${depth}, this position reads itself and the preceding position from the previous depth. Residual and positionwise operations do not expand token reach. This is not the V4.1 global attention graph.`:'Boundary input for the toy local-only stack. A replay beginning at t − 1 omits t − 2, although that input reaches the output through the preceding-position reads.',
-    'h[d,i] = F_d(h[d−1,i−1], h[d−1,i])',[],c.sources)});
- }
- for(let depth=1;depth<=2;depth++)for(let token=depth;token<=2;token++)for(const parent of [token-1,token]){
-  const source=`replay-${depth-1}-${parent}`,target=`replay-${depth}-${token}`;
-  const x=1050+parent*144,tx=1050+token*144,y=420+(depth-1)*142+68,ty=420+depth*142;
-  addWire(g,parent===token?[[x,y],[x,ty]]:[[x,y],[x,y+36],[tx-36,y+36],[tx-36,ty]],source,target);
- }
- box(g,c,'replay-truncation',984,862,420,'Truncate the left boundary','replay starts at s = t − 1',
-  'In this local-only illustration, t − 2 affects depth 1 at t − 1, which affects depth 2 at t. Keeping only t − 1 and t drops that path. For D local-only layers with a causal W-position window including self, the exact structural dependency radius is D × (W − 1); the input interval contains D × (W − 1) + 1 positions. A shorter replay without restored boundary states is generally approximate, even when the final layer sees its complete immediate window.',
-  'radius = D × (W − 1); replay keys = [max(s, i−W+1), i]','state');
- box(g,c,'replay-global',984,1022,420,'Global KV is separate','availability ≠ local reconstruction',
-  'Real V4.1 also reads selected shared global KV. That stored global history does not reconstruct missing layer-local window states. Holding the global cache available does not make truncated local replay exact. The toy cone isolates local dependency depth; it is not a finite receptive-field claim for V4.1. The report describes approximate reconstruction; the inspected SGLang path is feature-gated and uses extend_without_speculative.',
-  'shared global KV ≠ layer-local window KV','state');
- return finish(g,c,'decoder-producer');}
+function detailedChapter(s){const g=buildModel(s),c=chapterContent(getModel(s.model),s);g.caption+=` ${c.caveat}`;return g;}
+function buildEncoder(s){return detailedChapter({...s,stage:'encoder'});}
+function buildDecoder(s){return detailedChapter({...s,stage:'decoder'});}
 function buildEngram(s){const {g,m,c}=start(s),heads=(m.engramNgram-1)*m.engramHeads,width=heads*m.engramHeadDim;
  const rows=[
  ['engram-history','Normalize causal token history',`orders 2–${m.engramNgram} · boundary-aware lookback`,'EngramLayout builds the compressed token map and hash layout. NgramHashState.forward prevents lookback across sequence starts and dead/image tokens.','token IDs → normalized IDs'],
@@ -1718,7 +1699,7 @@ const GUIDES=[
 return {MODEL_VIEWS,PAGES,pageForModel,pageHref,pageForView,sectionHref,GUIDES};
 })();
 __modules["app.mjs"] = (() => {
-const {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DEFAULT_STATE,sanitizeState,getModel,focalStages,layerKind,layerPartition,ffnKind,parameterLedger,cacheLedger,servingLedger,trainingLedger,networkLedger,roofline,formatNum,formatParams,formatBytes,formatTime,evidenceSummary,accountingAssumptions} = __modules["core.mjs"];
+const {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DEFAULT_STATE,sanitizeState,getModel,focalStages,layerNumbers,layerKind,layerPartition,ffnKind,parameterLedger,cacheLedger,servingLedger,trainingLedger,networkLedger,roofline,formatNum,formatParams,formatBytes,formatTime,evidenceSummary,accountingAssumptions} = __modules["core.mjs"];
 const {buildScene} = __modules["diagrams.mjs"];
 const {structuralReport} = __modules["scene.mjs"];
 const {chapterContent,DEEP_DIVE_TITLES} = __modules["deepdives.mjs"];
@@ -1757,9 +1738,9 @@ function controls(){let html='',s=state,m=getModel(s.model);const context=()=>se
   // page from `pleLayers`, so the two predicates agreed only by today's coincidence.
   const STAGE_LABEL={block:'Decoder block',inputs:'Inputs',residual:'Residual',ple:'N-gram memory',ced:'Overview',...DEEP_DIVE_TITLES};
   const stageOrder=pageInfo?.stage==='ced'?['ced',...focalStages(m).filter(k=>DEEP_DIVE_TITLES[k]),'block',...focalStages(m).filter(k=>k!=='ced'&&!DEEP_DIVE_TITLES[k])]:['block',...focalStages(m)];
-  const stages=stageOrder.filter(k=>!moduleExample(k)).map(k=>[k,STAGE_LABEL[k]]);html+=segments('stage','Focus',stages);
+  const stages=stageOrder.filter(k=>!moduleExample(k)&&!(m.encoderLayers&&k==='block')).map(k=>[k,STAGE_LABEL[k]]);html+=segments('stage','Focus',stages);
   if(m.architecture==='ced-csa2')html+=selectControl('stage','Module schematic',[[moduleExample(s.stage)?'ced':s.stage,moduleExample(s.stage)?'Back to overview':STAGE_LABEL[s.stage]],...PYTORCH_EXAMPLES.map(x=>[moduleStage(x.id),x.title])]);
-  if(['block','csa2'].includes(s.stage)){html+=selectControl('layer','Decoder layer',Array.from({length:m.layers},(_,i)=>[i+1,`${String(i+1).padStart(2,'0')} · ${layerKind(m,i+1).toUpperCase()} · ${ffnKind(m,i+1)==='dense'?'dense':'MoE'}`]));if(s.stage==='block')html+=segments('detail','Edge labels',[['shapes','Tensor shapes'],['operators','Compact']]);}
+  if(['block','encoder','decoder','csa2'].includes(s.stage)){html+=selectControl('layer',s.stage==='encoder'?'Encoder layer':s.stage==='csa2'?'Backbone layer':'Decoder layer',layerNumbers(m,s.stage).map(layer=>[layer,`${String(layer).padStart(2,'0')} · ${layerKind(m,layer).toUpperCase()} · ${ffnKind(m,layer)==='dense'?'dense':'MoE'}`]));if(s.stage!=='csa2')html+=segments('detail','Edge labels',[['shapes','Tensor shapes'],['operators','Compact']]);}
   if(s.stage==='csa2')html+=context()+batch();
  }else if(s.view==='compare')html+=selectControl('compare','Compare against',modelValues())+context()+batch()+kv();
  else if(s.view==='training')html+=segments('trainMode','Scenario',[['fsdp','Fully sharded'],['ddp','Replicated DP'],['rl','Actor–learner']])+ranks()+hw();
@@ -1774,7 +1755,7 @@ function render(){
  $('theme-button').setAttribute('aria-label',state.theme==='dark'?'Switch to paper theme':'Switch to graphite theme');
  $('model-title').textContent=pageInfo?.view?pageInfo.title:m.name;$('model-subtitle').textContent=pageInfo?.view?DESCRIPTIONS[pageInfo.view]:m.summary;
  $('model-eyebrow').textContent=pageInfo?.view?'SHARED SYSTEMS REFERENCE':'REFERENCE CHECKPOINT / '+m.repo;
- $('identity-metrics').innerHTML=pageInfo?.view?'':`<div class="identity-metric"><strong>${esc(P(p.resident))}</strong><span>${p.approximate?'rounded residency scope':'calculated text core'}</span></div><div class="identity-metric"><strong>${m.layers}</strong><span>decoder layers</span></div><div class="identity-metric"><strong>${esc(B(c.total/state.batch))}</strong><span>state / sequence · ${F(state.context)} positions</span><i>logical subtotal</i></div>`;
+ $('identity-metrics').innerHTML=pageInfo?.view?'':`<div class="identity-metric"><strong>${esc(P(p.resident))}</strong><span>${p.approximate?'rounded residency scope':'calculated text core'}</span></div><div class="identity-metric"><strong>${m.encoderLayers?`${m.encoderLayers} + ${m.layers-m.encoderLayers}`:m.layers}</strong><span>${m.encoderLayers?'encoder + decoder layers':'decoder layers'}</span></div><div class="identity-metric"><strong>${esc(B(c.total/state.batch))}</strong><span>state / sequence · ${F(state.context)} positions</span><i>logical subtotal</i></div>`;
  const cards=Object.values(MODELS).filter(x=>!pageInfo||pageInfo.models.length>1&&pageInfo.models.includes(x.id)).map(x=>{const dedicated=!pageInfo&&pageForModel(x.id);return `<${dedicated?'a':'button'} class="model-card ${x.id===m.id?'active':''}" data-model="${x.id}" ${dedicated?`href="${pageHref(x.id)}"`:`aria-pressed="${x.id===m.id}"`} title="${esc(x.repo)}"><span class="family">${esc(x.family)}</span><span class="variant">${esc(x.generation)}${dedicated?' ↗':''}</span><span class="motif">${dedicated?'Dedicated architecture page':esc(modelMotif(x))}</span></${dedicated?'a':'button'}>`;}).join('');
  $('model-strip').innerHTML=pageInfo?.view?'<a id="atlas-link" class="button" href="index.html">← Home</a>':(pageInfo?`<a id="atlas-link" class="button" href="index.html">← Home</a>`:'')+cards+(pageInfo&&pageInfo.models.length===1?`<span class="button" aria-current="page">${pageInfo.stage==='ced'?'Causal encoder / decoder':esc(pageInfo.title)}</span>`:'');
  $('inventory-summary').textContent=`${Object.keys(MODELS).length} model variants · ${Object.keys(HARDWARE).length} hardware profiles · ${MODEL_VIEWS.length} model lenses · ${PAGES.filter(p=>p.view).length} shared sections`;
@@ -1799,7 +1780,7 @@ function renderScene(){const tr=traceSet();const markers=['flow','state','residu
  return`<g class="node ${n.kind} ${n.tone} ${tight?'tight':''} ${n.small?'small':''} ${n.id===selected?'selected':''} ${state.trace&&!tr.nodes.has(n.id)?'dim':''}" data-node="${esc(n.id)}" role="button" tabindex="0" aria-label="${esc(n.name+(n.sub?' — '+n.sub:''))}"><title>${esc(n.name)} — inspect equation and evidence</title>${box}<text class="node-title" x="${n.kind==='sum'?n.x+n.w/2:n.x+13}" y="${y1}">${esc(n.name)}</text>${n.sub?`<text class="node-sub" x="${n.x+13}" y="${y2}">${esc(n.sub)}</text>`:''}</g>`;}).join('');
  const labels=scene.labels.map(l=>`<text class="label ${l.tone}" data-label="${l.id}" x="${l.x}" y="${l.y}"${l.size?` style="font-size:${l.size}px;${l.tracking?'letter-spacing:'+l.tracking+'px;':''}${l.weight?'font-weight:'+l.weight+';':''}"`:''}>${esc(l.text)}</text>`).join('');
  const decor=scene.decorations.map(d=>d.kind==='layer'?`<g class="layer-tile ${['kda','delta'].includes(d.attention)?'recurrent':''} ${d.active?'active':''}" role="button" tabindex="0" data-layer="${d.layer}" aria-label="Layer ${d.layer}, ${d.attention}, ${d.dense?'dense feed-forward':'MoE'}"><title>Layer ${d.layer} · ${d.attention.toUpperCase()}</title><rect x="${d.x}" y="${d.y}" width="${d.w}" height="${d.h}" rx="3"/><text x="${d.x+d.w/2}" y="${d.y+14}">${d.layer}</text></g>`:'').join('');
- $('scene-mount').innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" class="schematic" id="schematic" viewBox="0 0 ${scene.width} ${scene.height}" role="group" aria-label="${esc((pageInfo?.view?pageInfo.title:getModel(state.model).name)+' '+(state.view==='model'&&moduleExample(state.stage)?.title||VIEW_NAMES[state.view])+' schematic')}"><title>${esc((pageInfo?.view?pageInfo.title:getModel(state.model).name)+' — '+(state.view==='model'&&moduleExample(state.stage)?.title||VIEW_NAMES[state.view]))}</title><desc>${esc(scene.caption)}</desc><defs>${markers}</defs><rect class="canvas-bg" width="${scene.width}" height="${scene.height}"/>${groups}${edges}${nodes}${labels}${decor}</svg>`;
+ $('scene-mount').innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" class="schematic" id="schematic" viewBox="0 0 ${scene.width} ${scene.height}" role="group" aria-label="${esc((pageInfo?.view?pageInfo.title:getModel(state.model).name)+' '+(state.view==='model'&&(moduleExample(state.stage)?.title||DEEP_DIVE_TITLES[state.stage])||VIEW_NAMES[state.view])+' schematic')}"><title>${esc((pageInfo?.view?pageInfo.title:getModel(state.model).name)+' — '+(state.view==='model'&&(moduleExample(state.stage)?.title||DEEP_DIVE_TITLES[state.stage])||VIEW_NAMES[state.view]))}</title><desc>${esc(scene.caption)}</desc><defs>${markers}</defs><rect class="canvas-bg" width="${scene.width}" height="${scene.height}"/>${groups}${edges}${nodes}${labels}${decor}</svg>`;
 }
 function selectNode(id){if(!scene.nodes.some(n=>n.id===id))return;selected=id;renderScene();renderInspector();applyZoom();$('announcement').textContent='Selected '+scene.nodes.find(n=>n.id===id).name;}
 function sourceCard(id){const r=SOURCES[id];if(!r)return'';return`<a class="source-card" href="${esc(r.url)}" target="_blank" rel="noopener noreferrer"><span class="source-role">${esc(r.role.replaceAll('_',' '))}${r.revision?' · pinned reference':' · mutable reference'}</span><span class="source-title">${esc(r.title)} ↗</span><span class="source-anchor">${esc(r.anchor)}</span></a>`;}
@@ -1895,7 +1876,7 @@ function chooseModel(id,patch={}){
 // One delegated input/action path keeps every visible control real and testable.
 document.addEventListener('click',event=>{const el=event.target.closest('button,a,[data-node],[data-layer],[data-context]');if(!el)return;
  if(el.dataset.moduleExample){setState({view:'model',stage:moduleStage(el.dataset.moduleExample)});$('scene-mount').scrollIntoView({block:'start'});document.querySelector('#schematic [data-node]')?.focus({preventScroll:true});return;}
- if(el.dataset.model){if(el.tagName!=='A')chooseModel(el.dataset.model);return;}if(el.dataset.view){chooseView(el.dataset.view);return;}if(el.dataset.setting){setState({[el.dataset.setting]:el.dataset.value});return;}if(el.dataset.node){selectNode(el.dataset.node);return;}if(el.dataset.layer){setState({layer:Number(el.dataset.layer),stage:'block'});return;}if(el.dataset.context){setState({context:Number(el.dataset.context)});return;}if(el.dataset.result){executeSearch(Number(el.dataset.result));return;}
+ if(el.dataset.model){if(el.tagName!=='A')chooseModel(el.dataset.model);return;}if(el.dataset.view){chooseView(el.dataset.view);return;}if(el.dataset.setting){setState({[el.dataset.setting]:el.dataset.value});return;}if(el.dataset.node){selectNode(el.dataset.node);return;}if(el.dataset.layer){setState({layer:Number(el.dataset.layer),stage:['encoder','decoder'].includes(state.stage)?state.stage:'block'});return;}if(el.dataset.context){setState({context:Number(el.dataset.context)});return;}if(el.dataset.result){executeSearch(Number(el.dataset.result));return;}
  if(el.dataset.copyExample){copyPythonExample(el.dataset.copyExample);return;}
  if(el.dataset.downloadExample){const key=el.dataset.downloadExample;download(`stratum-v41-${key}.py`,exampleProgram(key),'text/x-python');return;}
  const id=el.id;if(id==='theme-button')setState({theme:state.theme==='dark'?'light':'dark'});if(id==='search-button')openSearch();if(id==='search-close')$('search-dialog').close();if(id==='search-close'||id==='audit-close')el.closest('dialog').close();if(id==='trace-button')setState({trace:!state.trace});if(id==='focus-button')toggleFocus();if(id==='zoom-in')setState({zoom:Math.min(2,state.zoom+.15)});if(id==='zoom-out')setState({zoom:Math.max(.75,state.zoom-.15)});if(id==='zoom-reset')setState({zoom:1});if(id==='export-svg'){download(`stratum-${state.model}-${state.view}.svg`,exportSVG(),'image/svg+xml');toast('Vector schematic exported.');}if(id==='export-config'){download(`stratum-${state.model}-scenario.json`,exportConfig(),'application/json');toast('Scenario and evidence boundary exported.');}if(id==='audit-button'){const r=geometryReport();$('audit-output').innerHTML=`<p>${r.geometry_defects===0?'No geometric defects detected in this rendered state.':`${r.geometry_defects} geometric defect(s) detected.`}</p><p class="chart-caption">This is not a scientific or runtime certificate. It checks the current browser’s text bounds and scene geometry.</p><pre>${esc(JSON.stringify(r,null,2))}</pre>`;$('audit-dialog').showModal();}
@@ -1903,7 +1884,7 @@ document.addEventListener('click',event=>{const el=event.target.closest('button,
 document.addEventListener('change',event=>{const key=event.target.dataset.key;if(key)setState({[key]:event.target.value});});
 $('search-input').addEventListener('input',renderSearch);$('search-input').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();executeSearch(0);}});
 // Local keyboard navigation follows only the visible model tabs.
-document.addEventListener('keydown',e=>{const target=e.target;const input=/^(INPUT|SELECT|TEXTAREA)$/.test(target.tagName);if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openSearch();return;}if(input)return;if(e.key==='/'&&!e.metaKey){e.preventDefault();openSearch();return;}if(e.key==='Escape'){if(focus)toggleFocus();else if(state.trace)setState({trace:false});return;}if(target.closest('[data-node]')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();selectNode(target.closest('[data-node]').dataset.node);return;}if(target.closest('[data-layer]')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();setState({layer:Number(target.closest('[data-layer]').dataset.layer),stage:'block'});return;}if(target.closest('#lens-tabs .lens-tab')&&['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();setState({view:MODEL_VIEWS[(MODEL_VIEWS.indexOf(state.view)+(e.key==='ArrowRight'?1:MODEL_VIEWS.length-1))%MODEL_VIEWS.length]});document.querySelector('#lens-tabs .lens-tab.active').focus();return;}if(!e.ctrlKey&&!e.metaKey&&/^[0-9]$/.test(e.key)&&Number(e.key)>=1&&Number(e.key)<=MODEL_VIEWS.length&&!pageInfo?.view)setState({view:MODEL_VIEWS[Number(e.key)-1]});if(e.key==='f'&&!e.ctrlKey&&!e.metaKey)toggleFocus();if(e.key==='0')setState({zoom:1});});
+document.addEventListener('keydown',e=>{const target=e.target;const input=/^(INPUT|SELECT|TEXTAREA)$/.test(target.tagName);if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openSearch();return;}if(input)return;if(e.key==='/'&&!e.metaKey){e.preventDefault();openSearch();return;}if(e.key==='Escape'){if(focus)toggleFocus();else if(state.trace)setState({trace:false});return;}if(target.closest('[data-node]')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();selectNode(target.closest('[data-node]').dataset.node);return;}if(target.closest('[data-layer]')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();setState({layer:Number(target.closest('[data-layer]').dataset.layer),stage:['encoder','decoder'].includes(state.stage)?state.stage:'block'});return;}if(target.closest('#lens-tabs .lens-tab')&&['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();setState({view:MODEL_VIEWS[(MODEL_VIEWS.indexOf(state.view)+(e.key==='ArrowRight'?1:MODEL_VIEWS.length-1))%MODEL_VIEWS.length]});document.querySelector('#lens-tabs .lens-tab.active').focus();return;}if(!e.ctrlKey&&!e.metaKey&&/^[0-9]$/.test(e.key)&&Number(e.key)>=1&&Number(e.key)<=MODEL_VIEWS.length&&!pageInfo?.view)setState({view:MODEL_VIEWS[Number(e.key)-1]});if(e.key==='f'&&!e.ctrlKey&&!e.metaKey)toggleFocus();if(e.key==='0')setState({zoom:1});});
 window.addEventListener('resize',applyZoom);window.addEventListener('hashchange',()=>{state=loadState();render();});
 window.STRATUM={getState:()=>({...state}),getScene:()=>scene,setState:patch=>setState(patch),selectNode,geometryReport,exportSVG,exportConfig,version:'3.0.0'};
 render();

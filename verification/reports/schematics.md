@@ -1,6 +1,6 @@
 # Schematics — PASS
 
-Generated: 2026-09-20T17:11:14.124625+00:00
+Generated: 2026-09-20T17:35:19.609261+00:00
 
 771 scenes, including 544 decoder layers.
 
@@ -44,10 +44,10 @@ The scene IR is checked against core.mjs. A collision-free picture is not proof 
 | KV_TOTAL_DISAGREEMENT | 1 |
 | LANE_OK | 771 |
 | MHC_COEFF_COUNT | 1 |
-| MHC_OK | 40 |
-| MHC_SKIP | 39 |
+| MHC_OK | 42 |
+| MHC_SKIP | 37 |
 | PARAM_BAND_RATIO | 1 |
 | RAIL_OK | 771 |
 | ROW_OK | 1 |
-| SCENE_MODEL_OK | 544 |
-| SCENE_MODEL_SKIP | 227 |
+| SCENE_MODEL_OK | 546 |
+| SCENE_MODEL_SKIP | 225 |

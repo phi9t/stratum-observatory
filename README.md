@@ -24,7 +24,7 @@ The source inspector attaches publisher configuration, publisher/reference imple
 
 ### Model lenses and shared sections
 
-**Architecture:** whole-model context, every one of the 544 decoder layers, stable attention/FFN regions, tensor contracts, delayed state feedback and optional input/residual/PLE close-ups.
+**Architecture:** whole-model context, every one of the 544 backbone layers, stable attention/FFN regions, tensor contracts, delayed state feedback and optional input/residual/PLE close-ups.
 
 **Training:** FSDP, replicated DDP and an illustrative agentic-RL lifecycle. Adam persistent-state accounting and dependencies are educational scenarios, not reconstructions of a publisher's production run.
 

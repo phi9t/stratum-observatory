@@ -12,6 +12,15 @@ def exercise(page,root):
     examples=json.loads(subprocess.check_output(['node','--input-type=module','-e',
         "import {PYTORCH_EXAMPLES,exampleProgram} from './src/pytorch.mjs'; console.log(JSON.stringify(PYTORCH_EXAMPLES.map(x=>({...x,program:exampleProgram(x.id)}))));"],cwd=root,text=True))
     config_source=(Path(root)/'examples/deepseek_v41/config.py').read_text()
+    model=json.loads(subprocess.check_output(['node','--input-type=module','-e',
+        "import {MODELS} from './src/core.mjs'; console.log(JSON.stringify(MODELS.dsv41));"],cwd=root,text=True))
+    page.goto(artifact.as_uri()+'#model=dsv41&view=model&stage=block&layer=3')
+    page.wait_for_function('window.STRATUM')
+    assert page.evaluate('STRATUM.getState().stage')=='encoder'
+    assert page.evaluate('STRATUM.getState().layer')==3
+    assert page.locator('[data-setting="stage"][data-value="block"]').count()==0
+    assert page.locator('#identity-metrics .identity-metric').nth(1).locator('strong').inner_text()==f"{model['encoderLayers']} + {model['layers']-model['encoderLayers']}"
+    assert page.locator('#identity-metrics').get_by_text('encoder + decoder layers',exact=True).count()==1
     expected=['encoder','decoder','engram','csa2','dspark']
     for stage in expected:
         page.locator(f'button[data-setting="stage"][data-value="{stage}"]').click()
@@ -19,6 +28,19 @@ def exercise(page,root):
         credit=page.locator('#analysis-panel > .innovation-note a[href="https://zartbot.github.io/blog/model_arch/dsv41flash_arch/en.html"]')
         assert credit.count()==int(stage in ('decoder','csa2','module-csa2-attention'))
         assert f'stage={stage}' in page.url
+        if stage in ('encoder','decoder'):
+            first,last=(1,model['encoderLayers']) if stage=='encoder' else (model['encoderLayers']+1,model['layers'])
+            expected_layers=list(range(first,last+1))
+            assert page.locator('[data-layer]').evaluate_all('xs=>xs.map(x=>Number(x.dataset.layer))')==expected_layers
+            assert page.locator('#control-layer option').evaluate_all('xs=>xs.map(x=>Number(x.value))')==expected_layers
+            for node in ('norm1','attention','router','out-proj','merge-ffn'):
+                assert page.locator(f'[data-node="{node}"]').count()==1
+            tile=page.locator(f'[data-layer="{last}"]')
+            tile.focus();tile.press('Enter')
+            assert page.evaluate('STRATUM.getState().stage')==stage
+            assert page.evaluate('STRATUM.getState().layer')==last
+            page.select_option('#control-layer',str(first))
+            assert page.evaluate('STRATUM.getState().layer')==first
         page.reload();page.wait_for_function('window.STRATUM')
         assert page.evaluate('STRATUM.getState().stage')==stage
         assert page.locator('#analysis-panel').get_by_text('Worked trace',exact=True).count()==1

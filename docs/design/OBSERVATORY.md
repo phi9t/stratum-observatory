@@ -56,3 +56,17 @@ its documentation links are unaccepted references pending source anchoring and r
 `PAGES` enumerates interactive artifacts and `GUIDES` static documents; delivery identity
 covers both. Legacy scenario fragments redirect to their canonical interactive page, while
 ordinary in-page anchors remain on the directory.
+
+## Detailed causal encoder/decoder chapters
+
+Encoder and Decoder use the shared attention/MoE block renderer. The Encoder selector
+contains absolute layers 1 through `encoderLayers`; Decoder contains `encoderLayers + 1`
+through `layers`. The model identity states the two counts separately. Encoder ends in
+a residual handoff, while Decoder begins at that handoff and retains the final norm/head.
+The shared ownership indices remain absolute across the complete backbone.
+
+The redundant V4.1 Decoder block tab is removed. Legacy `stage=block` links resolve to
+the chapter owning the requested absolute layer, preserving that layer. Explicit chapter
+links clamp out-of-range layers into their own range. Both tile clicks and keyboard
+selection keep the reader in the chapter. Worked explanations, mathematics, source
+citations and checked-in Python remain beneath the detailed schematic.
