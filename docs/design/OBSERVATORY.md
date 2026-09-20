@@ -96,3 +96,8 @@ axes. Encoder and decoder chapter selectors preserve absolute layer IDs and arra
 them in the same producer/reuse bundles as the CED overview. Bundle boundaries come
 from `layerKind`; they are not a second authored schedule. Every tile remains an
 independent keyboard-accessible selection of the detailed attention-plus-MoE layer.
+
+All reader-facing numbers omit thousands separators, including controls and prose.
+Numeric quantities and tensor shapes use code glyphs at the surrounding type size;
+existing mathematical contracts retain their code formatting. This is typography,
+not a change to model arithmetic, tensor axes or computation.

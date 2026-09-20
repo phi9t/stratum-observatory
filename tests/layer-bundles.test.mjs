@@ -26,3 +26,16 @@ test('V4.1 chapter tiles are grouped by producer and reuse bundle',()=>{
   }
  }
 });
+
+test('reader-visible numbers never use thousands separators',async()=>{
+ const {formatNum}=await import('../src/core.mjs');
+ assert.equal(formatNum(5120),'5120');
+ assert.equal(formatNum(1048576),'1048576');
+ assert.equal(formatNum(12345.678,2),'12345.68');
+ const check=value=>{
+  if(typeof value==='string')assert.doesNotMatch(value,/\b\d{1,3}(?:,\d{3})+\b/);
+  else if(Array.isArray(value))value.forEach(check);
+  else if(value&&typeof value==='object')Object.values(value).forEach(check);
+ };
+ for(const model of Object.keys(MODELS))for(const stage of ['block',...focalStages(model)])check(buildScene({...DEFAULT_STATE,model,stage}));
+});

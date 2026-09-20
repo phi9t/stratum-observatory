@@ -1,8 +1,8 @@
 {
   "schema": "stratum-aesthetics/v1",
   "status": "PASS",
-  "generated_at": "2026-09-20T20:37:16.977051+00:00",
-  "artifact_sha256": "578dd0c7aade9088b355ba1a2c760697d40899d80098786d5943b5e8148b3eb3",
+  "generated_at": "2026-09-20T20:55:30.566076+00:00",
+  "artifact_sha256": "04bf4b6102808375a4949930fb1b4e4038957879b00b85c209b6383c698dc120",
   "policy_sha256": "e885ca418d6e2883f6725e3ac23e7e14dd39a911966832705f969ecc29d45f66",
   "scenarios": 210,
   "distinct_measurements": 154,
@@ -3557,7 +3557,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "32,768 positions \u00d7 1 sequences \u00b7 2-byte  (67 occurrences)",
+      "subject": "32768 positions \u00d7 1 sequences \u00b7 2-byte K (67 occurrences)",
       "message": "Contrast 7.24:1 against 4.5:1 at 13.1px weight 400.",
       "remedy": "",
       "evidence": []
@@ -3566,7 +3566,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "32,768 positions \u00d7 1 sequences \u00b7 2-byte  (67 occurrences)",
+      "subject": "32768 positions \u00d7 1 sequences \u00b7 2-byte K (67 occurrences)",
       "message": "13.05px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -4691,7 +4691,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "32,768 positions \u00d7 1 sequences \u00b7 2-byte  (67 occurrences)",
+      "subject": "32768 positions \u00d7 1 sequences \u00b7 2-byte K (67 occurrences)",
       "message": "Contrast 5.34:1 against 4.5:1 at 13.1px weight 400.",
       "remedy": "",
       "evidence": []
@@ -4700,7 +4700,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "32,768 positions \u00d7 1 sequences \u00b7 2-byte  (67 occurrences)",
+      "subject": "32768 positions \u00d7 1 sequences \u00b7 2-byte K (67 occurrences)",
       "message": "13.05px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []

@@ -1,8 +1,8 @@
 # Presentations — PASS
 
-Generated: 2026-09-20T20:37:21.245242+00:00
+Generated: 2026-09-20T20:55:32.129502+00:00
 
-Artifact `578dd0c7aade9088…`
+Artifact `04bf4b6102808375…`
 
 Exports, delivered-page accessibility, print, portability and preview freshness.
 
@@ -10,14 +10,14 @@ Exports, delivered-page accessibility, print, portability and preview freshness.
 
 | Code | Status | Subject | Detail |
 |---|---|---|---|
-| PORTABILITY_OK | PASS | foundations.html | 391 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
+| PORTABILITY_OK | PASS | foundations.html | 392 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
 | PORTABILITY_OK | PASS | index.html | 40 KiB, valid utf-8, nothing loaded from an external origin; 0 source citations are clickable by |
-| PORTABILITY_OK | PASS | data-representation.html | 39 KiB, valid utf-8, nothing loaded from an external origin; 7 source citations are clickable by |
-| PORTABILITY_OK | PASS | qwen3.8.html | 391 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
-| PORTABILITY_OK | PASS | kimi-k3.html | 391 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
-| PORTABILITY_OK | PASS | deepseek-v4.1.html | 391 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
-| PORTABILITY_OK | PASS | hardware.html | 391 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
-| PORTABILITY_OK | PASS | networking.html | 391 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
+| PORTABILITY_OK | PASS | data-representation.html | 40 KiB, valid utf-8, nothing loaded from an external origin; 7 source citations are clickable by |
+| PORTABILITY_OK | PASS | qwen3.8.html | 392 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
+| PORTABILITY_OK | PASS | kimi-k3.html | 392 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
+| PORTABILITY_OK | PASS | deepseek-v4.1.html | 392 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
+| PORTABILITY_OK | PASS | hardware.html | 392 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
+| PORTABILITY_OK | PASS | networking.html | 392 KiB, valid utf-8, nothing loaded from an external origin; 39 source citations are clickable  |
 | PREVIEW_FRESH | PASS | previews | 47 captures match the built artifacts. |
 | PREVIEW_ARTIFACT | PASS | previews | Every capture binds its delivered entry point. |
 | PREVIEW_COVERAGE | PASS | previews | All 9 checkpoints appear in the 47 published previews, including every one of the 23 focal pages |

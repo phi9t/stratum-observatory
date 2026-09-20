@@ -2,13 +2,20 @@
 from pathlib import Path
 import json
 import ast
+import re
 import subprocess
 
 
 def exercise(page,root):
     page.context.grant_permissions(['clipboard-read','clipboard-write'])
+    page.goto((Path(root)/'dist/qwen3.8.html').as_uri()+'#model=q38flash&stage=ple')
+    page.wait_for_function('window.STRATUM')
+    assert page.locator('[data-node="ngram-lookup"] .numeric-token').all_text_contents()==['51']
     artifact=Path(root)/'dist/deepseek-v4.1.html'
     page.goto(artifact.as_uri());page.wait_for_function('window.STRATUM')
+    assert page.locator('#schematic .numeric-token').count()>0
+    assert page.locator('#schematic .numeric-token').evaluate_all("xs=>xs.every(x=>getComputedStyle(x).fontFamily.includes('monospace'))")
+    assert all(',' not in label for label in page.locator('#control-context option').all_text_contents())
     examples=json.loads(subprocess.check_output(['node','--input-type=module','-e',
         "import {PYTORCH_EXAMPLES,exampleProgram} from './src/pytorch.mjs'; console.log(JSON.stringify(PYTORCH_EXAMPLES.map(x=>({...x,program:exampleProgram(x.id)}))));"],cwd=root,text=True))
     config_source=(Path(root)/'examples/deepseek_v41/config.py').read_text()
@@ -49,6 +56,8 @@ def exercise(page,root):
             assert not notes.evaluate('el=>el.open')
             notes.locator('summary').focus();notes.locator('summary').press('Enter')
         assert page.locator('#analysis-panel tbody tr').count()>=4
+        assert page.locator('#analysis-panel code.numeric-token').count()>0
+        assert not re.search(r'\b\d{1,3}(?:,\d{3})+\b',page.locator('#analysis-panel').inner_text())
         assert page.evaluate('STRATUM.geometryReport().geometry_defects')==0
         assert json.loads(page.evaluate('STRATUM.exportConfig()'))['state']['stage']==stage
         links=page.locator('#analysis-panel .analysis-split a[href^="https:"]').evaluate_all('xs=>xs.map(a=>a.href)')

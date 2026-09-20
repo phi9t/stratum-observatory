@@ -124,7 +124,7 @@ export function networkLedger(id,settings={}){const m=getModel(id),s=sanitizeSta
  if(s.traffic==='handoff'){sent=cacheLedger(m,s).total;formula='Logical KV history + current recurrent/conv state';scope='One full prefix handoff between independent pools. PLE bookkeeping, page metadata and replicas excluded.';}
  const rate=H.nicGbps*1e9/8*s.utilization/100/s.oversub;return{sent,rate,seconds:sent/rate,formula,scope,width:m.latent||m.d,off,linkGbps:H.nicGbps};}
 export function roofline(hardware,intensity){const h=HARDWARE[hardware];if(!h||!Number.isFinite(intensity)||intensity<=0)throw new RangeError('Invalid roofline inputs');const memory=h.hbmTBps*intensity;return{memory,compute:h.peakTF,attainable:Math.min(memory,h.peakTF),ridge:h.peakTF/h.hbmTBps,bound:memory<h.peakTF?'HBM bandwidth':'Tensor compute'};}
-export function formatNum(x,dec=0){return Number(x).toLocaleString('en-US',{maximumFractionDigits:dec});}
+export function formatNum(x,dec=0){return Number(x).toLocaleString('en-US',{maximumFractionDigits:dec,useGrouping:false});}
 export function formatParams(x){return x>=1e12?(x/1e12).toFixed(2)+'T':x>=1e9?(x/1e9).toFixed(x>=100e9?1:2)+'B':x>=1e6?(x/1e6).toFixed(1)+'M':formatNum(x);}
 export function formatBytes(x){if(!Number.isFinite(x))return'—';if(x===0)return'0 B';const units=['B','KiB','MiB','GiB','TiB','PiB'];let i=0;while(x>=1024&&i<5){x/=1024;i++;}return x.toFixed(i?2:0)+' '+units[i];}
 export function formatTime(sec){if(sec===0)return'0';return sec>=1?sec.toFixed(2)+' s':sec>=.001?(sec*1000).toFixed(2)+' ms':(sec*1e6).toFixed(1)+' μs';}

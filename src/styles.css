@@ -107,3 +107,6 @@ summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 .chapter-notes>summary{font-size:14px;line-height:1.7;color:var(--text);padding:16px 24px;cursor:pointer}
 .chapter-notes>summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 .chapter-notes[open]{padding-bottom:24px}
+
+/* Numerical notation keeps the surrounding type size and uses code glyphs. */
+.numeric-token{font:inherit;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-variant-numeric:tabular-nums}

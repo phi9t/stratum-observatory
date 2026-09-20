@@ -3,157 +3,157 @@
   "claim_ids": [
     "scene.ds3.model.block.attention.0d740d8fbb2be692",
     "scene.ds3.model.block.combine.000ad18d151e5dca",
-    "scene.ds3.model.block.dispatch.eed2c5200915c237",
-    "scene.ds3.model.block.embedding.f12446ac9154ccf0",
+    "scene.ds3.model.block.dispatch.207151bff4360113",
+    "scene.ds3.model.block.embedding.5073c22a7080632e",
     "scene.ds3.model.block.expert-activation.8763ea4c31c3faf2",
-    "scene.ds3.model.block.expert-down.0d6c4967eb5e72a6",
-    "scene.ds3.model.block.expert-up.7cc66f584e3c13c5",
-    "scene.ds3.model.block.ffn-activation.004094d6ffa36488",
-    "scene.ds3.model.block.ffn-down.1174052d57a2271e",
-    "scene.ds3.model.block.ffn-up.245321a5a7e2cf3f",
+    "scene.ds3.model.block.expert-down.10d0d79117c467f2",
+    "scene.ds3.model.block.expert-up.f75c21dc35858c42",
+    "scene.ds3.model.block.ffn-activation.7356ad84ee513a17",
+    "scene.ds3.model.block.ffn-down.0d0452510dbf09a6",
+    "scene.ds3.model.block.ffn-up.b763bb7e2706b2e7",
     "scene.ds3.model.block.final-norm.202d7567083eaf81",
     "scene.ds3.model.block.graph.046a1a33858ee3df",
+    "scene.ds3.model.block.graph.04cb51a8fe514f4d",
+    "scene.ds3.model.block.graph.050916d97c8cf286",
     "scene.ds3.model.block.graph.053bc3eafcc45adb",
-    "scene.ds3.model.block.graph.08900e66f881c9a4",
-    "scene.ds3.model.block.graph.08c5cda5113667a3",
-    "scene.ds3.model.block.graph.0934eb8698c2177d",
-    "scene.ds3.model.block.graph.0a16c45b251195c2",
-    "scene.ds3.model.block.graph.0a48e031d391cf12",
-    "scene.ds3.model.block.graph.11a3fc4b66c34d8b",
-    "scene.ds3.model.block.graph.12f916d2f3fa7d66",
+    "scene.ds3.model.block.graph.0b6d95495a50ccb9",
+    "scene.ds3.model.block.graph.0c781f17b932b4de",
+    "scene.ds3.model.block.graph.100c136515e852b5",
+    "scene.ds3.model.block.graph.104cedb48cce546d",
     "scene.ds3.model.block.graph.136b5e67860d8324",
     "scene.ds3.model.block.graph.138a547808e795b4",
-    "scene.ds3.model.block.graph.149c49f8b9ab4c7c",
+    "scene.ds3.model.block.graph.14d503b8d31a2f22",
     "scene.ds3.model.block.graph.15e15cf499b5679f",
-    "scene.ds3.model.block.graph.1881a468ae8b8eb7",
     "scene.ds3.model.block.graph.199b11c29f18399f",
+    "scene.ds3.model.block.graph.1a0b2a7c821694eb",
     "scene.ds3.model.block.graph.1af523d357b7f3f5",
+    "scene.ds3.model.block.graph.23524e060c9825e2",
     "scene.ds3.model.block.graph.24b93d0b390fc824",
-    "scene.ds3.model.block.graph.24cbdc4762ee3acc",
     "scene.ds3.model.block.graph.284df3cf4701fbe5",
-    "scene.ds3.model.block.graph.2a8f9bd3fbe760ba",
+    "scene.ds3.model.block.graph.28ef399d059e8821",
     "scene.ds3.model.block.graph.2aabe9a1ed84d9f1",
     "scene.ds3.model.block.graph.2acc8fd8bd0a93c1",
-    "scene.ds3.model.block.graph.2b5279ee9f80ba99",
     "scene.ds3.model.block.graph.2b5f1af77d453738",
-    "scene.ds3.model.block.graph.34ae46f062a11b55",
+    "scene.ds3.model.block.graph.2fcf010da9cf7cc5",
+    "scene.ds3.model.block.graph.304ecce2e38bbc80",
+    "scene.ds3.model.block.graph.30d8ff725282e180",
+    "scene.ds3.model.block.graph.34bec116d9ceeb32",
+    "scene.ds3.model.block.graph.34decc8846b17fa2",
     "scene.ds3.model.block.graph.353f53e112732ee8",
-    "scene.ds3.model.block.graph.376820518696f9eb",
-    "scene.ds3.model.block.graph.385e19136c946e39",
-    "scene.ds3.model.block.graph.38d6412dbc63ebdb",
-    "scene.ds3.model.block.graph.3b247b1ec6652b7a",
+    "scene.ds3.model.block.graph.37cf4ccb43cae193",
     "scene.ds3.model.block.graph.3bab6bef4e8bb331",
-    "scene.ds3.model.block.graph.3bd9df4a95bdbe42",
+    "scene.ds3.model.block.graph.3c0faf00df1ab468",
+    "scene.ds3.model.block.graph.3cfde156a22a0115",
+    "scene.ds3.model.block.graph.3f1769644dc2b988",
     "scene.ds3.model.block.graph.43225f11b0cd5231",
-    "scene.ds3.model.block.graph.4819a1b1675def8b",
-    "scene.ds3.model.block.graph.4823fdc3f3862921",
-    "scene.ds3.model.block.graph.4bfd88911b5cc91b",
-    "scene.ds3.model.block.graph.5107b91f4390f2b0",
+    "scene.ds3.model.block.graph.4d1aec8df6b60781",
+    "scene.ds3.model.block.graph.4fae61cfbb63dfab",
     "scene.ds3.model.block.graph.519604234ad0123a",
     "scene.ds3.model.block.graph.51be2083b0c29a3b",
     "scene.ds3.model.block.graph.584a839f07413cb3",
-    "scene.ds3.model.block.graph.5873f856b5e4a3e2",
     "scene.ds3.model.block.graph.5907df78c6a24ad5",
     "scene.ds3.model.block.graph.5ba505ad01bd8c5c",
     "scene.ds3.model.block.graph.5bbb786ff55be44c",
-    "scene.ds3.model.block.graph.5d07fb950dd20d13",
     "scene.ds3.model.block.graph.5ea3def6ff0b95df",
     "scene.ds3.model.block.graph.5efbc87203d88de7",
-    "scene.ds3.model.block.graph.5ff34e9c647fde80",
+    "scene.ds3.model.block.graph.5f8d5d25cf7331c7",
     "scene.ds3.model.block.graph.639484371a9a5233",
-    "scene.ds3.model.block.graph.655df8f01abdb5e1",
-    "scene.ds3.model.block.graph.6862facb2bf1b521",
+    "scene.ds3.model.block.graph.6a96883145711809",
+    "scene.ds3.model.block.graph.6edf84aa615b19f7",
     "scene.ds3.model.block.graph.71555f832dda15a3",
-    "scene.ds3.model.block.graph.79cbed7781f93645",
+    "scene.ds3.model.block.graph.73d1845ff5ea5301",
+    "scene.ds3.model.block.graph.77b3329bb5650672",
+    "scene.ds3.model.block.graph.7844693d07bb1fa7",
+    "scene.ds3.model.block.graph.790e171560841454",
     "scene.ds3.model.block.graph.79df8d085eec323f",
-    "scene.ds3.model.block.graph.7a3618298a0e317a",
-    "scene.ds3.model.block.graph.7b83fc7d5017c944",
     "scene.ds3.model.block.graph.7bae3206dd00b9fc",
-    "scene.ds3.model.block.graph.7e011bc1a88212c2",
     "scene.ds3.model.block.graph.7e3ef3888a68ae1b",
-    "scene.ds3.model.block.graph.7edf36ab5bd4bba7",
+    "scene.ds3.model.block.graph.7f1b933ddba013bc",
+    "scene.ds3.model.block.graph.7fb91bcce433439d",
     "scene.ds3.model.block.graph.802f7be3d968936f",
     "scene.ds3.model.block.graph.8689988be1fc275c",
+    "scene.ds3.model.block.graph.8693bc2358310609",
     "scene.ds3.model.block.graph.86d1996b8062edb3",
-    "scene.ds3.model.block.graph.87a5bd1394f5d8b2",
-    "scene.ds3.model.block.graph.887850575e584e6b",
-    "scene.ds3.model.block.graph.89dd753480798131",
-    "scene.ds3.model.block.graph.8d537672e463b41a",
+    "scene.ds3.model.block.graph.8a01d4397768425e",
+    "scene.ds3.model.block.graph.8a2dab5984209c04",
     "scene.ds3.model.block.graph.8fcffe8b703f1b76",
+    "scene.ds3.model.block.graph.93e1b96cf7ab7dcf",
     "scene.ds3.model.block.graph.96a602e21666fba4",
     "scene.ds3.model.block.graph.97390faf02cd2252",
-    "scene.ds3.model.block.graph.990eb7a425fab745",
     "scene.ds3.model.block.graph.9956de33e31c463e",
+    "scene.ds3.model.block.graph.99d5b8d674660d54",
     "scene.ds3.model.block.graph.99edb25c05d80090",
+    "scene.ds3.model.block.graph.9a65fa137c5132d1",
     "scene.ds3.model.block.graph.9a7b84d445900abd",
+    "scene.ds3.model.block.graph.9a923fb58faa9b4f",
     "scene.ds3.model.block.graph.9b94809ed11ff955",
-    "scene.ds3.model.block.graph.9f4f73cfe7a7869a",
-    "scene.ds3.model.block.graph.9f60df1901f6834c",
+    "scene.ds3.model.block.graph.9c113ff7eba5e713",
+    "scene.ds3.model.block.graph.9f26af029e9e9e86",
     "scene.ds3.model.block.graph.a02d9c3bc59e596a",
+    "scene.ds3.model.block.graph.a34d0e6eb583b025",
+    "scene.ds3.model.block.graph.a9a3fef7d3e793e5",
     "scene.ds3.model.block.graph.acfcfd4052a10585",
     "scene.ds3.model.block.graph.ae2bd6ba9cee52dd",
     "scene.ds3.model.block.graph.aefbb3d419ab4c32",
-    "scene.ds3.model.block.graph.b3d9bb0d63a48d93",
-    "scene.ds3.model.block.graph.b5c2e4d586e7cd5e",
+    "scene.ds3.model.block.graph.b4f9668c42195a6b",
     "scene.ds3.model.block.graph.b5f08f6c2175478b",
-    "scene.ds3.model.block.graph.b7f9ad9f2ba0d528",
+    "scene.ds3.model.block.graph.ba953f9605c28fc0",
     "scene.ds3.model.block.graph.badd25cabeb9dd96",
     "scene.ds3.model.block.graph.bb15c3cd6dda1c84",
-    "scene.ds3.model.block.graph.bed59032f6fcf1f6",
-    "scene.ds3.model.block.graph.bf4039dd5bc97786",
+    "scene.ds3.model.block.graph.bca0147eda605193",
+    "scene.ds3.model.block.graph.bf55d9a12ce1b1c1",
+    "scene.ds3.model.block.graph.c2a4351885cee07c",
     "scene.ds3.model.block.graph.c3cbf0898908f9b6",
     "scene.ds3.model.block.graph.c788cb65b5418a0b",
-    "scene.ds3.model.block.graph.ca180f691aed561b",
-    "scene.ds3.model.block.graph.cb9c2028cc9a738f",
     "scene.ds3.model.block.graph.cca1c6f825ffcece",
-    "scene.ds3.model.block.graph.ce2bdea81172fe19",
-    "scene.ds3.model.block.graph.ce8238842dccf289",
+    "scene.ds3.model.block.graph.ce6b2b37c9040c14",
+    "scene.ds3.model.block.graph.d030500c49db0ac3",
+    "scene.ds3.model.block.graph.d1f5e9c089565b17",
     "scene.ds3.model.block.graph.d259e5fca5a1eb04",
-    "scene.ds3.model.block.graph.d41c8b3616ed3333",
+    "scene.ds3.model.block.graph.d32be7f520b4583e",
     "scene.ds3.model.block.graph.d5b34f881af35092",
-    "scene.ds3.model.block.graph.d6e40fa1fdf3866d",
     "scene.ds3.model.block.graph.d77c34312de14351",
+    "scene.ds3.model.block.graph.d7e7f821874738e4",
     "scene.ds3.model.block.graph.d8b281dac4909c1a",
-    "scene.ds3.model.block.graph.da0e6848d7cc9549",
-    "scene.ds3.model.block.graph.db715465a1ed22b6",
-    "scene.ds3.model.block.graph.dd6e3db9e24cfcab",
-    "scene.ds3.model.block.graph.ddf45959e8b3e36c",
-    "scene.ds3.model.block.graph.e12f40e7c8dbc02b",
+    "scene.ds3.model.block.graph.dbbcc1c02f71694b",
+    "scene.ds3.model.block.graph.dea7b9a1b61c2052",
+    "scene.ds3.model.block.graph.debafbb096ddc88e",
+    "scene.ds3.model.block.graph.df7256bc2c23da1c",
     "scene.ds3.model.block.graph.e1e565fcd25ad3a3",
     "scene.ds3.model.block.graph.e24fd41f548c0148",
-    "scene.ds3.model.block.graph.e61e12752e2adf76",
-    "scene.ds3.model.block.graph.e69798354e9c7d10",
-    "scene.ds3.model.block.graph.e71719411f0b3320",
+    "scene.ds3.model.block.graph.e52924b21ae0778e",
+    "scene.ds3.model.block.graph.e8f1410630544b0b",
     "scene.ds3.model.block.graph.ecffae1a0ec14d7f",
     "scene.ds3.model.block.graph.edbce771d384e897",
-    "scene.ds3.model.block.graph.f698b48eaaf9c3fd",
+    "scene.ds3.model.block.graph.f1e8627583289820",
+    "scene.ds3.model.block.graph.f3cf7dc687164b19",
+    "scene.ds3.model.block.graph.f754d28ca965bf30",
     "scene.ds3.model.block.graph.f93799baa4066c69",
-    "scene.ds3.model.block.graph.f9b650aa42553ebb",
     "scene.ds3.model.block.graph.fa6726175920ae6b",
-    "scene.ds3.model.block.graph.fa9df44112cd17db",
     "scene.ds3.model.block.graph.fb60063f71667497",
+    "scene.ds3.model.block.graph.fd800a8c042d7bf4",
     "scene.ds3.model.block.graph.fdc58f5b9e197550",
     "scene.ds3.model.block.graph.ff25591be0d901fc",
     "scene.ds3.model.block.kv-build.259813f071835ffc",
-    "scene.ds3.model.block.kv-down.98ef1b1b0217be25",
+    "scene.ds3.model.block.kv-down.dfc66f8e6fb75012",
     "scene.ds3.model.block.kv-latent-norm.487d634967d9a7e1",
     "scene.ds3.model.block.kv-up.5f73e0de77758adb",
-    "scene.ds3.model.block.lm-head.832e1eee9237367e",
+    "scene.ds3.model.block.lm-head.1ff8d0a5910702d4",
     "scene.ds3.model.block.merge-attn.8968566750adbd6f",
     "scene.ds3.model.block.merge-ffn.cae7ff9ee9669a74",
-    "scene.ds3.model.block.norm1.3738c2f0f67d92eb",
-    "scene.ds3.model.block.norm2.76bc1dde6ff45928",
-    "scene.ds3.model.block.out-proj.8982afc9c6607e40",
-    "scene.ds3.model.block.overview-block.53504053dd22e5ed",
-    "scene.ds3.model.block.q-down.5bfb9fcb087f1f34",
+    "scene.ds3.model.block.norm1.34e449a92f06c1f6",
+    "scene.ds3.model.block.norm2.463b04debb16ef83",
+    "scene.ds3.model.block.out-proj.7e3cac684c7dbe24",
+    "scene.ds3.model.block.overview-block.42859bb56362136c",
+    "scene.ds3.model.block.q-down.109aaf0186c5bb69",
     "scene.ds3.model.block.q-latent-norm.eba320f70287c16d",
     "scene.ds3.model.block.q-position.15f358d2b5f7eeef",
     "scene.ds3.model.block.q-up.78296ba4fa313f10",
     "scene.ds3.model.block.routed-shared.43792faad52ef979",
-    "scene.ds3.model.block.router.4048ee10d2c56634",
+    "scene.ds3.model.block.router.0f3d17ea67d226d2",
     "scene.ds3.model.block.shared-activation.4f28d8e657bfdae3",
-    "scene.ds3.model.block.shared-down.153a37496356c8ee",
-    "scene.ds3.model.block.shared-up.69b01ece1f5418ac",
+    "scene.ds3.model.block.shared-down.e4756629e957b7b1",
+    "scene.ds3.model.block.shared-up.4ed3861e8c3d993f",
     "scene.ds3.model.block.top-k.b952b3f2aa049703"
   ],
   "canvas": [
@@ -164,7 +164,7 @@
     {
       "id": "embedding",
       "claims": [
-        "scene.ds3.model.block.embedding.f12446ac9154ccf0"
+        "scene.ds3.model.block.embedding.5073c22a7080632e"
       ],
       "bounds": [
         20,
@@ -175,14 +175,14 @@
       "text_bounds": [
         33,
         76.85698699951172,
-        83.15046691894531,
+        79.31336975097656,
         35.71446990966797
       ]
     },
     {
       "id": "overview-block",
       "claims": [
-        "scene.ds3.model.block.overview-block.53504053dd22e5ed"
+        "scene.ds3.model.block.overview-block.42859bb56362136c"
       ],
       "bounds": [
         20,
@@ -193,8 +193,8 @@
       "text_bounds": [
         33,
         173.85699462890625,
-        103.50114440917969,
-        35.71446228027344
+        103.40068054199219,
+        35.7144775390625
       ]
     },
     {
@@ -218,7 +218,7 @@
     {
       "id": "lm-head",
       "claims": [
-        "scene.ds3.model.block.lm-head.832e1eee9237367e"
+        "scene.ds3.model.block.lm-head.1ff8d0a5910702d4"
       ],
       "bounds": [
         20,
@@ -229,14 +229,14 @@
       "text_bounds": [
         33,
         830.8569946289062,
-        86.1839828491211,
-        35.71446228027344
+        82.34688568115234,
+        35.7144775390625
       ]
     },
     {
       "id": "norm1",
       "claims": [
-        "scene.ds3.model.block.norm1.3738c2f0f67d92eb"
+        "scene.ds3.model.block.norm1.34e449a92f06c1f6"
       ],
       "bounds": [
         270,
@@ -247,14 +247,14 @@
       "text_bounds": [
         283,
         114.85698699951172,
-        77.46515655517578,
+        76.40042114257812,
         31.71446990966797
       ]
     },
     {
       "id": "norm2",
       "claims": [
-        "scene.ds3.model.block.norm2.76bc1dde6ff45928"
+        "scene.ds3.model.block.norm2.463b04debb16ef83"
       ],
       "bounds": [
         886,
@@ -265,7 +265,7 @@
       "text_bounds": [
         899,
         114.85698699951172,
-        77.46514129638672,
+        76.40045166015625,
         31.71446990966797
       ]
     },
@@ -308,7 +308,7 @@
     {
       "id": "q-down",
       "claims": [
-        "scene.ds3.model.block.q-down.5bfb9fcb087f1f34"
+        "scene.ds3.model.block.q-down.109aaf0186c5bb69"
       ],
       "bounds": [
         270,
@@ -320,13 +320,13 @@
         283,
         240.8569793701172,
         124.59514617919922,
-        35.7144775390625
+        35.71449279785156
       ]
     },
     {
       "id": "kv-down",
       "claims": [
-        "scene.ds3.model.block.kv-down.98ef1b1b0217be25"
+        "scene.ds3.model.block.kv-down.dfc66f8e6fb75012"
       ],
       "bounds": [
         516,
@@ -338,7 +338,7 @@
         529,
         240.8569793701172,
         132.8921356201172,
-        35.7144775390625
+        35.71449279785156
       ]
     },
     {
@@ -356,7 +356,7 @@
         283,
         333.428466796875,
         99.36272430419922,
-        28.142990112304688
+        28.14299774169922
       ]
     },
     {
@@ -374,7 +374,7 @@
         529,
         333.428466796875,
         99.36270141601562,
-        28.142990112304688
+        28.14299774169922
       ]
     },
     {
@@ -392,7 +392,7 @@
         283,
         414.85699462890625,
         105.32930755615234,
-        35.71446228027344
+        35.7144775390625
       ]
     },
     {
@@ -410,7 +410,7 @@
         529,
         414.85699462890625,
         113.60616302490234,
-        35.71446228027344
+        35.7144775390625
       ]
     },
     {
@@ -427,8 +427,8 @@
       "text_bounds": [
         283,
         511.4284362792969,
-        88.21304321289062,
-        28.143020629882812
+        87.79119873046875,
+        28.143035888671875
       ]
     },
     {
@@ -463,14 +463,14 @@
       "text_bounds": [
         283,
         609.8569946289062,
-        143.53955078125,
-        35.71446228027344
+        146.131103515625,
+        35.7144775390625
       ]
     },
     {
       "id": "out-proj",
       "claims": [
-        "scene.ds3.model.block.out-proj.8982afc9c6607e40"
+        "scene.ds3.model.block.out-proj.7e3cac684c7dbe24"
       ],
       "bounds": [
         270,
@@ -482,13 +482,13 @@
         283,
         822.85693359375,
         180.5243377685547,
-        35.71452331542969
+        35.71453857421875
       ]
     },
     {
       "id": "router",
       "claims": [
-        "scene.ds3.model.block.router.4048ee10d2c56634"
+        "scene.ds3.model.block.router.0f3d17ea67d226d2"
       ],
       "bounds": [
         886,
@@ -499,8 +499,8 @@
       "text_bounds": [
         899,
         240.8569793701172,
-        102.43639373779297,
-        35.7144775390625
+        100.568115234375,
+        35.71449279785156
       ]
     },
     {
@@ -518,13 +518,13 @@
         899,
         319.428466796875,
         90.50322723388672,
-        28.142990112304688
+        28.14300537109375
       ]
     },
     {
       "id": "dispatch",
       "claims": [
-        "scene.ds3.model.block.dispatch.eed2c5200915c237"
+        "scene.ds3.model.block.dispatch.207151bff4360113"
       ],
       "bounds": [
         886,
@@ -535,14 +535,14 @@
       "text_bounds": [
         899,
         393.4284362792969,
-        92.59253692626953,
-        28.142990112304688
+        91.94967651367188,
+        28.14300537109375
       ]
     },
     {
       "id": "expert-up",
       "claims": [
-        "scene.ds3.model.block.expert-up.7cc66f584e3c13c5"
+        "scene.ds3.model.block.expert-up.f75c21dc35858c42"
       ],
       "bounds": [
         886,
@@ -554,7 +554,7 @@
         899,
         492.8569641113281,
         105.51009368896484,
-        35.71449279785156
+        35.714508056640625
       ]
     },
     {
@@ -572,13 +572,13 @@
         899,
         571.428466796875,
         141.75155639648438,
-        28.142990112304688
+        28.14300537109375
       ]
     },
     {
       "id": "expert-down",
       "claims": [
-        "scene.ds3.model.block.expert-down.0d6c4967eb5e72a6"
+        "scene.ds3.model.block.expert-down.10d0d79117c467f2"
       ],
       "bounds": [
         886,
@@ -590,7 +590,7 @@
         899,
         634.8569946289062,
         157.50173950195312,
-        35.71440124511719
+        35.71441650390625
       ]
     },
     {
@@ -608,13 +608,13 @@
         899,
         738.8569946289062,
         161.278564453125,
-        31.714523315429688
+        31.71453857421875
       ]
     },
     {
       "id": "shared-up",
       "claims": [
-        "scene.ds3.model.block.shared-up.69b01ece1f5418ac"
+        "scene.ds3.model.block.shared-up.4ed3861e8c3d993f"
       ],
       "bounds": [
         1196,
@@ -626,7 +626,7 @@
         1209,
         495.4284362792969,
         95.74658966064453,
-        33.14302062988281
+        33.143035888671875
       ]
     },
     {
@@ -643,14 +643,14 @@
       "text_bounds": [
         1209,
         572.7141723632812,
-        56.632320404052734,
-        26.857284545898438
+        57.8980712890625,
+        26.8572998046875
       ]
     },
     {
       "id": "shared-down",
       "claims": [
-        "scene.ds3.model.block.shared-down.153a37496356c8ee"
+        "scene.ds3.model.block.shared-down.e4756629e957b7b1"
       ],
       "bounds": [
         1196,
@@ -662,7 +662,7 @@
         1209,
         637.428466796875,
         76.23967742919922,
-        33.14292907714844
+        33.1429443359375
       ]
     },
     {
