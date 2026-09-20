@@ -49,6 +49,12 @@ test_full_block_exactly_matches_staged_trace (pytorch_residual_example.ResidualE
 test_scalar_projection_split_sinkhorn_and_two_sublayers (pytorch_residual_example.ResidualExampleTest.test_scalar_projection_split_sinkhorn_and_two_sublayers) ... ok
 test_schema_is_finite_deterministic_and_keeps_stream_axis (pytorch_residual_example.ResidualExampleTest.test_schema_is_finite_deterministic_and_keeps_stream_axis) ... ok
 test_wrong_current_premix_and_transpose_are_detectable (pytorch_residual_example.ResidualExampleTest.test_wrong_current_premix_and_transpose_are_detectable) ... ok
+test_aligner_pads_and_concatenates_channel_first_then_exact_gelu (pytorch_vision_inputs.VisionInputTests.test_aligner_pads_and_concatenates_channel_first_then_exact_gelu) ... ok
+test_attention_is_bidirectional_with_split_half_two_axis_rope (pytorch_vision_inputs.VisionInputTests.test_attention_is_bidirectional_with_split_half_two_axis_rope) ... ok
+test_block_pre_norm_residual_and_swiglu_order (pytorch_vision_inputs.VisionInputTests.test_block_pre_norm_residual_and_swiglu_order) ... ok
+test_end_to_end_gradient_and_shape (pytorch_vision_inputs.VisionInputTests.test_end_to_end_gradient_and_shape) ... ok
+test_patch_flatten_is_channel_then_row_then_column (pytorch_vision_inputs.VisionInputTests.test_patch_flatten_is_channel_then_row_then_column) ... ok
+test_trace_is_deterministic_and_ends_at_actual_module_output (pytorch_vision_inputs.VisionInputTests.test_trace_is_deterministic_and_ends_at_actual_module_output) ... ok
 test_hierarchy_uses_source_candidates_and_later_scores (pytorch_worked.WorkedExamplesTest.test_hierarchy_uses_source_candidates_and_later_scores) ... ok
 test_replay_does_not_mutate_caches (pytorch_worked.WorkedExamplesTest.test_replay_does_not_mutate_caches) ... ok
 test_replay_missing_dependency_matches_independent_scalar_layers (pytorch_worked.WorkedExamplesTest.test_replay_missing_dependency_matches_independent_scalar_layers) ... ok
@@ -59,6 +65,6 @@ test_changed_source_fingerprint_fails_before_numbers (pytorch_worked_artifact.Wo
 test_saved_intermediates_and_outputs_match_current_cpu (pytorch_worked_artifact.WorkedArtifactTests.test_saved_intermediates_and_outputs_match_current_cpu) ... ok
 
 ----------------------------------------------------------------------
-Ran 59 tests in 0.372s
+Ran 65 tests in 0.550s
 
 OK

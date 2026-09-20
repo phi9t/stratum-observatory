@@ -1170,6 +1170,7 @@ FIELD_MAP={
  'visionHeads':'/vision_config/num_attention_heads',
  'visionFF':'/vision_config/intermediate_size',
  'visionPatch':'/vision_config/patch_size',
+ 'visionDownsample':'/vision_config/downsample_ratio',
  # Derived, not transcribed: checked against an expression over the same bytes.
  'nopeDim':lambda c:_text(c)['head_dim']-_text(c)['qk_rope_head_dim'],
  # One wkv per layer produces the head_dim vector serving as both K and V (model.py:643), so

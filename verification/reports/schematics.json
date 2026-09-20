@@ -1,23 +1,23 @@
 {
   "schema": "stratum-schematics/v1",
   "status": "PASS",
-  "generated_at": "2026-09-20T21:23:12.382707+00:00",
-  "scenes": 771,
+  "generated_at": "2026-09-20T22:21:57.734729+00:00",
+  "scenes": 772,
   "decoder_layers": 544,
   "row_alignment_tolerance_px": 4.0,
   "unwired_annotation_nodes": 470,
   "counts": {
-    "PASS": 3199
+    "PASS": 3204
   },
   "findings": [],
   "passed_codes": {
-    "IR_OK": 771,
-    "RAIL_OK": 771,
-    "LANE_OK": 771,
+    "IR_OK": 772,
+    "RAIL_OK": 772,
+    "LANE_OK": 772,
     "SCENE_MODEL_OK": 546,
-    "SCENE_MODEL_SKIP": 225,
+    "SCENE_MODEL_SKIP": 226,
     "MHC_OK": 42,
-    "MHC_SKIP": 37,
+    "MHC_SKIP": 38,
     "CED_OK": 1,
     "CED_BAND_RATIO_DRAWN": 1,
     "ROW_OK": 1,

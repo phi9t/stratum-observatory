@@ -9,11 +9,11 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 629 verifier tests (10 skipped), 153 model/graph tests, two byte-identical builds of all eight portable entry points and 1,479 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Engineering | PASS | 0 | 629 verifier tests (10 skipped), 154 model/graph tests, two byte-identical builds of all eight portable entry points and 1,481 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
 | Accounting arithmetic | PASS | 0 | 399 live scenarios; 309 agreement, 82 explained differences, 186 unsupported findings, zero contradictions; required by engineering |
-| Schematics | PASS | 0 | 771 scenes including all 544 decoder layers; 3,199 checks against core.mjs, of which 262 are recorded not-applicable passes |
-| Presentations | PASS | 0 | 97 checks over 35 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
-| Aesthetics | PASS | 0 | 210 scenarios, 523 checks; type, spacing, contrast, clearance, probe coverage and composition |
+| Schematics | PASS | 0 | 772 scenes including all 544 decoder layers; 3204 checks against core.mjs, of which 264 are recorded not-applicable passes |
+| Presentations | PASS | 0 | 98 checks over 36 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
+| Aesthetics | PASS | 0 | 212 scenarios, 525 checks; type, spacing, contrast, clearance, probe coverage and composition |
 | Scientific publication | BLOCKED | 2 | Nine-model consumer inventory and strict evidence/review audit; **no FAIL** |
 | Runtime certification | BLOCKED | 2 | Run on these bytes: 32 of 32 obligations NOT_RUN, **no FAIL and no `RUNTIME_STALE`**; all private hardware receipts were withdrawn for publication |
 
@@ -27,7 +27,7 @@ Python pin, `tests/`, `.github/CODEOWNERS` and the aesthetics policy are all ins
 
 ## Browser evidence
 
-**1,479 rendered states**, including all **544 decoder layers** across nine checkpoints in both
+**1,481 rendered states**, including all **544 decoder layers** across nine checkpoints in both
 label modes, **56 responsive viewport/lens/theme combinations** and **36 device-scale cases at
 1.25 and 2**. **0 geometry defects, 0 runtime JavaScript errors, 0 external runtime requests.**
 Model/layer/scenario controls, search, keyboard navigation, tracing, focus, zoom, URL restore,
@@ -68,7 +68,7 @@ or GPU execution.
 
 ## Aesthetics evidence
 
-`npm run verify:aesthetics` passes: **523 checks, 0 failures** across 210 scenarios and 154
+`npm run verify:aesthetics` passes: **525 checks, 0 failures** across 212 scenarios and 154
 distinct measurements. The first run of this gate failed on 21 defects that shipped in the
 delivered artifact; all are now fixed at the source rather than by moving a threshold.
 
@@ -89,7 +89,7 @@ labels stay at AA deliberately: they sit on the semantic tint fills that carry t
 of `docs/design/OBSERVATORY.md`, and forcing 7:1 there would wash that grammar out of the diagram.
 
 Position must not depend on theme, and does not: composition is byte-identical between dark and
-light in every scenario. All **210** measured scenarios were each compared against a recorded
+light in every scenario. All **212** measured scenarios were each compared against a recorded
 signature and all match — the measured, the compared and the baselined counts are the same number,
 which is the only way this check means anything. That sentence is now the gate's own PASS message,
 computed from the compared set, rather than a property of this document.
@@ -167,8 +167,8 @@ synthetic markup in a browser, not asserted.
 
 `npm run verify:schematics` checks what the diagram means rather than where its boxes landed. The
 scene IR comes from the diagram builders and, per scene, `core.mjs` independently states what is
-true; the two are compared. 771 scenes, 3,199 checks, 544 decoder layers, no browser. Of those
-3,199, **262 are explicit not-applicable passes** — `SCENE_MODEL_SKIP` 225 and `MHC_SKIP` 37, both
+true; the two are compared. 772 scenes, 3204 checks, 544 decoder layers, no browser. Of those
+3204, **264 are explicit not-applicable passes** — `SCENE_MODEL_SKIP` 226 and `MHC_SKIP` 38, both
 counted in the report's own `passed_codes` — so 2,937 are applicable checks and the rest are a check
 saying, in the report rather than by silence, that it did not apply here.
 
@@ -207,7 +207,7 @@ Two residues, named rather than papered over. The five judges defined inside `sc
 itself are not in those lists; they are covered by that module having no BLOCKED constructor and by
 `test_the_gate_report_carries_only_pass_and_fail`, which reads the real report's status counts.
 And `aggregate` returns BLOCKED for an empty finding list, so a gate that produced no findings at
-all would block; it produces 3,199 across 771 scenes, and the scene count is itself asserted.
+all would block; it produces 3204 across 772 scenes, and the scene count is itself asserted.
 
 ## The written exposition
 
@@ -348,8 +348,8 @@ those three pages were measured by this gate in no state at all.
 script, this gate's coverage judge, its focal-state list, both exporters, the browser matrix and
 the aesthetics sweep all read it. `PREVIEW_COVERAGE` requires every model in the live table and
 every focal page that model offers; `PROSE_SCOPE` names the states it measured. **All nine
-checkpoints now appear in the 47 published previews, including every focal page they
-offer**, and this gate measures **35 delivered states**: Foundations, dedicated entry states, and every focal page in
+checkpoints now appear in the 48 published previews, including every focal page they
+offer**, and this gate measures **36 delivered states**: Foundations, dedicated entry states, and every focal page in
 the application.
 
 **The manifest's own per-file digests had never been read, and the coverage question was only ever
@@ -424,25 +424,25 @@ inventory, not correctness of anything in it.
 
 | Item | Count |
 |---|---:|
-| Input leaves | 606 |
-| Function/file identities | 63 |
-| Distinct sampled scene contracts | 3118 |
-| Claims including domain obligations | 3811 |
-| Candidate source entries | 83 |
-| Accepted raw-byte snapshots | 81 |
+| Input leaves | 610 |
+| Function/file identities | 67 |
+| Distinct sampled scene contracts | 3150 |
+| Claims including domain obligations | 3851 |
+| Candidate source entries | 87 |
+| Accepted raw-byte snapshots | 85 |
 | Scientifically certified claims under the signed policy | 0 |
 | Passed presentation bindings | 0 |
 | Domain contracts / runtime obligations | 32 / 32 |
 
-The publication audit has **6,908 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
+The publication audit has **7,041 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
 from the current source and consumer bytes with a fresh engineering receipt:
 
 | Code | Status | Count |
 |---|---|---:|
-| `REVIEW_REQUIRED` | BLOCKED | 3,843 |
+| `REVIEW_REQUIRED` | BLOCKED | 3,883 |
 | `CLAIM_ANCHOR` | BLOCKED | 2,334 |
-| `CLAIM_ROLE` | BLOCKED | 341 |
-| `MODEL_DUAL_CODE` | BLOCKED | 325 |
+| `CLAIM_ROLE` | BLOCKED | 387 |
+| `MODEL_DUAL_CODE` | BLOCKED | 371 |
 | `CONTRACT_EVIDENCE` | BLOCKED | 32 |
 | `CONTRACT_CONSISTENT` | PASS | 24 |
 | `CONTRACT_MODEL_COVERAGE` | PASS | 9 |
@@ -455,7 +455,7 @@ from the current source and consumer bytes with a fresh engineering receipt:
 | `ENGINEERING_CURRENT` | PASS | 1 |
 
 Most of these are cascading source dependencies and absent independent reviews; this is **not** a
-claim that 6,908 facts are false. No review identity, accepted source hash or execution receipt was
+claim that 7,041 facts are false. No review identity, accepted source hash or execution receipt was
 invented.
 
 For the record, the evidence-anchor work began at **9,037 findings (9,013 BLOCKED)** with
@@ -465,7 +465,7 @@ provenance, and letting derived scene claims carry provenance through their depe
 removed 3,853 BLOCKED findings without a single fabricated anchor.
 
 Runtime certification was run on these bytes and reports the same population plus its
-obligations: **6,908 BLOCKED, 38 PASS, 32 NOT_RUN, no FAIL.**
+obligations: **7,041 BLOCKED, 38 PASS, 32 NOT_RUN, no FAIL.**
 
 **Adding a ninth checkpoint did not make any receipt stale, and an earlier draft of this section
 was wrong to predict that it would.** The prediction came from reading the coupling rule instead of
@@ -810,9 +810,9 @@ executes all three, and CI could never have executed the transcription compariso
 
 Portable HTML SHA-256: `98be3fc6bf564a0ede8cfe10be30b9fb7f4d6e83122c4ab1b5d583ff9cb47ee1`
 
-Scientific lock SHA-256: `da9d4299c04ac7e45e04fd5a852c575ed1445c7a91d4bc7681fb4ccec8894e5e`
+Scientific lock SHA-256: `05816927bc258a9d5ce79bfce709835eb8f813ec0691e07cc1a3b27f5919e78c`
 
-Verifier identity SHA-256: `e91e5d1ac4a6fca418d8762397918e343500784e0f3970cca0bf88a91d2fd227`
+Verifier identity SHA-256: `4c8007c9bf3625d97a08f22b896d10186f5bff7c098601830ab7fadd3b9df3d5`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -855,7 +855,7 @@ reading. It used to be exactly that: a permanently failing `publication` job who
 indistinguishable from a contradiction, because `aggregate()` collapses BLOCKED and FAIL into one
 exit code and GitHub renders both the same.
 
-So completeness runs on a trusted machine — `npm run verify:science`, exit 2, **6908 BLOCKED and
+So completeness runs on a trusted machine — `npm run verify:science`, exit 2, **7041 BLOCKED and
 38 PASS findings, 0 FAIL** — and its report is committed as `verification/reports/publication.json`.
 This document states its figures, and `verification/tests/test_reported_numbers.py`, which runs
 inside the *green* engineering gate, fails if the record drifts from the report **or if the report
@@ -892,7 +892,7 @@ V4.1 dispatch and storage anchors. Main KV and packed indexer payload reconcile 
 window state and allocation overhead remain separate. [Research and source scope](docs/design/V41-SERVING-RESEARCH.md)
 record the development-branch serving implementation and Miles plugin. Neither is a runtime receipt.
 
-Dedicated HTML SHA-256: `53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15`
+Dedicated HTML SHA-256: `427adaf6d6460728c460cd5317c75cffe39f651a7204dc6de1079b6e29b29ec7`
 
 CED phase depths follow the report-level scheme. The pinned reference forward still visits all backbone layers; encoder-only prefill execution is not certified by that code. This distinction is visible in the CED caption and serving inspector.
 
@@ -936,12 +936,12 @@ registry drives page builds, artifact identity, browser routing and preview sele
 Chromium exercises real landing links, variant switches, reloads, identity enforcement,
 scenario exports and return links. All eight portable files are included in the software gates.
 
-- `deepseek-v4.1.html` SHA-256: `53a2d5f28b5e2afdfa4966b27a70f10e5352b38aa66a4901a130034c466e5b15`
+- `deepseek-v4.1.html` SHA-256: `427adaf6d6460728c460cd5317c75cffe39f651a7204dc6de1079b6e29b29ec7`
 - `index.html` SHA-256: `98be3fc6bf564a0ede8cfe10be30b9fb7f4d6e83122c4ab1b5d583ff9cb47ee1`
-- `kimi-k3.html` SHA-256: `64dd0bdf8f56b280fc03e0c2400ed5b580e356fe05f59724432c8436fc24fe44`
-- `qwen3.8.html` SHA-256: `5162b5303a9f9a0e5d55ebce6a3053c02589ceb2da6c216c25b22829edda4afd`
+- `kimi-k3.html` SHA-256: `63497756b08c61f9f2f2b0d45060fd969e00c79d8b35f70313f53d245a2a9b3e`
+- `qwen3.8.html` SHA-256: `59a9afed69a085bc1682458cc49d4f3409da0df89ccb3850f49fdb9d191d1b83`
 
-Publication coverage: 3843 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
+Publication coverage: 3883 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
 
 ## Shared systems sections
 
@@ -953,10 +953,10 @@ exposes a workload-model selector, and links preserve the originating scenario. 
 system bookmarks redirect to these shared pages. Repeated local arrow-key navigation keeps focus
 in the model tabs. All eight files receive artifact identity and portable delivery checks.
 
-- `hardware.html` SHA-256: `2d17358855b5582f7ad5c4c0e02091e9de7ca5243b56acea56c164942fee0411`
-- `networking.html` SHA-256: `aaaac7109b0d83053892eae959120021a653509f0fd4e65fc9b2b45a065caf21`
+- `hardware.html` SHA-256: `9a219a104d178cfabd4142d187b1c151c18c6cc70e2833495c814c1024c0f723`
+- `networking.html` SHA-256: `26e20a30e9a636133f86a455a89ea251f69e204af44be7449a37d149c87026c3`
 
-- `foundations.html` SHA-256: `5f7f346f04cc714e8fcbf8c788d1597f7e24e9569a10e1af8d0d9fc36c8a5f83`
+- `foundations.html` SHA-256: `8170d9426caab5e7f0d99ec33df75bcc201db9a2c6b8c11595629a0dce81bd12`
 
 - `data-representation.html` SHA-256: `1c0bc18eafbff1b9b1d1d1ff4a921283baa38f476b90a7db01982adae3c77c0d`
 
@@ -969,7 +969,7 @@ anchors local and migrates legacy model/scenario fragments to their canonical pa
 
 Chromium verifies real links, exact family membership, reloads, offline use, keyboard focus,
 heading order, responsive widths, reading contrast and print for both static documents.
-The current capture manifest includes 47 previews, including the homepage and data reference.
+The current capture manifest includes 48 previews, including the homepage and data reference.
 
 Four general data-topic consumers bind the exact displayed prose and reference URLs.
 Those URLs are reading references, not accepted upstream evidence: acquisition, precise
@@ -992,7 +992,7 @@ PDF observation is recorded in `docs/research/DEEPSEEK_V41_DEEPDIVES.md`; its un
 PDF selector remains an explicit BLOCKED dependency, not a fabricated source acceptance.
 
 All ten new dark/light composition signatures were inspected before promotion; no
-existing signature changed. The capture inventory contains 47 current previews.
+existing signature changed. The capture inventory contains 48 current previews.
 
 ## DSpark paper, DeepSpec and checkpoint provenance
 
@@ -1015,7 +1015,7 @@ separately scoped DeepSpec verifier. The encoder and decoder reuse the same back
 records. Exact source-symbol anchors bind each record in the publication inventory;
 independent scientific acceptance remains BLOCKED.
 
-59 PyTorch CPU tests exercise reduced-shape mathematics, masks, partial compression
+65 PyTorch CPU tests exercise reduced-shape mathematics, masks, partial compression
 state, previous-sublayer mixing, asymmetric SwiGLU clamps, unbiased expert weighting,
 draft visibility, Markov conditioning, rejection sampling and cache ownership. They run
 our authored examples with illustrative inputs, not upstream code or checkpoint weights.

@@ -40,6 +40,14 @@ class V41Config:
     engram_max_ngram: int = 4
     dspark_block_size: int = 5
     markov_rank: int = 256
+    vision_dim: int = 1024
+    vision_heads: int = 16
+    vision_hidden_dim: int = 2816
+    vision_layers: int = 32
+    vision_patch_size: int = 14
+    vision_rope_theta: float = 10000.0
+    vision_downsample_ratio: int = 3
+    vision_norm_epsilon: float = 1e-6
 
     @property
     def engram_hash_columns(self) -> int:

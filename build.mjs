@@ -8,9 +8,27 @@ import {syncWorkedResults} from './tools/sync-worked.mjs';
 import {syncPythonSources} from './tools/sync-pytorch.mjs';
 syncPythonSources();
 syncWorkedResults();
-const files=['models','worked-results','worked-examples','pytorch-source','pytorch-backbone','pytorch-memory','pytorch-dspark','pytorch','core','scene','diagram-model','diagram-systems','diagram-residual','diagram-meta','deepdives','python-highlight','diagram-deepdives','diagram-pytorch-backbone','diagram-pytorch-memory','diagram-pytorch-dspark','diagram-pytorch','diagrams','innovations','pages','app'];
+const files=['models','worked-results','worked-examples','pytorch-source','pytorch-inputs','pytorch-backbone','pytorch-memory','pytorch-dspark','pytorch','core','scene','diagram-model','diagram-systems','diagram-residual','diagram-inputs','diagram-meta','deepdives','python-highlight','diagram-deepdives','diagram-pytorch-backbone','diagram-pytorch-memory','diagram-pytorch-dspark','diagram-pytorch','diagrams','innovations','pages','app'];
 const modules=[];
 for(const name of files){let code=fs.readFileSync(`src/${name}.mjs`,'utf8');const exports=new Set();
+ if(['pytorch-inputs','pytorch-backbone','pytorch-memory','pytorch-dspark'].includes(name)){
+  const symbol=({ 'pytorch-inputs':'INPUTS_EXAMPLES','pytorch-backbone':'BACKBONE_EXAMPLES','pytorch-memory':'MEMORY_EXAMPLES','pytorch-dspark':'DSPARK_EXAMPLES'})[name];
+  const metadata=(await import(`./src/${name}.mjs`))[symbol].map(({code,...entry})=>entry);
+  const compressed=gzipSync(Buffer.from(JSON.stringify(metadata)),{level:9}).toString('base64');
+  modules.push(`__modules['${name}.mjs'] = {${symbol}:(JSON.parse(await new Response(new Blob([Uint8Array.from(atob('${compressed}'),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('gzip'))).text())).map(entry=>({...entry,code:__modules['pytorch-source.mjs'].PYTHON_SOURCES[entry.sourceFile.split('/').pop()]}))};`);
+  continue;
+ }
+ if(name==='diagram-inputs'||name==='diagram-residual'){
+  // These fixed-checkpoint context scenes have no scenario-dependent geometry.
+  // Compile their pure builders into compressed scene/chapter data; retain the
+  // same callable interface and clone on access so reader interaction is isolated.
+  const input=name==='diagram-inputs',api=await import(`./src/${name}.mjs`);
+  const sceneName=input?'buildV41Inputs':'buildMHCResidual',chapterName=input?'inputsChapter':'residualChapter';
+  const data={scene:api[sceneName]({model:'dsv41'}),chapter:api[chapterName](presets.MODELS.dsv41)};
+  const compressed=gzipSync(Buffer.from(JSON.stringify(data)),{level:9}).toString('base64');
+  modules.push(`__modules['${name}.mjs'] = await (async()=>{const data=JSON.parse(await new Response(new Blob([Uint8Array.from(atob('${compressed}'),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('gzip'))).text());return {${sceneName}:()=>structuredClone(data.scene),${chapterName}:()=>structuredClone(data.chapter)};})();`);
+  continue;
+ }
  if(name==='models'){
   const compressed=gzipSync(Buffer.from(JSON.stringify(presets)),{level:9}).toString('base64');
   modules.push(`__modules['models.mjs'] = JSON.parse(await new Response(new Blob([Uint8Array.from(atob('${compressed}'),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('gzip'))).text());`);

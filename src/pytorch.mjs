@@ -1,3 +1,4 @@
+import {INPUTS_EXAMPLES} from './pytorch-inputs.mjs';
 /** One canonical, executable teaching example per mechanism; no upstream runtime imports. */
 import {PYTHON_SOURCES} from './pytorch-source.mjs';
 import {SOURCES} from './models.mjs';
@@ -26,7 +27,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.`;
-export const PYTORCH_EXAMPLES=[...BACKBONE_EXAMPLES,...MEMORY_EXAMPLES,...DSPARK_EXAMPLES];
+export const PYTORCH_EXAMPLES=[...INPUTS_EXAMPLES,...BACKBONE_EXAMPLES,...MEMORY_EXAMPLES,...DSPARK_EXAMPLES];
 export function chapterExamples(stage){return PYTORCH_EXAMPLES.filter(x=>x.stages.includes(stage));}
 export const PYTORCH_CONFIG=PYTHON_SOURCES['config.py'];
 /** Flatten only the known package import for portable, single-file downloads. */

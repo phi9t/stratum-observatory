@@ -21,7 +21,7 @@ def text(value):
 def exercise(page, root):
     examples = json.loads((Path(root)/'examples/deepseek_v41/worked-results.json').read_text())['examples']
     url = (Path(root)/'dist/deepseek-v4.1.html').as_uri()
-    stages = {'residual':['residual'], 'decoder':['replay'], 'csa2':['selection','query'],
+    stages = {'inputs':['inputs'], 'module-vision-inputs':['inputs'], 'residual':['residual'], 'decoder':['replay'], 'csa2':['selection','query'],
               'module-csa2-selection':['selection'], 'module-csa2-attention':['query']}
     for stage, ids in stages.items():
         page.goto(url + '#stage=' + stage)

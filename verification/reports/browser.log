@@ -15,7 +15,7 @@ Geometry states: 1400
 {
   "schema": "stratum-browser-tests/v2",
   "browser": "Chromium",
-  "geometry_states": 1479,
+  "geometry_states": 1481,
   "responsive_states": 56,
   "device_scale_states": 36,
   "geometry_defects": 0,

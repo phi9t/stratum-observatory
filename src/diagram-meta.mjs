@@ -1,3 +1,4 @@
+import {buildV41Inputs} from './diagram-inputs.mjs';
 import {buildMHCResidual} from './diagram-residual.mjs';
 import {getModel,MODELS,HARDWARE,SOURCES,layerKind,layerPartition,layerBands,parameterLedger,cacheLedger,servingLedger,formatBytes,formatParams,formatNum,evidenceSummary} from './core.mjs';
 import {makeScene,addNode,addGroup,addLabel,addWire,makeInfo} from './scene.mjs';
@@ -19,7 +20,7 @@ export function buildEvidence(s){const m=getModel(s.model),g=makeScene(1440,905)
  const gates=[['engineering',36,'Engineering','RUN THE LOCAL CHECKS','Arithmetic, graph invariants, deterministic builds and real-browser geometry/interactions. This view does not invent a passed signed receipt.'],['publication',512,'Scientific publication','BLOCKED','Immutable byte snapshots, precise anchors and independent signed reviews remain outstanding. Reference links are not accepted source snapshots.'],['runtime',988,'Runtime certification','NOT RUN','No model inference/training on a GPU or physical network benchmark was run for this artifact. Hardware support and transport correctness need exact-stack receipts.']];
  gates.forEach(([id,x,t,sub,b])=>node(g,m,`gate-${id}`,x,744,416,90,t,sub,b,'no silent promotion between gates',id==='engineering'?'compute':'state'));
  g.defaultSelected='gate-publication';g.caption='The full verifier suite remains in the source bundle. This interface exposes the evidence boundary; it does not replace independent review, accepted byte snapshots or hardware execution receipts.';return g;}
-export function buildInputs(s){const m=getModel(s.model),g=makeScene(1440,990);addLabel(g,'MODEL / INPUT CONTRACT',36,36,'compute',{size:11,tracking:1.4});addLabel(g,'Different modalities. One residual stream.',36,80,'text',{size:26});addLabel(g,m.repo,36,114,'muted',{size:13});
+export function buildInputs(s){if(s.model==='dsv41')return buildV41Inputs(s);const m=getModel(s.model),g=makeScene(1440,990);addLabel(g,'MODEL / INPUT CONTRACT',36,36,'compute',{size:11,tracking:1.4});addLabel(g,'Different modalities. One residual stream.',36,80,'text',{size:26});addLabel(g,m.repo,36,114,'muted',{size:13});
  addGroup(g,'text-input-region',36,156,580,540,'TEXT PATH');addGroup(g,'vision-input-region',824,156,580,540,'VISION PATH');
  node(g,m,'tokenizer',60,230,532,60,'Tokenizer + special tokens',`${formatNum(m.vocab)} vocabulary rows`,'Tokenizer version, special tokens and prompt/chat conventions are separate from weight shapes. Changing them changes model input semantics.','text → token IDs');
  node(g,m,'text-embeddings',60,408,532,64,'Token embedding lookup',`[B, S_text, ${m.d}]`,'The embedding lookup maps tokens to residual width. The full table remains resident even when only a few rows are read.','E[token IDs]','compute');

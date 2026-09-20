@@ -27,7 +27,7 @@ class WorkedExamplesTest(unittest.TestCase):
         with patch.object(csa2_attention, 'run_query_example', wraps=csa2_attention.run_query_example) as run:
             data = worked_examples.run_worked_examples()
         run.assert_called_once_with(V41_CONFIG)
-        self.assertEqual(set(json.loads(json.dumps(data, allow_nan=False))), {'residual', 'replay', 'selection', 'query'})
+        self.assertEqual(set(json.loads(json.dumps(data, allow_nan=False))), {'inputs', 'residual', 'replay', 'selection', 'query'})
         values = rows(data['query'])
         dictionary = values['dictionary']
         for index, (query, output) in enumerate(zip(values['queries'], values['outputs'])):

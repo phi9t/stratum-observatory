@@ -1,9 +1,11 @@
+import {inputsChapter} from './diagram-inputs.mjs';
 import {residualChapter} from './diagram-residual.mjs';
 /** Source-grounded chapter exposition. Quantities are derived from the selected model. */
 import {getModel,layerKind,cacheLedger,parameterLedger,formatNum,formatBytes,formatParams} from './core.mjs';
-export const DEEP_DIVE_TITLES={encoder:'Encoder',decoder:'Decoder',engram:'Engram',csa2:'CSA2',dspark:'dSpark',residual:'Residual'};
+export const DEEP_DIVE_TITLES={encoder:'Encoder',decoder:'Decoder',engram:'Engram',csa2:'CSA2',dspark:'dSpark',residual:'Residual',inputs:'Inputs'};
 export function chapterContent(id,s){
  const m=getModel(id);if(m.architecture!=='ced-csa2'||!DEEP_DIVE_TITLES[s.stage])return null;
+ if(s.stage==='inputs')return inputsChapter(m);
  if(s.stage==='residual')return residualChapter(m);
  const F=formatNum,one=xs=>xs.map(x=>x+1).join(', '),shape=`[B, T, ${m.streams}, ${m.d}]`,cache=cacheLedger(m,s);
  const common={scope:'Source inspection and derived accounting; no measured throughput or runtime certification.',symbols:'B = sequences; T = token positions; residual copies, layer depth and token time are separate axes.'};

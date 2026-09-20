@@ -23771,7 +23771,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/diagram-meta.mjs",
-      "expected": "391d9ee2e6e30f90bc2594a47c3a331dabbaa94e052f5ef8a269f68499350c85",
+      "expected": "c832d83fde80010e4b70baa2c7de66352ede6eb8ed9b2a0efe39b25acbe44192",
       "statement": "file.src/diagram-meta.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23899,7 +23899,7 @@
       "domain": "model",
       "classification": "derived",
       "consumer": "file.src/models.mjs",
-      "expected": "a841c924531f50ce4c36c8a98b926d9a28f72b97543752840307286a4cff53c5",
+      "expected": "e3b46422b2eb7384dc1c0fa1b880b86d859f1a6f6d482cd0593254b8ad568259",
       "statement": "file.src/models.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -23973,7 +23973,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.build.mjs",
-      "expected": "e7e30f5b57a60424abda1afb28e532d596be590a25aadd5424cefce083359e2e",
+      "expected": "a9415f8a3309885cd461b0c56cb0992b0baa39b7b20a4c160ec7bf74f3b05bd8",
       "statement": "file.build.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -139398,277 +139398,6 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.inputs.decoder-entry.3fa1e237794387e5",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.inputs.decoder-entry.3fa1e237794387e5",
-      "expected": "3fa1e237794387e57870cc699fbdf061febbf83bd2ee853d936a03c1a3a007af",
-      "statement": "scene.dsv41.model.inputs.decoder-entry.3fa1e237794387e5: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
-      "evidence": [
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Transformer",
-            "sha256": "ba3f2971ecd0472ac541d4c470be148fa375d8c5a6aa2e9d8298e1403322b7d3",
-            "resolved_span": [
-              1183,
-              1282
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/diagrams.mjs",
-        "file.src/core.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.inputs.graph.217944b73c86f4eb",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.inputs.graph.217944b73c86f4eb",
-      "expected": "217944b73c86f4eb68d249b2b5486bb2c8d668e45b25f5d8f5b567822deb0c55",
-      "statement": "scene.dsv41.model.inputs.graph.217944b73c86f4eb: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
-      "evidence": [
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Transformer",
-            "sha256": "ba3f2971ecd0472ac541d4c470be148fa375d8c5a6aa2e9d8298e1403322b7d3",
-            "resolved_span": [
-              1183,
-              1282
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/diagrams.mjs",
-        "file.src/core.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.inputs.interleave.eb9001a39b16e3b6",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.inputs.interleave.eb9001a39b16e3b6",
-      "expected": "eb9001a39b16e3b6a23aa8a51179493c5580839e2e3810c26336a8d9ca8badd4",
-      "statement": "scene.dsv41.model.inputs.interleave.a09ac40515bb682b: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
-      "evidence": [
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Transformer",
-            "sha256": "ba3f2971ecd0472ac541d4c470be148fa375d8c5a6aa2e9d8298e1403322b7d3",
-            "resolved_span": [
-              1183,
-              1282
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/diagrams.mjs",
-        "file.src/core.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.inputs.patches.eeb39cdc40ef5d9d",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.inputs.patches.eeb39cdc40ef5d9d",
-      "expected": "eeb39cdc40ef5d9da02675a5dfe7bb3d4056f3efdce686de636e9b2affb7c582",
-      "statement": "scene.dsv41.model.inputs.patches.eeb39cdc40ef5d9d: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
-      "evidence": [
-        {
-          "source": "dsv41-vision",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "ViT",
-            "sha256": "9336f181474b91bd176dfe9f111d3e15aa23251e152e547c64381fef42083aa6",
-            "resolved_span": [
-              87,
-              103
-            ]
-          },
-          "relation": "implements"
-        },
-        {
-          "source": "dsv41-vision",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Aligner",
-            "sha256": "5198193fbe5b28ebf445c8cbc16903c48308cea719d3971a45f969e237356637",
-            "resolved_span": [
-              106,
-              119
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/diagrams.mjs",
-        "file.src/core.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.inputs.text-embeddings.6d0eb49cd862e433",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.inputs.text-embeddings.6d0eb49cd862e433",
-      "expected": "6d0eb49cd862e43367e2caf713a148aa7f35719cb07281717ea62247d0798bff",
-      "statement": "scene.dsv41.model.inputs.text-embeddings.804b9a12d788cb70: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
-      "evidence": [
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Transformer",
-            "sha256": "ba3f2971ecd0472ac541d4c470be148fa375d8c5a6aa2e9d8298e1403322b7d3",
-            "resolved_span": [
-              1183,
-              1282
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/diagrams.mjs",
-        "file.src/core.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.inputs.tokenizer.a13bf021b072093c",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.inputs.tokenizer.a13bf021b072093c",
-      "expected": "a13bf021b072093c579040a2f67557d92958975c3c1c6c642bfc8cd3b52a9a8a",
-      "statement": "scene.dsv41.model.inputs.tokenizer.718aa3422bf03233: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
-      "evidence": [
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Transformer",
-            "sha256": "ba3f2971ecd0472ac541d4c470be148fa375d8c5a6aa2e9d8298e1403322b7d3",
-            "resolved_span": [
-              1183,
-              1282
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/diagrams.mjs",
-        "file.src/core.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.inputs.vision-merge.069e211e839b2f33",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.inputs.vision-merge.069e211e839b2f33",
-      "expected": "069e211e839b2f33277c916948d57c82c80dddbd3636a27ea9b3e9243f9c9391",
-      "statement": "scene.dsv41.model.inputs.vision-merge.2bac20c4feccdb97: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
-      "evidence": [
-        {
-          "source": "dsv41-vision",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "ViT",
-            "sha256": "9336f181474b91bd176dfe9f111d3e15aa23251e152e547c64381fef42083aa6",
-            "resolved_span": [
-              87,
-              103
-            ]
-          },
-          "relation": "implements"
-        },
-        {
-          "source": "dsv41-vision",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Aligner",
-            "sha256": "5198193fbe5b28ebf445c8cbc16903c48308cea719d3971a45f969e237356637",
-            "resolved_span": [
-              106,
-              119
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/diagrams.mjs",
-        "file.src/core.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.inputs.vision-tower.cdfff22f79e0aaa9",
-      "domain": "model",
-      "classification": "derived",
-      "consumer": "scene.dsv41.model.inputs.vision-tower.cdfff22f79e0aaa9",
-      "expected": "cdfff22f79e0aaa9cf24ec663be775ba526808c24923d1e9840134a67982aa4b",
-      "statement": "scene.dsv41.model.inputs.vision-tower.1362aa6ee13a8f68: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
-      "evidence": [
-        {
-          "source": "dsv41-vision",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "ViT",
-            "sha256": "9336f181474b91bd176dfe9f111d3e15aa23251e152e547c64381fef42083aa6",
-            "resolved_span": [
-              87,
-              103
-            ]
-          },
-          "relation": "implements"
-        },
-        {
-          "source": "dsv41-vision",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Aligner",
-            "sha256": "5198193fbe5b28ebf445c8cbc16903c48308cea719d3971a45f969e237356637",
-            "resolved_span": [
-              106,
-              119
-            ]
-          },
-          "relation": "implements"
-        }
-      ],
-      "dependencies": [
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.layers",
-        "file.src/diagrams.mjs",
-        "file.src/core.mjs"
-      ]
-    },
-    {
       "id": "scene.dsv41.network.block.graph.3850c76585fb10bb",
       "domain": "model",
       "classification": "derived",
@@ -146415,7 +146144,7 @@
       "consumer": "file.src/deepdives.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "9d33b908299666e54627691f1e916611488de39afd5ada11fa919b4b71cc2401",
+      "expected": "beb5dd9536578dd57046215899f1da4a1d403d2e72ae5f019ebf1baf2882a3b5",
       "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
       "evidence": [],
       "dependencies": [
@@ -147529,7 +147258,7 @@
       "consumer": "file.src/pytorch-backbone.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "979a0febd9012b7ba21c5dc527369f2e7dca24792e2ccc43643440e8112a2ee8",
+      "expected": "c3ea2a3895cb2dc57cfe7b944b1439074b9281a32caf6753771b93da21a89856",
       "statement": "Teaching example delivery fingerprint; identity is not source acceptance.",
       "evidence": [],
       "dependencies": [
@@ -147619,7 +147348,7 @@
       "consumer": "file.src/pytorch.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "241db1a2190167fe711c39a03da188981b95c7dfaea3c41a97f5340fb3454bc0",
+      "expected": "7ce2576523fbe81dbc85a773fc9ed622f61976954e02a6b52aba95a820c553ba",
       "statement": "Teaching example delivery fingerprint; identity is not source acceptance.",
       "evidence": [],
       "dependencies": [
@@ -147947,7 +147676,7 @@
       "consumer": "file.src/diagram-pytorch.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "baac444fe9eea896b8992545cba4206420c25198466e0b848e2aaac302fa9146",
+      "expected": "c2c537fc2d0d8017813f8056fe48692d30c3a266959ef04d129eae2af47f3619",
       "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
       "evidence": [],
       "dependencies": [
@@ -149829,7 +149558,7 @@
       "consumer": "file.examples/deepseek_v41/config.py",
       "domain": "model",
       "classification": "derived",
-      "expected": "07434f1286ba8556e1c9c9defc04b651a30be300b5182834c45fd8358e42b0b6",
+      "expected": "ebfa565c184466b8cfc495c7a557f73b8fc87b4160d59d4a0ffe4472fc742c11",
       "dependencies": [
         "MODELS.dsv41.active",
         "MODELS.dsv41.activeDecode",
@@ -149911,7 +149640,8 @@
         "MODELS.dsv41.vocab",
         "MODELS.dsv41.window",
         "MODELS.dsv41.indexerScaleGroup",
-        "MODELS.dsv41.indexerKvFormat"
+        "MODELS.dsv41.indexerKvFormat",
+        "MODELS.dsv41.visionDownsample"
       ],
       "evidence": [
         {
@@ -149946,6 +149676,133 @@
             "kind": "json_pointer",
             "pointer": "/text_config/dspark_markov_rank",
             "sha256": "51e8ea280b44e16934d4d611901f3d3afc41789840acdff81942c2f65009cd52",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "get_vision_cos_sin",
+            "sha256": "65cf3191d5d1022ab159f05c188f79a89e4de73812948b37bd24190365ec025e",
+            "resolved_span": [
+              9,
+              15
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "apply_rotary",
+            "sha256": "74431a4c7834a0bf5eead681d40637bcd1ac6a53e9e39be7d1de274a7acab6f7",
+            "resolved_span": [
+              18,
+              21
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "RMSNorm",
+            "sha256": "41b9874c8bee533ae2f3d6b8c47c6b120e0ef5b6731b57ab98d78c937884a807",
+            "resolved_span": [
+              24,
+              34
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "PatchEmbed",
+            "sha256": "b3c4c0cbb7bb0434b7572da5f3c905fe8da47ff4a2dd3910fd26a38cbc3664e3",
+            "resolved_span": [
+              37,
+              43
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Attention",
+            "sha256": "0b2799f0d8d88a367c62776d7f184d46f9ceb6cc46a0939291c2f02f66979cab",
+            "resolved_span": [
+              46,
+              60
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "MLP",
+            "sha256": "464b477b647ff63bfd46ead611fdacf2bab65930a226519b9f9e91fd87998b4e",
+            "resolved_span": [
+              63,
+              71
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Block",
+            "sha256": "881deeb9c5361b325db0dd550f2a5095c21e4215fadb64ab9399213a12c6053c",
+            "resolved_span": [
+              74,
+              84
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "ViT",
+            "sha256": "9336f181474b91bd176dfe9f111d3e15aa23251e152e547c64381fef42083aa6",
+            "resolved_span": [
+              87,
+              103
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Aligner",
+            "sha256": "5198193fbe5b28ebf445c8cbc16903c48308cea719d3971a45f969e237356637",
+            "resolved_span": [
+              106,
+              119
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/vision_config",
+            "sha256": "e2a223508bdb30825c022004d096384451a844a1b75f615a79f8b663f351905b",
             "resolved_span": []
           },
           "relation": "derives"
@@ -150541,7 +150398,7 @@
       "consumer": "file.src/pytorch-source.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "4a9ecb096afe773e083ae2dc53faac3a3df60c01864577a11ab12fa967e536b1",
+      "expected": "5e0bb69e5558aff745c384b3e3e323dc7b9c50fea5a3e75e9cd32fc08dd93310",
       "dependencies": [
         "file.examples/deepseek_v41/config.py",
         "file.examples/deepseek_v41/backbone_mhc.py",
@@ -155036,7 +154893,7 @@
       "consumer": "file.src/worked-examples.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "ba91d091bbaab782a891b7b774920e6bb45264d09c1c7f65f57019b621778e76",
+      "expected": "e055de69130e74835279ce684b0c9954b86d45d1c6e8b2011fd495d274f48310",
       "dependencies": [
         "file.src/worked-results.mjs"
       ],
@@ -155048,7 +154905,7 @@
       "consumer": "file.src/worked-results.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "0e59ffa4e2db12bea922d8a8cd67ff9e7124b2caa1cd0ea7abac9eb41ffb1df7",
+      "expected": "7bcba4759eb61e241fcfc96c76db3e540ef93dd9633aceac32630e38ffbe83fe",
       "dependencies": [
         "worked.replay",
         "worked.selection",
@@ -155062,7 +154919,7 @@
       "consumer": "file.examples/deepseek_v41/worked_examples.py",
       "domain": "model",
       "classification": "derived",
-      "expected": "4831fd50569727ebd67eafaa47aca1bd8ad4e926b2bc6bab17a68edb10ef3905",
+      "expected": "ee99a8cc3419ee343a359de7e1eedad5634cb0c91b5b40b649811bd1f67dfb90",
       "dependencies": [
         "file.examples/deepseek_v41/config.py",
         "file.examples/deepseek_v41/csa2_attention.py",
@@ -157796,6 +157653,2007 @@
       ],
       "evidence": [],
       "statement": "Residual transport explanation and CPU teaching trace, bound to the published read/write timing and input/output matrix axes. Local checks and consumer identity do not establish independent scientific acceptance or checkpoint parity."
+    },
+    {
+      "id": "deepdive.inputs",
+      "consumer": "deepdive.inputs",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "stage": "inputs",
+        "title": "Inputs: identities, visual features and conditional memory",
+        "question": "What becomes a sequence position, and where do its features come from?",
+        "summary": "Follow text and image records into the same sequence. The vision tower computes image features; the token table retrieves text features. Engram follows a separate token-history path and updates selected encoder states.",
+        "math": [
+          [
+            "Tokenization and embedding lookup",
+            "prompt_ids = BPE(ByteLevel(regex_split(formatted_text)))\nids, types = expand_images(prompt_ids, image_grids)\nE \u2208 R^[129280,5120]\nh[b,t,:] = E[ids[b,t],:]",
+            "Prompt formatting supplies conversation markers. The tokenizer has an empty normalizer. The complete base-plus-added-token ID space matches the embedding table; Engram normalization is a separate operation."
+          ],
+          [
+            "One vision block",
+            "u = RMSNorm(z)\nQ,K,V = split(Linear(u)); Q,K = RoPE\u2082D(Q,K)\nz\u2081 = z + Linear(softmax(QK\u1d40 / \u221ad_head)V)\ngate,up = split(W_up RMSNorm(z\u2081))\nz\u2082 = z\u2081 + W_down(SiLU(gate) \u2299 up)",
+            "Attention is bidirectional within the prepared image grid. The QKV and output projections have biases; the SwiGLU projections do not. These are ordinary residual additions, not language-side mHC."
+          ],
+          [
+            "Spatial grouping and replacement",
+            "z = RMSNorm(last_block_output)\nu = unfold(pad_grid(z), kernel=3, stride=3)\nu \u2208 R^[ceil(H/3)\u00d7ceil(W/3),9216]\nv = Linear(GELU(Linear(u)))\nh[IMAGE] = v; X = repeat_stream_axis(h)",
+            "Unfold concatenates channel-first neighborhoods, including zeros at padded boundaries. IMAGE positions receive projected features; start, end and newline positions receive learned boundary vectors. S includes the expanded image spans."
+          ],
+          [
+            "Engram: token identity meets the current residual",
+            "bucket[n,j] = XOR_k(compressed_id[t-k] \u00d7 multiplier[k]) % prime[n,j] + offset[n,j]\nK,V = split(project(concat(table[buckets])))\na_i = dot(RMSNorm(X_i), RMSNorm(K_i)) / \u221aD\ng_i = sigmoid(copysign(sqrt(max(abs(a_i), floor)), a_i))\nX_i \u2190 X_i + g_i V",
+            "Learned norm weights participate in the content score. Image positions set the gate to zero and stop n-gram lookback. Engram injects before the configured blocks; its value is shared across streams while its keys and gates differ."
+          ]
+        ],
+        "trace": [
+          [
+            "Format and tokenize",
+            "The formatter inserts roles, generation context and image markers. Ordered regex splitting, ByteLevel encoding and BPE produce raw IDs. Automatic tokenizer BOS/EOS insertion is disabled."
+          ],
+          [
+            "Compute image features",
+            "32 vision blocks at width 1024 use 16 attention heads and SwiGLU width 2816. A 3 \u00d7 3 spatial grouping projects into language width 5120."
+          ],
+          [
+            "Replace, then expand",
+            "Expand each marker into start, row-major image features, row separators and end. Lookup the resulting raw IDs, replace all image-span embeddings according to their types, then copy each vector across streams."
+          ],
+          [
+            "Inject token memory",
+            "Engram maps raw IDs to normalized identities, computes causal n-gram hashes, retrieves learned rows and gates their values before encoder layers 2 and 15."
+          ]
+        ],
+        "rows": [
+          [
+            "Text table",
+            "[129280, 5120]",
+            "Row selection by raw token ID"
+          ],
+          [
+            "Vision features",
+            "[H\u00d7W, 1024]",
+            "H and W are patch-grid axes"
+          ],
+          [
+            "Projected image tokens",
+            "[ceil(H/3)\u00d7ceil(W/3), 5120]",
+            "Boundary vectors occupy additional sequence positions"
+          ],
+          [
+            "Backbone input",
+            "[B, S, 4, 5120]",
+            "S includes complete expanded image spans"
+          ]
+        ],
+        "caveat": "The CPU example starts from prepared RGB patches and uses explicit teaching weights. It validates tower and projector operations, not publisher weights, image preprocessing equivalence, or a full tokenizer execution. Engram ID normalization must not be applied to ordinary embedding IDs.",
+        "scope": "Pinned publisher source; a reduced CPU vision fixture follows below.",
+        "symbols": "B = sequences; S = expanded sequence positions; H,W = patch rows and columns; D = language width.",
+        "sources": [
+          "dsv41-config",
+          "dsv41-code",
+          "dsv41-vision",
+          "dsv41-engram",
+          "dsv41-tokenizer",
+          "dsv41-tokenizer-config",
+          "dsv41-image-processor",
+          "dsv41-encoding"
+        ],
+        "anchors": [
+          "PatchEmbed.forward",
+          "Attention.forward",
+          "Block.forward",
+          "ViT.forward",
+          "Aligner.forward",
+          "prepare_vl_inputs",
+          "Transformer.merge_image_embeddings",
+          "Transformer.forward",
+          "NgramHashState.forward",
+          "Engram.forward"
+        ]
+      },
+      "dependencies": [
+        "MODELS.dsv41.visionDownsample",
+        "MODELS.dsv41.visionLayers",
+        "MODELS.dsv41.visionD",
+        "MODELS.dsv41.visionHeads",
+        "MODELS.dsv41.visionFF",
+        "MODELS.dsv41.visionPatch",
+        "MODELS.dsv41.vocab",
+        "MODELS.dsv41.d",
+        "MODELS.dsv41.streams",
+        "MODELS.dsv41.encoderLayers",
+        "MODELS.dsv41.layers",
+        "MODELS.dsv41.engramNgram",
+        "MODELS.dsv41.engramHeads",
+        "MODELS.dsv41.engramHeadDim",
+        "MODELS.dsv41.engramLayers"
+      ],
+      "evidence": [
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "get_vision_cos_sin",
+            "sha256": "65cf3191d5d1022ab159f05c188f79a89e4de73812948b37bd24190365ec025e",
+            "resolved_span": [
+              9,
+              15
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "apply_rotary",
+            "sha256": "74431a4c7834a0bf5eead681d40637bcd1ac6a53e9e39be7d1de274a7acab6f7",
+            "resolved_span": [
+              18,
+              21
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "RMSNorm",
+            "sha256": "41b9874c8bee533ae2f3d6b8c47c6b120e0ef5b6731b57ab98d78c937884a807",
+            "resolved_span": [
+              24,
+              34
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "PatchEmbed",
+            "sha256": "b3c4c0cbb7bb0434b7572da5f3c905fe8da47ff4a2dd3910fd26a38cbc3664e3",
+            "resolved_span": [
+              37,
+              43
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Attention",
+            "sha256": "0b2799f0d8d88a367c62776d7f184d46f9ceb6cc46a0939291c2f02f66979cab",
+            "resolved_span": [
+              46,
+              60
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "MLP",
+            "sha256": "464b477b647ff63bfd46ead611fdacf2bab65930a226519b9f9e91fd87998b4e",
+            "resolved_span": [
+              63,
+              71
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Block",
+            "sha256": "881deeb9c5361b325db0dd550f2a5095c21e4215fadb64ab9399213a12c6053c",
+            "resolved_span": [
+              74,
+              84
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "ViT",
+            "sha256": "9336f181474b91bd176dfe9f111d3e15aa23251e152e547c64381fef42083aa6",
+            "resolved_span": [
+              87,
+              103
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Aligner",
+            "sha256": "5198193fbe5b28ebf445c8cbc16903c48308cea719d3971a45f969e237356637",
+            "resolved_span": [
+              106,
+              119
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "ParallelEmbedding.forward",
+            "sha256": "9d2d4815895cdb54a0660c410f1c9431f716faf46c739db4596b0f66aac5b24e",
+            "resolved_span": [
+              168,
+              178
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Transformer.merge_image_embeddings",
+            "sha256": "7ab269826d2bf0939a1b840349517e71b9a76ddd4091319a777b4c335849fc57",
+            "resolved_span": [
+              1228,
+              1239
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Transformer.forward",
+            "sha256": "ecffa476cb5c3a236955ad55060befca9e9d0b7a68163c9e97242bc0137145a5",
+            "resolved_span": [
+              1242,
+              1272
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Engram.forward",
+            "sha256": "9515a7d8f463d1598b6b1662749ab2c0e82d06f36ec6e6a24e897ad08061a28f",
+            "resolved_span": [
+              350,
+              365
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-engram",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "build_compressed_token_map",
+            "sha256": "d34cd03902744d723d878fbeef14ae95a69e67e068b0d5e8db42f8ebf53702f0",
+            "resolved_span": [
+              17,
+              61
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-engram",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "NgramHashState.forward",
+            "sha256": "10be9fc70bcf3d75fb59c206bf2797e889e5beba5d1742356e9de22d79df8dcf",
+            "resolved_span": [
+              160,
+              184
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-tokenizer",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/normalizer",
+            "sha256": "29490adc115d53049331c399ebf4c815f6287aaae492078096a34c6ffd5950ba",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-tokenizer",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/pre_tokenizer",
+            "sha256": "6613066caf7789d855908c48dc6193bc8590f3c5453aa466b84f75ae3ceed71d",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-tokenizer",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/model/type",
+            "sha256": "391745ebba2a5331d1da4f19593e93b3cff85017073abaf5538f4501bd019309",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-tokenizer-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/add_bos_token",
+            "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-tokenizer-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/add_eos_token",
+            "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-image-processor",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "prepare_vl_inputs",
+            "sha256": "38685be7219f16ad498e41c18b91d6a38fc850232718d1c24dcb9cf5fb5eb971",
+            "resolved_span": [
+              140,
+              173
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-encoding",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "process_image_messages",
+            "sha256": "ad292978991728fa39b0157ba32d93b650b048f2a75ea69aa4048a2cffcc004f",
+            "resolved_span": [
+              366,
+              392
+            ]
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "worked.inputs",
+      "consumer": "worked.inputs",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "title": "Prepared RGB patches to visual token features",
+        "scope": "CPU teaching fixture with injected weights; not publisher checkpoint weights. Image preprocessing policy and text placeholder insertion are excluded.",
+        "settings": {
+          "grid_height": 2,
+          "grid_width": 2,
+          "patch_size": 2,
+          "vision_dim": 4,
+          "heads": 1,
+          "layers": 1,
+          "intermediate": 3,
+          "downsample_ratio": 3,
+          "text_dim": 3,
+          "rope_theta": 10000
+        },
+        "inputs": [
+          {
+            "id": "pixels",
+            "title": "Prepared image",
+            "operation": "Illustrative normalized RGB tensor",
+            "shape": [
+              3,
+              4,
+              4
+            ],
+            "axes": [
+              "channels",
+              "pixel_rows",
+              "pixel_columns"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0,
+                  0.02083333395421505,
+                  0.0416666679084301,
+                  0.0625
+                ],
+                [
+                  0.0833333358168602,
+                  0.1041666641831398,
+                  0.125,
+                  0.1458333283662796
+                ],
+                [
+                  0.1666666716337204,
+                  0.1875,
+                  0.2083333283662796,
+                  0.2291666716337204
+                ],
+                [
+                  0.25,
+                  0.2708333432674408,
+                  0.2916666567325592,
+                  0.3125
+                ]
+              ],
+              [
+                [
+                  0.3333333432674408,
+                  0.3541666567325592,
+                  0.375,
+                  0.3958333432674408
+                ],
+                [
+                  0.4166666567325592,
+                  0.4375,
+                  0.4583333432674408,
+                  0.4791666567325592
+                ],
+                [
+                  0.5,
+                  0.5208333134651184,
+                  0.5416666865348816,
+                  0.5625
+                ],
+                [
+                  0.5833333134651184,
+                  0.6041666865348816,
+                  0.625,
+                  0.6458333134651184
+                ]
+              ],
+              [
+                [
+                  0.6666666865348816,
+                  0.6875,
+                  0.7083333134651184,
+                  0.7291666865348816
+                ],
+                [
+                  0.75,
+                  0.7708333134651184,
+                  0.7916666865348816,
+                  0.8125
+                ],
+                [
+                  0.8333333134651184,
+                  0.8541666865348816,
+                  0.875,
+                  0.8958333134651184
+                ],
+                [
+                  0.9166666865348816,
+                  0.9375,
+                  0.9583333134651184,
+                  0.9791666865348816
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "patches",
+            "title": "Row-major image patches",
+            "operation": "Extract each channel-first spatial patch",
+            "shape": [
+              4,
+              3,
+              2,
+              2
+            ],
+            "axes": [
+              "patches",
+              "channels",
+              "patch_rows",
+              "patch_columns"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  [
+                    0,
+                    0.02083333395421505
+                  ],
+                  [
+                    0.0833333358168602,
+                    0.1041666641831398
+                  ]
+                ],
+                [
+                  [
+                    0.3333333432674408,
+                    0.3541666567325592
+                  ],
+                  [
+                    0.4166666567325592,
+                    0.4375
+                  ]
+                ],
+                [
+                  [
+                    0.6666666865348816,
+                    0.6875
+                  ],
+                  [
+                    0.75,
+                    0.7708333134651184
+                  ]
+                ]
+              ],
+              [
+                [
+                  [
+                    0.0416666679084301,
+                    0.0625
+                  ],
+                  [
+                    0.125,
+                    0.1458333283662796
+                  ]
+                ],
+                [
+                  [
+                    0.375,
+                    0.3958333432674408
+                  ],
+                  [
+                    0.4583333432674408,
+                    0.4791666567325592
+                  ]
+                ],
+                [
+                  [
+                    0.7083333134651184,
+                    0.7291666865348816
+                  ],
+                  [
+                    0.7916666865348816,
+                    0.8125
+                  ]
+                ]
+              ],
+              [
+                [
+                  [
+                    0.1666666716337204,
+                    0.1875
+                  ],
+                  [
+                    0.25,
+                    0.2708333432674408
+                  ]
+                ],
+                [
+                  [
+                    0.5,
+                    0.5208333134651184
+                  ],
+                  [
+                    0.5833333134651184,
+                    0.6041666865348816
+                  ]
+                ],
+                [
+                  [
+                    0.8333333134651184,
+                    0.8541666865348816
+                  ],
+                  [
+                    0.9166666865348816,
+                    0.9375
+                  ]
+                ]
+              ],
+              [
+                [
+                  [
+                    0.2083333283662796,
+                    0.2291666716337204
+                  ],
+                  [
+                    0.2916666567325592,
+                    0.3125
+                  ]
+                ],
+                [
+                  [
+                    0.5416666865348816,
+                    0.5625
+                  ],
+                  [
+                    0.625,
+                    0.6458333134651184
+                  ]
+                ],
+                [
+                  [
+                    0.875,
+                    0.8958333134651184
+                  ],
+                  [
+                    0.9583333134651184,
+                    0.9791666865348816
+                  ]
+                ]
+              ]
+            ]
+          }
+        ],
+        "steps": [
+          {
+            "id": "patch_embeddings",
+            "title": "Patch embeddings",
+            "operation": "Linear(flatten RGB patch)",
+            "shape": [
+              4,
+              4
+            ],
+            "axes": [
+              "patches",
+              "vision_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                0.003125011920928955,
+                -0.12812499701976776,
+                -0.22500000894069672,
+                -0.31041666865348816
+              ],
+              [
+                -0.007291659712791443,
+                -0.1364583522081375,
+                -0.23125001788139343,
+                -0.31458333134651184
+              ],
+              [
+                -0.03854165971279144,
+                -0.161458358168602,
+                -0.25,
+                -0.3270833492279053
+              ],
+              [
+                -0.048958346247673035,
+                -0.16979165375232697,
+                -0.2562500238418579,
+                -0.33125001192092896
+              ]
+            ]
+          },
+          {
+            "id": "rope_cos",
+            "title": "Grid rotary cosines",
+            "operation": "cos(height frequencies; width frequencies)",
+            "shape": [
+              4,
+              2
+            ],
+            "axes": [
+              "patches",
+              "half_head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                0.5403023362159729
+              ],
+              [
+                0.5403023362159729,
+                1
+              ],
+              [
+                0.5403023362159729,
+                0.5403023362159729
+              ]
+            ]
+          },
+          {
+            "id": "rope_sin",
+            "title": "Grid rotary sines",
+            "operation": "sin(height frequencies; width frequencies)",
+            "shape": [
+              4,
+              2
+            ],
+            "axes": [
+              "patches",
+              "half_head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0.8414709568023682
+              ],
+              [
+                0.8414709568023682,
+                0
+              ],
+              [
+                0.8414709568023682,
+                0.8414709568023682
+              ]
+            ]
+          },
+          {
+            "id": "attention_norm",
+            "title": "Attention input",
+            "operation": "RMSNorm(patch embeddings)",
+            "shape": [
+              4,
+              4
+            ],
+            "axes": [
+              "patches",
+              "vision_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                0.01546101551502943,
+                -0.6338992118835449,
+                -1.1131888628005981,
+                -1.5357882976531982
+              ],
+              [
+                -0.03525408357381821,
+                -0.6597557067871094,
+                -1.1180592775344849,
+                -1.5209633111953735
+              ],
+              [
+                -0.17365258932113647,
+                -0.7274637818336487,
+                -1.126395344734192,
+                -1.4737006425857544
+              ],
+              [
+                -0.2154119461774826,
+                -0.7470666766166687,
+                -1.1274750232696533,
+                -1.4574676752090454
+              ]
+            ]
+          },
+          {
+            "id": "attention_output",
+            "title": "Bidirectional attention",
+            "operation": "Output projection of softmax(QK\u1d40 / \u221aK)V with 2D RoPE",
+            "shape": [
+              4,
+              4
+            ],
+            "axes": [
+              "patches",
+              "vision_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                -0.42437466979026794,
+                -0.2371782660484314,
+                -0.1778811365365982,
+                -0.24007555842399597
+              ],
+              [
+                -0.4243713617324829,
+                -0.23720470070838928,
+                -0.17780372500419617,
+                -0.24007970094680786
+              ],
+              [
+                -0.42436590790748596,
+                -0.23725852370262146,
+                -0.17765001952648163,
+                -0.2400890588760376
+              ],
+              [
+                -0.4243616461753845,
+                -0.2372925877571106,
+                -0.1775503009557724,
+                -0.240094393491745
+              ]
+            ]
+          },
+          {
+            "id": "attention_residual",
+            "title": "Attention residual",
+            "operation": "patch embeddings + attention output",
+            "shape": [
+              4,
+              4
+            ],
+            "axes": [
+              "patches",
+              "vision_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                -0.421249657869339,
+                -0.36530327796936035,
+                -0.4028811454772949,
+                -0.5504922270774841
+              ],
+              [
+                -0.43166303634643555,
+                -0.373663067817688,
+                -0.4090537428855896,
+                -0.5546630620956421
+              ],
+              [
+                -0.4629075527191162,
+                -0.39871686697006226,
+                -0.4276500344276428,
+                -0.5671724081039429
+              ],
+              [
+                -0.47332000732421875,
+                -0.40708422660827637,
+                -0.4338003396987915,
+                -0.5713443756103516
+              ]
+            ]
+          },
+          {
+            "id": "ffn_output",
+            "title": "SwiGLU output",
+            "operation": "Down(SiLU(gate) \u00d7 up) after RMSNorm",
+            "shape": [
+              4,
+              4
+            ],
+            "axes": [
+              "patches",
+              "vision_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                -0.054242245852947235,
+                -0.02162313275039196,
+                0.010995982214808464,
+                0.04801945760846138
+              ],
+              [
+                -0.05467657372355461,
+                -0.02178199216723442,
+                0.01111258938908577,
+                0.04819932579994202
+              ],
+              [
+                -0.05589526891708374,
+                -0.022221125662326813,
+                0.01145301852375269,
+                0.04866153746843338
+              ],
+              [
+                -0.056276340037584305,
+                -0.022356173023581505,
+                0.011563997715711594,
+                0.04879156872630119
+              ]
+            ]
+          },
+          {
+            "id": "block_output",
+            "title": "Block output",
+            "operation": "attention residual + FFN output",
+            "shape": [
+              4,
+              4
+            ],
+            "axes": [
+              "patches",
+              "vision_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                -0.4754919111728668,
+                -0.38692641258239746,
+                -0.3918851613998413,
+                -0.5024727582931519
+              ],
+              [
+                -0.48633959889411926,
+                -0.3954450488090515,
+                -0.39794114232063293,
+                -0.5064637660980225
+              ],
+              [
+                -0.5188028216362,
+                -0.42093798518180847,
+                -0.4161970019340515,
+                -0.5185108780860901
+              ],
+              [
+                -0.5295963287353516,
+                -0.4294404089450836,
+                -0.4222363531589508,
+                -0.5225527882575989
+              ]
+            ]
+          },
+          {
+            "id": "vision_features",
+            "title": "Final normalized tower features",
+            "operation": "VisionTransformer: final RMSNorm after blocks",
+            "shape": [
+              4,
+              4
+            ],
+            "axes": [
+              "patches",
+              "vision_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                -1.075494647026062,
+                -0.8751721382141113,
+                -0.8863881230354309,
+                -1.1365214586257935
+              ],
+              [
+                -1.0822455883026123,
+                -0.8799790740013123,
+                -0.8855336308479309,
+                -1.1270277500152588
+              ],
+              [
+                -1.1008358001708984,
+                -0.8931785821914673,
+                -0.8831188082695007,
+                -1.100216269493103
+              ],
+              [
+                -1.1065480709075928,
+                -0.8972805142402649,
+                -0.8822281956672668,
+                -1.0918312072753906
+              ]
+            ]
+          },
+          {
+            "id": "grouped_patches",
+            "title": "Padded spatial groups",
+            "operation": "Channel-first concatenation of spatial neighborhoods",
+            "shape": [
+              1,
+              36
+            ],
+            "axes": [
+              "visual_tokens",
+              "grouped_channels"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                -1.075494647026062,
+                -1.0822455883026123,
+                0,
+                -1.1008358001708984,
+                -1.1065480709075928,
+                0,
+                0,
+                0,
+                0,
+                -0.8751721382141113,
+                -0.8799790740013123,
+                0,
+                -0.8931785821914673,
+                -0.8972805142402649,
+                0,
+                0,
+                0,
+                0,
+                -0.8863881230354309,
+                -0.8855336308479309,
+                0,
+                -0.8831188082695007,
+                -0.8822281956672668,
+                0,
+                0,
+                0,
+                0,
+                -1.1365214586257935,
+                -1.1270277500152588,
+                0,
+                -1.100216269493103,
+                -1.0918312072753906,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "id": "projector_hidden",
+            "title": "First projector linear",
+            "operation": "Linear(grouped patches)",
+            "shape": [
+              1,
+              3
+            ],
+            "axes": [
+              "visual_tokens",
+              "text_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                -0.3425092101097107,
+                0.4656689763069153,
+                -0.13740552961826324
+              ]
+            ]
+          },
+          {
+            "id": "projector_gelu",
+            "title": "Projector activation",
+            "operation": "GELU(first projector linear)",
+            "shape": [
+              1,
+              3
+            ],
+            "axes": [
+              "visual_tokens",
+              "text_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                -0.12535284459590912,
+                0.31631672382354736,
+                -0.06119425594806671
+              ]
+            ]
+          },
+          {
+            "id": "visual_tokens",
+            "title": "Visual token features",
+            "operation": "VisionInputs: tower then aligner",
+            "shape": [
+              1,
+              3
+            ],
+            "axes": [
+              "visual_tokens",
+              "text_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                -0.2727459967136383,
+                -0.20328055322170258,
+                -0.13381510972976685
+              ]
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        "file.examples/deepseek_v41/vision_example.py",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "pytorch.vision-inputs",
+      "consumer": "pytorch.vision-inputs",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "id": "vision-inputs",
+        "title": "Vision tower and spatial projector",
+        "stages": [
+          "inputs"
+        ],
+        "sources": [
+          "dsv41-config",
+          "dsv41-vision"
+        ],
+        "symbols": [
+          "PatchEmbed.forward",
+          "Attention.forward",
+          "MLP.forward",
+          "Block.forward",
+          "ViT.forward",
+          "Aligner.forward"
+        ],
+        "summary": "Prepared RGB patches pass through bidirectional vision blocks, spatial concatenation and the language-width projector.",
+        "limitations": "Unfused CPU PyTorch adapted from DeepSeek-AI (MIT). One image grid; shared V41Config. No image preprocessing, tokenizer, weights loader, distributed execution or checkpoint parity claim. Padding, channel-first neighborhood order, scalar math and gradients are independently tested.",
+        "requires": [],
+        "sourceFile": "examples/deepseek_v41/vision_inputs.py",
+        "code": "\"\"\"V4.1 image features: channel-first patches \u2192 RoPE ViT \u2192 spatial aligner.\n\nReadable CPU teaching implementation of dsv41-vision at revision\n dba1be0a40aa45a94ad051997016db3960a90277. This is one already-prepared image,\nnot a preprocessing/tokenizer policy, checkpoint loader or serving program.\nImage resize/crop/normalization, multiple images and placeholder insertion are\noutside this excerpt. There is no learned positional table, convolutional patch\nmodule, CLS token or average pooling in this published path.\n\nAxes: N = grid_height \u00d7 grid_width patches, C = RGB channels, P = patch size,\nD = vision width, A = attention heads, K = D/A, R = spatial grouping ratio,\nM = ceil(grid_height/R) \u00d7 ceil(grid_width/R) visual tokens, T = text width.\n\"\"\"\nfrom typing import Annotated\nimport torch\nfrom torch import Tensor, nn\nimport torch.nn.functional as F\nfrom .config import V41Config\n\nPatchTensor = Annotated[Tensor, \"patches, RGB channels, patch rows, patch columns\"]\nFeatureTensor = Annotated[Tensor, \"patches or visual tokens, feature width\"]\nRotaryTensor = Annotated[Tensor, \"patches, singleton head, half head width\"]\nHeadTensor = Annotated[Tensor, \"patches, attention heads, head width\"]\n\n\nclass VisionRMSNorm(nn.Module):\n    def __init__(self, config: V41Config) -> None:\n        super().__init__()\n        self.epsilon = config.vision_norm_epsilon\n        self.weight = nn.Parameter(torch.ones(config.vision_dim))\n\n    def forward(self, x: FeatureTensor) -> FeatureTensor:\n        # [N,D] \u2192 [N,D]; accumulate mean square and learned scale in float32.\n        normalized = x.float() * torch.rsqrt(x.float().square().mean(-1, keepdim=True) + self.epsilon)\n        return (normalized * self.weight).to(x.dtype)\n\n\ndef vision_positions(config: V41Config, height: int, width: int, device: torch.device) -> tuple[RotaryTensor, RotaryTensor]:\n    \"\"\"[N,1,K/2] cos/sin: height frequencies followed by width frequencies.\"\"\"\n    half = config.vision_dim // config.vision_heads // 2\n    inverse = config.vision_rope_theta ** (-torch.arange(0, half, 2, device=device, dtype=torch.float32) / half)\n    positions = torch.stack(torch.meshgrid(torch.arange(height, device=device),\n                                         torch.arange(width, device=device), indexing='ij'), dim=-1)\n    angles = (positions.reshape(-1, 2, 1).float() * inverse).flatten(1).unsqueeze(1)\n    return angles.cos(), angles.sin()\n\n\ndef vision_rotate(x: HeadTensor, cos: RotaryTensor, sin: RotaryTensor) -> HeadTensor:\n    # [N,A,K]: rotate the two feature halves; frequencies encode both grid axes.\n    first, second = x.float().chunk(2, dim=-1)\n    return torch.cat((first*cos-second*sin, second*cos+first*sin), dim=-1).to(x.dtype)\n\n\nclass VisionPatchEmbed(nn.Module):\n    def __init__(self, config: V41Config) -> None:\n        super().__init__()\n        self.projection = nn.Linear(3 * config.vision_patch_size**2, config.vision_dim)\n\n    def forward(self, patches: PatchTensor) -> FeatureTensor:\n        # [N,C,P,P] \u2192 [N,C\u00d7P\u00d7P] \u2192 [N,D]; each RGB channel's pixels stay together.\n        return self.projection(patches.flatten(1))\n\n\nclass VisionAttention(nn.Module):\n    def __init__(self, config: V41Config) -> None:\n        super().__init__()\n        self.config = config\n        self.qkv = nn.Linear(config.vision_dim, 3*config.vision_dim)\n        self.output = nn.Linear(config.vision_dim, config.vision_dim)\n\n    def forward(self, x: FeatureTensor, cos: RotaryTensor, sin: RotaryTensor) -> FeatureTensor:\n        # [N,D] \u2192 three [N,A,K] tensors; RoPE affects Q and K, never V.\n        heads = self.config.vision_heads\n        q, k, v = [part.reshape(x.shape[0], heads, -1) for part in self.qkv(x).chunk(3,-1)]\n        q, k = vision_rotate(q,cos,sin), vision_rotate(k,cos,sin)\n        # [A,N,K]: every patch attends to every patch; no causal mask or dropout.\n        context = F.scaled_dot_product_attention(q.transpose(0,1),k.transpose(0,1),v.transpose(0,1))\n        return self.output(context.transpose(0,1).reshape(x.shape[0],-1))\n\n\nclass VisionMLP(nn.Module):\n    def __init__(self, config: V41Config) -> None:\n        super().__init__()\n        self.gate_up = nn.Linear(config.vision_dim, 2*config.vision_hidden_dim, bias=False)\n        self.down = nn.Linear(config.vision_hidden_dim, config.vision_dim, bias=False)\n\n    def forward(self, x: FeatureTensor) -> FeatureTensor:\n        # [N,D] \u2192 paired [N,intermediate] \u2192 [N,D], bias-free SwiGLU.\n        gate, up = self.gate_up(x).chunk(2,-1)\n        return self.down(F.silu(gate)*up)\n\n\nclass VisionBlock(nn.Module):\n    def __init__(self, config: V41Config) -> None:\n        super().__init__()\n        self.norm1 = VisionRMSNorm(config)\n        self.attention = VisionAttention(config)\n        self.norm2 = VisionRMSNorm(config)\n        self.mlp = VisionMLP(config)\n\n    def forward(self, x: FeatureTensor, cos: RotaryTensor, sin: RotaryTensor) -> FeatureTensor:\n        # Both residuals retain [N,D]; the FFN reads the updated attention residual.\n        after_attention = x + self.attention(self.norm1(x),cos,sin)\n        return after_attention + self.mlp(self.norm2(after_attention))\n\n\nclass VisionTransformer(nn.Module):\n    def __init__(self, config: V41Config) -> None:\n        super().__init__()\n        self.config = config\n        self.patch_embed = VisionPatchEmbed(config)\n        self.blocks = nn.ModuleList([VisionBlock(config) for _ in range(config.vision_layers)])\n        self.norm = VisionRMSNorm(config)\n\n    def forward(self, patches: PatchTensor, height: int, width: int) -> FeatureTensor:\n        # One image in row-major patch order; grid sizes describe patches, not pixels.\n        if height <= 0 or width <= 0 or patches.shape[0] != height*width:\n            raise ValueError('Patch count must equal the positive grid height \u00d7 width')\n        x = self.patch_embed(patches)\n        cos,sin = vision_positions(self.config,height,width,x.device)\n        for block in self.blocks:\n            x = block(x,cos,sin)\n        return self.norm(x)  # [N,D], including the final tower RMSNorm.\n\n\nclass VisionAligner(nn.Module):\n    def __init__(self, config: V41Config) -> None:\n        super().__init__()\n        self.ratio = config.vision_downsample_ratio\n        self.input = nn.Linear(config.vision_dim*self.ratio**2,config.hidden_dim)\n        self.output = nn.Linear(config.hidden_dim,config.hidden_dim)\n\n    def group_patches(self, x: FeatureTensor, height: int, width: int) -> FeatureTensor:\n        # [N,D] \u2192 [1,D,H,W]; pad bottom/right so complete R\u00d7R groups fit.\n        grid = x.reshape(height,width,-1).permute(2,0,1).unsqueeze(0)\n        padded = F.pad(grid,(0,-width%self.ratio,0,-height%self.ratio))\n        # [M,D\u00d7R\u00d7R]: channel first, then local row and column. This is concatenation.\n        return F.unfold(padded,self.ratio,stride=self.ratio).squeeze(0).transpose(0,1)\n\n    def forward(self, x: FeatureTensor, height: int, width: int) -> FeatureTensor:\n        # [M,D\u00d7R\u00d7R] \u2192 [M,T] \u2192 exact GELU \u2192 [M,T], with both linear biases.\n        grouped = self.group_patches(x,height,width)\n        return self.output(F.gelu(self.input(grouped)))\n\n\nclass VisionInputs(nn.Module):\n    def __init__(self, config: V41Config) -> None:\n        super().__init__()\n        self.tower = VisionTransformer(config)\n        self.aligner = VisionAligner(config)\n\n    def forward(self, patches: PatchTensor, height: int, width: int) -> FeatureTensor:\n        # [N,3,P,P] \u2192 [M,T]; these features can replace image placeholder embeddings.\n        return self.aligner(self.tower(patches,height,width),height,width)\n\n"
+      },
+      "dependencies": [
+        "file.examples/deepseek_v41/vision_inputs.py",
+        "file.examples/deepseek_v41/config.py"
+      ],
+      "evidence": [
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "get_vision_cos_sin",
+            "sha256": "65cf3191d5d1022ab159f05c188f79a89e4de73812948b37bd24190365ec025e",
+            "resolved_span": [
+              9,
+              15
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "apply_rotary",
+            "sha256": "74431a4c7834a0bf5eead681d40637bcd1ac6a53e9e39be7d1de274a7acab6f7",
+            "resolved_span": [
+              18,
+              21
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "RMSNorm",
+            "sha256": "41b9874c8bee533ae2f3d6b8c47c6b120e0ef5b6731b57ab98d78c937884a807",
+            "resolved_span": [
+              24,
+              34
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "PatchEmbed",
+            "sha256": "b3c4c0cbb7bb0434b7572da5f3c905fe8da47ff4a2dd3910fd26a38cbc3664e3",
+            "resolved_span": [
+              37,
+              43
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Attention",
+            "sha256": "0b2799f0d8d88a367c62776d7f184d46f9ceb6cc46a0939291c2f02f66979cab",
+            "resolved_span": [
+              46,
+              60
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "MLP",
+            "sha256": "464b477b647ff63bfd46ead611fdacf2bab65930a226519b9f9e91fd87998b4e",
+            "resolved_span": [
+              63,
+              71
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Block",
+            "sha256": "881deeb9c5361b325db0dd550f2a5095c21e4215fadb64ab9399213a12c6053c",
+            "resolved_span": [
+              74,
+              84
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "ViT",
+            "sha256": "9336f181474b91bd176dfe9f111d3e15aa23251e152e547c64381fef42083aa6",
+            "resolved_span": [
+              87,
+              103
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Aligner",
+            "sha256": "5198193fbe5b28ebf445c8cbc16903c48308cea719d3971a45f969e237356637",
+            "resolved_span": [
+              106,
+              119
+            ]
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "MODELS.dsv41.visionDownsample",
+      "consumer": "MODELS.dsv41.visionDownsample",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 3,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv41-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/vision_config/downsample_ratio",
+            "sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Aligner",
+            "sha256": "5198193fbe5b28ebf445c8cbc16903c48308cea719d3971a45f969e237356637",
+            "resolved_span": [
+              106,
+              119
+            ]
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "file.src/diagram-inputs.mjs",
+      "consumer": "file.src/diagram-inputs.mjs",
+      "domain": "visualization",
+      "classification": "derived",
+      "expected": "3d496d9426e9dc5337e2e0efa69d90568b63d2fb4c8780ab6ccf298333afe48a",
+      "dependencies": [
+        "deepdive.inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "file.src/pytorch-inputs.mjs",
+      "consumer": "file.src/pytorch-inputs.mjs",
+      "domain": "visualization",
+      "classification": "derived",
+      "expected": "ec8dfa2afe99bffdf94fced10330ce8fa0b027b3378d1d0df78c8849d066c467",
+      "dependencies": [
+        "deepdive.inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "file.examples/deepseek_v41/vision_example.py",
+      "consumer": "file.examples/deepseek_v41/vision_example.py",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "bedb4622505896f028b1654cf2360f303c6ef503f8c004b7fab6af1239b4ec56",
+      "dependencies": [
+        "file.examples/deepseek_v41/vision_inputs.py"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "file.examples/deepseek_v41/vision_inputs.py",
+      "consumer": "file.examples/deepseek_v41/vision_inputs.py",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "dfe4cb74d2c404de1885e5a8be2df63755af6b1991554a32d556d426daa7ccb4",
+      "dependencies": [
+        "file.examples/deepseek_v41/config.py"
+      ],
+      "evidence": [
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "get_vision_cos_sin",
+            "sha256": "65cf3191d5d1022ab159f05c188f79a89e4de73812948b37bd24190365ec025e",
+            "resolved_span": [
+              9,
+              15
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "apply_rotary",
+            "sha256": "74431a4c7834a0bf5eead681d40637bcd1ac6a53e9e39be7d1de274a7acab6f7",
+            "resolved_span": [
+              18,
+              21
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "RMSNorm",
+            "sha256": "41b9874c8bee533ae2f3d6b8c47c6b120e0ef5b6731b57ab98d78c937884a807",
+            "resolved_span": [
+              24,
+              34
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "PatchEmbed",
+            "sha256": "b3c4c0cbb7bb0434b7572da5f3c905fe8da47ff4a2dd3910fd26a38cbc3664e3",
+            "resolved_span": [
+              37,
+              43
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Attention",
+            "sha256": "0b2799f0d8d88a367c62776d7f184d46f9ceb6cc46a0939291c2f02f66979cab",
+            "resolved_span": [
+              46,
+              60
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "MLP",
+            "sha256": "464b477b647ff63bfd46ead611fdacf2bab65930a226519b9f9e91fd87998b4e",
+            "resolved_span": [
+              63,
+              71
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Block",
+            "sha256": "881deeb9c5361b325db0dd550f2a5095c21e4215fadb64ab9399213a12c6053c",
+            "resolved_span": [
+              74,
+              84
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "ViT",
+            "sha256": "9336f181474b91bd176dfe9f111d3e15aa23251e152e547c64381fef42083aa6",
+            "resolved_span": [
+              87,
+              103
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-vision",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Aligner",
+            "sha256": "5198193fbe5b28ebf445c8cbc16903c48308cea719d3971a45f969e237356637",
+            "resolved_span": [
+              106,
+              119
+            ]
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.prompt.79c53ec8fbd46652",
+      "consumer": "scene.dsv41.model.inputs.prompt.79c53ec8fbd46652",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "79c53ec8fbd46652e011358dc5537b08d7cf12761d36f37e5de4e757bd682321",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.tokenizer.53a8ff30593655e3",
+      "consumer": "scene.dsv41.model.inputs.tokenizer.53a8ff30593655e3",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "53a8ff30593655e3072d23beb3834096b39b54814e64cefce30bba6a651ad3f4",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.text-embeddings.d2b544d448d92b86",
+      "consumer": "scene.dsv41.model.inputs.text-embeddings.d2b544d448d92b86",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "d2b544d448d92b86c1a5fdf81410a2a5b6e46971a91635ac1143768399498a24",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.engram-remap.a05f2419d1258d4e",
+      "consumer": "scene.dsv41.model.inputs.engram-remap.a05f2419d1258d4e",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "a05f2419d1258d4e8bc87b9c710e7d52274600e2cd91029c0c72cbc822be859f",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.engram-hash.c1c3c23069317a21",
+      "consumer": "scene.dsv41.model.inputs.engram-hash.c1c3c23069317a21",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "c1c3c23069317a212b4cfdac25fcc7cd7bf2ef08e84d82a49178cd0c9484ae18",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.engram-lookup.636be8105aea511c",
+      "consumer": "scene.dsv41.model.inputs.engram-lookup.636be8105aea511c",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "636be8105aea511cbb94ae384538ffaa73b79d36ce99b6742623c9e7ae6b7487",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.engram-inject.ca7a24572d1ddf7a",
+      "consumer": "scene.dsv41.model.inputs.engram-inject.ca7a24572d1ddf7a",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ca7a24572d1ddf7af7aa9f84f710f5b16d0dfc9d9ba4a3aa147535c96efe5b02",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.patches.c8d1189b7a3ba294",
+      "consumer": "scene.dsv41.model.inputs.patches.c8d1189b7a3ba294",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "c8d1189b7a3ba2940341b34fc735c7b8c8a27eed708897999a7006ca8c4ede72",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.vision-norm1.ffc945910142e4b8",
+      "consumer": "scene.dsv41.model.inputs.vision-norm1.ffc945910142e4b8",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ffc945910142e4b8583fbbf4ca355d5ad6a915f51fa80ae4a6ac1cfa37852183",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.vision-qkv.f8f3be699ff82e0d",
+      "consumer": "scene.dsv41.model.inputs.vision-qkv.f8f3be699ff82e0d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f8f3be699ff82e0d5f0519eaecc0fa6755e60d8791f75ad54b7ed0ec3b13f440",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.vision-rope.a1dd0b7ed56ce1b2",
+      "consumer": "scene.dsv41.model.inputs.vision-rope.a1dd0b7ed56ce1b2",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "a1dd0b7ed56ce1b2158066f479d073d97c74e9c5342dd14523ea98a9e177dd26",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.vision-attention.1609de936613ef7b",
+      "consumer": "scene.dsv41.model.inputs.vision-attention.1609de936613ef7b",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1609de936613ef7bb62e25fcbabad6064a46524ff1f1c45d3ba155c015bda351",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.vision-add1.5c4ca88f43b9dd58",
+      "consumer": "scene.dsv41.model.inputs.vision-add1.5c4ca88f43b9dd58",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "5c4ca88f43b9dd582a83fe60b0c5d1746b4893584e576cad25e2a06e65f41569",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.vision-ffn.da173e9452259a81",
+      "consumer": "scene.dsv41.model.inputs.vision-ffn.da173e9452259a81",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "da173e9452259a8117a4bd939684dc7b4bae986fa4156466087ea79261b3e582",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.vision-add2.af13fbecf56440ae",
+      "consumer": "scene.dsv41.model.inputs.vision-add2.af13fbecf56440ae",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "af13fbecf56440aed205140c08c973468cadef4d15ba136e3a2b4d677c310c66",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.vision-merge.ced4bbae25cef0d0",
+      "consumer": "scene.dsv41.model.inputs.vision-merge.ced4bbae25cef0d0",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ced4bbae25cef0d0c5b350b7315264cc186beb53ca53dc567be3fbb1c1e13038",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.interleave.38babb2698c3a34b",
+      "consumer": "scene.dsv41.model.inputs.interleave.38babb2698c3a34b",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "38babb2698c3a34bae9762100e87fc8c0b83e295e18c5c6ea120734673054b4e",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.encoder-entry.33c8ae4ed8eaa5cb",
+      "consumer": "scene.dsv41.model.inputs.encoder-entry.33c8ae4ed8eaa5cb",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "33c8ae4ed8eaa5cb93c663524fa37f6f284a08e7873274080cb5723d4f1cb444",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.graph.31b878b00a36da5c",
+      "consumer": "scene.dsv41.model.inputs.graph.31b878b00a36da5c",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "31b878b00a36da5c01050c1bed0b8f6d853f06be3e2ecd93dcc976f177b9f43a",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.prompt.79c53ec8fbd46652",
+      "consumer": "scene.dsv41.model.module-vision-inputs.prompt.79c53ec8fbd46652",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "79c53ec8fbd46652e011358dc5537b08d7cf12761d36f37e5de4e757bd682321",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.tokenizer.53a8ff30593655e3",
+      "consumer": "scene.dsv41.model.module-vision-inputs.tokenizer.53a8ff30593655e3",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "53a8ff30593655e3072d23beb3834096b39b54814e64cefce30bba6a651ad3f4",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.text-embeddings.d2b544d448d92b86",
+      "consumer": "scene.dsv41.model.module-vision-inputs.text-embeddings.d2b544d448d92b86",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "d2b544d448d92b86c1a5fdf81410a2a5b6e46971a91635ac1143768399498a24",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.engram-remap.a05f2419d1258d4e",
+      "consumer": "scene.dsv41.model.module-vision-inputs.engram-remap.a05f2419d1258d4e",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "a05f2419d1258d4e8bc87b9c710e7d52274600e2cd91029c0c72cbc822be859f",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.engram-hash.c1c3c23069317a21",
+      "consumer": "scene.dsv41.model.module-vision-inputs.engram-hash.c1c3c23069317a21",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "c1c3c23069317a212b4cfdac25fcc7cd7bf2ef08e84d82a49178cd0c9484ae18",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.engram-lookup.636be8105aea511c",
+      "consumer": "scene.dsv41.model.module-vision-inputs.engram-lookup.636be8105aea511c",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "636be8105aea511cbb94ae384538ffaa73b79d36ce99b6742623c9e7ae6b7487",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.engram-inject.ca7a24572d1ddf7a",
+      "consumer": "scene.dsv41.model.module-vision-inputs.engram-inject.ca7a24572d1ddf7a",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ca7a24572d1ddf7af7aa9f84f710f5b16d0dfc9d9ba4a3aa147535c96efe5b02",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.patches.c8d1189b7a3ba294",
+      "consumer": "scene.dsv41.model.module-vision-inputs.patches.c8d1189b7a3ba294",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "c8d1189b7a3ba2940341b34fc735c7b8c8a27eed708897999a7006ca8c4ede72",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.vision-norm1.ffc945910142e4b8",
+      "consumer": "scene.dsv41.model.module-vision-inputs.vision-norm1.ffc945910142e4b8",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ffc945910142e4b8583fbbf4ca355d5ad6a915f51fa80ae4a6ac1cfa37852183",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.vision-qkv.f8f3be699ff82e0d",
+      "consumer": "scene.dsv41.model.module-vision-inputs.vision-qkv.f8f3be699ff82e0d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f8f3be699ff82e0d5f0519eaecc0fa6755e60d8791f75ad54b7ed0ec3b13f440",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.vision-rope.a1dd0b7ed56ce1b2",
+      "consumer": "scene.dsv41.model.module-vision-inputs.vision-rope.a1dd0b7ed56ce1b2",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "a1dd0b7ed56ce1b2158066f479d073d97c74e9c5342dd14523ea98a9e177dd26",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.vision-attention.1609de936613ef7b",
+      "consumer": "scene.dsv41.model.module-vision-inputs.vision-attention.1609de936613ef7b",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1609de936613ef7bb62e25fcbabad6064a46524ff1f1c45d3ba155c015bda351",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.vision-add1.5c4ca88f43b9dd58",
+      "consumer": "scene.dsv41.model.module-vision-inputs.vision-add1.5c4ca88f43b9dd58",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "5c4ca88f43b9dd582a83fe60b0c5d1746b4893584e576cad25e2a06e65f41569",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.vision-ffn.da173e9452259a81",
+      "consumer": "scene.dsv41.model.module-vision-inputs.vision-ffn.da173e9452259a81",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "da173e9452259a8117a4bd939684dc7b4bae986fa4156466087ea79261b3e582",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.vision-add2.af13fbecf56440ae",
+      "consumer": "scene.dsv41.model.module-vision-inputs.vision-add2.af13fbecf56440ae",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "af13fbecf56440aed205140c08c973468cadef4d15ba136e3a2b4d677c310c66",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.vision-merge.ced4bbae25cef0d0",
+      "consumer": "scene.dsv41.model.module-vision-inputs.vision-merge.ced4bbae25cef0d0",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ced4bbae25cef0d0c5b350b7315264cc186beb53ca53dc567be3fbb1c1e13038",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.interleave.38babb2698c3a34b",
+      "consumer": "scene.dsv41.model.module-vision-inputs.interleave.38babb2698c3a34b",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "38babb2698c3a34bae9762100e87fc8c0b83e295e18c5c6ea120734673054b4e",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.encoder-entry.33c8ae4ed8eaa5cb",
+      "consumer": "scene.dsv41.model.module-vision-inputs.encoder-entry.33c8ae4ed8eaa5cb",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "33c8ae4ed8eaa5cb93c663524fa37f6f284a08e7873274080cb5723d4f1cb444",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.graph.31b878b00a36da5c",
+      "consumer": "scene.dsv41.model.module-vision-inputs.graph.31b878b00a36da5c",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "31b878b00a36da5c01050c1bed0b8f6d853f06be3e2ecd93dcc976f177b9f43a",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "V4.1 input mechanism: published vision blocks, token identity, image replacement and Engram insertion order. CPU teaching arithmetic uses reduced dimensions and explicit weights; independent source acceptance and checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.inputs.expanded-ids.fb6e0b8bfad4aed8",
+      "consumer": "scene.dsv41.model.inputs.expanded-ids.fb6e0b8bfad4aed8",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "fb6e0b8bfad4aed81c0062375b113d61a9952525794d7b349df66018a82f43cb",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "Expanded image IDs and current encoder residual are distinct inputs to Engram."
+    },
+    {
+      "id": "scene.dsv41.model.module-vision-inputs.expanded-ids.fb6e0b8bfad4aed8",
+      "consumer": "scene.dsv41.model.module-vision-inputs.expanded-ids.fb6e0b8bfad4aed8",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "fb6e0b8bfad4aed81c0062375b113d61a9952525794d7b349df66018a82f43cb",
+      "dependencies": [
+        "deepdive.inputs",
+        "pytorch.vision-inputs"
+      ],
+      "evidence": [],
+      "statement": "Expanded image IDs and current encoder residual are distinct inputs to Engram."
     }
   ],
   "contracts": [

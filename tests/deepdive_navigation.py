@@ -28,10 +28,17 @@ def exercise(page,root):
     assert page.locator('[data-setting="stage"][data-value="block"]').count()==0
     assert page.locator('#identity-metrics .identity-metric').nth(1).locator('strong').inner_text()==f"{model['encoderLayers']} + {model['layers']-model['encoderLayers']}"
     assert page.locator('#identity-metrics').get_by_text('encoder + decoder layers',exact=True).count()==1
-    expected=['encoder','decoder','engram','csa2','dspark','residual']
+    expected=['encoder','decoder','engram','csa2','dspark','residual','inputs']
     for stage in expected:
         page.locator(f'button[data-setting="stage"][data-value="{stage}"]').click()
         assert page.evaluate('STRATUM.getState().stage')==stage
+        if stage in ('inputs','residual'):
+            # Build-time compression must preserve the complete pure scene, not
+            # merely a rendering that happens to have valid geometry.
+            expected_scene=json.loads(subprocess.check_output(['node','--input-type=module','-e',
+                "import {buildScene} from './src/diagrams.mjs'; console.log(JSON.stringify(buildScene("+
+                json.dumps(page.evaluate('STRATUM.getState()'))+")));"],cwd=root,text=True))
+            assert page.evaluate('STRATUM.getScene()')==expected_scene
         credit=page.locator('#analysis-panel > .innovation-note a[href="https://zartbot.github.io/blog/model_arch/dsv41flash_arch/en.html"]')
         assert credit.count()==int(stage in ('decoder','csa2','module-csa2-attention'))
         assert f'stage={stage}' in page.url

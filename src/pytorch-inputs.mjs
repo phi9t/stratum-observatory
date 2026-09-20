@@ -1,0 +1,4 @@
+import {PYTHON_SOURCES} from './pytorch-source.mjs';
+export const INPUTS_EXAMPLES=[
+{"id": "vision-inputs", "title": "Vision tower and spatial projector", "stages": ["inputs"], "sources": ["dsv41-config", "dsv41-vision"], "symbols": ["PatchEmbed.forward", "Attention.forward", "MLP.forward", "Block.forward", "ViT.forward", "Aligner.forward"], "summary": "Prepared RGB patches pass through bidirectional vision blocks, spatial concatenation and the language-width projector.", "limitations": "Unfused CPU PyTorch adapted from DeepSeek-AI (MIT). One image grid; shared V41Config. No image preprocessing, tokenizer, weights loader, distributed execution or checkpoint parity claim. Padding, channel-first neighborhood order, scalar math and gradients are independently tested.", "requires": [], "sourceFile": "examples/deepseek_v41/vision_inputs.py","code":PYTHON_SOURCES["vision_inputs.py"]},
+];

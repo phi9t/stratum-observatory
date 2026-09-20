@@ -1135,6 +1135,62 @@
       "cache": ".verification-cache/sha256/d26ba29059c512f60eb02bed40f28a1214747c714cb82f996f0dc0eca591caea.txt",
       "license": "Reference capture only; preserve upstream notices; no upstream bytes redistributed.",
       "retrieved_at": "2026-09-20T05:05:00.800091+00:00"
+    },
+    {
+      "id": "dsv41-tokenizer",
+      "role": "publisher_code",
+      "kind": "git",
+      "provider": "huggingface",
+      "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "path": "tokenizer.json",
+      "revision": "dba1be0a40aa45a94ad051997016db3960a90277",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/raw/dba1be0a40aa45a94ad051997016db3960a90277/tokenizer.json",
+      "sha256": "c90dfa01249db1be4245780a052ede752e1361c612ac6d08e2bdada7d599476b",
+      "cache": ".verification-cache/sha256/c90dfa01249db1be4245780a052ede752e1361c612ac6d08e2bdada7d599476b.txt",
+      "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
+      "retrieved_at": "2026-09-20T22:16:43.728722+00:00"
+    },
+    {
+      "id": "dsv41-tokenizer-config",
+      "role": "publisher_code",
+      "kind": "git",
+      "provider": "huggingface",
+      "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "path": "tokenizer_config.json",
+      "revision": "dba1be0a40aa45a94ad051997016db3960a90277",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/raw/dba1be0a40aa45a94ad051997016db3960a90277/tokenizer_config.json",
+      "sha256": "6ac8c8dc065ed118161d02dd532749ae3f52c243deac27872134fae2f50d8547",
+      "cache": ".verification-cache/sha256/6ac8c8dc065ed118161d02dd532749ae3f52c243deac27872134fae2f50d8547.txt",
+      "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
+      "retrieved_at": "2026-09-20T22:16:43.734123+00:00"
+    },
+    {
+      "id": "dsv41-image-processor",
+      "role": "publisher_code",
+      "kind": "git",
+      "provider": "huggingface",
+      "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "path": "inference/image_processor.py",
+      "revision": "dba1be0a40aa45a94ad051997016db3960a90277",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/raw/dba1be0a40aa45a94ad051997016db3960a90277/inference/image_processor.py",
+      "sha256": "482759e3bcc4e9bb5ee582b244cc563f5d0e163d8b48dda91ebb7106e62f9272",
+      "cache": ".verification-cache/sha256/482759e3bcc4e9bb5ee582b244cc563f5d0e163d8b48dda91ebb7106e62f9272.txt",
+      "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
+      "retrieved_at": "2026-09-20T22:16:43.738144+00:00"
+    },
+    {
+      "id": "dsv41-encoding",
+      "role": "publisher_code",
+      "kind": "git",
+      "provider": "huggingface",
+      "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "path": "encoding/encoding.py",
+      "revision": "dba1be0a40aa45a94ad051997016db3960a90277",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/raw/dba1be0a40aa45a94ad051997016db3960a90277/encoding/encoding.py",
+      "sha256": "502bdaec8a3fd88ebc24c4721a7038fbe42f2063c664638127056107920035c1",
+      "cache": ".verification-cache/sha256/502bdaec8a3fd88ebc24c4721a7038fbe42f2063c664638127056107920035c1.txt",
+      "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
+      "retrieved_at": "2026-09-20T22:16:43.740813+00:00"
     }
   ]
 }

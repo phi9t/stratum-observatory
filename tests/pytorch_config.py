@@ -16,6 +16,12 @@ from examples.deepseek_v41.config import V41_CONFIG
 
 ROOT = Path(__file__).resolve().parents[1]
 MODEL_FIELDS = {
+    'vision_dim': 'visionD',
+    'vision_heads': 'visionHeads',
+    'vision_hidden_dim': 'visionFF',
+    'vision_layers': 'visionLayers',
+    'vision_patch_size': 'visionPatch',
+    'vision_downsample_ratio': 'visionDownsample',
     'hidden_dim': 'd',
     'streams': 'streams',
     'num_layers': 'layers',
@@ -44,6 +50,7 @@ MODEL_FIELDS = {
 # Explicitly bounded coverage: do not invent a second numeric oracle for settings
 # that the local model table does not expose. Publication owns their source checks.
 SOURCE_ONLY_FIELDS = {
+    'vision_rope_theta', 'vision_norm_epsilon',
     'norm_epsilon', 'mixing_epsilon', 'router_temperature',
     'engram_score_floor', 'markov_rank',
 }
