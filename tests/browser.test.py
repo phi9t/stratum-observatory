@@ -44,6 +44,9 @@ def check(page, patch, label='geometry'):
         page.wait_for_function('window.STRATUM')
         patch={**current,**patch}
     r=page.evaluate('(p)=>{STRATUM.setState(p);return STRATUM.geometryReport()}',patch)
+    if view=='model':
+        assertion(page.locator('#analysis-panel .chart').count()==0,'Architecture must focus on schematics, maths and code, without a state-growth chart')
+        assertion('Mechanism → state growth' not in page.locator('#analysis-panel').inner_text(),'Removed state-growth board returned')
     invalid=page.locator('svg').evaluate_all('''els=>els.flatMap(e=>[e,...e.querySelectorAll('*')]).filter(e=>[...e.attributes].some(a=>/(^|[^a-z])(?:NaN|Infinity)([^a-z]|$)/.test(a.value))).map(e=>e.outerHTML.slice(0,180))''')
     record={'state':page.evaluate('STRATUM.getState()'),'defects':r['geometry_defects'],'label':label}
     assertion(record['state']['model']==model and record['state']['view']==view,'Delivered page changed the requested model or view')

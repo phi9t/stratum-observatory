@@ -23699,7 +23699,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/app.mjs",
-      "expected": "f5b7e91a3bc43be993d87b38e089fd155222bc41a0f679964dea50e621bba467",
+      "expected": "8f79d10cb6900220ab29248cf60ded1125199d1ca486f843f18f22e2730840b7",
       "statement": "file.src/app.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [

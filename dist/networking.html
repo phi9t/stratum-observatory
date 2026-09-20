@@ -1801,7 +1801,7 @@ async function copyPythonExample(id){
   toast('Clipboard unavailable. Use Download Python to keep the source links and license notices.');
  }
 }
-function renderAnalysis(){const m=getModel(state.model),h=HARDWARE[state.hardware],cache=cacheLedger(m,state),params=parameterLedger(m);let html='';
+function renderAnalysis(){const m=getModel(state.model),h=HARDWARE[state.hardware],params=parameterLedger(m);let html='';
  const chapter=state.view==='model'?chapterContent(m,state):null;
  const example=state.view==='model'?moduleExample(state.stage):null;
  if(example){
@@ -1810,8 +1810,6 @@ function renderAnalysis(){const m=getModel(state.model),h=HARDWARE[state.hardwar
   html=analysisHeader(chapter.title,chapter.summary)+`<div class="analysis-split"><div class="analysis-copy"><h4>Worked trace</h4>${chapter.trace.map(([title,body])=>`<p><strong>${esc(title)}.</strong> ${esc(body)}</p>`).join('')}</div><div class="analysis-copy"><h4>Evidence boundary</h4><p>${esc(chapter.caveat)}</p><p>${esc(chapter.scope)}</p><h4>Source anchors</h4><p>${chapter.anchors.map(esc).join(' · ')}</p><p>${chapter.sources.map(citation).join(' · ')}</p></div></div><div class="table-scroll"><table class="comparison-table"><thead><tr><th scope="col">Object</th><th scope="col">Shape / quantity</th><th scope="col">Ownership / meaning</th></tr></thead><tbody>${chapter.rows.map(([label,value,owner])=>`<tr><th scope="row">${esc(label)}</th><td>${esc(value)}</td><td>${esc(owner)}</td></tr>`).join('')}</tbody></table></div><p class="innovation-note">${esc(chapter.symbols)}</p>`;
   html+=pytorchExamples(state.stage);
  }else if(['model','compare'].includes(state.view)){
-  html=analysisHeader('Mechanism → state growth','Same batch and element sizes · logical payload, not measured allocation');
-  html+=`<div class="analysis-split"><div class="chart-box">${stateChart(state.model,state.compare)}<p class="chart-caption">Select a point to change context. Values beyond a checkpoint’s native context are accounting extrapolations, not validated context extension. Auxiliary state exclusions remain in effect.</p></div><div class="analysis-copy"><span class="eyebrow">THE STRUCTURAL CONSEQUENCE</span><h4>${cache.linear?'Fixed current state does not mean stateless.':'Every new token extends global history.'}</h4><p>${cache.linear?'Recurrent attention retains a current matrix and convolution history per sequence. Global layers still retain token history. Branching, prefix snapshots and auxiliary n-gram state add separate storage obligations.':'MLA and GQA compress different axes: MLA retains a content latent plus a shared key; GQA reduces the number of KV heads. Neither makes autoregressive history independent of sequence length.'}</p><pre>${esc(cache.formula)}\n+ ${cache.linear?'current recurrent / convolution state':'no recurrent matrix'}${cache.indexer?'\n+ compressed index keys':''}</pre><p>${esc(params.scope)}</p></div></div>`;
   if(state.view==='compare')html+=comparisonTable();
   if(state.view==='model'&&state.stage==='ced'&&m.encoderLayers)html+=innovationCoverage();
  }else if(state.view==='serving'){

@@ -810,9 +810,9 @@ executes all three, and CI could never have executed the transcription compariso
 
 Portable HTML SHA-256: `7ab6e30672ff5c7040adf115414b1bb35e0e80971bf4b3f7ed5ff16f1b192a71`
 
-Scientific lock SHA-256: `330ae9c651876da801bd091712989f9fd767f5e66e554a2e574e0845ca550595`
+Scientific lock SHA-256: `c979e8067a66e15ca1366bdf4e1fb60efc3ae5fd2da184f514fd197fe336c4cc`
 
-Verifier identity SHA-256: `4f7b8873cb0ddae89ff80a88c19b97296e4e4676384fb1d31581b5732c400ff4`
+Verifier identity SHA-256: `05e69eea9e5ff708d3c2c214032e09842ea42b41df4d7c1b4b045e44cbf139ae`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -892,7 +892,7 @@ V4.1 dispatch and storage anchors. Main KV and packed indexer payload reconcile 
 window state and allocation overhead remain separate. [Research and source scope](docs/design/V41-SERVING-RESEARCH.md)
 record the development-branch serving implementation and Miles plugin. Neither is a runtime receipt.
 
-Dedicated HTML SHA-256: `2819c0ec685aaf51c0d0e6725c05be367859d26c6b84e0c9ce77b422f6b55d52`
+Dedicated HTML SHA-256: `3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0`
 
 CED phase depths follow the report-level scheme. The pinned reference forward still visits all backbone layers; encoder-only prefill execution is not certified by that code. This distinction is visible in the CED caption and serving inspector.
 
@@ -936,10 +936,10 @@ registry drives page builds, artifact identity, browser routing and preview sele
 Chromium exercises real landing links, variant switches, reloads, identity enforcement,
 scenario exports and return links. All eight portable files are included in the software gates.
 
-- `deepseek-v4.1.html` SHA-256: `2819c0ec685aaf51c0d0e6725c05be367859d26c6b84e0c9ce77b422f6b55d52`
+- `deepseek-v4.1.html` SHA-256: `3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0`
 - `index.html` SHA-256: `7ab6e30672ff5c7040adf115414b1bb35e0e80971bf4b3f7ed5ff16f1b192a71`
-- `kimi-k3.html` SHA-256: `456fe6de7a858a677811f3e97b51cea6843a8a0eaa1ed1c4951eedf5d958d6e6`
-- `qwen3.8.html` SHA-256: `c83497d7dc32f97a2edb776904406208464c8338f8d2e8d095334a05c72e1013`
+- `kimi-k3.html` SHA-256: `0f3a71ebfb54068144d5e81f9cd5ae955be70d9811b6852b7835aa9d948b46dc`
+- `qwen3.8.html` SHA-256: `59575338ca116c0b620f7f7b4ccfcc5b78013d4f7555568fa58b34a283243074`
 
 Publication coverage: 3805 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
 
@@ -953,10 +953,10 @@ exposes a workload-model selector, and links preserve the originating scenario. 
 system bookmarks redirect to these shared pages. Repeated local arrow-key navigation keeps focus
 in the model tabs. All eight files receive artifact identity and portable delivery checks.
 
-- `hardware.html` SHA-256: `064ab8fe72f7c9a60d4fb8813ed8c1523114605a62995145c1a00c7243c1ed3a`
-- `networking.html` SHA-256: `2971cf3033978ae1be12934c4420415d64a605be47742f7d318751e8076bfe55`
+- `hardware.html` SHA-256: `a5112a34ee9f2420d20f7fe45373cb552cb0a05c358a7ef0ca461e7954b0024f`
+- `networking.html` SHA-256: `a31831bbc9665a73cfd86a3111c5175392828839a87be86d15643f72d12b8fac`
 
-- `foundations.html` SHA-256: `a5a515505ad8e56ff549eaea3025723bcde64101233cd30127cc4ddb78706299`
+- `foundations.html` SHA-256: `0e6349b2e6ba4f0a99bc53a3a0d6df236f4c463229d6da8103b3417aee90e641`
 
 - `data-representation.html` SHA-256: `e288644184fbcb54ad8a1742e35671354ce93b96f1b2dac1375dacf59285e77e`
 

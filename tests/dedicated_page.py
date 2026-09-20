@@ -17,8 +17,10 @@ def exercise(page, root):
     assert page.url.split('#')[0] == artifact.as_uri()
     assert page.evaluate('STRATUM.getState().model') == 'dsv41'
     assert page.locator('.innovation-table').count() == 1
-    assert 'compressed index keys' in page.locator('.analysis-copy pre').inner_text()
-    assert 'QSA' not in page.locator('.analysis-copy pre').inner_text()
+    assert page.locator('#analysis-panel .chart').count() == 0
+    assert 'Mechanism → state growth' not in page.locator('#analysis-panel').inner_text()
+    assert page.locator('#schematic').is_visible()
+    assert page.locator('#inspector .formula').count() > 0
     assert page.locator('#model-strip [data-model]').count() == 0
     page.locator('[data-view="serving"]').first.click()
     page.locator('[data-setting="phase"][data-value="prefill"]').click()

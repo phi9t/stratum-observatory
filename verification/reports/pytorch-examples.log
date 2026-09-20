@@ -44,6 +44,6 @@ test_each_record_is_independent_and_all_parameters_are_typed (pytorch_quality.Py
 test_tensor_annotations_explain_their_axes (pytorch_quality.PythonProgramQualityTests.test_tensor_annotations_explain_their_axes) ... ok
 
 ----------------------------------------------------------------------
-Ran 44 tests in 0.315s
+Ran 44 tests in 0.332s
 
 OK

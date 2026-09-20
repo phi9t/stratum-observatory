@@ -1,8 +1,8 @@
 {
   "schema": "stratum-aesthetics/v1",
   "status": "PASS",
-  "generated_at": "2026-09-20T08:48:12.531519+00:00",
-  "artifact_sha256": "a5a515505ad8e56ff549eaea3025723bcde64101233cd30127cc4ddb78706299",
+  "generated_at": "2026-09-20T09:02:45.811920+00:00",
+  "artifact_sha256": "0e6349b2e6ba4f0a99bc53a3a0d6df236f4c463229d6da8103b3417aee90e641",
   "policy_sha256": "e885ca418d6e2883f6725e3ac23e7e14dd39a911966832705f969ecc29d45f66",
   "scenarios": 210,
   "distinct_measurements": 150,
@@ -2045,7 +2045,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "DT (771 occurrences)",
+      "subject": "DT (726 occurrences)",
       "message": "Contrast 4.89:1 against 4.5:1 at 10.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2054,7 +2054,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "DT (771 occurrences)",
+      "subject": "DT (726 occurrences)",
       "message": "10.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2243,7 +2243,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": " (602 occurrences)",
+      "subject": " (190 occurrences)",
       "message": "Contrast 14.19:1 against 4.5:1 at 10.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2252,7 +2252,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": " (602 occurrences)",
+      "subject": " (190 occurrences)",
       "message": "10.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2495,7 +2495,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": " (602 occurrences)",
+      "subject": " (190 occurrences)",
       "message": "Contrast 12.21:1 against 4.5:1 at 10.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2504,7 +2504,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": " (602 occurrences)",
+      "subject": " (190 occurrences)",
       "message": "10.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2765,7 +2765,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "DT (771 occurrences)",
+      "subject": "DT (726 occurrences)",
       "message": "Contrast 5.24:1 against 4.5:1 at 10.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2774,7 +2774,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "DT (771 occurrences)",
+      "subject": "DT (726 occurrences)",
       "message": "10.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []

@@ -1,8 +1,8 @@
 # Presentations — PASS
 
-Generated: 2026-09-20T08:47:56.791125+00:00
+Generated: 2026-09-20T09:03:39.956147+00:00
 
-Artifact `a5a515505ad8e56f…`
+Artifact `0e6349b2e6ba4f0a…`
 
 Exports, delivered-page accessibility, print, portability and preview freshness.
 
@@ -10,14 +10,14 @@ Exports, delivered-page accessibility, print, portability and preview freshness.
 
 | Code | Status | Subject | Detail |
 |---|---|---|---|
-| PORTABILITY_OK | PASS | foundations.html | 389 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable  |
+| PORTABILITY_OK | PASS | foundations.html | 387 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable  |
 | PORTABILITY_OK | PASS | index.html | 36 KiB, valid utf-8, nothing loaded from an external origin; 0 source citations are clickable by |
 | PORTABILITY_OK | PASS | data-representation.html | 35 KiB, valid utf-8, nothing loaded from an external origin; 7 source citations are clickable by |
-| PORTABILITY_OK | PASS | qwen3.8.html | 389 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable  |
-| PORTABILITY_OK | PASS | kimi-k3.html | 389 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable  |
-| PORTABILITY_OK | PASS | deepseek-v4.1.html | 389 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable  |
-| PORTABILITY_OK | PASS | hardware.html | 389 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable  |
-| PORTABILITY_OK | PASS | networking.html | 389 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable  |
+| PORTABILITY_OK | PASS | qwen3.8.html | 387 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable  |
+| PORTABILITY_OK | PASS | kimi-k3.html | 387 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable  |
+| PORTABILITY_OK | PASS | deepseek-v4.1.html | 387 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable  |
+| PORTABILITY_OK | PASS | hardware.html | 387 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable  |
+| PORTABILITY_OK | PASS | networking.html | 387 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable  |
 | PREVIEW_FRESH | PASS | previews | 47 captures match the built artifacts. |
 | PREVIEW_ARTIFACT | PASS | previews | Every capture binds its delivered entry point. |
 | PREVIEW_COVERAGE | PASS | previews | All 9 checkpoints appear in the 47 published previews, including every one of the 23 focal pages |
@@ -28,11 +28,11 @@ Exports, delivered-page accessibility, print, portability and preview freshness.
 | EXPORT_OK | PASS | svg | Export is namespaced, self-contained and carries a backdrop. |
 | SCENARIO_OK | PASS | export | Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN. |
 | VERSION_OK | PASS | version | Export, page and package.json all report 3.0.0. |
-| A11Y_OK | PASS | page | 132 controls named, 11 headings ordered, 2 live regions. |
-| PROSE_OK | PASS | default | 11 headings ordered, 132 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations |
-| PROSE_OK | PASS | dsv41/inputs | 10 headings ordered, 53 controls named, 0 table(s) with scoped headers over 0 rows, 10 citations |
-| PROSE_OK | PASS | dsv41/residual | 11 headings ordered, 54 controls named, 0 table(s) with scoped headers over 0 rows, 10 citations |
-| PROSE_OK | PASS | dsv41/ced | 12 headings ordered, 89 controls named, 1 table(s) with scoped headers over 8 rows, 36 citations |
+| A11Y_OK | PASS | page | 132 controls named, 9 headings ordered, 2 live regions. |
+| PROSE_OK | PASS | default | 9 headings ordered, 132 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
+| PROSE_OK | PASS | dsv41/inputs | 8 headings ordered, 53 controls named, 0 table(s) with scoped headers over 0 rows, 10 citations  |
+| PROSE_OK | PASS | dsv41/residual | 9 headings ordered, 54 controls named, 0 table(s) with scoped headers over 0 rows, 10 citations  |
+| PROSE_OK | PASS | dsv41/ced | 10 headings ordered, 89 controls named, 1 table(s) with scoped headers over 8 rows, 36 citations |
 | PROSE_OK | PASS | dsv41/encoder | 13 headings ordered, 66 controls named, 1 table(s) with scoped headers over 4 rows, 16 citations |
 | PROSE_OK | PASS | dsv41/decoder | 13 headings ordered, 65 controls named, 1 table(s) with scoped headers over 4 rows, 16 citations |
 | PROSE_OK | PASS | dsv41/engram | 13 headings ordered, 59 controls named, 1 table(s) with scoped headers over 4 rows, 13 citations |
@@ -47,21 +47,21 @@ Exports, delivered-page accessibility, print, portability and preview freshness.
 | PROSE_OK | PASS | dsv41/module-dspark-attentio | 11 headings ordered, 59 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
 | PROSE_OK | PASS | dsv41/module-dspark-heads | 11 headings ordered, 60 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations  |
 | PROSE_OK | PASS | dsv41/module-deepspec-verifi | 11 headings ordered, 73 controls named, 0 table(s) with scoped headers over 0 rows, 11 citations |
-| PROSE_OK | PASS | kimi3/inputs | 10 headings ordered, 43 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
-| PROSE_OK | PASS | kimi3/residual | 10 headings ordered, 44 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
-| PROSE_OK | PASS | q3827/inputs | 10 headings ordered, 44 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
-| PROSE_OK | PASS | q38flash/inputs | 10 headings ordered, 46 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
-| PROSE_OK | PASS | q38flash/residual | 10 headings ordered, 47 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
-| PROSE_OK | PASS | q38flash/ple | 10 headings ordered, 46 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
-| PROSE_OK | PASS | foundations/ds2/entry | 11 headings ordered, 131 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations |
-| PROSE_OK | PASS | foundations/ds3/entry | 11 headings ordered, 132 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations |
-| PROSE_OK | PASS | foundations/q38/entry | 11 headings ordered, 99 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
-| PROSE_OK | PASS | foundations/q330/entry | 11 headings ordered, 116 controls named, 0 table(s) with scoped headers over 0 rows, 8 citations |
-| PROSE_OK | PASS | foundations/q3235/entry | 11 headings ordered, 162 controls named, 0 table(s) with scoped headers over 0 rows, 8 citations |
-| PROSE_OK | PASS | qwen38/q3827/entry | 11 headings ordered, 127 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations |
-| PROSE_OK | PASS | qwen38/q38flash/entry | 10 headings ordered, 120 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations |
-| PROSE_OK | PASS | kimi3/kimi3/entry | 11 headings ordered, 165 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations |
-| PROSE_OK | PASS | dsv41/dsv41/entry | 12 headings ordered, 89 controls named, 1 table(s) with scoped headers over 8 rows, 36 citations |
+| PROSE_OK | PASS | kimi3/inputs | 8 headings ordered, 43 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations n |
+| PROSE_OK | PASS | kimi3/residual | 8 headings ordered, 44 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations n |
+| PROSE_OK | PASS | q3827/inputs | 8 headings ordered, 44 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations n |
+| PROSE_OK | PASS | q38flash/inputs | 8 headings ordered, 46 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations n |
+| PROSE_OK | PASS | q38flash/residual | 8 headings ordered, 47 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations n |
+| PROSE_OK | PASS | q38flash/ple | 8 headings ordered, 46 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations n |
+| PROSE_OK | PASS | foundations/ds2/entry | 9 headings ordered, 131 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
+| PROSE_OK | PASS | foundations/ds3/entry | 9 headings ordered, 132 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
+| PROSE_OK | PASS | foundations/q38/entry | 9 headings ordered, 99 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations n |
+| PROSE_OK | PASS | foundations/q330/entry | 9 headings ordered, 116 controls named, 0 table(s) with scoped headers over 0 rows, 8 citations  |
+| PROSE_OK | PASS | foundations/q3235/entry | 9 headings ordered, 162 controls named, 0 table(s) with scoped headers over 0 rows, 8 citations  |
+| PROSE_OK | PASS | qwen38/q3827/entry | 9 headings ordered, 127 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
+| PROSE_OK | PASS | qwen38/q38flash/entry | 8 headings ordered, 120 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
+| PROSE_OK | PASS | kimi3/kimi3/entry | 9 headings ordered, 165 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations  |
+| PROSE_OK | PASS | dsv41/dsv41/entry | 10 headings ordered, 89 controls named, 1 table(s) with scoped headers over 8 rows, 36 citations |
 | PROSE_OK | PASS | hardware/ds3/entry | 10 headings ordered, 45 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations  |
 | PROSE_OK | PASS | network/ds3/entry | 11 headings ordered, 49 controls named, 0 table(s) with scoped headers over 0 rows, 2 citations  |
 | PROSE_SCOPE | PASS | states | Measured 35 states from a real file:// origin: default, dsv41/inputs, dsv41/residual, dsv41/ced, |

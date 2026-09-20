@@ -1,8 +1,8 @@
 # Aesthetics — PASS
 
-Generated: 2026-09-20T08:48:12.531519+00:00
+Generated: 2026-09-20T09:02:45.811920+00:00
 
-Artifact `a5a515505ad8e56f…`, policy `e885ca418d6e2883…`
+Artifact `0e6349b2e6ba4f0a…`, policy `e885ca418d6e2883…`
 
 210 scenarios, 150 distinct measurements.
 
