@@ -30,6 +30,14 @@ class EvidenceTests(unittest.TestCase):
             s['repo']=repo+'-unreviewed'
             s['url']=base+s['repo']+middle+s['revision']+'/'+s['path']
             self.assertIn('SOURCE_AUTHORITY',[f.code for f in evidence.check_source(s,self.root,allow_fixtures=True)])
+    def test_pro_draft_configuration_has_exact_publisher_authority(self):
+        s=self.source(role='publisher_config',text='{"n_mtp_layers":3}')
+        s['repo']='deepseek-ai/DeepSeek-V4-Pro-DSpark'
+        s['url']=f"https://huggingface.co/{s['repo']}/raw/{s['revision']}/{s['path']}"
+        self.assertEqual(evidence.check_source(s,self.root,allow_fixtures=True),[])
+        s['repo']+='-unreviewed'
+        s['url']=f"https://huggingface.co/{s['repo']}/raw/{s['revision']}/{s['path']}"
+        self.assertIn('SOURCE_AUTHORITY',[f.code for f in evidence.check_source(s,self.root,allow_fixtures=True)])
     def test_api_exists(self):
         self.assertTrue(callable(getattr(evidence,'check_source',None)))
     def test_hash_mismatch_is_failure(self):

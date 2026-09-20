@@ -1,6 +1,6 @@
-import {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES} from './models.mjs';
+import {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DSPARK_PRO} from './models.mjs';
 import {PYTORCH_EXAMPLES,moduleStage} from './pytorch.mjs';
-export {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES};
+export {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DSPARK_PRO};
 export const DEFAULT_STATE={model:'ds3',view:'model',stage:'block',layer:4,hardware:'h200',context:32768,batch:1,kvBytes:2,stateBytes:4,weightBytes:2,ranks:8,placement:'split',trainMode:'fsdp',traffic:'expert',fabric:'ib',library:'nccl',utilization:70,oversub:1,intensity:128,compare:'kimi3',theme:'dark',detail:'shapes',zoom:1,trace:false,phase:'decode'};
 export function getModel(id){if(typeof id==='object'&&id?.id)return id;const m=MODELS[id];if(!m)throw new RangeError(`Unknown model: ${id}`);return m;}
 export function sanitizeState(input={}){

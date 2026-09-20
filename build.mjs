@@ -8,7 +8,7 @@ import {syncWorkedResults} from './tools/sync-worked.mjs';
 import {syncPythonSources} from './tools/sync-pytorch.mjs';
 syncPythonSources();
 syncWorkedResults();
-const files=['models','worked-results','worked-examples','pytorch-source','pytorch-inputs','pytorch-backbone','pytorch-memory','pytorch-dspark','pytorch','core','scene','diagram-model','diagram-systems','diagram-residual','diagram-inputs','diagram-meta','deepdives','python-highlight','diagram-deepdives','diagram-pytorch-backbone','diagram-pytorch-memory','diagram-pytorch-dspark','diagram-pytorch','diagrams','innovations','pages','app'];
+const files=['models','worked-results','worked-examples','pytorch-source','pytorch-inputs','pytorch-backbone','pytorch-memory','pytorch-dspark','pytorch','core','scene','diagram-model','diagram-systems','diagram-residual','diagram-inputs','diagram-dspark','diagram-meta','deepdives','python-highlight','diagram-deepdives','diagram-pytorch-backbone','diagram-pytorch-memory','diagram-pytorch-dspark','diagram-pytorch','diagrams','innovations','pages','app'];
 const modules=[];
 for(const name of files){let code=fs.readFileSync(`src/${name}.mjs`,'utf8');const exports=new Set();
  if(['pytorch-inputs','pytorch-backbone','pytorch-memory','pytorch-dspark'].includes(name)){
@@ -18,12 +18,21 @@ for(const name of files){let code=fs.readFileSync(`src/${name}.mjs`,'utf8');cons
   modules.push(`__modules['${name}.mjs'] = {${symbol}:(JSON.parse(await new Response(new Blob([Uint8Array.from(atob('${compressed}'),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('gzip'))).text())).map(entry=>({...entry,code:__modules['pytorch-source.mjs'].PYTHON_SOURCES[entry.sourceFile.split('/').pop()]}))};`);
   continue;
  }
- if(name==='diagram-inputs'||name==='diagram-residual'){
+ if(['diagram-pytorch-backbone','diagram-pytorch-memory','diagram-pytorch-dspark'].includes(name)){
+  const type=name.split('-').at(-1),symbol=type.toUpperCase()+'_SCHEMATICS';
+  const builders=(await import(`./src/${name}.mjs`))[symbol];
+  const examples=(await import(`./src/pytorch-${type}.mjs`))[type.toUpperCase()+'_EXAMPLES'];
+  const scenes=Object.fromEntries(Object.entries(builders).map(([id,build])=>[id,build(presets.MODELS.dsv41,examples.find(e=>e.id===id))]));
+  const compressed=gzipSync(Buffer.from(JSON.stringify(scenes)),{level:9}).toString('base64');
+  modules.push(`__modules['${name}.mjs'] = await (async()=>{const scenes=JSON.parse(await new Response(new Blob([Uint8Array.from(atob('${compressed}'),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('gzip'))).text());return {${symbol}:Object.fromEntries(Object.entries(scenes).map(([id,scene])=>[id,()=>structuredClone(scene)]))};})();`);
+  continue;
+ }
+ if(['diagram-inputs','diagram-residual','diagram-dspark'].includes(name)){
   // These fixed-checkpoint context scenes have no scenario-dependent geometry.
   // Compile their pure builders into compressed scene/chapter data; retain the
   // same callable interface and clone on access so reader interaction is isolated.
-  const input=name==='diagram-inputs',api=await import(`./src/${name}.mjs`);
-  const sceneName=input?'buildV41Inputs':'buildMHCResidual',chapterName=input?'inputsChapter':'residualChapter';
+  const input=name==='diagram-inputs',dspark=name==='diagram-dspark',api=await import(`./src/${name}.mjs`);
+  const sceneName=input?'buildV41Inputs':dspark?'buildDSparkArchitecture':'buildMHCResidual',chapterName=input?'inputsChapter':dspark?'dsparkChapter':'residualChapter';
   const data={scene:api[sceneName]({model:'dsv41'}),chapter:api[chapterName](presets.MODELS.dsv41)};
   const compressed=gzipSync(Buffer.from(JSON.stringify(data)),{level:9}).toString('base64');
   modules.push(`__modules['${name}.mjs'] = await (async()=>{const data=JSON.parse(await new Response(new Blob([Uint8Array.from(atob('${compressed}'),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('gzip'))).text());return {${sceneName}:()=>structuredClone(data.scene),${chapterName}:()=>structuredClone(data.chapter)};})();`);

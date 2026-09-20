@@ -30,13 +30,12 @@ test('CSA2 exposes distinct write, rescore and reuse responsibilities',()=>{
  const g=scene('csa2');for(const id of ['csa2-full','csa2-reindex','csa2-reuse','csa2-window','csa2-union'])assert.ok(g.nodes.some(n=>n.id===id),id);
  assert.ok(g.edges.some(e=>e.source==='csa2-window'&&e.target==='csa2-union'));
 });
-test('dSpark distinguishes V4.1 drafting from the published DeepSpec verification and reuse path',()=>{
- const g=scene('dspark');for(const id of ['dspark-features','dspark-seed','dspark-draft','dspark-markov','dspark-confidence','dspark-verification','dspark-reuse'])assert.ok(g.nodes.some(n=>n.id===id),id);
- const boundary=g.nodes.find(n=>n.id==='dspark-verification');assert.match(boundary.info.body,/DeepSpec/);assert.equal(boundary.info.category,'DeepSpec offline evaluator');
- assert.ok(g.edges.some(e=>e.source==='dspark-verification'&&e.target==='dspark-reuse'));
+test('dSpark keeps Pro architecture, Flash mapping and DeepSpec verification distinct',()=>{
+ const g=scene('dspark');for(const id of ['dspark-features','dspark-seed','dspark-draft','dspark-markov','dspark-confidence','dspark-verification','dspark-predecessors'])assert.ok(g.nodes.some(n=>n.id===id),id);
+ const boundary=g.nodes.find(n=>n.id==='dspark-verification');assert.match(boundary.info.body,/DeepSpec/);
  const c=chapterContent('dsv41',{...DEFAULT_STATE,stage:'dspark'});
  for(const id of ['dspark-paper','deepspec-verification','deepspec-draft','dsv4-dspark-card'])assert.ok(c.sources.includes(id),id);
- assert.match(c.caveat,/V4.1/);assert.match(c.caveat,/Qwen3.*Gemma4/);
- assert.ok(c.trace.some(([title,body])=>title.includes('Cache reuse')&&body.includes('103')));
- assert.match(g.caption,/unpublished|excluded/i);assert.ok(!g.nodes.some(n=>/speedup|acceptance.rate/i.test(n.name)));
+ assert.ok(c.trace.some(([title,body])=>title.includes('retains')&&body.includes('crops speculative state')));
+ assert.match(g.caption,/Pro.*Flash/);assert.ok(!g.nodes.some(n=>/speedup|acceptance.rate/i.test(n.name)));
+ assert.ok(!g.edges.some(e=>e.source==='dspark-sample-5'&&e.target==='dspark-confidence'));
 });

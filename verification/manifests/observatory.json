@@ -23701,7 +23701,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/app.mjs",
-      "expected": "a8661fb33c3f47a18a1bceba0b71b34269bf8906ecf5cd6568bc7f4abee562b9",
+      "expected": "905f18471022f6972684726784921ac8c2a7d1ba66da6c208c10258f1da4e1a6",
       "statement": "file.src/app.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23726,7 +23726,7 @@
       "domain": "model",
       "classification": "derived",
       "consumer": "file.src/core.mjs",
-      "expected": "ecdf2490d71863c22de0b87a370e4a21b468e79bfb42939e10221c571670d690",
+      "expected": "2134a3122997594321fb7f0c4dc0ab88c7e2b190d2c09a23b57285646dffe28a",
       "statement": "file.src/core.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -23899,7 +23899,7 @@
       "domain": "model",
       "classification": "derived",
       "consumer": "file.src/models.mjs",
-      "expected": "e3b46422b2eb7384dc1c0fa1b880b86d859f1a6f6d482cd0593254b8ad568259",
+      "expected": "2bb34e9b45974d2fbfac57e7b08f25e59e034e2fefee6704d541864188e7509a",
       "statement": "file.src/models.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -23973,7 +23973,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.build.mjs",
-      "expected": "a9415f8a3309885cd461b0c56cb0992b0baa39b7b20a4c160ec7bf74f3b05bd8",
+      "expected": "8dd9a6b38453efcd4869ed365e8883edc5582af00c1d1c7cf555cb104bc87014",
       "statement": "file.build.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -145795,253 +145795,215 @@
       "domain": "model",
       "classification": "derived",
       "expected": {
-        "scope": "Source inspection and derived accounting; no measured throughput or runtime certification.",
-        "symbols": "B = sequences; T = token positions; residual copies, layer depth and token time are separate axes.",
-        "title": "dSpark: draft, verify, and reuse accepted context",
-        "question": "Which state survives verification and feeds the next draft?",
-        "summary": "The draft consumes captured backbone features and a seed token. It predicts a block of future tokens with a draft-specific attention and expert path. Draft proposals remain distinct from accepted continuation.",
+        "stage": "dspark",
+        "title": "DSpark: parallel representations, sequential predictions",
+        "question": "Which work runs once for the entire block, and which work waits for the preceding token?",
+        "summary": "The paper separates an expensive parallel backbone from a small sequential dependency head. The expanded schematic follows the released V4-Pro implementation. The V4.1 Flash mapping below identifies its different feature taps, residual gates and draft dimensions.",
+        "math": [
+          [
+            "Context, draft slots and ownership",
+            "main_x = RMSNorm(W_main concat_l(mean_streams(target_l)))\nmain_x: [B,T,7168]\nids = [anchor, noise, \u2026, noise]\nX = repeat_streams(E_target[ids]) : [B,5,4,7168]",
+            "Pro captures after target blocks. The first draft block owns context fusion; each draft block owns its own KV projections and history. Initial prefill seeds history and returns no draft proposals. Subsequent reference calls update history from the new target position."
+          ],
+          [
+            "Parallel attention: latent slots can see each other",
+            "Q = RoPE(head_RMS(W_qb RMSNorm(W_qa u)))\nKV_h = RoPE(RMSNorm(W_kv main_x))\nKV_d = RoPE(RMSNorm(W_kv u))\nKV = concat_positions(valid_history, draft_slots)\nP = softmax([Q KV\u1d40 / \u221ad_head ; sink])\nA = P[..., :-1] KV",
+            "Q is projected from the current draft read. Target and draft KV share projection weights within a block. All draft slots are visible; there is no triangular draft mask. This does not reveal future sampled tokens: only anchor/noise-derived latent states exist at this point. The sink owns probability mass but no value vector."
+          ],
+          [
+            "Residual and expert computation within each draft block",
+            "pre, post, M = Mixer(X)\nu = RMSNorm(\u03a3_i pre_i X_i)\nX_next,j = \u03a3_i M_ij X_i + post_j Sublayer(u)\nMoE(u) = \u03a3_(e in top_k) weight_e Expert_e(u) + SharedExpert(u)",
+            "Run this recurrence for attention and then MoE with separate mixers. In Pro, each sublayer uses its own current read gate. Selected unbiased routing scores determine mixture weights; correction bias affects selection only. The shared expert has no router logit. Output projection reverses RoPE before the grouped low-rank contraction."
+          ],
+          [
+            "Semi-autoregressive output: only the light head is sequential",
+            "U_k = W_vocab RMSNorm(h_k)\ne_(k\u22121) = E_markov[x_(k\u22121)]\nb_k = W_markov e_(k\u22121)\nq_k = softmax((U_k + b_k) / temperature)\nx_k ~ q_k",
+            "All U_k are computed before sampling starts. Pro uses a rank-512 vocabulary transition; Flash uses rank 256. The previous sampled token changes the next distribution without rerunning attention or MoE. The paper also studies an RNN alternative; the released DeepSeek implementation uses the Markov head."
+          ],
+          [
+            "Confidence is conditional acceptance, not token probability",
+            "r_k = w\u1d40 concat(h_k, e_(k\u22121))\nc_k = sigmoid(r_k)\na_k = product_(i=1..k) c_i\nc*_k = sum_v min(q_k(v), p_target,k(v))\n     = 1 \u2212 0.5 ||q_k \u2212 p_target,k||\u2081",
+            "Confidence uses the collapsed hidden vector before final RMSNorm and the predecessor embedding, not the token just sampled at that slot. The released inference function returns raw r_k; calibration is not established by applying sigmoid. c_k estimates acceptance conditional on prior survival; a_k estimates survival of the entire prefix."
+          ],
+          [
+            "How the paper trains the draft and confidence heads",
+            "w_k = exp(\u2212(k\u22121)/K)\nL_CE = \u2212\u03a3_k w_k log q_k(x*_k)\nL_TV = \u03a3_k w_k ||q_k \u2212 p_target,k||\u2081\nL_conf = \u03a3_k w_k BCE(c_k, c*_k)\nL = 0.1 L_CE + 0.9 L_TV + L_conf",
+            "The target model, shared token embeddings and vocabulary head are frozen. Draft components learn from target-generated data and target distributions. This is the paper\u2019s training objective; the checked-in CPU examples demonstrate forward mechanisms, not reproduction of that training run."
+          ]
+        ],
         "trace": [
           [
-            "Capture target inputs",
-            "Before attention at layers 38, 39, 40, the reference takes the mean across residual copies. Concatenation yields [B, T, 15360]. These taps precede attention; they are stream means, not the weighted attention read or layer outputs."
+            "Reference implementation and configuration",
+            "The pinned Pro inference configuration specifies 3 draft blocks, 5 slots and target taps after layers 59, 60, 61. Its root Transformers config instead says num_nextn_predict_layers=1; the schematic follows inference/config.json and the inference code, not that conflicting root field."
           ],
           [
-            "Initialize the draft",
-            "A seed token and noise placeholders form 5 draft positions. Shared embeddings expand to 4 residual copies. On initial prefill, the reference seeds draft history and returns no predictions."
+            "History versus temporary proposals",
+            "Each block retains at most 128 projected target positions. Main feature position is start_pos; draft positions begin at start_pos + 1. Draft KV participates only in the current attention call. The next round gets verified target features, not the discarded draft hidden state."
           ],
           [
-            "Run the MTP blocks",
-            "3 draft blocks use 3 of 128 routed draft experts per token. Draft attention combines captured local history with the entire draft block; it is not an ordinary triangular next-token loop."
+            "V4.1 Flash feature boundary",
+            "Flash captures before attention at target layers 38, 39, 40, after any configured Engram update. Its 15360-wide concatenation projects to 5120. Pro instead captures after the target blocks."
           ],
           [
-            "Emit proposals and scores",
-            "The shared vocabulary head produces [B, 5, 129280] logits. Sequential Markov bias conditions each sampled proposal on the preceding token. Returned IDs have 6 positions including the seed; confidence scores have 5 positions."
+            "V4.1 Flash residual and query differences",
+            "Flash reads the previous sublayer\u2019s pending mHC gate and collapses with the final FFN gate. Pro reads current-sublayer gates and has a dedicated learned final collapse. Pro additionally normalizes expanded query heads; Flash DSparkAttention omits that operation. Quantized KV paths also differ, and the educational float examples do not emulate them."
           ],
           [
-            "Choose a verification prefix \u00b7 DeepSpec code",
-            "The evaluator applies sigmoid to confidence logits and truncates at the first position below a fixed threshold. Disabling the threshold keeps the full draft block. This downstream sigmoid is separate from the raw V4.1 confidence head. Threshold filtering is not the paper\u2019s engine-profile scheduler."
+            "Scheduling stays outside the draft graph",
+            "The paper\u2019s scheduler uses predicted prefix survival and engine throughput profiles. Its production adaptation uses lagged confidence for capacity and current confidence for allocation. DeepSpec\u2019s fixed-threshold offline evaluator is a separate implementation, not that load-aware production scheduler."
           ],
           [
-            "Verify and correct \u00b7 DeepSpec code",
-            "The target evaluates the current seed plus the proposed prefix. Each proposal is accepted with min(1, p / max(q, 1e-8)), using target probability p and draft probability q. A cumulative product keeps only the contiguous accepted prefix. At the first rejection, the evaluator samples from normalized max(p \u2212 q, 0), with a target-distribution fallback for a degenerate residual; if all proposals survive, it samples a bonus token from the last target distribution. Stop tokens can end the loop earlier."
-          ],
-          [
-            "Reuse context \u00b7 DeepSpec code",
-            "The draft forward crops its cache back to the iteration start, removing speculative block state. After verification, the target cache keeps the seed and accepted draft prefix. The next draft receives target hidden features for those same positions. The correction or bonus token becomes the next seed; it has not yet been cached by the target."
-          ],
-          [
-            "Load-aware scheduling \u00b7 paper scope",
-            "The paper\u2019s basic scheduler uses prefix-survival estimates and engine throughput profiles, with early stopping to avoid looking ahead into future-token confidence. Its production adaptation uses historical confidence from two steps earlier to set current verification capacity, then ranks current prefixes. These are paper-level policies; the inspected DeepSpec evaluator implements a fixed threshold, not this production scheduler."
-          ],
-          [
-            "Proposal trace \u00b7 illustrative token IDs",
-            "Starting from seed a, the 5-position draft input is [a, noise, noise, noise, noise]. The sequential head samples proposal y1 conditioned on a, then y2 conditioned on y1, continuing through y5. Returned IDs are [a, y1, \u2026, y5], with 5 confidence scores. These positions are proposals; no accepted-prefix length is assumed."
-          ],
-          [
-            "Cache reuse trace \u00b7 illustrative non-stop iteration",
-            "Let the current seed be at position 100, with proposals y1, y2, y3 at 101\u2013103. Suppose y1 and y2 pass but y3 fails. The target cache is cropped to length 103, keeping positions through 102; a correction token is written at 103 and becomes the next seed. The draft cache was cropped to length 100. Target hidden features for positions 100\u2013102 are retained for the next draft. Neither rejected y3 state nor a target KV entry for the new correction is reused. This illustrates the DeepSpec evaluator, not a measured V4.1 execution."
+            "What target verification retains",
+            "DeepSpec verifies the seed and selected proposal prefix. It accepts a contiguous prefix with min(1,p/q), draws a residual correction after rejection or a bonus after full acceptance, and crops speculative state. This Qwen3/Gemma4 evaluator illustrates the mechanism; neither inspected DeepSeek reference provides a complete certified V4.1 serving loop."
           ]
         ],
         "rows": [
           [
-            "Captured features",
-            "[B, T, 15360]",
-            "Concatenated pre-attention backbone features"
+            "Reference width / block length",
+            "7168 / 5",
+            "Released Pro inference configuration"
           ],
           [
-            "Draft residual",
-            "[B, 5, 4, 5120]",
-            "Draft positions differ from target-layer depth"
+            "V4.1 width / block length",
+            "5120 / 5",
+            "Selected Flash checkpoint; kept separate"
           ],
           [
-            "Returned IDs",
-            "[B, 6]",
-            "Seed followed by proposed tokens"
+            "Pro attention / experts",
+            "128 \u00d7 512; top 6 of 384",
+            "Per block, plus an always-active shared expert"
           ],
           [
-            "Confidence scores",
-            "[B, 5]",
-            "Raw scores; no sigmoid/calibration established here"
+            "Flash attention / draft experts",
+            "64 \u00d7 512; top 3 of 128",
+            "Draft expert counts differ from its target backbone"
           ],
           [
-            "Target KV after verification",
-            "start + accepted draft count + 1",
-            "Seed plus accepted draft prefix; excludes the new correction/bonus"
-          ],
-          [
-            "Draft KV after proposal",
-            "iteration start",
-            "Speculative draft block cropped; verified target features extend context next time"
+            "Returned IDs / scores",
+            "[B, 6] / [B, 5]",
+            "IDs include anchor; scores are raw confidence logits"
           ]
         ],
-        "caveat": "The V4.1 Flash reference supplies the draft path. DeepSpec publishes a complete single-sequence offline evaluator for Qwen3/Gemma4, including rejection sampling and cache cropping; it does not establish the V4.1 production coordinator. The linked V4-Pro-DSpark release is the V4-Pro checkpoint with an attached draft module, not V4.1 Flash. Its configuration and performance cannot be substituted here. V4.1 draft parameters remain unpublished and excluded from the backbone ledger.",
+        "caveat": "Source-grounded architecture is separate from checkpoint execution. The Pro draft-block code is an unquantized CPU adaptation; the attention/head walkthrough supplies reduced tensors at explicit boundaries. Neither claims full-model parity, GPU speedup, confidence calibration or production scheduling equivalence.",
+        "scope": "Published paper + pinned Pro inference reference, with an explicit V4.1 Flash mapping.",
+        "symbols": "B = batch; T = target-history positions; K = draft slots; R = residual streams; D = hidden width; k = proposal index.",
         "sources": [
-          "dsv41-config",
-          "dsv41-code",
           "dspark-paper",
+          "dsv4-dspark-code",
+          "dsv4-dspark-config",
+          "dsv4-dspark-card",
+          "dsv41-code",
+          "dsv41-config",
+          "dsv4-dspark-root-config",
           "deepspec-verification",
           "deepspec-draft",
           "deepspec-context",
-          "deepspec-sampling",
-          "dsv4-dspark-card",
-          "dsv4-dspark-code"
+          "deepspec-sampling"
         ],
         "anchors": [
-          "Transformer.forward_spec",
+          "DSparkBlock.forward_embed",
           "DSparkBlock.forward_head",
-          "verify_draft_tokens",
-          "generate_decoding_sample",
-          "forward_dspark_draft_block",
-          "_confident_prefix_length",
-          "Qwen3DSparkEvaluator._update",
-          "sample_residual"
-        ],
-        "stage": "dspark"
+          "DSparkAttention.forward",
+          "Block.hc_pre",
+          "Block.hc_post",
+          "Block.hc_head",
+          "Transformer.forward_spec",
+          "paper \u00a73.1 Eqs.4\u201312",
+          "paper \u00a75.1\u20135.2"
+        ]
       },
       "statement": "V4.1 draft shapes remain checkpoint-specific. DeepSpec offline Qwen3/Gemma4 acceptance, residual sampling, and cache cropping are anchored separately; paper scheduling and V4-Pro release identity do not establish V4.1 production integration. Labeled worked traces are illustrative, not measured.",
       "evidence": [
         {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Transformer.forward_spec",
-            "sha256": "450d088624c24be14b4d1ff261b75ad2d1edd67d278a87d28473dcad2cbb92ae",
-            "resolved_span": [
-              1275,
-              1282
-            ]
-          },
-          "relation": "implements"
-        },
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "Transformer.forward",
-            "sha256": "ecffa476cb5c3a236955ad55060befca9e9d0b7a68163c9e97242bc0137145a5",
-            "resolved_span": [
-              1242,
-              1272
-            ]
-          },
-          "relation": "implements"
-        },
-        {
-          "source": "dsv41-code",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "DSparkBlock",
-            "sha256": "a1a89b2d5919a603e725dd4bfe729cc9648a2122d12ea11015813bace483d0dc",
-            "resolved_span": [
-              1100,
-              1156
-            ]
-          },
-          "relation": "implements"
-        },
-        {
-          "source": "dsv41-code",
+          "source": "dsv4-dspark-code",
           "anchor": {
             "kind": "python_symbol",
             "symbol": "DSparkAttention",
-            "sha256": "24bad2c5353b978e24ba9f54256ba82c2b53909ab8f6dbfdc6d48882c0c3bf73",
+            "sha256": "08a71bc0b774083e21e46e069f8108778f210a0c1abed810847bfd4a9b31b17b",
             "resolved_span": [
-              1032,
-              1074
+              750,
+              792
             ]
           },
-          "relation": "implements"
+          "relation": "derives"
         },
         {
-          "source": "dsv41-code",
+          "source": "dsv4-dspark-code",
           "anchor": {
             "kind": "python_symbol",
-            "symbol": "DSparkConfidenceHead.forward",
-            "sha256": "65eec8a28a386f768d7350c25db0ceb2d84b56f6364d414c0d13a499f2f068a2",
+            "symbol": "DSparkBlock",
+            "sha256": "3fd35523becf47e955a9d8858b49b50f1da296dfa8ad5fb8a41baf32b8506d69",
             "resolved_span": [
-              1095,
-              1097
+              818,
+              874
             ]
           },
-          "relation": "implements"
+          "relation": "derives"
         },
         {
-          "source": "deepspec-verification",
+          "source": "dsv4-dspark-code",
           "anchor": {
             "kind": "python_symbol",
-            "symbol": "verify_draft_tokens",
-            "sha256": "994463f2e7558ef6ba25759e5826f8e11a4b0bb3ea5905f1fb8479486f466349",
+            "symbol": "Block",
+            "sha256": "05f5d646a42794b7f349c437c867718eed21a51b2832694c060c7dbf8a77575c",
             "resolved_span": [
-              186,
-              304
+              652,
+              716
             ]
           },
-          "relation": "implements"
+          "relation": "derives"
         },
         {
-          "source": "deepspec-verification",
+          "source": "dsv4-dspark-code",
           "anchor": {
             "kind": "python_symbol",
-            "symbol": "generate_decoding_sample",
-            "sha256": "300a93c4953943c376b2600094558f8c8ed3dc13af7d740a38175de1da292040",
+            "symbol": "MoE",
+            "sha256": "6260ece7fb4bc9093f70ea43d7a407fa31d12f7a5fd1084b02822b60ef431c06",
             "resolved_span": [
-              308,
-              441
+              614,
+              649
             ]
           },
-          "relation": "implements"
+          "relation": "derives"
         },
         {
-          "source": "deepspec-draft",
+          "source": "dsv4-dspark-code",
           "anchor": {
             "kind": "python_symbol",
-            "symbol": "forward_dspark_draft_block",
-            "sha256": "7a478e97ca1334f82a525a80f96bcc205e4f6190b2a570e91d7e98b554cc3d47",
+            "symbol": "Gate",
+            "sha256": "fc7bfffe19a2c95ad0e06051e5ad65ae0eeabb56bc718fa2c38de3fdea29d427",
             "resolved_span": [
-              22,
-              45
+              551,
+              589
             ]
           },
-          "relation": "implements"
+          "relation": "derives"
         },
         {
-          "source": "deepspec-draft",
+          "source": "dsv4-dspark-code",
           "anchor": {
             "kind": "python_symbol",
-            "symbol": "_confident_prefix_length",
-            "sha256": "7abd69f4aa63518584857c886a99c94e3fe7fb06bfa7aa1b4175ea7f44ddbd92",
+            "symbol": "Expert",
+            "sha256": "8acf81a03782fd4c176f881b8546c7905ce6b80e935ed400503c38a163940d1c",
             "resolved_span": [
-              82,
-              93
+              592,
+              611
             ]
           },
-          "relation": "implements"
+          "relation": "derives"
         },
         {
-          "source": "deepspec-context",
+          "source": "dsv4-dspark-code",
           "anchor": {
             "kind": "python_symbol",
-            "symbol": "Qwen3DSparkEvaluator._update",
-            "sha256": "00e93122c9f1985c4778e2912d3b9cce1ad9398ae8beca6083b6c21735ea7eae",
+            "symbol": "Transformer.forward",
+            "sha256": "f88d279b8d6e67bcffe50549072ac370d9214155d0ccb32b798a62703c48b113",
             "resolved_span": [
-              134,
-              147
+              913,
+              926
             ]
           },
-          "relation": "implements"
-        },
-        {
-          "source": "deepspec-sampling",
-          "anchor": {
-            "kind": "python_symbol",
-            "symbol": "sample_residual",
-            "sha256": "e41ea9ee5c08e5d44d78e8fa9f1680d447d931a033fd9dbd4cbc86fb2ad8b6f4",
-            "resolved_span": [
-              34,
-              44
-            ]
-          },
-          "relation": "implements"
+          "relation": "derives"
         },
         {
           "source": "dsv4-dspark-code",
@@ -146054,7 +146016,43 @@
               936
             ]
           },
-          "relation": "implements"
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "",
+            "sha256": "01f3482737fd6f87a26b8dff4dbc4ca90b072ec0f733afbceb12350235ba6cfb",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DSparkAttention",
+            "sha256": "24bad2c5353b978e24ba9f54256ba82c2b53909ab8f6dbfdc6d48882c0c3bf73",
+            "resolved_span": [
+              1032,
+              1074
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DSparkBlock.forward_head",
+            "sha256": "8ff4558a5bf458e537ad2751ea32920b53ea5fde467b5649c926cf99d2484d71",
+            "resolved_span": [
+              1137,
+              1156
+            ]
+          },
+          "relation": "derives"
         },
         {
           "source": "dspark-paper",
@@ -146091,52 +146089,40 @@
           "relation": "documents"
         },
         {
-          "source": "dsv4-dspark-card",
+          "source": "dsv4-dspark-root-config",
           "anchor": {
-            "kind": "span",
-            "start": 41,
-            "end": 41,
-            "contains": [
-              "same checkpoint",
-              "speculative decoding module"
-            ],
-            "sha256": "8e401daf21c5284e0c0d9a9893a1da87718cd3530e6e0c9e86dffe19b0aa4a29",
-            "resolved_span": [
-              41,
-              41
-            ]
+            "kind": "json_pointer",
+            "pointer": "/num_nextn_predict_layers",
+            "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+            "resolved_span": []
           },
-          "relation": "documents"
+          "relation": "derives"
         }
       ],
       "dependencies": [
-        "MODELS.dsv41.architecture",
-        "MODELS.dsv41.candidateBlockSize",
-        "MODELS.dsv41.candidateBlocks",
-        "MODELS.dsv41.candidateSource",
-        "MODELS.dsv41.compressDecoder",
-        "MODELS.dsv41.compressEncoder",
-        "MODELS.dsv41.d",
-        "MODELS.dsv41.dsparkBlock",
-        "MODELS.dsv41.dsparkExperts",
-        "MODELS.dsv41.dsparkTargets",
-        "MODELS.dsv41.dsparkTopK",
-        "MODELS.dsv41.encoderLayers",
-        "MODELS.dsv41.engramHeadDim",
-        "MODELS.dsv41.engramHeads",
-        "MODELS.dsv41.engramLayers",
-        "MODELS.dsv41.engramNgram",
-        "MODELS.dsv41.indexSourceLayers",
-        "MODELS.dsv41.indexerBudget",
-        "MODELS.dsv41.kvSourceLayers",
-        "MODELS.dsv41.mtp",
-        "MODELS.dsv41.streams",
-        "MODELS.dsv41.swaLayers",
-        "MODELS.dsv41.vocab",
-        "MODELS.dsv41.window",
-        "function.cacheLedger",
-        "function.parameterLedger",
-        "function.layerKind"
+        "DSPARK_PRO.blocks",
+        "DSPARK_PRO.d",
+        "DSPARK_PRO.expertFF",
+        "DSPARK_PRO.experts",
+        "DSPARK_PRO.headDim",
+        "DSPARK_PRO.heads",
+        "DSPARK_PRO.markovRank",
+        "DSPARK_PRO.noiseToken",
+        "DSPARK_PRO.oGroups",
+        "DSPARK_PRO.oRank",
+        "DSPARK_PRO.qRank",
+        "DSPARK_PRO.ropeDim",
+        "DSPARK_PRO.routeScale",
+        "DSPARK_PRO.shared",
+        "DSPARK_PRO.sinkhornIters",
+        "DSPARK_PRO.slots",
+        "DSPARK_PRO.streams",
+        "DSPARK_PRO.targetLayers",
+        "DSPARK_PRO.topK",
+        "DSPARK_PRO.vocab",
+        "DSPARK_PRO.window",
+        "MODELS.dsv41.dsparkMarkovRank",
+        "MODELS.dsv41.dsparkNoiseToken"
       ]
     },
     {
@@ -146144,7 +146130,7 @@
       "consumer": "file.src/deepdives.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "beb5dd9536578dd57046215899f1da4a1d403d2e72ae5f019ebf1baf2882a3b5",
+      "expected": "32e79abc351e99d606832d61a0f6853d2c59dc063a51c9c60eddda6c357ed9be",
       "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
       "evidence": [],
       "dependencies": [
@@ -146160,7 +146146,7 @@
       "consumer": "file.src/diagram-deepdives.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "3c5b29a58e939d08afaf28bf94a08ff2205d8bb7548ea53b49c0af10ecbf684b",
+      "expected": "f7b3933a10a2e74f406a83d51169dc55486b2019e739f90c71be6fdf661fe3f4",
       "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
       "evidence": [],
       "dependencies": [
@@ -146360,123 +146346,6 @@
       "evidence": [],
       "dependencies": [
         "deepdive.csa2",
-        "file.src/diagram-deepdives.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.dspark.dspark-features.2cffd741e7daeb03",
-      "consumer": "scene.dsv41.model.dspark.dspark-features.2cffd741e7daeb03",
-      "domain": "model",
-      "classification": "derived",
-      "expected": "2cffd741e7daeb0376b9aa3ad7cde04bf0ea184194a797808dd2d19784b2fb0c",
-      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
-      "evidence": [],
-      "dependencies": [
-        "deepdive.dspark",
-        "file.src/diagram-deepdives.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.dspark.dspark-draft.db6831e336fd6f48",
-      "consumer": "scene.dsv41.model.dspark.dspark-draft.db6831e336fd6f48",
-      "domain": "model",
-      "classification": "derived",
-      "expected": "db6831e336fd6f48bde19df2f4145a74ac52159c570fd1ea559b8f93510893ee",
-      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
-      "evidence": [],
-      "dependencies": [
-        "deepdive.dspark",
-        "file.src/diagram-deepdives.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.dspark.dspark-markov.c0a9a164de9f4017",
-      "consumer": "scene.dsv41.model.dspark.dspark-markov.c0a9a164de9f4017",
-      "domain": "model",
-      "classification": "derived",
-      "expected": "c0a9a164de9f4017e11cada119c2483d8515b89d423651749d9b213aae20ed72",
-      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
-      "evidence": [],
-      "dependencies": [
-        "deepdive.dspark",
-        "file.src/diagram-deepdives.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.dspark.dspark-confidence.69e8067e5219ce9e",
-      "consumer": "scene.dsv41.model.dspark.dspark-confidence.69e8067e5219ce9e",
-      "domain": "model",
-      "classification": "derived",
-      "expected": "69e8067e5219ce9e9f1a4db2fc14e39fedd402c269c9d0f6277bed60dfad7f05",
-      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
-      "evidence": [],
-      "dependencies": [
-        "deepdive.dspark",
-        "file.src/diagram-deepdives.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.dspark.dspark-schedule.f0083e06016888e1",
-      "consumer": "scene.dsv41.model.dspark.dspark-schedule.f0083e06016888e1",
-      "domain": "model",
-      "classification": "derived",
-      "expected": "f0083e06016888e1c6d2373d1bdf1965569be52b853ac6a585d9a3c12bfa77fe",
-      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
-      "evidence": [],
-      "dependencies": [
-        "deepdive.dspark",
-        "file.src/diagram-deepdives.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.dspark.dspark-verification.a86914ad20e4a0c7",
-      "consumer": "scene.dsv41.model.dspark.dspark-verification.a86914ad20e4a0c7",
-      "domain": "model",
-      "classification": "derived",
-      "expected": "a86914ad20e4a0c7b9ef21f9fe9ec24f630d0a58150cde80a7d7c3d5fc80db53",
-      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
-      "evidence": [],
-      "dependencies": [
-        "deepdive.dspark",
-        "file.src/diagram-deepdives.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.dspark.dspark-reuse.b40e4ce89fd8abf5",
-      "consumer": "scene.dsv41.model.dspark.dspark-reuse.b40e4ce89fd8abf5",
-      "domain": "model",
-      "classification": "derived",
-      "expected": "b40e4ce89fd8abf58535538c55d32c46b593a2beb9f78a2f3e62eaa1ab4eeef9",
-      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
-      "evidence": [],
-      "dependencies": [
-        "deepdive.dspark",
-        "file.src/diagram-deepdives.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.dspark.dspark-seed.d0480c70a3ed79cf",
-      "consumer": "scene.dsv41.model.dspark.dspark-seed.d0480c70a3ed79cf",
-      "domain": "model",
-      "classification": "derived",
-      "expected": "d0480c70a3ed79cf2f2606557252d6dffaf2bd51a393f51b9c77334709d1a08c",
-      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
-      "evidence": [],
-      "dependencies": [
-        "deepdive.dspark",
-        "file.src/diagram-deepdives.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.dspark.graph.7403512b8d6c3e9a",
-      "consumer": "scene.dsv41.model.dspark.graph.7403512b8d6c3e9a",
-      "domain": "model",
-      "classification": "derived",
-      "expected": "7403512b8d6c3e9a8d81d9046b4e3dd4d0b24500013491794c54270bc842a85e",
-      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
-      "evidence": [],
-      "dependencies": [
-        "deepdive.dspark",
         "file.src/diagram-deepdives.mjs"
       ]
     },
@@ -147288,7 +147157,7 @@
       "consumer": "file.src/pytorch-dspark.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "f9acc89fb30225079fb68dff8071f7ea76c4ca44c512d38cae2775b3042d533f",
+      "expected": "94bd0831c90ce73f635171937c7d47d8f6885c3c1ced93f66cb79be54bc89b81",
       "statement": "Teaching example delivery fingerprint; identity is not source acceptance.",
       "evidence": [],
       "dependencies": [
@@ -147676,7 +147545,7 @@
       "consumer": "file.src/diagram-pytorch.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "c2c537fc2d0d8017813f8056fe48692d30c3a266959ef04d129eae2af47f3619",
+      "expected": "3a2a9de4816cbebb34a9ba7f60a1fe934d33556a172e6edb088a0a107585dca7",
       "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
       "evidence": [],
       "dependencies": [
@@ -150398,7 +150267,7 @@
       "consumer": "file.src/pytorch-source.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "5e0bb69e5558aff745c384b3e3e323dc7b9c50fea5a3e75e9cd32fc08dd93310",
+      "expected": "c6f25d77ac5b48922a4c226fd37ed8e03ad2dcb93a4f3016d3c09b59b70c5f32",
       "dependencies": [
         "file.examples/deepseek_v41/config.py",
         "file.examples/deepseek_v41/backbone_mhc.py",
@@ -154893,7 +154762,7 @@
       "consumer": "file.src/worked-examples.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "e055de69130e74835279ce684b0c9954b86d45d1c6e8b2011fd495d274f48310",
+      "expected": "8a45eaf4de47f453cc7aea7e1146bb83b2b0e9745f93728ee39a291654ae51e1",
       "dependencies": [
         "file.src/worked-results.mjs"
       ],
@@ -154905,7 +154774,7 @@
       "consumer": "file.src/worked-results.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "7bcba4759eb61e241fcfc96c76db3e540ef93dd9633aceac32630e38ffbe83fe",
+      "expected": "49d818b589082915d4a32a931086b34328e6fff69a8ae1810f2dda6032961b8b",
       "dependencies": [
         "worked.replay",
         "worked.selection",
@@ -154919,7 +154788,7 @@
       "consumer": "file.examples/deepseek_v41/worked_examples.py",
       "domain": "model",
       "classification": "derived",
-      "expected": "ee99a8cc3419ee343a359de7e1eedad5634cb0c91b5b40b649811bd1f67dfb90",
+      "expected": "c4e628fee6b64ad1b83c3edae9299d17b93c84326faddd19ec68d56c9acdfaef",
       "dependencies": [
         "file.examples/deepseek_v41/config.py",
         "file.examples/deepseek_v41/csa2_attention.py",
@@ -159654,6 +159523,2645 @@
       ],
       "evidence": [],
       "statement": "Expanded image IDs and current encoder residual are distinct inputs to Engram."
+    },
+    {
+      "id": "worked.dspark",
+      "consumer": "worked.dspark",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "title": "dSpark: bidirectional attention, Markov sampling and confidence",
+        "scope": "CPU teaching fixture using the V4.1 projected-attention and output-head helpers. Projected attention inputs and output-head inputs are separately supplied boundaries; no draft backbone, projection, rotation, cache update or target verifier executes here. Explicit teaching weights are not checkpoint weights. Sigmoid and cumulative survival illustrate confidence interpretation, not measured acceptance or GPU performance.",
+        "settings": {
+          "batch": 1,
+          "history_positions": 2,
+          "draft_positions": 5,
+          "heads": 2,
+          "head_dim": 2,
+          "hidden_dim": 2,
+          "vocabulary": 4,
+          "markov_rank": 2,
+          "temperature": 1,
+          "random_seed": 23
+        },
+        "inputs": [
+          {
+            "id": "queries",
+            "title": "Supplied projected and rotated queries",
+            "operation": "supplied boundary input",
+            "shape": [
+              1,
+              5,
+              2,
+              2
+            ],
+            "axes": [
+              "batch",
+              "draft_positions",
+              "heads",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    1
+                  ]
+                ],
+                [
+                  [
+                    0.5,
+                    1
+                  ],
+                  [
+                    -1,
+                    0.5
+                  ]
+                ],
+                [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    0.5,
+                    -0.5
+                  ]
+                ],
+                [
+                  [
+                    -0.5,
+                    1
+                  ],
+                  [
+                    1,
+                    0.5
+                  ]
+                ],
+                [
+                  [
+                    0.25,
+                    -0.5
+                  ],
+                  [
+                    -0.5,
+                    -0.25
+                  ]
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "history_kv",
+            "title": "Supplied valid history KV only",
+            "operation": "supplied boundary input",
+            "shape": [
+              1,
+              2,
+              2
+            ],
+            "axes": [
+              "batch",
+              "history_positions",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  1,
+                  -0.5
+                ],
+                [
+                  -0.25,
+                  1
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "draft_kv",
+            "title": "Supplied projected and rotated draft KV",
+            "operation": "supplied boundary input",
+            "shape": [
+              1,
+              5,
+              2
+            ],
+            "axes": [
+              "batch",
+              "draft_positions",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.5,
+                  0.25
+                ],
+                [
+                  -1,
+                  0.5
+                ],
+                [
+                  0.25,
+                  -1
+                ],
+                [
+                  0.75,
+                  0.5
+                ],
+                [
+                  -0.5,
+                  -0.75
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "sink",
+            "title": "Attention sink logits, with no value",
+            "operation": "supplied boundary input",
+            "shape": [
+              2
+            ],
+            "axes": [
+              "heads"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              0.25,
+              -0.5
+            ]
+          },
+          {
+            "id": "hidden",
+            "title": "Supplied pre-final-norm collapsed hidden",
+            "operation": "supplied boundary input",
+            "shape": [
+              1,
+              5,
+              2
+            ],
+            "axes": [
+              "batch",
+              "draft_positions",
+              "hidden_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.5,
+                  -1
+                ],
+                [
+                  1,
+                  0.25
+                ],
+                [
+                  -0.5,
+                  0.75
+                ],
+                [
+                  0.25,
+                  0.5
+                ],
+                [
+                  -0.75,
+                  -0.25
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "base_logits",
+            "title": "Supplied logits from shared vocabulary head",
+            "operation": "supplied boundary input",
+            "shape": [
+              1,
+              5,
+              4
+            ],
+            "axes": [
+              "batch",
+              "draft_positions",
+              "vocabulary"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.20000000298023224,
+                  -0.10000000149011612,
+                  0.4000000059604645,
+                  0
+                ],
+                [
+                  -0.20000000298023224,
+                  0.5,
+                  0.10000000149011612,
+                  -0.30000001192092896
+                ],
+                [
+                  0.30000001192092896,
+                  0.10000000149011612,
+                  -0.4000000059604645,
+                  0.20000000298023224
+                ],
+                [
+                  0,
+                  -0.20000000298023224,
+                  0.4000000059604645,
+                  0.10000000149011612
+                ],
+                [
+                  0.10000000149011612,
+                  0.20000000298023224,
+                  -0.10000000149011612,
+                  0.30000001192092896
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "seed",
+            "title": "Preceding token included in output",
+            "operation": "supplied boundary input",
+            "shape": [
+              1
+            ],
+            "axes": [
+              "batch"
+            ],
+            "dtype": "torch.int64",
+            "values": [
+              0
+            ]
+          },
+          {
+            "id": "markov_embedding_weights",
+            "title": "Teaching Markov embedding weights",
+            "operation": "explicit illustrative weights",
+            "shape": [
+              4,
+              2
+            ],
+            "axes": [
+              "vocabulary",
+              "markov_rank"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                -1,
+                0.5
+              ],
+              [
+                0.5,
+                -1
+              ]
+            ]
+          },
+          {
+            "id": "markov_head_weights",
+            "title": "Teaching Markov vocabulary weights",
+            "operation": "explicit illustrative weights",
+            "shape": [
+              4,
+              2
+            ],
+            "axes": [
+              "vocabulary",
+              "markov_rank"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                0.800000011920929,
+                -0.30000001192092896
+              ],
+              [
+                -0.4000000059604645,
+                0.699999988079071
+              ],
+              [
+                0.20000000298023224,
+                0.5
+              ],
+              [
+                -0.6000000238418579,
+                -0.20000000298023224
+              ]
+            ]
+          },
+          {
+            "id": "confidence_weights",
+            "title": "Teaching raw confidence weights",
+            "operation": "explicit illustrative weights",
+            "shape": [
+              1,
+              4
+            ],
+            "axes": [
+              "output",
+              "hidden_plus_markov"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                0.30000001192092896,
+                -0.20000000298023224,
+                0.8999999761581421,
+                -0.699999988079071
+              ]
+            ]
+          }
+        ],
+        "steps": [
+          {
+            "id": "attention_scores",
+            "title": "History, every draft slot, then sink",
+            "operation": "Q K\u1d40 / sqrt(head_dim); append per-head sink",
+            "shape": [
+              1,
+              5,
+              2,
+              8
+            ],
+            "axes": [
+              "batch",
+              "draft_positions",
+              "heads",
+              "history_plus_draft_plus_sink"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  [
+                    0.7071067690849304,
+                    -0.1767766922712326,
+                    0.3535533845424652,
+                    -0.7071067690849304,
+                    0.1767766922712326,
+                    0.5303300619125366,
+                    -0.3535533845424652,
+                    0.25
+                  ],
+                  [
+                    -0.3535533845424652,
+                    0.7071067690849304,
+                    0.1767766922712326,
+                    0.3535533845424652,
+                    -0.7071067690849304,
+                    0.3535533845424652,
+                    -0.5303300619125366,
+                    -0.5
+                  ]
+                ],
+                [
+                  [
+                    0,
+                    0.6187184453010559,
+                    0.3535533845424652,
+                    0,
+                    -0.6187184453010559,
+                    0.6187184453010559,
+                    -0.7071067690849304,
+                    0.25
+                  ],
+                  [
+                    -0.8838834762573242,
+                    0.5303300619125366,
+                    -0.2651650309562683,
+                    0.8838834762573242,
+                    -0.5303300619125366,
+                    -0.3535533845424652,
+                    0.0883883461356163,
+                    -0.5
+                  ]
+                ],
+                [
+                  [
+                    0.3535533845424652,
+                    0.5303300619125366,
+                    0.5303300619125366,
+                    -0.3535533845424652,
+                    -0.5303300619125366,
+                    0.8838834762573242,
+                    -0.8838834762573242,
+                    0.25
+                  ],
+                  [
+                    0.5303300619125366,
+                    -0.4419417381286621,
+                    0.0883883461356163,
+                    -0.5303300619125366,
+                    0.4419417381286621,
+                    0.0883883461356163,
+                    0.0883883461356163,
+                    -0.5
+                  ]
+                ],
+                [
+                  [
+                    -0.7071067690849304,
+                    0.7954950928688049,
+                    0,
+                    0.7071067690849304,
+                    -0.7954950928688049,
+                    0.0883883461356163,
+                    -0.3535533845424652,
+                    0.25
+                  ],
+                  [
+                    0.5303300619125366,
+                    0.1767766922712326,
+                    0.4419417381286621,
+                    -0.5303300619125366,
+                    -0.1767766922712326,
+                    0.7071067690849304,
+                    -0.6187184453010559,
+                    -0.5
+                  ]
+                ],
+                [
+                  [
+                    0.3535533845424652,
+                    -0.39774754643440247,
+                    0,
+                    -0.3535533845424652,
+                    0.39774754643440247,
+                    -0.04419417306780815,
+                    0.1767766922712326,
+                    0.25
+                  ],
+                  [
+                    -0.2651650309562683,
+                    -0.0883883461356163,
+                    -0.22097086906433105,
+                    0.2651650309562683,
+                    0.0883883461356163,
+                    -0.3535533845424652,
+                    0.30935922265052795,
+                    -0.5
+                  ]
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_probabilities",
+            "title": "Bidirectional draft attention probabilities",
+            "operation": "softmax over history + all draft slots + sink",
+            "shape": [
+              1,
+              5,
+              2,
+              8
+            ],
+            "axes": [
+              "batch",
+              "draft_positions",
+              "heads",
+              "history_plus_draft_plus_sink"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  [
+                    0.20989890396595,
+                    0.08672502636909485,
+                    0.14738859236240387,
+                    0.051029935479164124,
+                    0.12350676953792572,
+                    0.175888329744339,
+                    0.07267270237207413,
+                    0.13288967311382294
+                  ],
+                  [
+                    0.08300182223320007,
+                    0.2397322654724121,
+                    0.14106103777885437,
+                    0.16833724081516266,
+                    0.05828292667865753,
+                    0.16833724081516266,
+                    0.06955278664827347,
+                    0.07169463485479355
+                  ]
+                ],
+                [
+                  [
+                    0.10578717291355133,
+                    0.19639888405799866,
+                    0.15065352618694305,
+                    0.10578717291355133,
+                    0.05698059871792793,
+                    0.19639888405799866,
+                    0.052160341292619705,
+                    0.13583341240882874
+                  ],
+                  [
+                    0.049842774868011475,
+                    0.20501580834388733,
+                    0.09253545850515366,
+                    0.29196691513061523,
+                    0.07098204642534256,
+                    0.08470745384693146,
+                    0.13178151845932007,
+                    0.07316791266202927
+                  ]
+                ],
+                [
+                  [
+                    0.13919395208358765,
+                    0.1661091148853302,
+                    0.1661091148853302,
+                    0.06863217055797577,
+                    0.05751148983836174,
+                    0.23655915260314941,
+                    0.04038390889763832,
+                    0.1255011409521103
+                  ],
+                  [
+                    0.20304132997989655,
+                    0.07679486274719238,
+                    0.13051234185695648,
+                    0.07029842585325241,
+                    0.185865119099617,
+                    0.13051234185695648,
+                    0.13051234185695648,
+                    0.07246324419975281
+                  ]
+                ],
+                [
+                  [
+                    0.05320863053202629,
+                    0.23908579349517822,
+                    0.10791321843862534,
+                    0.2188604176044464,
+                    0.04870746284723282,
+                    0.11788572371006012,
+                    0.07577542960643768,
+                    0.13856332004070282
+                  ],
+                  [
+                    0.18782582879066467,
+                    0.13188914954662323,
+                    0.1719367653131485,
+                    0.06503041088581085,
+                    0.09261103719472885,
+                    0.22414469718933105,
+                    0.059529177844524384,
+                    0.06703300029039383
+                  ]
+                ],
+                [
+                  [
+                    0.16330207884311676,
+                    0.07703815400600433,
+                    0.1146688386797905,
+                    0.08051913976669312,
+                    0.1706809252500534,
+                    0.10971149802207947,
+                    0.13684172928333282,
+                    0.14723770320415497
+                  ],
+                  [
+                    0.10157898813486099,
+                    0.12122077494859695,
+                    0.10616887360811234,
+                    0.17263281345367432,
+                    0.1446605771780014,
+                    0.09298595041036606,
+                    0.1804332733154297,
+                    0.08031865209341049
+                  ]
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "attention_output",
+            "title": "Canonical projected attention output",
+            "operation": "sum over real KV; sink owns no value",
+            "shape": [
+              1,
+              5,
+              2,
+              2
+            ],
+            "axes": [
+              "batch",
+              "draft_positions",
+              "heads",
+              "head_dim"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  [
+                    0.33733856678009033,
+                    -0.0459294468164444
+                  ],
+                  [
+                    0.031309302896261215,
+                    0.29138633608818054
+                  ]
+                ],
+                [
+                  [
+                    0.16169117391109467,
+                    0.23616087436676025
+                  ],
+                  [
+                    -0.23172502219676971,
+                    0.2217472940683365
+                  ]
+                ],
+                [
+                  [
+                    0.283694326877594,
+                    0.20283564925193787
+                  ],
+                  [
+                    0.25789469480514526,
+                    -0.175441712141037
+                  ]
+                ],
+                [
+                  [
+                    -0.10876316577196121,
+                    0.3022938370704651
+                  ],
+                  [
+                    0.3372882008552551,
+                    0.08829005807638168
+                  ]
+                ],
+                [
+                  [
+                    0.17739081382751465,
+                    -0.1541425734758377
+                  ],
+                  [
+                    -0.03258660435676575,
+                    -0.05020265281200409
+                  ]
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "sampled_ids",
+            "title": "Seed followed by sampled draft tokens",
+            "operation": "DSparkOutputHeads; sequential Markov-conditioned sampling",
+            "shape": [
+              1,
+              6
+            ],
+            "axes": [
+              "batch",
+              "seed_plus_draft_positions"
+            ],
+            "dtype": "torch.int64",
+            "values": [
+              [
+                0,
+                0,
+                2,
+                2,
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "predecessor_embeddings",
+            "title": "Embedding of each preceding token",
+            "operation": "MarkovEmbedding(output_ids[:, :-1])",
+            "shape": [
+              1,
+              5,
+              2
+            ],
+            "axes": [
+              "batch",
+              "draft_positions",
+              "markov_rank"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  -1,
+                  0.5
+                ],
+                [
+                  -1,
+                  0.5
+                ],
+                [
+                  0,
+                  1
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "markov_bias",
+            "title": "Predecessor-conditioned vocabulary bias",
+            "operation": "MarkovHead(predecessor_embedding)",
+            "shape": [
+              1,
+              5,
+              4
+            ],
+            "axes": [
+              "batch",
+              "draft_positions",
+              "vocabulary"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.800000011920929,
+                  -0.4000000059604645,
+                  0.20000000298023224,
+                  -0.6000000238418579
+                ],
+                [
+                  0.800000011920929,
+                  -0.4000000059604645,
+                  0.20000000298023224,
+                  -0.6000000238418579
+                ],
+                [
+                  -0.9500000476837158,
+                  0.75,
+                  0.04999999701976776,
+                  0.5
+                ],
+                [
+                  -0.9500000476837158,
+                  0.75,
+                  0.04999999701976776,
+                  0.5
+                ],
+                [
+                  -0.30000001192092896,
+                  0.699999988079071,
+                  0.5,
+                  -0.20000000298023224
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "corrected_logits",
+            "title": "Canonical corrected logits",
+            "operation": "base_logits + Markov bias",
+            "shape": [
+              1,
+              5,
+              4
+            ],
+            "axes": [
+              "batch",
+              "draft_positions",
+              "vocabulary"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  1,
+                  -0.5,
+                  0.6000000238418579,
+                  -0.6000000238418579
+                ],
+                [
+                  0.6000000238418579,
+                  0.09999999403953552,
+                  0.30000001192092896,
+                  -0.9000000357627869
+                ],
+                [
+                  -0.6500000357627869,
+                  0.8500000238418579,
+                  -0.3500000238418579,
+                  0.699999988079071
+                ],
+                [
+                  -0.9500000476837158,
+                  0.550000011920929,
+                  0.44999998807907104,
+                  0.6000000238418579
+                ],
+                [
+                  -0.20000001788139343,
+                  0.8999999761581421,
+                  0.4000000059604645,
+                  0.10000000894069672
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "draft_probabilities",
+            "title": "Draft sampling distribution",
+            "operation": "softmax(corrected_logits / temperature)",
+            "shape": [
+              1,
+              5,
+              4
+            ],
+            "axes": [
+              "batch",
+              "draft_positions",
+              "vocabulary"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                [
+                  0.4772479832172394,
+                  0.1064884215593338,
+                  0.31990888714790344,
+                  0.09635470807552338
+                ],
+                [
+                  0.3890325129032135,
+                  0.23596015572547913,
+                  0.2882023751735687,
+                  0.08680488914251328
+                ],
+                [
+                  0.09355435520410538,
+                  0.4192815124988556,
+                  0.1262851506471634,
+                  0.36087891459465027
+                ],
+                [
+                  0.07018352299928665,
+                  0.31454071402549744,
+                  0.28460821509361267,
+                  0.3306675851345062
+                ],
+                [
+                  0.13935060799121857,
+                  0.4186323583126068,
+                  0.25391337275505066,
+                  0.18810366094112396
+                ]
+              ]
+            ]
+          },
+          {
+            "id": "raw_confidence",
+            "title": "Canonical raw confidence score",
+            "operation": "linear(concat(pre-final-norm hidden, predecessor embedding))",
+            "shape": [
+              1,
+              5
+            ],
+            "axes": [
+              "batch",
+              "draft_positions"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                1.25,
+                1.1500000953674316,
+                -1.5499999523162842,
+                -1.274999976158142,
+                -0.875
+              ]
+            ]
+          },
+          {
+            "id": "conditional_estimates",
+            "title": "Illustrative conditional acceptance estimates",
+            "operation": "sigmoid(raw confidence); teaching weights are uncalibrated",
+            "shape": [
+              1,
+              5
+            ],
+            "axes": [
+              "batch",
+              "draft_positions"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                0.7772998809814453,
+                0.75951087474823,
+                0.17508627474308014,
+                0.21840254962444305,
+                0.29421496391296387
+              ]
+            ]
+          },
+          {
+            "id": "cumulative_survival",
+            "title": "Illustrative probability that the prefix survives",
+            "operation": "cumulative product of conditional estimates",
+            "shape": [
+              1,
+              5
+            ],
+            "axes": [
+              "batch",
+              "draft_positions"
+            ],
+            "dtype": "torch.float32",
+            "values": [
+              [
+                0.7772998809814453,
+                0.5903677344322205,
+                0.10336528718471527,
+                0.022575240582227707,
+                0.006641973741352558
+              ]
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        "file.examples/deepseek_v41/dspark_example.py",
+        "pytorch.dspark-attention",
+        "pytorch.dspark-heads"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "pytorch.dspark-pro-block",
+      "consumer": "pytorch.dspark-pro-block",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "id": "dspark-pro-block",
+        "title": "Released Pro: a complete floating-point draft block",
+        "stages": [
+          "dspark"
+        ],
+        "sources": [
+          "dsv4-dspark-code",
+          "dsv4-dspark-config"
+        ],
+        "symbols": [
+          "DSparkAttention.forward",
+          "Block.hc_pre",
+          "Block.hc_post",
+          "MoE.forward"
+        ],
+        "summary": "Follow current-read mHC through low-rank query projection, shared history/draft KV, full-slot sink attention, inverse RoPE, grouped output, top-six routed experts and the shared expert.",
+        "limitations": "DSparkProConfig contains the released Pro dimensions, distinct from V41Config. This self-contained CPU module starts at draft residuals and fused target features. It omits context fusion, token embedding, final output heads, ring-buffer updates, quantization, checkpoint weights and scheduling. All experts are evaluated densely before selecting their weighted contributions; this preserves arithmetic, not dispatch performance.",
+        "requires": [],
+        "sourceFile": "examples/deepseek_v41/dspark_pro.py",
+        "code": "\"\"\"DeepSeek-V4-Pro-DSpark draft-block math, in unquantized CPU PyTorch.\n\nAdapted from deepseek-ai/DeepSeek-V4-Pro-DSpark inference/model.py at\n7c09739fd136abfb70a49ec334157f65f45b52cd (MIT, Copyright 2023 DeepSeek).\nConstructors initialize teaching weights, never checkpoint weights. The caller\nsupplies fused valid target history and rotary angles. This boundary excludes\nring-cache updates, quantization, target execution, final sampling and scheduling.\nPro uses current-read mHC and per-head query normalization; this is not V4.1.\n\"\"\"\nfrom dataclasses import dataclass\nfrom typing import Annotated\n\nimport torch\nfrom torch import Tensor, nn\nfrom torch.nn import functional as F\n\nTokenStates = Annotated[Tensor, \"batch draft_positions hidden_dim\"]\nResidualStates = Annotated[Tensor, \"batch draft_positions streams hidden_dim\"]\nHistoryStates = Annotated[Tensor, \"batch valid_history_positions hidden_dim\"]\nRotaryAngles = Annotated[Tensor, \"positions rotary_pairs\"]\nFeatureStates = Annotated[Tensor, \"... feature_width\"]\nFeatureScale = Annotated[Tensor, \"feature_width\"]\nRotatableStates = Annotated[Tensor, \"batch positions [heads] head_dim\"]\nAttentionStates = Annotated[Tensor, \"batch draft_positions heads head_dim\"]\nStreamWeights = Annotated[Tensor, \"batch draft_positions streams\"]\nStreamMatrix = Annotated[Tensor, \"batch draft_positions input_streams output_streams\"]\nRouteWeights = Annotated[Tensor, \"batch draft_positions selected_experts\"]\nRouteIndices = Annotated[Tensor, \"batch draft_positions selected_experts (integer expert ids)\"]\n\n\n@dataclass(frozen=True)\nclass DSparkProConfig:\n    \"\"\"Released Pro dimensions. Replace sizes for CPU fixtures, not mechanisms.\"\"\"\n    hidden_dim: int = 7168\n    intermediate_dim: int = 3072\n    attention_heads: int = 128\n    head_dim: int = 512\n    rotary_dim: int = 64\n    query_rank: int = 1536\n    output_groups: int = 16\n    output_rank: int = 1024\n    routed_experts: int = 384\n    selected_experts: int = 6\n    route_scale: float = 2.5\n    swiglu_limit: float = 10.0\n    streams: int = 4\n    sinkhorn_iterations: int = 20\n    window_size: int = 128\n    norm_epsilon: float = 1e-6\n    mixing_epsilon: float = 1e-6\n\n    def __post_init__(self) -> None:\n        sizes = (self.hidden_dim, self.intermediate_dim, self.attention_heads,\n                 self.head_dim, self.rotary_dim, self.query_rank, self.output_groups,\n                 self.output_rank, self.routed_experts, self.selected_experts,\n                 self.streams, self.sinkhorn_iterations, self.window_size)\n        if any(n <= 0 for n in sizes):\n            raise ValueError(\"architecture dimensions must be positive\")\n        if self.swiglu_limit <= 0:\n            raise ValueError(\"this released path requires positive SwiGLU clipping\")\n        if self.rotary_dim % 2 or self.rotary_dim > self.head_dim:\n            raise ValueError(\"rotary width must be even and within head width\")\n        if self.attention_heads % self.output_groups:\n            raise ValueError(\"output groups must divide attention heads\")\n        if self.selected_experts > self.routed_experts:\n            raise ValueError(\"selected experts exceed routed experts\")\n\n\ndef rms_norm(x: FeatureStates, weight: FeatureScale, epsilon: float) -> FeatureStates:\n    \"\"\"Learned RMSNorm; variance arithmetic is float32.\"\"\"\n    normalized = x.float() * torch.rsqrt(x.float().square().mean(-1, keepdim=True) + epsilon)\n    return (normalized * weight.float()).to(x.dtype)\n\n\ndef rotate_partial(x: RotatableStates, angles: RotaryAngles, inverse: bool = False) -> RotatableStates:\n    \"\"\"Rotate interleaved pairs at the end of [B,S,(H),D]; leave NoPE intact.\"\"\"\n    width = 2 * angles.shape[-1]\n    if angles.ndim != 2 or angles.shape[0] != x.shape[1] or width > x.shape[-1]:\n        raise ValueError(\"angles must match sequence positions and fit the head\")\n    angle_shape = (1, x.shape[1]) + (1,) * (x.ndim - 3) + (width // 2,)\n    angle = angles.reshape(angle_shape) * (-1 if inverse else 1)\n    pairs = x[..., -width:].float().unflatten(-1, (width // 2, 2))\n    real, imag = pairs.unbind(-1)\n    rotated = torch.stack((real * angle.cos() - imag * angle.sin(),\n                           real * angle.sin() + imag * angle.cos()), dim=-1).flatten(-2)\n    return torch.cat((x[..., :-width], rotated.to(x.dtype)), dim=-1)\n\n\ndef sink_attention(\n    queries: Annotated[Tensor, \"batch draft_positions heads head_dim\"],\n    key_values: Annotated[Tensor, \"batch history_plus_draft_positions head_dim\"],\n    sink: Annotated[Tensor, \"heads\"],\n) -> AttentionStates:\n    \"\"\"Every query reads every supplied key; sink adds mass but no value.\"\"\"\n    scores = torch.einsum('bshd,bnd->bshn', queries.float(), key_values.float())\n    scores = scores * queries.shape[-1] ** -0.5\n    sink_logits = sink.float()[None, None, :, None].expand(*scores.shape[:-1], 1)\n    probabilities = torch.cat((scores, sink_logits), dim=-1).softmax(-1)\n    return torch.einsum('bshn,bnd->bshd', probabilities[..., :-1], key_values.float()).to(queries.dtype)\n\n\nclass ProDraftAttention(nn.Module):\n    \"\"\"Shared main/draft K/V projection, all-slot attention, grouped output.\"\"\"\n    def __init__(self, config: DSparkProConfig) -> None:\n        super().__init__()\n        self.config = config\n        d, h, w = config.hidden_dim, config.attention_heads, config.head_dim\n        self.query_down = nn.Linear(d, config.query_rank, bias=False)\n        self.query_norm = nn.Parameter(torch.ones(config.query_rank))\n        self.query_up = nn.Linear(config.query_rank, h * w, bias=False)\n        self.key_value = nn.Linear(d, w, bias=False)\n        self.kv_norm = nn.Parameter(torch.ones(w))\n        self.sink = nn.Parameter(torch.zeros(h))\n        group_width = h * w // config.output_groups\n        self.output_down = nn.Parameter(torch.empty(config.output_groups, config.output_rank, group_width))\n        nn.init.normal_(self.output_down, std=group_width ** -0.5)\n        self.output_up = nn.Linear(config.output_groups * config.output_rank, d, bias=False)\n\n    def project_queries(self, x: TokenStates, angles: RotaryAngles) -> AttentionStates:\n        c = self.config\n        latent = rms_norm(self.query_down(x), self.query_norm, c.norm_epsilon)\n        q = self.query_up(latent).unflatten(-1, (c.attention_heads, c.head_dim))\n        # Pro normalizes each expanded query head; V4.1 omits this step.\n        q = q * torch.rsqrt(q.float().square().mean(-1, keepdim=True) + c.norm_epsilon)\n        return rotate_partial(q, angles)\n\n    def forward(self, x: TokenStates, history: HistoryStates,\n                history_angles: RotaryAngles, draft_angles: RotaryAngles) -> TokenStates:\n        c = self.config\n        if (x.ndim != 3 or history.ndim != 3 or x.shape[0] != history.shape[0]\n                or x.shape[-1] != c.hidden_dim or history.shape[-1] != c.hidden_dim\n                or history.shape[1] > c.window_size):\n            raise ValueError(\"supply matching draft features and valid window history\")\n        if history_angles.shape[-1] * 2 != c.rotary_dim or draft_angles.shape[-1] * 2 != c.rotary_dim:\n            raise ValueError(\"angles must match configured rotary width\")\n        # Each block applies its own SAME projection to context and draft features.\n        history_kv = rotate_partial(rms_norm(self.key_value(history), self.kv_norm, c.norm_epsilon), history_angles)\n        draft_kv = rotate_partial(rms_norm(self.key_value(x), self.kv_norm, c.norm_epsilon), draft_angles)\n        query = self.project_queries(x, draft_angles)\n        values = torch.cat((history_kv, draft_kv), dim=1)\n        attended = sink_attention(query, values, self.sink)\n        attended = rotate_partial(attended, draft_angles, inverse=True)\n        grouped = attended.reshape(*x.shape[:2], c.output_groups, -1)\n        reduced = torch.einsum('bsgd,grd->bsgr', grouped, self.output_down)\n        return self.output_up(reduced.flatten(-2))\n\n\nclass ProHyperConnection(nn.Module):\n    \"\"\"Predict and consume pre-weights on the current residual, not the next one.\"\"\"\n    def __init__(self, config: DSparkProConfig) -> None:\n        super().__init__()\n        self.config = config\n        r = config.streams\n        self.projection = nn.Linear(r * config.hidden_dim, r * (r + 2), bias=False)\n        self.offset = nn.Parameter(torch.zeros(r * (r + 2)))\n        self.scale = nn.Parameter(torch.ones(3))\n\n    def read(self, residual: ResidualStates) -> tuple[TokenStates, StreamWeights, StreamMatrix]:\n        c, r = self.config, self.config.streams\n        if residual.ndim != 4 or residual.shape[-2:] != (r, c.hidden_dim):\n            raise ValueError(\"residual must match configured streams and width\")\n        flat = residual.flatten(-2).float()\n        coefficients = self.projection(flat) * torch.rsqrt(flat.square().mean(-1, keepdim=True) + c.norm_epsilon)\n        pre = torch.sigmoid(coefficients[..., :r] * self.scale[0] + self.offset[:r]) + c.mixing_epsilon\n        post = 2 * torch.sigmoid(coefficients[..., r:2*r] * self.scale[1] + self.offset[r:2*r])\n        logits = coefficients[..., 2*r:] * self.scale[2] + self.offset[2*r:]\n        matrix = logits.unflatten(-1, (r, r)).softmax(-1) + c.mixing_epsilon\n        matrix = matrix / (matrix.sum(-2, keepdim=True) + c.mixing_epsilon)\n        for _ in range(c.sinkhorn_iterations - 1):\n            matrix = matrix / (matrix.sum(-1, keepdim=True) + c.mixing_epsilon)\n            matrix = matrix / (matrix.sum(-2, keepdim=True) + c.mixing_epsilon)\n        collapsed = (residual.float() * pre.unsqueeze(-1)).sum(-2)\n        return collapsed.to(residual.dtype), post, matrix\n\n    def write(self, output: TokenStates, residual: ResidualStates,\n              post: StreamWeights, matrix: StreamMatrix) -> ResidualStates:\n        # Matrix axes are INPUT stream i, OUTPUT stream j.\n        carried = torch.einsum('bsij,bsid->bsjd', matrix.float(), residual.float())\n        expanded = post.unsqueeze(-1) * output.float().unsqueeze(-2)\n        return (carried + expanded).to(output.dtype)\n\n\nclass ProExpert(nn.Module):\n    def __init__(self, config: DSparkProConfig) -> None:\n        super().__init__()\n        self.limit = config.swiglu_limit\n        self.gate = nn.Linear(config.hidden_dim, config.intermediate_dim, bias=False)\n        self.up = nn.Linear(config.hidden_dim, config.intermediate_dim, bias=False)\n        self.down = nn.Linear(config.intermediate_dim, config.hidden_dim, bias=False)\n\n    def forward(self, x: TokenStates) -> TokenStates:\n        gate, up = self.gate(x), self.up(x)\n        gate = gate.clamp(max=self.limit)\n        up = up.clamp(min=-self.limit, max=self.limit)\n        return self.down(F.silu(gate) * up)\n\n\nclass ProMoE(nn.Module):\n    \"\"\"Score-selected draft experts plus an independent shared expert.\"\"\"\n    def __init__(self, config: DSparkProConfig) -> None:\n        super().__init__()\n        self.config = config\n        self.router = nn.Linear(config.hidden_dim, config.routed_experts, bias=False)\n        self.selection_bias = nn.Parameter(torch.zeros(config.routed_experts))\n        self.experts = nn.ModuleList(ProExpert(config) for _ in range(config.routed_experts))\n        self.shared = ProExpert(config)\n\n    def route(self, x: TokenStates) -> tuple[RouteWeights, RouteIndices]:\n        scores = F.softplus(self.router(x).float()).sqrt()\n        indices = (scores + self.selection_bias).topk(self.config.selected_experts, dim=-1).indices\n        selected = scores.gather(-1, indices)  # selection bias never becomes a mixture weight\n        weights = selected / selected.sum(-1, keepdim=True) * self.config.route_scale\n        return weights, indices\n\n    def forward(self, x: TokenStates) -> TokenStates:\n        weights, indices = self.route(x)\n        result = self.shared(x)  # no shared-expert router logit\n        # Dense CPU evaluation makes the arithmetic inspectable; not an efficient dispatcher.\n        for expert_id, expert in enumerate(self.experts):\n            weight = (weights * (indices == expert_id)).sum(-1, keepdim=True)\n            result = result + weight * expert(x)\n        return result\n\n\nclass ProDraftBlock(nn.Module):\n    \"\"\"One released-Pro draft layer: current mHC \u2192 attention \u2192 current mHC \u2192 MoE.\"\"\"\n    def __init__(self, config: DSparkProConfig) -> None:\n        super().__init__()\n        self.config = config\n        self.attention_mix = ProHyperConnection(config)\n        self.attention_norm = nn.Parameter(torch.ones(config.hidden_dim))\n        self.attention = ProDraftAttention(config)\n        self.feed_forward_mix = ProHyperConnection(config)\n        self.feed_forward_norm = nn.Parameter(torch.ones(config.hidden_dim))\n        self.moe = ProMoE(config)\n\n    def forward(self, residual: ResidualStates, history: HistoryStates,\n                history_angles: RotaryAngles, draft_angles: RotaryAngles) -> ResidualStates:\n        x, post, matrix = self.attention_mix.read(residual)\n        x = rms_norm(x, self.attention_norm, self.config.norm_epsilon)\n        x = self.attention(x, history, history_angles, draft_angles)\n        residual = self.attention_mix.write(x, residual, post, matrix)\n        x, post, matrix = self.feed_forward_mix.read(residual)\n        x = rms_norm(x, self.feed_forward_norm, self.config.norm_epsilon)\n        return self.feed_forward_mix.write(self.moe(x), residual, post, matrix)\n"
+      },
+      "dependencies": [
+        "file.examples/deepseek_v41/dspark_pro.py"
+      ],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DSparkAttention",
+            "sha256": "08a71bc0b774083e21e46e069f8108778f210a0c1abed810847bfd4a9b31b17b",
+            "resolved_span": [
+              750,
+              792
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DSparkBlock",
+            "sha256": "3fd35523becf47e955a9d8858b49b50f1da296dfa8ad5fb8a41baf32b8506d69",
+            "resolved_span": [
+              818,
+              874
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Block",
+            "sha256": "05f5d646a42794b7f349c437c867718eed21a51b2832694c060c7dbf8a77575c",
+            "resolved_span": [
+              652,
+              716
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "MoE",
+            "sha256": "6260ece7fb4bc9093f70ea43d7a407fa31d12f7a5fd1084b02822b60ef431c06",
+            "resolved_span": [
+              614,
+              649
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Gate",
+            "sha256": "fc7bfffe19a2c95ad0e06051e5ad65ae0eeabb56bc718fa2c38de3fdea29d427",
+            "resolved_span": [
+              551,
+              589
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Expert",
+            "sha256": "8acf81a03782fd4c176f881b8546c7905ce6b80e935ed400503c38a163940d1c",
+            "resolved_span": [
+              592,
+              611
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Transformer.forward",
+            "sha256": "f88d279b8d6e67bcffe50549072ac370d9214155d0ccb32b798a62703c48b113",
+            "resolved_span": [
+              913,
+              926
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Transformer.forward_spec",
+            "sha256": "71bebf07ba462e0a6822a2705c4754b22843abac476e93c96e766ed518e6c31c",
+            "resolved_span": [
+              929,
+              936
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "",
+            "sha256": "01f3482737fd6f87a26b8dff4dbc4ca90b072ec0f733afbceb12350235ba6cfb",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.blocks",
+      "consumer": "DSPARK_PRO.blocks",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 3,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/n_mtp_layers",
+            "sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.d",
+      "consumer": "DSPARK_PRO.d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 7168,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/dim",
+            "sha256": "ed6d0c40cf19a7aa40c96b8aad374750173526705db1b704bb5dc92dbe5b6734",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.expertFF",
+      "consumer": "DSPARK_PRO.expertFF",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 3072,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/moe_inter_dim",
+            "sha256": "82147211de4c4b846e2cf7a2edac668990dff673d07bebcb2c9eae6aeb2c5963",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.experts",
+      "consumer": "DSPARK_PRO.experts",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 384,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/n_routed_experts",
+            "sha256": "37b73510175057c633ebe4beb0a34917fa2a0696432db43a4eeb2c3ff83a4c3b",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.headDim",
+      "consumer": "DSPARK_PRO.headDim",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 512,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/head_dim",
+            "sha256": "94f8607915dff25f013e45fc0642fb9830b0fb25ab0ab46d477eaf1061def379",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.heads",
+      "consumer": "DSPARK_PRO.heads",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 128,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/n_heads",
+            "sha256": "2747b7c718564ba5f066f0523b03e17f6a496b06851333d2d59ab6d863225848",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.markovRank",
+      "consumer": "DSPARK_PRO.markovRank",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 512,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/dspark_markov_rank",
+            "sha256": "94f8607915dff25f013e45fc0642fb9830b0fb25ab0ab46d477eaf1061def379",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.noiseToken",
+      "consumer": "DSPARK_PRO.noiseToken",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 128799,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/dspark_noise_token_id",
+            "sha256": "67ece0b0b2bd4cb4ba84e92c446bc0eb0488018eba3265e43e2bd6fa937e100e",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.oGroups",
+      "consumer": "DSPARK_PRO.oGroups",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 16,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/o_groups",
+            "sha256": "b17ef6d19c7a5b1ee83b907c595526dcb1eb06db8227d650d5dda0a9f4ce8cd9",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.oRank",
+      "consumer": "DSPARK_PRO.oRank",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 1024,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/o_lora_rank",
+            "sha256": "e39eef82f61b21e2e7f762fcc4307358f165757f2e77ec855d6992f7e0191932",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.qRank",
+      "consumer": "DSPARK_PRO.qRank",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 1536,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/q_lora_rank",
+            "sha256": "b51e45a12fbae3d0ee2bf77f1a4f80cbf642e2b4d1c237d2c0f7053a54f6b388",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.ropeDim",
+      "consumer": "DSPARK_PRO.ropeDim",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 64,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/rope_head_dim",
+            "sha256": "a68b412c4282555f15546cf6e1fc42893b7e07f271557ceb021821098dd66c1b",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.routeScale",
+      "consumer": "DSPARK_PRO.routeScale",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 2.5,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/route_scale",
+            "sha256": "b8736b999909049671d0ea075a42b308a5fbe2df1854899123fe09eb0ee9de61",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.shared",
+      "consumer": "DSPARK_PRO.shared",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 1,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/n_shared_experts",
+            "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.sinkhornIters",
+      "consumer": "DSPARK_PRO.sinkhornIters",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 20,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/hc_sinkhorn_iters",
+            "sha256": "f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.slots",
+      "consumer": "DSPARK_PRO.slots",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 5,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/dspark_block_size",
+            "sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.streams",
+      "consumer": "DSPARK_PRO.streams",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 4,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/hc_mult",
+            "sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.targetLayers",
+      "consumer": "DSPARK_PRO.targetLayers",
+      "domain": "model",
+      "classification": "derived",
+      "expected": [
+        58,
+        59,
+        60
+      ],
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/dspark_target_layer_ids",
+            "sha256": "4b802d7bea0e811ec2ec269c1adbb85f45da5e0b022a04877edd0ea3f10d16bf",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.topK",
+      "consumer": "DSPARK_PRO.topK",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 6,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/n_activated_experts",
+            "sha256": "e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.vocab",
+      "consumer": "DSPARK_PRO.vocab",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 129280,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/vocab_size",
+            "sha256": "fdf325580413bbcc5944dcdc2ab9a9787059a2ebd9864263d98cf3b6a0a21c1e",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DSPARK_PRO.window",
+      "consumer": "DSPARK_PRO.window",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 128,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/window_size",
+            "sha256": "2747b7c718564ba5f066f0523b03e17f6a496b06851333d2d59ab6d863225848",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "MODELS.dsv41.dsparkMarkovRank",
+      "consumer": "MODELS.dsv41.dsparkMarkovRank",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 256,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv41-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/dspark_markov_rank",
+            "sha256": "51e8ea280b44e16934d4d611901f3d3afc41789840acdff81942c2f65009cd52",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "MODELS.dsv41.dsparkNoiseToken",
+      "consumer": "MODELS.dsv41.dsparkNoiseToken",
+      "domain": "model",
+      "classification": "derived",
+      "expected": 128799,
+      "dependencies": [],
+      "evidence": [
+        {
+          "source": "dsv41-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "/text_config/dspark_noise_token_id",
+            "sha256": "67ece0b0b2bd4cb4ba84e92c446bc0eb0488018eba3265e43e2bd6fa937e100e",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "file.src/diagram-dspark.mjs",
+      "consumer": "file.src/diagram-dspark.mjs",
+      "domain": "visualization",
+      "classification": "derived",
+      "expected": "2c21ebc3f1c15a069d08c7480916997d51eccc396bd15ff97d302fc0f54841f7",
+      "dependencies": [
+        "deepdive.dspark"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "file.examples/deepseek_v41/dspark_example.py",
+      "consumer": "file.examples/deepseek_v41/dspark_example.py",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "7dfdbb7fc273fbe1f72480b3798e08254800db00bcd6349aafe22b4d654ec4ee",
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "pytorch.dspark-heads"
+      ],
+      "evidence": [
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DSparkAttention",
+            "sha256": "24bad2c5353b978e24ba9f54256ba82c2b53909ab8f6dbfdc6d48882c0c3bf73",
+            "resolved_span": [
+              1032,
+              1074
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DSparkBlock.forward_head",
+            "sha256": "8ff4558a5bf458e537ad2751ea32920b53ea5fde467b5649c926cf99d2484d71",
+            "resolved_span": [
+              1137,
+              1156
+            ]
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "file.examples/deepseek_v41/dspark_pro.py",
+      "consumer": "file.examples/deepseek_v41/dspark_pro.py",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ec2ee8d5dfdb2021a004a1f303bfa357192edf6ba319030c92cab5715f65ea16",
+      "dependencies": [
+        "DSPARK_PRO.blocks",
+        "DSPARK_PRO.d",
+        "DSPARK_PRO.expertFF",
+        "DSPARK_PRO.experts",
+        "DSPARK_PRO.headDim",
+        "DSPARK_PRO.heads",
+        "DSPARK_PRO.markovRank",
+        "DSPARK_PRO.noiseToken",
+        "DSPARK_PRO.oGroups",
+        "DSPARK_PRO.oRank",
+        "DSPARK_PRO.qRank",
+        "DSPARK_PRO.ropeDim",
+        "DSPARK_PRO.routeScale",
+        "DSPARK_PRO.shared",
+        "DSPARK_PRO.sinkhornIters",
+        "DSPARK_PRO.slots",
+        "DSPARK_PRO.streams",
+        "DSPARK_PRO.targetLayers",
+        "DSPARK_PRO.topK",
+        "DSPARK_PRO.vocab",
+        "DSPARK_PRO.window"
+      ],
+      "evidence": [
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DSparkAttention",
+            "sha256": "08a71bc0b774083e21e46e069f8108778f210a0c1abed810847bfd4a9b31b17b",
+            "resolved_span": [
+              750,
+              792
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DSparkBlock",
+            "sha256": "3fd35523becf47e955a9d8858b49b50f1da296dfa8ad5fb8a41baf32b8506d69",
+            "resolved_span": [
+              818,
+              874
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Block",
+            "sha256": "05f5d646a42794b7f349c437c867718eed21a51b2832694c060c7dbf8a77575c",
+            "resolved_span": [
+              652,
+              716
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "MoE",
+            "sha256": "6260ece7fb4bc9093f70ea43d7a407fa31d12f7a5fd1084b02822b60ef431c06",
+            "resolved_span": [
+              614,
+              649
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Gate",
+            "sha256": "fc7bfffe19a2c95ad0e06051e5ad65ae0eeabb56bc718fa2c38de3fdea29d427",
+            "resolved_span": [
+              551,
+              589
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Expert",
+            "sha256": "8acf81a03782fd4c176f881b8546c7905ce6b80e935ed400503c38a163940d1c",
+            "resolved_span": [
+              592,
+              611
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Transformer.forward",
+            "sha256": "f88d279b8d6e67bcffe50549072ac370d9214155d0ccb32b798a62703c48b113",
+            "resolved_span": [
+              913,
+              926
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Transformer.forward_spec",
+            "sha256": "71bebf07ba462e0a6822a2705c4754b22843abac476e93c96e766ed518e6c31c",
+            "resolved_span": [
+              929,
+              936
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv4-dspark-config",
+          "anchor": {
+            "kind": "json_pointer",
+            "pointer": "",
+            "sha256": "01f3482737fd6f87a26b8dff4dbc4ca90b072ec0f733afbceb12350235ba6cfb",
+            "resolved_span": []
+          },
+          "relation": "derives"
+        }
+      ],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-features.de74946b44c36d93",
+      "consumer": "scene.dsv41.model.dspark.dspark-features.de74946b44c36d93",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "de74946b44c36d93d54e06859e78989a4c1f69d2e3d6af023e0ed4312d1a6ee1",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-context.2aab8b0af25273be",
+      "consumer": "scene.dsv41.model.dspark.dspark-context.2aab8b0af25273be",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "2aab8b0af25273be87d4c09389b6e974d8c3c9c0f300d8a14148825c820a176b",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-seed.8884e2fe2992bb65",
+      "consumer": "scene.dsv41.model.dspark.dspark-seed.8884e2fe2992bb65",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "8884e2fe2992bb6590eadbaeae6957ee5eaf7d367497ba80bbe4ddce0bfef758",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-expand.cd15d2b6cc8bfe84",
+      "consumer": "scene.dsv41.model.dspark.dspark-expand.cd15d2b6cc8bfe84",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "cd15d2b6cc8bfe8471362f6a6ad59ae1faa4dfbf964c695aaeaab0debba95c73",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-read.22b190300aa49165",
+      "consumer": "scene.dsv41.model.dspark.dspark-read.22b190300aa49165",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "22b190300aa4916518ef9aa31913f29a357d8c703c9c35b2161e2ce404bdcd55",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-query.91de10fbf3fd3cd9",
+      "consumer": "scene.dsv41.model.dspark.dspark-query.91de10fbf3fd3cd9",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "91de10fbf3fd3cd9a312b62387078335bcd05803fe6a10ad877742ce43461e81",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-history.af85e6bed2ef2016",
+      "consumer": "scene.dsv41.model.dspark.dspark-history.af85e6bed2ef2016",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "af85e6bed2ef2016e5fad0cbff377300c0c2042fdb22eaaa9380775874ac1b2b",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-draft-kv.9ac98331a107b1ae",
+      "consumer": "scene.dsv41.model.dspark.dspark-draft-kv.9ac98331a107b1ae",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "9ac98331a107b1ae5d997b2d5854154385a0382322f040972240027badb204ac",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-attention.50e1d8f69856f744",
+      "consumer": "scene.dsv41.model.dspark.dspark-attention.50e1d8f69856f744",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "50e1d8f69856f7448b90dacee3619bb854b564a1493592512d8b5569eda80ae1",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-output.8b732e6a9e37ffb4",
+      "consumer": "scene.dsv41.model.dspark.dspark-output.8b732e6a9e37ffb4",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "8b732e6a9e37ffb47b67d7171410aa7bad145f14564aca6e98692206bec06aad",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-attention-write.b45581e5f1616317",
+      "consumer": "scene.dsv41.model.dspark.dspark-attention-write.b45581e5f1616317",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "b45581e5f1616317af631669f87534c6a6ac502cf7692304d1027c29b99899d8",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-ffn-read.d5926c1d4bf87cc0",
+      "consumer": "scene.dsv41.model.dspark.dspark-ffn-read.d5926c1d4bf87cc0",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "d5926c1d4bf87cc03d51080891a113bb7430494eefc927f1e16718b1ea9d8cac",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-router.02ae33b01885eefa",
+      "consumer": "scene.dsv41.model.dspark.dspark-router.02ae33b01885eefa",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "02ae33b01885eefa256be54318a689d594d0d2b3a60513d080e19bbeae248b62",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-routed.1552b6b275bb1833",
+      "consumer": "scene.dsv41.model.dspark.dspark-routed.1552b6b275bb1833",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1552b6b275bb1833c2f6d6f22d066d7d7aeceb5f380aa5066675ca2a41ce9ff3",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-shared.d9d1b7f2e6a91c70",
+      "consumer": "scene.dsv41.model.dspark.dspark-shared.d9d1b7f2e6a91c70",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "d9d1b7f2e6a91c70d96e2ec8e73a925eb955caa3c4d1987e27223b0250bc6c38",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-moe.6f4d33a07935ba51",
+      "consumer": "scene.dsv41.model.dspark.dspark-moe.6f4d33a07935ba51",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "6f4d33a07935ba512c24a071281aac73f118824119718ad9c7d15dd37a7c206b",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-ffn-write.33ded68da3413183",
+      "consumer": "scene.dsv41.model.dspark.dspark-ffn-write.33ded68da3413183",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "33ded68da3413183b02891dde26c3533f0ed05ba376d8783ff1568216c6d25b6",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-draft.083708cdcf275f6f",
+      "consumer": "scene.dsv41.model.dspark.dspark-draft.083708cdcf275f6f",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "083708cdcf275f6f54ac38c4e34a8d71c58c181f812fff8ddd974d7107aef17c",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-collapse.0a59b71f37e04a88",
+      "consumer": "scene.dsv41.model.dspark.dspark-collapse.0a59b71f37e04a88",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "0a59b71f37e04a887fd2880c2b5ea01c10f6214cfad2c4b3736e7b5e6c445463",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-base.34527631336f02af",
+      "consumer": "scene.dsv41.model.dspark.dspark-base.34527631336f02af",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "34527631336f02af77d5a6ef54711ec69c37d68bf8f0a69469c7b8fad885f706",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-ownership.ea1c3821df9cc9dd",
+      "consumer": "scene.dsv41.model.dspark.dspark-ownership.ea1c3821df9cc9dd",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ea1c3821df9cc9ddcd156a358620af9ae596fdedecade9815d29613d1c1d8811",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-parallel-logits.2e04a8e476895080",
+      "consumer": "scene.dsv41.model.dspark.dspark-parallel-logits.2e04a8e476895080",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "2e04a8e4768950808ed288ff27b2d8a3af9ed16d12519b40497af9f73192ccf8",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-markov.4faec5560d25621f",
+      "consumer": "scene.dsv41.model.dspark.dspark-markov.4faec5560d25621f",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "4faec5560d25621f8f6944bc527608e6cf5b203ee16090394f744cc6af0175c9",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-sample-2.dfe1bd5bc737f2b4",
+      "consumer": "scene.dsv41.model.dspark.dspark-sample-2.dfe1bd5bc737f2b4",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "dfe1bd5bc737f2b410ce30a75bfbd653266ea4fdf3be896dc92f7ed6b0d766d4",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-sample-3.e39752425671282f",
+      "consumer": "scene.dsv41.model.dspark.dspark-sample-3.e39752425671282f",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "e39752425671282f597dee34bfbec000ccc76d0bd505852ef673bd0bd9876681",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-sample-4.05d70f20966b9ad0",
+      "consumer": "scene.dsv41.model.dspark.dspark-sample-4.05d70f20966b9ad0",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "05d70f20966b9ad07e118ad1d4cab371b6a16e65fc066a2d5878364dd8fd8c02",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-sample-5.2c1f3939a5fc3a7d",
+      "consumer": "scene.dsv41.model.dspark.dspark-sample-5.2c1f3939a5fc3a7d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "2c1f3939a5fc3a7dcef83750ea07212d5563c44e1f3ac78145837126bdf3b6f3",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-predecessors.73a073bdb71f0f64",
+      "consumer": "scene.dsv41.model.dspark.dspark-predecessors.73a073bdb71f0f64",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "73a073bdb71f0f6433d71c7666cf12c343b9fa7cefa8de5cd6701243e8207e4d",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-confidence.dcea63824bcf8423",
+      "consumer": "scene.dsv41.model.dspark.dspark-confidence.dcea63824bcf8423",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "dcea63824bcf8423b99690df677e5beb03749e97d94dadb3c3f4423bf3cbadbc",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.dspark-verification.84e18158d733cc41",
+      "consumer": "scene.dsv41.model.dspark.dspark-verification.84e18158d733cc41",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "84e18158d733cc41d3b1ff221aa60694bb0c99d78d9bdf72f36b837aaaf990e6",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.dspark.graph.38bc2f6160ad66f6",
+      "consumer": "scene.dsv41.model.dspark.graph.38bc2f6160ad66f6",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "38bc2f6160ad66f686d1e8ac5e6b7720a22f93935b87bfa67ca8654f28ede1e0",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-features.de74946b44c36d93",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-features.de74946b44c36d93",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "de74946b44c36d93d54e06859e78989a4c1f69d2e3d6af023e0ed4312d1a6ee1",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-context.2aab8b0af25273be",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-context.2aab8b0af25273be",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "2aab8b0af25273be87d4c09389b6e974d8c3c9c0f300d8a14148825c820a176b",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-seed.8884e2fe2992bb65",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-seed.8884e2fe2992bb65",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "8884e2fe2992bb6590eadbaeae6957ee5eaf7d367497ba80bbe4ddce0bfef758",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-expand.cd15d2b6cc8bfe84",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-expand.cd15d2b6cc8bfe84",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "cd15d2b6cc8bfe8471362f6a6ad59ae1faa4dfbf964c695aaeaab0debba95c73",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-read.22b190300aa49165",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-read.22b190300aa49165",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "22b190300aa4916518ef9aa31913f29a357d8c703c9c35b2161e2ce404bdcd55",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-query.91de10fbf3fd3cd9",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-query.91de10fbf3fd3cd9",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "91de10fbf3fd3cd9a312b62387078335bcd05803fe6a10ad877742ce43461e81",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-history.af85e6bed2ef2016",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-history.af85e6bed2ef2016",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "af85e6bed2ef2016e5fad0cbff377300c0c2042fdb22eaaa9380775874ac1b2b",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-draft-kv.9ac98331a107b1ae",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-draft-kv.9ac98331a107b1ae",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "9ac98331a107b1ae5d997b2d5854154385a0382322f040972240027badb204ac",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-attention.50e1d8f69856f744",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-attention.50e1d8f69856f744",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "50e1d8f69856f7448b90dacee3619bb854b564a1493592512d8b5569eda80ae1",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-output.8b732e6a9e37ffb4",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-output.8b732e6a9e37ffb4",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "8b732e6a9e37ffb47b67d7171410aa7bad145f14564aca6e98692206bec06aad",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-attention-write.b45581e5f1616317",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-attention-write.b45581e5f1616317",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "b45581e5f1616317af631669f87534c6a6ac502cf7692304d1027c29b99899d8",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-ffn-read.d5926c1d4bf87cc0",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-ffn-read.d5926c1d4bf87cc0",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "d5926c1d4bf87cc03d51080891a113bb7430494eefc927f1e16718b1ea9d8cac",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-router.02ae33b01885eefa",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-router.02ae33b01885eefa",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "02ae33b01885eefa256be54318a689d594d0d2b3a60513d080e19bbeae248b62",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-routed.1552b6b275bb1833",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-routed.1552b6b275bb1833",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1552b6b275bb1833c2f6d6f22d066d7d7aeceb5f380aa5066675ca2a41ce9ff3",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-shared.d9d1b7f2e6a91c70",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-shared.d9d1b7f2e6a91c70",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "d9d1b7f2e6a91c70d96e2ec8e73a925eb955caa3c4d1987e27223b0250bc6c38",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-moe.6f4d33a07935ba51",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-moe.6f4d33a07935ba51",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "6f4d33a07935ba512c24a071281aac73f118824119718ad9c7d15dd37a7c206b",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-ffn-write.33ded68da3413183",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-ffn-write.33ded68da3413183",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "33ded68da3413183b02891dde26c3533f0ed05ba376d8783ff1568216c6d25b6",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-draft.083708cdcf275f6f",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-draft.083708cdcf275f6f",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "083708cdcf275f6f54ac38c4e34a8d71c58c181f812fff8ddd974d7107aef17c",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-collapse.0a59b71f37e04a88",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-collapse.0a59b71f37e04a88",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "0a59b71f37e04a887fd2880c2b5ea01c10f6214cfad2c4b3736e7b5e6c445463",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-base.34527631336f02af",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-base.34527631336f02af",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "34527631336f02af77d5a6ef54711ec69c37d68bf8f0a69469c7b8fad885f706",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-ownership.ea1c3821df9cc9dd",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-ownership.ea1c3821df9cc9dd",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ea1c3821df9cc9ddcd156a358620af9ae596fdedecade9815d29613d1c1d8811",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-parallel-logits.2e04a8e476895080",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-parallel-logits.2e04a8e476895080",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "2e04a8e4768950808ed288ff27b2d8a3af9ed16d12519b40497af9f73192ccf8",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-markov.4faec5560d25621f",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-markov.4faec5560d25621f",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "4faec5560d25621f8f6944bc527608e6cf5b203ee16090394f744cc6af0175c9",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-sample-2.dfe1bd5bc737f2b4",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-sample-2.dfe1bd5bc737f2b4",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "dfe1bd5bc737f2b410ce30a75bfbd653266ea4fdf3be896dc92f7ed6b0d766d4",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-sample-3.e39752425671282f",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-sample-3.e39752425671282f",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "e39752425671282f597dee34bfbec000ccc76d0bd505852ef673bd0bd9876681",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-sample-4.05d70f20966b9ad0",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-sample-4.05d70f20966b9ad0",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "05d70f20966b9ad07e118ad1d4cab371b6a16e65fc066a2d5878364dd8fd8c02",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-sample-5.2c1f3939a5fc3a7d",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-sample-5.2c1f3939a5fc3a7d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "2c1f3939a5fc3a7dcef83750ea07212d5563c44e1f3ac78145837126bdf3b6f3",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-predecessors.73a073bdb71f0f64",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-predecessors.73a073bdb71f0f64",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "73a073bdb71f0f6433d71c7666cf12c343b9fa7cefa8de5cd6701243e8207e4d",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-confidence.dcea63824bcf8423",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-confidence.dcea63824bcf8423",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "dcea63824bcf8423b99690df677e5beb03749e97d94dadb3c3f4423bf3cbadbc",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.dspark-verification.84e18158d733cc41",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.dspark-verification.84e18158d733cc41",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "84e18158d733cc41d3b1ff221aa60694bb0c99d78d9bdf72f36b837aaaf990e6",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-pro-block.graph.38bc2f6160ad66f6",
+      "consumer": "scene.dsv41.model.module-dspark-pro-block.graph.38bc2f6160ad66f6",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "38bc2f6160ad66f686d1e8ac5e6b7720a22f93935b87bfa67ca8654f28ede1e0",
+      "dependencies": [
+        "deepdive.dspark",
+        "pytorch.dspark-pro-block"
+      ],
+      "evidence": [],
+      "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
     }
   ],
   "contracts": [

@@ -25,6 +25,19 @@ test_invalid_verification_and_cache_inputs_fail_clearly (pytorch_dspark.DSparkEx
 test_markov_conditions_on_preceding_sample_and_confidence_is_raw (pytorch_dspark.DSparkExamplesTest.test_markov_conditions_on_preceding_sample_and_confidence_is_raw) ... ok
 test_projected_attention_gradients_are_finite (pytorch_dspark.DSparkExamplesTest.test_projected_attention_gradients_are_finite) ... ok
 test_verification_commits_only_prefix_and_residual (pytorch_dspark.DSparkExamplesTest.test_verification_commits_only_prefix_and_residual) ... ok
+test_attention_scalar_oracle_includes_sink_without_value (pytorch_dspark_example.DSparkExampleTest.test_attention_scalar_oracle_includes_sink_without_value) ... ok
+test_determinism_schema_and_rng_isolation (pytorch_dspark_example.DSparkExampleTest.test_determinism_schema_and_rng_isolation) ... ok
+test_future_draft_and_predecessor_are_observable (pytorch_dspark_example.DSparkExampleTest.test_future_draft_and_predecessor_are_observable) ... ok
+test_markov_and_confidence_scalar_oracles_use_predecessor (pytorch_dspark_example.DSparkExampleTest.test_markov_and_confidence_scalar_oracles_use_predecessor) ... ok
+test_bias_selects_experts_but_does_not_weight_shared_or_routed_scores (pytorch_dspark_pro.ProDraftTests.test_bias_selects_experts_but_does_not_weight_shared_or_routed_scores) ... ok
+test_current_read_mhc_and_residual_axis (pytorch_dspark_pro.ProDraftTests.test_current_read_mhc_and_residual_axis) ... ok
+test_full_block_history_dependency_and_gradients (pytorch_dspark_pro.ProDraftTests.test_full_block_history_dependency_and_gradients) ... ok
+test_grouped_attention_output_against_scalar_reference (pytorch_dspark_pro.ProDraftTests.test_grouped_attention_output_against_scalar_reference) ... ok
+test_invalid_architecture_and_history_rejected (pytorch_dspark_pro.ProDraftTests.test_invalid_architecture_and_history_rejected) ... ok
+test_partial_rotation_and_inverse_against_scalar_trigonometry (pytorch_dspark_pro.ProDraftTests.test_partial_rotation_and_inverse_against_scalar_trigonometry) ... ok
+test_query_has_pro_specific_unit_rms_after_low_rank_projection (pytorch_dspark_pro.ProDraftTests.test_query_has_pro_specific_unit_rms_after_low_rank_projection) ... ok
+test_rejects_unreleased_unclipped_mode (pytorch_dspark_pro.ProDraftTests.test_rejects_unreleased_unclipped_mode) ... ok
+test_sink_and_all_draft_slots_against_scalar_average (pytorch_dspark_pro.ProDraftTests.test_sink_and_all_draft_slots_against_scalar_average) ... ok
 test_attention_bfloat16_float32_sink_and_backward (pytorch_memory.MemoryExamplesTest.test_attention_bfloat16_float32_sink_and_backward) ... ok
 test_bfloat16_modules_preserve_dtype_and_finite_gradients (pytorch_memory.MemoryExamplesTest.test_bfloat16_modules_preserve_dtype_and_finite_gradients) ... ok
 test_candidates_pin_latest_and_exclude_future (pytorch_memory.MemoryExamplesTest.test_candidates_pin_latest_and_exclude_future) ... ok
@@ -65,6 +78,6 @@ test_changed_source_fingerprint_fails_before_numbers (pytorch_worked_artifact.Wo
 test_saved_intermediates_and_outputs_match_current_cpu (pytorch_worked_artifact.WorkedArtifactTests.test_saved_intermediates_and_outputs_match_current_cpu) ... ok
 
 ----------------------------------------------------------------------
-Ran 65 tests in 0.550s
+Ran 78 tests in 0.437s
 
 OK

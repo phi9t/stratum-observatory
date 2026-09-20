@@ -31,3 +31,14 @@ Upstream imports, compilation and weight loading run only in an explicitly appro
 ## Mutation tests and acceptance
 
 Delete a framework anchor, alter a core dimension, change a source pin, cite a comment instead of an AST symbol, duplicate a consumer, introduce a cycle, omit an expert or change a cache boundary. The appropriate source/coverage/shape gate must fail. Accept only when all required inputs and graph branches are source-bound, reviewed and—where claimed—differentially executed. There is no “mostly sourced” publication threshold.
+
+### DSpark reference boundary
+
+The dSpark chapter expands the pinned V4-Pro inference graph and labels it as Pro.
+Its `DSPARK_PRO` facts bind to the release's `inference/config.json`; the root
+Transformers config disagrees about draft depth and is cited separately. Flash
+feature timing, residual read/collapse and draft dimensions remain explicit mappings.
+CPU `ProDraftBlock` covers an unquantized complete block from fused context and draft
+residual inputs. The attention/head walkthrough has separately supplied boundaries;
+it does not imply an end-to-end model run. Conditional confidence, prefix survival,
+proposal likelihood and observed acceptance must stay distinct.

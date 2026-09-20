@@ -144,8 +144,9 @@ def run_worked_examples() -> dict[str, dict[str, Any]]:
     """Return strict JSON-compatible traces calculated by the checked-in CPU code."""
     from .residual_example import residual_example
     from .vision_example import inputs_example
+    from .dspark_example import dspark_example
     with torch.no_grad():
-        return dict(inputs=inputs_example(), residual=residual_example(), replay=replay_example(), selection=selection_example(), query=query_example())
+        return dict(dspark=dspark_example(), inputs=inputs_example(), residual=residual_example(), replay=replay_example(), selection=selection_example(), query=query_example())
 
 
 if __name__ == '__main__':

@@ -1125,6 +1125,8 @@ def _has_vision(c):
 #: -- NOT_IN_CONFIG below is the other half of that decision, and CED_FIELD_UNMAPPED reports any
 #: field in neither. Derived fields carry a callable over the config document instead of a pointer.
 FIELD_MAP={
+ 'dsparkMarkovRank':'/text_config/dspark_markov_rank',
+ 'dsparkNoiseToken':'/text_config/dspark_noise_token_id',
  'layers':'/text_config/num_hidden_layers',
  'd':'/text_config/hidden_size',
  'heads':'/text_config/num_attention_heads',

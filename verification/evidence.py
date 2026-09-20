@@ -23,7 +23,7 @@ HEX64 = re.compile(r'^[0-9a-f]{64}$')
 ROLES = {'publisher_config','publisher_code','framework_code','vendor_document','library_code','paper','tokenizer_code','checkpoint_metadata','methodology_reference'}
 # This is a policy root. Adding a publisher/framework requires code-owner review.
 REPOS = {
-    'publisher_config': {'Qwen/Qwen3.8-27B', 'moonshotai/Kimi-K3', 'Qwen/Qwen3-235B-A22B', 'deepseek-ai/DeepSeek-V2', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3', 'Qwen/Qwen3-30B-A3B', 'Qwen/Qwen3.8-Flash-Next', 'deepseek-ai/DeepSeek-V4.1-Flash'},
+    'publisher_config': {'deepseek-ai/DeepSeek-V4-Pro-DSpark', 'Qwen/Qwen3.8-27B', 'moonshotai/Kimi-K3', 'Qwen/Qwen3-235B-A22B', 'deepseek-ai/DeepSeek-V2', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3', 'Qwen/Qwen3-30B-A3B', 'Qwen/Qwen3.8-Flash-Next', 'deepseek-ai/DeepSeek-V4.1-Flash'},
     'publisher_code': {'deepseek-ai/DeepSpec','deepseek-ai/DeepSeek-V4-Pro-DSpark','moonshotai/Kimi-K3','deepseek-ai/DeepSeek-V2','deepseek-ai/DeepSeek-V3','deepseek-ai/DeepSeek-V4.1-Flash'},
     'tokenizer_code': {'moonshotai/Kimi-K3'},
     'checkpoint_metadata': {'moonshotai/Kimi-K3'},

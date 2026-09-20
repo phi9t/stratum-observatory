@@ -1191,6 +1191,34 @@
       "cache": ".verification-cache/sha256/502bdaec8a3fd88ebc24c4721a7038fbe42f2063c664638127056107920035c1.txt",
       "license": "Acquire for local verification; preserve upstream license and notices; no vendored source in this release.",
       "retrieved_at": "2026-09-20T22:16:43.740813+00:00"
+    },
+    {
+      "id": "dsv4-dspark-config",
+      "role": "publisher_config",
+      "kind": "git",
+      "provider": "huggingface",
+      "repo": "deepseek-ai/DeepSeek-V4-Pro-DSpark",
+      "path": "inference/config.json",
+      "revision": "7c09739fd136abfb70a49ec334157f65f45b52cd",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-DSpark/raw/7c09739fd136abfb70a49ec334157f65f45b52cd/inference/config.json",
+      "sha256": "801bc719d08cd5be57cddc185cac621417522810e29d0314849c939bf0176ee7",
+      "cache": ".verification-cache/sha256/801bc719d08cd5be57cddc185cac621417522810e29d0314849c939bf0176ee7.txt",
+      "license": "Reference capture only; preserve upstream notices; no upstream bytes redistributed.",
+      "retrieved_at": "2026-09-20T22:44:42.258018+00:00"
+    },
+    {
+      "id": "dsv4-dspark-root-config",
+      "role": "publisher_config",
+      "kind": "git",
+      "provider": "huggingface",
+      "repo": "deepseek-ai/DeepSeek-V4-Pro-DSpark",
+      "path": "config.json",
+      "revision": "7c09739fd136abfb70a49ec334157f65f45b52cd",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-DSpark/raw/7c09739fd136abfb70a49ec334157f65f45b52cd/config.json",
+      "sha256": "9dd2a89255469e120b333668ef5a169b7ae46c00f6bbab786bf0be457546aec0",
+      "cache": ".verification-cache/sha256/9dd2a89255469e120b333668ef5a169b7ae46c00f6bbab786bf0be457546aec0.txt",
+      "license": "Reference capture only; preserve upstream notices; no upstream bytes redistributed.",
+      "retrieved_at": "2026-09-20T22:44:42.259581+00:00"
     }
   ]
 }

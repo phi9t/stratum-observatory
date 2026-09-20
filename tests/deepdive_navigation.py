@@ -32,7 +32,7 @@ def exercise(page,root):
     for stage in expected:
         page.locator(f'button[data-setting="stage"][data-value="{stage}"]').click()
         assert page.evaluate('STRATUM.getState().stage')==stage
-        if stage in ('inputs','residual'):
+        if stage in ('inputs','residual','dspark'):
             # Build-time compression must preserve the complete pure scene, not
             # merely a rendering that happens to have valid geometry.
             expected_scene=json.loads(subprocess.check_output(['node','--input-type=module','-e',
@@ -139,6 +139,10 @@ def exercise(page,root):
         assert page.locator(f'details[data-example="{example["id"]}"] .pytorch-code code').text_content()==example['code']
         assert page.evaluate('STRATUM.geometryReport().geometry_defects')==0
         scene=page.evaluate('STRATUM.getScene()')
+        expected_scene=json.loads(subprocess.check_output(['node','--input-type=module','-e',
+            "import {buildScene} from './src/diagrams.mjs'; console.log(JSON.stringify(buildScene("+
+            json.dumps(page.evaluate('STRATUM.getState()'))+")));"],cwd=root,text=True))
+        assert scene==expected_scene
         assert len(scene['nodes'])>=5
         for node in scene['nodes']:
             page.locator(f'[data-node="{node["id"]}"]').focus()

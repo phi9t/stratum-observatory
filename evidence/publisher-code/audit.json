@@ -104,6 +104,21 @@
         "modeling_kimi_linear.py",
         "tokenization_kimi.py"
       ]
+    },
+    {
+      "repo": "deepseek-ai/DeepSeek-V4-Pro-DSpark",
+      "revision": "7c09739fd136abfb70a49ec334157f65f45b52cd",
+      "observed_at": "2026-09-20T23:01:11.101088+00:00",
+      "api_response_sha256": "2386d5941ea107dc7b25be945998f606184fa432851d45964226244eed27c2fa",
+      "file_count": 92,
+      "python_files": [
+        "encoding/encoding_dsv4.py",
+        "encoding/test_encoding_dsv4.py",
+        "inference/convert.py",
+        "inference/generate.py",
+        "inference/kernel.py",
+        "inference/model.py"
+      ]
     }
   ]
 }

@@ -9,11 +9,11 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 629 verifier tests (10 skipped), 154 model/graph tests, two byte-identical builds of all eight portable entry points and 1,481 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Engineering | PASS | 0 | 630 verifier tests (10 skipped), 155 model/graph tests, two byte-identical builds of all eight portable entry points and 1483 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
 | Accounting arithmetic | PASS | 0 | 399 live scenarios; 309 agreement, 82 explained differences, 186 unsupported findings, zero contradictions; required by engineering |
-| Schematics | PASS | 0 | 772 scenes including all 544 decoder layers; 3204 checks against core.mjs, of which 264 are recorded not-applicable passes |
-| Presentations | PASS | 0 | 98 checks over 36 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
-| Aesthetics | PASS | 0 | 212 scenarios, 525 checks; type, spacing, contrast, clearance, probe coverage and composition |
+| Schematics | PASS | 0 | 773 scenes including all 544 decoder layers; 3209 checks against core.mjs, of which 266 are recorded not-applicable passes |
+| Presentations | PASS | 0 | 99 checks over 37 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
+| Aesthetics | PASS | 0 | 214 scenarios, 527 checks; type, spacing, contrast, clearance, probe coverage and composition |
 | Scientific publication | BLOCKED | 2 | Nine-model consumer inventory and strict evidence/review audit; **no FAIL** |
 | Runtime certification | BLOCKED | 2 | Run on these bytes: 32 of 32 obligations NOT_RUN, **no FAIL and no `RUNTIME_STALE`**; all private hardware receipts were withdrawn for publication |
 
@@ -27,7 +27,7 @@ Python pin, `tests/`, `.github/CODEOWNERS` and the aesthetics policy are all ins
 
 ## Browser evidence
 
-**1,481 rendered states**, including all **544 decoder layers** across nine checkpoints in both
+**1483 rendered states**, including all **544 decoder layers** across nine checkpoints in both
 label modes, **56 responsive viewport/lens/theme combinations** and **36 device-scale cases at
 1.25 and 2**. **0 geometry defects, 0 runtime JavaScript errors, 0 external runtime requests.**
 Model/layer/scenario controls, search, keyboard navigation, tracing, focus, zoom, URL restore,
@@ -68,7 +68,7 @@ or GPU execution.
 
 ## Aesthetics evidence
 
-`npm run verify:aesthetics` passes: **525 checks, 0 failures** across 212 scenarios and 154
+`npm run verify:aesthetics` passes: **527 checks, 0 failures** across 214 scenarios and 154
 distinct measurements. The first run of this gate failed on 21 defects that shipped in the
 delivered artifact; all are now fixed at the source rather than by moving a threshold.
 
@@ -89,7 +89,7 @@ labels stay at AA deliberately: they sit on the semantic tint fills that carry t
 of `docs/design/OBSERVATORY.md`, and forcing 7:1 there would wash that grammar out of the diagram.
 
 Position must not depend on theme, and does not: composition is byte-identical between dark and
-light in every scenario. All **212** measured scenarios were each compared against a recorded
+light in every scenario. All **214** measured scenarios were each compared against a recorded
 signature and all match — the measured, the compared and the baselined counts are the same number,
 which is the only way this check means anything. That sentence is now the gate's own PASS message,
 computed from the compared set, rather than a property of this document.
@@ -167,9 +167,9 @@ synthetic markup in a browser, not asserted.
 
 `npm run verify:schematics` checks what the diagram means rather than where its boxes landed. The
 scene IR comes from the diagram builders and, per scene, `core.mjs` independently states what is
-true; the two are compared. 772 scenes, 3204 checks, 544 decoder layers, no browser. Of those
-3204, **264 are explicit not-applicable passes** — `SCENE_MODEL_SKIP` 226 and `MHC_SKIP` 38, both
-counted in the report's own `passed_codes` — so 2,937 are applicable checks and the rest are a check
+true; the two are compared. 773 scenes, 3209 checks, 544 decoder layers, no browser. Of those
+3204, **266 are explicit not-applicable passes** — `SCENE_MODEL_SKIP` 227 and `MHC_SKIP` 39, both
+counted in the report's own `passed_codes` — so 2937 are applicable checks and the rest are a check
 saying, in the report rather than by silence, that it did not apply here.
 
 It also judges the causal encoder-decoder architecture itself, under 25 codes that did not exist
@@ -240,7 +240,7 @@ on the page as an uncited assertion rather than as an error.
 
 **The exposition is checked against the computation, not against itself.** `COVERAGE_DERIVED` reads
 the numbers out of the rendered sentence and requires figures derived outside the page to be among
-them. Figures are compared as numbers, not matched as substrings, so a row writing 1,720 does not
+them. Figures are compared as numbers, not matched as substrings, so a row writing 1720 does not
 satisfy an assertion about 720.
 
 **5 of the 8 rows** are covered, and the gate's own PASS message says so rather than leaving the
@@ -272,7 +272,7 @@ compression-ratio rule. `ratioOf` in `src/diagram-meta.mjs` is checked against t
 was unchecked for a structural reason rather than an oversight: only `function.parameterLedger`'s
 source hash reached the inventory, and a hash says a function changed, never whether it is right.
 The ledger is now sampled twice — once at the declared band ratios, once with every ratio at 1 —
-and the difference is exactly the compressor gate weights the ratio rule owns, **7,864,320
+and the difference is exactly the compressor gate weights the ratio rule owns, **7864320
 parameters** over three gated encoder bands at 5120 × 512, re-derived in Python. Turning
 `l < encoderLayers` into `l <= encoderLayers` gates a fourth band and fails the check; removing the
 condition gates none and fails it too. A zero-versus-zero comparison is treated as a failure, not
@@ -348,8 +348,8 @@ those three pages were measured by this gate in no state at all.
 script, this gate's coverage judge, its focal-state list, both exporters, the browser matrix and
 the aesthetics sweep all read it. `PREVIEW_COVERAGE` requires every model in the live table and
 every focal page that model offers; `PROSE_SCOPE` names the states it measured. **All nine
-checkpoints now appear in the 48 published previews, including every focal page they
-offer**, and this gate measures **36 delivered states**: Foundations, dedicated entry states, and every focal page in
+checkpoints now appear in the 49 published previews, including every focal page they
+offer**, and this gate measures **37 delivered states**: Foundations, dedicated entry states, and every focal page in
 the application.
 
 **The manifest's own per-file digests had never been read, and the coverage question was only ever
@@ -424,25 +424,25 @@ inventory, not correctness of anything in it.
 
 | Item | Count |
 |---|---:|
-| Input leaves | 610 |
-| Function/file identities | 67 |
-| Distinct sampled scene contracts | 3150 |
-| Claims including domain obligations | 3851 |
-| Candidate source entries | 87 |
-| Accepted raw-byte snapshots | 85 |
+| Input leaves | 635 |
+| Function/file identities | 70 |
+| Distinct sampled scene contracts | 3203 |
+| Claims including domain obligations | 3932 |
+| Candidate source entries | 89 |
+| Accepted raw-byte snapshots | 87 |
 | Scientifically certified claims under the signed policy | 0 |
 | Passed presentation bindings | 0 |
 | Domain contracts / runtime obligations | 32 / 32 |
 
-The publication audit has **7,041 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
+The publication audit has **7330 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
 from the current source and consumer bytes with a fresh engineering receipt:
 
 | Code | Status | Count |
 |---|---|---:|
-| `REVIEW_REQUIRED` | BLOCKED | 3,883 |
-| `CLAIM_ANCHOR` | BLOCKED | 2,334 |
-| `CLAIM_ROLE` | BLOCKED | 387 |
-| `MODEL_DUAL_CODE` | BLOCKED | 371 |
+| `REVIEW_REQUIRED` | BLOCKED | 3964 |
+| `CLAIM_ANCHOR` | BLOCKED | 2334 |
+| `CLAIM_ROLE` | BLOCKED | 491 |
+| `MODEL_DUAL_CODE` | BLOCKED | 452 |
 | `CONTRACT_EVIDENCE` | BLOCKED | 32 |
 | `CONTRACT_CONSISTENT` | PASS | 24 |
 | `CONTRACT_MODEL_COVERAGE` | PASS | 9 |
@@ -455,17 +455,17 @@ from the current source and consumer bytes with a fresh engineering receipt:
 | `ENGINEERING_CURRENT` | PASS | 1 |
 
 Most of these are cascading source dependencies and absent independent reviews; this is **not** a
-claim that 7,041 facts are false. No review identity, accepted source hash or execution receipt was
+claim that 7330 facts are false. No review identity, accepted source hash or execution receipt was
 invented.
 
-For the record, the evidence-anchor work began at **9,037 findings (9,013 BLOCKED)** with
-`CLAIM_ANCHOR` at **5,899**. Anchoring configuration citations as resolved JSON pointers, anchoring
+For the record, the evidence-anchor work began at **9037 findings (9013 BLOCKED)** with
+`CLAIM_ANCHOR` at **5899**. Anchoring configuration citations as resolved JSON pointers, anchoring
 paper and vendor-document citations as unique quotes, dropping 148 citations that were false
 provenance, and letting derived scene claims carry provenance through their dependencies together
-removed 3,853 BLOCKED findings without a single fabricated anchor.
+removed 3853 BLOCKED findings without a single fabricated anchor.
 
 Runtime certification was run on these bytes and reports the same population plus its
-obligations: **7,041 BLOCKED, 38 PASS, 32 NOT_RUN, no FAIL.**
+obligations: **7330 BLOCKED, 38 PASS, 32 NOT_RUN, no FAIL.**
 
 **Adding a ninth checkpoint did not make any receipt stale, and an earlier draft of this section
 was wrong to predict that it would.** The prediction came from reading the coupling rule instead of
@@ -515,7 +515,7 @@ untouched by it. In isolation the new role check is **more permissive** than the
 lets a role be satisfied by a dependency's referent rather than demanding the claim carry its own.
 
 What the change actually bought is narrower and worth stating exactly: it made it possible to
-remove **3,561** copied citations from derived scene claims — entries that were duplicates of their
+remove **3561** copied citations from derived scene claims — entries that were duplicates of their
 inputs' citations with the unanchorable ones left null — **without manufacturing false role gaps**.
 Deleting those copies under the old rule would have produced `CLAIM_ROLE` findings describing
 missing evidence that was never missing. That is a gain in truthfulness of the report, not a gain
@@ -523,11 +523,11 @@ in resistance to attack.
 
 ## What the remaining `CLAIM_ANCHOR` findings are
 
-2,334 evidence entries name a source but no selector within it. They are not oversights, and
-`docs/verifiers/ANCHOR_RESIDUE.md` records a decision for all **3,125** residue rows across **144**
+2334 evidence entries name a source but no selector within it. They are not oversights, and
+`docs/verifiers/ANCHOR_RESIDUE.md` records a decision for all **3125** residue rows across **144**
 classes — re-pointed, dropped, reclassified, or explicitly unresolved with a stated reason.
 
-**1,586** of the 2,334 are genuine citations on derived `scene.*` claims that no declared dependency
+**1586** of the 2334 are genuine citations on derived `scene.*` claims that no declared dependency
 supplies, kept because deleting them would strip 360 claims of their only evidence for a role their
 domain requires:
 
@@ -539,7 +539,7 @@ domain requires:
 They stay, and they keep reporting BLOCKED, which is the correct fail-closed report: the citation is
 true provenance for what the diagram draws, and it is still not a selector.
 
-The ninth checkpoint ends this count at 2,334 against 2,335 before it, and the near-zero net
+The ninth checkpoint ends this count at 2334 against 2335 before it, and the near-zero net
 movement is two different things cancelling. Nineteen citations gained a selector and four were
 dropped; then an audit of **every one of the 89 `python_symbol` anchors on `MODELS.dsv41.*`**
 removed 20 that resolved against spans which do not carry the value they were cited for, and
@@ -583,7 +583,7 @@ false binding this class kept producing is now unrecordable: `Gate` with
 `contains: ['n_activated_experts']` resolves, `Gate` with `contains: ['args.moe_inter_dim']` is
 refused. `contains` is mandatory for `span` and `text_quote` anchors and optional for
 `python_symbol`, which is the asymmetry that allowed it; closing that in `select_anchor` would
-refuse the **5,837** `python_symbol` anchors on the other eight checkpoints until each is authored,
+refuse the **5837** `python_symbol` anchors on the other eight checkpoints until each is authored,
 so the figure is recorded here and the decision is not taken silently.
 
 One non-move belongs in the record too. `encoderLayers`' configuration and code citations stay
@@ -619,7 +619,7 @@ Found while authoring anchors, recorded rather than silenced, and both left visi
   **32,768**. Native versus extended: the app names "the native context used by this preset", and
   the report states 32,768 as the pre-training sequence length for all models, reaching 128K
   afterwards with YaRN and Dual Chunk Attention. The shipped configuration carries a third number
-  again, `max_position_embeddings` = 40,960. The three affected citations were **re-pointed** onto
+  again, `max_position_embeddings` = 40960. The three affected citations were **re-pointed** onto
   the report's native-context sentence.
 
 A third, smaller mismatch is recorded the same way: `MODELS.q3827.linearGate` displays `SiLU` where
@@ -729,7 +729,7 @@ Recorded so they are not mistaken for oversights:
 - **Two sources remain unfetched** — `ib-opensm` and `dynamo-nixl` — because their URLs redirect and
   the acquirer refuses to follow a redirect without inspecting the new origin. Pin the resolved
   origin; do not relax the guard.
-- **`REVIEW_REQUIRED` is 3,552 findings** and is independent of everything above.
+- **`REVIEW_REQUIRED` is 3552 findings** and is independent of everything above.
   No amount of source acquisition or hardware access reduces it: it needs a reviewer identity in
   the protected trust root and an independent signer who is not the author.
 - **Independent V4.1 source is available, but full corroboration is incomplete.** The pinned
@@ -769,7 +769,7 @@ Recorded so they are not mistaken for oversights:
   `select_anchor` is what would make a symbol cited for a value its span does not carry
   unrecordable rather than merely findable by audit — an audit removed 20 such bindings on this
   checkpoint. Requiring it now would refuse
-  the **5,837** `python_symbol` anchors on the other eight checkpoints until each is authored, so
+  the **5837** `python_symbol` anchors on the other eight checkpoints until each is authored, so
   the figure is recorded and the decision is deliberately not taken silently.
 - **61 `dsv41` citations remain unanchored** — 30 on the five publisher-code files, 26 on the
   configuration and 5 on the model card — each inside a class with a recorded decision in
@@ -781,11 +781,7 @@ Recorded so they are not mistaken for oversights:
 
 `MODELS.dsv41` is a hand transcription of the publisher's `config.json`, and transcription error
 is the dominant failure mode when adding an architecture. `CED_PUBLISHER_AGREEMENT` re-derives
-54 of its 81 fields from the acquired publisher bytes -- 45 by JSON pointer, 9 by an expression
-over the same document -- and compares them, with 0 unresolved pointers and 0 disagreements. The
-other 25 fields are recorded with the reason each has no publisher counterpart, and
-`CED_FIELD_UNMAPPED` fails on any field in neither list, so adding a field to the model table
-forces a decision about how it gets verified.
+57 of its 84 fields from the acquired publisher bytes, with no unresolved pointers or disagreements. Other fields have a recorded reason for lacking a direct configuration counterpart. `CED_FIELD_UNMAPPED` fails on any field in neither list, so adding a field forces a decision about how it gets verified.
 
 It runs in the **publication** profile (`npm run verify:science`), not in a software gate. The
 check needs the acquired upstream bytes; `.verification-cache/` is git-ignored by design, so CI
@@ -810,9 +806,9 @@ executes all three, and CI could never have executed the transcription compariso
 
 Portable HTML SHA-256: `98be3fc6bf564a0ede8cfe10be30b9fb7f4d6e83122c4ab1b5d583ff9cb47ee1`
 
-Scientific lock SHA-256: `05816927bc258a9d5ce79bfce709835eb8f813ec0691e07cc1a3b27f5919e78c`
+Scientific lock SHA-256: `c94e1d842c72ebf7105f8f5a6b88ff0ae9dd4079a41989a49aee6ef72ff8e8bf`
 
-Verifier identity SHA-256: `4c8007c9bf3625d97a08f22b896d10186f5bff7c098601830ab7fadd3b9df3d5`
+Verifier identity SHA-256: `a77b8babb5a7ba6648757a6b24624cf89ff81cd6eb7a433d7a80d092f5cee6a5`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -892,7 +888,7 @@ V4.1 dispatch and storage anchors. Main KV and packed indexer payload reconcile 
 window state and allocation overhead remain separate. [Research and source scope](docs/design/V41-SERVING-RESEARCH.md)
 record the development-branch serving implementation and Miles plugin. Neither is a runtime receipt.
 
-Dedicated HTML SHA-256: `427adaf6d6460728c460cd5317c75cffe39f651a7204dc6de1079b6e29b29ec7`
+Dedicated HTML SHA-256: `7539f278418cd08239e64fa3e90b0453f7335ff73f8b84e3090365e472a13e84`
 
 CED phase depths follow the report-level scheme. The pinned reference forward still visits all backbone layers; encoder-only prefill execution is not certified by that code. This distinction is visible in the CED caption and serving inspector.
 
@@ -903,7 +899,7 @@ CED phase depths follow the report-level scheme. The pinned reference forward st
 82 explained_difference, 186 unsupported and 0 contradiction findings. These are
 arithmetic classifications, with explicit units, denominators and exclusions, not
 publication or runtime acceptance. The independent Python calculations reproduce the
-anchored cache example as 6,710,886,400 bytes, 6.7108864 decimal GB and 6.25 binary GiB.
+anchored cache example as 6710886400 bytes, 6.7108864 decimal GB and 6.25 binary GiB.
 The published table's GiB label is recorded as an explained difference.
 
 The 16-byte training baseline remains unchanged. An additional FP32 gradient accumulation
@@ -936,12 +932,12 @@ registry drives page builds, artifact identity, browser routing and preview sele
 Chromium exercises real landing links, variant switches, reloads, identity enforcement,
 scenario exports and return links. All eight portable files are included in the software gates.
 
-- `deepseek-v4.1.html` SHA-256: `427adaf6d6460728c460cd5317c75cffe39f651a7204dc6de1079b6e29b29ec7`
+- `deepseek-v4.1.html` SHA-256: `7539f278418cd08239e64fa3e90b0453f7335ff73f8b84e3090365e472a13e84`
 - `index.html` SHA-256: `98be3fc6bf564a0ede8cfe10be30b9fb7f4d6e83122c4ab1b5d583ff9cb47ee1`
-- `kimi-k3.html` SHA-256: `63497756b08c61f9f2f2b0d45060fd969e00c79d8b35f70313f53d245a2a9b3e`
-- `qwen3.8.html` SHA-256: `59a9afed69a085bc1682458cc49d4f3409da0df89ccb3850f49fdb9d191d1b83`
+- `kimi-k3.html` SHA-256: `bb140d3cdb721e21d2dfedc716e1a05b9a84b848cfce85d2057a5cf2a9168eb2`
+- `qwen3.8.html` SHA-256: `fd363a4754bd76ab49bb3c27c1a2ebe9f2d92354ef858235752b4fd33806d712`
 
-Publication coverage: 3883 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
+Publication coverage: 3964 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
 
 ## Shared systems sections
 
@@ -953,10 +949,10 @@ exposes a workload-model selector, and links preserve the originating scenario. 
 system bookmarks redirect to these shared pages. Repeated local arrow-key navigation keeps focus
 in the model tabs. All eight files receive artifact identity and portable delivery checks.
 
-- `hardware.html` SHA-256: `9a219a104d178cfabd4142d187b1c151c18c6cc70e2833495c814c1024c0f723`
-- `networking.html` SHA-256: `26e20a30e9a636133f86a455a89ea251f69e204af44be7449a37d149c87026c3`
+- `hardware.html` SHA-256: `f615be5caf0a1b1604133406432ff28b200a8eb5d43dd50febefb0aa2083f9b9`
+- `networking.html` SHA-256: `1795ea5e9c207e8ec13729619d000893ff09cb911fca6efad573a26ea43ca8c2`
 
-- `foundations.html` SHA-256: `8170d9426caab5e7f0d99ec33df75bcc201db9a2c6b8c11595629a0dce81bd12`
+- `foundations.html` SHA-256: `a11c096fdd1a2f425603d6d7d78bf4adb97966d92ba529ccfc5289ebe0615fa5`
 
 - `data-representation.html` SHA-256: `1c0bc18eafbff1b9b1d1d1ff4a921283baa38f476b90a7db01982adae3c77c0d`
 
@@ -969,7 +965,7 @@ anchors local and migrates legacy model/scenario fragments to their canonical pa
 
 Chromium verifies real links, exact family membership, reloads, offline use, keyboard focus,
 heading order, responsive widths, reading contrast and print for both static documents.
-The current capture manifest includes 48 previews, including the homepage and data reference.
+The current capture manifest includes 49 previews, including the homepage and data reference.
 
 Four general data-topic consumers bind the exact displayed prose and reference URLs.
 Those URLs are reading references, not accepted upstream evidence: acquisition, precise
@@ -992,7 +988,7 @@ PDF observation is recorded in `docs/research/DEEPSEEK_V41_DEEPDIVES.md`; its un
 PDF selector remains an explicit BLOCKED dependency, not a fabricated source acceptance.
 
 All ten new dark/light composition signatures were inspected before promotion; no
-existing signature changed. The capture inventory contains 48 current previews.
+existing signature changed. The capture inventory contains 49 current previews.
 
 ## DSpark paper, DeepSpec and checkpoint provenance
 
@@ -1009,13 +1005,13 @@ acceptance. The source and scope map is `docs/research/DEEPSPEC-DSpark.md`.
 
 ## V4.1 PyTorch examples
 
-Nine source-linked teaching records cover mHC/flat CED, routed/shared experts, Engram,
+Source-linked teaching records cover mHC/flat CED, routed/shared experts, Engram,
 compression, sparse selection, sparse attention, dSpark attention/output heads and the
 separately scoped DeepSpec verifier. The encoder and decoder reuse the same backbone
 records. Exact source-symbol anchors bind each record in the publication inventory;
 independent scientific acceptance remains BLOCKED.
 
-65 PyTorch CPU tests exercise reduced-shape mathematics, masks, partial compression
+78 PyTorch CPU tests exercise reduced-shape mathematics, masks, partial compression
 state, previous-sublayer mixing, asymmetric SwiGLU clamps, unbiased expert weighting,
 draft visibility, Markov conditioning, rejection sampling and cache ownership. They run
 our authored examples with illustrative inputs, not upstream code or checkpoint weights.
@@ -1143,3 +1139,25 @@ controls use that same ungrouped notation. Quantities and shapes in schematics a
 explanations use code glyphs without reducing their surrounding type size. Source
 code remains byte-exact. Browser checks cover inherited monospace styling, compact
 quantity labels, context options and chapter values; model arithmetic is unchanged.
+
+## DSpark architecture deep dive
+
+The chapter now expands the released V4-Pro draft attention and MoE block, with
+current-read mHC, temporary draft KV, retained target context, grouped output,
+final collapse and a separate sequential Markov chain. It explicitly maps the
+differences from V4.1 Flash rather than replacing that checkpoint's dimensions.
+The pinned inference configuration and root configuration disagree on draft depth;
+both are retained and the displayed graph follows the inference implementation.
+
+The checked-in Pro block has named tensor-axis annotations and a separate
+`DSparkProConfig`. Independent CPU checks cover rotary math, grouped output,
+residual orientation, routing, shared experts, full-slot attention and gradients.
+The displayed attention/head trace is generated by the CPU helpers using explicit
+teaching weights at separately declared boundaries. It distinguishes raw confidence,
+conditional acceptance estimates and prefix survival. It is not a checkpoint run.
+
+Portable module schematics are compressed data generated from their pure builders.
+Browser journeys compare every decoded module scene to its source scene exactly.
+Only the dSpark chapter and its new module changed composition signatures.
+
+Current publisher transcription audit: All 84 transcribed fields are either mapped to config.json or recorded in NOT_IN_CONFIG with a reason. 57 transcribed fields re-derived from the publisher config and equal, 0 unresolved.
