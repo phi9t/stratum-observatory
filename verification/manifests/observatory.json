@@ -23689,7 +23689,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/app.mjs",
-      "expected": "3a38f2c2a5f697112b2d64a7bf49e2aebabc8d0c72c05afca36558c1fe5961e8",
+      "expected": "14ef4b901551c13f6131795fe53b58518f4663e26beadda6be79511ed8c96c3a",
       "statement": "file.src/app.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23951,7 +23951,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.build.mjs",
-      "expected": "98ac0deaa3f46da482e5e4a9db692538f1c804b84b008f0e45049765b26adb18",
+      "expected": "ad451e67a2244f3bc4b17d3da79a50c4aed0843ba77b2278711c1fc31ecdc8cc",
       "statement": "file.build.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -149820,7 +149820,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/pages.mjs",
-      "expected": "d2ed8e867fe926a5c41babb059af020efef74bc6addeb37f865a7e447cec8f22",
+      "expected": "0dc145723cf3f4a5bc4839cd8110646675c53f4317b3bc0a278e988d570238b2",
       "statement": "file.src/pages.mjs: local entry-point routing identity; browser navigation must preserve exact checkpoint ownership and atlas return links. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -149833,6 +149833,115 @@
         "MODELS.q38flash.d",
         "MODELS.kimi3.d",
         "MODELS.dsv41.d"
+      ]
+    },
+    {
+      "id": "data.topic.tokenizer",
+      "consumer": "data.topic.tokenizer",
+      "domain": "storage",
+      "classification": "documented",
+      "expected": {
+        "id": "tokenizer",
+        "title": "Tokenization",
+        "text": "A tokenizer turns text into vocabulary IDs. Its pipeline can normalize text, split it before tokenization, apply a learned tokenization model, and add special tokens. Keep the tokenizer configuration alongside the dataset so those IDs retain their meaning.",
+        "sources": [
+          [
+            "Hugging Face Tokenizers pipeline",
+            "https://huggingface.co/docs/tokenizers/pipeline"
+          ]
+        ]
+      },
+      "statement": "General educational assertion. Linked documentation is an unaccepted reference; exact source acquisition, anchors and independent review remain pending. No checkpoint-specific preprocessing or measured runtime claim.",
+      "evidence": [],
+      "dependencies": []
+    },
+    {
+      "id": "data.topic.packing",
+      "consumer": "data.topic.packing",
+      "domain": "storage",
+      "classification": "documented",
+      "expected": {
+        "id": "packing",
+        "title": "Packing",
+        "text": "Packing places shorter examples into a shared sequence to reduce padding. Record where each example begins and ends. When examples must remain independent, the attention implementation must respect those boundaries; concatenating token IDs alone does not express that requirement.",
+        "sources": [
+          [
+            "NVIDIA Megatron Bridge packed sequences",
+            "https://docs.nvidia.com/nemo/megatron-bridge/latest/training/packed-sequences.html"
+          ]
+        ]
+      },
+      "statement": "General educational assertion. Linked documentation is an unaccepted reference; exact source acquisition, anchors and independent review remain pending. No checkpoint-specific preprocessing or measured runtime claim.",
+      "evidence": [],
+      "dependencies": []
+    },
+    {
+      "id": "data.topic.masking",
+      "consumer": "data.topic.masking",
+      "domain": "storage",
+      "classification": "documented",
+      "expected": {
+        "id": "masking",
+        "title": "Masking",
+        "text": "Attention masks control which positions can attend to which other positions. Loss masks select the targets that contribute to the objective. Ignoring a target in the loss does not hide its input from attention. Keep causal visibility, padding, example boundaries, and target selection explicit.",
+        "sources": [
+          [
+            "PyTorch attention masks",
+            "https://docs.pytorch.org/docs/stable/generated/torch.nn.MultiheadAttention.html"
+          ],
+          [
+            "PyTorch ignored loss targets",
+            "https://docs.pytorch.org/docs/2.14/generated/torch.nn.CrossEntropyLoss.html"
+          ]
+        ]
+      },
+      "statement": "General educational assertion. Linked documentation is an unaccepted reference; exact source acquisition, anchors and independent review remain pending. No checkpoint-specific preprocessing or measured runtime claim.",
+      "evidence": [],
+      "dependencies": []
+    },
+    {
+      "id": "data.topic.storage",
+      "consumer": "data.topic.storage",
+      "domain": "storage",
+      "classification": "documented",
+      "expected": {
+        "id": "storage",
+        "title": "Storage formats",
+        "text": "Arrow defines columnar data in memory and its serialization. Parquet is a columnar file format for stored data. Safetensors stores tensors, such as checkpoint weights. Choose the representation for the object being stored, and keep the schema and preprocessing configuration with it. A file extension alone does not specify tokenization, packing, or masking.",
+        "sources": [
+          [
+            "Apache Arrow columnar format",
+            "https://arrow.apache.org/docs/format/Columnar.html"
+          ],
+          [
+            "Apache Parquet overview",
+            "https://parquet.apache.org/docs/overview/"
+          ],
+          [
+            "Hugging Face Safetensors",
+            "https://huggingface.co/docs/safetensors/index"
+          ]
+        ]
+      },
+      "statement": "General educational assertion. Linked documentation is an unaccepted reference; exact source acquisition, anchors and independent review remain pending. No checkpoint-specific preprocessing or measured runtime claim.",
+      "evidence": [],
+      "dependencies": []
+    },
+    {
+      "id": "file.src/landing.mjs",
+      "consumer": "file.src/landing.mjs",
+      "domain": "visualization",
+      "classification": "derived",
+      "expected": "fbd847277694c38b711a045f27e035b1848a5fc83802f21a314afd93b0461fa7",
+      "statement": "Landing directory and general data reference. Fingerprint identifies delivered prose and routing, not upstream truth; data topics require source acceptance and review.",
+      "evidence": [],
+      "dependencies": [
+        "file.src/pages.mjs",
+        "data.topic.tokenizer",
+        "data.topic.packing",
+        "data.topic.masking",
+        "data.topic.storage",
+        "file.src/models.mjs"
       ]
     }
   ],

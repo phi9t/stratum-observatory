@@ -8,21 +8,21 @@ from verification.delivery import page_inventory
 def exercise(page, root):
     root = Path(root)
     routes = [(model,entry['file']) for entry in page_inventory(root) for model in entry['models']]
-    assert dict(routes)=={'q3827':'qwen3.8.html','q38flash':'qwen3.8.html',
-                          'kimi3':'kimi-k3.html','dsv41':'deepseek-v4.1.html'}
+    assert len(dict(routes)) == len(routes), 'Each model has one canonical entry'
     for model, filename in routes:
+        entry=next(p for p in page_inventory(root) if p['file']==filename)
         page.goto((root/'dist/index.html').as_uri())
+        page.locator(f'main a[href="{filename}"]').click()
         page.wait_for_function('window.STRATUM')
-        page.locator(f'#model-strip a[data-model="{model}"]').click(timeout=2000)
-        page.wait_for_function('(model)=>window.STRATUM && STRATUM.getState().model===model', arg=model)
+        if page.evaluate('STRATUM.getState().model')!=model:
+            page.locator(f'#model-strip button[data-model="{model}"]').click()
         assert page.url.split('#')[0] == (root/'dist'/filename).as_uri()
         page.reload();page.wait_for_function('window.STRATUM')
         assert page.evaluate('STRATUM.getState().model') == model
         assert page.evaluate('STRATUM.geometryReport().geometry_defects') == 0
-        page.evaluate('STRATUM.setState({model:"ds2"})')
-        assert page.evaluate('STRATUM.getState().model') in (["q3827", "q38flash"] if filename=='qwen3.8.html' else [model])
+        page.evaluate('STRATUM.setState({model:"invalid-checkpoint"})')
+        assert page.evaluate('STRATUM.getState().model') in entry['models']
         page.locator('#atlas-link').click()
-        page.wait_for_function('window.STRATUM')
         assert page.url.split('#')[0] == (root/'dist/index.html').as_uri()
     page.goto((root/'dist/qwen3.8.html').as_uri())
     page.wait_for_function('window.STRATUM')

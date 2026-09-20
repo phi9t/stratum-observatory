@@ -11,7 +11,7 @@ from datetime import datetime,timezone
 from pathlib import Path
 from .model import Finding,aggregate,exit_code
 from .evidence import loads
-from .delivery import artifact_names,artifact_name,page_inventory
+from .delivery import artifact_names,artifact_name,page_inventory,guide_inventory
 from .schema import validate as shape_validate
 from .aesthetics import parse_color,contrast_ratio
 
@@ -106,7 +106,8 @@ def judge_preview_artifacts(root):
     root=Path(root);out=[]
     captures=loads((root/'previews/manifest.json').read_text()).get('captures',[])
     for capture in captures:
-        expected=artifact_name(root,capture.get('state',{}).get('model'),capture.get('state',{}).get('view'))
+        guide=next((p for p in guide_inventory(root) if p['id']==capture.get('guide')),None)
+        expected=guide['file'] if guide else artifact_name(root,capture.get('state',{}).get('model'),capture.get('state',{}).get('view'))
         page=root/'dist'/expected
         if capture.get('artifact')!=expected or not page.is_file() or capture.get('artifact_sha256')!=hashlib.sha256(page.read_bytes()).hexdigest():
             out.append(_bad('PREVIEW_ARTIFACT',capture.get('name','preview'),
@@ -378,12 +379,12 @@ def run(root):
     from playwright.sync_api import sync_playwright
     from browser_env import chromium_path
     policy=load_policy(root)
-    artifact=root/'dist/index.html'
+    artifact=root/'dist/foundations.html'
     from .ced import inventory
     models,samples=inventory(root)
     focal=samples['focal_stages']
     findings=list(judge_artifact_source(artifact,policy))
-    for entry in page_inventory(root):
+    for entry in guide_inventory(root)+[p for p in page_inventory(root) if p['file']!=artifact.name]:
         findings.extend(judge_artifact_source(root/'dist'/entry['file'],policy))
     findings.extend(judge_preview_freshness(root))
     findings.extend(judge_preview_artifacts(root))
@@ -546,7 +547,10 @@ def run(root):
         from .engineering import delivery_artifacts
         from playwright.sync_api import Error as BrowserError
         checks['accounting']={}
-        for name in delivery_artifacts(root):
+        from landing_page import exercise as exercise_landing
+        exercise_landing(page,root)
+        findings.append(_ok('LANDING_DELIVERY','directory','Landing routes, offline guides, responsive layout, keyboard, print and reading contrast passed.'))
+        for name in [p['file'] for p in page_inventory(root)]:
             accounting_page=browser.new_page(viewport={'width':1440,'height':1000})
             accounting_page.on('pageerror',lambda e:errors.append(str(e)))
             try:

@@ -50,7 +50,7 @@ def exercise_page(page, artifact):
             assert page.evaluate('STRATUM.getState().ranks') == int(alternate)
             assert panel.evaluate('e=>e.open')
             assert training.inner_text() == before, 'Global persistent totals must not change with rank count'
-            if not page.evaluate('document.body.dataset.pageModel'):
+            if page.locator('#model-strip button[data-model]').count()>1:
                 current = page.evaluate('STRATUM.getState().model')
                 cards = page.locator('#model-strip button[data-model]').all()
                 next(card for card in cards if card.get_attribute('data-model') != current).click()
@@ -107,7 +107,8 @@ def exercise_page(page, artifact):
 
 
 def exercise(page, root):
-    artifacts = sorted((Path(root)/'dist').glob('*.html'))
+    from verification.delivery import page_inventory
+    artifacts = [Path(root)/'dist'/p['file'] for p in page_inventory(root)]
     assert artifacts, 'No portable pages were built'
     return {artifact.name: exercise_page(page, artifact) for artifact in artifacts}
 

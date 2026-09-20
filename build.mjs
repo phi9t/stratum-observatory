@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {PAGES} from './src/pages.mjs';
+import {landingHTML,dataHTML} from './src/landing.mjs';
 const files=['models','core','scene','diagram-model','diagram-systems','diagram-meta','diagrams','innovations','pages','app'];
 const modules=[];
 for(const name of files){let code=fs.readFileSync(`src/${name}.mjs`,'utf8');const exports=new Set();
@@ -12,10 +13,11 @@ for(const name of files){let code=fs.readFileSync(`src/${name}.mjs`,'utf8');cons
 }
 const js=`(()=>{'use strict';const __modules=Object.create(null);\n${modules.join('\n')}\n})();`;
 let html=fs.readFileSync('index.html','utf8');html=html.replace('<link rel="stylesheet" href="src/styles.css">',()=>`<style id="stratum-styles">${fs.readFileSync('src/styles.css','utf8')}</style>`);html=html.replace('<script type="module" src="src/app.mjs"></script>',()=>`<script>${js.replace(/<\/script/gi,'<\\/script')}</script>`);
-fs.mkdirSync('dist',{recursive:true});fs.writeFileSync('dist/index.html',html);
+fs.mkdirSync('dist',{recursive:true});fs.writeFileSync('dist/index.html',landingHTML(fs.readFileSync('src/styles.css','utf8')));
+fs.writeFileSync('dist/data-representation.html',dataHTML(fs.readFileSync('src/styles.css','utf8')));
 for(const page of PAGES){
  const dedicated=html.replace('<body>', `<body data-page-id="${page.id}" data-page-model="${page.defaultModel}">`).replace('<title>STRATUM — Model Systems Observatory</title>', `<title>${page.title} — STRATUM</title>`);
  fs.writeFileSync(`dist/${page.file}`,dedicated);
 }
 const presets=(fs.readFileSync('src/models.mjs','utf8').match(/^ [A-Za-z0-9]+:\{\.\.\.common,/gm)||[]).length;
-console.log(`Built dist/index.html: ${Math.round(Buffer.byteLength(html)/1024)} KiB, ${presets} models, no external runtime assets.`);
+console.log(`Built landing, data reference and ${PAGES.length} interactive pages; ${presets} models, no external runtime assets.`);

@@ -20,4 +20,11 @@ def artifact_name(root,model,view=None):
     return page['file'] if page else 'index.html'
 
 def artifact_names(root):
-    return {'index.html',*(p['file'] for p in page_inventory(root))}
+    return {p['file'] for p in page_inventory(root)+guide_inventory(root)}
+
+@lru_cache(maxsize=None)
+def guide_inventory(root):
+    registry=Path(root).resolve()/'src/pages.mjs'
+    return json.loads(subprocess.check_output(['node','--input-type=module','-e',
+        'const {GUIDES}=await import(process.argv[1]);console.log(JSON.stringify(GUIDES));',
+        registry.as_uri()],text=True))

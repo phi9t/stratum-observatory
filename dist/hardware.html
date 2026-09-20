@@ -961,6 +961,7 @@ __modules["pages.mjs"] = (() => {
 /** Dedicated entry points share the atlas renderer and preserve exact variant identities. */
 const MODEL_VIEWS=['model','training','serving','evidence'];
 const PAGES=[
+ {id:'foundations',file:'foundations.html',title:'Modeling Foundations',models:['ds2','ds3','q38','q330','q3235'],defaultModel:'ds3',stage:'block'},
  {id:'qwen38',file:'qwen3.8.html',title:'Qwen3.8',models:['q3827','q38flash'],defaultModel:'q3827',stage:'block'},
  {id:'kimi3',file:'kimi-k3.html',title:'Kimi K3',models:['kimi3'],defaultModel:'kimi3',stage:'block'},
  {id:'dsv41',file:'deepseek-v4.1.html',title:'DeepSeek V4.1 Flash',models:['dsv41'],defaultModel:'dsv41',stage:'ced'},
@@ -973,7 +974,12 @@ function pageHref(model){const page=pageForModel(model);return page?`${page.file
 function pageForView(view){return PAGES.find(page=>page.view&&page.view===view);}
 function sectionHref(view,state){const page=pageForView(view);return `${page?.file||pageForModel(state.model)?.file||'index.html'}#${new URLSearchParams({...state,view})}`;}
 
-return {MODEL_VIEWS,PAGES,pageForModel,pageHref,pageForView,sectionHref};
+const GUIDES=[
+ {id:'home',file:'index.html',title:'Home'},
+ {id:'data',file:'data-representation.html',title:'Data Representation'},
+];
+
+return {MODEL_VIEWS,PAGES,pageForModel,pageHref,pageForView,sectionHref,GUIDES};
 })();
 __modules["app.mjs"] = (() => {
 const {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DEFAULT_STATE,sanitizeState,getModel,focalStages,layerKind,layerPartition,ffnKind,parameterLedger,cacheLedger,servingLedger,trainingLedger,networkLedger,roofline,formatNum,formatParams,formatBytes,formatTime,evidenceSummary,accountingAssumptions} = __modules["core.mjs"];
@@ -1029,11 +1035,11 @@ function render(){
  $('model-eyebrow').textContent=pageInfo?.view?'SHARED SYSTEMS REFERENCE':'REFERENCE CHECKPOINT / '+m.repo;
  $('identity-metrics').innerHTML=pageInfo?.view?'':`<div class="identity-metric"><strong>${esc(P(p.resident))}</strong><span>${p.approximate?'rounded residency scope':'calculated text core'}</span></div><div class="identity-metric"><strong>${m.layers}</strong><span>decoder layers</span></div><div class="identity-metric"><strong>${esc(B(c.total/state.batch))}</strong><span>state / sequence · ${F(state.context)} positions</span><i>logical subtotal</i></div>`;
  const cards=Object.values(MODELS).filter(x=>!pageInfo||pageInfo.models.length>1&&pageInfo.models.includes(x.id)).map(x=>{const dedicated=!pageInfo&&pageForModel(x.id);return `<${dedicated?'a':'button'} class="model-card ${x.id===m.id?'active':''}" data-model="${x.id}" ${dedicated?`href="${pageHref(x.id)}"`:`aria-pressed="${x.id===m.id}"`} title="${esc(x.repo)}"><span class="family">${esc(x.family)}</span><span class="variant">${esc(x.generation)}${dedicated?' ↗':''}</span><span class="motif">${dedicated?'Dedicated architecture page':esc(modelMotif(x))}</span></${dedicated?'a':'button'}>`;}).join('');
- $('model-strip').innerHTML=pageInfo?.view?'<a id="atlas-link" class="button" href="index.html">← All models</a>':(pageInfo?`<a id="atlas-link" class="button" href="index.html">← All models</a>`:'')+cards+(pageInfo&&pageInfo.models.length===1?`<span class="button" aria-current="page">${pageInfo.stage==='ced'?'Causal encoder / decoder':esc(pageInfo.title)}</span>`:'');
+ $('model-strip').innerHTML=pageInfo?.view?'<a id="atlas-link" class="button" href="index.html">← Home</a>':(pageInfo?`<a id="atlas-link" class="button" href="index.html">← Home</a>`:'')+cards+(pageInfo&&pageInfo.models.length===1?`<span class="button" aria-current="page">${pageInfo.stage==='ced'?'Causal encoder / decoder':esc(pageInfo.title)}</span>`:'');
  $('inventory-summary').textContent=`${Object.keys(MODELS).length} model variants · ${Object.keys(HARDWARE).length} hardware profiles · ${MODEL_VIEWS.length} model lenses · ${PAGES.filter(p=>p.view).length} shared sections`;
  if(pageModel){document.querySelector('.brand').href='index.html';document.querySelector('.header-note').innerHTML=`${esc(pageInfo.title)}<br><b>${pageInfo.view?'Systems reference.':'Architecture study.'}</b>`;}
 
- $('site-nav').innerHTML=[{id:'models',title:'Models',file:'index.html'},...PAGES.filter(p=>p.view)].map(p=>`<a class="lens-tab ${p.id===(pageInfo?.view||'models')?'active':''}" data-section="${p.id}" href="${p.view?sectionHref(p.view,state):'index.html'}" ${p.id===(pageInfo?.view||'models')?'aria-current="page"':''}>${esc(p.title)}</a>`).join('');
+ $('site-nav').innerHTML=[{id:'models',title:'Home',file:'index.html'},...PAGES.filter(p=>p.view)].map(p=>`<a class="lens-tab ${p.id===pageInfo?.view?'active':''}" data-section="${p.id}" href="${p.view?sectionHref(p.view,state):'index.html'}" ${p.id===pageInfo?.view?'aria-current="page"':''}>${esc(p.title)}</a>`).join('');
  $('lens-tabs').hidden=Boolean(pageInfo?.view);
  $('lens-tabs').innerHTML=(pageInfo?.view?[]:MODEL_VIEWS).map((v,i)=>`<button class="lens-tab ${v===state.view?'active':''}" data-view="${v}" aria-current="${v===state.view?'page':'false'}"><span class="idx">${String(i+1).padStart(2,'0')}</span>${VIEW_NAMES[v]}</button>`).join('');
  $('view-index').textContent=String(Math.max(0,MODEL_VIEWS.indexOf(state.view))+1).padStart(2,'0');$('view-heading').textContent=VIEW_NAMES[state.view];$('view-description').textContent=DESCRIPTIONS[state.view];

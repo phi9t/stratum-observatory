@@ -1,11 +1,11 @@
 """Capture current portable application and export its own SVGs; no model execution."""
 from pathlib import Path
-import hashlib,json,os,sys
+import hashlib,json,os,sys,subprocess
 from playwright.sync_api import sync_playwright
 from browser_env import chromium_path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from verification.delivery import artifact_name
+from verification.delivery import artifact_name,guide_inventory
 OUT=ROOT/'previews';OUT.mkdir(exist_ok=True)
 BASE={'model':'ds3','view':'model','stage':'block','layer':4,'theme':'dark','hardware':'h200','context':32768,'batch':1,'kvBytes':2,'stateBytes':4,'weightBytes':2,'ranks':8,'placement':'split','trainMode':'fsdp','traffic':'expert','fabric':'ib','library':'nccl','utilization':70,'oversub':1,'intensity':128,'compare':'kimi3','detail':'shapes','zoom':1,'trace':False}
 #: Read out of the rendered page rather than written down here. The model strip, the decoder-layer
@@ -45,7 +45,8 @@ def per_model_cases(page):
  segment is the decoder block captured above at its representative layer, not a focal page.
  """
  cases=[]
- for mid in page.evaluate(MODEL_IDS):
+ for mid in json.loads(subprocess.check_output(['node','tools/export-verification.mjs'],cwd=ROOT,text=True))['models']:
+  page.goto((ROOT/'dist'/artifact_name(ROOT,mid)).as_uri());page.wait_for_function('window.STRATUM')
   page.evaluate('(m)=>STRATUM.setState({model:m,view:"model",stage:"block"})',mid)
   cases.append((mid,{'model':mid,'view':'model','stage':'block',
                      'layer':representative_layer(page.evaluate(LAYER_OPTIONS))}))
@@ -77,7 +78,7 @@ EXTRA_CASES=[
 with sync_playwright() as p:
  browser=p.chromium.launch(executable_path=chromium_path(p),headless=True,args=['--no-sandbox'])
  page=browser.new_page(viewport={'width':1840,'height':1300},device_scale_factor=1.25)
- page.set_content((ROOT/'dist/index.html').read_text(),wait_until='load')
+ page.set_content((ROOT/'dist/foundations.html').read_text(),wait_until='load')
  page.wait_for_function('window.STRATUM?.version === "3.0.0"');page.evaluate('document.fonts.ready')
  manifest=[]
  for name,patch in per_model_cases(page)+EXTRA_CASES:
@@ -104,5 +105,10 @@ with sync_playwright() as p:
  # reports: bytes in the published directory attested by nothing.
  manifest.append({'name':'mobile','artifact':artifact.name,'artifact_sha256':hashlib.sha256(artifact.read_bytes()).hexdigest(),'viewport':{'width':390,'height':844},
                   'state':page.evaluate('STRATUM.getState()')})
+ for guide in guide_inventory(ROOT):
+  artifact=ROOT/'dist'/guide['file']
+  page.set_viewport_size({'width':1440,'height':1000})
+  page.goto(artifact.as_uri());page.screenshot(path=str(OUT/f"{guide['id']}.png"),full_page=True)
+  manifest.append({'name':guide['id'],'guide':guide['id'],'artifact':artifact.name,'artifact_sha256':hashlib.sha256(artifact.read_bytes()).hexdigest(),'viewport':{'width':1440,'height':1000}})
  browser.close()
 (OUT/'manifest.json').write_text(json.dumps({'artifact_sha256':hashlib.sha256((ROOT/'dist/index.html').read_bytes()).hexdigest(),'captures':manifest},indent=2)+'\n')

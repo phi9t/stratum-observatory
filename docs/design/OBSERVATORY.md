@@ -36,8 +36,8 @@ Run numeric and semantic tests, existing verifier self-tests, deterministic buil
 
 `dist/deepseek-v4.1.html` is a dedicated entry point built from the shared application shell.
 It fixes the checkpoint identity, opens the whole-network CED view, and puts that view first
-in its architecture navigation. The atlas card and search open this page; its All models link
-returns to the atlas. Existing atlas hash scenarios and the STRATUM programmatic seam remain
+in its architecture navigation. The landing directory opens this page; its Home link
+returns to the directory. Existing model hash scenarios and the STRATUM programmatic seam remain
 compatible. Serving exposes prefill/decode phase inspection with distinct participating depths.
 
 The build emits every registered portable HTML file. Engineering binds each file digest and compares them
@@ -46,3 +46,13 @@ its own artifact identity. `npm start` serves the current built pages so links h
 meaning in development, offline files, and Pages.
 
 See [Site sections](SITE_SECTIONS.md) for canonical URLs, workload ownership and legacy bookmarks.
+
+
+The landing page is a static learning directory. Modeling Foundations groups DeepSeek V2/V3
+and Qwen3, while Qwen3.8, Kimi K3 and DeepSeek V4.1 Flash keep dedicated entries. GPU
+Hardware and Networking are shared systems pages. Data Representation is a compact general
+reference for tokenization, packing, attention versus loss masking, and storage formats;
+its documentation links are unaccepted references pending source anchoring and review.
+`PAGES` enumerates interactive artifacts and `GUIDES` static documents; delivery identity
+covers both. Legacy scenario fragments redirect to their canonical interactive page, while
+ordinary in-page anchors remain on the directory.

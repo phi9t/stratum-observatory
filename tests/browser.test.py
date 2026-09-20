@@ -60,7 +60,7 @@ with sync_playwright() as p:
     page=browser.new_page(viewport={'width':1840,'height':1400},device_scale_factor=1,accept_downloads=True)
     page.on('pageerror',lambda err:errors.append(str(err)))
     page.on('request',lambda req:requests.append(req.url) if req.url.startswith(('http://','https://')) else None)
-    page.set_content((ROOT/'dist/index.html').read_text(),wait_until='load')
+    page.set_content((ROOT/'dist/foundations.html').read_text(),wait_until='load')
     page.wait_for_function('window.STRATUM?.version === "3.0.0"')
     page.evaluate('document.fonts.ready')
     for model,L in MODELS.items():
@@ -101,7 +101,7 @@ with sync_playwright() as p:
         dense=browser.new_page(viewport={'width':1840,'height':1300},device_scale_factor=ratio)
         dense.on('pageerror',lambda err:errors.append(str(err)))
         dense.on('request',lambda req:requests.append(req.url) if req.url.startswith(('http://','https://')) else None)
-        dense.set_content((ROOT/'dist/index.html').read_text(),wait_until='load')
+        dense.set_content((ROOT/'dist/foundations.html').read_text(),wait_until='load')
         dense.evaluate('document.fonts.ready')
         for model in MODELS:
             for theme in ['light','dark']:
@@ -112,8 +112,8 @@ with sync_playwright() as p:
     (ROOT/'tests/geometry-results.json').write_text(json.dumps({'geometry_states':len(cases),'failures':failures},indent=2))
     assertion(not failures,'Geometry failures: inspect tests/geometry-results.json')
     # Real UI changes, not API-only smoke tests.
-    page.goto((ROOT/'dist/index.html').as_uri());page.wait_for_function('window.STRATUM')
-    page.locator('a[data-model="q3827"]').click();page.wait_for_function('window.STRATUM')
+    page.goto((ROOT/'dist/index.html').as_uri())
+    page.locator('a[data-destination="qwen38"]').click();page.wait_for_function('window.STRATUM')
     assertion(page.evaluate('STRATUM.getState().model')=='q3827','model card')
     page.select_option('#control-layer','4')
     assertion(page.evaluate('STRATUM.getScene().nodes.some(n=>n.id==="kv-cache")'),'global attention selector')
@@ -145,12 +145,13 @@ with sync_playwright() as p:
     page.locator('body').click(position={'x':3,'y':3});page.keyboard.press('1')
     assertion(page.evaluate('STRATUM.getState().view')=='model','numeric lens shortcut')
     # URL state is restored by the built artifact itself.
-    expected=page.evaluate('STRATUM.getState()');saved_hash=page.evaluate('location.hash');page.goto('about:blank'+saved_hash);page.set_content((ROOT/'dist/index.html').read_text(),wait_until='load');page.wait_for_function('window.STRATUM')
+    expected=page.evaluate('STRATUM.getState()');saved_hash=page.evaluate('location.hash');page.goto('about:blank'+saved_hash);page.set_content((ROOT/'dist'/artifact_name(ROOT,expected['model'],expected['view'])).read_text(),wait_until='load');page.wait_for_function('window.STRATUM')
     assertion(page.evaluate('STRATUM.getState()')==expected,'URL round trip')
     page.set_viewport_size({'width':390,'height':1000});page.locator('#zoom-in').click()
     assertion(page.evaluate('STRATUM.getState().zoom')>1,'mobile zoom')
     assertion(page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),'zoom must stay within scroll viewport')
     page.locator('#zoom-reset').click();page.set_viewport_size({'width':1840,'height':1400})
+    page.goto((ROOT/'dist/foundations.html').as_uri());page.wait_for_function('window.STRATUM')
     page.evaluate('STRATUM.setState({model:"ds3",view:"model",layer:4,stage:"block",theme:"dark"})')
     with page.expect_download() as download:
         page.locator('#export-svg').click()
@@ -169,6 +170,8 @@ with sync_playwright() as p:
     page.evaluate('STRATUM.setState({model:"<svg/onload=1>",layer:999999,batch:-2})')
     assertion(page.locator('script[src]').count()==0,'no external script dependency')
     assertion(page.evaluate('STRATUM.geometryReport().geometry_defects')==0,'sanitized state remains valid')
+    from landing_page import exercise as exercise_landing
+    exercise_landing(page,ROOT)
     from site_navigation import exercise as exercise_site_navigation
     exercise_site_navigation(page,ROOT)
     from dedicated_navigation import exercise as exercise_navigation

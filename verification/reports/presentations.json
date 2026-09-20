@@ -1,8 +1,8 @@
 {
   "schema": "stratum-presentations/v1",
   "status": "PASS",
-  "generated_at": "2026-09-20T02:35:49.172045+00:00",
-  "artifact_sha256": "812871d4801189636bb06973492ea478caa19be1dafdf67232aca5e9f0bdf52b",
+  "generated_at": "2026-09-20T03:33:46.007630+00:00",
+  "artifact_sha256": "b4c050bf9e6a73021c506f29cca4e4d02089b871f2e8f8b3ecee1925e5d8e868",
   "delivery": {
     "models": [
       "ds2",
@@ -27,6 +27,11 @@
       "q38flash/inputs",
       "q38flash/residual",
       "q38flash/ple",
+      "foundations/ds2/entry",
+      "foundations/ds3/entry",
+      "foundations/q38/entry",
+      "foundations/q330/entry",
+      "foundations/q3235/entry",
       "qwen38/q3827/entry",
       "qwen38/q38flash/entry",
       "kimi3/kimi3/entry",
@@ -35,6 +40,30 @@
       "network/ds3/entry"
     ],
     "accounting": {
+      "foundations.html": {
+        "origin": "file://",
+        "keyboard": true,
+        "dynamic_controls": true,
+        "mobile_width": 390,
+        "print_restored": true,
+        "external_requests": 0
+      },
+      "qwen3.8.html": {
+        "origin": "file://",
+        "keyboard": true,
+        "dynamic_controls": true,
+        "mobile_width": 390,
+        "print_restored": true,
+        "external_requests": 0
+      },
+      "kimi-k3.html": {
+        "origin": "file://",
+        "keyboard": true,
+        "dynamic_controls": true,
+        "mobile_width": 390,
+        "print_restored": true,
+        "external_requests": 0
+      },
       "deepseek-v4.1.html": {
         "origin": "file://",
         "keyboard": true,
@@ -51,31 +80,7 @@
         "print_restored": true,
         "external_requests": 0
       },
-      "index.html": {
-        "origin": "file://",
-        "keyboard": true,
-        "dynamic_controls": true,
-        "mobile_width": 390,
-        "print_restored": true,
-        "external_requests": 0
-      },
-      "kimi-k3.html": {
-        "origin": "file://",
-        "keyboard": true,
-        "dynamic_controls": true,
-        "mobile_width": 390,
-        "print_restored": true,
-        "external_requests": 0
-      },
       "networking.html": {
-        "origin": "file://",
-        "keyboard": true,
-        "dynamic_controls": true,
-        "mobile_width": 390,
-        "print_restored": true,
-        "external_requests": 0
-      },
-      "qwen3.8.html": {
         "origin": "file://",
         "keyboard": true,
         "dynamic_controls": true,
@@ -86,15 +91,33 @@
     }
   },
   "counts": {
-    "PASS": 69
+    "PASS": 82
   },
   "findings": [
     {
       "code": "PORTABILITY_OK",
       "domain": "presentations",
       "status": "PASS",
-      "subject": "index.html",
+      "subject": "foundations.html",
       "message": "226 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PORTABILITY_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "index.html",
+      "message": "33 KiB, valid utf-8, nothing loaded from an external origin; 0 source citations are clickable by design.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PORTABILITY_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "data-representation.html",
+      "message": "32 KiB, valid utf-8, nothing loaded from an external origin; 7 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -148,7 +171,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "31 captures match the built artifacts.",
+      "message": "33 captures match the built artifacts.",
       "remedy": "",
       "evidence": []
     },
@@ -166,7 +189,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "All 9 checkpoints appear in the 31 published previews, including every one of the 9 focal pages they offer.",
+      "message": "All 9 checkpoints appear in the 33 published previews, including every one of the 9 focal pages they offer.",
       "remedy": "",
       "evidence": []
     },
@@ -184,7 +207,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "Every one of the 31 published preview files is named by a capture record.",
+      "message": "Every one of the 33 published preview files is named by a capture record.",
       "remedy": "",
       "evidence": []
     },
@@ -238,7 +261,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "page",
-      "message": "135 controls named, 11 headings ordered, 2 live regions.",
+      "message": "132 controls named, 11 headings ordered, 2 live regions.",
       "remedy": "",
       "evidence": []
     },
@@ -247,7 +270,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "default",
-      "message": "11 headings ordered, 135 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "11 headings ordered, 132 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -336,6 +359,51 @@
       "code": "PROSE_OK",
       "domain": "presentations",
       "status": "PASS",
+      "subject": "foundations/ds2/entry",
+      "message": "11 headings ordered, 131 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "foundations/ds3/entry",
+      "message": "11 headings ordered, 132 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "foundations/q38/entry",
+      "message": "11 headings ordered, 99 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "foundations/q330/entry",
+      "message": "11 headings ordered, 116 controls named, 0 table(s) with scoped headers over 0 rows, 8 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "foundations/q3235/entry",
+      "message": "11 headings ordered, 162 controls named, 0 table(s) with scoped headers over 0 rows, 8 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
       "subject": "qwen38/q3827/entry",
       "message": "11 headings ordered, 127 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
@@ -391,7 +459,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "states",
-      "message": "Measured 16 states from a real file:// origin: default, dsv41/inputs, dsv41/residual, dsv41/ced, kimi3/inputs, kimi3/residual, q3827/inputs, q38flash/inputs, q38flash/residual, q38flash/ple, qwen38/q3827/entry, qwen38/q38flash/entry, kimi3/kimi3/entry, dsv41/dsv41/entry, hardware/ds3/entry, network/ds3/entry.",
+      "message": "Measured 21 states from a real file:// origin: default, dsv41/inputs, dsv41/residual, dsv41/ced, kimi3/inputs, kimi3/residual, q3827/inputs, q38flash/inputs, q38flash/residual, q38flash/ple, foundations/ds2/entry, foundations/ds3/entry, foundations/q38/entry, foundations/q330/entry, foundations/q3235/entry, qwen38/q3827/entry, qwen38/q38flash/entry, kimi3/kimi3/entry, dsv41/dsv41/entry, hardware/ds3/entry, network/ds3/entry.",
       "remedy": "",
       "evidence": []
     },
@@ -453,6 +521,51 @@
       "code": "DEDICATED_FOCUS",
       "domain": "presentations",
       "status": "PASS",
+      "subject": "foundations.html",
+      "message": "Dedicated page keyboard entry has visible focus.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "DEDICATED_PRINT",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "foundations.html",
+      "message": "Dedicated page print contrast meets AA.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "DEDICATED_MOTION",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "foundations.html",
+      "message": "Dedicated navigation honors reduced motion.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "EXPORT_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "svg",
+      "message": "Export is namespaced, self-contained and carries a backdrop.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "SCENARIO_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "export",
+      "message": "Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "DEDICATED_FOCUS",
+      "domain": "presentations",
+      "status": "PASS",
       "subject": "qwen3.8.html",
       "message": "Dedicated page keyboard entry has visible focus.",
       "remedy": "",
@@ -657,6 +770,42 @@
       "evidence": []
     },
     {
+      "code": "LANDING_DELIVERY",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "directory",
+      "message": "Landing routes, offline guides, responsive layout, keyboard, print and reading contrast passed.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "ACCOUNTING_DELIVERY",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "foundations.html",
+      "message": "Native keyboard disclosure, dynamic controls, 390px layout, offline delivery and actual print restoration passed.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "ACCOUNTING_DELIVERY",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "qwen3.8.html",
+      "message": "Native keyboard disclosure, dynamic controls, 390px layout, offline delivery and actual print restoration passed.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "ACCOUNTING_DELIVERY",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "kimi-k3.html",
+      "message": "Native keyboard disclosure, dynamic controls, 390px layout, offline delivery and actual print restoration passed.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
       "code": "ACCOUNTING_DELIVERY",
       "domain": "presentations",
       "status": "PASS",
@@ -678,34 +827,7 @@
       "code": "ACCOUNTING_DELIVERY",
       "domain": "presentations",
       "status": "PASS",
-      "subject": "index.html",
-      "message": "Native keyboard disclosure, dynamic controls, 390px layout, offline delivery and actual print restoration passed.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "ACCOUNTING_DELIVERY",
-      "domain": "presentations",
-      "status": "PASS",
-      "subject": "kimi-k3.html",
-      "message": "Native keyboard disclosure, dynamic controls, 390px layout, offline delivery and actual print restoration passed.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "ACCOUNTING_DELIVERY",
-      "domain": "presentations",
-      "status": "PASS",
       "subject": "networking.html",
-      "message": "Native keyboard disclosure, dynamic controls, 390px layout, offline delivery and actual print restoration passed.",
-      "remedy": "",
-      "evidence": []
-    },
-    {
-      "code": "ACCOUNTING_DELIVERY",
-      "domain": "presentations",
-      "status": "PASS",
-      "subject": "qwen3.8.html",
       "message": "Native keyboard disclosure, dynamic controls, 390px layout, offline delivery and actual print restoration passed.",
       "remedy": "",
       "evidence": []

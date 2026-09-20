@@ -15,7 +15,7 @@ with sync_playwright() as p:
  b=p.chromium.launch(executable_path=chromium_path(p),headless=True,args=['--no-sandbox'])
  page=b.new_page(viewport={'width':1840,'height':1400},device_scale_factor=1)
  page.on('pageerror',lambda e: print('JS ERROR',e))
- page.set_content((root/'dist/index.html').read_text(),wait_until='load')
+ page.set_content((root/'dist/foundations.html').read_text(),wait_until='load')
  page.wait_for_timeout(400)
  print('loaded', page.evaluate('typeof STRATUM'))
  if page.evaluate('typeof STRATUM')!='undefined':

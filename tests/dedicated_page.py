@@ -6,12 +6,13 @@ from pathlib import Path
 def exercise(page, root):
     artifact = Path(root)/'dist/deepseek-v4.1.html'
     assert artifact.is_file(), 'Build must deliver the dedicated V4.1 page'
-    page.goto((Path(root)/'dist/index.html').as_uri())
+    page.goto((Path(root)/'dist/foundations.html').as_uri())
     page.wait_for_function('window.STRATUM')
     page.locator('[data-view="serving"]').first.click()
     page.locator('#model-strip [data-model="q38"]').click()
     assert page.evaluate('STRATUM.getState().view') == 'serving'
-    page.locator('#model-strip a[data-model="dsv41"]').click()
+    page.locator('#atlas-link').click()
+    page.locator('a[data-destination="dsv41"]').click()
     page.wait_for_function('window.STRATUM && STRATUM.getState().stage === "ced"')
     assert page.url.split('#')[0] == artifact.as_uri()
     assert page.evaluate('STRATUM.getState().model') == 'dsv41'
@@ -41,9 +42,7 @@ def exercise(page, root):
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
             assert page.evaluate('STRATUM.geometryReport().geometry_defects') == 0
     page.locator('#atlas-link').click()
-    page.wait_for_function('window.STRATUM')
     assert page.url.split('#')[0] == (Path(root)/'dist/index.html').as_uri()
-    assert page.evaluate('STRATUM.getState().model') == 'ds3'
 
 
 if __name__ == '__main__':

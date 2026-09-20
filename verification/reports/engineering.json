@@ -1,21 +1,23 @@
 {
   "schema": "stratum-engineering/v1",
   "status": "PASS",
-  "started_at": "2026-09-20T02:35:46.506506+00:00",
-  "completed_at": "2026-09-20T02:40:37.112785+00:00",
-  "consumer_sha256": "1dbbbf4fff3dedddae4fc63d8c8e654fe0b16417a12d2ffaf273b7f898bf09ae",
-  "verifier_sha256": "2c2234f8d1063619c330fc5f315a8fb7de8fd1a73fcde4e2b8071768555b4c57",
-  "lock_sha256": "af22581da5b0d603a91f1d95a8c24173b8a0effbb51883d00d73375890f7046d",
-  "artifact_sha256": "812871d4801189636bb06973492ea478caa19be1dafdf67232aca5e9f0bdf52b",
+  "started_at": "2026-09-20T03:32:44.546602+00:00",
+  "completed_at": "2026-09-20T03:37:36.898070+00:00",
+  "consumer_sha256": "212828d2c376072a9148f9063b47d13428f608e98a3ae52b9f3513dc2e07788d",
+  "verifier_sha256": "dd1b225e750cff45a13e661becff7e98e85db0a6da830218c2108f6715fe4834",
+  "lock_sha256": "a1b0ace724bf4faa166505e066c1510c835a311755323fbe6297ea80c54bb890",
+  "artifact_sha256": "2b3a2c86a0376a614e8c784e78da44f4197f34349ea2f26ae07fd07e6f5bd05c",
   "artifacts": {
-    "deepseek-v4.1.html": "36a41b696d1ffcec7d5f814a6742aa405058e7fffc6f5970abb98b1c588f3508",
-    "hardware.html": "5c119c2cf8b3995ecc2e589c55927333be0af22811f29af8d5965a6aa55459cb",
-    "index.html": "812871d4801189636bb06973492ea478caa19be1dafdf67232aca5e9f0bdf52b",
-    "kimi-k3.html": "6b45fe3b8749664351400d238c0a16b6b587793068b4930cb9f535b1b93ab6a9",
-    "networking.html": "00e658583107045492162fdca3db88ae06d214e0f8a72aca6d2be901c9661e44",
-    "qwen3.8.html": "dede6e9c8dd8a90cd8367ec8bc95c328129c685ac16f0c2fb97bf24c7d8c8eaf"
+    "data-representation.html": "239a76a51b602b1eefcb74757c513c826ec01ccd06792ca8075ac9b2afa56e17",
+    "deepseek-v4.1.html": "f51f000ce609a3f5122a985dd49e404b3d6d43162abbef8d3498b884af0e12c6",
+    "foundations.html": "b4c050bf9e6a73021c506f29cca4e4d02089b871f2e8f8b3ecee1925e5d8e868",
+    "hardware.html": "9b2801273fdf4f7f5d87df6d92f455e6cc945f63c003c6d34aec18aa2aa171cb",
+    "index.html": "2b3a2c86a0376a614e8c784e78da44f4197f34349ea2f26ae07fd07e6f5bd05c",
+    "kimi-k3.html": "2cdd9cb673acfab4828c472ee830d493310fefbe2e552699531410822264b961",
+    "networking.html": "94e35f459861081cdea9c1df015da1c5460e927f073e85ca7537f50a88dcf738",
+    "qwen3.8.html": "cc1b7819c3dcb149d8c249975e8dc627fbff27935536941cf07234402adec75b"
   },
-  "repeat_build_sha256": "812871d4801189636bb06973492ea478caa19be1dafdf67232aca5e9f0bdf52b",
+  "repeat_build_sha256": "2b3a2c86a0376a614e8c784e78da44f4197f34349ea2f26ae07fd07e6f5bd05c",
   "deterministic_build": true,
   "commands": {
     "verifier-tests": {
@@ -88,7 +90,7 @@
     "requests": []
   },
   "test_counts": {
-    "verifier": 616,
+    "verifier": 617,
     "atlas": 103,
     "verifier_skipped": 10,
     "atlas_skipped": 0

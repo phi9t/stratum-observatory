@@ -580,7 +580,7 @@ def run(root,record=False):
     from browser_env import chromium_path
     policy=loads((root/POLICY_PATH).read_text())
     models,focal,views=scenario_inventory(root)
-    artifact=root/'dist/index.html'
+    artifact=root/'dist/foundations.html'
     findings=[];signatures={};truncations=[];crossing_report={}
     unique={}
     with sync_playwright() as p:

@@ -3,21 +3,21 @@
   "target": "stratum-observatory-3",
   "profile": "runtime",
   "status": "BLOCKED",
-  "generated_at": "2026-09-20T02:41:47.325291+00:00",
-  "lock_sha256": "af22581da5b0d603a91f1d95a8c24173b8a0effbb51883d00d73375890f7046d",
-  "consumer_sha256": "1dbbbf4fff3dedddae4fc63d8c8e654fe0b16417a12d2ffaf273b7f898bf09ae",
+  "generated_at": "2026-09-20T03:38:55.365371+00:00",
+  "lock_sha256": "a1b0ace724bf4faa166505e066c1510c835a311755323fbe6297ea80c54bb890",
+  "consumer_sha256": "212828d2c376072a9148f9063b47d13428f608e98a3ae52b9f3513dc2e07788d",
   "coverage": {
-    "inputs": 583,
-    "functions_and_files": 31,
+    "inputs": 587,
+    "functions_and_files": 32,
     "scene_contracts": 2883,
-    "claims": 3520,
+    "claims": 3525,
     "sources": 76,
     "verified_sources": 74,
     "verified_scientific_claims": 0,
     "passed_presentation_bindings": 0
   },
   "counts": {
-    "BLOCKED": 6111,
+    "BLOCKED": 6120,
     "PASS": 38,
     "NOT_RUN": 32
   },
@@ -52882,6 +52882,87 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "file.src/pages.mjs",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "DOCUMENTED_NO_SOURCE",
+      "domain": "storage",
+      "status": "BLOCKED",
+      "subject": "data.topic.tokenizer",
+      "message": "A documented scientific claim requires a concrete source anchor, not only a review.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "data.topic.tokenizer",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "DOCUMENTED_NO_SOURCE",
+      "domain": "storage",
+      "status": "BLOCKED",
+      "subject": "data.topic.packing",
+      "message": "A documented scientific claim requires a concrete source anchor, not only a review.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "data.topic.packing",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "DOCUMENTED_NO_SOURCE",
+      "domain": "storage",
+      "status": "BLOCKED",
+      "subject": "data.topic.masking",
+      "message": "A documented scientific claim requires a concrete source anchor, not only a review.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "data.topic.masking",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "DOCUMENTED_NO_SOURCE",
+      "domain": "storage",
+      "status": "BLOCKED",
+      "subject": "data.topic.storage",
+      "message": "A documented scientific claim requires a concrete source anchor, not only a review.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "data.topic.storage",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "file.src/landing.mjs",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []

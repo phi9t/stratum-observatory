@@ -313,6 +313,7 @@ Deleted rather than left unused: constructing one must take new code, not a keyw
 test_the_scene_conditions_are_the_gate_s_own (test_ced.SoftwareGateStatusTests.test_the_scene_conditions_are_the_gate_s_own)
 The conditions travel with the judges, so the gate cannot call one on a lens the ... ok
 test_dedicated_page_mutation_changes_delivery_identity (test_delivery_artifacts.DeliveryTests.test_dedicated_page_mutation_changes_delivery_identity) ... ok
+test_guide_preview_must_bind_its_own_artifact (test_delivery_artifacts.DeliveryTests.test_guide_preview_must_bind_its_own_artifact) ... ok
 test_missing_dedicated_artifact_cannot_be_certified (test_delivery_artifacts.DeliveryTests.test_missing_dedicated_artifact_cannot_be_certified) ... ok
 test_preview_cannot_claim_the_dedicated_page_without_its_identity (test_delivery_artifacts.DeliveryTests.test_preview_cannot_claim_the_dedicated_page_without_its_identity) ... ok
 test_400_gbps_is_50_gbytes (test_domains.DomainTests.test_400_gbps_is_50_gbytes) ... ok
@@ -750,6 +751,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 616 tests in 169.728s
+Ran 617 tests in 175.778s
 
 OK (skipped=10)

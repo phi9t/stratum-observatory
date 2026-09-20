@@ -10,8 +10,10 @@ like a coverage sweep is the next maintainer's trap.
 from playwright.sync_api import sync_playwright
 from browser_env import chromium_path
 from pathlib import Path
-import json,os,subprocess
+import json,os,subprocess,sys
 R=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(R))
+from verification.delivery import artifact_name
 # Scratch shots go beside this script's report, never into `previews/`. That directory is
 # published output: every file in it must be produced by `npm run capture` and named by a capture
 # record, which `PREVIEW_INVENTORY` now enforces. A scratch sweep dropping 16 unattested PNGs
@@ -38,9 +40,12 @@ with sync_playwright() as p:
  b=p.chromium.launch(executable_path=chromium_path(p),headless=True,args=['--no-sandbox'])
  page=b.new_page(viewport={'width':1840,'height':1400},device_scale_factor=1)
  page.on('pageerror',lambda e:errs.append(str(e)))
- page.set_content((R/'dist/index.html').read_text(),wait_until='load')
+ page.set_content((R/'dist/foundations.html').read_text(),wait_until='load')
  page.wait_for_function('window.STRATUM')
  for i,c in enumerate(cases):
+  state={**page.evaluate('STRATUM.getState()'),**c}
+  page.goto((R/'dist'/artifact_name(R,state['model'],state['view'])).as_uri());page.wait_for_function('window.STRATUM')
+  c=state
   data=page.evaluate('(s)=>{STRATUM.setState(s);return STRATUM.geometryReport()}',c)
   invalid=page.locator('svg').evaluate_all('(els)=>els.map(x=>x.outerHTML).filter(x=>/NaN|Infinity/.test(x)).length')
   if data['geometry_defects'] or invalid:
