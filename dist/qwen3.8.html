@@ -394,6 +394,17 @@ function focalStages(id){const m=getModel(id),out=[];if(m.vision)out.push('input
 /** Absolute layer IDs offered by a chapter; the checkpoint still owns the full stack. */
 function layerNumbers(id,stage){const m=getModel(id),first=m.encoderLayers&&stage==='decoder'?m.encoderLayers+1:1,last=m.encoderLayers&&stage==='encoder'?m.encoderLayers:m.layers;return Array.from({length:last-first+1},(_,i)=>first+i);}
 function layerKind(id,layer){const m=getModel(id);if(!Number.isInteger(layer)||layer<1||layer>m.layers)throw new RangeError('Layer is one-indexed and must exist.');if(m.architecture==='ced-csa2'){const l=layer-1;if(l<m.swaLayers)return'swa';if(m.kvSourceLayers.includes(l))return'csa2-full';if(m.indexSourceLayers.includes(l))return'csa2-reindex';return'csa2-reuse';}if(m.architecture==='hybrid-kda')return layer%4===0||layer===m.layers?'mla':'kda';if(m.architecture.startsWith('hybrid'))return layer%m.globalEvery===0?(m.architecture==='hybrid-qsa'?'qsa':'gqa'):'delta';return m.architecture;}
+/** Bands of consecutive layers: one head layer plus the reuse layers that read what it published.
+ *
+ * Derived from layerKind over the requested one-indexed span, never from a written schedule, so a
+ * band cannot exist that the model's own layer pattern does not produce. A 'csa2-reuse' layer joins
+ * the band above it; an 'swa' layer joins only another 'swa'. Every other kind opens a band.
+ */
+function layerBands(m,lo,hi){const out=[];
+ for(let l=lo;l<=hi;l++){const kind=layerKind(m,l),last=out[out.length-1];
+  if(last&&(kind==='csa2-reuse'||(kind==='swa'&&last.kind==='swa'))){last.hi=l;if(kind==='csa2-reuse')last.reuse++;continue;}
+  out.push({kind,lo:l,hi:l,reuse:0});}
+ return out;}
 function layerPartition(id){const m=getModel(id),r={mla:0,gqa:0,kda:0,delta:0,qsa:0,swa:0,'csa2-full':0,'csa2-reindex':0,'csa2-reuse':0};for(let l=1;l<=m.layers;l++)r[layerKind(m,l)]++;return r;}
 function ffnKind(id,layer){const m=getModel(id);return !m.experts||layer<=m.denseLayers?'dense':m.latent?'latent-moe':'moe';}
 function parameterLedger(id){
@@ -514,7 +525,7 @@ function accountingAssumptions(id,settings={}){
  return notes;
 }
 
-return {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DEFAULT_STATE,getModel,sanitizeState,focalStages,layerNumbers,layerKind,layerPartition,ffnKind,parameterLedger,cacheLedger,servingLedger,trainingLedger,networkLedger,roofline,formatNum,formatParams,formatBytes,formatTime,evidenceSummary,accountingAssumptions};
+return {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DEFAULT_STATE,getModel,sanitizeState,focalStages,layerNumbers,layerKind,layerBands,layerPartition,ffnKind,parameterLedger,cacheLedger,servingLedger,trainingLedger,networkLedger,roofline,formatNum,formatParams,formatBytes,formatTime,evidenceSummary,accountingAssumptions};
 })();
 __modules["scene.mjs"] = (() => {
 /** Visual IR. Geometry is template-authored; rendered text bounds are release-tested. */
@@ -530,7 +541,7 @@ function structuralReport(scene){const out=[],ids=new Set();for(const n of scene
 return {makeScene,addNode,addGroup,addLabel,addWire,addSum,makeInfo,structuralReport};
 })();
 __modules["diagram-model.mjs"] = (() => {
-const {getModel,layerKind,layerPartition,layerNumbers,ffnKind,parameterLedger,formatNum,formatParams} = __modules["core.mjs"];
+const {getModel,layerKind,layerPartition,layerNumbers,layerBands,ffnKind,parameterLedger,formatNum,formatParams} = __modules["core.mjs"];
 const {makeScene,addNode,addGroup,addLabel,addWire,addSum,makeInfo} = __modules["scene.mjs"];
 const F=formatNum;
 function modelInfo(m,title,body,formula='',facts=[],links=[]){return makeInfo('Model architecture',title,body,formula,facts,m.sources,links);}
@@ -553,11 +564,27 @@ function stackOverview(g,m,s){
  }
  const partition=encoder||decoder?layers.reduce((counts,l)=>{const kind=layerKind(m,l);counts[kind]=(counts[kind]||0)+1;return counts;},{}):layerPartition(m);
  node(g,m,'overview-block',20,164,166,58,encoder?'Encoder stack':'Decoder stack',`${layers.length} layers · d = ${F(m.d)}`,encoder||decoder?`Select an absolute layer in the ${encoder?'encoder':'decoder'} range ${layers[0]}–${layers.at(-1)}. Every layer preserves causal token visibility and retains its own attention, residual mixing and experts. Cache and selection ownership refer to absolute layers across the complete stack.`:'Select a layer in the grid. Attention and feed-forward motifs are derived from the selected checkpoint, not from a family name.','xₗ₊₁ = Blockₗ(xₗ)',Object.entries(partition).filter(x=>x[1]).map(([k,v])=>[k.toUpperCase(),String(v)]),{tone:'compute'});
- addLabel(g,'SELECT A LAYER',20,253,'muted',{size:10.5,tracking:1});
- layers.forEach((l,i)=>{g.decorations.push({kind:'layer',layer:l,id:`layer-${l}`,x:20+(i%6)*28,y:274+Math.floor(i/6)*27,w:23,h:21,attention:layerKind(m,l),active:l===s.layer,dense:ffnKind(m,l)==='dense'});});
- const gy=274+Math.ceil(layers.length/6)*27;
- addLabel(g,'Numbers are one-indexed.',20,gy+20,'muted',{size:10.5});
- addLabel(g,'Amber = recurrent layer',20,gy+39,'state',{size:10.5});
+ const bundled=encoder||decoder;
+ let gy;
+ const tile=(l,x,y)=>g.decorations.push({kind:'layer',layer:l,id:`layer-${l}`,x,y,w:23,h:21,attention:layerKind(m,l),active:l===s.layer,dense:ffnKind(m,l)==='dense'});
+ if(bundled){
+  addLabel(g,'LAYER / ATTENTION + MoE',20,253,'muted',{size:10.5,tracking:.3});
+  const bands=layerBands(m,layers[0],layers.at(-1));
+  bands.forEach((band,i)=>{
+   const y=260+i*48;
+   addGroup(g,`layer-bundle-${band.lo}-${band.hi}`,15,y,176,44);
+   const title=band.kind==='swa'?`${band.hi-band.lo+1}× SWA`:`${band.kind==='csa2-full'?'Full':'Reindex'} + ${band.reuse}× Reuse`;
+   addLabel(g,title,20,y+14,'muted',{size:10.5});
+   for(let l=band.lo;l<=band.hi;l++)tile(l,20+(l-band.lo)*28,y+20);
+  });
+  gy=260+bands.length*48;
+ }else{
+  addLabel(g,'SELECT A LAYER',20,253,'muted',{size:10.5,tracking:1});
+  layers.forEach((l,i)=>tile(l,20+(i%6)*28,274+Math.floor(i/6)*27));
+  gy=274+Math.ceil(layers.length/6)*27;
+  addLabel(g,'Numbers are one-indexed.',20,gy+20,'muted',{size:10.5});
+  addLabel(g,'Amber = recurrent layer',20,gy+39,'state',{size:10.5});
+ }
  const oy=Math.max(gy+75,755);
  if(encoder){
   node(g,m,'encoder-handoff',20,oy,166,52,'Decoder handoff',`layer ${m.encoderLayers} → ${m.encoderLayers+1}`,`Pass the residual after encoder layer ${m.encoderLayers} directly to decoder layer ${m.encoderLayers+1}. This boundary does not normalize into vocabulary logits: the decoder continues the causal stack and its boundary layer produces the shared global cache.`,'h_encoder,out → h_decoder,in',[['Residual shape',`[B, T, ${m.streams}, ${m.d}]`]],{tone:'state'});
@@ -955,7 +982,7 @@ function buildNetwork(s){const m=getModel(s.model),h=HARDWARE[s.hardware],net=ne
 return {buildServing,buildTraining,buildHardware,buildNetwork};
 })();
 __modules["diagram-meta.mjs"] = (() => {
-const {getModel,MODELS,HARDWARE,SOURCES,layerKind,layerPartition,parameterLedger,cacheLedger,servingLedger,formatBytes,formatParams,formatNum,evidenceSummary} = __modules["core.mjs"];
+const {getModel,MODELS,HARDWARE,SOURCES,layerKind,layerPartition,layerBands,parameterLedger,cacheLedger,servingLedger,formatBytes,formatParams,formatNum,evidenceSummary} = __modules["core.mjs"];
 const {makeScene,addNode,addGroup,addLabel,addWire,makeInfo} = __modules["scene.mjs"];
 function node(g,m,id,x,y,w,h,title,sub,body,formula='',tone='neutral',facts=[],options={}){return addNode(g,id,x,y,w,h,title,sub,{tone,info:makeInfo('Architecture contract',title,body,formula,facts,m.sources),...options});}
 function buildCompare(s){const a=getModel(s.model),b=getModel(s.compare),g=makeScene(1440,862);addLabel(g,'COMPARE / SAME SCENARIO, DIFFERENT MECHANISMS',36,37,'compute',{size:11,tracking:1.3});addLabel(g,'Change the mechanism. Follow the consequence.',36,84,'text',{size:25});addLabel(g,`${formatNum(s.context)} positions × ${s.batch} sequences · ${s.kvBytes}-byte KV · ${s.stateBytes}-byte recurrent state · logical payloads`,36,119,'muted',{size:13});
@@ -978,7 +1005,7 @@ function buildEvidence(s){const m=getModel(s.model),g=makeScene(1440,905);addLab
 function buildInputs(s){const m=getModel(s.model),g=makeScene(1440,990);addLabel(g,'MODEL / INPUT CONTRACT',36,36,'compute',{size:11,tracking:1.4});addLabel(g,'Different modalities. One residual stream.',36,80,'text',{size:26});addLabel(g,m.repo,36,114,'muted',{size:13});
  addGroup(g,'text-input-region',36,156,580,540,'TEXT PATH');addGroup(g,'vision-input-region',824,156,580,540,'VISION PATH');
  node(g,m,'tokenizer',60,230,532,60,'Tokenizer + special tokens',`${formatNum(m.vocab)} vocabulary rows`,'Tokenizer version, special tokens and prompt/chat conventions are separate from weight shapes. Changing them changes model input semantics.','text → token IDs');
- node(g,m,'text-embeddings',60,408,532,64,'Token embedding lookup',`[B, S_text, ${formatNum(m.d)}]`,'The embedding lookup maps tokens to residual width. The full table remains resident even when only a few rows are read.','E[token IDs]','compute');
+ node(g,m,'text-embeddings',60,408,532,64,'Token embedding lookup',`[B, S_text, ${m.d}]`,'The embedding lookup maps tokens to residual width. The full table remains resident even when only a few rows are read.','E[token IDs]','compute');
  addWire(g,[[80,290],[80,408]],'tokenizer','text-embeddings');
  if(m.vision){
   const kimi=m.id==='kimi3';
@@ -987,7 +1014,7 @@ function buildInputs(s){const m=getModel(s.model),g=makeScene(1440,990);addLabel
   node(g,m,'vision-merge',848,470,532,54,'Spatial merge + multimodal projector',`2 × 2 merge → ${formatNum(m.d)} output width`,'Merge visual tokens and project into text residual width before interleaving. Kimi and Qwen use distinct source-defined tower/projector implementations.','vision representation → residual-width tokens','state');
   addWire(g,[[868,274],[868,340]],'patches','vision-tower');addWire(g,[[868,404],[868,470]],'vision-tower','vision-merge');
  }
- node(g,m,'interleave',458,756,526,66,'Interleave with position / mask metadata',`[B, S_text + S_visual, ${formatNum(m.d)}]`,'Visual tokens and text tokens enter a shared decoder sequence. Position metadata and attention masks must preserve the source model’s multimodal conventions.','interleave(text, vision, metadata)','compute');
+ node(g,m,'interleave',458,756,526,66,'Interleave with position / mask metadata',`[B, S_text + S_visual, ${m.d}]`,'Visual tokens and text tokens enter a shared decoder sequence. Position metadata and attention masks must preserve the source model’s multimodal conventions.','interleave(text, vision, metadata)','compute');
  addWire(g,[[80,472],[80,724],[478,724],[478,756]],'text-embeddings','interleave');if(m.vision)addWire(g,[[868,524],[868,724],[964,724],[964,756]],'vision-merge','interleave');
  node(g,m,'decoder-entry',458,884,526,58,'Decoder stack',`${m.layers} layers · exact layer pattern`,'The decoder view expands each selected layer. Native input preprocessing does not make all the decoder layers full attention.','decoder(interleaved inputs)');addWire(g,[[478,822],[478,884]],'interleave','decoder-entry');
  g.defaultSelected='vision-tower';g.caption='This is the model-input path, not a claim about dataset preprocessing, fixed image resolution or measured vision performance. Vision and auxiliary weight counts are not independently reconciled in the text-core memory estimator.';return g;}
@@ -997,7 +1024,7 @@ function buildResidual(s){const m=getModel(s.model),g=makeScene(1440,962),ar=m.r
  addLabel(g,'MODEL / DEPTH AND RESIDUAL STATE',36,36,'compute',{size:11,tracking:1.5});addLabel(g,pick('Attention across depth, not across tokens.','One update. Four persistent streams.',`${m.streams} streams. One doubly stochastic mix.`),36,83,'text',{size:26});addLabel(g,pick('Kimi K3 · block attention residuals · depth boundary is distinct from token time','Qwen3.8-Flash-Next · learned read gate and per-branch scalar write gate',`DeepSeek-V4.1-Flash · manifold hyper-connections · ${m.streams} streams · ${m.sinkhornIters} Sinkhorn iterations`),36,118,'muted',{size:13});
  addGroup(g,'depth-state',36,156,406,654,pick('DEPTH SOURCES','WIDENED RESIDUAL STATE','MANIFOLD RESIDUAL STATE'));
  const names=pick(['Token embedding','Sealed block states','Current partial sum'],['Residual streams x₁, x₂','Residual streams x₃, x₄','Bottleneck input mixer'],['Residual streams x₁, x₂','Residual streams x₃, x₄','Read gate from previous sublayer']);
- names.forEach((t,i)=>node(g,m,`depth-${i}`,60,224+i*178,358,76,t,ar?(i===1?`up to ${Math.floor((s.layer-1)/m.attnResBlock)} prior sealed groups`:'per token / residual width'):i===2?(mhc?`${m.streams}-element pre_mix vector`:`rank ${m.mixRank}`):`[B, S, 2, ${formatNum(m.d)}]`,pick('Depth sources are selected per token. Future sealed groups are unavailable to an earlier layer; the current partial sum is separate from sealed states.','The widened residual is a state across depth, not four independent replicas or four temporal cache snapshots.',`The widened residual is a state across depth, not ${m.streams} independent replicas and not ${m.streams} temporal cache snapshots. The read gate is produced one sublayer earlier, so the carried coefficient state is a vector alongside the streams. The first attention read uses the identity initialization.`),pick('sourceᵢ(t) ∈ ℝᵈ','x ∈ ℝᴮˣˢˣ⁴ˣᵈ','x ∈ ℝᴮˣˢˣ⁴ˣᵈ, pre_prev ∈ ℝᴮˣˢˣ⁴'),'state'));
+ names.forEach((t,i)=>node(g,m,`depth-${i}`,60,224+i*178,358,76,t,ar?(i===1?`up to ${Math.floor((s.layer-1)/m.attnResBlock)} prior sealed groups`:'per token / residual width'):i===2?(mhc?`${m.streams}-element pre_mix vector`:`rank ${m.mixRank}`):`[B, S, 2, ${m.d}]`,pick('Depth sources are selected per token. Future sealed groups are unavailable to an earlier layer; the current partial sum is separate from sealed states.','The widened residual is a state across depth, not four independent replicas or four temporal cache snapshots.',`The widened residual is a state across depth, not ${m.streams} independent replicas and not ${m.streams} temporal cache snapshots. The read gate is produced one sublayer earlier, so the carried coefficient state is a vector alongside the streams. The first attention read uses the identity initialization.`),pick('sourceᵢ(t) ∈ ℝᵈ','x ∈ ℝᴮˣˢˣ⁴ˣᵈ','x ∈ ℝᴮˣˢˣ⁴ˣᵈ, pre_prev ∈ ℝᴮˣˢˣ⁴'),'state'));
  node(g,m,'depth-read',526,256,380,80,pick('Normalize keys + depth softmax','Element-wise input read','Gated stream read'),pick('learned query over available sources','data-dependent gate per stream / channel',`${m.streams} streams → ${formatNum(m.d)} channels`),pick('Form keys from normalized depth sources, score using the learned query, and aggregate values. This reweights depth contributions rather than appending token history.','Read widened streams through an element-wise input-dependent gate. The result has ordinary hidden width for the actual sublayer computation.',`The previous sublayer supplies a length-${m.streams} pre_mix vector. Its sigmoid gates weight a sum over the stream axis, leaving ordinary hidden width before RMSNorm and the sublayer. This read is not the Sinkhorn matrix: that matrix belongs to the residual write. At the first sublayer, the initialized read vector is used.`),pick('aᵢ = softmax(qᵀ norm(bᵢ))\nh = Σᵢ aᵢ bᵢ','h = Σᵢ g_read,i(x) ⊙ xᵢ','h = Σⱼ pre_prev,j xⱼ'),'compute',mhc?[['Read coefficients',`[B, S, ${m.streams}]`],['Output',`[B, S, ${m.d}]`]]:[]);
  node(g,m,'depth-compute',526,474,380,70,'Normalize → sublayer',pick('KDA / MLA or feed-forward','DeltaNet / QSA or MoE','CSA2 / sliding window or MoE'),'The expensive attention or feed-forward computation operates on the read representation. Residual mixing and model computation are different operators.','Δ = F(RMSNorm(h))','compute');
  node(g,m,'depth-write',526,690,380,80,pick('Update / seal partial block','Scalar write per branch','Gated write + residual mix'),pick(`seal at configured ${m.attnResBlock}-layer groups`,'preserve four streams',`${m.streams} streams · ${m.sinkhornIters} Sinkhorn iterations`),pick('Accumulate the sublayer contribution into the current partial block; when crossing a block boundary, preserve a sealed source for later depth attention. Exact boundary bookkeeping must follow the implementation.','A per-branch scalar gate writes the new sublayer contribution into each residual stream. This is not a Sinkhorn-constrained mHC mixer.','The current sublayer computes three coefficient sets from its incoming residual streams: a sigmoid pre vector for the next sublayer, a scaled-sigmoid post vector gating the current sublayer output, and a Sinkhorn-normalized comb matrix mixing the residual streams. The output gate and matrix used in this write are current coefficients, not the previous read gate.'),pick('partial ← partial + Δ\nseal / reset at boundary','xᵢ′ = xᵢ + g_write,i(x) · Δ','xᵢ′ = postᵢ Δ + Σⱼ combᵢⱼ xⱼ\nnext_pre = pre'),'state',mhc?[['Residual mix',`[B, S, ${m.streams}, ${m.streams}]`],['Output gate',`[B, S, ${m.streams}]`],['Coefficient owner','current sublayer']]:[]);
@@ -1015,17 +1042,6 @@ function buildPLE(s){const m=getModel(s.model),g=makeScene(1440,962);addLabel(g,
  node(g,m,'ple-conv',774,674,606,64,'Causal PLE convolution','kernel 4 · separate streaming buffer','PLE convolution state, n-gram history and GatedDeltaNet convolution state are distinct. A hybrid prefix restore cannot silently omit these auxiliary states.','PLE causal filter → layer computation','state');
  addWire(g,[[794,300],[794,468]],'ple-hidden','ple-fusion');addWire(g,[[626,706],[700,706],[700,508],[774,508]],'ngram-concat','ple-fusion');addWire(g,[[794,548],[794,674]],'ple-fusion','ple-conv');
  g.defaultSelected='ngram-lookup';g.caption='The 125B backbone, 51B n-gram tables and 4B MTP are different scopes. This atlas’s serving-state subtotal does not yet price every PLE buffer; that omission is explicit, not a zero estimate.';return g;}
-/** Bands of consecutive layers: one head layer plus the reuse layers that read what it published.
- *
- * Derived from layerKind over the requested one-indexed span, never from a written schedule, so a
- * band cannot exist that the model's own layer pattern does not produce. A 'csa2-reuse' layer joins
- * the band above it; an 'swa' layer joins only another 'swa'. Every other kind opens a band.
- */
-function layerBands(m,lo,hi){const out=[];
- for(let l=lo;l<=hi;l++){const kind=layerKind(m,l),last=out[out.length-1];
-  if(last&&(kind==='csa2-reuse'||(kind==='swa'&&last.kind==='swa'))){last.hi=l;if(kind==='csa2-reuse')last.reuse++;continue;}
-  out.push({kind,lo:l,hi:l,reuse:0});}
- return out;}
 function buildCED(s){const m=getModel(s.model),g=makeScene(1440,1110),F=formatNum;
  const enc=m.encoderLayers,depth=m.layers;
  const encBands=layerBands(m,1,enc),decBands=layerBands(m,enc+1,depth);
@@ -1061,7 +1077,7 @@ function buildCED(s){const m=getModel(s.model),g=makeScene(1440,1110),F=formatNu
   if(i)addWire(g,[[x+BAND_W/2,y-24],[x+BAND_W/2,y]],bandId(side,i-1,list[i-1]),id);
   return id;});
  const encIds=draw('enc',encBands,ENC_X),decIds=draw('dec',decBands,DEC_X);
- node(g,m,'enc-out',ENC_X,828,BAND_W,56,'Encoder output · residual stream',`[B, S, ${m.streams}, ${F(m.d)}] after layer ${enc}`,`The handoff is this stream and nothing else. Both halves are one flat module list, so there is no separate cross-attention, no second embedding and no encoder-side KV that a decoder layer writes back into. The compressed cache the decoder reads is written by its own Full layer, not inherited from here.`,`h_${enc} → layer ${enc+1}`,'state',[['Prefill depth',`${prefill.phaseLayers} layers · ${formatParams(prefill.phaseActive)} active`],['Decode depth',`${decode.phaseLayers} layers · ${formatParams(decode.phaseActive)} active`]]);
+ node(g,m,'enc-out',ENC_X,828,BAND_W,56,'Encoder output · residual stream',`[B, S, ${m.streams}, ${m.d}] after layer ${enc}`,`The handoff is this stream and nothing else. Both halves are one flat module list, so there is no separate cross-attention, no second embedding and no encoder-side KV that a decoder layer writes back into. The compressed cache the decoder reads is written by its own Full layer, not inherited from here.`,`h_${enc} → layer ${enc+1}`,'state',[['Prefill depth',`${prefill.phaseLayers} layers · ${formatParams(prefill.phaseActive)} active`],['Decode depth',`${decode.phaseLayers} layers · ${formatParams(decode.phaseActive)} active`]]);
  addWire(g,[[ENC_X+BAND_W/2,bandY(encBands.length-1)+BAND_H],[ENC_X+BAND_W/2,828]],encIds[encIds.length-1],'enc-out');
  addWire(g,[[ENC_X+BAND_W,856],[688,856],[688,bandY(0)+BAND_H/2],[DEC_X,bandY(0)+BAND_H/2]],'enc-out','dec-full');
  addLabel(g,'CED HANDOFF',452,812,'compute',{size:11,tracking:1.2});
@@ -1093,7 +1109,8 @@ function buildCED(s){const m=getModel(s.model),g=makeScene(1440,1110),F=formatNu
  g.caption=`Bands come from layerKind over all ${depth} layers, so no layer is grouped to fit the drawing and no band exists that the layer pattern does not produce. The handoff is one residual stream in one direction; nothing here asserts a cross-attention, a shared KV cache or a second encoder network. DSpark parameters are unpublished and excluded from every total on this page.`;
  g.caption+=' Phase depths describe the reported CED scheme; the pinned reference forward still visits all backbone layers.';return g;}
 
-return {buildCompare,buildEvidence,buildInputs,buildResidual,buildPLE,layerBands,buildCED};
+
+return {layerBands,buildCompare,buildEvidence,buildInputs,buildResidual,buildPLE,buildCED};
 })();
 __modules["deepdives.mjs"] = (() => {
 /** Source-grounded chapter exposition. Quantities are derived from the selected model. */
@@ -1101,7 +1118,7 @@ const {getModel,layerKind,cacheLedger,parameterLedger,formatNum,formatBytes,form
 const DEEP_DIVE_TITLES={encoder:'Encoder',decoder:'Decoder',engram:'Engram',csa2:'CSA2',dspark:'dSpark'};
 function chapterContent(id,s){
  const m=getModel(id);if(m.architecture!=='ced-csa2'||!DEEP_DIVE_TITLES[s.stage])return null;
- const F=formatNum,one=xs=>xs.map(x=>x+1).join(', '),shape=`[B, T, ${m.streams}, ${F(m.d)}]`,cache=cacheLedger(m,s);
+ const F=formatNum,one=xs=>xs.map(x=>x+1).join(', '),shape=`[B, T, ${m.streams}, ${m.d}]`,cache=cacheLedger(m,s);
  const common={scope:'Source inspection and derived accounting; no measured throughput or runtime certification.',symbols:'B = sequences; T = token positions; residual copies, layer depth and token time are separate axes.'};
  const chapters={
  encoder:{title:'Encoder: causal context becomes retained state',question:'What crosses the boundary from prompt processing into the decoder?',summary:'Follow the causal stack from embeddings to the residual-stream handoff. Cache ownership belongs to configured source layers; most layers read state that an earlier producer wrote.',
@@ -1110,7 +1127,7 @@ function chapterContent(id,s){
   caveat:'The model report describes encoder-only prefill. The inspected publisher Transformer.forward iterates the whole backbone. This chapter explains the architecture and labels that execution distinction; it does not certify the optimization.',sources:['dsv41-config','dsv41-code','dsv41-card','dsv41-report','dsv41-sglang'],anchors:['Transformer.forward','Block.forward','Attention._compress_kv','DeepseekV4Model._forward_layers_hc_pre_from_prev']},
  decoder:{title:'Decoder: read shared history, produce a token',question:'Which state is shared across depth, and which work is repeated?',summary:'The boundary layer projects compressed global state from the incoming encoder representation. Later decoder layers share that producer’s cache while maintaining their own query computation and local window paths.',
   trace:[['Receive the handoff',`Layer ${m.encoderLayers+1} receives ${shape}; it is the boundary Full layer in this checkpoint.`],['Publish decoder state',`Its compression ratio is ${m.compressDecoder}. Later decoder readers consume that cache rather than projecting a new global cache from every layer’s hidden state.`],['Select and attend',`Decoder selecting layers ${one(m.indexSourceLayers.filter(l=>l>=m.encoderLayers))} score or refresh selections. Reuse layers inherit selection. Each attention call combines local-window and selected compressed positions.`],['Produce logits',`Residual collapse and normalization feed the vocabulary projection of width ${F(m.vocab)}. Sampling follows the logits; dSpark reads captured attention inputs alongside this path.`]],
-  rows:[['Boundary state',shape,'Encoder output enters first decoder layer'],['Global producer',`layer ${m.kvSourceLayers.filter(l=>l>=m.encoderLayers)[0]+1}`,'Shared compressed KV ownership'],['Local state',`${m.window}-position window at each layer`,'Not made shared by global KV reuse'],['Output logits',`[B, ${F(m.vocab)}] at the selected final position`,'Logits are not accepted speculative tokens']],
+  rows:[['Boundary state',shape,'Encoder output enters first decoder layer'],['Global producer',`layer ${m.kvSourceLayers.filter(l=>l>=m.encoderLayers)[0]+1}`,'Shared compressed KV ownership'],['Local state',`${m.window}-position window at each layer`,'Not made shared by global KV reuse'],['Output logits',`[B, ${m.vocab}] at the selected final position`,'Logits are not accepted speculative tokens']],
   caveat:'The inspected SGLang reference offers optional bounded replay as a separate feature-gated serving path. The inspected extend path excludes speculative execution; its behavior must not be assumed to apply to dSpark verification.',sources:['dsv41-config','dsv41-code','dsv41-card','dsv41-report','dsv41-sglang'],anchors:['Attention._compress_kv','Attention.forward','Transformer.forward','DeepseekV4Model.__init__','DeepseekV4Model._forward_layers_hc_pre_from_prev']},
  engram:{title:'Engram: retrieve by token history, gate by context',question:'How do discrete lookup rows become a contextual residual update?',summary:'Token identities choose the rows. The current hidden state decides how strongly their values enter each residual copy. This is conditional learned memory, separate from the autoregressive KV cache and from expert routing.',
   trace:[['Build causal n-grams',`Normalized token IDs form orders 2–${m.engramNgram}. Sequence starts and dead/image tokens bound the lookback; image positions receive no contribution.`],['Hash and retrieve',`${m.engramNgram-1} orders × ${m.engramHeads} heads = ${(m.engramNgram-1)*m.engramHeads} lookups per site. Each row contributes ${m.engramHeadDim} channels, yielding ${(m.engramNgram-1)*m.engramHeads*m.engramHeadDim} retrieved channels.`],['Project key and value',`The retrieved vector projects to ${(m.streams+1)*m.d} channels: a ${m.d}-wide key for each residual copy and a shared ${m.d}-wide value.`],['Gate and inject',`Each residual copy computes a normalized content score against its key. A signed-square-root transform and sigmoid gate the shared value before residual addition at layers ${one(m.engramLayers)}.`]],
@@ -1121,7 +1138,7 @@ function chapterContent(id,s){
   rows:[['Selected read budget',`${F(m.indexerBudget)} positions`,'Not the retained cache capacity'],['Main compressed KV',formatBytes(cache.mainKV),'Logical payload for current context and sequences'],['Indexer keys',formatBytes(cache.indexer),'Packed key payload and declared scale bytes'],['Local window state',formatBytes(cache.bounded),'Separate bounded subtotal; allocation overhead excluded']],
   caveat:'The reference indexer computes score tensors before candidate masking. A bounded candidate pool does not establish context-independent execution time in that implementation. Payload accounting is not allocated GPU memory.',sources:['dsv41-config','dsv41-code','dsv41-kernel','dsv41-sglang-cache','dsv41-report'],anchors:['Attention._compress_topk_idxs','Attention._compress_kv','Indexer.forward','select_candidate_blocks','get_dsv4_indexer_bytes_per_token']},
  dspark:{title:'dSpark: draft, verify, and reuse accepted context',question:'Which state survives verification and feeds the next draft?',summary:'The draft consumes captured backbone features and a seed token. It predicts a block of future tokens with a draft-specific attention and expert path. Draft proposals remain distinct from accepted continuation.',
-  trace:[['Capture target inputs',`Before attention at layers ${one(m.dsparkTargets)}, the reference takes the mean across residual copies. Concatenation yields [B, T, ${m.dsparkTargets.length*m.d}]. These are attention inputs, not layer outputs.`],['Initialize the draft',`A seed token and noise placeholders form ${m.dsparkBlock} draft positions. Shared embeddings expand to ${m.streams} residual copies. On initial prefill, the reference seeds draft history and returns no predictions.`],['Run the MTP blocks',`${m.mtp} draft blocks use ${m.dsparkTopK} of ${m.dsparkExperts} routed draft experts per token. Draft attention combines captured local history with the entire draft block; it is not an ordinary triangular next-token loop.`],['Emit proposals and scores',`The shared vocabulary head produces [B, ${m.dsparkBlock}, ${F(m.vocab)}] logits. Sequential Markov bias conditions each sampled proposal on the preceding token. Returned IDs have ${m.dsparkBlock+1} positions including the seed; confidence scores have ${m.dsparkBlock} positions.`]],
+  trace:[['Capture target inputs',`Before attention at layers ${one(m.dsparkTargets)}, the reference takes the mean across residual copies. Concatenation yields [B, T, ${m.dsparkTargets.length*m.d}]. These are attention inputs, not layer outputs.`],['Initialize the draft',`A seed token and noise placeholders form ${m.dsparkBlock} draft positions. Shared embeddings expand to ${m.streams} residual copies. On initial prefill, the reference seeds draft history and returns no predictions.`],['Run the MTP blocks',`${m.mtp} draft blocks use ${m.dsparkTopK} of ${m.dsparkExperts} routed draft experts per token. Draft attention combines captured local history with the entire draft block; it is not an ordinary triangular next-token loop.`],['Emit proposals and scores',`The shared vocabulary head produces [B, ${m.dsparkBlock}, ${m.vocab}] logits. Sequential Markov bias conditions each sampled proposal on the preceding token. Returned IDs have ${m.dsparkBlock+1} positions including the seed; confidence scores have ${m.dsparkBlock} positions.`]],
   rows:[['Captured features',`[B, T, ${m.dsparkTargets.length*m.d}]`,'Concatenated pre-attention backbone features'],['Draft residual',`[B, ${m.dsparkBlock}, ${m.streams}, ${m.d}]`,'Draft positions differ from target-layer depth'],['Returned IDs',`[B, ${m.dsparkBlock+1}]`,'Seed followed by proposed tokens'],['Confidence scores',`[B, ${m.dsparkBlock}]`,'Raw scores; no sigmoid/calibration established here']],
   caveat:'The V4.1 Flash reference supplies the draft path. DeepSpec publishes a complete single-sequence offline evaluator for Qwen3/Gemma4, including rejection sampling and cache cropping; it does not establish the V4.1 production coordinator. The linked V4-Pro-DSpark release is the V4-Pro checkpoint with an attached draft module, not V4.1 Flash. Its configuration and performance cannot be substituted here. V4.1 draft parameters remain unpublished and excluded from the backbone ledger.',sources:['dsv41-config','dsv41-code','dspark-paper','deepspec-verification','deepspec-draft','deepspec-context','deepspec-sampling','dsv4-dspark-card','dsv4-dspark-code'],anchors:['Transformer.forward_spec','DSparkBlock.forward_head','verify_draft_tokens','generate_decoding_sample','forward_dspark_draft_block','_confident_prefix_length','Qwen3DSparkEvaluator._update','sample_residual']},
  };
@@ -1230,7 +1247,7 @@ function buildDSpark(s){const {g,m,c}=start(s),K=m.dsparkBlock;
  const rows=[
  ['dspark-features','Capture target attention inputs',`layers ${m.dsparkTargets.map(x=>x+1).join(', ')} → ${m.dsparkTargets.length*m.d} channels`,'Transformer.forward captures the mean across residual copies immediately before target-layer attention. DSparkBlock.forward_embed projects and normalizes the concatenated features for draft history.','main_hidden: [B,T,target_layers × D]'],
  ['dspark-draft','Run draft attention and experts',`${m.mtp} draft blocks · ${K} positions · top ${m.dsparkTopK}/${m.dsparkExperts}`,'DSparkAttention uses projected target-feature history plus the entire draft block. It has no compressed attention path. On start_pos zero the reference seeds history and returns no draft predictions.','draft h: [B,K,streams,D]'],
- ['dspark-markov','Apply the sequential Markov head',`shared vocabulary projection → [B, ${K}, ${formatNum(m.vocab)}]`,'DSparkBlock.forward_head collapses residual copies and normalizes. It then adds a Markov bias conditioned on the previous sampled token for each proposal. This sequential head is distinct from the draft attention mask.','logits_i = base_logits_i + Markov(previous_token)'],
+ ['dspark-markov','Apply the sequential Markov head',`shared vocabulary projection → [B, ${K}, ${m.vocab}]`,'DSparkBlock.forward_head collapses residual copies and normalizes. It then adds a Markov bias conditioned on the previous sampled token for each proposal. This sequential head is distinct from the draft attention mask.','logits_i = base_logits_i + Markov(previous_token)'],
  ['dspark-confidence','Emit draft IDs and confidence scores',`IDs [B, ${K+1}] include seed · scores [B, ${K}]`,'The reference confidence head emits a scalar per draft position from hidden features and a Markov embedding. No sigmoid appears in this head; the report describes the intended conditional acceptance probabilities. Do not treat raw scores as calibrated probabilities.','proposed IDs, logits, confidence scores'],
  ['dspark-schedule','Choose the proposal prefix','DeepSpec threshold / paper scheduling','DeepSpec _confident_prefix_length applies sigmoid and stops at the first confidence below a fixed threshold. The paper’s load-aware scheduling policy is separate, using prefix survival and engine profiles; its production variant uses lagged confidence for capacity.','raw scores → sigmoid → threshold prefix'],
  ['dspark-verification','Verify, accept a prefix, correct','DeepSpec offline evaluator · Qwen3 / Gemma4','DeepSpec verify_draft_tokens evaluates the seed and proposals, tests min(1, p/max(q,1e-8)), and retains a contiguous accepted prefix. The first rejection samples a positive residual correction; full acceptance samples a target bonus. Stop tokens can terminate earlier. This code is not the V4.1 production coordinator.','target p / draft q → accepted prefix + next seed'],

@@ -90,3 +90,9 @@ Complete tensors, named axes/dtypes and fixture settings are available in a clos
 "Inspect CPU tensors and fixture settings" disclosure. Execution notes and source contracts follow the examples
 in a separate disclosure. Print expands both and restores the reader's prior state.
 Primary architecture schematics remain the first view on each chapter.
+
+Tensor dimensions use ungrouped integers inside brackets so every comma separates
+axes. Encoder and decoder chapter selectors preserve absolute layer IDs and arrange
+them in the same producer/reuse bundles as the CED overview. Bundle boundaries come
+from `layerKind`; they are not a second authored schedule. Every tile remains an
+independent keyboard-accessible selection of the detailed attention-plus-MoE layer.

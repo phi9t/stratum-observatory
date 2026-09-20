@@ -9,7 +9,7 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 629 verifier tests (10 skipped), 149 model/graph tests, two byte-identical builds of all eight portable entry points and 1,479 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Engineering | PASS | 0 | 629 verifier tests (10 skipped), 151 model/graph tests, two byte-identical builds of all eight portable entry points and 1,479 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
 | Accounting arithmetic | PASS | 0 | 399 live scenarios; 309 agreement, 82 explained differences, 186 unsupported findings, zero contradictions; required by engineering |
 | Schematics | PASS | 0 | 771 scenes including all 544 decoder layers; 3,199 checks against core.mjs, of which 262 are recorded not-applicable passes |
 | Presentations | PASS | 0 | 97 checks over 35 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
@@ -425,21 +425,21 @@ inventory, not correctness of anything in it.
 | Item | Count |
 |---|---:|
 | Input leaves | 604 |
-| Function/file identities | 60 |
+| Function/file identities | 61 |
 | Distinct sampled scene contracts | 3109 |
-| Claims including domain obligations | 3797 |
+| Claims including domain obligations | 3798 |
 | Candidate source entries | 83 |
 | Accepted raw-byte snapshots | 81 |
 | Scientifically certified claims under the signed policy | 0 |
 | Passed presentation bindings | 0 |
 | Domain contracts / runtime obligations | 32 / 32 |
 
-The publication audit has **6,852 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
+The publication audit has **6,853 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
 from the current source and consumer bytes with a fresh engineering receipt:
 
 | Code | Status | Count |
 |---|---|---:|
-| `REVIEW_REQUIRED` | BLOCKED | 3,829 |
+| `REVIEW_REQUIRED` | BLOCKED | 3,830 |
 | `CLAIM_ANCHOR` | BLOCKED | 2,334 |
 | `CLAIM_ROLE` | BLOCKED | 320 |
 | `MODEL_DUAL_CODE` | BLOCKED | 304 |
@@ -455,7 +455,7 @@ from the current source and consumer bytes with a fresh engineering receipt:
 | `ENGINEERING_CURRENT` | PASS | 1 |
 
 Most of these are cascading source dependencies and absent independent reviews; this is **not** a
-claim that 6,852 facts are false. No review identity, accepted source hash or execution receipt was
+claim that 6,853 facts are false. No review identity, accepted source hash or execution receipt was
 invented.
 
 For the record, the evidence-anchor work began at **9,037 findings (9,013 BLOCKED)** with
@@ -465,7 +465,7 @@ provenance, and letting derived scene claims carry provenance through their depe
 removed 3,853 BLOCKED findings without a single fabricated anchor.
 
 Runtime certification was run on these bytes and reports the same population plus its
-obligations: **6,852 BLOCKED, 38 PASS, 32 NOT_RUN, no FAIL.**
+obligations: **6,853 BLOCKED, 38 PASS, 32 NOT_RUN, no FAIL.**
 
 **Adding a ninth checkpoint did not make any receipt stale, and an earlier draft of this section
 was wrong to predict that it would.** The prediction came from reading the coupling rule instead of
@@ -810,9 +810,9 @@ executes all three, and CI could never have executed the transcription compariso
 
 Portable HTML SHA-256: `5f71fa20e97d1ea498a3a536dbc1d0e99cfb4fdd251c5ec2b77efe6ae3e1153f`
 
-Scientific lock SHA-256: `86c6f22fdeba2f689349d47ba32a981e10f08e3628e8c374b4090715fee86c28`
+Scientific lock SHA-256: `e104da3c816fffa1808187e48a5010ac6245c9d3c3b754169bd18fc973f72ba5`
 
-Verifier identity SHA-256: `c1b7d6bf535fe4679882742258e3f016fb282f58691107bc760a178349aa6072`
+Verifier identity SHA-256: `4160b4b749c4ea5330f1bcbe53d5351b8e89ec7928d25254eaa388b5bfed66f5`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -855,7 +855,7 @@ reading. It used to be exactly that: a permanently failing `publication` job who
 indistinguishable from a contradiction, because `aggregate()` collapses BLOCKED and FAIL into one
 exit code and GitHub renders both the same.
 
-So completeness runs on a trusted machine — `npm run verify:science`, exit 2, **6,852 BLOCKED and
+So completeness runs on a trusted machine — `npm run verify:science`, exit 2, **6,853 BLOCKED and
 38 PASS findings, 0 FAIL** — and its report is committed as `verification/reports/publication.json`.
 This document states its figures, and `verification/tests/test_reported_numbers.py`, which runs
 inside the *green* engineering gate, fails if the record drifts from the report **or if the report
@@ -892,7 +892,7 @@ V4.1 dispatch and storage anchors. Main KV and packed indexer payload reconcile 
 window state and allocation overhead remain separate. [Research and source scope](docs/design/V41-SERVING-RESEARCH.md)
 record the development-branch serving implementation and Miles plugin. Neither is a runtime receipt.
 
-Dedicated HTML SHA-256: `1cc10c5a1cda3dbacaec192521c5c06055e123b3294a878fb5d6f7c71908e1bc`
+Dedicated HTML SHA-256: `4eb116fcf05014691363dd4b92a69296f70942611de299df249601993198ff22`
 
 CED phase depths follow the report-level scheme. The pinned reference forward still visits all backbone layers; encoder-only prefill execution is not certified by that code. This distinction is visible in the CED caption and serving inspector.
 
@@ -936,12 +936,12 @@ registry drives page builds, artifact identity, browser routing and preview sele
 Chromium exercises real landing links, variant switches, reloads, identity enforcement,
 scenario exports and return links. All eight portable files are included in the software gates.
 
-- `deepseek-v4.1.html` SHA-256: `1cc10c5a1cda3dbacaec192521c5c06055e123b3294a878fb5d6f7c71908e1bc`
+- `deepseek-v4.1.html` SHA-256: `4eb116fcf05014691363dd4b92a69296f70942611de299df249601993198ff22`
 - `index.html` SHA-256: `5f71fa20e97d1ea498a3a536dbc1d0e99cfb4fdd251c5ec2b77efe6ae3e1153f`
-- `kimi-k3.html` SHA-256: `09f27ef8def65f87d83bf2babd70ce0c04746bb30d9c85e9ced793ed9d123e8e`
-- `qwen3.8.html` SHA-256: `eb82668691237ff317812933e279b6a878cb40b4e1426b68fd7ff4e9e5dccc01`
+- `kimi-k3.html` SHA-256: `3ec0adb3f3c331a34fd3bf83e7abdfcecc27b399fa1fad24a7d7fed762ab577f`
+- `qwen3.8.html` SHA-256: `3cb5cd7e627cf83274f96350bae38ab2c9c73a2b6f02564053cd66940f2d2c64`
 
-Publication coverage: 3829 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
+Publication coverage: 3830 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
 
 ## Shared systems sections
 
@@ -953,10 +953,10 @@ exposes a workload-model selector, and links preserve the originating scenario. 
 system bookmarks redirect to these shared pages. Repeated local arrow-key navigation keeps focus
 in the model tabs. All eight files receive artifact identity and portable delivery checks.
 
-- `hardware.html` SHA-256: `972290779ae03e7ffbbbc045d346776e2e661b209f14eb14ac22317ad140dd83`
-- `networking.html` SHA-256: `0a185a43ed1b8a4d0ff685aeeb95f006e6d92ddcd369419ba75cdc3ed8597380`
+- `hardware.html` SHA-256: `bab6fd90a4edf4e4d68ec54c3068be0ab9c8240003d01b04085810b5bf3f9ad7`
+- `networking.html` SHA-256: `f1877a6b844077aa1c5edadce17c2d2dce9931a580cbc252e2e61f0b1f9e062e`
 
-- `foundations.html` SHA-256: `c0496bfd091c62e5af6ebec5d67baa601d01daa9d0f3dc2db56f1218cccc6ff0`
+- `foundations.html` SHA-256: `578dd0c7aade9088b355ba1a2c760697d40899d80098786d5943b5e8148b3eb3`
 
 - `data-representation.html` SHA-256: `3887c08095fff1f145429583b5c04eec0cf7f870786e079e31015e0e9b491299`
 
@@ -1127,3 +1127,11 @@ block; query examples place the fixed dictionary beside its two readouts. Numeri
 values still come from the CPU artifact. Complete tensors and execution notes are
 expandable and open for print. Teaching-fixture scope remains visible. Browser checks
 compare the rendered values and candidate masks with the saved CPU results.
+
+### Tensor notation and layer bundles
+
+Bracketed tensor shapes use ungrouped integers: commas separate axes only. V4.1
+chapter selectors group absolute layer tiles by the same producer/reuse schedule
+as the CED overview. Regression checks cover every selectable encoder/decoder
+layer and inspect scene/chapter text for ambiguous bracketed dimensions. The
+changed composition baselines were reviewed with current portable-page captures.

@@ -1,8 +1,8 @@
 {
   "schema": "stratum-aesthetics/v1",
   "status": "PASS",
-  "generated_at": "2026-09-20T19:27:05.729903+00:00",
-  "artifact_sha256": "c0496bfd091c62e5af6ebec5d67baa601d01daa9d0f3dc2db56f1218cccc6ff0",
+  "generated_at": "2026-09-20T20:37:16.977051+00:00",
+  "artifact_sha256": "578dd0c7aade9088b355ba1a2c760697d40899d80098786d5943b5e8148b3eb3",
   "policy_sha256": "e885ca418d6e2883f6725e3ac23e7e14dd39a911966832705f969ecc29d45f66",
   "scenarios": 210,
   "distinct_measurements": 154,
@@ -2945,7 +2945,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "Amber = recurrent layer (29 occurrences)",
+      "subject": "Amber = recurrent layer (24 occurrences)",
       "message": "Contrast 5.34:1 against 4.5:1 at 10.5px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2954,7 +2954,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "Amber = recurrent layer (29 occurrences)",
+      "subject": "Amber = recurrent layer (24 occurrences)",
       "message": "10.54px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -3377,7 +3377,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "SELECT A LAYER (58 occurrences)",
+      "subject": "SELECT A LAYER (74 occurrences)",
       "message": "Contrast 7.24:1 against 4.5:1 at 10.5px weight 400.",
       "remedy": "",
       "evidence": []
@@ -3386,7 +3386,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "SELECT A LAYER (58 occurrences)",
+      "subject": "SELECT A LAYER (74 occurrences)",
       "message": "10.54px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -3683,7 +3683,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "Amber = recurrent layer (29 occurrences)",
+      "subject": "Amber = recurrent layer (24 occurrences)",
       "message": "Contrast 8.72:1 against 4.5:1 at 10.5px weight 400.",
       "remedy": "",
       "evidence": []
@@ -3692,7 +3692,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "Amber = recurrent layer (29 occurrences)",
+      "subject": "Amber = recurrent layer (24 occurrences)",
       "message": "10.54px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -4511,7 +4511,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "SELECT A LAYER (58 occurrences)",
+      "subject": "SELECT A LAYER (74 occurrences)",
       "message": "Contrast 5.34:1 against 4.5:1 at 10.5px weight 400.",
       "remedy": "",
       "evidence": []
@@ -4520,7 +4520,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "SELECT A LAYER (58 occurrences)",
+      "subject": "SELECT A LAYER (74 occurrences)",
       "message": "10.54px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []

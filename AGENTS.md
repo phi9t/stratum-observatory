@@ -155,3 +155,9 @@ Worked traces: numerical inputs, intermediates and outputs come from the CPU pro
 current execution with saved values; independent scalar tests check the math. Browser
 tests compare displayed values and replay nodes with that same artifact. Teaching
 fixtures do not establish checkpoint parity, scientific acceptance or GPU performance.
+
+Tensor notation: never use thousands separators inside a bracketed tensor shape.
+Write `[B, S, 4, 5120]`, not `[B, S, 4, 5,120]`; commas separate axes only.
+V4.1 encoder/decoder layer selectors group absolute layer tiles by the checkpoint's
+SWA and Full/Reindex-with-Reuse bundles, derived through `layerBands`, rather than
+wrapping the chapter's layers into an arbitrary rectangular grid.

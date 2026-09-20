@@ -23726,7 +23726,7 @@
       "domain": "model",
       "classification": "derived",
       "consumer": "file.src/core.mjs",
-      "expected": "fab9ceafb37fad054f2c6d747ccc28961d2236f7942180a39f87462eff4a9866",
+      "expected": "613a8c75a840d5fd5db848fe05cf0131c71c55c758ef25cb46ca66f17efebf84",
       "statement": "file.src/core.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -23771,7 +23771,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/diagram-meta.mjs",
-      "expected": "1f157d89c9b45a1f9bbd4b67d28e6e23c9e49a5e038b1f28869fb3be568a9b21",
+      "expected": "865d379021c418864eb18482f8eaa3e6fb47ce59f97f3dbdc5be6ff8e60c5b5f",
       "statement": "file.src/diagram-meta.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23791,7 +23791,7 @@
       "domain": "model",
       "classification": "derived",
       "consumer": "file.src/diagram-model.mjs",
-      "expected": "17e8dd80cc235e281fe14ca15f41b1fd6762ce5f9a122623e228b83a28aa1842",
+      "expected": "8fcc409b2bbe12b45dfddaead778d53e528fd3a901dbf3c964b1013f106969e6",
       "statement": "file.src/diagram-model.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -104666,11 +104666,11 @@
       ]
     },
     {
-      "id": "scene.q3827.model.inputs.text-embeddings.b4e435523b1a58c2",
+      "id": "scene.q3827.model.inputs.text-embeddings.77529f0ecf34f87f",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.q3827.model.inputs.text-embeddings.b4e435523b1a58c2",
-      "expected": "b4e435523b1a58c29033a44e6cda55c74b3dd0add1037bad0d321dd8bc9ed9a1",
+      "consumer": "scene.q3827.model.inputs.text-embeddings.77529f0ecf34f87f",
+      "expected": "77529f0ecf34f87f111ccecb0ce39322488ad7b22af4234e6c10201f5488cdf6",
       "statement": "scene.q3827.model.inputs.text-embeddings.b4e435523b1a58c2: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
       "evidence": [
         {
@@ -104834,11 +104834,11 @@
       ]
     },
     {
-      "id": "scene.q3827.model.inputs.interleave.f9918f0a2c299b5c",
+      "id": "scene.q3827.model.inputs.interleave.ad052df79ff19631",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.q3827.model.inputs.interleave.f9918f0a2c299b5c",
-      "expected": "f9918f0a2c299b5ccf9872ea5ae3d459e246f6e00b3d994e8ee7004689838daf",
+      "consumer": "scene.q3827.model.inputs.interleave.ad052df79ff19631",
+      "expected": "ad052df79ff196314edb51e303dd19f3183a605caf672e5dc997db026b47880f",
       "statement": "scene.q3827.model.inputs.interleave.f9918f0a2c299b5c: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
       "evidence": [
         {
@@ -115100,11 +115100,11 @@
       ]
     },
     {
-      "id": "scene.q38flash.model.inputs.text-embeddings.f717242c5a2fca36",
+      "id": "scene.q38flash.model.inputs.text-embeddings.eaf715bf70bcb257",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.q38flash.model.inputs.text-embeddings.f717242c5a2fca36",
-      "expected": "f717242c5a2fca362d483f2c3fabd12ec837141960144a9fad3f1ee3c46a6178",
+      "consumer": "scene.q38flash.model.inputs.text-embeddings.eaf715bf70bcb257",
+      "expected": "eaf715bf70bcb25763b0bcba7052e8e54c46f4d2fc3a53ea5292c96dbd2a062b",
       "statement": "scene.q38flash.model.inputs.text-embeddings.f717242c5a2fca36: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
       "evidence": [
         {
@@ -115268,11 +115268,11 @@
       ]
     },
     {
-      "id": "scene.q38flash.model.inputs.interleave.d800a4e33e1c850e",
+      "id": "scene.q38flash.model.inputs.interleave.1b1fa5612a7189d4",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.q38flash.model.inputs.interleave.d800a4e33e1c850e",
-      "expected": "d800a4e33e1c850e5ab0fa6d2a7bc90093763029c542dd6c587be024a8e08720",
+      "consumer": "scene.q38flash.model.inputs.interleave.1b1fa5612a7189d4",
+      "expected": "1b1fa5612a7189d4020c14b210a2d8272605ba9dce68ebc1d1a81fadb7c5ff16",
       "statement": "scene.q38flash.model.inputs.interleave.d800a4e33e1c850e: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
       "evidence": [
         {
@@ -115394,11 +115394,11 @@
       ]
     },
     {
-      "id": "scene.q38flash.model.residual.depth-0.4c0773be9b0ed57d",
+      "id": "scene.q38flash.model.residual.depth-0.34f763a3246e96e8",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.q38flash.model.residual.depth-0.4c0773be9b0ed57d",
-      "expected": "4c0773be9b0ed57d2aed294cf2228961a75a36be8bd6057fd5bc7b21700b7ad9",
+      "consumer": "scene.q38flash.model.residual.depth-0.34f763a3246e96e8",
+      "expected": "34f763a3246e96e87ce50da7df924234f47b735b87bacd77c622c2d07c229133",
       "statement": "scene.q38flash.model.residual.depth-0.4c0773be9b0ed57d: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
       "evidence": [
         {
@@ -115436,11 +115436,11 @@
       ]
     },
     {
-      "id": "scene.q38flash.model.residual.depth-1.ef3298a3b6a2e7b6",
+      "id": "scene.q38flash.model.residual.depth-1.b99e96778ea74058",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.q38flash.model.residual.depth-1.ef3298a3b6a2e7b6",
-      "expected": "ef3298a3b6a2e7b63965335e24a69919d0184b7039c5e84f7ab92f31592e6e78",
+      "consumer": "scene.q38flash.model.residual.depth-1.b99e96778ea74058",
+      "expected": "b99e96778ea740582289c0bf0ca3be44c6b189fd27ee541cadd0ad3e9d5724cf",
       "statement": "scene.q38flash.model.residual.depth-1.ef3298a3b6a2e7b6: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
       "evidence": [
         {
@@ -127066,11 +127066,11 @@
       ]
     },
     {
-      "id": "scene.kimi3.model.inputs.text-embeddings.a7d5210f6142f570",
+      "id": "scene.kimi3.model.inputs.text-embeddings.e5fc6c2b3e0f95fa",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.kimi3.model.inputs.text-embeddings.a7d5210f6142f570",
-      "expected": "a7d5210f6142f570a5ac82655ee7a316afed34fdbc77e7e5f55187d97ff945db",
+      "consumer": "scene.kimi3.model.inputs.text-embeddings.e5fc6c2b3e0f95fa",
+      "expected": "e5fc6c2b3e0f95fa61df88cab66478fa18d8d1235fe543117906e211ef537098",
       "statement": "scene.kimi3.model.inputs.text-embeddings.a7d5210f6142f570: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
       "evidence": [
         {
@@ -127182,11 +127182,11 @@
       ]
     },
     {
-      "id": "scene.kimi3.model.inputs.interleave.53fb9b0cffe1b701",
+      "id": "scene.kimi3.model.inputs.interleave.2d25be55a58abc5c",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.kimi3.model.inputs.interleave.53fb9b0cffe1b701",
-      "expected": "53fb9b0cffe1b701ef0374ac70079a6df768bccfb33d680bfc46c4ea9e1b8561",
+      "consumer": "scene.kimi3.model.inputs.interleave.2d25be55a58abc5c",
+      "expected": "2d25be55a58abc5c084b48a3774103d7a489464cb6da23ce45fb559ce323ca49",
       "statement": "scene.kimi3.model.inputs.interleave.53fb9b0cffe1b701: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
       "evidence": [
         {
@@ -139456,11 +139456,11 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.inputs.interleave.a09ac40515bb682b",
+      "id": "scene.dsv41.model.inputs.interleave.eb9001a39b16e3b6",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.dsv41.model.inputs.interleave.a09ac40515bb682b",
-      "expected": "a09ac40515bb682b794b3b78a41d5d1b59247d0869f6681d4427b157933af478",
+      "consumer": "scene.dsv41.model.inputs.interleave.eb9001a39b16e3b6",
+      "expected": "eb9001a39b16e3b6a23aa8a51179493c5580839e2e3810c26336a8d9ca8badd4",
       "statement": "scene.dsv41.model.inputs.interleave.a09ac40515bb682b: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
       "evidence": [
         {
@@ -139527,11 +139527,11 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.inputs.text-embeddings.804b9a12d788cb70",
+      "id": "scene.dsv41.model.inputs.text-embeddings.6d0eb49cd862e433",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.dsv41.model.inputs.text-embeddings.804b9a12d788cb70",
-      "expected": "804b9a12d788cb708d17f3ce61ccfc2c48fc6364f0d5fd9888d939cc37701b27",
+      "consumer": "scene.dsv41.model.inputs.text-embeddings.6d0eb49cd862e433",
+      "expected": "6d0eb49cd862e43367e2caf713a148aa7f35719cb07281717ea62247d0798bff",
       "statement": "scene.dsv41.model.inputs.text-embeddings.804b9a12d788cb70: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
       "evidence": [
         {
@@ -143017,11 +143017,11 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.ced.enc-out.6f9174c9b23f5204",
+      "id": "scene.dsv41.model.ced.enc-out.896804eafb9c5161",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.dsv41.model.ced.enc-out.6f9174c9b23f5204",
-      "expected": "6f9174c9b23f5204f2dd1a515905147e674e9ab75924592db594657a1e95a2a9",
+      "consumer": "scene.dsv41.model.ced.enc-out.896804eafb9c5161",
+      "expected": "896804eafb9c5161c76a275b3abbb128950b2b1b713570f8bf6b062c230eab18",
       "statement": "scene.dsv41.model.ced.enc-out.6f9174c9b23f5204: verify the visible text, logical endpoints, phase/state semantics and calculation correspondence. Orthogonal routes do not prove the computation is correct.",
       "evidence": [
         {
@@ -143343,11 +143343,11 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.residual.depth-0.0beb9b242b5bf72a",
+      "id": "scene.dsv41.model.residual.depth-0.fa7f97a54f755758",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.dsv41.model.residual.depth-0.0beb9b242b5bf72a",
-      "expected": "0beb9b242b5bf72adab2bfdc6584f1bf9d21693b64a7432578e94037bb80cb8c",
+      "consumer": "scene.dsv41.model.residual.depth-0.fa7f97a54f755758",
+      "expected": "fa7f97a54f75575887ce3aa4b3fb9112adea3e7bcfbbc347beddddb7fc8d5251",
       "statement": "scene.dsv41.model.residual.depth-0.0beb9b242b5bf72a: revised V4.1 projection, residual, or serving state contract; bound to the pinned publisher implementation and current ledgers. Independent scientific review remains required.",
       "evidence": [
         {
@@ -143378,11 +143378,11 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.residual.depth-1.dbf0a343e7e7f10b",
+      "id": "scene.dsv41.model.residual.depth-1.7bbad0f84ce76c14",
       "domain": "model",
       "classification": "derived",
-      "consumer": "scene.dsv41.model.residual.depth-1.dbf0a343e7e7f10b",
-      "expected": "dbf0a343e7e7f10b820bec18f9e4f821f97a8128e2bfbc9640cec9679fdbf54d",
+      "consumer": "scene.dsv41.model.residual.depth-1.7bbad0f84ce76c14",
+      "expected": "7bbad0f84ce76c14f30ac31b88f060c97049d322a1619116fe1b1f93bd0c58ad",
       "statement": "scene.dsv41.model.residual.depth-1.dbf0a343e7e7f10b: revised V4.1 projection, residual, or serving state contract; bound to the pinned publisher implementation and current ledgers. Independent scientific review remains required.",
       "evidence": [
         {
@@ -145726,7 +145726,7 @@
           ],
           [
             "Hand off",
-            "The residual [B, T, 4, 5,120] after layer 20 enters layer 21. No separate cross-attention module is inserted at this boundary."
+            "The residual [B, T, 4, 5120] after layer 20 enters layer 21. No separate cross-attention module is inserted at this boundary."
           ],
           [
             "Position trace \u00b7 illustrative input",
@@ -145741,7 +145741,7 @@
           ],
           [
             "Residual",
-            "[B, T, 4, 5,120]",
+            "[B, T, 4, 5120]",
             "Updated through depth; not a KV cache"
           ],
           [
@@ -145858,7 +145858,7 @@
         "trace": [
           [
             "Receive the handoff",
-            "Layer 21 receives [B, T, 4, 5,120]; it is the boundary Full layer in this checkpoint."
+            "Layer 21 receives [B, T, 4, 5120]; it is the boundary Full layer in this checkpoint."
           ],
           [
             "Publish decoder state",
@@ -145888,7 +145888,7 @@
         "rows": [
           [
             "Boundary state",
-            "[B, T, 4, 5,120]",
+            "[B, T, 4, 5120]",
             "Encoder output enters first decoder layer"
           ],
           [
@@ -145903,7 +145903,7 @@
           ],
           [
             "Output logits",
-            "[B, 129,280] at the selected final position",
+            "[B, 129280] at the selected final position",
             "Logits are not accepted speculative tokens"
           ]
         ],
@@ -146081,7 +146081,7 @@
           ],
           [
             "Keys / value",
-            "[B, T, 4, 5,120] / [B, T, 5120]",
+            "[B, T, 4, 5120] / [B, T, 5120]",
             "Per-copy keys; shared value"
           ],
           [
@@ -146377,7 +146377,7 @@
           ],
           [
             "Emit proposals and scores",
-            "The shared vocabulary head produces [B, 5, 129,280] logits. Sequential Markov bias conditions each sampled proposal on the preceding token. Returned IDs have 6 positions including the seed; confidence scores have 5 positions."
+            "The shared vocabulary head produces [B, 5, 129280] logits. Sequential Markov bias conditions each sampled proposal on the preceding token. Returned IDs have 6 positions including the seed; confidence scores have 5 positions."
           ],
           [
             "Choose a verification prefix \u00b7 DeepSpec code",
@@ -146706,7 +146706,7 @@
       "consumer": "file.src/deepdives.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "f3174c10e47562e86eaed2b4f5cf264336e22540fde8c12852a74adc47055353",
+      "expected": "289c0361d9080100b96df34d71a4f7450aaeb22da9478b054c600dba448f5ba7",
       "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
       "evidence": [],
       "dependencies": [
@@ -146722,7 +146722,7 @@
       "consumer": "file.src/diagram-deepdives.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "1f4189430025401498e93b3cdbedcdba00bd48324fdbf4526199059ef1154148",
+      "expected": "3c5b29a58e939d08afaf28bf94a08ff2205d8bb7548ea53b49c0af10ecbf684b",
       "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
       "evidence": [],
       "dependencies": [
@@ -146952,11 +146952,11 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.dspark.dspark-markov.be4c98d73845bd27",
-      "consumer": "scene.dsv41.model.dspark.dspark-markov.be4c98d73845bd27",
+      "id": "scene.dsv41.model.dspark.dspark-markov.c0a9a164de9f4017",
+      "consumer": "scene.dsv41.model.dspark.dspark-markov.c0a9a164de9f4017",
       "domain": "model",
       "classification": "derived",
-      "expected": "be4c98d73845bd2751ee35543d6c240221344e8713e236d88596d372ca5016e6",
+      "expected": "c0a9a164de9f4017e11cada119c2483d8515b89d423651749d9b213aae20ed72",
       "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
       "evidence": [],
       "dependencies": [
@@ -152232,29 +152232,31 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.9651da592fb1253a",
-      "consumer": "scene.dsv41.model.encoder.graph.9651da592fb1253a",
+      "id": "scene.dsv41.model.encoder.graph.830b41096437bebc",
+      "consumer": "scene.dsv41.model.encoder.graph.830b41096437bebc",
       "domain": "model",
       "classification": "derived",
-      "expected": "9651da592fb1253a40a28a94c1fe0ec03cbb4dbf6be2e2e21197ec6095c856b2",
+      "expected": "830b41096437bebc9aa87ef68cb7fd03f373d02b0a4a5dd17f33891a296185a3",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.40511a044b2adbc9",
-      "consumer": "scene.dsv41.model.encoder.graph.40511a044b2adbc9",
+      "id": "scene.dsv41.model.encoder.graph.3d25c1848e389da2",
+      "consumer": "scene.dsv41.model.encoder.graph.3d25c1848e389da2",
       "domain": "model",
       "classification": "derived",
-      "expected": "40511a044b2adbc9e42960b0dc572ccac75ee0cee11d99b4472dcbcc43d7eb4b",
+      "expected": "3d25c1848e389da222b75ce8e2ebccc346de3140ff14d21a079dbb3d951ddcb9",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
@@ -152376,29 +152378,31 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.3608b8c7ca376bcc",
-      "consumer": "scene.dsv41.model.encoder.graph.3608b8c7ca376bcc",
+      "id": "scene.dsv41.model.encoder.graph.659f58561e94d26c",
+      "consumer": "scene.dsv41.model.encoder.graph.659f58561e94d26c",
       "domain": "model",
       "classification": "derived",
-      "expected": "3608b8c7ca376bcc06ec8653555ce3879e74654f7d6f9909c35a0687842dfeee",
+      "expected": "659f58561e94d26c851fd03e1142a44b9573ec465b5bc9df5b02c29752ff061b",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.66faeff9f66db9da",
-      "consumer": "scene.dsv41.model.encoder.graph.66faeff9f66db9da",
+      "id": "scene.dsv41.model.encoder.graph.2895a33ce9d5dffe",
+      "consumer": "scene.dsv41.model.encoder.graph.2895a33ce9d5dffe",
       "domain": "model",
       "classification": "derived",
-      "expected": "66faeff9f66db9dadd7921ef81fed1f79fe24f40f209f6808510b0b2583bd46e",
+      "expected": "2895a33ce9d5dffe8c8588a85eb08a2ac5d1eb8000c0f1ca4cae3bdb2600d32b",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
@@ -152462,141 +152466,151 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.ed9e1c939185e5b9",
-      "consumer": "scene.dsv41.model.encoder.graph.ed9e1c939185e5b9",
+      "id": "scene.dsv41.model.encoder.graph.aad213ccf7cf77c7",
+      "consumer": "scene.dsv41.model.encoder.graph.aad213ccf7cf77c7",
       "domain": "model",
       "classification": "derived",
-      "expected": "ed9e1c939185e5b9255d96570329aeb3ab32a0e49a214c9c5f391e5fc1fa658d",
+      "expected": "aad213ccf7cf77c75fc20570239ee03ff99695113bf5e6ee9405833cf7212513",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.d817101347c1e30d",
-      "consumer": "scene.dsv41.model.encoder.graph.d817101347c1e30d",
+      "id": "scene.dsv41.model.encoder.graph.be27d0c390e64cb3",
+      "consumer": "scene.dsv41.model.encoder.graph.be27d0c390e64cb3",
       "domain": "model",
       "classification": "derived",
-      "expected": "d817101347c1e30d81155dff863cb1db3da54106da488da9dff6c004f65b3440",
+      "expected": "be27d0c390e64cb38994ed61d4cba95a13f5d8e85805967249fbd0de80f66a1f",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.47a8dffa79ac01e5",
-      "consumer": "scene.dsv41.model.encoder.graph.47a8dffa79ac01e5",
+      "id": "scene.dsv41.model.encoder.graph.bd134b8fa7b22d48",
+      "consumer": "scene.dsv41.model.encoder.graph.bd134b8fa7b22d48",
       "domain": "model",
       "classification": "derived",
-      "expected": "47a8dffa79ac01e541615aa7d14a22347ca55d599a3071121761e80f71225a17",
+      "expected": "bd134b8fa7b22d486e65622125fba8b7e30b83a1560e69507372fcf665d1b84f",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.00b79d5c86c2321f",
-      "consumer": "scene.dsv41.model.encoder.graph.00b79d5c86c2321f",
+      "id": "scene.dsv41.model.encoder.graph.06dafcc5005dc5ad",
+      "consumer": "scene.dsv41.model.encoder.graph.06dafcc5005dc5ad",
       "domain": "model",
       "classification": "derived",
-      "expected": "00b79d5c86c2321f5df9aa1ec751d80409bb5f83f17dcd98762b05cb42e1e215",
+      "expected": "06dafcc5005dc5ad6b022b601f7a32013d54750368d2bc6a5f7ea8e49e799d95",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.e11bb2f61c8697d4",
-      "consumer": "scene.dsv41.model.encoder.graph.e11bb2f61c8697d4",
+      "id": "scene.dsv41.model.encoder.graph.3583cb1e1ac6f305",
+      "consumer": "scene.dsv41.model.encoder.graph.3583cb1e1ac6f305",
       "domain": "model",
       "classification": "derived",
-      "expected": "e11bb2f61c8697d405a0dd52c2cc9f5b9c7e50b5d6e615d82f783ab580cb08f7",
+      "expected": "3583cb1e1ac6f305c74b903253b684830b0b6639e5f741a0ce44d93b64c58aba",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.1b78766bdb333094",
-      "consumer": "scene.dsv41.model.encoder.graph.1b78766bdb333094",
+      "id": "scene.dsv41.model.encoder.graph.379fde19722ab836",
+      "consumer": "scene.dsv41.model.encoder.graph.379fde19722ab836",
       "domain": "model",
       "classification": "derived",
-      "expected": "1b78766bdb33309444a92cd416fca13ca855db6b9c7a5fcdd728e68dad75a6b0",
+      "expected": "379fde19722ab83674f1e35c9fbb9107f98d3ea6a4b9cc45d36b1fc206c588a2",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.bee925630e5bbbd8",
-      "consumer": "scene.dsv41.model.encoder.graph.bee925630e5bbbd8",
+      "id": "scene.dsv41.model.encoder.graph.d81b2a8c977f16f4",
+      "consumer": "scene.dsv41.model.encoder.graph.d81b2a8c977f16f4",
       "domain": "model",
       "classification": "derived",
-      "expected": "bee925630e5bbbd8294052f6d9d3d22bfed75cc0b05455bf726955ff26bfb53a",
+      "expected": "d81b2a8c977f16f4ce023f9567f46b8582d8b6d637ee397c28a3cc9dc8178ef6",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.25ea57931bea76a2",
-      "consumer": "scene.dsv41.model.encoder.graph.25ea57931bea76a2",
+      "id": "scene.dsv41.model.encoder.graph.7c9543746e9e70f1",
+      "consumer": "scene.dsv41.model.encoder.graph.7c9543746e9e70f1",
       "domain": "model",
       "classification": "derived",
-      "expected": "25ea57931bea76a2eab3f4acc008890b25ad84370b0ba22dd8610ba9ca616b2c",
+      "expected": "7c9543746e9e70f1af46dc6025f70b9a3c6cc6dddb530d68375c90311693c186",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.e1c90609e7ec21b3",
-      "consumer": "scene.dsv41.model.encoder.graph.e1c90609e7ec21b3",
+      "id": "scene.dsv41.model.encoder.graph.0558b466a25d853b",
+      "consumer": "scene.dsv41.model.encoder.graph.0558b466a25d853b",
       "domain": "model",
       "classification": "derived",
-      "expected": "e1c90609e7ec21b395c9c9973c2749a935fecad27e0709c321d21762e81d6edb",
+      "expected": "0558b466a25d853b54da6faf0266c35deca6983ecb33512739474b08db9a280c",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.b38e821ab8794514",
-      "consumer": "scene.dsv41.model.encoder.graph.b38e821ab8794514",
+      "id": "scene.dsv41.model.encoder.graph.2b5339c162e500ad",
+      "consumer": "scene.dsv41.model.encoder.graph.2b5339c162e500ad",
       "domain": "model",
       "classification": "derived",
-      "expected": "b38e821ab879451450fd75b31d71bcbf7e4aa516be65b92e29157a2c2f975543",
+      "expected": "2b5339c162e500ad01657ae55599a256b69ce9a697c1f7689afe564de490413c",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
@@ -152631,29 +152645,31 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.92563d83abc6e386",
-      "consumer": "scene.dsv41.model.encoder.graph.92563d83abc6e386",
+      "id": "scene.dsv41.model.encoder.graph.2c81ac42d2d7c960",
+      "consumer": "scene.dsv41.model.encoder.graph.2c81ac42d2d7c960",
       "domain": "model",
       "classification": "derived",
-      "expected": "92563d83abc6e38634acfa59002bee3a4abe556e78d045c58c8673910f6e757a",
+      "expected": "2c81ac42d2d7c9607e0ccca7ed384f83eba8c9d1040244f1fa70da432855da0b",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.9ab58370731307db",
-      "consumer": "scene.dsv41.model.encoder.graph.9ab58370731307db",
+      "id": "scene.dsv41.model.encoder.graph.e67fbfb90a73f7c8",
+      "consumer": "scene.dsv41.model.encoder.graph.e67fbfb90a73f7c8",
       "domain": "model",
       "classification": "derived",
-      "expected": "9ab58370731307dbe552513461003aa838b3b582f842ee212c9e9a70e65bcb08",
+      "expected": "e67fbfb90a73f7c858bcd3e3c182383d0dea8fa3ccd39f33a91e0255368b2120",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
@@ -152717,141 +152733,151 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.f3eabb147b9bcf40",
-      "consumer": "scene.dsv41.model.encoder.graph.f3eabb147b9bcf40",
+      "id": "scene.dsv41.model.encoder.graph.764af2abdb41a843",
+      "consumer": "scene.dsv41.model.encoder.graph.764af2abdb41a843",
       "domain": "model",
       "classification": "derived",
-      "expected": "f3eabb147b9bcf4006a3c027a68c942fa0a53bcc5339e5c0c42eea4c1b123846",
+      "expected": "764af2abdb41a8437120437535376fede4b727b9b6797cea11cf5d86faff652d",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.58a7515b02df977c",
-      "consumer": "scene.dsv41.model.encoder.graph.58a7515b02df977c",
+      "id": "scene.dsv41.model.encoder.graph.4aa9b7dfbefbbf42",
+      "consumer": "scene.dsv41.model.encoder.graph.4aa9b7dfbefbbf42",
       "domain": "model",
       "classification": "derived",
-      "expected": "58a7515b02df977ce8c3522fd87b9f72cdb10ed17818623661d3a09fabc0ce35",
+      "expected": "4aa9b7dfbefbbf42c50062b28cafee6e220abeef8a52e2b17e12ce0b8943dbb0",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.c4b031491f814f97",
-      "consumer": "scene.dsv41.model.encoder.graph.c4b031491f814f97",
+      "id": "scene.dsv41.model.encoder.graph.cfea7aae23a4f953",
+      "consumer": "scene.dsv41.model.encoder.graph.cfea7aae23a4f953",
       "domain": "model",
       "classification": "derived",
-      "expected": "c4b031491f814f97b24c485c86b6d56f4cace408cdb866b026f364a4ec3e8823",
+      "expected": "cfea7aae23a4f953f9989a6a9b0ea3e9e59977286cf17f8db9514e7df6a022dc",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.699f2f3a4a4cfeb6",
-      "consumer": "scene.dsv41.model.encoder.graph.699f2f3a4a4cfeb6",
+      "id": "scene.dsv41.model.encoder.graph.5324829a7c448d65",
+      "consumer": "scene.dsv41.model.encoder.graph.5324829a7c448d65",
       "domain": "model",
       "classification": "derived",
-      "expected": "699f2f3a4a4cfeb69564b759c255aab4c17c3c4714066f8fc4a71586b7b2bd54",
+      "expected": "5324829a7c448d65edf6690f429e95affd85aa4827506dbf1febd0ed059b88af",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.473d99ccabb95464",
-      "consumer": "scene.dsv41.model.encoder.graph.473d99ccabb95464",
+      "id": "scene.dsv41.model.encoder.graph.73e7a47417cf455d",
+      "consumer": "scene.dsv41.model.encoder.graph.73e7a47417cf455d",
       "domain": "model",
       "classification": "derived",
-      "expected": "473d99ccabb95464052bdb4f3ded4d47b7ec9041e8b7faab5e6a9967f6d66c69",
+      "expected": "73e7a47417cf455dffe2d1cdc4f20459aa7269acaa0adac3f54327dcd35b3181",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.064dbeed90a7cde4",
-      "consumer": "scene.dsv41.model.encoder.graph.064dbeed90a7cde4",
+      "id": "scene.dsv41.model.encoder.graph.262348990a0757c3",
+      "consumer": "scene.dsv41.model.encoder.graph.262348990a0757c3",
       "domain": "model",
       "classification": "derived",
-      "expected": "064dbeed90a7cde49bf40698b809d485bb61e791111348eacaa071562c38aa75",
+      "expected": "262348990a0757c3e2223fc6b5c1af2d11bb8b9274bc0cd5d54125c3be8811c1",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.a0716bf0a45ff511",
-      "consumer": "scene.dsv41.model.encoder.graph.a0716bf0a45ff511",
+      "id": "scene.dsv41.model.encoder.graph.cedbdfc2570d09db",
+      "consumer": "scene.dsv41.model.encoder.graph.cedbdfc2570d09db",
       "domain": "model",
       "classification": "derived",
-      "expected": "a0716bf0a45ff511512a8d901d6d5adef08384c22a6c159692e45622bfd17b46",
+      "expected": "cedbdfc2570d09dbcaa367b1f30da1b21d5eb338f4cefb2c4ff47145cd79b4ef",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.ba6117b64ebe31e5",
-      "consumer": "scene.dsv41.model.encoder.graph.ba6117b64ebe31e5",
+      "id": "scene.dsv41.model.encoder.graph.67239fc840621f44",
+      "consumer": "scene.dsv41.model.encoder.graph.67239fc840621f44",
       "domain": "model",
       "classification": "derived",
-      "expected": "ba6117b64ebe31e5bc932403b5112104f7085d00941aaad6d6aa04392a396278",
+      "expected": "67239fc840621f440f8f0e8ace54178e7541eb1f16f2f0766197b756e61af577",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.18fbe0355c373d26",
-      "consumer": "scene.dsv41.model.encoder.graph.18fbe0355c373d26",
+      "id": "scene.dsv41.model.encoder.graph.bdb13055f3d5ac10",
+      "consumer": "scene.dsv41.model.encoder.graph.bdb13055f3d5ac10",
       "domain": "model",
       "classification": "derived",
-      "expected": "18fbe0355c373d26ece14f8bfac1e5d0c0be01444c18202bc79c26965bae3f80",
+      "expected": "bdb13055f3d5ac10f245e77882240fb04a6f06565c82fef61cc2ee4c99a7e1fd",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.1f0fddc0c330598d",
-      "consumer": "scene.dsv41.model.encoder.graph.1f0fddc0c330598d",
+      "id": "scene.dsv41.model.encoder.graph.949f6dcf99563d54",
+      "consumer": "scene.dsv41.model.encoder.graph.949f6dcf99563d54",
       "domain": "model",
       "classification": "derived",
-      "expected": "1f0fddc0c330598d47ea06602f9d74b19065dd3d62e95c2a11e5e981d44d37d1",
+      "expected": "949f6dcf99563d544bb8cb19bf52058fcf2773bb56653c46eae2da6cc6d62c7a",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
@@ -152944,141 +152970,151 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.281822251e516aa8",
-      "consumer": "scene.dsv41.model.encoder.graph.281822251e516aa8",
+      "id": "scene.dsv41.model.encoder.graph.27faf08f353ca507",
+      "consumer": "scene.dsv41.model.encoder.graph.27faf08f353ca507",
       "domain": "model",
       "classification": "derived",
-      "expected": "281822251e516aa853ad5d00eca76346b545dca1a2212cb6fe0a7db84a698b8f",
+      "expected": "27faf08f353ca5079ec820f2d57424b0f86c4f8c6384d626e43e6f0ae2bd1dfa",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.c82283e461b07c55",
-      "consumer": "scene.dsv41.model.encoder.graph.c82283e461b07c55",
+      "id": "scene.dsv41.model.encoder.graph.d32bb11b77629aab",
+      "consumer": "scene.dsv41.model.encoder.graph.d32bb11b77629aab",
       "domain": "model",
       "classification": "derived",
-      "expected": "c82283e461b07c5579b4fd9eac97634a7bfe78905ad289ff310f7063210360cc",
+      "expected": "d32bb11b77629aab889c66ed8b0c599b1458a31cbbb21f09b86677eeb59c55e5",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.6e50e8c804ea4786",
-      "consumer": "scene.dsv41.model.encoder.graph.6e50e8c804ea4786",
+      "id": "scene.dsv41.model.encoder.graph.aa9340a91353716b",
+      "consumer": "scene.dsv41.model.encoder.graph.aa9340a91353716b",
       "domain": "model",
       "classification": "derived",
-      "expected": "6e50e8c804ea4786df50f455810296ce91664977cc5731a9ee00297946e3e686",
+      "expected": "aa9340a91353716b37d5dfe63dac5b1cc5edd5ef9d65a64826ed9883a85c2753",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.e402b750ae701aa4",
-      "consumer": "scene.dsv41.model.encoder.graph.e402b750ae701aa4",
+      "id": "scene.dsv41.model.encoder.graph.6ace14311e4d6e84",
+      "consumer": "scene.dsv41.model.encoder.graph.6ace14311e4d6e84",
       "domain": "model",
       "classification": "derived",
-      "expected": "e402b750ae701aa490459c003a1d4a0df2ebc34045fe36ecfe7482b9ef0b79c5",
+      "expected": "6ace14311e4d6e8446c7532df4d8cf79de6aa3e914a60ab647b787eec34ae4cd",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.ab19e3d45ffc1384",
-      "consumer": "scene.dsv41.model.encoder.graph.ab19e3d45ffc1384",
+      "id": "scene.dsv41.model.encoder.graph.ed0936e973eec926",
+      "consumer": "scene.dsv41.model.encoder.graph.ed0936e973eec926",
       "domain": "model",
       "classification": "derived",
-      "expected": "ab19e3d45ffc1384c953e89824524c0398a21803cc2e88f230f9795e7b3157e3",
+      "expected": "ed0936e973eec926cf345a0ad9c2162fd874838a3c7a2ce647e984636e76373d",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.217cd8bb1c4f8e16",
-      "consumer": "scene.dsv41.model.encoder.graph.217cd8bb1c4f8e16",
+      "id": "scene.dsv41.model.encoder.graph.66c92a5731263fd4",
+      "consumer": "scene.dsv41.model.encoder.graph.66c92a5731263fd4",
       "domain": "model",
       "classification": "derived",
-      "expected": "217cd8bb1c4f8e16f5b02ce059b92c3d04f097164be6d2e8ada1c00f400bb43e",
+      "expected": "66c92a5731263fd459341683cbad56c494b88c78dc98e01675a62c58e0b6ba5c",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.31c4d77e0d014295",
-      "consumer": "scene.dsv41.model.encoder.graph.31c4d77e0d014295",
+      "id": "scene.dsv41.model.encoder.graph.959d60fca1a6684e",
+      "consumer": "scene.dsv41.model.encoder.graph.959d60fca1a6684e",
       "domain": "model",
       "classification": "derived",
-      "expected": "31c4d77e0d014295a4f8a6aae909a6fd3e51d97bcf2299d77aa97056222bcc3b",
+      "expected": "959d60fca1a6684e619ae48f469e96c2748f6d699068fcefe60d391a671b1791",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.a1742d998408784b",
-      "consumer": "scene.dsv41.model.encoder.graph.a1742d998408784b",
+      "id": "scene.dsv41.model.encoder.graph.a87ccfe997b5fb6c",
+      "consumer": "scene.dsv41.model.encoder.graph.a87ccfe997b5fb6c",
       "domain": "model",
       "classification": "derived",
-      "expected": "a1742d998408784bbfad52d4015a7f503d8ef508fb4a91426d02165479a75883",
+      "expected": "a87ccfe997b5fb6ce6c1863c227fe29a0fe82b5780ae35f8b539b30ebddde88a",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.809e160c7c0c0a91",
-      "consumer": "scene.dsv41.model.encoder.graph.809e160c7c0c0a91",
+      "id": "scene.dsv41.model.encoder.graph.3c62030167677cfd",
+      "consumer": "scene.dsv41.model.encoder.graph.3c62030167677cfd",
       "domain": "model",
       "classification": "derived",
-      "expected": "809e160c7c0c0a91fc1354727cbfe5ba5a8b767c816014dfe0e695cd7f33252b",
+      "expected": "3c62030167677cfd4ee43863298db6a639de79d83f4632772b76009a20f73b4a",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.b50d0cd0d987fdcd",
-      "consumer": "scene.dsv41.model.encoder.graph.b50d0cd0d987fdcd",
+      "id": "scene.dsv41.model.encoder.graph.f2209cae988c2bb7",
+      "consumer": "scene.dsv41.model.encoder.graph.f2209cae988c2bb7",
       "domain": "model",
       "classification": "derived",
-      "expected": "b50d0cd0d987fdcde0e58ff89e491bc6c6d650019bc6149c521195f8067bce41",
+      "expected": "f2209cae988c2bb7718eaaef86e51c47295f87b1fef3e9e447565cbd14ca071f",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
@@ -154464,29 +154500,31 @@
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.660abe6936a07a54",
-      "consumer": "scene.dsv41.model.encoder.graph.660abe6936a07a54",
+      "id": "scene.dsv41.model.encoder.graph.6322b3966ac06e70",
+      "consumer": "scene.dsv41.model.encoder.graph.6322b3966ac06e70",
       "domain": "model",
       "classification": "derived",
-      "expected": "660abe6936a07a544aa07be73641b4c675b7c30c88d042bb94936c24f4c7aa3e",
+      "expected": "6322b3966ac06e707ba9f705d273288a2ebdff5aadcd8ede3440e680b252e6af",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.e7c5c3c05587f960",
-      "consumer": "scene.dsv41.model.encoder.graph.e7c5c3c05587f960",
+      "id": "scene.dsv41.model.encoder.graph.4653cebac267b9fe",
+      "consumer": "scene.dsv41.model.encoder.graph.4653cebac267b9fe",
       "domain": "model",
       "classification": "derived",
-      "expected": "e7c5c3c05587f9609a0bdb86d16a437070f64114f0e2be31728e51267c11da6f",
+      "expected": "4653cebac267b9feb1dcbee2c5ab607fdadce906e0293901281655e6662d30e2",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
@@ -154600,29 +154638,31 @@
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.d45cce3b27dbf31b",
-      "consumer": "scene.dsv41.model.encoder.graph.d45cce3b27dbf31b",
+      "id": "scene.dsv41.model.encoder.graph.7345232881416f64",
+      "consumer": "scene.dsv41.model.encoder.graph.7345232881416f64",
       "domain": "model",
       "classification": "derived",
-      "expected": "d45cce3b27dbf31b69a95c0e441c4d6f917fe6295dd32d6bb47851739b3cc16a",
+      "expected": "7345232881416f644cf940a54b5e00adf1562f963cf43af15f3bbce72034e4b0",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.encoder.graph.f31fc8c64efcaf0b",
-      "consumer": "scene.dsv41.model.encoder.graph.f31fc8c64efcaf0b",
+      "id": "scene.dsv41.model.encoder.graph.6760aadf011cf0e6",
+      "consumer": "scene.dsv41.model.encoder.graph.6760aadf011cf0e6",
       "domain": "model",
       "classification": "derived",
-      "expected": "f31fc8c64efcaf0b00b54ef6aeb497bad24ce7ccbae94f7e21dbda11d1d8aed5",
+      "expected": "6760aadf011cf0e6affe60e5a48d4705248e0a12e0865a07108f3a1d0dbac889",
       "dependencies": [
         "deepdive.encoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
@@ -154682,561 +154722,601 @@
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.07595b3f3538c5e2",
-      "consumer": "scene.dsv41.model.decoder.graph.07595b3f3538c5e2",
+      "id": "scene.dsv41.model.decoder.graph.c395701197ac4249",
+      "consumer": "scene.dsv41.model.decoder.graph.c395701197ac4249",
       "domain": "model",
       "classification": "derived",
-      "expected": "07595b3f3538c5e210365b0d9a61e827a5aed97f7bd93a375ee481734af9facb",
+      "expected": "c395701197ac424925b0d5b5a83282c97f2a19bd8389480a624c47e0753d5758",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.dc5770ec7f9b1e2d",
-      "consumer": "scene.dsv41.model.decoder.graph.dc5770ec7f9b1e2d",
+      "id": "scene.dsv41.model.decoder.graph.608df185826b4924",
+      "consumer": "scene.dsv41.model.decoder.graph.608df185826b4924",
       "domain": "model",
       "classification": "derived",
-      "expected": "dc5770ec7f9b1e2dfe6cf43f191d98c96ea2f323ccab7b1d42fcc9f0236c97b4",
+      "expected": "608df185826b4924028ab9dab31a5ddc737c514d975180c7bc9cd4dac1165556",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.73acaec637fc9cd7",
-      "consumer": "scene.dsv41.model.decoder.graph.73acaec637fc9cd7",
+      "id": "scene.dsv41.model.decoder.graph.14f09e09b7add278",
+      "consumer": "scene.dsv41.model.decoder.graph.14f09e09b7add278",
       "domain": "model",
       "classification": "derived",
-      "expected": "73acaec637fc9cd7d31329e195a857ad339e8cb6c5bdcf468b65edec49ea3b77",
+      "expected": "14f09e09b7add278dfae9c8b6014f2544cd8c572aafbaf7af30b1f65783f52e0",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.6e5abfcfbfd85ea6",
-      "consumer": "scene.dsv41.model.decoder.graph.6e5abfcfbfd85ea6",
+      "id": "scene.dsv41.model.decoder.graph.eeb4b708e5403940",
+      "consumer": "scene.dsv41.model.decoder.graph.eeb4b708e5403940",
       "domain": "model",
       "classification": "derived",
-      "expected": "6e5abfcfbfd85ea6a00831e49207214440701b25d04d47e1e79881dfaabf6087",
+      "expected": "eeb4b708e54039403d00994721028e8c3da24eb5cfcad18072ad515fbad939c0",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.d4dafcab24c22d60",
-      "consumer": "scene.dsv41.model.decoder.graph.d4dafcab24c22d60",
+      "id": "scene.dsv41.model.decoder.graph.bdda539819b7ab47",
+      "consumer": "scene.dsv41.model.decoder.graph.bdda539819b7ab47",
       "domain": "model",
       "classification": "derived",
-      "expected": "d4dafcab24c22d605e7564db72ad6e4be05793ea8db65ec41d1c95eeb74987e6",
+      "expected": "bdda539819b7ab478dc3bfae419819f952523bc63682704ce652a9b2981cd7b8",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.2574f6f95ee3e9a3",
-      "consumer": "scene.dsv41.model.decoder.graph.2574f6f95ee3e9a3",
+      "id": "scene.dsv41.model.decoder.graph.d3b9be71e227c48f",
+      "consumer": "scene.dsv41.model.decoder.graph.d3b9be71e227c48f",
       "domain": "model",
       "classification": "derived",
-      "expected": "2574f6f95ee3e9a34028999ae38355f7ffc1af8520d14487b3d1b19b178b41cf",
+      "expected": "d3b9be71e227c48fbd96309dcb8c9ffe959c7ef56e4b01c88e2e2a873c3244fb",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.771f697ea881b221",
-      "consumer": "scene.dsv41.model.decoder.graph.771f697ea881b221",
+      "id": "scene.dsv41.model.decoder.graph.a2e1a2552f607116",
+      "consumer": "scene.dsv41.model.decoder.graph.a2e1a2552f607116",
       "domain": "model",
       "classification": "derived",
-      "expected": "771f697ea881b221e46789df8ed62c550570189af8838063759dca698266dd17",
+      "expected": "a2e1a2552f607116cac303c293a7f60b5bdb5ab5eaea38c7b76157abfc633e85",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.a2a626d54592b1e4",
-      "consumer": "scene.dsv41.model.decoder.graph.a2a626d54592b1e4",
+      "id": "scene.dsv41.model.decoder.graph.89d65ca6382317e0",
+      "consumer": "scene.dsv41.model.decoder.graph.89d65ca6382317e0",
       "domain": "model",
       "classification": "derived",
-      "expected": "a2a626d54592b1e43af78e8e100deaa16d7ce55b1077501f2cb19d09d642b2e9",
+      "expected": "89d65ca6382317e024146fe7689da105c2c4b3073517b50ea8a22166dd32b7b9",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.a0fdca66bc65a53d",
-      "consumer": "scene.dsv41.model.decoder.graph.a0fdca66bc65a53d",
+      "id": "scene.dsv41.model.decoder.graph.0f667f1c681867be",
+      "consumer": "scene.dsv41.model.decoder.graph.0f667f1c681867be",
       "domain": "model",
       "classification": "derived",
-      "expected": "a0fdca66bc65a53d03120743afdbf3d592743c6b6e1a50e66c1886d84988f855",
+      "expected": "0f667f1c681867be89aa90549342947ad4c0aaeeac85c5c41da19465dbfc92a0",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.c499a53e43872b12",
-      "consumer": "scene.dsv41.model.decoder.graph.c499a53e43872b12",
+      "id": "scene.dsv41.model.decoder.graph.f44e3593978d4fa8",
+      "consumer": "scene.dsv41.model.decoder.graph.f44e3593978d4fa8",
       "domain": "model",
       "classification": "derived",
-      "expected": "c499a53e43872b125e91d0adb9bf6b5be614ee719de79334c4ee30c32436c181",
+      "expected": "f44e3593978d4fa83f5e13d9f70fee10d02269d1e98391b656d9500f6ba952f4",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.c63b65b2b1027082",
-      "consumer": "scene.dsv41.model.decoder.graph.c63b65b2b1027082",
+      "id": "scene.dsv41.model.decoder.graph.4c87932359176f12",
+      "consumer": "scene.dsv41.model.decoder.graph.4c87932359176f12",
       "domain": "model",
       "classification": "derived",
-      "expected": "c63b65b2b1027082ce504dd297d53427fdf4b24ecd5083bad9df1442b5f9bd22",
+      "expected": "4c87932359176f12e3206fce57bd6e429b19727eaa7b5faa6b7e16281c0fc6a5",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.6e707d958d4e6ab9",
-      "consumer": "scene.dsv41.model.decoder.graph.6e707d958d4e6ab9",
+      "id": "scene.dsv41.model.decoder.graph.88c940ca076eef45",
+      "consumer": "scene.dsv41.model.decoder.graph.88c940ca076eef45",
       "domain": "model",
       "classification": "derived",
-      "expected": "6e707d958d4e6ab9f2183641aa7e14793ad2e7997f81867b1b0895a5c65dbf86",
+      "expected": "88c940ca076eef458f678e2226989927b282f2ebdd755591e9d94074e0734e70",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.61111d9046d29f16",
-      "consumer": "scene.dsv41.model.decoder.graph.61111d9046d29f16",
+      "id": "scene.dsv41.model.decoder.graph.77564ab4ac094ce0",
+      "consumer": "scene.dsv41.model.decoder.graph.77564ab4ac094ce0",
       "domain": "model",
       "classification": "derived",
-      "expected": "61111d9046d29f1672a99a14ce3825731044312efcca44dc780b0ab5790ded28",
+      "expected": "77564ab4ac094ce0c17ead5160a5702f2c0b790d730007ad4e6251bc7518130d",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.7cb8058d18ddf865",
-      "consumer": "scene.dsv41.model.decoder.graph.7cb8058d18ddf865",
+      "id": "scene.dsv41.model.decoder.graph.3eae3cdcb3ca5d2e",
+      "consumer": "scene.dsv41.model.decoder.graph.3eae3cdcb3ca5d2e",
       "domain": "model",
       "classification": "derived",
-      "expected": "7cb8058d18ddf865dad5b035e35e78ebfd1fcc01a712aaf9c58d8f30ccc4fe2e",
+      "expected": "3eae3cdcb3ca5d2e069780a8239d95c5bbf375230626ddd33b4aad65d4d114e3",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.0a18b6c20dcc5971",
-      "consumer": "scene.dsv41.model.decoder.graph.0a18b6c20dcc5971",
+      "id": "scene.dsv41.model.decoder.graph.d76ca89e7492ba58",
+      "consumer": "scene.dsv41.model.decoder.graph.d76ca89e7492ba58",
       "domain": "model",
       "classification": "derived",
-      "expected": "0a18b6c20dcc5971b9826cdc1eb18ba9f1c362c92fac4be358a5df0832cf7ec3",
+      "expected": "d76ca89e7492ba581fc48d25a07817c5be5bbb9dd8597804f4c3c295d66aa717",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.cb8f19c990fcd594",
-      "consumer": "scene.dsv41.model.decoder.graph.cb8f19c990fcd594",
+      "id": "scene.dsv41.model.decoder.graph.95f10f57cabf19bb",
+      "consumer": "scene.dsv41.model.decoder.graph.95f10f57cabf19bb",
       "domain": "model",
       "classification": "derived",
-      "expected": "cb8f19c990fcd594938f3316cba0ebf8a8def010f910b844676b048d0654886b",
+      "expected": "95f10f57cabf19bbe2d594959af9132b9009cde8689e47c1ac2622738b301377",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.b4a736d7196a7f9e",
-      "consumer": "scene.dsv41.model.decoder.graph.b4a736d7196a7f9e",
+      "id": "scene.dsv41.model.decoder.graph.a873532a96be82fb",
+      "consumer": "scene.dsv41.model.decoder.graph.a873532a96be82fb",
       "domain": "model",
       "classification": "derived",
-      "expected": "b4a736d7196a7f9e061ea53d3ef72d7061123b7cb823fa1ae6cac6533a6e4471",
+      "expected": "a873532a96be82fba179c8c2181690aa9fad8cc79be7a4bca61852bc2c093495",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.58c750b449d6b336",
-      "consumer": "scene.dsv41.model.decoder.graph.58c750b449d6b336",
+      "id": "scene.dsv41.model.decoder.graph.db13f3094a68a5fe",
+      "consumer": "scene.dsv41.model.decoder.graph.db13f3094a68a5fe",
       "domain": "model",
       "classification": "derived",
-      "expected": "58c750b449d6b336db89c6bf2e8fb2e7fffa4c0bae5039b10215cc7ca2dd1ff7",
+      "expected": "db13f3094a68a5fe89772a147ebb813dd08dc20ad86a3a7dac76480b5ffd5bbd",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.a4b980bc0ff77dc6",
-      "consumer": "scene.dsv41.model.decoder.graph.a4b980bc0ff77dc6",
+      "id": "scene.dsv41.model.decoder.graph.7bd24d442bac7fb5",
+      "consumer": "scene.dsv41.model.decoder.graph.7bd24d442bac7fb5",
       "domain": "model",
       "classification": "derived",
-      "expected": "a4b980bc0ff77dc607101f81ac91e4db5a6169fc065520795c82f776df8896fb",
+      "expected": "7bd24d442bac7fb503dbaa0414da63ca589e694c6a39d032a2bdaf20ff539481",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.5b4da728b8b3fbe7",
-      "consumer": "scene.dsv41.model.decoder.graph.5b4da728b8b3fbe7",
+      "id": "scene.dsv41.model.decoder.graph.ca9fedafa113df65",
+      "consumer": "scene.dsv41.model.decoder.graph.ca9fedafa113df65",
       "domain": "model",
       "classification": "derived",
-      "expected": "5b4da728b8b3fbe7852fd52de8922f1eb580cc045e48dbc62c768b6f4e7d5b42",
+      "expected": "ca9fedafa113df6565bb7276aff20fc2710b96e3685b7930744d471e42bc1af4",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.55e29cd11f0a0ca7",
-      "consumer": "scene.dsv41.model.decoder.graph.55e29cd11f0a0ca7",
+      "id": "scene.dsv41.model.decoder.graph.4bf698358482d666",
+      "consumer": "scene.dsv41.model.decoder.graph.4bf698358482d666",
       "domain": "model",
       "classification": "derived",
-      "expected": "55e29cd11f0a0ca7bc46058e4a78dd5cfc8d823972365439642d0c5be9caf0a0",
+      "expected": "4bf698358482d6661e288b8b5f9052beb25cbe8e884b8d4b469009733c151045",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.22bc2d3f0727dbbc",
-      "consumer": "scene.dsv41.model.decoder.graph.22bc2d3f0727dbbc",
+      "id": "scene.dsv41.model.decoder.graph.8eba3f7cd712a71a",
+      "consumer": "scene.dsv41.model.decoder.graph.8eba3f7cd712a71a",
       "domain": "model",
       "classification": "derived",
-      "expected": "22bc2d3f0727dbbcc760182456dc6109860f58d01cc86747ac2893d5faf3c09b",
+      "expected": "8eba3f7cd712a71a674863cb6b51c342b300e3176c09ba1f66bc16ff94a0c908",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.8b560377c20f7236",
-      "consumer": "scene.dsv41.model.decoder.graph.8b560377c20f7236",
+      "id": "scene.dsv41.model.decoder.graph.4ba13727ac858887",
+      "consumer": "scene.dsv41.model.decoder.graph.4ba13727ac858887",
       "domain": "model",
       "classification": "derived",
-      "expected": "8b560377c20f7236c980111c514d6066bc3c8320fba205ce6dc0db65db90ffc6",
+      "expected": "4ba13727ac8588875bc0be5dde464f528a96d68cf3f3a8dac77fc3609100648a",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.19365a1c78039581",
-      "consumer": "scene.dsv41.model.decoder.graph.19365a1c78039581",
+      "id": "scene.dsv41.model.decoder.graph.11fb5354b6e4ad32",
+      "consumer": "scene.dsv41.model.decoder.graph.11fb5354b6e4ad32",
       "domain": "model",
       "classification": "derived",
-      "expected": "19365a1c780395812ceeaf9c6211c56afbcd4effec8cec2d677d4b09dd969e21",
+      "expected": "11fb5354b6e4ad320f77c7eb9a94cd12578f09e8912c940c4e4c12514d263d18",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.97782972798165eb",
-      "consumer": "scene.dsv41.model.decoder.graph.97782972798165eb",
+      "id": "scene.dsv41.model.decoder.graph.09eeec00c79baff7",
+      "consumer": "scene.dsv41.model.decoder.graph.09eeec00c79baff7",
       "domain": "model",
       "classification": "derived",
-      "expected": "97782972798165ebc551bedc38d31efff0abbf91ef3f817c3f4984ed18509ff8",
+      "expected": "09eeec00c79baff7a91dce637691370f7fddd9dab33605f784450cd742383494",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.8f3a5501a2f1eb51",
-      "consumer": "scene.dsv41.model.decoder.graph.8f3a5501a2f1eb51",
+      "id": "scene.dsv41.model.decoder.graph.1060b3af94756c88",
+      "consumer": "scene.dsv41.model.decoder.graph.1060b3af94756c88",
       "domain": "model",
       "classification": "derived",
-      "expected": "8f3a5501a2f1eb51b9cee45e9eea98472a95746e643a02135f864b48d3110210",
+      "expected": "1060b3af94756c88f52aabf80059ad771ff6613d19df76123c8e118d4b6ac461",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.eada9bfe0333ada6",
-      "consumer": "scene.dsv41.model.decoder.graph.eada9bfe0333ada6",
+      "id": "scene.dsv41.model.decoder.graph.4d36faed722e7983",
+      "consumer": "scene.dsv41.model.decoder.graph.4d36faed722e7983",
       "domain": "model",
       "classification": "derived",
-      "expected": "eada9bfe0333ada6e16cfc66c0e447bd368fd0775af3ca2aaee401fe4d38530e",
+      "expected": "4d36faed722e7983c72a30df8f6de39b7ecd68cc1951bbc20e296537e8c916f8",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.695728578cd3ebb5",
-      "consumer": "scene.dsv41.model.decoder.graph.695728578cd3ebb5",
+      "id": "scene.dsv41.model.decoder.graph.877c72a9c366330c",
+      "consumer": "scene.dsv41.model.decoder.graph.877c72a9c366330c",
       "domain": "model",
       "classification": "derived",
-      "expected": "695728578cd3ebb518a1da76194f74cc260a2ca6e1315e033e5b689503b8f89f",
+      "expected": "877c72a9c366330c21c049347d7d79301f14a3c47e4abc139e29512f05695129",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.a5a63153706cae3c",
-      "consumer": "scene.dsv41.model.decoder.graph.a5a63153706cae3c",
+      "id": "scene.dsv41.model.decoder.graph.a516abd73d3f97eb",
+      "consumer": "scene.dsv41.model.decoder.graph.a516abd73d3f97eb",
       "domain": "model",
       "classification": "derived",
-      "expected": "a5a63153706cae3c633661b98b24d64913a4ea08b132b2a723434d8d4c8e487e",
+      "expected": "a516abd73d3f97eb0d3323272eeea131a79f72d0085171c6c1c14cc9f4e99741",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.30f665c71c62cbb7",
-      "consumer": "scene.dsv41.model.decoder.graph.30f665c71c62cbb7",
+      "id": "scene.dsv41.model.decoder.graph.9d7b2553c3668d49",
+      "consumer": "scene.dsv41.model.decoder.graph.9d7b2553c3668d49",
       "domain": "model",
       "classification": "derived",
-      "expected": "30f665c71c62cbb7c5a6a025f0ab20e3d31a3052e5d79fc8236cec4c7c8a09af",
+      "expected": "9d7b2553c3668d49f9cf6a4e7dd2db3b313efa597c68049b811444b96119d50b",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.08ab2a14481ead64",
-      "consumer": "scene.dsv41.model.decoder.graph.08ab2a14481ead64",
+      "id": "scene.dsv41.model.decoder.graph.662237a09e0f4955",
+      "consumer": "scene.dsv41.model.decoder.graph.662237a09e0f4955",
       "domain": "model",
       "classification": "derived",
-      "expected": "08ab2a14481ead64febffade4a40b30ecc9423658091c9c328e8ea5c02972064",
+      "expected": "662237a09e0f49554a28cda5f2893b41c3ecd267bc13ac1fa58021f03b76fdfa",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.8811cbe364ba98b9",
-      "consumer": "scene.dsv41.model.decoder.graph.8811cbe364ba98b9",
+      "id": "scene.dsv41.model.decoder.graph.2324284ffcfbe469",
+      "consumer": "scene.dsv41.model.decoder.graph.2324284ffcfbe469",
       "domain": "model",
       "classification": "derived",
-      "expected": "8811cbe364ba98b9adab0c6c6605e0080426aad323fafe48b73157b4b1bbffde",
+      "expected": "2324284ffcfbe4699622b77dd003688d66d35c79b81430361983c5d7cbf9b596",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.1fdae57b8a8fa8d4",
-      "consumer": "scene.dsv41.model.decoder.graph.1fdae57b8a8fa8d4",
+      "id": "scene.dsv41.model.decoder.graph.f5b1d2f700e5fa76",
+      "consumer": "scene.dsv41.model.decoder.graph.f5b1d2f700e5fa76",
       "domain": "model",
       "classification": "derived",
-      "expected": "1fdae57b8a8fa8d4d9185958824c3fcda2f9ca696be671807d5237149e6ea354",
+      "expected": "f5b1d2f700e5fa76031b0f13e6b2b3fb1c11e3cdf297e9ad19823587bfbb41d8",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.fecbed71d40fe512",
-      "consumer": "scene.dsv41.model.decoder.graph.fecbed71d40fe512",
+      "id": "scene.dsv41.model.decoder.graph.597636fa715fcc0b",
+      "consumer": "scene.dsv41.model.decoder.graph.597636fa715fcc0b",
       "domain": "model",
       "classification": "derived",
-      "expected": "fecbed71d40fe5127b681c7487e48fc33939eefe1f2f0bed4655e741e116a1f9",
+      "expected": "597636fa715fcc0b3913b3c208788cfe19a42cc494579bfa957902e04555ccc7",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.b45f878173dd3515",
-      "consumer": "scene.dsv41.model.decoder.graph.b45f878173dd3515",
+      "id": "scene.dsv41.model.decoder.graph.bb81ae4bf65d6f95",
+      "consumer": "scene.dsv41.model.decoder.graph.bb81ae4bf65d6f95",
       "domain": "model",
       "classification": "derived",
-      "expected": "b45f878173dd351553c09cd11a4f1bc4c043291c7d1df20dffde7b4cbb6a9fc8",
+      "expected": "bb81ae4bf65d6f953ca6a37f8e9ac47485132e549b2bb0786e5d104b81504fa3",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.337e4ee17d8d75d6",
-      "consumer": "scene.dsv41.model.decoder.graph.337e4ee17d8d75d6",
+      "id": "scene.dsv41.model.decoder.graph.8452657a0d5d2ae6",
+      "consumer": "scene.dsv41.model.decoder.graph.8452657a0d5d2ae6",
       "domain": "model",
       "classification": "derived",
-      "expected": "337e4ee17d8d75d62ef3629fcf680a816d45fc1ff7b3573c84e4d1bcfaf408cc",
+      "expected": "8452657a0d5d2ae61c0380b4fd06873055a80052522b46eaa9166e3be7e18325",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.ce0228b0e353ac16",
-      "consumer": "scene.dsv41.model.decoder.graph.ce0228b0e353ac16",
+      "id": "scene.dsv41.model.decoder.graph.3bb6a78d1f1911a5",
+      "consumer": "scene.dsv41.model.decoder.graph.3bb6a78d1f1911a5",
       "domain": "model",
       "classification": "derived",
-      "expected": "ce0228b0e353ac164fc90243711529cf34c3025e91df58024b5ac5cfa6ec7ddb",
+      "expected": "3bb6a78d1f1911a58d2f5dbc19e6d02d6518dc44042a7ac352af7fcd94320d4f",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.2f236f7db9d03a4e",
-      "consumer": "scene.dsv41.model.decoder.graph.2f236f7db9d03a4e",
+      "id": "scene.dsv41.model.decoder.graph.9e34179ebe70e073",
+      "consumer": "scene.dsv41.model.decoder.graph.9e34179ebe70e073",
       "domain": "model",
       "classification": "derived",
-      "expected": "2f236f7db9d03a4efd8226b4cfbe5549c76650a2152e90967c4dccd74f878bce",
+      "expected": "9e34179ebe70e073811b94b13f9bdaa5d65f2485c425f1e7eae0d2d1410fa4eb",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.c214719ed38f4e89",
-      "consumer": "scene.dsv41.model.decoder.graph.c214719ed38f4e89",
+      "id": "scene.dsv41.model.decoder.graph.61505ae03730badf",
+      "consumer": "scene.dsv41.model.decoder.graph.61505ae03730badf",
       "domain": "model",
       "classification": "derived",
-      "expected": "c214719ed38f4e897afcec875237176cff5724c039aaf82e399392cf624e562c",
+      "expected": "61505ae03730badf74e776bcee929a471519857daaac96be5a1944296de663d8",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
     },
     {
-      "id": "scene.dsv41.model.decoder.graph.0136e29221635c60",
-      "consumer": "scene.dsv41.model.decoder.graph.0136e29221635c60",
+      "id": "scene.dsv41.model.decoder.graph.595b591735293e46",
+      "consumer": "scene.dsv41.model.decoder.graph.595b591735293e46",
       "domain": "model",
       "classification": "derived",
-      "expected": "0136e29221635c608a08daaaf4dc0b3f80f0bae8cfd5dee17ea829c20bb1ab24",
+      "expected": "595b591735293e463163571f078755eb3f2ac1e9cbb68cb46c549f6a5c46c955",
       "dependencies": [
         "deepdive.decoder",
         "function.layerNumbers",
-        "file.src/diagram-model.mjs"
+        "file.src/diagram-model.mjs",
+        "function.layerBands"
       ],
       "evidence": [],
       "statement": "Detailed chapter layer rendering: bounded absolute selector, causal residual handoff and unchanged attention/MoE operators. Identity does not confer source acceptance or independent review."
@@ -156346,6 +156426,18 @@
       ],
       "evidence": [],
       "statement": "CPU-computed illustrative trace and its presentation; current execution and independent scalar oracles check intermediates. Reduced fixtures do not assert full checkpoint parity, production replay or scientific acceptance. Primary-source mechanism dependencies are retained."
+    },
+    {
+      "id": "function.layerBands",
+      "consumer": "function.layerBands",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "95a309605d2b8bcf72b1b4582fbda32952e69d3a177dc04d7a458f290637ea8d",
+      "dependencies": [
+        "function.layerKind"
+      ],
+      "evidence": [],
+      "statement": "Contiguous producer/reuse bundles derived from the checkpoint layer kinds. Shared by the overview and chapter selectors. Identity is not scientific acceptance."
     }
   ],
   "contracts": [

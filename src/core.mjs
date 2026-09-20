@@ -40,6 +40,17 @@ export function focalStages(id){const m=getModel(id),out=[];if(m.vision)out.push
 /** Absolute layer IDs offered by a chapter; the checkpoint still owns the full stack. */
 export function layerNumbers(id,stage){const m=getModel(id),first=m.encoderLayers&&stage==='decoder'?m.encoderLayers+1:1,last=m.encoderLayers&&stage==='encoder'?m.encoderLayers:m.layers;return Array.from({length:last-first+1},(_,i)=>first+i);}
 export function layerKind(id,layer){const m=getModel(id);if(!Number.isInteger(layer)||layer<1||layer>m.layers)throw new RangeError('Layer is one-indexed and must exist.');if(m.architecture==='ced-csa2'){const l=layer-1;if(l<m.swaLayers)return'swa';if(m.kvSourceLayers.includes(l))return'csa2-full';if(m.indexSourceLayers.includes(l))return'csa2-reindex';return'csa2-reuse';}if(m.architecture==='hybrid-kda')return layer%4===0||layer===m.layers?'mla':'kda';if(m.architecture.startsWith('hybrid'))return layer%m.globalEvery===0?(m.architecture==='hybrid-qsa'?'qsa':'gqa'):'delta';return m.architecture;}
+/** Bands of consecutive layers: one head layer plus the reuse layers that read what it published.
+ *
+ * Derived from layerKind over the requested one-indexed span, never from a written schedule, so a
+ * band cannot exist that the model's own layer pattern does not produce. A 'csa2-reuse' layer joins
+ * the band above it; an 'swa' layer joins only another 'swa'. Every other kind opens a band.
+ */
+export function layerBands(m,lo,hi){const out=[];
+ for(let l=lo;l<=hi;l++){const kind=layerKind(m,l),last=out[out.length-1];
+  if(last&&(kind==='csa2-reuse'||(kind==='swa'&&last.kind==='swa'))){last.hi=l;if(kind==='csa2-reuse')last.reuse++;continue;}
+  out.push({kind,lo:l,hi:l,reuse:0});}
+ return out;}
 export function layerPartition(id){const m=getModel(id),r={mla:0,gqa:0,kda:0,delta:0,qsa:0,swa:0,'csa2-full':0,'csa2-reindex':0,'csa2-reuse':0};for(let l=1;l<=m.layers;l++)r[layerKind(m,l)]++;return r;}
 export function ffnKind(id,layer){const m=getModel(id);return !m.experts||layer<=m.denseLayers?'dense':m.latent?'latent-moe':'moe';}
 export function parameterLedger(id){

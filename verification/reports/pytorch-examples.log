@@ -55,6 +55,6 @@ test_changed_source_fingerprint_fails_before_numbers (pytorch_worked_artifact.Wo
 test_saved_intermediates_and_outputs_match_current_cpu (pytorch_worked_artifact.WorkedArtifactTests.test_saved_intermediates_and_outputs_match_current_cpu) ... ok
 
 ----------------------------------------------------------------------
-Ran 55 tests in 0.343s
+Ran 55 tests in 0.356s
 
 OK

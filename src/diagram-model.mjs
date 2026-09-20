@@ -1,4 +1,4 @@
-import {getModel,layerKind,layerPartition,layerNumbers,ffnKind,parameterLedger,formatNum,formatParams} from './core.mjs';
+import {getModel,layerKind,layerPartition,layerNumbers,layerBands,ffnKind,parameterLedger,formatNum,formatParams} from './core.mjs';
 import {makeScene,addNode,addGroup,addLabel,addWire,addSum,makeInfo} from './scene.mjs';
 const F=formatNum;
 function modelInfo(m,title,body,formula='',facts=[],links=[]){return makeInfo('Model architecture',title,body,formula,facts,m.sources,links);}
@@ -21,11 +21,27 @@ function stackOverview(g,m,s){
  }
  const partition=encoder||decoder?layers.reduce((counts,l)=>{const kind=layerKind(m,l);counts[kind]=(counts[kind]||0)+1;return counts;},{}):layerPartition(m);
  node(g,m,'overview-block',20,164,166,58,encoder?'Encoder stack':'Decoder stack',`${layers.length} layers · d = ${F(m.d)}`,encoder||decoder?`Select an absolute layer in the ${encoder?'encoder':'decoder'} range ${layers[0]}–${layers.at(-1)}. Every layer preserves causal token visibility and retains its own attention, residual mixing and experts. Cache and selection ownership refer to absolute layers across the complete stack.`:'Select a layer in the grid. Attention and feed-forward motifs are derived from the selected checkpoint, not from a family name.','xₗ₊₁ = Blockₗ(xₗ)',Object.entries(partition).filter(x=>x[1]).map(([k,v])=>[k.toUpperCase(),String(v)]),{tone:'compute'});
- addLabel(g,'SELECT A LAYER',20,253,'muted',{size:10.5,tracking:1});
- layers.forEach((l,i)=>{g.decorations.push({kind:'layer',layer:l,id:`layer-${l}`,x:20+(i%6)*28,y:274+Math.floor(i/6)*27,w:23,h:21,attention:layerKind(m,l),active:l===s.layer,dense:ffnKind(m,l)==='dense'});});
- const gy=274+Math.ceil(layers.length/6)*27;
- addLabel(g,'Numbers are one-indexed.',20,gy+20,'muted',{size:10.5});
- addLabel(g,'Amber = recurrent layer',20,gy+39,'state',{size:10.5});
+ const bundled=encoder||decoder;
+ let gy;
+ const tile=(l,x,y)=>g.decorations.push({kind:'layer',layer:l,id:`layer-${l}`,x,y,w:23,h:21,attention:layerKind(m,l),active:l===s.layer,dense:ffnKind(m,l)==='dense'});
+ if(bundled){
+  addLabel(g,'LAYER / ATTENTION + MoE',20,253,'muted',{size:10.5,tracking:.3});
+  const bands=layerBands(m,layers[0],layers.at(-1));
+  bands.forEach((band,i)=>{
+   const y=260+i*48;
+   addGroup(g,`layer-bundle-${band.lo}-${band.hi}`,15,y,176,44);
+   const title=band.kind==='swa'?`${band.hi-band.lo+1}× SWA`:`${band.kind==='csa2-full'?'Full':'Reindex'} + ${band.reuse}× Reuse`;
+   addLabel(g,title,20,y+14,'muted',{size:10.5});
+   for(let l=band.lo;l<=band.hi;l++)tile(l,20+(l-band.lo)*28,y+20);
+  });
+  gy=260+bands.length*48;
+ }else{
+  addLabel(g,'SELECT A LAYER',20,253,'muted',{size:10.5,tracking:1});
+  layers.forEach((l,i)=>tile(l,20+(i%6)*28,274+Math.floor(i/6)*27));
+  gy=274+Math.ceil(layers.length/6)*27;
+  addLabel(g,'Numbers are one-indexed.',20,gy+20,'muted',{size:10.5});
+  addLabel(g,'Amber = recurrent layer',20,gy+39,'state',{size:10.5});
+ }
  const oy=Math.max(gy+75,755);
  if(encoder){
   node(g,m,'encoder-handoff',20,oy,166,52,'Decoder handoff',`layer ${m.encoderLayers} → ${m.encoderLayers+1}`,`Pass the residual after encoder layer ${m.encoderLayers} directly to decoder layer ${m.encoderLayers+1}. This boundary does not normalize into vocabulary logits: the decoder continues the causal stack and its boundary layer produces the shared global cache.`,'h_encoder,out → h_decoder,in',[['Residual shape',`[B, T, ${m.streams}, ${m.d}]`]],{tone:'state'});

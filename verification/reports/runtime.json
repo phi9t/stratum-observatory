@@ -3,21 +3,21 @@
   "target": "stratum-observatory-3",
   "profile": "runtime",
   "status": "BLOCKED",
-  "generated_at": "2026-09-20T19:37:21.675772+00:00",
-  "lock_sha256": "86c6f22fdeba2f689349d47ba32a981e10f08e3628e8c374b4090715fee86c28",
-  "consumer_sha256": "07ae6d320f3a44f478791becd686b07a535033d6e10a75320205a2004250037c",
+  "generated_at": "2026-09-20T20:47:58.521897+00:00",
+  "lock_sha256": "e104da3c816fffa1808187e48a5010ac6245c9d3c3b754169bd18fc973f72ba5",
+  "consumer_sha256": "fa31112dc814866199a72e3ba7952fab8f4f743e7231980329ef005c67b9dad7",
   "coverage": {
     "inputs": 604,
-    "functions_and_files": 60,
+    "functions_and_files": 61,
     "scene_contracts": 3109,
-    "claims": 3797,
+    "claims": 3798,
     "sources": 83,
     "verified_sources": 81,
     "verified_scientific_claims": 0,
     "passed_presentation_bindings": 0
   },
   "counts": {
-    "BLOCKED": 6852,
+    "BLOCKED": 6853,
     "PASS": 38,
     "NOT_RUN": 32
   },
@@ -32784,7 +32784,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.q3827.model.inputs.text-embeddings.b4e435523b1a58c2",
+      "subject": "scene.q3827.model.inputs.text-embeddings.77529f0ecf34f87f",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -32820,7 +32820,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.q3827.model.inputs.interleave.f9918f0a2c299b5c",
+      "subject": "scene.q3827.model.inputs.interleave.ad052df79ff19631",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -36699,7 +36699,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.q38flash.model.inputs.text-embeddings.f717242c5a2fca36",
+      "subject": "scene.q38flash.model.inputs.text-embeddings.eaf715bf70bcb257",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -36735,7 +36735,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.q38flash.model.inputs.interleave.d800a4e33e1c850e",
+      "subject": "scene.q38flash.model.inputs.interleave.1b1fa5612a7189d4",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -36762,7 +36762,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.q38flash.model.residual.depth-0.4c0773be9b0ed57d",
+      "subject": "scene.q38flash.model.residual.depth-0.34f763a3246e96e8",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -36771,7 +36771,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.q38flash.model.residual.depth-1.ef3298a3b6a2e7b6",
+      "subject": "scene.q38flash.model.residual.depth-1.b99e96778ea74058",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -41622,7 +41622,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.kimi3.model.inputs.text-embeddings.a7d5210f6142f570",
+      "subject": "scene.kimi3.model.inputs.text-embeddings.e5fc6c2b3e0f95fa",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -41658,7 +41658,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.kimi3.model.inputs.interleave.53fb9b0cffe1b701",
+      "subject": "scene.kimi3.model.inputs.interleave.2d25be55a58abc5c",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -49614,7 +49614,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.inputs.interleave.a09ac40515bb682b",
+      "subject": "scene.dsv41.model.inputs.interleave.eb9001a39b16e3b6",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -49632,7 +49632,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.inputs.text-embeddings.804b9a12d788cb70",
+      "subject": "scene.dsv41.model.inputs.text-embeddings.6d0eb49cd862e433",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -51270,7 +51270,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.ced.enc-out.6f9174c9b23f5204",
+      "subject": "scene.dsv41.model.ced.enc-out.896804eafb9c5161",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -51360,7 +51360,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.residual.depth-0.0beb9b242b5bf72a",
+      "subject": "scene.dsv41.model.residual.depth-0.fa7f97a54f755758",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -51369,7 +51369,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.residual.depth-1.dbf0a343e7e7f10b",
+      "subject": "scene.dsv41.model.residual.depth-1.7bbad0f84ce76c14",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -52035,7 +52035,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-markov.be4c98d73845bd27",
+      "subject": "scene.dsv41.model.dspark.dspark-markov.c0a9a164de9f4017",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54168,7 +54168,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.9651da592fb1253a",
+      "subject": "scene.dsv41.model.encoder.graph.830b41096437bebc",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54177,7 +54177,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.40511a044b2adbc9",
+      "subject": "scene.dsv41.model.encoder.graph.3d25c1848e389da2",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54222,7 +54222,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.3608b8c7ca376bcc",
+      "subject": "scene.dsv41.model.encoder.graph.659f58561e94d26c",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54231,7 +54231,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.66faeff9f66db9da",
+      "subject": "scene.dsv41.model.encoder.graph.2895a33ce9d5dffe",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54258,7 +54258,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.ed9e1c939185e5b9",
+      "subject": "scene.dsv41.model.encoder.graph.aad213ccf7cf77c7",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54267,7 +54267,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.d817101347c1e30d",
+      "subject": "scene.dsv41.model.encoder.graph.be27d0c390e64cb3",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54276,7 +54276,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.47a8dffa79ac01e5",
+      "subject": "scene.dsv41.model.encoder.graph.bd134b8fa7b22d48",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54285,7 +54285,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.00b79d5c86c2321f",
+      "subject": "scene.dsv41.model.encoder.graph.06dafcc5005dc5ad",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54294,7 +54294,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.e11bb2f61c8697d4",
+      "subject": "scene.dsv41.model.encoder.graph.3583cb1e1ac6f305",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54303,7 +54303,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.1b78766bdb333094",
+      "subject": "scene.dsv41.model.encoder.graph.379fde19722ab836",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54312,7 +54312,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.bee925630e5bbbd8",
+      "subject": "scene.dsv41.model.encoder.graph.d81b2a8c977f16f4",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54321,7 +54321,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.25ea57931bea76a2",
+      "subject": "scene.dsv41.model.encoder.graph.7c9543746e9e70f1",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54330,7 +54330,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.e1c90609e7ec21b3",
+      "subject": "scene.dsv41.model.encoder.graph.0558b466a25d853b",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54339,7 +54339,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.b38e821ab8794514",
+      "subject": "scene.dsv41.model.encoder.graph.2b5339c162e500ad",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54357,7 +54357,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.92563d83abc6e386",
+      "subject": "scene.dsv41.model.encoder.graph.2c81ac42d2d7c960",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54366,7 +54366,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.9ab58370731307db",
+      "subject": "scene.dsv41.model.encoder.graph.e67fbfb90a73f7c8",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54393,7 +54393,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.f3eabb147b9bcf40",
+      "subject": "scene.dsv41.model.encoder.graph.764af2abdb41a843",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54402,7 +54402,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.58a7515b02df977c",
+      "subject": "scene.dsv41.model.encoder.graph.4aa9b7dfbefbbf42",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54411,7 +54411,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.c4b031491f814f97",
+      "subject": "scene.dsv41.model.encoder.graph.cfea7aae23a4f953",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54420,7 +54420,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.699f2f3a4a4cfeb6",
+      "subject": "scene.dsv41.model.encoder.graph.5324829a7c448d65",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54429,7 +54429,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.473d99ccabb95464",
+      "subject": "scene.dsv41.model.encoder.graph.73e7a47417cf455d",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54438,7 +54438,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.064dbeed90a7cde4",
+      "subject": "scene.dsv41.model.encoder.graph.262348990a0757c3",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54447,7 +54447,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.a0716bf0a45ff511",
+      "subject": "scene.dsv41.model.encoder.graph.cedbdfc2570d09db",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54456,7 +54456,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.ba6117b64ebe31e5",
+      "subject": "scene.dsv41.model.encoder.graph.67239fc840621f44",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54465,7 +54465,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.18fbe0355c373d26",
+      "subject": "scene.dsv41.model.encoder.graph.bdb13055f3d5ac10",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54474,7 +54474,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.1f0fddc0c330598d",
+      "subject": "scene.dsv41.model.encoder.graph.949f6dcf99563d54",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54510,7 +54510,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.281822251e516aa8",
+      "subject": "scene.dsv41.model.encoder.graph.27faf08f353ca507",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54519,7 +54519,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.c82283e461b07c55",
+      "subject": "scene.dsv41.model.encoder.graph.d32bb11b77629aab",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54528,7 +54528,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.6e50e8c804ea4786",
+      "subject": "scene.dsv41.model.encoder.graph.aa9340a91353716b",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54537,7 +54537,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.e402b750ae701aa4",
+      "subject": "scene.dsv41.model.encoder.graph.6ace14311e4d6e84",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54546,7 +54546,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.ab19e3d45ffc1384",
+      "subject": "scene.dsv41.model.encoder.graph.ed0936e973eec926",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54555,7 +54555,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.217cd8bb1c4f8e16",
+      "subject": "scene.dsv41.model.encoder.graph.66c92a5731263fd4",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54564,7 +54564,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.31c4d77e0d014295",
+      "subject": "scene.dsv41.model.encoder.graph.959d60fca1a6684e",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54573,7 +54573,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.a1742d998408784b",
+      "subject": "scene.dsv41.model.encoder.graph.a87ccfe997b5fb6c",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54582,7 +54582,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.809e160c7c0c0a91",
+      "subject": "scene.dsv41.model.encoder.graph.3c62030167677cfd",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54591,7 +54591,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.b50d0cd0d987fdcd",
+      "subject": "scene.dsv41.model.encoder.graph.f2209cae988c2bb7",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54960,7 +54960,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.660abe6936a07a54",
+      "subject": "scene.dsv41.model.encoder.graph.6322b3966ac06e70",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54969,7 +54969,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.e7c5c3c05587f960",
+      "subject": "scene.dsv41.model.encoder.graph.4653cebac267b9fe",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54996,7 +54996,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.d45cce3b27dbf31b",
+      "subject": "scene.dsv41.model.encoder.graph.7345232881416f64",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55005,7 +55005,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.encoder.graph.f31fc8c64efcaf0b",
+      "subject": "scene.dsv41.model.encoder.graph.6760aadf011cf0e6",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55023,7 +55023,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.07595b3f3538c5e2",
+      "subject": "scene.dsv41.model.decoder.graph.c395701197ac4249",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55032,7 +55032,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.dc5770ec7f9b1e2d",
+      "subject": "scene.dsv41.model.decoder.graph.608df185826b4924",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55041,7 +55041,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.73acaec637fc9cd7",
+      "subject": "scene.dsv41.model.decoder.graph.14f09e09b7add278",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55050,7 +55050,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.6e5abfcfbfd85ea6",
+      "subject": "scene.dsv41.model.decoder.graph.eeb4b708e5403940",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55059,7 +55059,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.d4dafcab24c22d60",
+      "subject": "scene.dsv41.model.decoder.graph.bdda539819b7ab47",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55068,7 +55068,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.2574f6f95ee3e9a3",
+      "subject": "scene.dsv41.model.decoder.graph.d3b9be71e227c48f",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55077,7 +55077,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.771f697ea881b221",
+      "subject": "scene.dsv41.model.decoder.graph.a2e1a2552f607116",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55086,7 +55086,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.a2a626d54592b1e4",
+      "subject": "scene.dsv41.model.decoder.graph.89d65ca6382317e0",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55095,7 +55095,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.a0fdca66bc65a53d",
+      "subject": "scene.dsv41.model.decoder.graph.0f667f1c681867be",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55104,7 +55104,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.c499a53e43872b12",
+      "subject": "scene.dsv41.model.decoder.graph.f44e3593978d4fa8",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55113,7 +55113,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.c63b65b2b1027082",
+      "subject": "scene.dsv41.model.decoder.graph.4c87932359176f12",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55122,7 +55122,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.6e707d958d4e6ab9",
+      "subject": "scene.dsv41.model.decoder.graph.88c940ca076eef45",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55131,7 +55131,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.61111d9046d29f16",
+      "subject": "scene.dsv41.model.decoder.graph.77564ab4ac094ce0",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55140,7 +55140,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.7cb8058d18ddf865",
+      "subject": "scene.dsv41.model.decoder.graph.3eae3cdcb3ca5d2e",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55149,7 +55149,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.0a18b6c20dcc5971",
+      "subject": "scene.dsv41.model.decoder.graph.d76ca89e7492ba58",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55158,7 +55158,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.cb8f19c990fcd594",
+      "subject": "scene.dsv41.model.decoder.graph.95f10f57cabf19bb",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55167,7 +55167,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.b4a736d7196a7f9e",
+      "subject": "scene.dsv41.model.decoder.graph.a873532a96be82fb",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55176,7 +55176,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.58c750b449d6b336",
+      "subject": "scene.dsv41.model.decoder.graph.db13f3094a68a5fe",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55185,7 +55185,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.a4b980bc0ff77dc6",
+      "subject": "scene.dsv41.model.decoder.graph.7bd24d442bac7fb5",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55194,7 +55194,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.5b4da728b8b3fbe7",
+      "subject": "scene.dsv41.model.decoder.graph.ca9fedafa113df65",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55203,7 +55203,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.55e29cd11f0a0ca7",
+      "subject": "scene.dsv41.model.decoder.graph.4bf698358482d666",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55212,7 +55212,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.22bc2d3f0727dbbc",
+      "subject": "scene.dsv41.model.decoder.graph.8eba3f7cd712a71a",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55221,7 +55221,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.8b560377c20f7236",
+      "subject": "scene.dsv41.model.decoder.graph.4ba13727ac858887",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55230,7 +55230,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.19365a1c78039581",
+      "subject": "scene.dsv41.model.decoder.graph.11fb5354b6e4ad32",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55239,7 +55239,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.97782972798165eb",
+      "subject": "scene.dsv41.model.decoder.graph.09eeec00c79baff7",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55248,7 +55248,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.8f3a5501a2f1eb51",
+      "subject": "scene.dsv41.model.decoder.graph.1060b3af94756c88",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55257,7 +55257,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.eada9bfe0333ada6",
+      "subject": "scene.dsv41.model.decoder.graph.4d36faed722e7983",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55266,7 +55266,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.695728578cd3ebb5",
+      "subject": "scene.dsv41.model.decoder.graph.877c72a9c366330c",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55275,7 +55275,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.a5a63153706cae3c",
+      "subject": "scene.dsv41.model.decoder.graph.a516abd73d3f97eb",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55284,7 +55284,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.30f665c71c62cbb7",
+      "subject": "scene.dsv41.model.decoder.graph.9d7b2553c3668d49",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55293,7 +55293,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.08ab2a14481ead64",
+      "subject": "scene.dsv41.model.decoder.graph.662237a09e0f4955",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55302,7 +55302,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.8811cbe364ba98b9",
+      "subject": "scene.dsv41.model.decoder.graph.2324284ffcfbe469",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55311,7 +55311,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.1fdae57b8a8fa8d4",
+      "subject": "scene.dsv41.model.decoder.graph.f5b1d2f700e5fa76",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55320,7 +55320,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.fecbed71d40fe512",
+      "subject": "scene.dsv41.model.decoder.graph.597636fa715fcc0b",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55329,7 +55329,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.b45f878173dd3515",
+      "subject": "scene.dsv41.model.decoder.graph.bb81ae4bf65d6f95",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55338,7 +55338,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.337e4ee17d8d75d6",
+      "subject": "scene.dsv41.model.decoder.graph.8452657a0d5d2ae6",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55347,7 +55347,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.ce0228b0e353ac16",
+      "subject": "scene.dsv41.model.decoder.graph.3bb6a78d1f1911a5",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55356,7 +55356,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.2f236f7db9d03a4e",
+      "subject": "scene.dsv41.model.decoder.graph.9e34179ebe70e073",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55365,7 +55365,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.c214719ed38f4e89",
+      "subject": "scene.dsv41.model.decoder.graph.61505ae03730badf",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55374,7 +55374,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.0136e29221635c60",
+      "subject": "scene.dsv41.model.decoder.graph.595b591735293e46",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55434,6 +55434,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "function.layerBands",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
@@ -57291,7 +57300,7 @@
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-markov.be4c98d73845bd27",
+      "subject": "scene.dsv41.model.dspark.dspark-markov.c0a9a164de9f4017",
       "message": "Required framework_code anchor is missing.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -57300,7 +57309,7 @@
       "code": "MODEL_DUAL_CODE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-markov.be4c98d73845bd27",
+      "subject": "scene.dsv41.model.dspark.dspark-markov.c0a9a164de9f4017",
       "message": "Requires publisher implementation AND independent framework implementation.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
