@@ -3,9 +3,9 @@
   "target": "stratum-observatory-3",
   "profile": "publication",
   "status": "BLOCKED",
-  "generated_at": "2026-09-20T19:06:59.217621+00:00",
-  "lock_sha256": "04e8664c622a764f46b845fe9e5b98148d2c4e423499bfdd40bebc60740a9368",
-  "consumer_sha256": "e1a7b9300f81e10e16a98ca84323527adae407a64f23dcc6e2e8e7bf6242af5d",
+  "generated_at": "2026-09-20T19:37:15.287590+00:00",
+  "lock_sha256": "86c6f22fdeba2f689349d47ba32a981e10f08e3628e8c374b4090715fee86c28",
+  "consumer_sha256": "07ae6d320f3a44f478791becd686b07a535033d6e10a75320205a2004250037c",
   "coverage": {
     "inputs": 604,
     "functions_and_files": 60,

@@ -1,23 +1,23 @@
 {
   "schema": "stratum-engineering/v1",
   "status": "PASS",
-  "started_at": "2026-09-20T18:57:06.478002+00:00",
-  "completed_at": "2026-09-20T19:06:32.971036+00:00",
-  "consumer_sha256": "e1a7b9300f81e10e16a98ca84323527adae407a64f23dcc6e2e8e7bf6242af5d",
-  "verifier_sha256": "bafa624e5ba9f9750bfc13304939594e020ed81c6b63d526ec55a767d0f10b72",
-  "lock_sha256": "04e8664c622a764f46b845fe9e5b98148d2c4e423499bfdd40bebc60740a9368",
-  "artifact_sha256": "9d1136d46e496a8f5c10162e746a5c9eeff4fd13ab60f804597c685311727378",
+  "started_at": "2026-09-20T19:27:15.307601+00:00",
+  "completed_at": "2026-09-20T19:36:38.178404+00:00",
+  "consumer_sha256": "07ae6d320f3a44f478791becd686b07a535033d6e10a75320205a2004250037c",
+  "verifier_sha256": "c1b7d6bf535fe4679882742258e3f016fb282f58691107bc760a178349aa6072",
+  "lock_sha256": "86c6f22fdeba2f689349d47ba32a981e10f08e3628e8c374b4090715fee86c28",
+  "artifact_sha256": "5f71fa20e97d1ea498a3a536dbc1d0e99cfb4fdd251c5ec2b77efe6ae3e1153f",
   "artifacts": {
-    "data-representation.html": "2da54454df57c248dba62e714a055d599add0a00e8534a6e51dfb12e8f0737ee",
-    "deepseek-v4.1.html": "bd2c55197949530fef3c445b5a53ee2e6bec3ae9c90735f22f2f44e8709e16f8",
-    "foundations.html": "384f97a85ce61fda44eec20d8e4b1adc5d270092711c5ad8f8eef93a2d492269",
-    "hardware.html": "fed2290741fb14adbe4ff430cff63c843de04cf7be8018f10325efce162b20af",
-    "index.html": "9d1136d46e496a8f5c10162e746a5c9eeff4fd13ab60f804597c685311727378",
-    "kimi-k3.html": "66749c53ebe876cb4944d063c4ee6e7f4dfeb30b26bcf4d0c2bab06789c1c0cb",
-    "networking.html": "afa95a80bf84ce00df5a1c3f3e13a0f12c36cf82fe01db2aa9add59631d7b849",
-    "qwen3.8.html": "d1ecc5eb175473f285de5100e8695c0419ec73b659a86ec9113299a14e328476"
+    "data-representation.html": "3887c08095fff1f145429583b5c04eec0cf7f870786e079e31015e0e9b491299",
+    "deepseek-v4.1.html": "1cc10c5a1cda3dbacaec192521c5c06055e123b3294a878fb5d6f7c71908e1bc",
+    "foundations.html": "c0496bfd091c62e5af6ebec5d67baa601d01daa9d0f3dc2db56f1218cccc6ff0",
+    "hardware.html": "972290779ae03e7ffbbbc045d346776e2e661b209f14eb14ac22317ad140dd83",
+    "index.html": "5f71fa20e97d1ea498a3a536dbc1d0e99cfb4fdd251c5ec2b77efe6ae3e1153f",
+    "kimi-k3.html": "09f27ef8def65f87d83bf2babd70ce0c04746bb30d9c85e9ced793ed9d123e8e",
+    "networking.html": "0a185a43ed1b8a4d0ff685aeeb95f006e6d92ddcd369419ba75cdc3ed8597380",
+    "qwen3.8.html": "eb82668691237ff317812933e279b6a878cb40b4e1426b68fd7ff4e9e5dccc01"
   },
-  "repeat_build_sha256": "9d1136d46e496a8f5c10162e746a5c9eeff4fd13ab60f804597c685311727378",
+  "repeat_build_sha256": "5f71fa20e97d1ea498a3a536dbc1d0e99cfb4fdd251c5ec2b77efe6ae3e1153f",
   "deterministic_build": true,
   "commands": {
     "verifier-tests": {

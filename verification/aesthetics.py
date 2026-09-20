@@ -299,7 +299,7 @@ def judge_spacing_scale(stylesheet,policy):
 #: in `UNMEASURED_CHROME`. Without those, renaming a class silently removes it from measurement
 #: while the gate still reports PASS -- which is the failure this list was added to fix, one layer
 #: up from the prose it was added for.
-CHROME_TEXT_SELECTORS=('.worked-table th','.worked-table td','.worked-table code','.worked-table caption','.worked-diagram text','.chart text','.metric-note','.chart-caption','.source-role','.status-pill',
+CHROME_TEXT_SELECTORS=('.worked-example .worked-lead','.worked-caption','.worked-number','.worked-path-title','.worked-block-label','.worked-query-label','.worked-pair-label','.worked-token-label','.worked-result span','.worked-block-score','.worked-dictionary-row span','.worked-audit summary','.chapter-notes>summary','.worked-table th','.worked-table td','.worked-table code','.worked-table caption','.chart text','.metric-note','.chart-caption','.source-role','.status-pill',
                        '.fact dt','.lens-tab .idx','.innovation-note','.innovation-table th',
                        '.innovation-table td','.innovation-table a','.accounting-assumptions summary',
                        '.accounting-assumptions h4','.accounting-assumptions p','.accounting-citations a','.pytorch-section h4','.pytorch-section p','.pytorch-example summary','.pytorch-code','.worked-code summary','.pytorch-license summary','.pytorch-code span','.code-language')
@@ -605,7 +605,7 @@ def run(root,record=False):
                 notes.open=true;
                 return notes.querySelectorAll('summary,h4,p,.accounting-citations a').length;
             }""")
-            page.evaluate("() => document.querySelectorAll('.pytorch-example,.pytorch-license,.worked-code').forEach(el=>el.open=true)")
+            page.evaluate("() => document.querySelectorAll('.pytorch-example,.pytorch-license,.worked-code,.worked-audit,.chapter-notes').forEach(el=>el.open=true)")
             data=page.evaluate(PROBE)
             measured=sum(1 for text in data['texts'] if text.get('accounting'))
             if not accounting_expected or measured!=accounting_expected:

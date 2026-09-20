@@ -27,23 +27,37 @@ def exercise(page, root):
             panel = page.locator(f'[data-worked="{identifier}"]')
             assert panel.is_visible()
             example = examples[identifier]
+            audit = panel.locator('.worked-audit')
+            assert not audit.evaluate('el=>el.open')
+            audit.locator('summary').focus();audit.locator('summary').press('Enter')
+            assert audit.evaluate('el=>el.open')
             for step in example['inputs'] + example['steps']:
                 assert panel.locator(f'[data-worked-values="{step["id"]}"]').inner_text() == text(step['values'])
                 row_text = panel.locator(f'[data-worked-step="{step["id"]}"]').inner_text()
                 assert step['dtype'] in row_text
                 assert ' × '.join(step['axes']) in row_text
+            for cell in panel.locator('[data-worked-cell]').all():
+                tensor_id, *indices = cell.get_attribute('data-worked-cell').split(':')
+                value = next(row['values'] for row in example['inputs'] + example['steps'] if row['id'] == tensor_id)
+                for index in indices:
+                    value = value[int(index)]
+                assert cell.inner_text() == text(value)
+            if identifier == 'selection':
+                mask = next(row['values'] for row in example['steps'] if row['id'] == 'candidate_mask')
+                for index, keep in enumerate(mask):
+                    assert panel.locator(f'[data-worked-mask="{index}"]').inner_text() == ('Keep' if keep else 'Exclude')
             if identifier == 'replay':
-                assert panel.locator('svg[role="img"]').count() == 1
-                assert panel.locator('.worked-wire.worked-missing').count() > 0
-                for lane, key in enumerate(['full', 'truncated']):
-                    for depth, row in enumerate(example[key]):
-                        for position, value in enumerate(row['values']):
-                            label = panel.locator(f'[data-replay-value="{lane}-{depth}-{position}"]')
-                            expected = [text(v) for v in value] if isinstance(value, list) else [text(value)]
-                            assert label.locator('tspan').all_text_contents() == expected
+                for cell in panel.locator('[data-replay-value]').all():
+                    lane, depth, position = map(int, cell.get_attribute('data-replay-value').split('-'))
+                    value = example[['full','truncated'][lane]][depth]['values'][position]
+                    assert cell.inner_text() == text(value)
+                assert panel.locator('[data-replay-value]').count() == 6
+            audit.locator('summary').press('Enter')
+            assert not audit.evaluate('el=>el.open')
         page.evaluate("window.dispatchEvent(new Event('beforeprint'))")
         page.emulate_media(media='print')
         assert page.locator('.worked-code[open]').count() == 1
+        assert page.locator('.worked-audit:not([open])').count() == 0
         page.emulate_media(media='screen')
         page.evaluate("window.dispatchEvent(new Event('afterprint'))")
         assert page.locator('.worked-code[open]').count() == 0

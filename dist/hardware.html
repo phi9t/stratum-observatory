@@ -61,18 +61,52 @@ summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 .python-operator{color:var(--text)}
 @media print{.pytorch-code span{color:#222!important}.code-line::before{color:#444!important}}
 
-/* CPU trace tables and the supporting token-by-depth illustration. */
+/* CPU trace tables and compact teaching paths. */
+.worked-example{min-width:0}
+.worked-example .worked-lead{font-size:20px;line-height:1.5;max-width:760px;margin:12px 0 24px;color:var(--text)}
+.worked-caption{font-size:14px;line-height:1.7;color:var(--text)}
+.worked-number{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;line-height:1.7;color:var(--text);overflow-wrap:anywhere}
+.worked-path{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:24px 0}
+.worked-path-stop{position:relative;border-top:2px solid var(--accent);padding:16px 0;min-width:0}
+.worked-path-stop+.worked-path-stop:before{content:'→';position:absolute;left:-20px;top:16px;color:var(--accent)}
+.worked-path-missing{border-top-style:dashed;border-color:var(--amber)}
+.worked-path-title,.worked-block-label,.worked-query-label{font-size:14px;line-height:1.7;font-weight:600;color:var(--text);margin-bottom:12px}
+.worked-pair{padding:8px 0;display:flex;flex-direction:column;gap:4px}
+.worked-pair-label,.worked-token-label{display:block;font-size:14px;line-height:1.7;color:var(--text)}
+.worked-result{border-left:2px solid var(--accent);background:var(--canvas);padding:12px 16px;margin:16px 0;display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 24px;min-width:0}
+.worked-result span{font-size:14px;line-height:1.7;color:var(--text)}
+.worked-blocks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0}
+.worked-block{border-top:2px solid var(--line-strong);padding-top:12px;min-width:0}
+.worked-block-pinned{border-color:var(--amber)}
+.worked-block-score{font-size:14px;line-height:1.7;color:var(--text);margin-bottom:12px}
+.worked-tokens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}
+.worked-token{min-width:0;padding:8px;background:var(--canvas);border:1px solid var(--line)}
+.worked-token-kept{border-color:var(--accent)}
+.worked-token-selected{border-color:var(--purple);border-bottom-width:4px}
+.worked-later{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;margin:16px 0}
+.worked-query{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:32px;margin:24px 0}
+.worked-dictionary{border-top:2px solid var(--amber);padding-top:16px;min-width:0}
+.worked-dictionary-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.worked-dictionary-row span{font-size:14px;line-height:1.7;color:var(--text)}
+.worked-readouts{min-width:0}
+.worked-readout{border-top:2px solid var(--purple);padding-top:16px}
+.worked-readout+.worked-readout{margin-top:24px}
+.worked-weights{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.worked-audit{border-top:1px solid var(--line);margin-top:24px;min-width:0}
+.worked-audit summary{font-size:14px;line-height:1.7;color:var(--text);padding:16px 0;cursor:pointer}
+.worked-audit summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 .worked-table{min-width:960px;table-layout:fixed}
 .worked-table th,.worked-table td{white-space:normal;overflow-wrap:anywhere;vertical-align:top}
 .worked-table th:nth-child(1){width:18%}.worked-table th:nth-child(2){width:34%}.worked-table th:nth-child(3){width:12%}.worked-table th:nth-child(4){width:36%}
 .worked-table caption{padding:16px;text-align:left}
 .worked-table th,.worked-table td,.worked-table code,.worked-table caption{font-size:14px;line-height:1.7;color:var(--text)}
 .worked-table code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
-.worked-diagram{display:block;width:100%;min-width:900px;max-width:1100px;height:auto}
-.worked-diagram text{font:20px ui-monospace,SFMono-Regular,Consolas,monospace;fill:var(--text)}
-.worked-wire{fill:none;stroke:var(--accent);stroke-width:2}
-.worked-cell{fill:var(--surface);stroke:var(--line);stroke-width:2}
-.worked-missing{stroke:var(--amber);stroke-dasharray:5 4}
+@media(max-width:900px){.worked-later{grid-template-columns:repeat(3,minmax(0,1fr))}.worked-query{grid-template-columns:1fr}.worked-dictionary-row{justify-content:start}.worked-dictionary-row span{min-width:100px}}
+@media(max-width:600px){.worked-path,.worked-blocks{grid-template-columns:1fr;gap:16px}.worked-path-stop+.worked-path-stop:before{content:'↓';left:auto;right:8px;top:16px}.worked-pair{flex-direction:row;flex-wrap:wrap;gap:8px 16px}.worked-pair-label{min-width:100px}.worked-weights{grid-template-columns:repeat(2,minmax(0,1fr))}.worked-later{grid-template-columns:repeat(2,minmax(0,1fr))}.worked-example .button{white-space:normal;text-align:left}}
+.chapter-notes{border-top:1px solid var(--line);margin-top:24px;min-width:0}
+.chapter-notes>summary{font-size:14px;line-height:1.7;color:var(--text);padding:16px 24px;cursor:pointer}
+.chapter-notes>summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.chapter-notes[open]{padding-bottom:24px}
 </style></head><body data-page-id="hardware" data-page-model="ds3">
 <a class="skip-link" href="#workspace">Skip to schematic</a>
 <header class="site-header"><a class="brand" href="#" aria-label="Stratum home"><svg width="31" height="31" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 9L16 3l12 6-12 6zM4 16l12 6 12-6M4 23l12 6 12-6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span>STRATUM<span class="brand-sub">MODEL SYSTEMS OBSERVATORY</span></span></a><div class="header-note">From one tensor<br><b>to the entire system.</b></div><div class="global-actions"><button id="search-button" class="button command-button" title="Search models, views and components"><span>Search the atlas</span><kbd>⌘ K</kbd></button><button id="theme-button" class="icon-button" aria-label="Switch color theme" title="Switch theme">◐</button><button id="export-config" class="icon-button" aria-label="Export scenario JSON" title="Export scenario">↗</button></div></header>
@@ -206,38 +240,23 @@ function tensorText(value){
 }
 function workedIds(stage){return ({decoder:['replay'],csa2:['selection','query'],'module-csa2-selection':['selection'],'module-csa2-attention':['query']})[stage]||[];}
 function tensorRows(rows){return rows.map(r=>`<tr data-worked-step="${esc(r.id)}"><th scope="row">${esc(r.title)}</th><td>${esc(r.operation)}</td><td>${esc(r.axes.join(" × "))}<br>${esc(tensorText(r.shape))}<br>${esc(r.dtype)}</td><td><code data-worked-values="${esc(r.id)}">${esc(tensorText(r.values))}</code></td></tr>`).join('');}
-function replayDiagram(example){
- const lanes=[['Full history',example.full],['Truncated replay',example.truncated]];
- const columns=example.full[0].positions.length,depths=example.full.length;
- const laneWidth=180+columns*180,height=110+depths*120;
- let content='';
- for(const [lane,[title,rows]]of lanes.entries()){
-  const origin=0;
-  content+=`<g transform="translate(0,${lane*height})">`;
-  content+=`<text x="${origin+24}" y="30">${esc(title)}</text>`;
-  rows[0].positions.forEach((position,i)=>{content+=`<text x="${origin+140+i*180}" y="65">position ${esc(position)}</text>`;});
-  for(const [depth,row]of rows.entries()){
-   const y=90+depth*120;
-   content+=`<text x="${origin+20}" y="${y+30}">depth ${esc(row.depth)}</text>`;
-   row.values.forEach((value,i)=>{
-    const x=origin+125+i*180,missing=value===null;
-    if(depth>0&&!missing){
-     for(const previous of [i-1,i].filter(j=>j>=0)){
-      const px=origin+125+previous*180+70,py=y-120+76;
-      const absent=rows[depth-1].values[previous]===null;
-      content+=`<path class="worked-wire${absent?' worked-missing':''}" d="M${px},${py} L${x+70},${y}"/><path class="worked-wire${absent?' worked-missing':''}" d="M${x+65},${y-7} L${x+70},${y} L${x+75},${y-7}"/>`;
-     }
-    }
-    content+=`<rect class="worked-cell${missing?' worked-missing':''}" x="${x}" y="${y}" width="150" height="76" rx="6"/><text x="${x+8}" y="${y+32}" data-replay-value="${lane}-${depth}-${i}">${(Array.isArray(value)?value:[value]).map((v,j)=>`<tspan x="${x+8}" dy="${j?24:0}">${esc(tensorText(v))}</tspan>`).join('')}</text>`;
-   });
-  }
-  content+='</g>';
- }
- return `<div class="table-scroll"><svg class="worked-diagram" viewBox="0 0 ${laneWidth} ${height*2}" role="img" aria-label="CPU replay experiment: token positions across layer depth, full history and truncated replay"><title>Missing local dependencies change the replayed result</title>${content}</svg></div><p>Arrows show local dependencies. Dashed amber paths start from missing state. Both runs also read the same global dictionary and sink, shown in the inputs below; those inputs are omitted from these local dependency arrows.</p>`;
+const values=(e,id)=>[...e.inputs,...e.steps].find(r=>r.id===id).values;
+const cell=(id,value)=>`<code class="worked-number" data-worked-cell="${esc(id)}">${esc(tensorText(value))}</code>`;
+function replayDiagram(e){
+ const d=e.missing_dependency,path=[[d.from_depth,d.position],[d.via_depth,d.via_position],[d.target_depth,d.target_position]];
+ return `<p class="worked-lead">Replay starts at position ${e.settings.replay_start}. Missing history still reaches the target at position ${e.settings.target_position}.</p><div class="worked-path">${path.map(([depth,position],i)=>`<div class="worked-path-stop${i===0?' worked-path-missing':''}"><div class="worked-path-title">Position ${position} · depth ${depth}</div>${[['Full history',e.full],['Truncated',e.truncated]].map(([label,rows],lane)=>{const index=rows[depth].positions.indexOf(position);return `<div class="worked-pair"><span class="worked-pair-label">${label}</span><code class="worked-number" data-replay-value="${lane}-${depth}-${index}">${esc(tensorText(rows[depth].values[index]))}</code></div>`;}).join('')}</div>`).join('')}</div><p class="worked-caption">A partial dependency path through the local window. The missing state changes the next depth, then reaches the target. Both runs read the same global KV and sink.</p><div class="worked-result"><span>Final target difference · full − truncated</span>${cell('final_difference',values(e,'final_difference'))}</div>`;
+}
+function selectionDiagram(e){
+ const v=id=>values(e,id),mask=v('candidate_mask'),scores=v('causal_scores'),later=v('selector_scores'),newest=v('newest_block')[0],selected=v('selected_indices');
+ return `<p class="worked-lead">A fresh query can reorder candidates. It cannot recover an excluded key.</p><p class="worked-caption">Candidate-source query ${cell('source_queries:0',v('source_queries')[0])} scores completed groups. Each block covers ${e.settings.block_size} positions; the highest position score becomes its block score. Keep ${e.settings.candidate_blocks} blocks, with the newest reachable block pinned.</p><div class="worked-blocks">${v('block_maxima').map((maximum,b)=>`<div class="worked-block${b===newest?' worked-block-pinned':''}"><div class="worked-block-label">Block ${b}${b===newest?' · newest, pinned':''}</div><div class="worked-block-score">Maximum ${cell(`block_maxima:${b}`,maximum)}<br>After pin ${cell(`pinned_block_scores:${b}`,v('pinned_block_scores')[b])}</div><div class="worked-tokens">${scores.slice(b*e.settings.block_size,(b+1)*e.settings.block_size).map((score,j)=>{const i=b*e.settings.block_size+j;return `<div class="worked-token${mask[i]?' worked-token-kept':''}"><span class="worked-token-label">ID ${i}</span>${cell(`causal_scores:${i}`,score)}<span class="worked-token-label" data-worked-mask="${i}">${mask[i]?'Keep':'Exclude'}</span></div>`;}).join('')}</div></div>`).join('')}</div><p class="worked-caption">Later-selector query ${cell('selector_queries:0',v('selector_queries')[0])} scores the keys again. Only the kept IDs are eligible.</p><div class="worked-later">${later.map((score,i)=>`<div class="worked-token${selected.includes(i)?' worked-token-selected':''}"><span class="worked-token-label">ID ${i} · ${selected.includes(i)?'selected':mask[i]?'eligible':'excluded'}</span>${cell(`selector_scores:${i}`,score)}</div>`).join('')}</div><p class="worked-caption">The source layer selects directly from causal scores: ${cell('source_selected_indices',v('source_selected_indices'))}. The later selector applies the inherited mask.</p><div class="worked-result"><span>Later selector · final IDs in position order</span>${cell('selected_indices',selected)}</div>`;
+}
+function queryDiagram(e){
+ const v=id=>values(e,id),names=v('dictionary').map((_,i)=>i<e.settings.local_positions?`Local ${i}`:'Compressed');
+ return `<p class="worked-lead">Keep the dictionary fixed. Change the query, and the readout changes.</p><div class="worked-query"><div class="worked-dictionary"><div class="worked-query-label">Fixed dictionary</div>${v('dictionary').map((row,i)=>`<div class="worked-dictionary-row"><span>${names[i]}</span>${cell(`dictionary:${i}`,row)}</div>`).join('')}<div class="worked-dictionary-row"><span>Sink logit</span>${cell('sink',v('sink'))}</div><p class="worked-caption">softmax([QKᵀ / √D; s])<br>The sink receives probability; its value is zero.</p></div><div class="worked-readouts">${v('queries').map((q,i)=>`<div class="worked-readout"><div class="worked-query-label">Query ${cell(`queries:${i}`,q)} → softmax weights</div><div class="worked-weights">${v('weights')[i].map((w,j)=>`<div><span class="worked-token-label">${names[j]||'Sink'}</span>${cell(`weights:${i}:${j}`,w)}</div>`).join('')}</div><div class="worked-result"><span>Readout · Σ pᵢVᵢ</span>${cell(`outputs:${i}`,v('outputs')[i])}</div></div>`).join('')}</div></div><p class="worked-caption">Query alternatives at the same position, with unchanged KV. These rows are not successive decoder layers.</p>`;
 }
 function workedHTML(stage){return workedIds(stage).map(id=>{
- const example=WORKED_RESULTS[id];
- return `<section class="pytorch-section worked-example" data-worked="${id}" aria-label="${esc(example.title)}"><h4>${esc(example.title)}</h4><p>${esc(example.scope)}</p><p>Computed with the checked-in CPU PyTorch implementation. Floating-point values are displayed to six significant digits; the saved results retain full precision. These fixed teaching inputs are independent of the page’s context and hardware controls.</p>${id==='replay'?replayDiagram(example):''}<div class="table-scroll"><table class="comparison-table worked-table"><caption>Inputs → tensor operations → computed results</caption><thead><tr><th scope="col">Step</th><th scope="col">Operation</th><th scope="col">Shape</th><th scope="col">CPU values</th></tr></thead><tbody>${tensorRows([...example.inputs,...example.steps])}</tbody></table></div><p><strong>Fixture settings.</strong> ${Object.entries(example.settings).map(([key,value])=>esc(key)+' = '+esc(tensorText(value))).join(' · ')}</p>${id==='replay'?'':`<p><button class="button" data-module-example="csa2-${id==='query'?'attention':'selection'}">Inspect the ${id==='query'?'attention':'selection'} schematic and implementation →</button></p>`}</section>`;
+ const e=WORKED_RESULTS[id];
+ return `<section class="pytorch-section worked-example" data-worked="${id}" aria-label="${esc(e.title)}"><h4>${esc(e.title)}</h4><p class="worked-caption">${esc(e.scope)} Fixed inputs; independent of the page’s scenario controls.</p>${({replay:replayDiagram,selection:selectionDiagram,query:queryDiagram})[id](e)}<details class="worked-audit"><summary>Inspect CPU tensors and fixture settings</summary><p>Fixed teaching inputs are independent of the page’s context and hardware controls. CPU values are shown to six significant digits; the saved results retain full precision.</p><div class="table-scroll"><table class="comparison-table worked-table"><caption>Inputs → tensor operations → computed results</caption><thead><tr><th scope="col">Step</th><th scope="col">Operation</th><th scope="col">Shape</th><th scope="col">CPU values</th></tr></thead><tbody>${tensorRows([...e.inputs,...e.steps])}</tbody></table></div><p><strong>Fixture settings.</strong> ${Object.entries(e.settings).map(([key,value])=>esc(key)+' = '+esc(tensorText(value))).join(' · ')}</p></details>${id==='replay'||stage.startsWith('module-')?'':`<p><button class="button" data-module-example="csa2-${id==='query'?'attention':'selection'}">Inspect the ${id==='query'?'attention':'selection'} schematic and implementation →</button></p>`}</section>`;
  }).join('');}
 
 return {tensorText,workedIds,workedHTML};
@@ -1107,8 +1126,8 @@ function chapterContent(id,s){
   caveat:'The V4.1 Flash reference supplies the draft path. DeepSpec publishes a complete single-sequence offline evaluator for Qwen3/Gemma4, including rejection sampling and cache cropping; it does not establish the V4.1 production coordinator. The linked V4-Pro-DSpark release is the V4-Pro checkpoint with an attached draft module, not V4.1 Flash. Its configuration and performance cannot be substituted here. V4.1 draft parameters remain unpublished and excluded from the backbone ledger.',sources:['dsv41-config','dsv41-code','dspark-paper','deepspec-verification','deepspec-draft','deepspec-context','deepspec-sampling','dsv4-dspark-card','dsv4-dspark-code'],anchors:['Transformer.forward_spec','DSparkBlock.forward_head','verify_draft_tokens','generate_decoding_sample','forward_dspark_draft_block','_confident_prefix_length','Qwen3DSparkEvaluator._update','sample_residual']},
  };
  chapters.decoder.trace.push(
-  ['Why bounded replay is approximate · local-only illustration','Let D causal local-only layers each read a W-position window including the current token, with exact boundary inputs, no other token mixing and no restored intermediate state. Each layer extends the structural dependency radius by W − 1, so the final state at t depends on inputs in [t − D × (W − 1), t], clipped at the sequence start. This is D × (W − 1) prior positions plus the current input, not a checkpoint-specific decoder replay length. In the toy D = 2, W = 2 cone, t − 2 reaches t through depth 1 at t − 1. Replaying only t − 1 and t drops this path and is generally approximate.'],
-  ['Replay boundary and real global state','With replay start s, a local read at i is truncated to [max(s, i − W + 1), i]. The V4.1 report describes approximate reconstruction of missing layer-local SWA state with a short replay. Available shared global KV does not reconstruct those missing local states. Real V4.1 has a separate global attention path, so the toy local-only radius is not its full receptive field. SGLang enables the inspected decoder tail path only under enable_decoder_swa_bounded_replay and extend_without_speculative; it is not evidence for speculative verification.'],
+  ['Why replay is approximate','Each local-only layer can read W − 1 earlier positions. Through D layers, one dependency can reach D × (W − 1) positions into the past. Starting replay later removes some of those inputs, so later hidden states can change and replay is approximate. The computed example follows one such path. Its fixed global dictionary does not restore the missing local states.'],
+  ['Scope of the example','Real V4.1 also has global attention, so this local dependency path is not its full receptive field. The report describes bounded replay as approximate. The inspected SGLang path requires enable_decoder_swa_bounded_replay and extend_without_speculative; it does not establish dSpark verification behavior.'],
  );
  chapters.csa2.trace.push(['From position scores to a candidate mask','Indexer.forward computes query-dependent compressed-position scores and masks positions beyond the causal frontier. select_candidate_blocks takes the maximum score within each block, pins the newest reachable block, selects blocks and expands them into a position mask. Later decoder indexers compute their own position scores, apply that mask and select final top-k positions. The candidate-source layer itself selects directly from its causal scores. Selected IDs are sorted by position; unselected global KV remains stored.']);
  chapters.dspark.trace.push(
@@ -1872,7 +1891,7 @@ function innovationCoverage(){const rows=innovationRows(getModel(state.model));
 function pytorchExamples(stage){
  const selectedExample=moduleExample(stage);
  const examples=selectedExample?[selectedExample]:chapterExamples(stage);
- return `<section class="pytorch-section" aria-label="PyTorch implementations"><h4>PyTorch implementations</h4><p>These checked-in Python modules share V41Config and are validated with CPU PyTorch. Tensor annotations name the axes; operation notes explain the math. Downloads include the config and shared helpers. Reduced-shape checks do not load checkpoint weights.</p><details class="pytorch-example" data-example="config"><summary>Shared V4.1 configuration</summary><div class="pytorch-body"><p>examples/deepseek_v41/config.py · published dimensions; CPU checks replace only sizes.</p><pre class="pytorch-code" tabindex="0" role="region" aria-label="Shared V4.1 configuration Python code"><code>${highlightPython(PYTORCH_CONFIG)}</code></pre></div></details>${examples.map(x=>`<details class="pytorch-example" data-example="${esc(x.id)}" ${selectedExample?'open':''}><summary>${esc(x.title)}</summary><div class="pytorch-body">${selectedExample?'':`<p><button class="button" data-module-example="${esc(x.id)}">Inspect module schematic →</button></p>`}<p>${esc(x.summary)}</p><p>Local source: ${esc(x.sourceFile)}</p><p><strong>Simplifications.</strong> ${esc(x.limitations)}</p><p><strong>Source symbols.</strong> ${x.symbols.map(esc).join(' · ')}</p><p>${x.sources.map(citation).join(' · ')}</p>${x.requires.length?`<p>Uses shared helpers: ${x.requires.map(esc).join(', ')}. Included in the download.</p>`:''}<div class="pytorch-actions"><span class="code-language">Python · PyTorch</span><button class="button" data-copy-example="${esc(x.id)}" aria-label="Copy ${esc(x.title)} Python">Copy code</button><button class="button" data-download-example="${esc(x.id)}">Download Python</button></div><pre class="pytorch-code" tabindex="0" role="region" aria-label="${esc(x.title)} Python code"><code>${highlightPython(x.code)}</code></pre></div></details>`).join('')}<details class="pytorch-license"><summary>Source license notices · MIT</summary><p>${esc(PYTORCH_LICENSE)}</p></details></section>`;
+ return `<section class="pytorch-section" aria-label="PyTorch implementations"><h4>PyTorch implementations</h4><p>Follow the same operations in PyTorch. Tensor annotations name each axis; downloads include the shared configuration and helpers.</p><details class="pytorch-example" data-example="config"><summary>Shared V4.1 configuration</summary><div class="pytorch-body"><p>examples/deepseek_v41/config.py · published dimensions; CPU checks replace only sizes.</p><pre class="pytorch-code" tabindex="0" role="region" aria-label="Shared V4.1 configuration Python code"><code>${highlightPython(PYTORCH_CONFIG)}</code></pre></div></details>${examples.map(x=>`<details class="pytorch-example" data-example="${esc(x.id)}" ${selectedExample?'open':''}><summary>${esc(x.title)}</summary><div class="pytorch-body">${selectedExample?'':`<p><button class="button" data-module-example="${esc(x.id)}">Inspect module schematic →</button></p>`}<p>${esc(x.summary)}</p><p>Local source: ${esc(x.sourceFile)}</p><p><strong>Simplifications.</strong> ${esc(x.limitations)}</p><p><strong>Source symbols.</strong> ${x.symbols.map(esc).join(' · ')}</p><p>${x.sources.map(citation).join(' · ')}</p>${x.requires.length?`<p>Uses shared helpers: ${x.requires.map(esc).join(', ')}. Included in the download.</p>`:''}<div class="pytorch-actions"><span class="code-language">Python · PyTorch</span><button class="button" data-copy-example="${esc(x.id)}" aria-label="Copy ${esc(x.title)} Python">Copy code</button><button class="button" data-download-example="${esc(x.id)}">Download Python</button></div><pre class="pytorch-code" tabindex="0" role="region" aria-label="${esc(x.title)} Python code"><code>${highlightPython(x.code)}</code></pre></div></details>`).join('')}<details class="pytorch-license"><summary>Source license notices · MIT</summary><p>${esc(PYTORCH_LICENSE)}</p></details></section>`;
 }
 async function copyPythonExample(id){
  const text=exampleProgram(id);
@@ -1889,8 +1908,11 @@ function renderAnalysis(){const m=getModel(state.model),h=HARDWARE[state.hardwar
  if(example){
   html=analysisHeader(example.title,'Operation graph and source-grounded PyTorch implementation')+`<p>${esc(example.summary)}</p><p>${example.stages.map(stage=>`<button class="button" data-setting="stage" data-value="${stage}">← ${esc(DEEP_DIVE_TITLES[stage])} chapter</button>`).join(' ')}</p>`+workedHTML(state.stage)+pytorchExamples(state.stage);
  }else if(chapter){
-  html=analysisHeader(chapter.title,chapter.summary)+`<div class="analysis-split"><div class="analysis-copy"><h4>Worked trace</h4>${chapter.trace.map(([title,body])=>`<p><strong>${esc(title)}.</strong> ${esc(body)}</p>`).join('')}</div><div class="analysis-copy"><h4>Evidence boundary</h4><p>${esc(chapter.caveat)}</p><p>${esc(chapter.scope)}</p><h4>Source anchors</h4><p>${chapter.anchors.map(esc).join(' · ')}</p><p>${chapter.sources.map(citation).join(' · ')}</p></div></div><div class="table-scroll"><table class="comparison-table"><thead><tr><th scope="col">Object</th><th scope="col">Shape / quantity</th><th scope="col">Ownership / meaning</th></tr></thead><tbody>${chapter.rows.map(([label,value,owner])=>`<tr><th scope="row">${esc(label)}</th><td>${esc(value)}</td><td>${esc(owner)}</td></tr>`).join('')}</tbody></table></div><p class="innovation-note">${esc(chapter.symbols)}</p>`;
-  html+=workedHTML(state.stage)+pytorchExamples(state.stage);
+  const hasWorked=workedIds(state.stage).length>0;
+  html=analysisHeader(chapter.title,chapter.question)+(hasWorked?workedHTML(state.stage)+`<details class="chapter-notes"><summary>Execution notes, tensor contracts and sources</summary>`:'');
+  html+=`<p>${esc(chapter.summary)}</p><div class="analysis-split"><div class="analysis-copy"><h4>Execution order</h4>${chapter.trace.map(([title,body])=>`<p><strong>${esc(title)}.</strong> ${esc(body)}</p>`).join('')}</div><div class="analysis-copy"><h4>Evidence boundary</h4><p>${esc(chapter.caveat)}</p><p>${esc(chapter.scope)}</p><h4>Source anchors</h4><p>${chapter.anchors.map(esc).join(' · ')}</p><p>${chapter.sources.map(citation).join(' · ')}</p></div></div><div class="table-scroll"><table class="comparison-table"><thead><tr><th scope="col">Object</th><th scope="col">Shape / quantity</th><th scope="col">Ownership / meaning</th></tr></thead><tbody>${chapter.rows.map(([label,value,owner])=>`<tr><th scope="row">${esc(label)}</th><td>${esc(value)}</td><td>${esc(owner)}</td></tr>`).join('')}</tbody></table></div><p class="innovation-note">${esc(chapter.symbols)}</p>`;
+  if(hasWorked)html+='</details>';
+  html+=pytorchExamples(state.stage);
  }else if(['model','compare'].includes(state.view)){
   if(state.view==='compare')html+=comparisonTable();
   if(state.view==='model'&&state.stage==='ced'&&m.encoderLayers)html+=innovationCoverage();
@@ -1908,7 +1930,7 @@ function renderAnalysis(){const m=getModel(state.model),h=HARDWARE[state.hardwar
   const domains=[['Model architecture','Publisher + independent framework code; full consumer coverage.'],['GPU architecture','Exact SKU, capability, precision, kernel-resource and memory contracts.'],['Scale-up topology','Per-GPU, superchip, node and rack scope; actual port ownership.'],['Scale-out fabric','InfiniBand / RoCE policy, health, addressing, congestion and affinity.'],['Communication libraries','NCCL / NVSHMEM / NIXL version, backend, ordering and lifetime.'],['Training','Rank meshes, objectives, optimizer state and restart-equivalent updates.'],['Serving','Hybrid prefix completeness, private state, cache identity and handoff.'],['Numerics / kernels','Differential outputs, precision, packing/scales and predetermined tolerances.'],['Storage / recovery','Complete shard generations, hashes, durable commit and recovery.'],['Data / measurement','Tokenizer/data versions, raw observations, denominators and environment.'],['Visual semantics','Scene-to-claim coverage, truthful dependency graphs and actual text bounds.'],['Evidence / provenance','Immutable bytes, precise anchors, independent signed interpretation.'],['Release / reproducibility','Source/evidence/verifier/artifact identity and fresh execution receipts.']];
   html=analysisHeader('No reasonable domain is left without a gate','13 verifier areas · candidate references are not certification');html+=`<div class="verification-grid">${domains.map(([t,b])=>`<div class="verifier-card"><h4>${t}</h4><span class="status-pill">Evidence / execution pending</span><p>${b}</p></div>`).join('')}</div>`;html+=analysisHeader('Source map for this model and system','Open the original implementation · exact snapshot acceptance is outstanding');const refs=[...new Set([...m.sources,...h.sources,'nccl','nvshmem','nixl','roce'])];html+=`<div class="source-list">${refs.map(sourceCard).join('')}</div>`;
  }
- if(state.view==='model'&&m.id==='dsv41'&&workedIds(state.stage).length)html+=`<section class="pytorch-section"><details class="worked-code"><summary>CPU worked-example program</summary><p>Local source: examples/deepseek_v41/worked_examples.py. Run npm run generate:worked to recompute the saved traces; npm run check:worked verifies current execution against those results. This driver uses the module implementations above.</p><pre class="pytorch-code" tabindex="0" role="region" aria-label="CPU worked-example Python code"><code>${highlightPython(PYTHON_SOURCES['worked_examples.py'])}</code></pre></details></section>`;
+ if(state.view==='model'&&m.id==='dsv41'&&workedIds(state.stage).length)html+=`<section class="pytorch-section"><details class="worked-code"><summary>CPU worked-example program</summary><p>Reproduce the examples with examples/deepseek_v41/worked_examples.py. Run npm run generate:worked to recompute, or npm run check:worked to compare saved results with current CPU execution.</p><pre class="pytorch-code" tabindex="0" role="region" aria-label="CPU worked-example Python code"><code>${highlightPython(PYTHON_SOURCES['worked_examples.py'])}</code></pre></details></section>`;
  if(state.view==='model'&&m.id==='dsv41'&&['decoder','csa2','module-csa2-attention'].includes(state.stage))html+=`<p class="innovation-note">Further reading: <a href="https://zartbot.github.io/blog/model_arch/dsv41flash_arch/en.html" target="_blank" rel="noopener noreferrer">zartbot’s V4.1 architecture walkthrough ↗</a> inspired the replay and shared-KV teaching examples. Diagrams, explanations and Python here are independently authored; implementation claims use the primary sources above.</p>`;
  const expanded=$('analysis-panel').querySelector('.accounting-assumptions')?.open;
  html+=`<details class="accounting-assumptions"${expanded?' open':''}><summary>Accounting assumptions</summary>${accountingAssumptions(m,state).map(r=>`<section data-accounting-method="${esc(r.method)}" data-applicability="${esc(r.applicability)}"><h4>${esc(r.title)}</h4><p>${esc(r.body)}</p><p>${esc(r.scope)}</p><div class="accounting-citations">${r.sources.map(citation).join('')}</div></section>`).join('')}</details>`;
@@ -1962,7 +1984,7 @@ window.addEventListener('beforeprint',()=>{const el=document.querySelector('.acc
 window.addEventListener('afterprint',()=>{const el=document.querySelector('.accounting-assumptions');if(el)el.open=accountingOpenBeforePrint;});
 
 let codeOpenBeforePrint=[];
-window.addEventListener('beforeprint',()=>{codeOpenBeforePrint=[...document.querySelectorAll('.pytorch-example,.pytorch-license,.worked-code')].map(el=>[el,el.open]);for(const [el] of codeOpenBeforePrint)el.open=true;});
+window.addEventListener('beforeprint',()=>{codeOpenBeforePrint=[...document.querySelectorAll('.pytorch-example,.pytorch-license,.worked-code,.worked-audit,.chapter-notes')].map(el=>[el,el.open]);for(const [el] of codeOpenBeforePrint)el.open=true;});
 window.addEventListener('afterprint',()=>{for(const [el,open] of codeOpenBeforePrint)el.open=open;codeOpenBeforePrint=[];});
 
 return {};

@@ -808,11 +808,11 @@ executes all three, and CI could never have executed the transcription compariso
 
 ## Artifact identity
 
-Portable HTML SHA-256: `9d1136d46e496a8f5c10162e746a5c9eeff4fd13ab60f804597c685311727378`
+Portable HTML SHA-256: `5f71fa20e97d1ea498a3a536dbc1d0e99cfb4fdd251c5ec2b77efe6ae3e1153f`
 
-Scientific lock SHA-256: `04e8664c622a764f46b845fe9e5b98148d2c4e423499bfdd40bebc60740a9368`
+Scientific lock SHA-256: `86c6f22fdeba2f689349d47ba32a981e10f08e3628e8c374b4090715fee86c28`
 
-Verifier identity SHA-256: `bafa624e5ba9f9750bfc13304939594e020ed81c6b63d526ec55a767d0f10b72`
+Verifier identity SHA-256: `c1b7d6bf535fe4679882742258e3f016fb282f58691107bc760a178349aa6072`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -892,7 +892,7 @@ V4.1 dispatch and storage anchors. Main KV and packed indexer payload reconcile 
 window state and allocation overhead remain separate. [Research and source scope](docs/design/V41-SERVING-RESEARCH.md)
 record the development-branch serving implementation and Miles plugin. Neither is a runtime receipt.
 
-Dedicated HTML SHA-256: `bd2c55197949530fef3c445b5a53ee2e6bec3ae9c90735f22f2f44e8709e16f8`
+Dedicated HTML SHA-256: `1cc10c5a1cda3dbacaec192521c5c06055e123b3294a878fb5d6f7c71908e1bc`
 
 CED phase depths follow the report-level scheme. The pinned reference forward still visits all backbone layers; encoder-only prefill execution is not certified by that code. This distinction is visible in the CED caption and serving inspector.
 
@@ -936,10 +936,10 @@ registry drives page builds, artifact identity, browser routing and preview sele
 Chromium exercises real landing links, variant switches, reloads, identity enforcement,
 scenario exports and return links. All eight portable files are included in the software gates.
 
-- `deepseek-v4.1.html` SHA-256: `bd2c55197949530fef3c445b5a53ee2e6bec3ae9c90735f22f2f44e8709e16f8`
-- `index.html` SHA-256: `9d1136d46e496a8f5c10162e746a5c9eeff4fd13ab60f804597c685311727378`
-- `kimi-k3.html` SHA-256: `66749c53ebe876cb4944d063c4ee6e7f4dfeb30b26bcf4d0c2bab06789c1c0cb`
-- `qwen3.8.html` SHA-256: `d1ecc5eb175473f285de5100e8695c0419ec73b659a86ec9113299a14e328476`
+- `deepseek-v4.1.html` SHA-256: `1cc10c5a1cda3dbacaec192521c5c06055e123b3294a878fb5d6f7c71908e1bc`
+- `index.html` SHA-256: `5f71fa20e97d1ea498a3a536dbc1d0e99cfb4fdd251c5ec2b77efe6ae3e1153f`
+- `kimi-k3.html` SHA-256: `09f27ef8def65f87d83bf2babd70ce0c04746bb30d9c85e9ced793ed9d123e8e`
+- `qwen3.8.html` SHA-256: `eb82668691237ff317812933e279b6a878cb40b4e1426b68fd7ff4e9e5dccc01`
 
 Publication coverage: 3829 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
 
@@ -953,12 +953,12 @@ exposes a workload-model selector, and links preserve the originating scenario. 
 system bookmarks redirect to these shared pages. Repeated local arrow-key navigation keeps focus
 in the model tabs. All eight files receive artifact identity and portable delivery checks.
 
-- `hardware.html` SHA-256: `fed2290741fb14adbe4ff430cff63c843de04cf7be8018f10325efce162b20af`
-- `networking.html` SHA-256: `afa95a80bf84ce00df5a1c3f3e13a0f12c36cf82fe01db2aa9add59631d7b849`
+- `hardware.html` SHA-256: `972290779ae03e7ffbbbc045d346776e2e661b209f14eb14ac22317ad140dd83`
+- `networking.html` SHA-256: `0a185a43ed1b8a4d0ff685aeeb95f006e6d92ddcd369419ba75cdc3ed8597380`
 
-- `foundations.html` SHA-256: `384f97a85ce61fda44eec20d8e4b1adc5d270092711c5ad8f8eef93a2d492269`
+- `foundations.html` SHA-256: `c0496bfd091c62e5af6ebec5d67baa601d01daa9d0f3dc2db56f1218cccc6ff0`
 
-- `data-representation.html` SHA-256: `2da54454df57c248dba62e714a055d599add0a00e8534a6e51dfb12e8f0737ee`
+- `data-representation.html` SHA-256: `3887c08095fff1f145429583b5c04eec0cf7f870786e079e31015e0e9b491299`
 
 ## Landing directory and data reference
 
@@ -1119,3 +1119,11 @@ source JSON with deterministic gzip and restores it using native browser decompr
 before initialization. The source remains exact, tested through displayed code and
 clipboard/download delivery. Offline execution requires a modern browser supporting
 DecompressionStream; no remote loader, font, script or Python runtime is introduced.
+
+### Worked-example presentation
+
+Replay now follows a compact dependency path; selection groups scores by candidate
+block; query examples place the fixed dictionary beside its two readouts. Numerical
+values still come from the CPU artifact. Complete tensors and execution notes are
+expandable and open for print. Teaching-fixture scope remains visible. Browser checks
+compare the rendered values and candidate masks with the saved CPU results.

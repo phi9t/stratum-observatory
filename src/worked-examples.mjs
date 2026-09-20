@@ -9,36 +9,21 @@ export function tensorText(value){
 }
 export function workedIds(stage){return ({decoder:['replay'],csa2:['selection','query'],'module-csa2-selection':['selection'],'module-csa2-attention':['query']})[stage]||[];}
 function tensorRows(rows){return rows.map(r=>`<tr data-worked-step="${esc(r.id)}"><th scope="row">${esc(r.title)}</th><td>${esc(r.operation)}</td><td>${esc(r.axes.join(" × "))}<br>${esc(tensorText(r.shape))}<br>${esc(r.dtype)}</td><td><code data-worked-values="${esc(r.id)}">${esc(tensorText(r.values))}</code></td></tr>`).join('');}
-function replayDiagram(example){
- const lanes=[['Full history',example.full],['Truncated replay',example.truncated]];
- const columns=example.full[0].positions.length,depths=example.full.length;
- const laneWidth=180+columns*180,height=110+depths*120;
- let content='';
- for(const [lane,[title,rows]]of lanes.entries()){
-  const origin=0;
-  content+=`<g transform="translate(0,${lane*height})">`;
-  content+=`<text x="${origin+24}" y="30">${esc(title)}</text>`;
-  rows[0].positions.forEach((position,i)=>{content+=`<text x="${origin+140+i*180}" y="65">position ${esc(position)}</text>`;});
-  for(const [depth,row]of rows.entries()){
-   const y=90+depth*120;
-   content+=`<text x="${origin+20}" y="${y+30}">depth ${esc(row.depth)}</text>`;
-   row.values.forEach((value,i)=>{
-    const x=origin+125+i*180,missing=value===null;
-    if(depth>0&&!missing){
-     for(const previous of [i-1,i].filter(j=>j>=0)){
-      const px=origin+125+previous*180+70,py=y-120+76;
-      const absent=rows[depth-1].values[previous]===null;
-      content+=`<path class="worked-wire${absent?' worked-missing':''}" d="M${px},${py} L${x+70},${y}"/><path class="worked-wire${absent?' worked-missing':''}" d="M${x+65},${y-7} L${x+70},${y} L${x+75},${y-7}"/>`;
-     }
-    }
-    content+=`<rect class="worked-cell${missing?' worked-missing':''}" x="${x}" y="${y}" width="150" height="76" rx="6"/><text x="${x+8}" y="${y+32}" data-replay-value="${lane}-${depth}-${i}">${(Array.isArray(value)?value:[value]).map((v,j)=>`<tspan x="${x+8}" dy="${j?24:0}">${esc(tensorText(v))}</tspan>`).join('')}</text>`;
-   });
-  }
-  content+='</g>';
- }
- return `<div class="table-scroll"><svg class="worked-diagram" viewBox="0 0 ${laneWidth} ${height*2}" role="img" aria-label="CPU replay experiment: token positions across layer depth, full history and truncated replay"><title>Missing local dependencies change the replayed result</title>${content}</svg></div><p>Arrows show local dependencies. Dashed amber paths start from missing state. Both runs also read the same global dictionary and sink, shown in the inputs below; those inputs are omitted from these local dependency arrows.</p>`;
+const values=(e,id)=>[...e.inputs,...e.steps].find(r=>r.id===id).values;
+const cell=(id,value)=>`<code class="worked-number" data-worked-cell="${esc(id)}">${esc(tensorText(value))}</code>`;
+function replayDiagram(e){
+ const d=e.missing_dependency,path=[[d.from_depth,d.position],[d.via_depth,d.via_position],[d.target_depth,d.target_position]];
+ return `<p class="worked-lead">Replay starts at position ${e.settings.replay_start}. Missing history still reaches the target at position ${e.settings.target_position}.</p><div class="worked-path">${path.map(([depth,position],i)=>`<div class="worked-path-stop${i===0?' worked-path-missing':''}"><div class="worked-path-title">Position ${position} · depth ${depth}</div>${[['Full history',e.full],['Truncated',e.truncated]].map(([label,rows],lane)=>{const index=rows[depth].positions.indexOf(position);return `<div class="worked-pair"><span class="worked-pair-label">${label}</span><code class="worked-number" data-replay-value="${lane}-${depth}-${index}">${esc(tensorText(rows[depth].values[index]))}</code></div>`;}).join('')}</div>`).join('')}</div><p class="worked-caption">A partial dependency path through the local window. The missing state changes the next depth, then reaches the target. Both runs read the same global KV and sink.</p><div class="worked-result"><span>Final target difference · full − truncated</span>${cell('final_difference',values(e,'final_difference'))}</div>`;
+}
+function selectionDiagram(e){
+ const v=id=>values(e,id),mask=v('candidate_mask'),scores=v('causal_scores'),later=v('selector_scores'),newest=v('newest_block')[0],selected=v('selected_indices');
+ return `<p class="worked-lead">A fresh query can reorder candidates. It cannot recover an excluded key.</p><p class="worked-caption">Candidate-source query ${cell('source_queries:0',v('source_queries')[0])} scores completed groups. Each block covers ${e.settings.block_size} positions; the highest position score becomes its block score. Keep ${e.settings.candidate_blocks} blocks, with the newest reachable block pinned.</p><div class="worked-blocks">${v('block_maxima').map((maximum,b)=>`<div class="worked-block${b===newest?' worked-block-pinned':''}"><div class="worked-block-label">Block ${b}${b===newest?' · newest, pinned':''}</div><div class="worked-block-score">Maximum ${cell(`block_maxima:${b}`,maximum)}<br>After pin ${cell(`pinned_block_scores:${b}`,v('pinned_block_scores')[b])}</div><div class="worked-tokens">${scores.slice(b*e.settings.block_size,(b+1)*e.settings.block_size).map((score,j)=>{const i=b*e.settings.block_size+j;return `<div class="worked-token${mask[i]?' worked-token-kept':''}"><span class="worked-token-label">ID ${i}</span>${cell(`causal_scores:${i}`,score)}<span class="worked-token-label" data-worked-mask="${i}">${mask[i]?'Keep':'Exclude'}</span></div>`;}).join('')}</div></div>`).join('')}</div><p class="worked-caption">Later-selector query ${cell('selector_queries:0',v('selector_queries')[0])} scores the keys again. Only the kept IDs are eligible.</p><div class="worked-later">${later.map((score,i)=>`<div class="worked-token${selected.includes(i)?' worked-token-selected':''}"><span class="worked-token-label">ID ${i} · ${selected.includes(i)?'selected':mask[i]?'eligible':'excluded'}</span>${cell(`selector_scores:${i}`,score)}</div>`).join('')}</div><p class="worked-caption">The source layer selects directly from causal scores: ${cell('source_selected_indices',v('source_selected_indices'))}. The later selector applies the inherited mask.</p><div class="worked-result"><span>Later selector · final IDs in position order</span>${cell('selected_indices',selected)}</div>`;
+}
+function queryDiagram(e){
+ const v=id=>values(e,id),names=v('dictionary').map((_,i)=>i<e.settings.local_positions?`Local ${i}`:'Compressed');
+ return `<p class="worked-lead">Keep the dictionary fixed. Change the query, and the readout changes.</p><div class="worked-query"><div class="worked-dictionary"><div class="worked-query-label">Fixed dictionary</div>${v('dictionary').map((row,i)=>`<div class="worked-dictionary-row"><span>${names[i]}</span>${cell(`dictionary:${i}`,row)}</div>`).join('')}<div class="worked-dictionary-row"><span>Sink logit</span>${cell('sink',v('sink'))}</div><p class="worked-caption">softmax([QKᵀ / √D; s])<br>The sink receives probability; its value is zero.</p></div><div class="worked-readouts">${v('queries').map((q,i)=>`<div class="worked-readout"><div class="worked-query-label">Query ${cell(`queries:${i}`,q)} → softmax weights</div><div class="worked-weights">${v('weights')[i].map((w,j)=>`<div><span class="worked-token-label">${names[j]||'Sink'}</span>${cell(`weights:${i}:${j}`,w)}</div>`).join('')}</div><div class="worked-result"><span>Readout · Σ pᵢVᵢ</span>${cell(`outputs:${i}`,v('outputs')[i])}</div></div>`).join('')}</div></div><p class="worked-caption">Query alternatives at the same position, with unchanged KV. These rows are not successive decoder layers.</p>`;
 }
 export function workedHTML(stage){return workedIds(stage).map(id=>{
- const example=WORKED_RESULTS[id];
- return `<section class="pytorch-section worked-example" data-worked="${id}" aria-label="${esc(example.title)}"><h4>${esc(example.title)}</h4><p>${esc(example.scope)}</p><p>Computed with the checked-in CPU PyTorch implementation. Floating-point values are displayed to six significant digits; the saved results retain full precision. These fixed teaching inputs are independent of the page’s context and hardware controls.</p>${id==='replay'?replayDiagram(example):''}<div class="table-scroll"><table class="comparison-table worked-table"><caption>Inputs → tensor operations → computed results</caption><thead><tr><th scope="col">Step</th><th scope="col">Operation</th><th scope="col">Shape</th><th scope="col">CPU values</th></tr></thead><tbody>${tensorRows([...example.inputs,...example.steps])}</tbody></table></div><p><strong>Fixture settings.</strong> ${Object.entries(example.settings).map(([key,value])=>esc(key)+' = '+esc(tensorText(value))).join(' · ')}</p>${id==='replay'?'':`<p><button class="button" data-module-example="csa2-${id==='query'?'attention':'selection'}">Inspect the ${id==='query'?'attention':'selection'} schematic and implementation →</button></p>`}</section>`;
+ const e=WORKED_RESULTS[id];
+ return `<section class="pytorch-section worked-example" data-worked="${id}" aria-label="${esc(e.title)}"><h4>${esc(e.title)}</h4><p class="worked-caption">${esc(e.scope)} Fixed inputs; independent of the page’s scenario controls.</p>${({replay:replayDiagram,selection:selectionDiagram,query:queryDiagram})[id](e)}<details class="worked-audit"><summary>Inspect CPU tensors and fixture settings</summary><p>Fixed teaching inputs are independent of the page’s context and hardware controls. CPU values are shown to six significant digits; the saved results retain full precision.</p><div class="table-scroll"><table class="comparison-table worked-table"><caption>Inputs → tensor operations → computed results</caption><thead><tr><th scope="col">Step</th><th scope="col">Operation</th><th scope="col">Shape</th><th scope="col">CPU values</th></tr></thead><tbody>${tensorRows([...e.inputs,...e.steps])}</tbody></table></div><p><strong>Fixture settings.</strong> ${Object.entries(e.settings).map(([key,value])=>esc(key)+' = '+esc(tensorText(value))).join(' · ')}</p></details>${id==='replay'||stage.startsWith('module-')?'':`<p><button class="button" data-module-example="csa2-${id==='query'?'attention':'selection'}">Inspect the ${id==='query'?'attention':'selection'} schematic and implementation →</button></p>`}</section>`;
  }).join('');}

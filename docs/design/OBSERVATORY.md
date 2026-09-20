@@ -77,3 +77,16 @@ source before the application modules initialize. This preserves readable displa
 code and byte-exact downloads within the existing single-file size budget, without
 external assets or an added runtime package. Browser tests check restored code against
 the checked-in files; engineering checks repeat-build byte identity.
+
+## Worked-example reading order
+
+The computed examples lead with the mechanism and a short visual trace. Replay follows
+one dependency from an omitted token through depth to the changed target output;
+selection groups source scores, candidate blocks and selected positions; the query
+example places the fixed dictionary beside its different readouts. These are views of
+the existing CPU artifact, with no new browser-side model arithmetic.
+
+Complete tensors, named axes/dtypes and fixture settings are available in a closed
+"Inspect CPU tensors and fixture settings" disclosure. Execution notes and source contracts follow the examples
+in a separate disclosure. Print expands both and restores the reader's prior state.
+Primary architecture schematics remain the first view on each chapter.

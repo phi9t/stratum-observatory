@@ -1,8 +1,8 @@
 {
   "schema": "stratum-aesthetics/v1",
   "status": "PASS",
-  "generated_at": "2026-09-20T18:55:55.379449+00:00",
-  "artifact_sha256": "384f97a85ce61fda44eec20d8e4b1adc5d270092711c5ad8f8eef93a2d492269",
+  "generated_at": "2026-09-20T19:27:05.729903+00:00",
+  "artifact_sha256": "c0496bfd091c62e5af6ebec5d67baa601d01daa9d0f3dc2db56f1218cccc6ff0",
   "policy_sha256": "e885ca418d6e2883f6725e3ac23e7e14dd39a911966832705f969ecc29d45f66",
   "scenarios": 210,
   "distinct_measurements": 154,
@@ -1974,7 +1974,7 @@
       "domain": "aesthetics",
       "status": "PASS",
       "subject": "stylesheet",
-      "message": "All 28 measured chrome selectors still name classes the stylesheet defines and the markup emits.",
+      "message": "All 40 measured chrome selectors still name classes the stylesheet defines and the markup emits.",
       "remedy": "",
       "evidence": []
     },
@@ -1983,7 +1983,7 @@
       "domain": "aesthetics",
       "status": "PASS",
       "subject": "stylesheet",
-      "message": "All 55 reading-size chrome rules between 12px and 24px are either measured (28 selectors) or recorded as unmeasured (33 selectors).",
+      "message": "All 67 reading-size chrome rules between 12px and 24px are either measured (40 selectors) or recorded as unmeasured (33 selectors).",
       "remedy": "",
       "evidence": []
     },
@@ -2315,7 +2315,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "pytorch-code (9739 occurrences)",
+      "subject": "pytorch-code (9813 occurrences)",
       "message": "Contrast 14.94:1 against 7.0:1 at 14.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2324,7 +2324,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "pytorch-code (9739 occurrences)",
+      "subject": "pytorch-code (9813 occurrences)",
       "message": "14.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2333,7 +2333,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "P (802 occurrences)",
+      "subject": "P (901 occurrences)",
       "message": "Contrast 14.19:1 against 7.0:1 at 14.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2342,7 +2342,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "P (802 occurrences)",
+      "subject": "P (901 occurrences)",
       "message": "14.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2387,7 +2387,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "SUMMARY (105 occurrences)",
+      "subject": "SUMMARY (124 occurrences)",
       "message": "Contrast 14.19:1 against 7.0:1 at 14.0px weight 600.",
       "remedy": "",
       "evidence": []
@@ -2396,7 +2396,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "SUMMARY (105 occurrences)",
+      "subject": "SUMMARY (124 occurrences)",
       "message": "14.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2441,7 +2441,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": " (40 occurrences)",
+      "subject": "worked-lead (5 occurrences)",
       "message": "Contrast 14.19:1 against 7.0:1 at 20.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2450,7 +2450,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": " (40 occurrences)",
+      "subject": "worked-lead (5 occurrences)",
       "message": "20.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2603,7 +2603,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "pytorch-code (9739 occurrences)",
+      "subject": "pytorch-code (9813 occurrences)",
       "message": "Contrast 12.11:1 against 7.0:1 at 14.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2612,7 +2612,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "pytorch-code (9739 occurrences)",
+      "subject": "pytorch-code (9813 occurrences)",
       "message": "14.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2621,7 +2621,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "P (802 occurrences)",
+      "subject": "P (901 occurrences)",
       "message": "Contrast 12.21:1 against 7.0:1 at 14.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2630,7 +2630,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "P (802 occurrences)",
+      "subject": "P (901 occurrences)",
       "message": "14.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2675,7 +2675,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "SUMMARY (105 occurrences)",
+      "subject": "SUMMARY (124 occurrences)",
       "message": "Contrast 12.21:1 against 7.0:1 at 14.0px weight 600.",
       "remedy": "",
       "evidence": []
@@ -2684,7 +2684,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "SUMMARY (105 occurrences)",
+      "subject": "SUMMARY (124 occurrences)",
       "message": "14.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2729,7 +2729,7 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": " (40 occurrences)",
+      "subject": "worked-lead (5 occurrences)",
       "message": "Contrast 12.21:1 against 7.0:1 at 20.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2738,7 +2738,7 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": " (40 occurrences)",
+      "subject": "worked-lead (5 occurrences)",
       "message": "20.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []

@@ -23701,7 +23701,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/app.mjs",
-      "expected": "c5211aae12a98071a137a48cf810d3ef120d116863ff0510f3eb9927e30b0648",
+      "expected": "75d22d9e1e50cd20279d7ebeba2ac611a32715df8e2d355f6237309e25cce824",
       "statement": "file.src/app.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23963,7 +23963,7 @@
       "domain": "visualization",
       "classification": "presentation",
       "consumer": "file.src/styles.css",
-      "expected": "d5fcd8e96cdfe3865e37e8da85880fbaee878782c418d69aadcf111f93548689",
+      "expected": "62ab1affcb385ffd268c82392b6202573e7f931ca867c606805202d8bd89046f",
       "statement": "file.src/styles.css: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": []
@@ -145873,12 +145873,12 @@
             "Residual collapse and normalization feed the vocabulary projection of width 129,280. Sampling follows the logits; dSpark reads captured attention inputs alongside this path."
           ],
           [
-            "Why bounded replay is approximate \u00b7 local-only illustration",
-            "Let D causal local-only layers each read a W-position window including the current token, with exact boundary inputs, no other token mixing and no restored intermediate state. Each layer extends the structural dependency radius by W \u2212 1, so the final state at t depends on inputs in [t \u2212 D \u00d7 (W \u2212 1), t], clipped at the sequence start. This is D \u00d7 (W \u2212 1) prior positions plus the current input, not a checkpoint-specific decoder replay length. In the toy D = 2, W = 2 cone, t \u2212 2 reaches t through depth 1 at t \u2212 1. Replaying only t \u2212 1 and t drops this path and is generally approximate."
+            "Why replay is approximate",
+            "Each local-only layer can read W \u2212 1 earlier positions. Through D layers, one dependency can reach D \u00d7 (W \u2212 1) positions into the past. Starting replay later removes some of those inputs, so later hidden states can change and replay is approximate. The computed example follows one such path. Its fixed global dictionary does not restore the missing local states."
           ],
           [
-            "Replay boundary and real global state",
-            "With replay start s, a local read at i is truncated to [max(s, i \u2212 W + 1), i]. The V4.1 report describes approximate reconstruction of missing layer-local SWA state with a short replay. Available shared global KV does not reconstruct those missing local states. Real V4.1 has a separate global attention path, so the toy local-only radius is not its full receptive field. SGLang enables the inspected decoder tail path only under enable_decoder_swa_bounded_replay and extend_without_speculative; it is not evidence for speculative verification."
+            "Scope of the example",
+            "Real V4.1 also has global attention, so this local dependency path is not its full receptive field. The report describes bounded replay as approximate. The inspected SGLang path requires enable_decoder_swa_bounded_replay and extend_without_speculative; it does not establish dSpark verification behavior."
           ],
           [
             "Ownership trace \u00b7 checkpoint layers",
@@ -146706,7 +146706,7 @@
       "consumer": "file.src/deepdives.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "784ab953ab4e3284e1703dfc2aba970913ad22767d475cfeee57b504005d04a3",
+      "expected": "f3174c10e47562e86eaed2b4f5cf264336e22540fde8c12852a74adc47055353",
       "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
       "evidence": [],
       "dependencies": [
@@ -155246,7 +155246,7 @@
       "consumer": "file.src/worked-examples.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "c3036971bcdfe0aab1feb8ce2305dd2948684ec7ba2e877c99438c8b7b981639",
+      "expected": "1f1cf01409f0a7517cde0cb1717bdef5f5a52d650fbb806e8c38b38cb5e25974",
       "dependencies": [
         "file.src/worked-results.mjs"
       ],

@@ -43,11 +43,15 @@ def exercise(page,root):
             assert page.evaluate('STRATUM.getState().layer')==first
         page.reload();page.wait_for_function('window.STRATUM')
         assert page.evaluate('STRATUM.getState().stage')==stage
-        assert page.locator('#analysis-panel').get_by_text('Worked trace',exact=True).count()==1
+        assert page.locator('#analysis-panel').get_by_text('Execution order',exact=True).count()==1
+        notes=page.locator('.chapter-notes')
+        if notes.count():
+            assert not notes.evaluate('el=>el.open')
+            notes.locator('summary').focus();notes.locator('summary').press('Enter')
         assert page.locator('#analysis-panel tbody tr').count()>=4
         assert page.evaluate('STRATUM.geometryReport().geometry_defects')==0
         assert json.loads(page.evaluate('STRATUM.exportConfig()'))['state']['stage']==stage
-        links=page.locator('#analysis-panel > .analysis-split a[href^="https:"]').evaluate_all('xs=>xs.map(a=>a.href)')
+        links=page.locator('#analysis-panel .analysis-split a[href^="https:"]').evaluate_all('xs=>xs.map(a=>a.href)')
         assert links and all('/main/' not in href for href in links)
         assert all('huggingface.co/deepseek-ai/' in href or 'github.com/sgl-project/sglang/' in href or 'github.com/deepseek-ai/DeepSpec/' in href or 'arxiv.org/html/2607.05147v1' in href for href in links)
         assert page.locator('details[data-example="config"] code').text_content()==config_source
@@ -150,11 +154,11 @@ def exercise(page,root):
     for layer in ['3','25','26']:
         page.select_option('#control-layer',layer)
         assert page.evaluate('STRATUM.getState().layer')==int(layer)
-        assert f'Layer {layer} is' in page.locator('#analysis-panel').inner_text()
+        assert f'Layer {layer} is' in page.locator('#analysis-panel').text_content()
     fixed_cpu=page.locator('[data-worked-values]').all_text_contents()
-    before=page.locator('#analysis-panel > .table-scroll > table > tbody').inner_text()
+    before=page.locator('#analysis-panel .chapter-notes > .table-scroll > table > tbody').text_content()
     page.select_option('#control-context','131072')
-    assert page.locator('#analysis-panel > .table-scroll > table > tbody').inner_text()!=before
+    assert page.locator('#analysis-panel .chapter-notes > .table-scroll > table > tbody').text_content()!=before
     assert page.locator('[data-worked-values]').all_text_contents()==fixed_cpu
     page.locator('button[data-setting="stage"][data-value="ced"]').click()
     assert page.locator('.innovation-table').count()==1
