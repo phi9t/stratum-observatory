@@ -31,7 +31,31 @@ export function buildDecoder(s){const {g,m,c}=start(s),source=m.kvSourceLayers.f
  ['decoder-residual','Update residuals and experts',`${m.streams} streams · ${m.topK} routed + ${m.shared} shared expert`,'Each block still performs residual mixing and its feed-forward computation. Sharing a global cache does not remove these operations. Shared experts do not consume router top-k slots.','h_next = Block_layer(h, shared state)'],
  ['decoder-logits','Collapse, normalize, project',`vocabulary width ${formatNum(m.vocab)}`,'Transformer.forward collapses the residual copies, normalizes, projects the selected output position into vocabulary logits and then samples. dSpark features are captured before target attention, not from these output logits.','logits = head(norm(collapse(h)))'],
  ];rows.forEach(([id,t,sub,b,f],i)=>{box(g,c,id,36,180+i*160,880,t,sub,b,f);if(i)flow(g,rows[i-1][0],id);});
- note(g,c,'Do not conflate replay and MTP','feature-gated serving behavior',c.caveat);return finish(g,c,'decoder-producer');}
+ note(g,c,'Replay is approximate','feature-gated; separate from MTP',c.caveat);
+ addLabel(g,'ILLUSTRATION · LOCAL-ONLY DEPENDENCIES',984,322,'muted',{size:11});
+ addLabel(g,'Token time →     depth ↓',984,356,'text',{size:13});
+ addLabel(g,'D = 2 layers · W = 2 positions',984,386,'muted',{size:13});
+ // Small dependency cone: every edge is a causal local read, not a global-cache path.
+ const tokens=['t − 2','t − 1','t'];
+ for(let depth=0;depth<=2;depth++)for(let token=depth;token<=2;token++){
+  const id=`replay-${depth}-${token}`,omitted=token===0;
+  addNode(g,id,984+token*144,420+depth*142,132,68,tokens[token],depth?`depth ${depth}`:'input',{
+   tone:omitted?'state':'compute',info:makeInfo('Illustrative local-only dependency','Local state at '+tokens[token],
+    depth?`At illustrative depth ${depth}, this position reads itself and the preceding position from the previous depth. Residual and positionwise operations do not expand token reach. This is not the V4.1 global attention graph.`:'Boundary input for the toy local-only stack. A replay beginning at t − 1 omits t − 2, although that input reaches the output through the preceding-position reads.',
+    'h[d,i] = F_d(h[d−1,i−1], h[d−1,i])',[],c.sources)});
+ }
+ for(let depth=1;depth<=2;depth++)for(let token=depth;token<=2;token++)for(const parent of [token-1,token]){
+  const source=`replay-${depth-1}-${parent}`,target=`replay-${depth}-${token}`;
+  const x=1050+parent*144,tx=1050+token*144,y=420+(depth-1)*142+68,ty=420+depth*142;
+  addWire(g,parent===token?[[x,y],[x,ty]]:[[x,y],[x,y+36],[tx-36,y+36],[tx-36,ty]],source,target);
+ }
+ box(g,c,'replay-truncation',984,862,420,'Truncate the left boundary','replay starts at s = t − 1',
+  'In this local-only illustration, t − 2 affects depth 1 at t − 1, which affects depth 2 at t. Keeping only t − 1 and t drops that path. For D local-only layers with a causal W-position window including self, the exact structural dependency radius is D × (W − 1); the input interval contains D × (W − 1) + 1 positions. A shorter replay without restored boundary states is generally approximate, even when the final layer sees its complete immediate window.',
+  'radius = D × (W − 1); replay keys = [max(s, i−W+1), i]','state');
+ box(g,c,'replay-global',984,1022,420,'Global KV is separate','availability ≠ local reconstruction',
+  'Real V4.1 also reads selected shared global KV. That stored global history does not reconstruct missing layer-local window states. Holding the global cache available does not make truncated local replay exact. The toy cone isolates local dependency depth; it is not a finite receptive-field claim for V4.1. The report describes approximate reconstruction; the inspected SGLang path is feature-gated and uses extend_without_speculative.',
+  'shared global KV ≠ layer-local window KV','state');
+ return finish(g,c,'decoder-producer');}
 export function buildEngram(s){const {g,m,c}=start(s),heads=(m.engramNgram-1)*m.engramHeads,width=heads*m.engramHeadDim;
  const rows=[
  ['engram-history','Normalize causal token history',`orders 2–${m.engramNgram} · boundary-aware lookback`,'EngramLayout builds the compressed token map and hash layout. NgramHashState.forward prevents lookback across sequence starts and dead/image tokens.','token IDs → normalized IDs'],
@@ -48,8 +72,8 @@ export function buildCSA2(s){const {g,m,c}=start(s),kind=layerKind(m,s.layer);
  for(const [id,x,t,sub,b]of entries)box(g,c,id,x,190,432,t,sub,b,'',kind===id?'compute':'neutral');
  box(g,c,'csa2-owners',36,390,880,'Storage owner and selection owner',`selected layer ${s.layer}: ${kind.toUpperCase()}`,'Source lists are zero-based in configuration and displayed one-based here. Local-window layers have neither a compressed cache nor an indexer. Selection is not physical cache capacity.','storage ownership / selection ownership','state');
  entries.forEach(([id,x],i)=>addWire(g,[[x+216,274],[x+216,320+i*18],[100+i*260,320+i*18],[100+i*260,390]],id,'csa2-owners'));
- box(g,c,'csa2-candidates',36,550,880,'Decoder candidate hierarchy',`${formatNum(m.candidateBlocks)} blocks × ${m.candidateBlockSize} positions · source L${m.candidateSource+1}`,'The decoder candidate-source layer scores blocks, includes the newest reachable block, and masks invalid positions. Later decoder selectors operate inside that candidate mask; encoder selectors use the visible causal range.','block scores → candidate mask');flow(g,'csa2-owners','csa2-candidates');
- box(g,c,'csa2-select',36,710,880,'Select compressed positions',`up to ${formatNum(m.indexerBudget)} selected positions`,'Select a bounded read set without dropping the rest of the stored compressed history. Reuse layers inherit the previous set; Reindex layers refresh it. The partly filled current block still obeys causality.','candidate scores → top positions');flow(g,'csa2-candidates','csa2-select');
+ box(g,c,'csa2-candidates',36,550,880,'Decoder candidate hierarchy',`${formatNum(m.candidateBlocks)} blocks × ${m.candidateBlockSize} positions · source L${m.candidateSource+1}`,'Indexer.forward first computes position scores from its query and shared index keys, then applies causal masking. select_candidate_blocks reduces each block to its maximum position score, forces the newest reachable block into the pool, and expands selected blocks to a position mask. Later decoder selectors apply this candidate mask to their own position scores; the candidate-source layer itself selects directly from its causal scores.','position scores → block maxima → candidate mask');flow(g,'csa2-owners','csa2-candidates');
+ box(g,c,'csa2-select',36,710,880,'Select compressed positions',`up to ${formatNum(m.indexerBudget)} selected positions`,'Final top-k operates on position scores, then sorts the selected IDs into position order. Later decoder indexers mask their own scores to the candidate pool before top-k; the candidate source selects from the causal range. Reuse inherits these IDs; Reindex refreshes them. Unselected compressed history remains stored and the current block still obeys causality.','candidate scores → top positions');flow(g,'csa2-candidates','csa2-select');
  box(g,c,'csa2-window',984,870,420,'Layer-local window',`${m.window} positions · ${m.swaKvFormat}`,'Each layer has its own local-window path. It contributes KV to the same sparse attention call as selected compressed positions.','local KV','state');
  box(g,c,'csa2-union',36,870,880,'Attend over the union','local window + selected compressed KV + sink','Attention.forward performs the attention normalization jointly over the concatenated local and selected compressed KV with the per-head sink. These are not independent attention outputs added afterward.','attention(Q, concat(window, selected), sink)');flow(g,'csa2-select','csa2-union');addWire(g,[[984,912],[916,912]],'csa2-window','csa2-union');
  return finish(g,c,'csa2-owners');}

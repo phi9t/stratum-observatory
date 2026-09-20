@@ -6,7 +6,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "0e6349b2e6ba4f0a99bc53a3a0d6df236f4c463229d6da8103b3417aee90e641",
+      "artifact_sha256": "2f94ba5018e0a7cbd1a0fc4679011af7a61d2d93331eaf5bde8ce3837a2863ba",
       "state": {
         "model": "ds2",
         "view": "model",
@@ -41,7 +41,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "0e6349b2e6ba4f0a99bc53a3a0d6df236f4c463229d6da8103b3417aee90e641",
+      "artifact_sha256": "2f94ba5018e0a7cbd1a0fc4679011af7a61d2d93331eaf5bde8ce3837a2863ba",
       "state": {
         "model": "ds3",
         "view": "model",
@@ -76,7 +76,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "0e6349b2e6ba4f0a99bc53a3a0d6df236f4c463229d6da8103b3417aee90e641",
+      "artifact_sha256": "2f94ba5018e0a7cbd1a0fc4679011af7a61d2d93331eaf5bde8ce3837a2863ba",
       "state": {
         "model": "q38",
         "view": "model",
@@ -111,7 +111,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "0e6349b2e6ba4f0a99bc53a3a0d6df236f4c463229d6da8103b3417aee90e641",
+      "artifact_sha256": "2f94ba5018e0a7cbd1a0fc4679011af7a61d2d93331eaf5bde8ce3837a2863ba",
       "state": {
         "model": "q330",
         "view": "model",
@@ -146,7 +146,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "0e6349b2e6ba4f0a99bc53a3a0d6df236f4c463229d6da8103b3417aee90e641",
+      "artifact_sha256": "2f94ba5018e0a7cbd1a0fc4679011af7a61d2d93331eaf5bde8ce3837a2863ba",
       "state": {
         "model": "q3235",
         "view": "model",
@@ -181,7 +181,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "59575338ca116c0b620f7f7b4ccfcc5b78013d4f7555568fa58b34a283243074",
+      "artifact_sha256": "daf96132f11ea1c94ee67745f61a8ad1dd51b5fc4670c1c1742232267db6a214",
       "state": {
         "model": "q3827",
         "view": "model",
@@ -216,7 +216,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "59575338ca116c0b620f7f7b4ccfcc5b78013d4f7555568fa58b34a283243074",
+      "artifact_sha256": "daf96132f11ea1c94ee67745f61a8ad1dd51b5fc4670c1c1742232267db6a214",
       "state": {
         "model": "q3827",
         "view": "model",
@@ -251,7 +251,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "59575338ca116c0b620f7f7b4ccfcc5b78013d4f7555568fa58b34a283243074",
+      "artifact_sha256": "daf96132f11ea1c94ee67745f61a8ad1dd51b5fc4670c1c1742232267db6a214",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -286,7 +286,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "59575338ca116c0b620f7f7b4ccfcc5b78013d4f7555568fa58b34a283243074",
+      "artifact_sha256": "daf96132f11ea1c94ee67745f61a8ad1dd51b5fc4670c1c1742232267db6a214",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -321,7 +321,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "59575338ca116c0b620f7f7b4ccfcc5b78013d4f7555568fa58b34a283243074",
+      "artifact_sha256": "daf96132f11ea1c94ee67745f61a8ad1dd51b5fc4670c1c1742232267db6a214",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -356,7 +356,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "59575338ca116c0b620f7f7b4ccfcc5b78013d4f7555568fa58b34a283243074",
+      "artifact_sha256": "daf96132f11ea1c94ee67745f61a8ad1dd51b5fc4670c1c1742232267db6a214",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -391,7 +391,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "0f3a71ebfb54068144d5e81f9cd5ae955be70d9811b6852b7835aa9d948b46dc",
+      "artifact_sha256": "f905118043afd42a5ddcc4135df3f261710452760b60eb6b68e5f201e5734200",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -426,7 +426,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "0f3a71ebfb54068144d5e81f9cd5ae955be70d9811b6852b7835aa9d948b46dc",
+      "artifact_sha256": "f905118043afd42a5ddcc4135df3f261710452760b60eb6b68e5f201e5734200",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -461,7 +461,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "0f3a71ebfb54068144d5e81f9cd5ae955be70d9811b6852b7835aa9d948b46dc",
+      "artifact_sha256": "f905118043afd42a5ddcc4135df3f261710452760b60eb6b68e5f201e5734200",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -496,7 +496,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -531,7 +531,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -566,7 +566,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "serving",
@@ -601,7 +601,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "serving",
@@ -638,7 +638,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -675,7 +675,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -703,7 +703,7 @@
         "trace": false,
         "phase": "decode"
       },
-      "svg_sha256": "7bc764120460331ed7c24d180e0b0c31a31a31a412e9bb26fc459fca37e9ffd3"
+      "svg_sha256": "9e57f9ce2169150e4eafa0aaca15cfddca04b18c3ab1432b2b21bb42353763c2"
     },
     {
       "name": "dsv41-engram",
@@ -712,7 +712,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -749,7 +749,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -786,7 +786,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -821,7 +821,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -856,7 +856,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -893,7 +893,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -930,7 +930,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -967,7 +967,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -1004,7 +1004,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -1041,7 +1041,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -1069,7 +1069,7 @@
         "trace": false,
         "phase": "decode"
       },
-      "svg_sha256": "1b1058d03a94318b5c8e04c74abf6e3dc491ec8439c8076819232cb44d7dcd6c"
+      "svg_sha256": "1219acfba88c5eb95a35f24c0f38b67404dea6264bb28e18b4c0b7adf9f8a37e"
     },
     {
       "name": "dsv41-module-csa2-attention",
@@ -1078,7 +1078,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -1106,7 +1106,7 @@
         "trace": false,
         "phase": "decode"
       },
-      "svg_sha256": "9d7e5bf1d355d3b68c28890bb54c942bb9f767051ba632896a6d1879b708601b"
+      "svg_sha256": "58676cc17c5be9cab6a625dd288f5550b426a7e441d489f48d9e5b4f3c8c1376"
     },
     {
       "name": "dsv41-module-dspark-attention",
@@ -1115,7 +1115,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -1152,7 +1152,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -1189,7 +1189,7 @@
         "config"
       ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
+      "artifact_sha256": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -1224,7 +1224,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "59575338ca116c0b620f7f7b4ccfcc5b78013d4f7555568fa58b34a283243074",
+      "artifact_sha256": "daf96132f11ea1c94ee67745f61a8ad1dd51b5fc4670c1c1742232267db6a214",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -1259,7 +1259,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "0f3a71ebfb54068144d5e81f9cd5ae955be70d9811b6852b7835aa9d948b46dc",
+      "artifact_sha256": "f905118043afd42a5ddcc4135df3f261710452760b60eb6b68e5f201e5734200",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -1294,7 +1294,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "0e6349b2e6ba4f0a99bc53a3a0d6df236f4c463229d6da8103b3417aee90e641",
+      "artifact_sha256": "2f94ba5018e0a7cbd1a0fc4679011af7a61d2d93331eaf5bde8ce3837a2863ba",
       "state": {
         "model": "ds3",
         "view": "training",
@@ -1329,7 +1329,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "0f3a71ebfb54068144d5e81f9cd5ae955be70d9811b6852b7835aa9d948b46dc",
+      "artifact_sha256": "f905118043afd42a5ddcc4135df3f261710452760b60eb6b68e5f201e5734200",
       "state": {
         "model": "kimi3",
         "view": "training",
@@ -1364,7 +1364,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "59575338ca116c0b620f7f7b4ccfcc5b78013d4f7555568fa58b34a283243074",
+      "artifact_sha256": "daf96132f11ea1c94ee67745f61a8ad1dd51b5fc4670c1c1742232267db6a214",
       "state": {
         "model": "q38flash",
         "view": "serving",
@@ -1399,7 +1399,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "hardware.html",
-      "artifact_sha256": "a5112a34ee9f2420d20f7fe45373cb552cb0a05c358a7ef0ca461e7954b0024f",
+      "artifact_sha256": "6445aa1d051549c33af1eb87ab4e7277a53c784119ebe2fb187b9fd209762f35",
       "state": {
         "model": "ds3",
         "view": "hardware",
@@ -1434,7 +1434,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "hardware.html",
-      "artifact_sha256": "a5112a34ee9f2420d20f7fe45373cb552cb0a05c358a7ef0ca461e7954b0024f",
+      "artifact_sha256": "6445aa1d051549c33af1eb87ab4e7277a53c784119ebe2fb187b9fd209762f35",
       "state": {
         "model": "ds3",
         "view": "hardware",
@@ -1469,7 +1469,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "networking.html",
-      "artifact_sha256": "a31831bbc9665a73cfd86a3111c5175392828839a87be86d15643f72d12b8fac",
+      "artifact_sha256": "b16645bdd525b93370ec823c8711904c190f11647b3882d67641ac3e0a830e3f",
       "state": {
         "model": "kimi3",
         "view": "network",
@@ -1504,7 +1504,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "59575338ca116c0b620f7f7b4ccfcc5b78013d4f7555568fa58b34a283243074",
+      "artifact_sha256": "daf96132f11ea1c94ee67745f61a8ad1dd51b5fc4670c1c1742232267db6a214",
       "state": {
         "model": "q38flash",
         "view": "evidence",
@@ -1539,7 +1539,7 @@
       "accounting_expanded": true,
       "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "59575338ca116c0b620f7f7b4ccfcc5b78013d4f7555568fa58b34a283243074",
+      "artifact_sha256": "daf96132f11ea1c94ee67745f61a8ad1dd51b5fc4670c1c1742232267db6a214",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -1572,7 +1572,7 @@
     {
       "name": "mobile",
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "59575338ca116c0b620f7f7b4ccfcc5b78013d4f7555568fa58b34a283243074",
+      "artifact_sha256": "daf96132f11ea1c94ee67745f61a8ad1dd51b5fc4670c1c1742232267db6a214",
       "viewport": {
         "width": 390,
         "height": 844

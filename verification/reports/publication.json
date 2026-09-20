@@ -3,21 +3,21 @@
   "target": "stratum-observatory-3",
   "profile": "publication",
   "status": "BLOCKED",
-  "generated_at": "2026-09-20T09:22:52.022452+00:00",
-  "lock_sha256": "c979e8067a66e15ca1366bdf4e1fb60efc3ae5fd2da184f514fd197fe336c4cc",
-  "consumer_sha256": "a92509b8500cfba32530d194f56a4bc247869bf8ea9d1a4b50a6ed1d815dcb94",
+  "generated_at": "2026-09-20T17:23:25.437521+00:00",
+  "lock_sha256": "2eba7501a1b373feb9b508a9ee56f968df2b3cceb688a27154f5d4cf82b25158",
+  "consumer_sha256": "99dc31748c261c55637456605b17703f35d1bd5ff9296de81b68ac986ac8549c",
   "coverage": {
     "inputs": 601,
     "functions_and_files": 56,
-    "scene_contracts": 3092,
-    "claims": 3773,
+    "scene_contracts": 3103,
+    "claims": 3784,
     "sources": 83,
     "verified_sources": 81,
     "verified_scientific_claims": 0,
     "passed_presentation_bindings": 0
   },
   "counts": {
-    "BLOCKED": 6828,
+    "BLOCKED": 6845,
     "PASS": 38
   },
   "domains": {
@@ -53186,24 +53186,6 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.decoder-boundary.ccac6805e6d8cc78",
-      "message": "No signed semantic review. A reviewed boolean is not evidence.",
-      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "REVIEW_REQUIRED",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "scene.dsv41.model.decoder.graph.cc749c8c82afaf3f",
-      "message": "No signed semantic review. A reviewed boolean is not evidence.",
-      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "REVIEW_REQUIRED",
-      "domain": "evidence",
-      "status": "BLOCKED",
       "subject": "scene.dsv41.model.engram.engram-history.9be5b2794a74cf4c",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
@@ -53304,24 +53286,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "scene.dsv41.model.csa2.csa2-owners.3333636b9d7a4ae0",
-      "message": "No signed semantic review. A reviewed boolean is not evidence.",
-      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "REVIEW_REQUIRED",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "scene.dsv41.model.csa2.csa2-candidates.b884e1e461cedef1",
-      "message": "No signed semantic review. A reviewed boolean is not evidence.",
-      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "REVIEW_REQUIRED",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "scene.dsv41.model.csa2.csa2-select.361b1858f46802d2",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -54347,15 +54311,6 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.module-csa2-selection.graph.659e94d5357006de",
-      "message": "No signed semantic review. A reviewed boolean is not evidence.",
-      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "REVIEW_REQUIRED",
-      "domain": "evidence",
-      "status": "BLOCKED",
       "subject": "scene.dsv41.model.module-csa2-attention.local-cache.1f5c2e2e7d35cf8d",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
@@ -54483,15 +54438,6 @@
       "domain": "evidence",
       "status": "BLOCKED",
       "subject": "scene.dsv41.model.module-csa2-attention.output.d76e83f0d8db0d83",
-      "message": "No signed semantic review. A reviewed boolean is not evidence.",
-      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
-      "evidence": []
-    },
-    {
-      "code": "REVIEW_REQUIRED",
-      "domain": "evidence",
-      "status": "BLOCKED",
-      "subject": "scene.dsv41.model.module-csa2-attention.graph.4ea3bda11eaa4af8",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55217,6 +55163,159 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.decoder.decoder-boundary.418c660c11de2547",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.decoder.replay-0-0.1eb6efcb4218a069",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.decoder.replay-0-1.8901c973b7047957",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.decoder.replay-0-2.748932681ea5eabe",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.decoder.replay-1-1.a67006a9c5efed63",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.decoder.replay-1-2.27bb3a391d81d966",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.decoder.replay-2-2.fd2f441b5749d881",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.decoder.replay-truncation.306d251ffd55ab71",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.decoder.replay-global.1922992ea72a8d6f",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.decoder.graph.b95e127ac4497d74",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.csa2.csa2-candidates.b726f6498c29b0e4",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.csa2.csa2-select.dd2d51a70b381aec",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.module-csa2-selection.graph.86c040fe4ef6c411",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.module-csa2-attention.fixed-dictionary.be418cf9080f9b9e",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.module-csa2-attention.alternative-queries.0da5ec3ab339ad55",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.module-csa2-attention.query-readouts.2a8217f3dff8598d",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.module-csa2-attention.graph.98b1c59f9d57cff8",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
@@ -57138,42 +57237,6 @@
       "domain": "model",
       "status": "BLOCKED",
       "subject": "scene.dsv41.model.csa2.csa2-owners.3333636b9d7a4ae0",
-      "message": "Requires publisher implementation AND independent framework implementation.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ROLE",
-      "domain": "model",
-      "status": "BLOCKED",
-      "subject": "scene.dsv41.model.csa2.csa2-candidates.b884e1e461cedef1",
-      "message": "Required framework_code anchor is missing.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "MODEL_DUAL_CODE",
-      "domain": "model",
-      "status": "BLOCKED",
-      "subject": "scene.dsv41.model.csa2.csa2-candidates.b884e1e461cedef1",
-      "message": "Requires publisher implementation AND independent framework implementation.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ROLE",
-      "domain": "model",
-      "status": "BLOCKED",
-      "subject": "scene.dsv41.model.csa2.csa2-select.361b1858f46802d2",
-      "message": "Required framework_code anchor is missing.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "MODEL_DUAL_CODE",
-      "domain": "model",
-      "status": "BLOCKED",
-      "subject": "scene.dsv41.model.csa2.csa2-select.361b1858f46802d2",
       "message": "Requires publisher implementation AND independent framework implementation.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -59126,24 +59189,6 @@
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.module-csa2-selection.graph.659e94d5357006de",
-      "message": "Required framework_code anchor is missing.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "MODEL_DUAL_CODE",
-      "domain": "model",
-      "status": "BLOCKED",
-      "subject": "scene.dsv41.model.module-csa2-selection.graph.659e94d5357006de",
-      "message": "Requires publisher implementation AND independent framework implementation.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ROLE",
-      "domain": "model",
-      "status": "BLOCKED",
       "subject": "scene.dsv41.model.module-csa2-attention.local-cache.1f5c2e2e7d35cf8d",
       "message": "Required framework_code anchor is missing.",
       "remedy": "Resolve the finding; do not weaken the gate.",
@@ -59406,24 +59451,6 @@
       "domain": "model",
       "status": "BLOCKED",
       "subject": "scene.dsv41.model.module-csa2-attention.output.d76e83f0d8db0d83",
-      "message": "Requires publisher implementation AND independent framework implementation.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "CLAIM_ROLE",
-      "domain": "model",
-      "status": "BLOCKED",
-      "subject": "scene.dsv41.model.module-csa2-attention.graph.4ea3bda11eaa4af8",
-      "message": "Required framework_code anchor is missing.",
-      "remedy": "Resolve the finding; do not weaken the gate.",
-      "evidence": []
-    },
-    {
-      "code": "MODEL_DUAL_CODE",
-      "domain": "model",
-      "status": "BLOCKED",
-      "subject": "scene.dsv41.model.module-csa2-attention.graph.4ea3bda11eaa4af8",
       "message": "Requires publisher implementation AND independent framework implementation.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -60828,6 +60855,132 @@
       "domain": "model",
       "status": "BLOCKED",
       "subject": "scene.dsv41.model.module-dspark-heads.return.f2c9d72f9539e2f4",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.csa2.csa2-candidates.b726f6498c29b0e4",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.csa2.csa2-candidates.b726f6498c29b0e4",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.csa2.csa2-select.dd2d51a70b381aec",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.csa2.csa2-select.dd2d51a70b381aec",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.module-csa2-selection.graph.86c040fe4ef6c411",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.module-csa2-selection.graph.86c040fe4ef6c411",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.module-csa2-attention.fixed-dictionary.be418cf9080f9b9e",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.module-csa2-attention.fixed-dictionary.be418cf9080f9b9e",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.module-csa2-attention.alternative-queries.0da5ec3ab339ad55",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.module-csa2-attention.alternative-queries.0da5ec3ab339ad55",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.module-csa2-attention.query-readouts.2a8217f3dff8598d",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.module-csa2-attention.query-readouts.2a8217f3dff8598d",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.module-csa2-attention.graph.98b1c59f9d57cff8",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.module-csa2-attention.graph.98b1c59f9d57cff8",
       "message": "Requires publisher implementation AND independent framework implementation.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []

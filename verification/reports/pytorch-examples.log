@@ -42,8 +42,11 @@ test_projection_compressor_has_no_pooling_gate (pytorch_memory.MemoryExamplesTes
 test_sparse_union_sink_and_causal_window (pytorch_memory.MemoryExamplesTest.test_sparse_union_sink_and_causal_window) ... ok
 test_each_record_is_independent_and_all_parameters_are_typed (pytorch_quality.PythonProgramQualityTests.test_each_record_is_independent_and_all_parameters_are_typed) ... ok
 test_tensor_annotations_explain_their_axes (pytorch_quality.PythonProgramQualityTests.test_tensor_annotations_explain_their_axes) ... ok
+test_manual_joint_softmax_includes_zero_value_sink (pytorch_query.QueryExampleTest.test_manual_joint_softmax_includes_zero_value_sink) ... ok
+test_raising_sink_reduces_output_without_changing_dictionary (pytorch_query.QueryExampleTest.test_raising_sink_reduces_output_without_changing_dictionary) ... ok
+test_two_queries_use_actual_core_without_mutating_shared_inputs (pytorch_query.QueryExampleTest.test_two_queries_use_actual_core_without_mutating_shared_inputs) ... ok
 
 ----------------------------------------------------------------------
-Ran 44 tests in 0.332s
+Ran 47 tests in 0.415s
 
 OK

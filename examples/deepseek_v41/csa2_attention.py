@@ -1,3 +1,4 @@
+from dataclasses import dataclass, replace
 from typing import Annotated
 import torch
 from torch import Tensor
@@ -58,3 +59,46 @@ def sparse_attention(
         # The sink shares normalization but contributes no value to the weighted sum.
         probability = torch.cat([logits, sink_logits], -1).softmax(-1)[..., :-1]
         return torch.einsum('bthk,btkd->bthd', probability, gathered).to(query.dtype)
+
+
+@dataclass(frozen=True)
+class QueryExample:
+    config: V41Config
+    queries: AttentionQuery
+    local_kv: LocalLatents
+    compressed_kv: CompressedLatents
+    selected: AttentionSelection
+    positions: QueryPositions
+    sink: AttentionSink
+    weights: Annotated[Tensor, "batch query_alternatives heads local+compressed+sink"]
+    outputs: AttentionQuery
+
+
+def run_query_example(config: V41Config) -> QueryExample:
+    """Two counterfactual queries read exactly the same small KV dictionary on CPU.
+
+    Only numerical sizes change from the caller's global V41Config. The token
+    axis here holds alternatives at the SAME position, not successive tokens
+    or layers. These illustrative vectors are not checkpoint activations.
+    Real Attention layers still project fresh queries and local KV, and apply
+    output projections; compressed-cache reuse does not make a query-only model.
+    """
+    small = replace(config, head_dim=2, attention_heads=1, window_size=2)
+    local = torch.tensor([[[2., 0.], [0., 1.]]])
+    compressed = torch.tensor([[[1., 2.]]])
+    queries = torch.tensor([[[[2., 0.]], [[0., 2.]]]])
+    positions = torch.tensor([1, 1])
+    selected = torch.tensor([[[0], [0]]])
+    # A fixed illustrative value for the learned per-head sink logit.
+    sink = torch.tensor([.5])
+    outputs = sparse_attention(queries, local, compressed, selected, positions, sink, small)
+
+    # Expose this tiny dictionary's weights for inspection, not a second output
+    # implementation. Both alternatives gather every row in this same order.
+    dictionary = torch.cat([local, compressed], dim=1)
+    logits = queries @ dictionary[:, None].transpose(-1, -2) / small.head_dim ** .5
+    sink_logits = sink.reshape(1, 1, 1, 1).expand(1, 2, 1, 1)
+    weights = torch.cat([logits, sink_logits], dim=-1).softmax(-1)
+    # weights[..., -1] has no value vector; only the other lanes contribute.
+    return QueryExample(small, queries, local, compressed, selected, positions,
+                        sink, weights, outputs)

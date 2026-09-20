@@ -19,7 +19,7 @@ from .csa2_compression import GroupedCompressor, TokenCompressor
 from .csa2_selection import (
     compute_index_scores, select_candidate_blocks, select_sparse_indices,
 )
-from .csa2_attention import sparse_attention
+from .csa2_attention import sparse_attention, run_query_example
 from .engram_write import EngramMemory
 from .dspark_attention import dspark_projected_attention
 from .dspark_heads import DSparkOutputHeads
@@ -171,6 +171,10 @@ def check_csa2_attention(config: V41Config) -> None:
     torch.testing.assert_close(output, torch.full_like(output, 9 / 4))
     backward(output.sum(), local, compressed)
     torch.testing.assert_close(local.grad[:, 2], torch.zeros_like(local.grad[:, 2]))
+    experiment = run_query_example(config)
+    require(not torch.allclose(experiment.outputs[:, 0], experiment.outputs[:, 1]),
+            "different queries must produce different fixed-dictionary readouts")
+    torch.testing.assert_close(experiment.weights.sum(-1), torch.ones(1, 2, 1))
 
 
 def check_engram_write(config: V41Config) -> None:

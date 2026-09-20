@@ -1,10 +1,10 @@
 # Aesthetics — PASS
 
-Generated: 2026-09-20T09:02:45.811920+00:00
+Generated: 2026-09-20T17:13:36.441582+00:00
 
-Artifact `0e6349b2e6ba4f0a…`, policy `e885ca418d6e2883…`
+Artifact `2f94ba5018e0a7cb…`, policy `e885ca418d6e2883…`
 
-210 scenarios, 150 distinct measurements.
+210 scenarios, 152 distinct measurements.
 
 Measured legibility and composition only. A passing gate is not a claim that the page is well designed.
 
@@ -16,9 +16,9 @@ Measured legibility and composition only. A passing gate is not a claim that the
 | CHROME_PROBE_LIVE | PASS | 1 |
 | CLEARANCE_OK | PASS | 210 |
 | COMPOSITION_STABLE | PASS | 1 |
-| CONTRAST_OK | PASS | 150 |
+| CONTRAST_OK | PASS | 152 |
 | SPACING_SCALE_OK | PASS | 1 |
 | TYPE_SCALE_OK | PASS | 1 |
-| TYPOGRAPHY_OK | PASS | 150 |
+| TYPOGRAPHY_OK | PASS | 152 |
 
 ## First unresolved findings

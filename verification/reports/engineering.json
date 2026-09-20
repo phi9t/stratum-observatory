@@ -1,21 +1,21 @@
 {
   "schema": "stratum-engineering/v1",
   "status": "PASS",
-  "started_at": "2026-09-20T09:14:19.556531+00:00",
-  "completed_at": "2026-09-20T09:22:33.464486+00:00",
-  "consumer_sha256": "a92509b8500cfba32530d194f56a4bc247869bf8ea9d1a4b50a6ed1d815dcb94",
-  "verifier_sha256": "05e69eea9e5ff708d3c2c214032e09842ea42b41df4d7c1b4b045e44cbf139ae",
-  "lock_sha256": "c979e8067a66e15ca1366bdf4e1fb60efc3ae5fd2da184f514fd197fe336c4cc",
+  "started_at": "2026-09-20T17:14:12.119245+00:00",
+  "completed_at": "2026-09-20T17:23:10.110841+00:00",
+  "consumer_sha256": "99dc31748c261c55637456605b17703f35d1bd5ff9296de81b68ac986ac8549c",
+  "verifier_sha256": "18c355ce8d7aff605b66b846e618bcf705f313d7a1637db3f9f342a109253a50",
+  "lock_sha256": "2eba7501a1b373feb9b508a9ee56f968df2b3cceb688a27154f5d4cf82b25158",
   "artifact_sha256": "7ab6e30672ff5c7040adf115414b1bb35e0e80971bf4b3f7ed5ff16f1b192a71",
   "artifacts": {
     "data-representation.html": "e288644184fbcb54ad8a1742e35671354ce93b96f1b2dac1375dacf59285e77e",
-    "deepseek-v4.1.html": "3bf6f2725602a6a3c66520aa30db9441acf151537b8ebd26597b0ff512cf6eb0",
-    "foundations.html": "0e6349b2e6ba4f0a99bc53a3a0d6df236f4c463229d6da8103b3417aee90e641",
-    "hardware.html": "a5112a34ee9f2420d20f7fe45373cb552cb0a05c358a7ef0ca461e7954b0024f",
+    "deepseek-v4.1.html": "e1b46294e6f24651bea7535b04f1b84f5ce9998e35444be6abdc9b61a2696d01",
+    "foundations.html": "2f94ba5018e0a7cbd1a0fc4679011af7a61d2d93331eaf5bde8ce3837a2863ba",
+    "hardware.html": "6445aa1d051549c33af1eb87ab4e7277a53c784119ebe2fb187b9fd209762f35",
     "index.html": "7ab6e30672ff5c7040adf115414b1bb35e0e80971bf4b3f7ed5ff16f1b192a71",
-    "kimi-k3.html": "0f3a71ebfb54068144d5e81f9cd5ae955be70d9811b6852b7835aa9d948b46dc",
-    "networking.html": "a31831bbc9665a73cfd86a3111c5175392828839a87be86d15643f72d12b8fac",
-    "qwen3.8.html": "59575338ca116c0b620f7f7b4ccfcc5b78013d4f7555568fa58b34a283243074"
+    "kimi-k3.html": "f905118043afd42a5ddcc4135df3f261710452760b60eb6b68e5f201e5734200",
+    "networking.html": "b16645bdd525b93370ec823c8711904c190f11647b3882d67641ac3e0a830e3f",
+    "qwen3.8.html": "daf96132f11ea1c94ee67745f61a8ad1dd51b5fc4670c1c1742232267db6a214"
   },
   "repeat_build_sha256": "7ab6e30672ff5c7040adf115414b1bb35e0e80971bf4b3f7ed5ff16f1b192a71",
   "deterministic_build": true,
@@ -123,8 +123,8 @@
   },
   "test_counts": {
     "verifier": 619,
-    "atlas": 140,
-    "pytorch": 44,
+    "atlas": 142,
+    "pytorch": 47,
     "verifier_skipped": 10,
     "atlas_skipped": 0
   },

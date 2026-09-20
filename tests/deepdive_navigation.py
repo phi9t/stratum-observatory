@@ -16,6 +16,8 @@ def exercise(page,root):
     for stage in expected:
         page.locator(f'button[data-setting="stage"][data-value="{stage}"]').click()
         assert page.evaluate('STRATUM.getState().stage')==stage
+        credit=page.locator('#analysis-panel > .innovation-note a[href="https://zartbot.github.io/blog/model_arch/dsv41flash_arch/en.html"]')
+        assert credit.count()==int(stage in ('decoder','csa2','module-csa2-attention'))
         assert f'stage={stage}' in page.url
         page.reload();page.wait_for_function('window.STRATUM')
         assert page.evaluate('STRATUM.getState().stage')==stage
@@ -87,6 +89,8 @@ def exercise(page,root):
         panel.get_by_role('button',name='Inspect module schematic').click()
         assert page.evaluate('STRATUM.getState().stage')==stage
         assert f'stage={stage}' in page.url
+        credit=page.locator('#analysis-panel > .innovation-note a[href="https://zartbot.github.io/blog/model_arch/dsv41flash_arch/en.html"]')
+        assert credit.count()==int(example['id']=='csa2-attention')
         assert page.locator('#control-stage').input_value()==stage
         assert page.locator('.pytorch-example:not([data-example="config"])').count()==1
         assert page.locator('.pytorch-example:not([data-example="config"])').evaluate('el=>el.open')

@@ -23699,7 +23699,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/app.mjs",
-      "expected": "8f79d10cb6900220ab29248cf60ded1125199d1ca486f843f18f22e2730840b7",
+      "expected": "1d800be8cd118d2c4cd8ca7b6bf5117d4bb0589785618f0c69a19d0299b2de25",
       "statement": "file.src/app.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -150145,6 +150145,14 @@
             "Residual collapse and normalization feed the vocabulary projection of width 129,280. Sampling follows the logits; dSpark reads captured attention inputs alongside this path."
           ],
           [
+            "Why bounded replay is approximate \u00b7 local-only illustration",
+            "Let D causal local-only layers each read a W-position window including the current token, with exact boundary inputs, no other token mixing and no restored intermediate state. Each layer extends the structural dependency radius by W \u2212 1, so the final state at t depends on inputs in [t \u2212 D \u00d7 (W \u2212 1), t], clipped at the sequence start. This is D \u00d7 (W \u2212 1) prior positions plus the current input, not a checkpoint-specific decoder replay length. In the toy D = 2, W = 2 cone, t \u2212 2 reaches t through depth 1 at t \u2212 1. Replaying only t \u2212 1 and t drops this path and is generally approximate."
+          ],
+          [
+            "Replay boundary and real global state",
+            "With replay start s, a local read at i is truncated to [max(s, i \u2212 W + 1), i]. The V4.1 report describes approximate reconstruction of missing layer-local SWA state with a short replay. Available shared global KV does not reconstruct those missing local states. Real V4.1 has a separate global attention path, so the toy local-only radius is not its full receptive field. SGLang enables the inspected decoder tail path only under enable_decoder_swa_bounded_replay and extend_without_speculative; it is not evidence for speculative verification."
+          ],
+          [
             "Ownership trace \u00b7 checkpoint layers",
             "At a fixed token position, layer 21 publishes the decoder global compressed state. Layer 22 reads that same producer state and inherited selection while computing its own query and local-window path. Advancing one layer does not append a new token to the shared global history."
           ]
@@ -150183,11 +150191,12 @@
           "Attention._compress_kv",
           "Attention.forward",
           "Transformer.forward",
+          "DeepseekV4Model.__init__",
           "DeepseekV4Model._forward_layers_hc_pre_from_prev"
         ],
         "stage": "decoder"
       },
-      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "statement": "Decoder cache and replay teaching view. Local-only D(W-1) dependency radius is an illustrative mathematical derivation, not a V4.1 receptive field or prescribed replay length. Report-level approximation remains independently unaccepted; SGLang supplies a feature-gated non-speculative replay implementation.",
       "evidence": [
         {
           "source": "dsv41-code",
@@ -150240,6 +150249,32 @@
             ]
           },
           "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Attention._window_kv",
+            "sha256": "f9e08f3521c0920521eed1e8950f0259c5a8e744d01308ade3471c7df0905ccd",
+            "resolved_span": [
+              700,
+              720
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-sglang",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DeepseekV4Model.__init__",
+            "sha256": "3bcad8fe18adabf52a59ecfc47027d0cc4eba140a0772c38ac2876c0f839cf5b",
+            "resolved_span": [
+              3409,
+              3550
+            ]
+          },
+          "relation": "derives"
         }
       ],
       "dependencies": [
@@ -150449,11 +150484,15 @@
           ],
           [
             "Apply decoder hierarchy",
-            "Layer 21 establishes a pool of up to 2,048 blocks \u00d7 8 compressed positions. Later decoder indexers re-score within that pool; encoder Full layers rank the causally visible range directly."
+            "Layer 21 establishes a pool of up to 2,048 blocks \u00d7 8 compressed positions. Later decoder indexers apply the pool mask to their own position scores; encoder Full layers rank the causally visible range directly."
           ],
           [
             "Read the attention union",
             "Attention joins the 128-position local window with up to 512 selected compressed positions and the attention sink in the same normalization."
+          ],
+          [
+            "From position scores to a candidate mask",
+            "Indexer.forward computes query-dependent compressed-position scores and masks positions beyond the causal frontier. select_candidate_blocks takes the maximum score within each block, pins the newest reachable block, selects blocks and expands them into a position mask. Later decoder indexers compute their own position scores, apply that mask and select final top-k positions. The candidate-source layer itself selects directly from its causal scores. Selected IDs are sorted by position; unselected global KV remains stored."
           ],
           [
             "Selection trace \u00b7 illustrative scores",
@@ -150939,7 +150978,7 @@
       "consumer": "file.src/deepdives.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "86bfa7527685b731736465b6acb5f2e14e4a9865be0cdcf34b3531dc7138acb8",
+      "expected": "b7f1dc8dea0eaa7fe020c2a9c214060df0c5d8bfbd070f5ad11ce6534ef10dc6",
       "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
       "evidence": [],
       "dependencies": [
@@ -150955,7 +150994,7 @@
       "consumer": "file.src/diagram-deepdives.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "e1a3b9c25b9f9819ea4525416b33189987c13da629367df32901c4927e8fe9ef",
+      "expected": "d043179346683b8ab15fa901946da61e061222493dcf1d3a34050d0ec9832a9e",
       "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
       "evidence": [],
       "dependencies": [
@@ -151159,32 +151198,6 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.decoder.decoder-boundary.ccac6805e6d8cc78",
-      "consumer": "scene.dsv41.model.decoder.decoder-boundary.ccac6805e6d8cc78",
-      "domain": "model",
-      "classification": "derived",
-      "expected": "ccac6805e6d8cc781ccaa2d260c94f17cbfa595fc89f3789f88bbbf57a566769",
-      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
-      "evidence": [],
-      "dependencies": [
-        "deepdive.decoder",
-        "file.src/diagram-deepdives.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.decoder.graph.cc749c8c82afaf3f",
-      "consumer": "scene.dsv41.model.decoder.graph.cc749c8c82afaf3f",
-      "domain": "model",
-      "classification": "derived",
-      "expected": "cc749c8c82afaf3fed8ff9ce8530ad503dedbeb80bbeaefd50d60808010958cc",
-      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
-      "evidence": [],
-      "dependencies": [
-        "deepdive.decoder",
-        "file.src/diagram-deepdives.mjs"
-      ]
-    },
-    {
       "id": "scene.dsv41.model.engram.engram-history.9be5b2794a74cf4c",
       "consumer": "scene.dsv41.model.engram.engram-history.9be5b2794a74cf4c",
       "domain": "model",
@@ -151333,32 +151346,6 @@
       "domain": "model",
       "classification": "derived",
       "expected": "3333636b9d7a4ae0ce267f169dac81e478186811889f245e54efb3c8fe8a0df7",
-      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
-      "evidence": [],
-      "dependencies": [
-        "deepdive.csa2",
-        "file.src/diagram-deepdives.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.csa2.csa2-candidates.b884e1e461cedef1",
-      "consumer": "scene.dsv41.model.csa2.csa2-candidates.b884e1e461cedef1",
-      "domain": "model",
-      "classification": "derived",
-      "expected": "b884e1e461cedef1f6f2b8295d58d2efd67e784822e2d0d0ff029d56da2cfc58",
-      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
-      "evidence": [],
-      "dependencies": [
-        "deepdive.csa2",
-        "file.src/diagram-deepdives.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.csa2.csa2-select.361b1858f46802d2",
-      "consumer": "scene.dsv41.model.csa2.csa2-select.361b1858f46802d2",
-      "domain": "model",
-      "classification": "derived",
-      "expected": "361b1858f46802d275127f67531b73eb37bc25b25106c6035a95b2c3214e3dae",
       "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
       "evidence": [],
       "dependencies": [
@@ -151899,7 +151886,7 @@
           "select_candidate_blocks"
         ],
         "requires": [],
-        "summary": "The candidate producer scores blocks by their best position and keeps the newest reachable block. Reindex layers score within that published mask; reuse layers consume the resulting indices. Authored adaptation of DeepSeek publisher code (MIT).",
+        "summary": "The candidate producer scores blocks by their best position and keeps the newest reachable block. Reindex layers mask their position scores to that pool; reuse layers consume the resulting indices. Authored adaptation of DeepSeek publisher code (MIT).",
         "limitations": "Query and index keys are already projected and rotated. FP4 quantization, distributed reduction and cache publication are omitted. visible is the completed-group count floor((query_position + 1) / ratio), shaped [B,T,1]. The candidate budget must cover the requested sparse selection; unavailable picks are represented by -1.",
         "sourceFile": "examples/deepseek_v41/csa2_selection.py",
         "code": "from typing import Annotated\nimport torch\nfrom torch import Tensor\nfrom torch.nn import functional as F\n\nfrom .config import V41Config\n\n\nIndexQuery = Annotated[Tensor, \"batch query_tokens heads head_dim\"]\nIndexKeys = Annotated[Tensor, \"batch compressed_positions head_dim\"]\nIndexHeadWeights = Annotated[Tensor, \"batch query_tokens heads\"]\nIndexScores = Annotated[Tensor, \"batch query_tokens compressed_positions\"]\nVisibleGroups = Annotated[Tensor, \"batch query_tokens singleton; completed group count\"]\nCandidateMask = Annotated[Tensor, \"batch query_tokens compressed_positions; boolean\"]\nSparseIndices = Annotated[Tensor, \"batch query_tokens selected_positions; integer or -1\"]\n\n\ndef compute_index_scores(\n    query: IndexQuery, keys: IndexKeys, head_weights: IndexHeadWeights,\n) -> IndexScores:\n    \"\"\"Score [B,T,H,D] queries against [B,C,D] keys with [B,T,H] learned weights.\"\"\"\n    if query.ndim != 4 or keys.ndim != 3 or head_weights.shape != query.shape[:-1]:\n        raise ValueError(\"query, keys and head weights have incompatible ranks or shapes\")\n    if keys.shape[0] != query.shape[0] or keys.shape[-1] != query.shape[-1]:\n        raise ValueError(\"query and keys must share batch and head width\")\n    heads, width = query.shape[-2:]\n    if heads == 0 or width == 0:\n        raise ValueError(\"query must have positive head count and head width\")\n    with torch.autocast(device_type=query.device.type, enabled=False):\n        # Contract head_dim, rectify each head score, then sum weighted heads.\n        products = torch.einsum('bthd,bcd->bthc', query.float(), keys.float()).relu()\n        weights = head_weights.float() * (width ** -0.5 * heads ** -0.5)\n        return (products * weights[..., None]).sum(dim=2)\n\n\ndef select_candidate_blocks(\n    scores: IndexScores, visible: VisibleGroups, config: V41Config,\n) -> CandidateMask:\n    \"\"\"Return [B,T,C] mask; visible [B,T,1] counts only completed causal groups.\"\"\"\n    top_blocks, block_size = config.candidate_blocks, config.candidate_block_size\n    if scores.ndim != 3 or visible.shape != (*scores.shape[:2], 1):\n        raise ValueError(\"scores and visible counts must be [B,T,C] and [B,T,1]\")\n    width = scores.shape[-1]\n    causal = torch.arange(width, device=scores.device) < visible\n    if width == 0:\n        return causal\n    masked = scores.float().masked_fill(~causal, -torch.inf)\n    padded = F.pad(masked, (0, -width % block_size), value=-torch.inf)\n    # Padding is unreachable; each block takes its best compressed-position score.\n    block_scores = padded.unflatten(-1, (-1, block_size)).amax(-1)\n    # Pin the newest reachable block, even when its scores are below older blocks.\n    newest = (visible - 1) // block_size\n    block_ids = torch.arange(block_scores.shape[-1], device=scores.device)\n    block_scores = block_scores.masked_fill(block_ids == newest, torch.inf)\n    values, indices = block_scores.topk(min(top_blocks, block_scores.shape[-1]), dim=-1)\n    keep = torch.zeros_like(block_scores, dtype=torch.bool)\n    keep.scatter_(-1, indices, values > -torch.inf)\n    return keep.repeat_interleave(block_size, -1)[..., :width] & causal\n\n\ndef select_sparse_indices(\n    scores: IndexScores, visible: VisibleGroups, candidates: CandidateMask, config: V41Config,\n) -> SparseIndices:\n    \"\"\"Return position-ordered compressed indices, padding unavailable picks with -1.\"\"\"\n    topk = config.index_topk\n    if scores.ndim != 3 or visible.shape != (*scores.shape[:2], 1):\n        raise ValueError(\"scores and visible counts must be [B,T,C] and [B,T,1]\")\n    if candidates.shape != scores.shape or candidates.dtype != torch.bool:\n        raise ValueError(\"candidate mask must be boolean and match scores\")\n    allowed = candidates & (torch.arange(scores.shape[-1], device=scores.device) < visible)\n    masked = scores.float().masked_fill(~allowed, -torch.inf)\n    indices = masked.topk(min(topk, scores.shape[-1]), dim=-1).indices.sort(-1).values\n    # Gather validity at selected positions; masked top-k filler becomes sentinel -1.\n    return indices.masked_fill(~allowed.gather(-1, indices), -1)\n"
@@ -151957,12 +151944,12 @@
           "sparse_attn_kernel"
         ],
         "requires": [],
-        "summary": "Gather a causal local window and the published compressed indices, then normalize them together with the learned sink logit. The sink contributes denominator mass and no value. Authored adaptation of DeepSeek publisher code (MIT).",
-        "limitations": "Dense reference of the sparse attention core only: FP32 accumulation with query-dtype output. Queries and shared K/V latents are already projected, normalized and rotated. selected contains causal compressed indices or -1; Full/Reindex publish them and Reuse reads them unchanged. Local history uses absolute positions instead of a ring buffer. Inverse output RoPE, grouped output projections and quantization are outside this excerpt.",
+        "summary": "Gather a causal local window and the published compressed indices, then normalize them together with the learned sink logit. The sink contributes denominator mass and no value. A CPU experiment holds the selected dictionary fixed and changes only the query to expose different weights and readouts. Authored adaptation of DeepSeek publisher code (MIT).",
+        "limitations": "Dense reference of the sparse attention core only: FP32 accumulation with query-dtype output. Queries and shared K/V latents are already projected, normalized and rotated. selected contains causal compressed indices or -1; Full/Reindex publish them and Reuse reads them unchanged. Local history uses absolute positions instead of a ring buffer. The fixed-dictionary experiment compares alternative queries at the same position; it does not represent successive layers or tokens. Real layers retain fresh local KV, query and output projections. Inverse output RoPE, grouped output projections and quantization are outside this excerpt.",
         "sourceFile": "examples/deepseek_v41/csa2_attention.py",
-        "code": "from typing import Annotated\nimport torch\nfrom torch import Tensor\n\nfrom .config import V41Config\n\n\nAttentionQuery = Annotated[Tensor, \"batch query_tokens heads head_dim\"]\nLocalLatents = Annotated[Tensor, \"batch local_history head_dim\"]\nCompressedLatents = Annotated[Tensor, \"batch compressed_positions head_dim\"]\nAttentionSelection = Annotated[Tensor, \"batch query_tokens picks; causal indices or -1\"]\nQueryPositions = Annotated[Tensor, \"query_tokens; absolute local-history positions\"]\nAttentionSink = Annotated[Tensor, \"heads; finite denominator-only logits\"]\n\n\ndef sparse_attention(\n    query: AttentionQuery, local_kv: LocalLatents, compressed_kv: CompressedLatents,\n    selected: AttentionSelection, positions: QueryPositions, sink: AttentionSink,\n    config: V41Config,\n) -> AttentionQuery:\n    \"\"\"Attend over local and selected compressed latents using one sink-augmented softmax.\n\n    query [B,T,H,D], caches [B,L,D]/[B,C,D], selected [B,T,K], positions [T].\n    Positions address full local history; selected is already causally filtered or -1.\n    A finite sink [H] has zero value. Output [B,T,H,D] retains the query dtype.\n    \"\"\"\n    window = config.window_size\n    if query.ndim != 4:\n        raise ValueError(\"query must have shape [batch, tokens, heads, width]\")\n    batch, steps, heads, width = query.shape\n    if width == 0 or heads == 0:\n        raise ValueError(\"head count and head width must be positive\")\n    for cache in (local_kv, compressed_kv):\n        if cache.ndim != 3 or (cache.shape[0], cache.shape[-1]) != (batch, width):\n            raise ValueError(\"cache must have shape [batch, cached positions, head width]\")\n    if local_kv.shape[1] == 0:\n        raise ValueError(\"local history must include the current target position\")\n    if selected.ndim != 3 or selected.shape[:2] != (batch, steps):\n        raise ValueError(\"selected indices must have shape [batch, tokens, picks]\")\n    if positions.shape != (steps,) or sink.shape != (heads,):\n        raise ValueError(\"positions and sink must match token and head counts\")\n    offsets = torch.arange(window - 1, -1, -1, device=query.device)\n    local_indices = (positions[:, None] - offsets).expand(batch, steps, window)\n    valid_local = (local_indices >= 0) & (local_indices < local_kv.shape[1])\n    # Shift compressed indices into the concatenated local + compressed cache.\n    compressed_indices = selected + local_kv.shape[1]\n    indices = torch.cat([local_indices, compressed_indices], dim=-1)\n    valid_compressed = (selected >= 0) & (selected < compressed_kv.shape[1])\n    valid = torch.cat([valid_local, valid_compressed], dim=-1)\n    cache = torch.cat([local_kv.float(), compressed_kv.float()], dim=1)\n    batch_indices = torch.arange(batch, device=query.device)[:, None, None]\n    # Advanced indexing gathers each query's selected vectors from its own batch.\n    gathered = cache[batch_indices, indices.masked_fill(~valid, 0)]\n    with torch.autocast(device_type=query.device.type, enabled=False):\n        logits = torch.einsum('bthd,btkd->bthk', query.float(), gathered) * width ** -0.5\n        logits = logits.masked_fill(~valid[:, :, None, :], -torch.inf)\n        sink_logits = sink.float()[None, None, :, None].expand(batch, steps, heads, 1)\n        # The sink shares normalization but contributes no value to the weighted sum.\n        probability = torch.cat([logits, sink_logits], -1).softmax(-1)[..., :-1]\n        return torch.einsum('bthk,btkd->bthd', probability, gathered).to(query.dtype)\n"
+        "code": "from dataclasses import dataclass, replace\nfrom typing import Annotated\nimport torch\nfrom torch import Tensor\n\nfrom .config import V41Config\n\n\nAttentionQuery = Annotated[Tensor, \"batch query_tokens heads head_dim\"]\nLocalLatents = Annotated[Tensor, \"batch local_history head_dim\"]\nCompressedLatents = Annotated[Tensor, \"batch compressed_positions head_dim\"]\nAttentionSelection = Annotated[Tensor, \"batch query_tokens picks; causal indices or -1\"]\nQueryPositions = Annotated[Tensor, \"query_tokens; absolute local-history positions\"]\nAttentionSink = Annotated[Tensor, \"heads; finite denominator-only logits\"]\n\n\ndef sparse_attention(\n    query: AttentionQuery, local_kv: LocalLatents, compressed_kv: CompressedLatents,\n    selected: AttentionSelection, positions: QueryPositions, sink: AttentionSink,\n    config: V41Config,\n) -> AttentionQuery:\n    \"\"\"Attend over local and selected compressed latents using one sink-augmented softmax.\n\n    query [B,T,H,D], caches [B,L,D]/[B,C,D], selected [B,T,K], positions [T].\n    Positions address full local history; selected is already causally filtered or -1.\n    A finite sink [H] has zero value. Output [B,T,H,D] retains the query dtype.\n    \"\"\"\n    window = config.window_size\n    if query.ndim != 4:\n        raise ValueError(\"query must have shape [batch, tokens, heads, width]\")\n    batch, steps, heads, width = query.shape\n    if width == 0 or heads == 0:\n        raise ValueError(\"head count and head width must be positive\")\n    for cache in (local_kv, compressed_kv):\n        if cache.ndim != 3 or (cache.shape[0], cache.shape[-1]) != (batch, width):\n            raise ValueError(\"cache must have shape [batch, cached positions, head width]\")\n    if local_kv.shape[1] == 0:\n        raise ValueError(\"local history must include the current target position\")\n    if selected.ndim != 3 or selected.shape[:2] != (batch, steps):\n        raise ValueError(\"selected indices must have shape [batch, tokens, picks]\")\n    if positions.shape != (steps,) or sink.shape != (heads,):\n        raise ValueError(\"positions and sink must match token and head counts\")\n    offsets = torch.arange(window - 1, -1, -1, device=query.device)\n    local_indices = (positions[:, None] - offsets).expand(batch, steps, window)\n    valid_local = (local_indices >= 0) & (local_indices < local_kv.shape[1])\n    # Shift compressed indices into the concatenated local + compressed cache.\n    compressed_indices = selected + local_kv.shape[1]\n    indices = torch.cat([local_indices, compressed_indices], dim=-1)\n    valid_compressed = (selected >= 0) & (selected < compressed_kv.shape[1])\n    valid = torch.cat([valid_local, valid_compressed], dim=-1)\n    cache = torch.cat([local_kv.float(), compressed_kv.float()], dim=1)\n    batch_indices = torch.arange(batch, device=query.device)[:, None, None]\n    # Advanced indexing gathers each query's selected vectors from its own batch.\n    gathered = cache[batch_indices, indices.masked_fill(~valid, 0)]\n    with torch.autocast(device_type=query.device.type, enabled=False):\n        logits = torch.einsum('bthd,btkd->bthk', query.float(), gathered) * width ** -0.5\n        logits = logits.masked_fill(~valid[:, :, None, :], -torch.inf)\n        sink_logits = sink.float()[None, None, :, None].expand(batch, steps, heads, 1)\n        # The sink shares normalization but contributes no value to the weighted sum.\n        probability = torch.cat([logits, sink_logits], -1).softmax(-1)[..., :-1]\n        return torch.einsum('bthk,btkd->bthd', probability, gathered).to(query.dtype)\n\n\n@dataclass(frozen=True)\nclass QueryExample:\n    config: V41Config\n    queries: AttentionQuery\n    local_kv: LocalLatents\n    compressed_kv: CompressedLatents\n    selected: AttentionSelection\n    positions: QueryPositions\n    sink: AttentionSink\n    weights: Annotated[Tensor, \"batch query_alternatives heads local+compressed+sink\"]\n    outputs: AttentionQuery\n\n\ndef run_query_example(config: V41Config) -> QueryExample:\n    \"\"\"Two counterfactual queries read exactly the same small KV dictionary on CPU.\n\n    Only numerical sizes change from the caller's global V41Config. The token\n    axis here holds alternatives at the SAME position, not successive tokens\n    or layers. These illustrative vectors are not checkpoint activations.\n    Real Attention layers still project fresh queries and local KV, and apply\n    output projections; compressed-cache reuse does not make a query-only model.\n    \"\"\"\n    small = replace(config, head_dim=2, attention_heads=1, window_size=2)\n    local = torch.tensor([[[2., 0.], [0., 1.]]])\n    compressed = torch.tensor([[[1., 2.]]])\n    queries = torch.tensor([[[[2., 0.]], [[0., 2.]]]])\n    positions = torch.tensor([1, 1])\n    selected = torch.tensor([[[0], [0]]])\n    # A fixed illustrative value for the learned per-head sink logit.\n    sink = torch.tensor([.5])\n    outputs = sparse_attention(queries, local, compressed, selected, positions, sink, small)\n\n    # Expose this tiny dictionary's weights for inspection, not a second output\n    # implementation. Both alternatives gather every row in this same order.\n    dictionary = torch.cat([local, compressed], dim=1)\n    logits = queries @ dictionary[:, None].transpose(-1, -2) / small.head_dim ** .5\n    sink_logits = sink.reshape(1, 1, 1, 1).expand(1, 2, 1, 1)\n    weights = torch.cat([logits, sink_logits], dim=-1).softmax(-1)\n    # weights[..., -1] has no value vector; only the other lanes contribute.\n    return QueryExample(small, queries, local, compressed, selected, positions,\n                        sink, weights, outputs)\n"
       },
-      "statement": "Authored, reduced-shape PyTorch teaching implementation, bounded by the displayed simplifications and symbol anchors. CPU tests check local mathematical behavior, not checkpoint parity or production runtime acceptance.",
+      "statement": "Authored sparse-attention teaching core plus a fixed-dictionary counterfactual query experiment. Toy vectors are explicit illustrative inputs, not checkpoint activations. One joint local/compressed/sink normalization is bound to publisher code; independent CPU arithmetic is not checkpoint parity or production certification.",
       "evidence": [
         {
           "source": "dsv41-code",
@@ -151989,6 +151976,32 @@
             ]
           },
           "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Attention._window_kv",
+            "sha256": "f9e08f3521c0920521eed1e8950f0259c5a8e744d01308ade3471c7df0905ccd",
+            "resolved_span": [
+              700,
+              720
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Attention._compress_kv",
+            "sha256": "a641a6863a0ad781b68f587d3dd5fd6c98a9b9a70cd921babccde998e55823bc",
+            "resolved_span": [
+              739,
+              763
+            ]
+          },
+          "relation": "derives"
         }
       ],
       "dependencies": [
@@ -152333,7 +152346,7 @@
       "consumer": "file.src/pytorch-memory.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "d1ad22da241e5acae9a48a1ac6335384e31153d54ca1e76717d64f16da8ef95d",
+      "expected": "5b217215113cbce5fb6e2987718834afd6086abfcdae25e60d0e003aee213898",
       "statement": "Teaching example delivery fingerprint; identity is not source acceptance.",
       "evidence": [],
       "dependencies": [
@@ -152594,7 +152607,7 @@
       "consumer": "file.src/diagram-pytorch-memory.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "4c98321bb05ccaac0aa0f000f727fc545fb4e36bd6d0701e4121d1a60aecb021",
+      "expected": "fd12ceaf5847b50b4e48ff03b1544133982a15f2ce77dbb4db885eee00450f8f",
       "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
       "evidence": [],
       "dependencies": [
@@ -153866,19 +153879,6 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.module-csa2-selection.graph.659e94d5357006de",
-      "consumer": "scene.dsv41.model.module-csa2-selection.graph.659e94d5357006de",
-      "domain": "model",
-      "classification": "derived",
-      "expected": "659e94d5357006de50f8c1960a2c27f4a1dd323a41146fc2f76f9f96ecbd5473",
-      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
-      "evidence": [],
-      "dependencies": [
-        "pytorch.csa2-selection",
-        "file.src/diagram-pytorch-memory.mjs"
-      ]
-    },
-    {
       "id": "scene.dsv41.model.module-csa2-attention.local-cache.1f5c2e2e7d35cf8d",
       "consumer": "scene.dsv41.model.module-csa2-attention.local-cache.1f5c2e2e7d35cf8d",
       "domain": "model",
@@ -154066,19 +154066,6 @@
       "domain": "model",
       "classification": "derived",
       "expected": "d76e83f0d8db0d83ab84f12585556bcf8c496afad4d3ba4d761e8496df56b80a",
-      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
-      "evidence": [],
-      "dependencies": [
-        "pytorch.csa2-attention",
-        "file.src/diagram-pytorch-memory.mjs"
-      ]
-    },
-    {
-      "id": "scene.dsv41.model.module-csa2-attention.graph.4ea3bda11eaa4af8",
-      "consumer": "scene.dsv41.model.module-csa2-attention.graph.4ea3bda11eaa4af8",
-      "domain": "model",
-      "classification": "derived",
-      "expected": "4ea3bda11eaa4af8f64b596376d085755c5cdf3c607bb01148c6c0b5b161ce7c",
       "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
       "evidence": [],
       "dependencies": [
@@ -155039,7 +155026,7 @@
       "consumer": "file.examples/deepseek_v41/csa2_attention.py",
       "domain": "model",
       "classification": "derived",
-      "expected": "4777dfc69604ffea1de1068991b7d24a655d0b74a61dd8ce79de42462558f3b7",
+      "expected": "c9c9d3a0c1445ff1b8134041a76c7587cb70d83b8c4cf7e0bbd6351a8aefde3a",
       "dependencies": [
         "file.examples/deepseek_v41/config.py"
       ],
@@ -155069,6 +155056,32 @@
             ]
           },
           "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Attention._window_kv",
+            "sha256": "f9e08f3521c0920521eed1e8950f0259c5a8e744d01308ade3471c7df0905ccd",
+            "resolved_span": [
+              700,
+              720
+            ]
+          },
+          "relation": "derives"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Attention._compress_kv",
+            "sha256": "a641a6863a0ad781b68f587d3dd5fd6c98a9b9a70cd921babccde998e55823bc",
+            "resolved_span": [
+              739,
+              763
+            ]
+          },
+          "relation": "derives"
         }
       ],
       "statement": "Local Python consumer identity; CPU checks do not establish publisher parity or source acceptance."
@@ -155284,7 +155297,7 @@
       "consumer": "file.src/pytorch-source.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "515142ae810bba107f5a4862f11f313450ec4feb8db8bba755e0b65e61ea6a84",
+      "expected": "efcbc7f6fdc51bff4fb439c9231871e74d55790e8aa0645faaa82b59b4ca852e",
       "dependencies": [
         "file.examples/deepseek_v41/config.py",
         "file.examples/deepseek_v41/backbone_mhc.py",
@@ -155326,7 +155339,7 @@
       "consumer": "file.examples/deepseek_v41/validate.py",
       "domain": "model",
       "classification": "derived",
-      "expected": "4ee11e38b0f1527f0e7a8daa74c931827ed5fb83f1293d7c67d9e59ebdadae2e",
+      "expected": "8801484bc9ef17fa8be6fed37f0e8a990aa417ea3d8b6e23f0a35519706a6861",
       "dependencies": [
         "file.examples/deepseek_v41/config.py",
         "file.examples/deepseek_v41/backbone_mhc.py",
@@ -155665,6 +155678,210 @@
       ],
       "evidence": [],
       "statement": "Local Python consumer identity; CPU checks do not establish publisher parity or source acceptance."
+    },
+    {
+      "id": "scene.dsv41.model.decoder.decoder-boundary.418c660c11de2547",
+      "consumer": "scene.dsv41.model.decoder.decoder-boundary.418c660c11de2547",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "418c660c11de2547d9834d8e9eb55400998f1baabc2bea863c7d745e08691773",
+      "dependencies": [
+        "deepdive.decoder"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.decoder.replay-0-0.1eb6efcb4218a069",
+      "consumer": "scene.dsv41.model.decoder.replay-0-0.1eb6efcb4218a069",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1eb6efcb4218a0690013d4349370a0fa472c230e88f6b527761400331f14b727",
+      "dependencies": [
+        "deepdive.decoder"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.decoder.replay-0-1.8901c973b7047957",
+      "consumer": "scene.dsv41.model.decoder.replay-0-1.8901c973b7047957",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "8901c973b704795736ad82eb9adc5050f72a06a8282dc3431b66d60b1b5a5e14",
+      "dependencies": [
+        "deepdive.decoder"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.decoder.replay-0-2.748932681ea5eabe",
+      "consumer": "scene.dsv41.model.decoder.replay-0-2.748932681ea5eabe",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "748932681ea5eabeaa4b1f960b922a5a03cfd918b3c075e84aad578221d9b656",
+      "dependencies": [
+        "deepdive.decoder"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.decoder.replay-1-1.a67006a9c5efed63",
+      "consumer": "scene.dsv41.model.decoder.replay-1-1.a67006a9c5efed63",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "a67006a9c5efed634274c383d4a367055cf3e9b86b09e8dc1e72b7e457c2b63e",
+      "dependencies": [
+        "deepdive.decoder"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.decoder.replay-1-2.27bb3a391d81d966",
+      "consumer": "scene.dsv41.model.decoder.replay-1-2.27bb3a391d81d966",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "27bb3a391d81d966309a1da81c426121f46834188dc5bb5dd6b2bff55c4da7da",
+      "dependencies": [
+        "deepdive.decoder"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.decoder.replay-2-2.fd2f441b5749d881",
+      "consumer": "scene.dsv41.model.decoder.replay-2-2.fd2f441b5749d881",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "fd2f441b5749d88187baafb1c1d01937ee26055d37eb5cd536b6203ad55b6bf1",
+      "dependencies": [
+        "deepdive.decoder"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.decoder.replay-truncation.306d251ffd55ab71",
+      "consumer": "scene.dsv41.model.decoder.replay-truncation.306d251ffd55ab71",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "306d251ffd55ab71b9768b9dd91eb56565dc9c265c61a0a84b4d6be15560822a",
+      "dependencies": [
+        "deepdive.decoder"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.decoder.replay-global.1922992ea72a8d6f",
+      "consumer": "scene.dsv41.model.decoder.replay-global.1922992ea72a8d6f",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1922992ea72a8d6f8bf986dd7d24153cc8747ff692ffd38b5af5eb176268096b",
+      "dependencies": [
+        "deepdive.decoder"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.decoder.graph.b95e127ac4497d74",
+      "consumer": "scene.dsv41.model.decoder.graph.b95e127ac4497d74",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "b95e127ac4497d742b2de70da5bcd40ba33dc39c516e55d9d09bec84801bcb07",
+      "dependencies": [
+        "deepdive.decoder"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.csa2.csa2-candidates.b726f6498c29b0e4",
+      "consumer": "scene.dsv41.model.csa2.csa2-candidates.b726f6498c29b0e4",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "b726f6498c29b0e49d8aa916d99f2aadb6431fa8e1317ff77b164e362ccc5c27",
+      "dependencies": [
+        "deepdive.csa2"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.csa2.csa2-select.dd2d51a70b381aec",
+      "consumer": "scene.dsv41.model.csa2.csa2-select.dd2d51a70b381aec",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "dd2d51a70b381aec83be2d26d2fa69406adda60bfda04a7ad807036b5b4970d9",
+      "dependencies": [
+        "deepdive.csa2"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.graph.86c040fe4ef6c411",
+      "consumer": "scene.dsv41.model.module-csa2-selection.graph.86c040fe4ef6c411",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "86c040fe4ef6c4116268caab982ccd8b1776ceacf87ceb347185cc4c91fa473b",
+      "dependencies": [
+        "pytorch.csa2-selection"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.fixed-dictionary.be418cf9080f9b9e",
+      "consumer": "scene.dsv41.model.module-csa2-attention.fixed-dictionary.be418cf9080f9b9e",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "be418cf9080f9b9e9b1626b92417ad658470994ab36d36e9b07977eed4a4eb26",
+      "dependencies": [
+        "pytorch.csa2-attention"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.alternative-queries.0da5ec3ab339ad55",
+      "consumer": "scene.dsv41.model.module-csa2-attention.alternative-queries.0da5ec3ab339ad55",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "0da5ec3ab339ad55f7a75a6ff03ac32762c8946c4306910015b44be9fcf976ce",
+      "dependencies": [
+        "pytorch.csa2-attention"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.query-readouts.2a8217f3dff8598d",
+      "consumer": "scene.dsv41.model.module-csa2-attention.query-readouts.2a8217f3dff8598d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "2a8217f3dff8598d77e415392267b202aa1681ab94f7e1faa660621a7b441a7c",
+      "dependencies": [
+        "pytorch.csa2-attention"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.graph.98b1c59f9d57cff8",
+      "consumer": "scene.dsv41.model.module-csa2-attention.graph.98b1c59f9d57cff8",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "98b1c59f9d57cff8cfbecce248c9ee8958e4558938c1a4457e7e6a06879fa704",
+      "dependencies": [
+        "pytorch.csa2-attention"
+      ],
+      "evidence": [],
+      "statement": "Scene rendering of source-bound mechanism and explicitly illustrative teaching example; consumer identity is not independent approval."
     }
   ],
   "contracts": [
