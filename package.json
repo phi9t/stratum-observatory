@@ -19,7 +19,8 @@
     "capture": "uv run --frozen python tests/capture.py",
     "verify:accounting": "uv run --frozen python -m verification.accounting",
     "verify:privacy": "uv run --frozen python -m verification.privacy",
-    "package:public": "uv run --frozen python tools/export-public.py"
+    "package:public": "uv run --frozen python tools/export-public.py",
+    "test:pytorch": "uv run --frozen --group examples python -m unittest discover -s tests -p \"pytorch_*.py\" -v"
   },
   "engines": {
     "node": ">=20"

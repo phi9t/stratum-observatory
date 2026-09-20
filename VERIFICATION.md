@@ -9,11 +9,11 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 618 verifier tests (10 skipped), 109 model/graph tests, two byte-identical builds of all eight portable entry points and 1,461 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Engineering | PASS | 0 | 618 verifier tests (10 skipped), 110 model/graph tests, two byte-identical builds of all eight portable entry points and 1,461 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
 | Accounting arithmetic | PASS | 0 | 399 live scenarios; 309 agreement, 82 explained differences, 186 unsupported findings, zero contradictions; required by engineering |
 | Schematics | PASS | 0 | 762 scenes including all 544 decoder layers; 3,154 checks against core.mjs, of which 238 are recorded not-applicable passes |
 | Presentations | PASS | 0 | 88 checks over 26 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
-| Aesthetics | PASS | 0 | 192 scenarios, 441 checks; type, spacing, contrast, clearance, probe coverage and composition |
+| Aesthetics | PASS | 0 | 192 scenarios, 453 checks; type, spacing, contrast, clearance, probe coverage and composition |
 | Scientific publication | BLOCKED | 2 | Nine-model consumer inventory and strict evidence/review audit; **no FAIL** |
 | Runtime certification | BLOCKED | 2 | Run on these bytes: 32 of 32 obligations NOT_RUN, **no FAIL and no `RUNTIME_STALE`**; all private hardware receipts were withdrawn for publication |
 
@@ -68,7 +68,7 @@ or GPU execution.
 
 ## Aesthetics evidence
 
-`npm run verify:aesthetics` passes: **441 checks, 0 failures** across 192 scenarios and 122
+`npm run verify:aesthetics` passes: **453 checks, 0 failures** across 192 scenarios and 128
 distinct measurements. The first run of this gate failed on 21 defects that shipped in the
 delivered artifact; all are now fixed at the source rather than by moving a threshold.
 
@@ -424,30 +424,30 @@ inventory, not correctness of anything in it.
 
 | Item | Count |
 |---|---:|
-| Input leaves | 592 |
-| Function/file identities | 34 |
+| Input leaves | 601 |
+| Function/file identities | 38 |
 | Distinct sampled scene contracts | 2926 |
-| Claims including domain obligations | 3576 |
+| Claims including domain obligations | 3589 |
 | Candidate source entries | 83 |
 | Accepted raw-byte snapshots | 81 |
 | Scientifically certified claims under the signed policy | 0 |
 | Passed presentation bindings | 0 |
 | Domain contracts / runtime obligations | 32 / 32 |
 
-The publication audit has **6,248 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
+The publication audit has **6,296 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
 from the current source and consumer bytes with a fresh engineering receipt:
 
 | Code | Status | Count |
 |---|---|---:|
-| `REVIEW_REQUIRED` | BLOCKED | 3,608 |
+| `REVIEW_REQUIRED` | BLOCKED | 3,621 |
 | `CLAIM_ANCHOR` | BLOCKED | 2,334 |
-| `CLAIM_ROLE` | BLOCKED | 128 |
-| `MODEL_DUAL_CODE` | BLOCKED | 114 |
+| `CLAIM_ROLE` | BLOCKED | 141 |
+| `MODEL_DUAL_CODE` | BLOCKED | 127 |
 | `CONTRACT_EVIDENCE` | BLOCKED | 32 |
-| `CONTRACT_CONSISTENT` | PASS | 23 |
+| `CONTRACT_CONSISTENT` | PASS | 24 |
 | `CONTRACT_MODEL_COVERAGE` | PASS | 9 |
 | `DOCUMENTED_NO_SOURCE` | BLOCKED | 17 |
-| `DOMAIN_INPUT` | BLOCKED | 9 |
+| `DOMAIN_INPUT` | BLOCKED | 8 |
 | `SOURCE_UNFETCHED` | BLOCKED | 2 |
 | `SOURCE_CACHE` | BLOCKED | 2 |
 | `CLAIM_SOURCE_BLOCKED` | BLOCKED | 2 |
@@ -455,7 +455,7 @@ from the current source and consumer bytes with a fresh engineering receipt:
 | `ENGINEERING_CURRENT` | PASS | 1 |
 
 Most of these are cascading source dependencies and absent independent reviews; this is **not** a
-claim that 6,248 facts are false. No review identity, accepted source hash or execution receipt was
+claim that 6,296 facts are false. No review identity, accepted source hash or execution receipt was
 invented.
 
 For the record, the evidence-anchor work began at **9,037 findings (9,013 BLOCKED)** with
@@ -465,7 +465,7 @@ provenance, and letting derived scene claims carry provenance through their depe
 removed 3,853 BLOCKED findings without a single fabricated anchor.
 
 Runtime certification was run on these bytes and reports the same population plus its
-obligations: **6,113 BLOCKED, 41 PASS, 29 NOT_RUN, no FAIL.**
+obligations: **6,296 BLOCKED, 38 PASS, 32 NOT_RUN, no FAIL.**
 
 **Adding a ninth checkpoint did not make any receipt stale, and an earlier draft of this section
 was wrong to predict that it would.** The prediction came from reading the coupling rule instead of
@@ -808,11 +808,11 @@ executes all three, and CI could never have executed the transcription compariso
 
 ## Artifact identity
 
-Portable HTML SHA-256: `7f528beef0d33a021d2e7165eb2e3c3ba0e23f2075f0bdba77d7b1fa773761c9`
+Portable HTML SHA-256: `328164b23fafbdcf8ce5e5b2ccf7cbf0b58b6c0c0778bc8614d8fdf4d6a2f065`
 
-Scientific lock SHA-256: `8c29284c988a54d7f7a7b4bce4446f32fcd58081d5e9e73cce074790539af829`
+Scientific lock SHA-256: `2ada7b2be3d834c6d620cd759a1c2dd794422f30059e0be0e0cca1cc54cbd10a`
 
-Verifier identity SHA-256: `5f02a25c150a4d1feba045b75cff89741f43cdf84b9aefc02a705341590af4d3`
+Verifier identity SHA-256: `9e85f64633908b4eef60fe6f6d79727499492f3af1fdd124730cca49cbb038b4`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -892,7 +892,7 @@ V4.1 dispatch and storage anchors. Main KV and packed indexer payload reconcile 
 window state and allocation overhead remain separate. [Research and source scope](docs/design/V41-SERVING-RESEARCH.md)
 record the development-branch serving implementation and Miles plugin. Neither is a runtime receipt.
 
-Dedicated HTML SHA-256: `abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346`
+Dedicated HTML SHA-256: `5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac`
 
 CED phase depths follow the report-level scheme. The pinned reference forward still visits all backbone layers; encoder-only prefill execution is not certified by that code. This distinction is visible in the CED caption and serving inspector.
 
@@ -936,12 +936,12 @@ registry drives page builds, artifact identity, browser routing and preview sele
 Chromium exercises real landing links, variant switches, reloads, identity enforcement,
 scenario exports and return links. All eight portable files are included in the software gates.
 
-- `deepseek-v4.1.html` SHA-256: `abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346`
-- `index.html` SHA-256: `7f528beef0d33a021d2e7165eb2e3c3ba0e23f2075f0bdba77d7b1fa773761c9`
-- `kimi-k3.html` SHA-256: `8be998c2fd7e9d0baaa03c3c8794cc87b8e97af7392490768a9d4d01513010ec`
-- `qwen3.8.html` SHA-256: `9d80d2e6cc79c77404c8f80af5d6b694e1163e828b27cdcf5582ed1c80ffeee1`
+- `deepseek-v4.1.html` SHA-256: `5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac`
+- `index.html` SHA-256: `328164b23fafbdcf8ce5e5b2ccf7cbf0b58b6c0c0778bc8614d8fdf4d6a2f065`
+- `kimi-k3.html` SHA-256: `42af80ada8a7b9247d66ebfedd564e8f79ec61a7f4a80beeed74a8f1728bcb0f`
+- `qwen3.8.html` SHA-256: `47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd`
 
-Publication coverage: 3608 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
+Publication coverage: 3621 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
 
 ## Shared systems sections
 
@@ -953,12 +953,12 @@ exposes a workload-model selector, and links preserve the originating scenario. 
 system bookmarks redirect to these shared pages. Repeated local arrow-key navigation keeps focus
 in the model tabs. All eight files receive artifact identity and portable delivery checks.
 
-- `hardware.html` SHA-256: `5f92087e43e0b3e06ca8c275b26fbb4c764ba4952281012d2b30fc1ad268fa32`
-- `networking.html` SHA-256: `124a78207e327a5a65901eed626a7b75ee9545d38b2344a7822ab0a521e3706a`
+- `hardware.html` SHA-256: `3aaa3fd45e1ddb8219b8be512835d83aed9264837b544786854bb724b29de666`
+- `networking.html` SHA-256: `05aa914debe120086ba3a171de1161255e8857f141a2321023a6548eefffaf04`
 
-- `foundations.html` SHA-256: `21e72a10ac6bb2c3bebc6fa55524e5b95e3ef014df048642a9ae8ad399d01247`
+- `foundations.html` SHA-256: `bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2`
 
-- `data-representation.html` SHA-256: `70b019ab1ffd4e9d36d21f1f48ea6360fa1db565056e8db0ca52b0344ce09d20`
+- `data-representation.html` SHA-256: `3f0d68088464a519db559d07b1e5fd57fbca01decb04b2f0eb4545899919a1c1`
 
 ## Landing directory and data reference
 
@@ -1006,3 +1006,24 @@ The two exact user-selected code repositories join the publisher-code policy wit
 positive/lookalike-negative test; no reviewer identity or signature was added. Seven new
 byte snapshots carry exact code/section anchors. Source integrity does not confer scientific
 acceptance. The source and scope map is `docs/research/DEEPSPEC-DSpark.md`.
+
+## V4.1 PyTorch examples
+
+Nine source-linked teaching records cover mHC/flat CED, routed/shared experts, Engram,
+compression, sparse selection, sparse attention, dSpark attention/output heads and the
+separately scoped DeepSpec verifier. The encoder and decoder reuse the same backbone
+records. Exact source-symbol anchors bind each record in the publication inventory;
+independent scientific acceptance remains BLOCKED.
+
+19 PyTorch CPU tests exercise reduced-shape mathematics, masks, partial compression
+state, previous-sublayer mixing, asymmetric SwiGLU clamps, unbiased expert weighting,
+draft visibility, Markov conditioning, rejection sampling and cache ownership. They run
+our authored examples with illustrative inputs, not upstream code or checkpoint weights.
+The locked examples dependency group uses PyTorch 2.8.0 and CPU wheels on Linux.
+
+The Chromium chapter journey expands every module, compares displayed and downloaded
+code with its canonical record, parses each standalone download, checks keyboard focus
+and 390px overflow, and verifies print expansion/restoration including source licenses.
+Aesthetics measures expanded code and prose in both themes. The current capture set
+opens a code panel in each V4.1 chapter. These checks do not certify GPU execution,
+checkpoint output parity or production performance.

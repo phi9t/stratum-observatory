@@ -31,3 +31,17 @@ summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 @media print{.accounting-assumptions,.accounting-assumptions *{color:#222!important}}
 
 [hidden]{display:none!important}#site-nav{gap:24px}body.focus-mode #site-nav{display:none}@media print{#site-nav{display:none!important}}
+.pytorch-section{padding:24px;min-width:0;color:var(--text)}
+.pytorch-section h4{font-size:16px;margin:0 0 12px;color:var(--text)}
+.pytorch-section p{font-size:14px;line-height:1.7;margin:12px 0;color:var(--text);overflow-wrap:anywhere}
+.pytorch-section a{color:var(--text);text-decoration:underline}
+.pytorch-example{border:1px solid var(--line);border-radius:6px;margin:12px 0;background:var(--surface);min-width:0}
+.pytorch-example summary{font-size:14px;font-weight:550;padding:16px;cursor:pointer;color:var(--text)}
+.pytorch-example summary:focus-visible,.pytorch-code:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.pytorch-body{padding:0 16px 16px;min-width:0}
+.pytorch-actions{display:flex;gap:12px;margin:16px 0}
+.pytorch-code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;line-height:1.7;padding:16px;margin:0;background:var(--canvas);color:var(--text);overflow:auto;white-space:pre;tab-size:4;border:1px solid var(--line);border-radius:6px;max-height:640px}
+@media(max-width:520px){.pytorch-section{padding:16px}.pytorch-body{padding:0 12px 12px}.pytorch-code{padding:12px}}
+@media print{.pytorch-section,.pytorch-section *{color:#222!important;background:white!important}.pytorch-section,.pytorch-example{break-inside:auto}.pytorch-code{max-height:none;overflow:visible;white-space:pre-wrap;overflow-wrap:anywhere}.pytorch-actions{display:none}}
+.pytorch-license summary{font-size:14px;padding:12px 0;cursor:pointer;color:var(--text)}
+.pytorch-license summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}

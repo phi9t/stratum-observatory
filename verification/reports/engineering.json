@@ -1,23 +1,23 @@
 {
   "schema": "stratum-engineering/v1",
   "status": "PASS",
-  "started_at": "2026-09-20T05:10:09.517800+00:00",
-  "completed_at": "2026-09-20T05:14:52.490446+00:00",
-  "consumer_sha256": "37f93d367f00f8dea3e8d456c041500be015b2a73735e6f0495053738da5d0b2",
-  "verifier_sha256": "5f02a25c150a4d1feba045b75cff89741f43cdf84b9aefc02a705341590af4d3",
-  "lock_sha256": "8c29284c988a54d7f7a7b4bce4446f32fcd58081d5e9e73cce074790539af829",
-  "artifact_sha256": "7f528beef0d33a021d2e7165eb2e3c3ba0e23f2075f0bdba77d7b1fa773761c9",
+  "started_at": "2026-09-20T07:08:38.347813+00:00",
+  "completed_at": "2026-09-20T07:16:16.082723+00:00",
+  "consumer_sha256": "1b7b218e62a2121448f9fbfd2bf7b0947dd3b3d1171edf5ebbf7fb6ef81fa016",
+  "verifier_sha256": "9e85f64633908b4eef60fe6f6d79727499492f3af1fdd124730cca49cbb038b4",
+  "lock_sha256": "2ada7b2be3d834c6d620cd759a1c2dd794422f30059e0be0e0cca1cc54cbd10a",
+  "artifact_sha256": "328164b23fafbdcf8ce5e5b2ccf7cbf0b58b6c0c0778bc8614d8fdf4d6a2f065",
   "artifacts": {
-    "data-representation.html": "70b019ab1ffd4e9d36d21f1f48ea6360fa1db565056e8db0ca52b0344ce09d20",
-    "deepseek-v4.1.html": "abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346",
-    "foundations.html": "21e72a10ac6bb2c3bebc6fa55524e5b95e3ef014df048642a9ae8ad399d01247",
-    "hardware.html": "5f92087e43e0b3e06ca8c275b26fbb4c764ba4952281012d2b30fc1ad268fa32",
-    "index.html": "7f528beef0d33a021d2e7165eb2e3c3ba0e23f2075f0bdba77d7b1fa773761c9",
-    "kimi-k3.html": "8be998c2fd7e9d0baaa03c3c8794cc87b8e97af7392490768a9d4d01513010ec",
-    "networking.html": "124a78207e327a5a65901eed626a7b75ee9545d38b2344a7822ab0a521e3706a",
-    "qwen3.8.html": "9d80d2e6cc79c77404c8f80af5d6b694e1163e828b27cdcf5582ed1c80ffeee1"
+    "data-representation.html": "3f0d68088464a519db559d07b1e5fd57fbca01decb04b2f0eb4545899919a1c1",
+    "deepseek-v4.1.html": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
+    "foundations.html": "bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2",
+    "hardware.html": "3aaa3fd45e1ddb8219b8be512835d83aed9264837b544786854bb724b29de666",
+    "index.html": "328164b23fafbdcf8ce5e5b2ccf7cbf0b58b6c0c0778bc8614d8fdf4d6a2f065",
+    "kimi-k3.html": "42af80ada8a7b9247d66ebfedd564e8f79ec61a7f4a80beeed74a8f1728bcb0f",
+    "networking.html": "05aa914debe120086ba3a171de1161255e8857f141a2321023a6548eefffaf04",
+    "qwen3.8.html": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd"
   },
-  "repeat_build_sha256": "7f528beef0d33a021d2e7165eb2e3c3ba0e23f2075f0bdba77d7b1fa773761c9",
+  "repeat_build_sha256": "328164b23fafbdcf8ce5e5b2ccf7cbf0b58b6c0c0778bc8614d8fdf4d6a2f065",
   "deterministic_build": true,
   "commands": {
     "verifier-tests": {
@@ -36,6 +36,25 @@
       "argv": [
         "npm",
         "test"
+      ],
+      "exit": 0
+    },
+    "pytorch-examples": {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "--group",
+        "examples",
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "pytorch_*.py",
+        "-v"
       ],
       "exit": 0
     },
@@ -91,7 +110,8 @@
   },
   "test_counts": {
     "verifier": 618,
-    "atlas": 109,
+    "atlas": 110,
+    "pytorch": 19,
     "verifier_skipped": 10,
     "atlas_skipped": 0
   },

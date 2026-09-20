@@ -1,11 +1,12 @@
 {
-  "artifact_sha256": "7f528beef0d33a021d2e7165eb2e3c3ba0e23f2075f0bdba77d7b1fa773761c9",
+  "artifact_sha256": "328164b23fafbdcf8ce5e5b2ccf7cbf0b58b6c0c0778bc8614d8fdf4d6a2f065",
   "captures": [
     {
       "name": "ds2",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "21e72a10ac6bb2c3bebc6fa55524e5b95e3ef014df048642a9ae8ad399d01247",
+      "artifact_sha256": "bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2",
       "state": {
         "model": "ds2",
         "view": "model",
@@ -38,8 +39,9 @@
     {
       "name": "ds3",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "21e72a10ac6bb2c3bebc6fa55524e5b95e3ef014df048642a9ae8ad399d01247",
+      "artifact_sha256": "bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2",
       "state": {
         "model": "ds3",
         "view": "model",
@@ -72,8 +74,9 @@
     {
       "name": "q38",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "21e72a10ac6bb2c3bebc6fa55524e5b95e3ef014df048642a9ae8ad399d01247",
+      "artifact_sha256": "bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2",
       "state": {
         "model": "q38",
         "view": "model",
@@ -106,8 +109,9 @@
     {
       "name": "q330",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "21e72a10ac6bb2c3bebc6fa55524e5b95e3ef014df048642a9ae8ad399d01247",
+      "artifact_sha256": "bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2",
       "state": {
         "model": "q330",
         "view": "model",
@@ -140,8 +144,9 @@
     {
       "name": "q3235",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "21e72a10ac6bb2c3bebc6fa55524e5b95e3ef014df048642a9ae8ad399d01247",
+      "artifact_sha256": "bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2",
       "state": {
         "model": "q3235",
         "view": "model",
@@ -174,8 +179,9 @@
     {
       "name": "q3827",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "9d80d2e6cc79c77404c8f80af5d6b694e1163e828b27cdcf5582ed1c80ffeee1",
+      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
       "state": {
         "model": "q3827",
         "view": "model",
@@ -208,8 +214,9 @@
     {
       "name": "q3827-inputs",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "9d80d2e6cc79c77404c8f80af5d6b694e1163e828b27cdcf5582ed1c80ffeee1",
+      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
       "state": {
         "model": "q3827",
         "view": "model",
@@ -242,8 +249,9 @@
     {
       "name": "q38flash",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "9d80d2e6cc79c77404c8f80af5d6b694e1163e828b27cdcf5582ed1c80ffeee1",
+      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -276,8 +284,9 @@
     {
       "name": "q38flash-inputs",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "9d80d2e6cc79c77404c8f80af5d6b694e1163e828b27cdcf5582ed1c80ffeee1",
+      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -310,8 +319,9 @@
     {
       "name": "q38flash-residual",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "9d80d2e6cc79c77404c8f80af5d6b694e1163e828b27cdcf5582ed1c80ffeee1",
+      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -344,8 +354,9 @@
     {
       "name": "q38flash-ple",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "9d80d2e6cc79c77404c8f80af5d6b694e1163e828b27cdcf5582ed1c80ffeee1",
+      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -378,8 +389,9 @@
     {
       "name": "kimi3",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "8be998c2fd7e9d0baaa03c3c8794cc87b8e97af7392490768a9d4d01513010ec",
+      "artifact_sha256": "42af80ada8a7b9247d66ebfedd564e8f79ec61a7f4a80beeed74a8f1728bcb0f",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -412,8 +424,9 @@
     {
       "name": "kimi3-inputs",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "8be998c2fd7e9d0baaa03c3c8794cc87b8e97af7392490768a9d4d01513010ec",
+      "artifact_sha256": "42af80ada8a7b9247d66ebfedd564e8f79ec61a7f4a80beeed74a8f1728bcb0f",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -446,8 +459,9 @@
     {
       "name": "kimi3-residual",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "8be998c2fd7e9d0baaa03c3c8794cc87b8e97af7392490768a9d4d01513010ec",
+      "artifact_sha256": "42af80ada8a7b9247d66ebfedd564e8f79ec61a7f4a80beeed74a8f1728bcb0f",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -480,8 +494,9 @@
     {
       "name": "dsv41",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346",
+      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -514,8 +529,9 @@
     {
       "name": "dsv41-ced",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346",
+      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -548,8 +564,9 @@
     {
       "name": "dsv41-serving-prefill",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346",
+      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
       "state": {
         "model": "dsv41",
         "view": "serving",
@@ -582,8 +599,9 @@
     {
       "name": "dsv41-serving-decode",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346",
+      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
       "state": {
         "model": "dsv41",
         "view": "serving",
@@ -616,8 +634,11 @@
     {
       "name": "dsv41-encoder",
       "accounting_expanded": true,
+      "pytorch_expanded": [
+        "backbone-mhc"
+      ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346",
+      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -650,8 +671,11 @@
     {
       "name": "dsv41-decoder",
       "accounting_expanded": true,
+      "pytorch_expanded": [
+        "backbone-mhc"
+      ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346",
+      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -684,8 +708,11 @@
     {
       "name": "dsv41-engram",
       "accounting_expanded": true,
+      "pytorch_expanded": [
+        "engram-write"
+      ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346",
+      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -718,8 +745,11 @@
     {
       "name": "dsv41-csa2",
       "accounting_expanded": true,
+      "pytorch_expanded": [
+        "csa2-compression"
+      ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346",
+      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -752,8 +782,11 @@
     {
       "name": "dsv41-dspark",
       "accounting_expanded": true,
+      "pytorch_expanded": [
+        "dspark-attention"
+      ],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346",
+      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -786,8 +819,9 @@
     {
       "name": "dsv41-inputs",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346",
+      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -820,8 +854,9 @@
     {
       "name": "dsv41-residual",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "deepseek-v4.1.html",
-      "artifact_sha256": "abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346",
+      "artifact_sha256": "5e46c2211b0a43eb4ac468bf32b35db2e28e1e26571e72b1ec774e7ac52c5eac",
       "state": {
         "model": "dsv41",
         "view": "model",
@@ -854,8 +889,9 @@
     {
       "name": "flash-qsa",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "9d80d2e6cc79c77404c8f80af5d6b694e1163e828b27cdcf5582ed1c80ffeee1",
+      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -888,8 +924,9 @@
     {
       "name": "kimi-mla",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "8be998c2fd7e9d0baaa03c3c8794cc87b8e97af7392490768a9d4d01513010ec",
+      "artifact_sha256": "42af80ada8a7b9247d66ebfedd564e8f79ec61a7f4a80beeed74a8f1728bcb0f",
       "state": {
         "model": "kimi3",
         "view": "model",
@@ -922,8 +959,9 @@
     {
       "name": "training",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "foundations.html",
-      "artifact_sha256": "21e72a10ac6bb2c3bebc6fa55524e5b95e3ef014df048642a9ae8ad399d01247",
+      "artifact_sha256": "bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2",
       "state": {
         "model": "ds3",
         "view": "training",
@@ -956,8 +994,9 @@
     {
       "name": "agentic-rl",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "kimi-k3.html",
-      "artifact_sha256": "8be998c2fd7e9d0baaa03c3c8794cc87b8e97af7392490768a9d4d01513010ec",
+      "artifact_sha256": "42af80ada8a7b9247d66ebfedd564e8f79ec61a7f4a80beeed74a8f1728bcb0f",
       "state": {
         "model": "kimi3",
         "view": "training",
@@ -990,8 +1029,9 @@
     {
       "name": "serving",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "9d80d2e6cc79c77404c8f80af5d6b694e1163e828b27cdcf5582ed1c80ffeee1",
+      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
       "state": {
         "model": "q38flash",
         "view": "serving",
@@ -1024,8 +1064,9 @@
     {
       "name": "hardware-b200",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "hardware.html",
-      "artifact_sha256": "5f92087e43e0b3e06ca8c275b26fbb4c764ba4952281012d2b30fc1ad268fa32",
+      "artifact_sha256": "3aaa3fd45e1ddb8219b8be512835d83aed9264837b544786854bb724b29de666",
       "state": {
         "model": "ds3",
         "view": "hardware",
@@ -1058,8 +1099,9 @@
     {
       "name": "hardware-gb300",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "hardware.html",
-      "artifact_sha256": "5f92087e43e0b3e06ca8c275b26fbb4c764ba4952281012d2b30fc1ad268fa32",
+      "artifact_sha256": "3aaa3fd45e1ddb8219b8be512835d83aed9264837b544786854bb724b29de666",
       "state": {
         "model": "ds3",
         "view": "hardware",
@@ -1092,8 +1134,9 @@
     {
       "name": "network-roce",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "networking.html",
-      "artifact_sha256": "124a78207e327a5a65901eed626a7b75ee9545d38b2344a7822ab0a521e3706a",
+      "artifact_sha256": "05aa914debe120086ba3a171de1161255e8857f141a2321023a6548eefffaf04",
       "state": {
         "model": "kimi3",
         "view": "network",
@@ -1126,8 +1169,9 @@
     {
       "name": "evidence",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "9d80d2e6cc79c77404c8f80af5d6b694e1163e828b27cdcf5582ed1c80ffeee1",
+      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
       "state": {
         "model": "q38flash",
         "view": "evidence",
@@ -1160,8 +1204,9 @@
     {
       "name": "paper",
       "accounting_expanded": true,
+      "pytorch_expanded": [],
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "9d80d2e6cc79c77404c8f80af5d6b694e1163e828b27cdcf5582ed1c80ffeee1",
+      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
       "state": {
         "model": "q38flash",
         "view": "model",
@@ -1194,7 +1239,7 @@
     {
       "name": "mobile",
       "artifact": "qwen3.8.html",
-      "artifact_sha256": "9d80d2e6cc79c77404c8f80af5d6b694e1163e828b27cdcf5582ed1c80ffeee1",
+      "artifact_sha256": "47ba9cdeffc2efa48b6adc9d67c0918fb17b4b4373d755b30604824e626044bd",
       "viewport": {
         "width": 390,
         "height": 844
@@ -1231,7 +1276,7 @@
       "name": "home",
       "guide": "home",
       "artifact": "index.html",
-      "artifact_sha256": "7f528beef0d33a021d2e7165eb2e3c3ba0e23f2075f0bdba77d7b1fa773761c9",
+      "artifact_sha256": "328164b23fafbdcf8ce5e5b2ccf7cbf0b58b6c0c0778bc8614d8fdf4d6a2f065",
       "viewport": {
         "width": 1440,
         "height": 1000
@@ -1241,7 +1286,7 @@
       "name": "data",
       "guide": "data",
       "artifact": "data-representation.html",
-      "artifact_sha256": "70b019ab1ffd4e9d36d21f1f48ea6360fa1db565056e8db0ca52b0344ce09d20",
+      "artifact_sha256": "3f0d68088464a519db559d07b1e5fd57fbca01decb04b2f0eb4545899919a1c1",
       "viewport": {
         "width": 1440,
         "height": 1000

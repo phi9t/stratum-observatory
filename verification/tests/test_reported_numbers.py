@@ -303,6 +303,7 @@ class SoftwareGateNumberTests(RecordTestCase):
             self.skipTest('receipt predates the current verifier; runner.py reports VERIFIER_STALE')
         self.assertStated(report['test_counts']['verifier'], 'verifier tests in the receipt')
         self.assertStated(report['test_counts']['atlas'], 'model/graph tests in the receipt')
+        self.assertStated(report['test_counts']['pytorch'], 'PyTorch example tests in the receipt', 'PyTorch')
 
     def test_artifact_identity_names_the_current_bytes(self):
         """Re-derived from the working tree, not copied from the receipt, so it cannot go stale.

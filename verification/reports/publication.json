@@ -3,21 +3,21 @@
   "target": "stratum-observatory-3",
   "profile": "publication",
   "status": "BLOCKED",
-  "generated_at": "2026-09-20T05:15:26.095649+00:00",
-  "lock_sha256": "8c29284c988a54d7f7a7b4bce4446f32fcd58081d5e9e73cce074790539af829",
-  "consumer_sha256": "37f93d367f00f8dea3e8d456c041500be015b2a73735e6f0495053738da5d0b2",
+  "generated_at": "2026-09-20T07:16:51.005607+00:00",
+  "lock_sha256": "2ada7b2be3d834c6d620cd759a1c2dd794422f30059e0be0e0cca1cc54cbd10a",
+  "consumer_sha256": "1b7b218e62a2121448f9fbfd2bf7b0947dd3b3d1171edf5ebbf7fb6ef81fa016",
   "coverage": {
-    "inputs": 592,
-    "functions_and_files": 34,
+    "inputs": 601,
+    "functions_and_files": 38,
     "scene_contracts": 2926,
-    "claims": 3576,
+    "claims": 3589,
     "sources": 83,
     "verified_sources": 81,
     "verified_scientific_claims": 0,
     "passed_presentation_bindings": 0
   },
   "counts": {
-    "BLOCKED": 6248,
+    "BLOCKED": 6296,
     "PASS": 38
   },
   "domains": {
@@ -53435,6 +53435,204 @@
       "evidence": []
     },
     {
+      "code": "DERIVATION_INPUTS",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.backbone-mhc",
+      "message": "Derived claim has no explicit input-claim dependencies.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "pytorch.backbone-mhc",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "DERIVATION_INPUTS",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.backbone-moe",
+      "message": "Derived claim has no explicit input-claim dependencies.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "pytorch.backbone-moe",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "DERIVATION_INPUTS",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.engram-write",
+      "message": "Derived claim has no explicit input-claim dependencies.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "pytorch.engram-write",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "DERIVATION_INPUTS",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.csa2-compression",
+      "message": "Derived claim has no explicit input-claim dependencies.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "pytorch.csa2-compression",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "DERIVATION_INPUTS",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.csa2-selection",
+      "message": "Derived claim has no explicit input-claim dependencies.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "pytorch.csa2-selection",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "DERIVATION_INPUTS",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.csa2-attention",
+      "message": "Derived claim has no explicit input-claim dependencies.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "pytorch.csa2-attention",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "DERIVATION_INPUTS",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.dspark-attention",
+      "message": "Derived claim has no explicit input-claim dependencies.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "pytorch.dspark-attention",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "DERIVATION_INPUTS",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.dspark-heads",
+      "message": "Derived claim has no explicit input-claim dependencies.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "pytorch.dspark-heads",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "DERIVATION_INPUTS",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.deepspec-verifier",
+      "message": "Derived claim has no explicit input-claim dependencies.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "pytorch.deepspec-verifier",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "file.src/pytorch-backbone.mjs",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "file.src/pytorch-dspark.mjs",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "file.src/pytorch-memory.mjs",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "file.src/pytorch.mjs",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
@@ -55608,6 +55806,240 @@
       "domain": "model",
       "status": "BLOCKED",
       "subject": "scene.dsv41.model.dspark.graph.7403512b8d6c3e9a",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.backbone-mhc",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.backbone-mhc",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.backbone-moe",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.backbone-moe",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.engram-write",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.engram-write",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.csa2-compression",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.csa2-compression",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.csa2-selection",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.csa2-selection",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.csa2-attention",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.csa2-attention",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.dspark-attention",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.dspark-attention",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.dspark-heads",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.dspark-heads",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.deepspec-verifier",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "pytorch.deepspec-verifier",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "file.src/pytorch-backbone.mjs",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "file.src/pytorch-backbone.mjs",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "file.src/pytorch-dspark.mjs",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "file.src/pytorch-dspark.mjs",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "file.src/pytorch-memory.mjs",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "file.src/pytorch-memory.mjs",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "file.src/pytorch.mjs",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "file.src/pytorch.mjs",
       "message": "Requires publisher implementation AND independent framework implementation.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []

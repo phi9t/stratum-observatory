@@ -63,7 +63,7 @@ def main():
     # `uv run` can re-resolve the lock mid-run. If it does, the receipt would bind a
     # toolchain the tests never used, so refuse rather than attest to the wrong one.
     toolchain_before=toolchain_digest(root)
-    steps=[('verifier-tests',[sys.executable,'-m','unittest','discover','-s','verification/tests','-v']),('node-tests',['npm','test']),('accounting',[sys.executable,'-m','verification.accounting']),('build',['npm','run','build'])]
+    steps=[('verifier-tests',[sys.executable,'-m','unittest','discover','-s','verification/tests','-v']),('node-tests',['npm','test']),('pytorch-examples',['uv','run','--frozen','--group','examples','python','-m','unittest','discover','-s','tests','-p','pytorch_*.py','-v']),('accounting',[sys.executable,'-m','verification.accounting']),('build',['npm','run','build'])]
     # 600s, not 180s: the verifier suite runs 383 tests taking 108-113s on an idle machine and
     # has already tripped 180s once under load. A timeout that fires on a slow machine reports a
     # failure that did not happen, which is the one thing this gate must never do.
@@ -89,7 +89,8 @@ def main():
     target=loads((root/'verification/manifests/observatory.json').read_text());catalog=loads((root/'verification/manifests/sources.json').read_text())
     verifier_log=(out/'verifier-tests.log').read_text();node_log=(out/'node-tests.log').read_text()
     counts={'verifier':scrape_count(verifier_log,r'Ran (\d+) tests'),
-            'atlas':scrape_count(node_log,r'tests (\d+)')}
+            'atlas':scrape_count(node_log,r'tests (\d+)'),
+            'pytorch':scrape_count((out/'pytorch-examples.log').read_text(),r'Ran (\d+) tests')}
     # A receipt that cannot count the tests it ran is not evidence that they ran.
     for name,value in counts.items():
         if not isinstance(value,int) or value<=0:print(f'FAIL: could not read the {name} test count; the runner output format changed');return 1

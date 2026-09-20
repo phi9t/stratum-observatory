@@ -2,9 +2,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {PAGES} from './src/pages.mjs';
 import {landingHTML,dataHTML} from './src/landing.mjs';
-const files=['models','core','scene','diagram-model','diagram-systems','diagram-meta','deepdives','diagram-deepdives','diagrams','innovations','pages','app'];
+import {BACKBONE_EXAMPLES} from './src/pytorch-backbone.mjs';
+import {MEMORY_EXAMPLES} from './src/pytorch-memory.mjs';
+import {DSPARK_EXAMPLES} from './src/pytorch-dspark.mjs';
+// Serialize teaching code as data before the minimal module transform sees Python imports.
+const exampleModules={'pytorch-backbone':{BACKBONE_EXAMPLES},'pytorch-memory':{MEMORY_EXAMPLES},'pytorch-dspark':{DSPARK_EXAMPLES}};
+const files=['models','core','scene','diagram-model','diagram-systems','diagram-meta','deepdives','pytorch-backbone','pytorch-memory','pytorch-dspark','pytorch','diagram-deepdives','diagrams','innovations','pages','app'];
 const modules=[];
-for(const name of files){let code=fs.readFileSync(`src/${name}.mjs`,'utf8');const exports=new Set();
+for(const name of files){let code=exampleModules[name]?Object.entries(exampleModules[name]).map(([key,value])=>`export const ${key}=${JSON.stringify(value)};`).join('\n'):fs.readFileSync(`src/${name}.mjs`,'utf8');const exports=new Set();
  code=code.replace(/^import\s*\{([^}]+)\}\s*from\s*['"]\.\/([^'"]+)['"];?\s*$/gm,(_,names,dep)=>`const {${names.replace(/\s+as\s+/g,':')}} = __modules[${JSON.stringify(dep)}];`);
  code=code.replace(/^export\s*\{([^}]+)\};?\s*$/gm,(_,names)=>{names.split(',').map(x=>x.trim()).filter(Boolean).forEach(x=>exports.add(x));return'';});
  code=code.replace(/^export\s+(const|let|function|class)\s+(\w+)/gm,(_,type,id)=>{exports.add(id);return`${type} ${id}`;});

@@ -23698,7 +23698,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/app.mjs",
-      "expected": "d7d231fc9b1b69803bc55bd5a1617661743f629ed6c39cf6c228ba32e8918ad6",
+      "expected": "a97292c3c7cf3bea0fd0208c62549f7de627f5b55654b4cb5e9990d84e7721a1",
       "statement": "file.src/app.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23711,7 +23711,8 @@
         "MODELS.q38flash.d",
         "MODELS.kimi3.d",
         "MODELS.dsv41.d",
-        "file.src/deepdives.mjs"
+        "file.src/deepdives.mjs",
+        "file.src/pytorch.mjs"
       ]
     },
     {
@@ -23953,7 +23954,7 @@
       "domain": "visualization",
       "classification": "presentation",
       "consumer": "file.src/styles.css",
-      "expected": "db3c92664c617af85034c4d7db71859b14bb11afde96d2c9d93973cb2b7f8845",
+      "expected": "6cbc6d97b3a38f4a0bbed99614f074ee248eef1a24828ba47ccfdd60622cb92c",
       "statement": "file.src/styles.css: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": []
@@ -23963,7 +23964,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.build.mjs",
-      "expected": "afff7f25aea04c1233da78050a0ec1571c8f5fcdac81f135d9ef90bb2507a41c",
+      "expected": "080ec0f41181b73860b29870268a18b356c46460dfaa0858b53ee7b4c0a0c5e0",
       "statement": "file.build.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23976,7 +23977,8 @@
         "MODELS.q38flash.d",
         "MODELS.kimi3.d",
         "MODELS.dsv41.d",
-        "file.src/diagram-deepdives.mjs"
+        "file.src/diagram-deepdives.mjs",
+        "file.src/pytorch.mjs"
       ]
     },
     {
@@ -151513,6 +151515,805 @@
       "dependencies": [
         "deepdive.dspark",
         "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "pytorch.backbone-mhc",
+      "consumer": "pytorch.backbone-mhc",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "id": "backbone-mhc",
+        "title": "Single-pass mHC and the flat encoder/decoder stack",
+        "stages": [
+          "encoder",
+          "decoder"
+        ],
+        "sources": [
+          "dsv41-code",
+          "dsv41-kernel"
+        ],
+        "symbols": [
+          "RMSNorm",
+          "Block.hc_mixes",
+          "Block.hc_pre",
+          "Block.hc_post",
+          "Block.forward",
+          "make_identity_pre_mix",
+          "Transformer.forward",
+          "hc_split_sinkhorn",
+          "hc_split_sinkhorn_kernel"
+        ],
+        "summary": "Track residual copies and previous-sublayer premix explicitly. The encoder boundary is a point in a flat stack, with no inserted cross-attention.",
+        "limitations": "Educational adaptation of the DeepSeek-AI publisher reference (MIT). Small random weights, CPU float arithmetic; normalization epsilons are explicit caller inputs; no checkpoint loading, fused kernels, quantization, distribution, vision, Engram insertion or vocabulary head. Attention and FFN are injected operators: this demonstrates orchestration, not a complete V4.1 model or the bounded-replay serving optimization. The boundary residual is captured for inspection; actual global-cache ownership lives inside the injected attention implementation.",
+        "requires": [],
+        "code": "import torch\nfrom torch import nn\nfrom torch.nn import functional as F\n\n\nclass BB_RMSNorm(nn.Module):\n    def __init__(self, width, eps):\n        super().__init__()\n        self.weight = nn.Parameter(torch.ones(width))\n        self.eps = eps\n\n    def forward(self, x):\n        normalized = x.float() * torch.rsqrt(\n            x.float().square().mean(-1, keepdim=True) + self.eps)\n        return (normalized * self.weight).to(x.dtype)\n\n\ndef bb_split_sinkhorn(mixes, scale, base, streams, eps, iterations=20):\n    # Readable transcription of the publisher kernel; retain epsilon placement.\n    if streams < 1 or iterations < 1 or eps <= 0:\n        raise ValueError(\"positive streams, iterations and epsilon required\")\n    size = streams * (streams + 2)\n    if mixes.shape[-1] != size or base.shape != (size,) or scale.shape != (3,):\n        raise ValueError(\"coefficient dimensions disagree\")\n    pre = torch.sigmoid(mixes[..., :streams] * scale[0] + base[:streams]) + eps\n    post = 2 * torch.sigmoid(\n        mixes[..., streams:2*streams] * scale[1] + base[streams:2*streams])\n    logits = mixes[..., 2*streams:] * scale[2] + base[2*streams:]\n    comb = logits.unflatten(-1, (streams, streams)).softmax(-1) + eps\n    comb = comb / (comb.sum(-2, keepdim=True) + eps)\n    for _ in range(iterations - 1):\n        comb = comb / (comb.sum(-1, keepdim=True) + eps)\n        comb = comb / (comb.sum(-2, keepdim=True) + eps)\n    return pre, post, comb\n\n\ndef bb_pre(residual, premix):\n    # [B,T,input-copy,D] -> [B,T,D]\n    return (premix.unsqueeze(-1) * residual.float()).sum(-2).to(residual.dtype)\n\n\ndef bb_post(output, residual, post, comb):\n    # comb[..., input-copy, output-copy]; do not transpose its meaning.\n    carried = torch.einsum(\"btij,btid->btjd\", comb.float(), residual.float())\n    return (post.unsqueeze(-1) * output.unsqueeze(-2) + carried).to(output.dtype)\n\n\nclass BB_Mixer(nn.Module):\n    def __init__(self, width, streams, norm_eps, hc_eps):\n        super().__init__()\n        size = streams * (streams + 2)\n        self.projection = nn.Linear(width * streams, size, bias=False)\n        self.scale = nn.Parameter(torch.ones(3))\n        self.base = nn.Parameter(torch.zeros(size))\n        self.streams, self.norm_eps, self.hc_eps = streams, norm_eps, hc_eps\n\n    def forward(self, residual):\n        flat = residual.flatten(-2).float()\n        # One RMS statistic across ALL copies and width, not one per copy.\n        inverse_rms = torch.rsqrt(flat.square().mean(-1, keepdim=True) + self.norm_eps)\n        mixes = F.linear(flat, self.projection.weight.float()) * inverse_rms\n        return bb_split_sinkhorn(mixes, self.scale, self.base,\n                                 self.streams, eps=self.hc_eps)\n\n\nclass BB_Block(nn.Module):\n    def __init__(self, width, streams, attention, ffn, norm_eps, hc_eps):\n        super().__init__()\n        self.attention, self.ffn = attention, ffn\n        self.attn_norm, self.ffn_norm = BB_RMSNorm(width, norm_eps), BB_RMSNorm(width, norm_eps)\n        self.attn_mix, self.ffn_mix = BB_Mixer(width, streams, norm_eps, hc_eps), BB_Mixer(width, streams, norm_eps, hc_eps)\n\n    def forward(self, residual, previous_pre):\n        attn_pre, attn_post, attn_comb = self.attn_mix(residual)\n        # Attention consumes the PREVIOUS block's FFN premix (initially one-hot).\n        attention_input = self.attn_norm(bb_pre(residual, previous_pre))\n        residual = bb_post(self.attention(attention_input), residual, attn_post, attn_comb)\n        ffn_pre, ffn_post, ffn_comb = self.ffn_mix(residual)\n        # The current attention's predicted premix is used only now, by FFN.\n        ffn_input = self.ffn_norm(bb_pre(residual, attn_pre))\n        residual = bb_post(self.ffn(ffn_input), residual, ffn_post, ffn_comb)\n        return residual, ffn_pre\n\n\nclass BB_FlatCED(nn.Module):\n    def __init__(self, blocks, encoder_layers, width, streams, norm_eps):\n        super().__init__()\n        if not 0 < encoder_layers < len(blocks) or streams < 1:\n            raise ValueError(\"require nonempty encoder and decoder with positive streams\")\n        self.blocks = nn.ModuleList(blocks)\n        self.encoder_layers, self.streams = encoder_layers, streams\n        self.norm = BB_RMSNorm(width, norm_eps)\n\n    def forward(self, embedded):\n        # Caller supplies [B,T,D] embeddings and causal attention implementations.\n        residual = embedded.unsqueeze(-2).repeat(1, 1, self.streams, 1)\n        premix = embedded.new_zeros(*embedded.shape[:2], self.streams, dtype=torch.float32)\n        premix[..., 0] = 1  # identity initialization is one-hot, not uniform averaging\n        boundary = None\n        for index, block in enumerate(self.blocks):\n            residual, premix = block(residual, premix)\n            if index + 1 == self.encoder_layers:\n                boundary = residual.clone()  # observation; no extra cross-attention\n        # The last FFN's premix collapses the residual before final normalization.\n        return self.norm(bb_pre(residual, premix)), boundary\n"
+      },
+      "statement": "Authored, reduced-shape PyTorch teaching implementation, bounded by the displayed simplifications and symbol anchors. CPU tests check local mathematical behavior, not checkpoint parity or production runtime acceptance.",
+      "evidence": [
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "RMSNorm",
+            "sha256": "666a2006cad316cd77b5d6e522e8a2bbfbe8d60da7070070bf91e28f6f20dde3",
+            "resolved_span": [
+              281,
+              293
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Block.hc_mixes",
+            "sha256": "996c24d150c0e957e4bd7eda5aac3c72852d64f1db71b4376dc977f19db18ed9",
+            "resolved_span": [
+              948,
+              955
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Block.hc_pre",
+            "sha256": "73c61f96e2ba71a339802a8c5e12b107a0d9eb93e8083fadce3babc4329c1cd9",
+            "resolved_span": [
+              957,
+              960
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Block.hc_post",
+            "sha256": "46b0c3e9420b92cc19499568abf65a5bb37ad8be8fb3eef0b19b92412cc4bba8",
+            "resolved_span": [
+              962,
+              966
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Block.forward",
+            "sha256": "96a6886371ddf9631e2818d3270f3f721a98a8e48e2995dc5e9cd8238379adc6",
+            "resolved_span": [
+              968,
+              994
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "make_identity_pre_mix",
+            "sha256": "13af261af57911efc5ffddbd121b5d70285c97041d29ddff0ebef39ce3131221",
+            "resolved_span": [
+              1159,
+              1163
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Transformer.forward",
+            "sha256": "ecffa476cb5c3a236955ad55060befca9e9d0b7a68163c9e97242bc0137145a5",
+            "resolved_span": [
+              1242,
+              1272
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-kernel",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "hc_split_sinkhorn",
+            "sha256": "a3b6efd0f2e340ecf11b88cbad9b1f43e241095d88708c5e55f6dc969e98783f",
+            "resolved_span": [
+              465,
+              474
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-kernel",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "hc_split_sinkhorn_kernel",
+            "sha256": "d176a0a7b5a62eadc3195e3f667af2060b0f2f40b3213b01bb3379a36c19c119",
+            "resolved_span": [
+              407,
+              462
+            ]
+          },
+          "relation": "implements"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "pytorch.backbone-moe",
+      "consumer": "pytorch.backbone-moe",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "id": "backbone-moe",
+        "title": "Routed experts plus a separate shared expert",
+        "stages": [
+          "encoder",
+          "decoder"
+        ],
+        "sources": [
+          "dsv41-code"
+        ],
+        "symbols": [
+          "Gate.forward",
+          "Expert.forward",
+          "MoE.forward"
+        ],
+        "summary": "Correction bias chooses routed experts; unbiased scores weight their outputs. The shared expert runs independently of routed top-k.",
+        "limitations": "Educational adaptation of the DeepSeek-AI publisher reference (MIT). Text-only sqrt-softplus routing, normalized routed top-k greater than one, and one shared expert. Dimensions, normalization temperature, routing scale and positive SwiGLU clamp are explicit caller inputs; weights are random. Omits image-specific routing bias, quantization, expert parallelism, checkpoint loading and distributed reductions. This is a local mathematical operator, not a serving benchmark.",
+        "requires": [],
+        "code": "import torch\nfrom torch import nn\nfrom torch.nn import functional as F\n\n\nclass BB_Expert(nn.Module):\n    def __init__(self, width, hidden, limit):\n        super().__init__()\n        self.gate = nn.Linear(width, hidden, bias=False)\n        self.up = nn.Linear(width, hidden, bias=False)\n        self.down = nn.Linear(hidden, width, bias=False)\n        if limit <= 0:\n            raise ValueError(\"positive SwiGLU clamp required\")\n        self.limit = limit\n\n    def forward(self, x, weights):\n        gate, up = self.gate(x).float(), self.up(x).float()\n        gate = gate.clamp(max=self.limit)\n        up = up.clamp(-self.limit, self.limit)\n        activated = F.silu(gate) * up\n        activated = activated * weights\n        return self.down(activated.to(x.dtype))\n\n\nclass BB_MoE(nn.Module):\n    def __init__(self, width, hidden, experts, topk, temperature, route_scale, limit):\n        super().__init__()\n        if not 1 < topk <= experts or temperature <= 0:\n            raise ValueError(\"invalid routed expert count, top-k or temperature\")\n        self.router = nn.Linear(width, experts, bias=False)\n        self.bias = nn.Parameter(torch.zeros(experts))\n        self.experts = nn.ModuleList([BB_Expert(width, hidden, limit) for _ in range(experts)])\n        self.shared = BB_Expert(width, hidden, limit)\n        self.topk, self.temperature = topk, temperature\n        self.route_scale = route_scale\n\n    def forward(self, x):\n        shape = x.shape\n        flat = x.reshape(-1, shape[-1])\n        scores = F.softplus(F.linear(flat.float(), self.router.weight.float())\n                            / self.temperature).sqrt()\n        selected = (scores + self.bias).topk(self.topk, dim=-1).indices\n        weights = scores.gather(-1, selected)  # correction bias NEVER enters weights\n        weights = weights / (weights.sum(-1, keepdim=True) + 1e-20)\n        weights = weights * self.route_scale\n        routed = torch.zeros_like(flat, dtype=torch.float32)\n        for expert_id, expert in enumerate(self.experts):\n            token, slot = torch.where(selected == expert_id)\n            # As in publisher Expert.forward, apply route weights before down projection.\n            contribution = expert(flat[token], weights[token, slot, None]).float()\n            routed.index_add_(0, token, contribution)\n        return (routed + self.shared(flat, 1.0).float()).to(x.dtype).reshape(shape)\n"
+      },
+      "statement": "Authored, reduced-shape PyTorch teaching implementation, bounded by the displayed simplifications and symbol anchors. CPU tests check local mathematical behavior, not checkpoint parity or production runtime acceptance.",
+      "evidence": [
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Gate.forward",
+            "sha256": "5a66bf47c1ea468ffd99bae49e847f6fb2d6a361e02a95e0b1deaaca6392b117",
+            "resolved_span": [
+              809,
+              827
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Expert.forward",
+            "sha256": "2d5a654605cd24c8c6411c404591232c245584c82d317a31268947dae9c91800",
+            "resolved_span": [
+              841,
+              851
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "MoE.forward",
+            "sha256": "4095f42997b6b9630c40bb0288d5ef25155bdcfa746846e3d763e6811fb98498",
+            "resolved_span": [
+              889,
+              904
+            ]
+          },
+          "relation": "implements"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "pytorch.engram-write",
+      "consumer": "pytorch.engram-write",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "id": "engram-write",
+        "title": "Engram: lookup and context-gated write",
+        "stages": [
+          "engram"
+        ],
+        "sources": [
+          "dsv41-code",
+          "dsv41-engram"
+        ],
+        "symbols": [
+          "ParallelEngramEmbedding",
+          "Engram.forward",
+          "NgramHashState"
+        ],
+        "requires": [],
+        "summary": "Look up the hash rows, project a key for each residual stream and a shared value, then apply the signed-square-root gate. Authored adaptation of DeepSeek publisher code (MIT).",
+        "limitations": "Hash IDs are global table row IDs already produced by the publisher hash layout; tokenization, n-gram hashing, table sharding and FP8 row dequantization are outside this excerpt. Weights and arithmetic are FP32. The token mask and normalization epsilon are required caller inputs; no checkpoint scalar default is implied.",
+        "code": "import torch\nfrom torch import nn\n\n\nclass ReadableEngram(nn.Module):\n    def __init__(self, rows, row_dim, hash_columns, streams, dim, eps):\n        super().__init__()\n        self.streams, self.dim, self.eps = streams, dim, eps\n        self.table = nn.Embedding(rows, row_dim)\n        self.project = nn.Linear(hash_columns * row_dim, (streams + 1) * dim, bias=False)\n        self.query_scale = nn.Parameter(torch.ones(streams, dim))\n        self.key_scale = nn.Parameter(torch.ones(streams, dim))\n\n    def forward(self, x, hash_ids, token_mask):\n        # x: [B,T,S,D]; hash_ids: [B,T,C]; token_mask: [B,T]\n        rows = self.table(hash_ids).flatten(-2)\n        projected = self.project(rows)\n        keys, value = projected.split([self.streams * self.dim, self.dim], -1)\n        keys = keys.unflatten(-1, (self.streams, self.dim))\n        # Normalize each stream over D, never across the stream axis S.\n        inverse_rms = torch.rsqrt(x.square().mean(-1) + self.eps)\n        inverse_rms = inverse_rms * torch.rsqrt(keys.square().mean(-1) + self.eps)\n        score = (x * self.query_scale * self.key_scale * keys).sum(-1)\n        score = score * inverse_rms * self.dim ** -0.5\n        signed_root = torch.copysign(score.abs().clamp_min(1e-6).sqrt(), score)\n        gate = signed_root.sigmoid().masked_fill(~token_mask[..., None], 0)\n        return x + gate[..., None] * value[..., None, :]\n"
+      },
+      "statement": "Authored, reduced-shape PyTorch teaching implementation, bounded by the displayed simplifications and symbol anchors. CPU tests check local mathematical behavior, not checkpoint parity or production runtime acceptance.",
+      "evidence": [
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "ParallelEngramEmbedding",
+            "sha256": "64ff953aa5c97cb2b807f55c5e469ff77bdb9230ea224e347b64f3f5cd8a2514",
+            "resolved_span": [
+              296,
+              325
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Engram.forward",
+            "sha256": "9515a7d8f463d1598b6b1662749ab2c0e82d06f36ec6e6a24e897ad08061a28f",
+            "resolved_span": [
+              350,
+              365
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-engram",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "NgramHashState",
+            "sha256": "86c58024412f13af4f398f863f4b3781b579d49d2184437d5e300d624dbb6a26",
+            "resolved_span": [
+              129,
+              184
+            ]
+          },
+          "relation": "implements"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "pytorch.csa2-compression",
+      "consumer": "pytorch.csa2-compression",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "id": "csa2-compression",
+        "title": "Compression: direct projection and completed groups",
+        "stages": [
+          "csa2"
+        ],
+        "sources": [
+          "dsv41-code"
+        ],
+        "symbols": [
+          "Compressor",
+          "RMSNorm"
+        ],
+        "requires": [],
+        "summary": "Keep the direct per-token path separate from learned per-channel pooling. The grouped path carries an incomplete tail explicitly between calls. Authored adaptation of DeepSeek publisher code (MIT).",
+        "limitations": "FP32 teaching implementation, before RoPE and quantization. Explicit tail tensors replace the publisher preallocated decode buffers; reset state for each new sequence. The grouped class requires a ratio greater than one. The caller supplies normalization epsilon explicitly; no checkpoint scalar default is implied.",
+        "code": "import torch\nfrom torch import nn\n\n\nclass ReadableCompressionNorm(nn.Module):\n    def __init__(self, width, eps):\n        super().__init__()\n        self.weight = nn.Parameter(torch.ones(width))\n        self.eps = eps\n\n    def forward(self, x):\n        return x * torch.rsqrt(x.square().mean(-1, keepdim=True) + self.eps) * self.weight\n\n\nclass ReadableTokenCompressor(nn.Module):\n    # Decoder ratio-one path: projection and norm; no pooling gate.\n    def __init__(self, dim, latent_dim, eps):\n        super().__init__()\n        self.project = nn.Linear(dim, latent_dim, bias=False)\n        self.norm = ReadableCompressionNorm(latent_dim, eps)\n\n    def forward(self, x):\n        return self.norm(self.project(x))\n\n\nclass ReadableGroupedCompressor(nn.Module):\n    def __init__(self, dim, latent_dim, ratio, eps):\n        super().__init__()\n        assert ratio > 1\n        self.ratio, self.latent_dim = ratio, latent_dim\n        self.project = nn.Linear(dim, latent_dim, bias=False)\n        self.gate = nn.Linear(dim, latent_dim, bias=False)\n        self.norm = ReadableCompressionNorm(latent_dim, eps)\n\n    def empty_state(self, x):\n        empty = x.new_empty(x.shape[0], 0, self.latent_dim)\n        return empty, empty.clone()\n\n    def forward(self, x, state):\n        # x: [B,T,D]; state: unpooled values/scores [B,tail,K]\n        values = torch.cat([state[0], self.project(x)], dim=1)\n        scores = torch.cat([state[1], self.gate(x)], dim=1)\n        complete = values.shape[1] // self.ratio * self.ratio\n        grouped_values = values[:, :complete].unflatten(1, (-1, self.ratio))\n        grouped_scores = scores[:, :complete].unflatten(1, (-1, self.ratio))\n        pooled = (grouped_values * grouped_scores.softmax(dim=2)).sum(dim=2)\n        # Zero completed groups means an empty output, not a fabricated latent.\n        return self.norm(pooled), (values[:, complete:], scores[:, complete:])\n"
+      },
+      "statement": "Authored, reduced-shape PyTorch teaching implementation, bounded by the displayed simplifications and symbol anchors. CPU tests check local mathematical behavior, not checkpoint parity or production runtime acceptance.",
+      "evidence": [
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Compressor",
+            "sha256": "a41d9e96f58a21559d8cac5b3356d50201597251809c3c72905a70de0163a21f",
+            "resolved_span": [
+              429,
+              485
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "RMSNorm",
+            "sha256": "666a2006cad316cd77b5d6e522e8a2bbfbe8d60da7070070bf91e28f6f20dde3",
+            "resolved_span": [
+              281,
+              293
+            ]
+          },
+          "relation": "implements"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "pytorch.csa2-selection",
+      "consumer": "pytorch.csa2-selection",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "id": "csa2-selection",
+        "title": "CSA2: candidate blocks and causal sparse indices",
+        "stages": [
+          "csa2"
+        ],
+        "sources": [
+          "dsv41-code"
+        ],
+        "symbols": [
+          "Indexer.forward",
+          "select_candidate_blocks"
+        ],
+        "requires": [],
+        "summary": "The candidate producer scores blocks by their best position and keeps the newest reachable block. Reindex layers score within that published mask; reuse layers consume the resulting indices. Authored adaptation of DeepSeek publisher code (MIT).",
+        "limitations": "Query and index keys are already projected and rotated. FP4 quantization, distributed reduction and cache publication are omitted. visible is the completed-group count floor((query_position + 1) / ratio), shaped [B,T,1]. The candidate budget must cover the requested sparse selection; unavailable picks are represented by -1.",
+        "code": "import torch\nfrom torch.nn import functional as F\n\n\ndef readable_index_scores(query, keys, head_weights):\n    # query [B,T,H,D], keys [B,C,D], head_weights [B,T,H].\n    # Caller supplies the learned weights before publisher scale factors.\n    heads, width = query.shape[-2:]\n    dots = torch.einsum('bthd,bcd->bthc', query, keys).relu()\n    weights = head_weights * (width ** -0.5 * heads ** -0.5)\n    return (dots * weights[..., None]).sum(dim=2)\n\n\ndef readable_candidate_mask(scores, visible, top_blocks, block_size):\n    # Publisher candidate source: every incomplete future group stays hidden.\n    width = scores.shape[-1]\n    causal = torch.arange(width, device=scores.device) < visible\n    masked = scores.masked_fill(~causal, -torch.inf)\n    padded = F.pad(masked, (0, -width % block_size), value=-torch.inf)\n    blocks = padded.unflatten(-1, (-1, block_size)).amax(-1)\n    newest = (visible - 1) // block_size\n    block_ids = torch.arange(blocks.shape[-1], device=scores.device)\n    blocks = blocks.masked_fill(block_ids == newest, torch.inf)\n    values, ids = blocks.topk(min(top_blocks, blocks.shape[-1]), dim=-1)\n    keep = torch.zeros_like(blocks, dtype=torch.bool)\n    keep.scatter_(-1, ids, values > -torch.inf)\n    return keep.repeat_interleave(block_size, -1)[..., :width] & causal\n\n\ndef readable_sparse_indices(scores, visible, candidates, topk):\n    allowed = candidates & (torch.arange(scores.shape[-1], device=scores.device) < visible)\n    masked = scores.masked_fill(~allowed, -torch.inf)\n    ids = masked.topk(min(topk, scores.shape[-1]), dim=-1).indices.sort(-1).values\n    # Explicit validity also handles teaching examples with undersized candidates.\n    return ids.masked_fill(~allowed.gather(-1, ids), -1)\n"
+      },
+      "statement": "Authored, reduced-shape PyTorch teaching implementation, bounded by the displayed simplifications and symbol anchors. CPU tests check local mathematical behavior, not checkpoint parity or production runtime acceptance.",
+      "evidence": [
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Indexer.forward",
+            "sha256": "46dd0ccf82f7f0e2e67b501c92c7d23733dbd7d88535269f8e9cd3b3345e40a3",
+            "resolved_span": [
+              527,
+              580
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "select_candidate_blocks",
+            "sha256": "201875b7a0e3ca4a75eb71150b9b6d04c94f4c10aeefd3b2a56a229bc5e3f5d7",
+            "resolved_span": [
+              583,
+              610
+            ]
+          },
+          "relation": "implements"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "pytorch.csa2-attention",
+      "consumer": "pytorch.csa2-attention",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "id": "csa2-attention",
+        "title": "CSA2: local and compressed KV share a softmax",
+        "stages": [
+          "csa2"
+        ],
+        "sources": [
+          "dsv41-code",
+          "dsv41-kernel"
+        ],
+        "symbols": [
+          "Attention.forward",
+          "sparse_attn_kernel"
+        ],
+        "requires": [],
+        "summary": "Gather a causal local window and the published compressed indices, then normalize them together with the learned sink logit. The sink contributes denominator mass and no value. Authored adaptation of DeepSeek publisher code (MIT).",
+        "limitations": "Dense FP32 reference of the sparse attention core only. Queries and shared K/V latents are already projected, normalized and rotated. selected contains causal compressed indices or -1; Full/Reindex publish them and Reuse reads them unchanged. Local history uses absolute positions instead of a ring buffer. Inverse output RoPE, grouped output projections and quantization are outside this excerpt.",
+        "code": "import torch\n\n\ndef readable_sparse_union(query, local_kv, compressed_kv, selected, positions, window, sink):\n    # query [B,T,H,D], local_kv [B,L,D], compressed_kv [B,C,D]\n    # selected [B,T,K] uses compressed-cache indices; positions [T] is absolute.\n    batch, steps, heads, width = query.shape\n    local_ids = positions[:, None] - torch.arange(window - 1, -1, -1, device=query.device)\n    local_ids = local_ids.expand(batch, steps, window)\n    valid_local = (local_ids >= 0) & (local_ids < local_kv.shape[1])\n    compressed_ids = selected + local_kv.shape[1]\n    ids = torch.cat([local_ids, compressed_ids], dim=-1)\n    valid_compressed = (selected >= 0) & (selected < compressed_kv.shape[1])\n    valid = torch.cat([valid_local, valid_compressed], dim=-1)\n    cache = torch.cat([local_kv, compressed_kv], dim=1)\n    batch_ids = torch.arange(batch, device=query.device)[:, None, None]\n    gathered = cache[batch_ids, ids.masked_fill(~valid, 0)]\n    logits = torch.einsum('bthd,btkd->bthk', query, gathered) * width ** -0.5\n    logits = logits.masked_fill(~valid[:, :, None, :], -torch.inf)\n    sink_logits = sink[None, None, :, None].expand(batch, steps, heads, 1)\n    probability = torch.cat([logits, sink_logits], -1).softmax(-1)[..., :-1]\n    return torch.einsum('bthk,btkd->bthd', probability, gathered)\n"
+      },
+      "statement": "Authored, reduced-shape PyTorch teaching implementation, bounded by the displayed simplifications and symbol anchors. CPU tests check local mathematical behavior, not checkpoint parity or production runtime acceptance.",
+      "evidence": [
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Attention.forward",
+            "sha256": "5489aa384be2137703f2dc3f026f7b392e83ffee1d6653f17f2c627888e8cf75",
+            "resolved_span": [
+              765,
+              789
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-kernel",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "sparse_attn_kernel",
+            "sha256": "ff56ba7609f9c411d4b11da06b68f4fec7b0b092cf277ee3539205cfc6a152ec",
+            "resolved_span": [
+              311,
+              389
+            ]
+          },
+          "relation": "implements"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "pytorch.dspark-attention",
+      "consumer": "pytorch.dspark-attention",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "id": "dspark-attention",
+        "title": "Draft-block visibility and attention sink",
+        "stages": [
+          "dspark"
+        ],
+        "sources": [
+          "dsv41-code",
+          "dsv41-kernel"
+        ],
+        "symbols": [
+          "DSparkAttention.forward",
+          "get_dspark_topk_idxs",
+          "sparse_attn",
+          "sparse_attn_kernel"
+        ],
+        "summary": "A dense PyTorch rendering of the sparse attention contraction: each draft slot reads the valid captured-history window and every slot in the current draft block. The learned sink contributes softmax mass with no value vector.",
+        "limitations": "Inputs are already projected, RMS-normalized and RoPE-rotated. History contains only valid captured target slots, in any common key/value order. This isolates the contraction: ring-buffer writes, FP8 quantization, inverse output RoPE, grouped output projection and the surrounding mHC block are omitted. It is not a complete draft layer.",
+        "requires": [],
+        "code": "# Adapted from DeepSeek V4.1 Flash, MIT; Copyright (c) 2023 DeepSeek.\nimport torch\n\n\ndef dspark_projected_attention(q, history_kv, draft_kv, sink, scale):\n    # q: [B, K, H, D]; history_kv: [B, L, D]; draft_kv: [B, K, D].\n    # Shared latent vectors serve as both keys and values.\n    # L contains only valid captured-history slots; no future target tokens.\n    kv = torch.cat((history_kv, draft_kv), dim=1)\n    scores = torch.einsum('bkhd,bnd->bkhn', q.float(), kv.float()) * scale\n    sink_score = sink.float().view(1, 1, -1, 1).expand(*scores.shape[:-1], 1)\n    weights = torch.softmax(torch.cat((scores, sink_score), dim=-1), dim=-1)\n    # No triangular mask: even the first draft slot sees the last draft slot.\n    output = torch.einsum('bkhn,bnd->bkhd', weights[..., :-1], kv.float())\n    return output.to(q.dtype)\n"
+      },
+      "statement": "Authored, reduced-shape PyTorch teaching implementation, bounded by the displayed simplifications and symbol anchors. CPU tests check local mathematical behavior, not checkpoint parity or production runtime acceptance.",
+      "evidence": [
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DSparkAttention.forward",
+            "sha256": "c9f7089386a95240eae470a7203b11c276074ea052a3a61e1a9ba787725f80ed",
+            "resolved_span": [
+              1033,
+              1074
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "get_dspark_topk_idxs",
+            "sha256": "fbd7444485f3d1f41b9f85927e54921b7e09dbeebb716365c5b607177ab9f4ba",
+            "resolved_span": [
+              1021,
+              1029
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-kernel",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "sparse_attn",
+            "sha256": "e8438cf9b0bc0dba1cf3ceb4b571271b161d69ad9de417f80c6904d06935a8bc",
+            "resolved_span": [
+              392,
+              403
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-kernel",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "sparse_attn_kernel",
+            "sha256": "ff56ba7609f9c411d4b11da06b68f4fec7b0b092cf277ee3539205cfc6a152ec",
+            "resolved_span": [
+              311,
+              389
+            ]
+          },
+          "relation": "implements"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "pytorch.dspark-heads",
+      "consumer": "pytorch.dspark-heads",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "id": "dspark-heads",
+        "title": "Sequential Markov correction and raw confidence",
+        "stages": [
+          "dspark"
+        ],
+        "sources": [
+          "dsv41-code"
+        ],
+        "symbols": [
+          "DSparkMarkovHead",
+          "DSparkConfidenceHead",
+          "DSparkBlock.forward_head"
+        ],
+        "summary": "The backbone produces draft positions together. Vocabulary sampling then proceeds sequentially: each position adds a learned bias from the preceding sampled token. Confidence combines the unnormalized collapsed residual with that preceding-token embedding and remains a raw logit.",
+        "limitations": "Provide collapsed residuals before final RMSNorm and base logits after final RMSNorm plus the shared vocabulary head. This module isolates the output heads; it omits mHC collapse, backbone execution and distributed vocabulary sharding. Sampling uses a positive temperature and PyTorch multinomial instead of the publisher sampler. No checkpoint dimensions or weights are supplied.",
+        "requires": [],
+        "code": "# Adapted from DeepSeek V4.1 Flash, MIT; Copyright (c) 2023 DeepSeek.\nimport torch\nfrom torch import nn\n\n\nclass DSparkOutputHeads(nn.Module):\n    def __init__(self, hidden_dim, vocab_size, markov_rank):\n        super().__init__()\n        self.markov_embed = nn.Embedding(vocab_size, markov_rank)\n        self.markov_head = nn.Linear(markov_rank, vocab_size, bias=False)\n        self.confidence = nn.Linear(hidden_dim + markov_rank, 1, bias=False, dtype=torch.float32)\n\n    def forward(self, hidden, base_logits, seed, temperature):\n        # hidden: [B, K, D], before final norm; base_logits: [B, K, V].\n        # seed: [B]. The returned token sequence includes this seed.\n        assert temperature > 0\n        tokens, logits, embeddings = [seed], [], []\n        for position in range(hidden.shape[1]):\n            previous = self.markov_embed(tokens[-1])\n            corrected = base_logits[:, position] + self.markov_head(previous)\n            probs = torch.softmax(corrected.float() / temperature, dim=-1)\n            tokens.append(torch.multinomial(probs, 1).squeeze(-1))\n            logits.append(corrected)\n            embeddings.append(previous)\n        markov = torch.stack(embeddings, dim=1)\n        confidence_input = torch.cat((hidden, markov), dim=-1).float()\n        raw_confidence = self.confidence(confidence_input).squeeze(-1)\n        return torch.stack(tokens, dim=1), torch.stack(logits, dim=1), raw_confidence\n"
+      },
+      "statement": "Authored, reduced-shape PyTorch teaching implementation, bounded by the displayed simplifications and symbol anchors. CPU tests check local mathematical behavior, not checkpoint parity or production runtime acceptance.",
+      "evidence": [
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DSparkMarkovHead",
+            "sha256": "7e1ac0408a3d73969269940dc187e2c06be7902089e418199735510effaf81e8",
+            "resolved_span": [
+              1077,
+              1086
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DSparkConfidenceHead",
+            "sha256": "0ede5974a3c05adcd8ce54909f9736fbdca4e0ddd348976919c6c19b905f5ad2",
+            "resolved_span": [
+              1089,
+              1097
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv41-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "DSparkBlock.forward_head",
+            "sha256": "8ff4558a5bf458e537ad2751ea32920b53ea5fde467b5649c926cf99d2484d71",
+            "resolved_span": [
+              1137,
+              1156
+            ]
+          },
+          "relation": "implements"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "pytorch.deepspec-verifier",
+      "consumer": "pytorch.deepspec-verifier",
+      "domain": "model",
+      "classification": "derived",
+      "expected": {
+        "id": "deepspec-verifier",
+        "title": "DeepSpec: prefix verification and reusable state",
+        "stages": [
+          "dspark"
+        ],
+        "sources": [
+          "deepspec-verification",
+          "deepspec-draft",
+          "deepspec-context",
+          "deepspec-sampling"
+        ],
+        "symbols": [
+          "verify_draft_tokens",
+          "sample_residual",
+          "_confident_prefix_length",
+          "forward_dspark_draft_block",
+          "Qwen3DSparkEvaluator._update",
+          "generate_decoding_sample"
+        ],
+        "summary": "The separate DeepSpec evaluator accepts a contiguous prefix by the target/draft probability ratio, samples a correction after rejection or a bonus after full acceptance, and discards speculative state. Its confidence threshold is a fixed offline policy.",
+        "limitations": "This is DeepSpec\u2019s single-sequence Qwen3/Gemma4 evaluator mechanism, not a published V4.1 production verifier or the paper\u2019s dynamic production scheduler. Probability inputs are already normalized at the chosen temperature; target forward execution is outside this example. It shows a nonterminal round with no EOS/stop token, no output-budget truncation, and dense token-axis-first tensors in place of DynamicCache. Draft cropping occurs immediately after draft forward in DeepSpec; the helper groups the independent state-ownership results for inspection.",
+        "requires": [],
+        "code": "# Adapted from DeepSpec, MIT; Copyright (c) 2026 The DeepSpec Authors.\nimport torch\n\n\ndef deepspec_residual_probabilities(target, draft):\n    residual = (target - draft).clamp_min(0)\n    # Match the evaluator's fallback for vanishing residual mass.\n    residual = torch.where(residual.sum() <= 1e-8, target, residual)\n    return residual / residual.sum().clamp_min(1e-8)\n\n\ndef deepspec_verify_probabilities(proposed, draft, target, uniforms):\n    # One sequence: proposed [K], draft [K, V], target [K+1, V].\n    # Target row i predicts proposal i; its final row supplies the bonus.\n    # uniforms [K] are independent U[0, 1) draws, passed in for traceability.\n    count = proposed.numel()\n    rows = torch.arange(count, device=proposed.device)\n    ratio = target[rows, proposed] / draft[rows, proposed].clamp_min(1e-8)\n    accepted_mask = (uniforms < ratio.clamp_max(1)).long().cumprod(dim=0)\n    accepted = int(accepted_mask.sum())\n    if accepted < count:\n        next_probs = deepspec_residual_probabilities(target[accepted], draft[accepted])\n    else:\n        next_probs = target[-1]\n    next_token = torch.multinomial(next_probs, 1)\n    return torch.cat((proposed[:accepted], next_token)), accepted\n\n\ndef deepspec_confident_prefix(raw_confidence, threshold):\n    # Positive fixed threshold; this is not the production scheduler.\n    assert 0 < threshold <= 1\n    confident = raw_confidence.sigmoid() >= threshold\n    return int(confident.long().cumprod(dim=0).sum())\n\n\ndef deepspec_reuse_state(target_cache, draft_cache, verified_features, start, accepted):\n    # Educational dense tensors, token axis first; start excludes the seed.\n    # Target forward consumed seed + proposals. Keep seed + accepted prefix;\n    # the correction/bonus token has not yet entered the target cache.\n    target = target_cache[:start + accepted + 1].clone()\n    # Draft forward's speculative slots are discarded at the old start.\n    draft = draft_cache[:start].clone()\n    # This round's verified target features: seed + accepted proposal tokens.\n    features = verified_features[:accepted + 1].clone()\n    return target, draft, features\n"
+      },
+      "statement": "Authored, reduced-shape PyTorch teaching implementation, bounded by the displayed simplifications and symbol anchors. CPU tests check local mathematical behavior, not checkpoint parity or production runtime acceptance.",
+      "evidence": [
+        {
+          "source": "deepspec-verification",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "verify_draft_tokens",
+            "sha256": "994463f2e7558ef6ba25759e5826f8e11a4b0bb3ea5905f1fb8479486f466349",
+            "resolved_span": [
+              186,
+              304
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "deepspec-verification",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "generate_decoding_sample",
+            "sha256": "300a93c4953943c376b2600094558f8c8ed3dc13af7d740a38175de1da292040",
+            "resolved_span": [
+              308,
+              441
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "deepspec-draft",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "_confident_prefix_length",
+            "sha256": "7abd69f4aa63518584857c886a99c94e3fe7fb06bfa7aa1b4175ea7f44ddbd92",
+            "resolved_span": [
+              82,
+              93
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "deepspec-draft",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "forward_dspark_draft_block",
+            "sha256": "7a478e97ca1334f82a525a80f96bcc205e4f6190b2a570e91d7e98b554cc3d47",
+            "resolved_span": [
+              22,
+              45
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "deepspec-context",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Qwen3DSparkEvaluator._update",
+            "sha256": "00e93122c9f1985c4778e2912d3b9cce1ad9398ae8beca6083b6c21735ea7eae",
+            "resolved_span": [
+              134,
+              147
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "deepspec-sampling",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "sample_residual",
+            "sha256": "e41ea9ee5c08e5d44d78e8fa9f1680d447d931a033fd9dbd4cbc86fb2ad8b6f4",
+            "resolved_span": [
+              34,
+              44
+            ]
+          },
+          "relation": "implements"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "file.src/pytorch-backbone.mjs",
+      "consumer": "file.src/pytorch-backbone.mjs",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "6f6ece4d50e49e9b5ba01d1de941029b48841968cc93c987c5a48917193ab1fa",
+      "statement": "Teaching example delivery fingerprint; identity is not source acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "pytorch.backbone-moe",
+        "pytorch.engram-write",
+        "pytorch.csa2-compression",
+        "pytorch.csa2-selection",
+        "pytorch.csa2-attention",
+        "pytorch.dspark-attention",
+        "pytorch.dspark-heads",
+        "pytorch.deepspec-verifier"
+      ]
+    },
+    {
+      "id": "file.src/pytorch-dspark.mjs",
+      "consumer": "file.src/pytorch-dspark.mjs",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "e1495bff8695f720899e4a3d8cc8070a5291f3e2e659867ed5214d4c1bb933cc",
+      "statement": "Teaching example delivery fingerprint; identity is not source acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "pytorch.backbone-moe",
+        "pytorch.engram-write",
+        "pytorch.csa2-compression",
+        "pytorch.csa2-selection",
+        "pytorch.csa2-attention",
+        "pytorch.dspark-attention",
+        "pytorch.dspark-heads",
+        "pytorch.deepspec-verifier"
+      ]
+    },
+    {
+      "id": "file.src/pytorch-memory.mjs",
+      "consumer": "file.src/pytorch-memory.mjs",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "7ee0aeb0d64aca01e4afc3f743be10248f6448eff866e0f40d7e00bfc4c61be1",
+      "statement": "Teaching example delivery fingerprint; identity is not source acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "pytorch.backbone-moe",
+        "pytorch.engram-write",
+        "pytorch.csa2-compression",
+        "pytorch.csa2-selection",
+        "pytorch.csa2-attention",
+        "pytorch.dspark-attention",
+        "pytorch.dspark-heads",
+        "pytorch.deepspec-verifier"
+      ]
+    },
+    {
+      "id": "file.src/pytorch.mjs",
+      "consumer": "file.src/pytorch.mjs",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "e61b6c4cd7b37639728dd189d46a1706ac0bdc832f4320885561c566945d7e1e",
+      "statement": "Teaching example delivery fingerprint; identity is not source acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "pytorch.backbone-moe",
+        "pytorch.engram-write",
+        "pytorch.csa2-compression",
+        "pytorch.csa2-selection",
+        "pytorch.csa2-attention",
+        "pytorch.dspark-attention",
+        "pytorch.dspark-heads",
+        "pytorch.deepspec-verifier"
       ]
     }
   ],

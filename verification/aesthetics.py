@@ -302,7 +302,7 @@ def judge_spacing_scale(stylesheet,policy):
 CHROME_TEXT_SELECTORS=('.chart text','.metric-note','.chart-caption','.source-role','.status-pill',
                        '.fact dt','.lens-tab .idx','.innovation-note','.innovation-table th',
                        '.innovation-table td','.innovation-table a','.accounting-assumptions summary',
-                       '.accounting-assumptions h4','.accounting-assumptions p','.accounting-citations a')
+                       '.accounting-assumptions h4','.accounting-assumptions p','.accounting-citations a','.pytorch-section h4','.pytorch-section p','.pytorch-example summary','.pytorch-code','.pytorch-license summary')
 
 #: Reading-size chrome rules that the probe does **not** measure. This is recorded debt, not an
 #: exemption on principle: each entry is chrome text at or above `reading_px` whose contrast is
@@ -605,6 +605,7 @@ def run(root,record=False):
                 notes.open=true;
                 return notes.querySelectorAll('summary,h4,p,.accounting-citations a').length;
             }""")
+            page.evaluate("() => document.querySelectorAll('.pytorch-example,.pytorch-license').forEach(el=>el.open=true)")
             data=page.evaluate(PROBE)
             measured=sum(1 for text in data['texts'] if text.get('accounting'))
             if not accounting_expected or measured!=accounting_expected:

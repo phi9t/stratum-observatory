@@ -1,11 +1,11 @@
 {
   "schema": "stratum-aesthetics/v1",
   "status": "PASS",
-  "generated_at": "2026-09-20T05:10:15.639042+00:00",
-  "artifact_sha256": "21e72a10ac6bb2c3bebc6fa55524e5b95e3ef014df048642a9ae8ad399d01247",
+  "generated_at": "2026-09-20T07:06:59.806328+00:00",
+  "artifact_sha256": "bf9c76d7b42ac5702690a6607cef9a37735e207e82efed2968969db210802ff2",
   "policy_sha256": "e885ca418d6e2883f6725e3ac23e7e14dd39a911966832705f969ecc29d45f66",
   "scenarios": 192,
-  "distinct_measurements": 122,
+  "distinct_measurements": 128,
   "axes": {
     "models": [
       "ds2",
@@ -49,7 +49,7 @@
     "budget": 8
   },
   "counts": {
-    "PASS": 441
+    "PASS": 453
   },
   "findings": [
     {
@@ -1803,7 +1803,7 @@
       "domain": "aesthetics",
       "status": "PASS",
       "subject": "stylesheet",
-      "message": "All 15 measured chrome selectors still name classes the stylesheet defines and the markup emits.",
+      "message": "All 20 measured chrome selectors still name classes the stylesheet defines and the markup emits.",
       "remedy": "",
       "evidence": []
     },
@@ -1812,7 +1812,7 @@
       "domain": "aesthetics",
       "status": "PASS",
       "subject": "stylesheet",
-      "message": "All 43 reading-size chrome rules between 12px and 24px are either measured (15 selectors) or recorded as unmeasured (33 selectors).",
+      "message": "All 48 reading-size chrome rules between 12px and 24px are either measured (20 selectors) or recorded as unmeasured (33 selectors).",
       "remedy": "",
       "evidence": []
     },
@@ -2018,7 +2018,25 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "P (310 occurrences)",
+      "subject": "pytorch-code (11 occurrences)",
+      "message": "Contrast 14.94:1 against 7.0:1 at 14.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "pytorch-code (11 occurrences)",
+      "message": "14.00px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "P (369 occurrences)",
       "message": "Contrast 14.19:1 against 7.0:1 at 14.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2027,7 +2045,25 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "P (310 occurrences)",
+      "subject": "P (369 occurrences)",
+      "message": "14.00px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "SUMMARY (11 occurrences)",
+      "message": "Contrast 14.19:1 against 7.0:1 at 14.0px weight 550.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "SUMMARY (11 occurrences)",
       "message": "14.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2065,6 +2101,24 @@
       "status": "PASS",
       "subject": "H4 (155 occurrences)",
       "message": "14.00px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "H4 (5 occurrences)",
+      "message": "Contrast 14.19:1 against 7.0:1 at 16.0px weight 700.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "H4 (5 occurrences)",
+      "message": "16.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
     },
@@ -2180,7 +2234,25 @@
       "code": "CONTRAST_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "P (310 occurrences)",
+      "subject": "pytorch-code (11 occurrences)",
+      "message": "Contrast 12.11:1 against 7.0:1 at 14.0px weight 400.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "pytorch-code (11 occurrences)",
+      "message": "14.00px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "P (369 occurrences)",
       "message": "Contrast 12.21:1 against 7.0:1 at 14.0px weight 400.",
       "remedy": "",
       "evidence": []
@@ -2189,7 +2261,25 @@
       "code": "TYPOGRAPHY_OK",
       "domain": "aesthetics",
       "status": "PASS",
-      "subject": "P (310 occurrences)",
+      "subject": "P (369 occurrences)",
+      "message": "14.00px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "SUMMARY (11 occurrences)",
+      "message": "Contrast 12.21:1 against 7.0:1 at 14.0px weight 550.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "SUMMARY (11 occurrences)",
       "message": "14.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
@@ -2227,6 +2317,24 @@
       "status": "PASS",
       "subject": "H4 (155 occurrences)",
       "message": "14.00px at or above the 10.0px floor.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "CONTRAST_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "H4 (5 occurrences)",
+      "message": "Contrast 12.21:1 against 7.0:1 at 16.0px weight 700.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "TYPOGRAPHY_OK",
+      "domain": "aesthetics",
+      "status": "PASS",
+      "subject": "H4 (5 occurrences)",
+      "message": "16.00px at or above the 10.0px floor.",
       "remedy": "",
       "evidence": []
     },

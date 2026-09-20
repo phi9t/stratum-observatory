@@ -111,3 +111,17 @@ metadata and private hardware captures. Publish only audited, rewritten branches
 restore or push the private recovery bundle or old local worktree refs. The public runtime
 receipt manifest is empty; withdrawn hardware evidence is not replaced with fabricated values.
 See [publication privacy](docs/PUBLICATION.md) for scope and limitations.
+
+### V4.1 PyTorch examples
+
+The Encoder, Decoder, Engram, CSA2 and dSpark chapters include expandable reference
+implementations and Python downloads. These are authored, source-linked teaching
+adaptations with explicit shape contracts and omissions; they do not load weights or
+reproduce a production serving stack. The dSpark chapter keeps the DeepSpec evaluator
+separate from the V4.1 draft path.
+
+`npm run test:pytorch` runs reduced-shape CPU checks using the locked `examples`
+dependency group. Engineering runs the same command before building. The browser checks
+the delivered code and downloads against the canonical records in `src/pytorch-*.mjs`,
+including keyboard access, mobile overflow and print disclosures. No Python runtime or
+external assets are shipped in the HTML. Upstream MIT notices accompany the examples.

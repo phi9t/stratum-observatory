@@ -1,0 +1,24 @@
+test_expert_always_uses_asymmetric_checkpoint_clamps (pytorch_backbone.BackboneExamplesTest.test_expert_always_uses_asymmetric_checkpoint_clamps) ... ok
+test_flat_stack_boundary_and_final_collapse (pytorch_backbone.BackboneExamplesTest.test_flat_stack_boundary_and_final_collapse) ... ok
+test_moe_bias_selects_but_does_not_weight_and_shared_always_runs (pytorch_backbone.BackboneExamplesTest.test_moe_bias_selects_but_does_not_weight_and_shared_always_runs) ... ok
+test_previous_premix_not_current_attention_premix (pytorch_backbone.BackboneExamplesTest.test_previous_premix_not_current_attention_premix) ... ok
+test_rmsnorm_uses_width_not_stream_axis (pytorch_backbone.BackboneExamplesTest.test_rmsnorm_uses_width_not_stream_axis) ... ok
+test_sinkhorn_and_residual_matrix_orientation (pytorch_backbone.BackboneExamplesTest.test_sinkhorn_and_residual_matrix_orientation) ... ok
+test_all_accepted_uses_bonus_distribution (pytorch_dspark.DSparkExamplesTest.test_all_accepted_uses_bonus_distribution) ... ok
+test_attention_sees_future_draft_slot_and_sink (pytorch_dspark.DSparkExamplesTest.test_attention_sees_future_draft_slot_and_sink) ... ok
+test_confidence_prefix_and_state_ownership (pytorch_dspark.DSparkExamplesTest.test_confidence_prefix_and_state_ownership) ... ok
+test_empty_proposal_and_zero_residual_mass (pytorch_dspark.DSparkExamplesTest.test_empty_proposal_and_zero_residual_mass) ... ok
+test_markov_conditions_on_preceding_sample_and_confidence_is_raw (pytorch_dspark.DSparkExamplesTest.test_markov_conditions_on_preceding_sample_and_confidence_is_raw) ... ok
+test_verification_commits_only_prefix_and_residual (pytorch_dspark.DSparkExamplesTest.test_verification_commits_only_prefix_and_residual) ... ok
+test_candidates_pin_latest_and_exclude_future (pytorch_memory.MemoryExamplesTest.test_candidates_pin_latest_and_exclude_future) ... ok
+test_engram_mask_and_signed_stream_gates (pytorch_memory.MemoryExamplesTest.test_engram_mask_and_signed_stream_gates) ... ok
+test_group_compressor_preserves_partial_tail (pytorch_memory.MemoryExamplesTest.test_group_compressor_preserves_partial_tail) ... ok
+test_index_relu_precedes_weighted_head_sum (pytorch_memory.MemoryExamplesTest.test_index_relu_precedes_weighted_head_sum) ... ok
+test_pooling_is_per_channel_and_waits_for_complete_group (pytorch_memory.MemoryExamplesTest.test_pooling_is_per_channel_and_waits_for_complete_group) ... ok
+test_projection_compressor_has_no_pooling_gate (pytorch_memory.MemoryExamplesTest.test_projection_compressor_has_no_pooling_gate) ... ok
+test_sparse_union_sink_and_causal_window (pytorch_memory.MemoryExamplesTest.test_sparse_union_sink_and_causal_window) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.245s
+
+OK

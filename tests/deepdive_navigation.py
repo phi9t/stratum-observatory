@@ -1,11 +1,15 @@
 """Real chapter journeys through the delivered portable V4.1 file."""
 from pathlib import Path
 import json
+import ast
+import subprocess
 
 
 def exercise(page,root):
     artifact=Path(root)/'dist/deepseek-v4.1.html'
     page.goto(artifact.as_uri());page.wait_for_function('window.STRATUM')
+    examples=json.loads(subprocess.check_output(['node','--input-type=module','-e',
+        "import {PYTORCH_EXAMPLES,exampleProgram} from './src/pytorch.mjs'; console.log(JSON.stringify(PYTORCH_EXAMPLES.map(x=>({...x,program:exampleProgram(x.id)}))));"],cwd=root,text=True))
     expected=['encoder','decoder','engram','csa2','dspark']
     for stage in expected:
         page.locator(f'button[data-setting="stage"][data-value="{stage}"]').click()
@@ -20,6 +24,35 @@ def exercise(page,root):
         links=page.locator('#analysis-panel > .analysis-split a[href^="https:"]').evaluate_all('xs=>xs.map(a=>a.href)')
         assert links and all('/main/' not in href for href in links)
         assert all('huggingface.co/deepseek-ai/' in href or 'github.com/sgl-project/sglang/' in href or 'github.com/deepseek-ai/DeepSpec/' in href or 'arxiv.org/html/2607.05147v1' in href for href in links)
+        expected_examples=[x for x in examples if stage in x['stages']]
+        assert page.locator('.pytorch-example').count()==len(expected_examples)>0
+        for example in expected_examples:
+            panel=page.locator(f'details[data-example="{example["id"]}"]')
+            summary=panel.locator('summary')
+            summary.focus();summary.press('Enter')
+            assert panel.evaluate('el=>el.open')
+            assert panel.locator('code').text_content()==example['code']
+            with page.expect_download() as pending:
+                panel.get_by_role('button',name='Download Python').click()
+            downloaded=Path(pending.value.path()).read_text()
+            assert downloaded==example['program']
+            ast.parse(downloaded)
+            assert 'MIT License' in downloaded and '# Sources: https://' in downloaded
+            page.set_viewport_size({'width':390,'height':1000})
+            code=panel.locator('.pytorch-code')
+            panel.get_by_role('button',name='Download Python').focus()
+            page.keyboard.press('Tab')
+            assert code.evaluate('el=>el===document.activeElement')
+            assert code.evaluate('el=>getComputedStyle(el).outlineStyle')!='none'
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
+            page.set_viewport_size({'width':1840,'height':1400})
+            summary.press('Enter')
+            assert not panel.evaluate('el=>el.open')
+        page.evaluate("window.dispatchEvent(new Event('beforeprint'))")
+        assert page.locator('.pytorch-example:not([open]),.pytorch-license:not([open])').count()==0
+        assert page.locator('.pytorch-license').inner_text().find('Permission is hereby granted')>=0
+        page.evaluate("window.dispatchEvent(new Event('afterprint'))")
+        assert page.locator('.pytorch-example[open],.pytorch-license[open]').count()==0
         page.locator('#trace-button').click()
         assert page.evaluate('STRATUM.getState().trace')
         page.locator('#trace-button').click()

@@ -11,3 +11,18 @@ dependencies = ["playwright==1.55.0"]
 # verification/ and tests/ are executed from the repository root via -m or by path.
 # Nothing here is installed or distributed, so no build backend is required.
 package = false
+
+[dependency-groups]
+examples = [
+    "numpy==2.3.3",
+    "torch==2.8.0",
+]
+
+# CPU-only wheels keep the educational checks independent of CUDA/driver packages.
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
