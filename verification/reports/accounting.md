@@ -11,7 +11,7 @@ Source acceptance: separate publication gate. Runtime: NOT_RUN.
 | unsupported | 186 |
 | contradiction | 0 |
 
-Consumer: `da2485e51b831113d903a0723bf968d6ae3e734d84730c5de9d80642dc745730`
+Consumer: `8afd14df15979391593a9d0c5e2473451807bf822ac1162d3a26fcf90d17aa43`
 Methods: `0c7c2d5a1152c0a5407409fba0f360778435af6b045160ec2418281e628feaa6`
 
 Detailed raw units, denominators, scope, exclusions, expected/actual values and source IDs: `accounting.json`.

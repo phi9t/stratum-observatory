@@ -52,9 +52,9 @@ export const INNOVATIONS=[
 
  {id:'dspark',title:'DSpark speculative decoding',
   replaces:'A single accepted token per target forward pass',
-  mechanism:'Draft-specific blocks consume captured attention inputs from late target layers and use their own expert routing to propose future tokens. The report describes confidence-scheduled target verification; the inspected publisher code provides draft forward but no complete acceptance coordinator. Draft parameters are unpublished and excluded from calculated backbone totals.',
+  mechanism:'Draft-specific blocks consume captured attention inputs from late target layers and use their own expert routing to propose future tokens. The report describes confidence-scheduled target verification. DeepSpec publishes an offline acceptance and cache-reuse loop for other backbones; the inspected checkpoint reference provides draft forward without establishing its production coordinator. Draft parameters are unpublished and excluded from calculated backbone totals.',
   effect:m=>`${m.dsparkBlock}-token draft blocks · ${m.dsparkTopK} of ${m.dsparkExperts} draft experts per token · ${m.dsparkTargets.length} target layers`,
-  sources:['dsv41-code','dsv41-report','dsv41-card']},
+  sources:['dsv41-code','dsv41-report','dsv41-card','deepspec-verification','deepspec-draft','deepspec-context']},
 
  {id:'fp4-kv',title:'FP4 main KV cache',
   replaces:'Retaining keys and values at the precision the layer computes in',

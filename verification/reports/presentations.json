@@ -1,8 +1,8 @@
 {
   "schema": "stratum-presentations/v1",
   "status": "PASS",
-  "generated_at": "2026-09-20T04:21:01.165952+00:00",
-  "artifact_sha256": "93841c168277a625a852edbdba0d3d77f6a4aa3059742801e380732cbd3de446",
+  "generated_at": "2026-09-20T05:09:46.588687+00:00",
+  "artifact_sha256": "21e72a10ac6bb2c3bebc6fa55524e5b95e3ef014df048642a9ae8ad399d01247",
   "delivery": {
     "models": [
       "ds2",
@@ -104,7 +104,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "foundations.html",
-      "message": "256 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "message": "262 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -131,7 +131,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "qwen3.8.html",
-      "message": "256 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "message": "262 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -140,7 +140,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "kimi-k3.html",
-      "message": "256 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "message": "262 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -149,7 +149,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "deepseek-v4.1.html",
-      "message": "256 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "message": "262 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -158,7 +158,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "hardware.html",
-      "message": "256 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "message": "262 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -167,7 +167,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "networking.html",
-      "message": "256 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "message": "262 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -302,7 +302,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/ced",
-      "message": "12 headings ordered, 85 controls named, 1 table(s) with scoped headers over 8 rows, 33 citations named.",
+      "message": "12 headings ordered, 88 controls named, 1 table(s) with scoped headers over 8 rows, 36 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -347,7 +347,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/dspark",
-      "message": "12 headings ordered, 55 controls named, 1 table(s) with scoped headers over 4 rows, 13 citations named.",
+      "message": "12 headings ordered, 64 controls named, 1 table(s) with scoped headers over 6 rows, 21 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -482,7 +482,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/dsv41/entry",
-      "message": "12 headings ordered, 85 controls named, 1 table(s) with scoped headers over 8 rows, 33 citations named.",
+      "message": "12 headings ordered, 88 controls named, 1 table(s) with scoped headers over 8 rows, 36 citations named.",
       "remedy": "",
       "evidence": []
     },

@@ -9,7 +9,7 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 617 verifier tests (10 skipped), 109 model/graph tests, two byte-identical builds of all eight portable entry points and 1,461 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Engineering | PASS | 0 | 618 verifier tests (10 skipped), 109 model/graph tests, two byte-identical builds of all eight portable entry points and 1,461 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
 | Accounting arithmetic | PASS | 0 | 399 live scenarios; 309 agreement, 82 explained differences, 186 unsupported findings, zero contradictions; required by engineering |
 | Schematics | PASS | 0 | 762 scenes including all 544 decoder layers; 3,154 checks against core.mjs, of which 238 are recorded not-applicable passes |
 | Presentations | PASS | 0 | 88 checks over 26 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
@@ -426,23 +426,23 @@ inventory, not correctness of anything in it.
 |---|---:|
 | Input leaves | 592 |
 | Function/file identities | 34 |
-| Distinct sampled scene contracts | 2925 |
-| Claims including domain obligations | 3575 |
-| Candidate source entries | 76 |
-| Accepted raw-byte snapshots | 74 |
+| Distinct sampled scene contracts | 2926 |
+| Claims including domain obligations | 3576 |
+| Candidate source entries | 83 |
+| Accepted raw-byte snapshots | 81 |
 | Scientifically certified claims under the signed policy | 0 |
 | Passed presentation bindings | 0 |
 | Domain contracts / runtime obligations | 32 / 32 |
 
-The publication audit has **6,245 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
+The publication audit has **6,248 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
 from the current source and consumer bytes with a fresh engineering receipt:
 
 | Code | Status | Count |
 |---|---|---:|
-| `REVIEW_REQUIRED` | BLOCKED | 3,607 |
+| `REVIEW_REQUIRED` | BLOCKED | 3,608 |
 | `CLAIM_ANCHOR` | BLOCKED | 2,334 |
-| `CLAIM_ROLE` | BLOCKED | 127 |
-| `MODEL_DUAL_CODE` | BLOCKED | 113 |
+| `CLAIM_ROLE` | BLOCKED | 128 |
+| `MODEL_DUAL_CODE` | BLOCKED | 114 |
 | `CONTRACT_EVIDENCE` | BLOCKED | 32 |
 | `CONTRACT_CONSISTENT` | PASS | 23 |
 | `CONTRACT_MODEL_COVERAGE` | PASS | 9 |
@@ -455,7 +455,7 @@ from the current source and consumer bytes with a fresh engineering receipt:
 | `ENGINEERING_CURRENT` | PASS | 1 |
 
 Most of these are cascading source dependencies and absent independent reviews; this is **not** a
-claim that 6,245 facts are false. No review identity, accepted source hash or execution receipt was
+claim that 6,248 facts are false. No review identity, accepted source hash or execution receipt was
 invented.
 
 For the record, the evidence-anchor work began at **9,037 findings (9,013 BLOCKED)** with
@@ -810,9 +810,9 @@ executes all three, and CI could never have executed the transcription compariso
 
 Portable HTML SHA-256: `7f528beef0d33a021d2e7165eb2e3c3ba0e23f2075f0bdba77d7b1fa773761c9`
 
-Scientific lock SHA-256: `13cc92b5eb20956717fca3d57461b241a0b611fe1f34ed8817d74f2bf3f27c39`
+Scientific lock SHA-256: `8c29284c988a54d7f7a7b4bce4446f32fcd58081d5e9e73cce074790539af829`
 
-Verifier identity SHA-256: `28596315f50c7eb5a1ac8c354b1fb17ba2d8b2ed257ef0aa1da833dda8644739`
+Verifier identity SHA-256: `5f02a25c150a4d1feba045b75cff89741f43cdf84b9aefc02a705341590af4d3`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -855,7 +855,7 @@ reading. It used to be exactly that: a permanently failing `publication` job who
 indistinguishable from a contradiction, because `aggregate()` collapses BLOCKED and FAIL into one
 exit code and GitHub renders both the same.
 
-So completeness runs on a trusted machine — `npm run verify:science`, exit 2, **6,245 BLOCKED and
+So completeness runs on a trusted machine — `npm run verify:science`, exit 2, **6,248 BLOCKED and
 38 PASS findings, 0 FAIL** — and its report is committed as `verification/reports/publication.json`.
 This document states its figures, and `verification/tests/test_reported_numbers.py`, which runs
 inside the *green* engineering gate, fails if the record drifts from the report **or if the report
@@ -892,7 +892,7 @@ V4.1 dispatch and storage anchors. Main KV and packed indexer payload reconcile 
 window state and allocation overhead remain separate. [Research and source scope](docs/design/V41-SERVING-RESEARCH.md)
 record the development-branch serving implementation and Miles plugin. Neither is a runtime receipt.
 
-Dedicated HTML SHA-256: `46429dea41d55b6f2026d77ef1dffcc8ef07c63e68f7c86da940afd9fb99ed2f`
+Dedicated HTML SHA-256: `abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346`
 
 CED phase depths follow the report-level scheme. The pinned reference forward still visits all backbone layers; encoder-only prefill execution is not certified by that code. This distinction is visible in the CED caption and serving inspector.
 
@@ -936,12 +936,12 @@ registry drives page builds, artifact identity, browser routing and preview sele
 Chromium exercises real landing links, variant switches, reloads, identity enforcement,
 scenario exports and return links. All eight portable files are included in the software gates.
 
-- `deepseek-v4.1.html` SHA-256: `46429dea41d55b6f2026d77ef1dffcc8ef07c63e68f7c86da940afd9fb99ed2f`
+- `deepseek-v4.1.html` SHA-256: `abbf02fc407e333a9754d75aa40ba1f4915a535028067d5c838165a1a282b346`
 - `index.html` SHA-256: `7f528beef0d33a021d2e7165eb2e3c3ba0e23f2075f0bdba77d7b1fa773761c9`
-- `kimi-k3.html` SHA-256: `a6e3365d7d3cc3eee24b3dc7ace3ecef37a92a5b0b851b23bdf4c1da282b942f`
-- `qwen3.8.html` SHA-256: `203af8be2bd7e89529951ffbfe1ed8df983841ab6eb3663ab196cb15c5c8340c`
+- `kimi-k3.html` SHA-256: `8be998c2fd7e9d0baaa03c3c8794cc87b8e97af7392490768a9d4d01513010ec`
+- `qwen3.8.html` SHA-256: `9d80d2e6cc79c77404c8f80af5d6b694e1163e828b27cdcf5582ed1c80ffeee1`
 
-Publication coverage: 3607 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
+Publication coverage: 3608 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
 
 ## Shared systems sections
 
@@ -953,10 +953,10 @@ exposes a workload-model selector, and links preserve the originating scenario. 
 system bookmarks redirect to these shared pages. Repeated local arrow-key navigation keeps focus
 in the model tabs. All eight files receive artifact identity and portable delivery checks.
 
-- `hardware.html` SHA-256: `0d0fc47f41b658bfb5bfa3fca8c8301440c220ca8e73b2c44b9472a70ccf2b0c`
-- `networking.html` SHA-256: `8db833cbd71c20795d02b8ce0155e36dcebe380b949ca46fa8c7075d7ba8bdf0`
+- `hardware.html` SHA-256: `5f92087e43e0b3e06ca8c275b26fbb4c764ba4952281012d2b30fc1ad268fa32`
+- `networking.html` SHA-256: `124a78207e327a5a65901eed626a7b75ee9545d38b2344a7822ab0a521e3706a`
 
-- `foundations.html` SHA-256: `93841c168277a625a852edbdba0d3d77f6a4aa3059742801e380732cbd3de446`
+- `foundations.html` SHA-256: `21e72a10ac6bb2c3bebc6fa55524e5b95e3ef014df048642a9ae8ad399d01247`
 
 - `data-representation.html` SHA-256: `70b019ab1ffd4e9d36d21f1f48ea6360fa1db565056e8db0ca52b0344ce09d20`
 
@@ -987,9 +987,22 @@ Chromium exercises chapter navigation, reload, exports and 390px layouts.
 The source review corrected the earlier dSpark description and separated storage owners
 from selection owners. The pinned publisher implementation supplies the draft forward
 path; the technical report supplies the confidence/profile/load scheduling description.
-A complete acceptance/rollback coordinator was not found in the inspected code. The
+DeepSpec now supplies a separately scoped offline Qwen3/Gemma4 acceptance and cache-cropping loop; the V4.1 production coordinator remains unverified. The
 PDF observation is recorded in `docs/research/DEEPSEEK_V41_DEEPDIVES.md`; its unsupported
 PDF selector remains an explicit BLOCKED dependency, not a fabricated source acceptance.
 
 All ten new dark/light composition signatures were inspected before promotion; no
 existing signature changed. The capture inventory contains 38 current previews.
+
+## DSpark paper, DeepSpec and checkpoint provenance
+
+The dSpark chapter now cites the user-selected paper, pinned DeepSpec implementation and
+V4-Pro-DSpark checkpoint. It traces rejection sampling, residual correction, bonus tokens,
+target-cache cropping, draft-cache cropping and reuse of verified target hidden features.
+The fixed confidence threshold in DeepSpec is distinguished from the paper's hardware-aware
+scheduling and asynchronous production adaptation. V4.1 dimensions are unchanged.
+
+The two exact user-selected code repositories join the publisher-code policy with a
+positive/lookalike-negative test; no reviewer identity or signature was added. Seven new
+byte snapshots carry exact code/section anchors. Source integrity does not confer scientific
+acceptance. The source and scope map is `docs/research/DEEPSPEC-DSpark.md`.

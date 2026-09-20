@@ -20,6 +20,16 @@ class EvidenceTests(unittest.TestCase):
         url = f'https://{host}/{repo}/'+('raw/' if host=='huggingface.co' else '')+f'{rev}/{path}'
         return dict(id=role, role=role, provider='huggingface' if role.startswith('publisher') else 'github', repo=repo, path=path,
                     revision=rev, url=url, cache=path, sha256=hashlib.sha256(raw).hexdigest(),kind='git',license='test fixture',fixture=True)
+    def test_user_selected_dspark_publishers_are_exact_repository_scopes(self):
+        for repo,provider in [('deepseek-ai/DeepSpec','github'),('deepseek-ai/DeepSeek-V4-Pro-DSpark','huggingface')]:
+            s=self.source();s.update(repo=repo,provider=provider)
+            base='https://raw.githubusercontent.com/' if provider=='github' else 'https://huggingface.co/'
+            middle='/' if provider=='github' else '/raw/'
+            s['url']=base+repo+middle+s['revision']+'/'+s['path']
+            self.assertEqual(evidence.check_source(s,self.root,allow_fixtures=True),[])
+            s['repo']=repo+'-unreviewed'
+            s['url']=base+s['repo']+middle+s['revision']+'/'+s['path']
+            self.assertIn('SOURCE_AUTHORITY',[f.code for f in evidence.check_source(s,self.root,allow_fixtures=True)])
     def test_api_exists(self):
         self.assertTrue(callable(getattr(evidence,'check_source',None)))
     def test_hash_mismatch_is_failure(self):

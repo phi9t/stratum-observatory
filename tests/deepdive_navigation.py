@@ -19,7 +19,7 @@ def exercise(page,root):
         assert json.loads(page.evaluate('STRATUM.exportConfig()'))['state']['stage']==stage
         links=page.locator('#analysis-panel > .analysis-split a[href^="https:"]').evaluate_all('xs=>xs.map(a=>a.href)')
         assert links and all('/main/' not in href for href in links)
-        assert all('huggingface.co/deepseek-ai/' in href or 'github.com/sgl-project/sglang/' in href for href in links)
+        assert all('huggingface.co/deepseek-ai/' in href or 'github.com/sgl-project/sglang/' in href or 'github.com/deepseek-ai/DeepSpec/' in href or 'arxiv.org/html/2607.05147v1' in href for href in links)
         page.locator('#trace-button').click()
         assert page.evaluate('STRATUM.getState().trace')
         page.locator('#trace-button').click()

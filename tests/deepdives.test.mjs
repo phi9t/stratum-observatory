@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {MODELS,DEFAULT_STATE,focalStages,sanitizeState} from '../src/core.mjs';
+import {chapterContent} from '../src/deepdives.mjs';
 import {buildScene} from '../src/diagrams.mjs';
 import {structuralReport} from '../src/scene.mjs';
 const chapters=['encoder','decoder','engram','csa2','dspark'];
@@ -28,8 +29,13 @@ test('CSA2 exposes distinct write, rescore and reuse responsibilities',()=>{
  const g=scene('csa2');for(const id of ['csa2-full','csa2-reindex','csa2-reuse','csa2-window','csa2-union'])assert.ok(g.nodes.some(n=>n.id===id),id);
  assert.ok(g.edges.some(e=>e.source==='csa2-window'&&e.target==='csa2-union'));
 });
-test('dSpark exposes draft feature inputs and the missing coordinator boundary',()=>{
- const g=scene('dspark');for(const id of ['dspark-features','dspark-seed','dspark-draft','dspark-markov','dspark-confidence','dspark-verification'])assert.ok(g.nodes.some(n=>n.id===id),id);
- const boundary=g.nodes.find(n=>n.id==='dspark-verification');assert.match(boundary.info.body,/not (provided|implemented)|unavailable|missing/i);
+test('dSpark distinguishes V4.1 drafting from the published DeepSpec verification and reuse path',()=>{
+ const g=scene('dspark');for(const id of ['dspark-features','dspark-seed','dspark-draft','dspark-markov','dspark-confidence','dspark-verification','dspark-reuse'])assert.ok(g.nodes.some(n=>n.id===id),id);
+ const boundary=g.nodes.find(n=>n.id==='dspark-verification');assert.match(boundary.info.body,/DeepSpec/);assert.equal(boundary.info.category,'DeepSpec offline evaluator');
+ assert.ok(g.edges.some(e=>e.source==='dspark-verification'&&e.target==='dspark-reuse'));
+ const c=chapterContent('dsv41',{...DEFAULT_STATE,stage:'dspark'});
+ for(const id of ['dspark-paper','deepspec-verification','deepspec-draft','dsv4-dspark-card'])assert.ok(c.sources.includes(id),id);
+ assert.match(c.caveat,/V4.1/);assert.match(c.caveat,/Qwen3.*Gemma4/);
+ assert.ok(c.trace.some(([title,body])=>title.includes('Cache reuse')&&body.includes('103')));
  assert.match(g.caption,/unpublished|excluded/i);assert.ok(!g.nodes.some(n=>/speedup|acceptance.rate/i.test(n.name)));
 });

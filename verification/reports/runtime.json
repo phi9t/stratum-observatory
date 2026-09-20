@@ -3,21 +3,21 @@
   "target": "stratum-observatory-3",
   "profile": "runtime",
   "status": "BLOCKED",
-  "generated_at": "2026-09-20T04:26:05.521857+00:00",
-  "lock_sha256": "13cc92b5eb20956717fca3d57461b241a0b611fe1f34ed8817d74f2bf3f27c39",
-  "consumer_sha256": "33db1d243d72327dbb12bee664dbaccec415ce5cf2089e76a8efe4eec4d69a42",
+  "generated_at": "2026-09-20T05:15:26.095618+00:00",
+  "lock_sha256": "8c29284c988a54d7f7a7b4bce4446f32fcd58081d5e9e73cce074790539af829",
+  "consumer_sha256": "37f93d367f00f8dea3e8d456c041500be015b2a73735e6f0495053738da5d0b2",
   "coverage": {
     "inputs": 592,
     "functions_and_files": 34,
-    "scene_contracts": 2925,
-    "claims": 3575,
-    "sources": 76,
-    "verified_sources": 74,
+    "scene_contracts": 2926,
+    "claims": 3576,
+    "sources": 83,
+    "verified_sources": 81,
     "verified_scientific_claims": 0,
     "passed_presentation_bindings": 0
   },
   "counts": {
-    "BLOCKED": 6245,
+    "BLOCKED": 6248,
     "PASS": 38,
     "NOT_RUN": 32
   },
@@ -53358,7 +53358,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-features.26d3ca9bc4e24fa9",
+      "subject": "scene.dsv41.model.dspark.dspark-features.2cffd741e7daeb03",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -53367,7 +53367,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-draft.df0231b4adcdc511",
+      "subject": "scene.dsv41.model.dspark.dspark-draft.db6831e336fd6f48",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -53376,7 +53376,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-markov.d198aaa234078af5",
+      "subject": "scene.dsv41.model.dspark.dspark-markov.be4c98d73845bd27",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -53385,7 +53385,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-confidence.f9da41154af63320",
+      "subject": "scene.dsv41.model.dspark.dspark-confidence.69e8067e5219ce9e",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -53394,7 +53394,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-schedule.05b306752b39e0c4",
+      "subject": "scene.dsv41.model.dspark.dspark-schedule.f0083e06016888e1",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -53403,7 +53403,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-verification.64b2e2c39d0efbb8",
+      "subject": "scene.dsv41.model.dspark.dspark-verification.a86914ad20e4a0c7",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -53412,7 +53412,7 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-seed.7488bc9fc841b335",
+      "subject": "scene.dsv41.model.dspark.dspark-reuse.b40e4ce89fd8abf5",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -53421,7 +53421,16 @@
       "code": "REVIEW_REQUIRED",
       "domain": "evidence",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.graph.cc25bd5694a31d51",
+      "subject": "scene.dsv41.model.dspark.dspark-seed.d0480c70a3ed79cf",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.dspark.graph.7403512b8d6c3e9a",
       "message": "No signed semantic review. A reviewed boolean is not evidence.",
       "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
       "evidence": []
@@ -55446,7 +55455,7 @@
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-features.26d3ca9bc4e24fa9",
+      "subject": "scene.dsv41.model.dspark.dspark-features.2cffd741e7daeb03",
       "message": "Required framework_code anchor is missing.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -55455,7 +55464,7 @@
       "code": "MODEL_DUAL_CODE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-features.26d3ca9bc4e24fa9",
+      "subject": "scene.dsv41.model.dspark.dspark-features.2cffd741e7daeb03",
       "message": "Requires publisher implementation AND independent framework implementation.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -55464,7 +55473,7 @@
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-draft.df0231b4adcdc511",
+      "subject": "scene.dsv41.model.dspark.dspark-draft.db6831e336fd6f48",
       "message": "Required framework_code anchor is missing.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -55473,7 +55482,7 @@
       "code": "MODEL_DUAL_CODE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-draft.df0231b4adcdc511",
+      "subject": "scene.dsv41.model.dspark.dspark-draft.db6831e336fd6f48",
       "message": "Requires publisher implementation AND independent framework implementation.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -55482,7 +55491,7 @@
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-markov.d198aaa234078af5",
+      "subject": "scene.dsv41.model.dspark.dspark-markov.be4c98d73845bd27",
       "message": "Required framework_code anchor is missing.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -55491,7 +55500,7 @@
       "code": "MODEL_DUAL_CODE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-markov.d198aaa234078af5",
+      "subject": "scene.dsv41.model.dspark.dspark-markov.be4c98d73845bd27",
       "message": "Requires publisher implementation AND independent framework implementation.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -55500,7 +55509,7 @@
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-confidence.f9da41154af63320",
+      "subject": "scene.dsv41.model.dspark.dspark-confidence.69e8067e5219ce9e",
       "message": "Required framework_code anchor is missing.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -55509,7 +55518,7 @@
       "code": "MODEL_DUAL_CODE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-confidence.f9da41154af63320",
+      "subject": "scene.dsv41.model.dspark.dspark-confidence.69e8067e5219ce9e",
       "message": "Requires publisher implementation AND independent framework implementation.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -55518,7 +55527,7 @@
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-schedule.05b306752b39e0c4",
+      "subject": "scene.dsv41.model.dspark.dspark-schedule.f0083e06016888e1",
       "message": "Required framework_code anchor is missing.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -55527,7 +55536,7 @@
       "code": "MODEL_DUAL_CODE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-schedule.05b306752b39e0c4",
+      "subject": "scene.dsv41.model.dspark.dspark-schedule.f0083e06016888e1",
       "message": "Requires publisher implementation AND independent framework implementation.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -55536,7 +55545,7 @@
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-verification.64b2e2c39d0efbb8",
+      "subject": "scene.dsv41.model.dspark.dspark-verification.a86914ad20e4a0c7",
       "message": "Required framework_code anchor is missing.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -55545,7 +55554,7 @@
       "code": "MODEL_DUAL_CODE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-verification.64b2e2c39d0efbb8",
+      "subject": "scene.dsv41.model.dspark.dspark-verification.a86914ad20e4a0c7",
       "message": "Requires publisher implementation AND independent framework implementation.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -55554,7 +55563,7 @@
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-seed.7488bc9fc841b335",
+      "subject": "scene.dsv41.model.dspark.dspark-reuse.b40e4ce89fd8abf5",
       "message": "Required framework_code anchor is missing.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -55563,7 +55572,7 @@
       "code": "MODEL_DUAL_CODE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.dspark-seed.7488bc9fc841b335",
+      "subject": "scene.dsv41.model.dspark.dspark-reuse.b40e4ce89fd8abf5",
       "message": "Requires publisher implementation AND independent framework implementation.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -55572,7 +55581,7 @@
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.graph.cc25bd5694a31d51",
+      "subject": "scene.dsv41.model.dspark.dspark-seed.d0480c70a3ed79cf",
       "message": "Required framework_code anchor is missing.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []
@@ -55581,7 +55590,25 @@
       "code": "MODEL_DUAL_CODE",
       "domain": "model",
       "status": "BLOCKED",
-      "subject": "scene.dsv41.model.dspark.graph.cc25bd5694a31d51",
+      "subject": "scene.dsv41.model.dspark.dspark-seed.d0480c70a3ed79cf",
+      "message": "Requires publisher implementation AND independent framework implementation.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "CLAIM_ROLE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.dspark.graph.7403512b8d6c3e9a",
+      "message": "Required framework_code anchor is missing.",
+      "remedy": "Resolve the finding; do not weaken the gate.",
+      "evidence": []
+    },
+    {
+      "code": "MODEL_DUAL_CODE",
+      "domain": "model",
+      "status": "BLOCKED",
+      "subject": "scene.dsv41.model.dspark.graph.7403512b8d6c3e9a",
       "message": "Requires publisher implementation AND independent framework implementation.",
       "remedy": "Resolve the finding; do not weaken the gate.",
       "evidence": []

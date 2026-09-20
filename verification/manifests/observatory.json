@@ -23868,7 +23868,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/innovations.mjs",
-      "expected": "17b7d734d8d892cbdea00d7460e571f7f5f8963a23134608311ddc2c89e82a91",
+      "expected": "a387cfb0e78626070352fbea5cdff14a05a3cf59fb9108be64e3056b2abbaefa",
       "statement": "file.src/innovations.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23889,7 +23889,7 @@
       "domain": "model",
       "classification": "derived",
       "consumer": "file.src/models.mjs",
-      "expected": "897126c7bcb965a7a3b8e4e2bb0cd201b7a8d19749194a83e49a613ded20701a",
+      "expected": "a841c924531f50ce4c36c8a98b926d9a28f72b97543752840307286a4cff53c5",
       "statement": "file.src/models.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -150585,8 +150585,8 @@
       "expected": {
         "scope": "Source inspection and derived accounting; no measured throughput or runtime certification.",
         "symbols": "B = sequences; T = token positions; residual copies, layer depth and token time are separate axes.",
-        "title": "dSpark: propose future tokens, expose the verification boundary",
-        "question": "What does the MTP draft compute, and what must the target coordinator decide?",
+        "title": "dSpark: draft, verify, and reuse accepted context",
+        "question": "Which state survives verification and feeds the next draft?",
         "summary": "The draft consumes captured backbone features and a seed token. It predicts a block of future tokens with a draft-specific attention and expert path. Draft proposals remain distinct from accepted continuation.",
         "trace": [
           [
@@ -150606,8 +150606,28 @@
             "The shared vocabulary head produces [B, 5, 129,280] logits. Sequential Markov bias conditions each sampled proposal on the preceding token. Returned IDs have 6 positions including the seed; confidence scores have 5 positions."
           ],
           [
+            "Choose a verification prefix \u00b7 DeepSpec code",
+            "The evaluator applies sigmoid to confidence logits and truncates at the first position below a fixed threshold. Disabling the threshold keeps the full draft block. This downstream sigmoid is separate from the raw V4.1 confidence head. Threshold filtering is not the paper\u2019s engine-profile scheduler."
+          ],
+          [
+            "Verify and correct \u00b7 DeepSpec code",
+            "The target evaluates the current seed plus the proposed prefix. Each proposal is accepted with min(1, p / max(q, 1e-8)), using target probability p and draft probability q. A cumulative product keeps only the contiguous accepted prefix. At the first rejection, the evaluator samples from normalized max(p \u2212 q, 0), with a target-distribution fallback for a degenerate residual; if all proposals survive, it samples a bonus token from the last target distribution. Stop tokens can end the loop earlier."
+          ],
+          [
+            "Reuse context \u00b7 DeepSpec code",
+            "The draft forward crops its cache back to the iteration start, removing speculative block state. After verification, the target cache keeps the seed and accepted draft prefix. The next draft receives target hidden features for those same positions. The correction or bonus token becomes the next seed; it has not yet been cached by the target."
+          ],
+          [
+            "Load-aware scheduling \u00b7 paper scope",
+            "The paper\u2019s basic scheduler uses prefix-survival estimates and engine throughput profiles, with early stopping to avoid looking ahead into future-token confidence. Its production adaptation uses historical confidence from two steps earlier to set current verification capacity, then ranks current prefixes. These are paper-level policies; the inspected DeepSpec evaluator implements a fixed threshold, not this production scheduler."
+          ],
+          [
             "Proposal trace \u00b7 illustrative token IDs",
             "Starting from seed a, the 5-position draft input is [a, noise, noise, noise, noise]. The sequential head samples proposal y1 conditioned on a, then y2 conditioned on y1, continuing through y5. Returned IDs are [a, y1, \u2026, y5], with 5 confidence scores. These positions are proposals; no accepted-prefix length is assumed."
+          ],
+          [
+            "Cache reuse trace \u00b7 illustrative non-stop iteration",
+            "Let the current seed be at position 100, with proposals y1, y2, y3 at 101\u2013103. Suppose y1 and y2 pass but y3 fails. The target cache is cropped to length 103, keeping positions through 102; a correction token is written at 103 and becomes the next seed. The draft cache was cropped to length 100. Target hidden features for positions 100\u2013102 are retained for the next draft. Neither rejected y3 state nor a target KV entry for the new correction is reused. This illustrates the DeepSpec evaluator, not a measured V4.1 execution."
           ]
         ],
         "rows": [
@@ -150630,26 +150650,43 @@
             "Confidence scores",
             "[B, 5]",
             "Raw scores; no sigmoid/calibration established here"
+          ],
+          [
+            "Target KV after verification",
+            "start + accepted draft count + 1",
+            "Seed plus accepted draft prefix; excludes the new correction/bonus"
+          ],
+          [
+            "Draft KV after proposal",
+            "iteration start",
+            "Speculative draft block cropped; verified target features extend context next time"
           ]
         ],
-        "caveat": "The publisher reference implements draft forward only: no complete verification, acceptance or rollback loop is provided. The technical report describes conditional acceptance probabilities, prefix-survival estimates, and verification length chosen using profiled engine throughput and current load. The exact acceptance and rollback coordinator remains unavailable in the inspected code. Draft parameter count is unpublished and excluded from the backbone ledger; no acceptance rate or speedup is inferred.",
+        "caveat": "The V4.1 Flash reference supplies the draft path. DeepSpec publishes a complete single-sequence offline evaluator for Qwen3/Gemma4, including rejection sampling and cache cropping; it does not establish the V4.1 production coordinator. The linked V4-Pro-DSpark release is the V4-Pro checkpoint with an attached draft module, not V4.1 Flash. Its configuration and performance cannot be substituted here. V4.1 draft parameters remain unpublished and excluded from the backbone ledger.",
         "sources": [
           "dsv41-config",
           "dsv41-code",
-          "dsv41-card",
-          "dsv41-report",
-          "dsv41-sglang"
+          "dspark-paper",
+          "deepspec-verification",
+          "deepspec-draft",
+          "deepspec-context",
+          "deepspec-sampling",
+          "dsv4-dspark-card",
+          "dsv4-dspark-code"
         ],
         "anchors": [
           "Transformer.forward_spec",
-          "DSparkBlock.forward_embed",
-          "DSparkAttention.forward",
           "DSparkBlock.forward_head",
-          "DSparkConfidenceHead.forward"
+          "verify_draft_tokens",
+          "generate_decoding_sample",
+          "forward_dspark_draft_block",
+          "_confident_prefix_length",
+          "Qwen3DSparkEvaluator._update",
+          "sample_residual"
         ],
         "stage": "dspark"
       },
-      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "statement": "V4.1 draft shapes remain checkpoint-specific. DeepSpec offline Qwen3/Gemma4 acceptance, residual sampling, and cache cropping are anchored separately; paper scheduling and V4-Pro release identity do not establish V4.1 production integration. Labeled worked traces are illustrative, not measured.",
       "evidence": [
         {
           "source": "dsv41-code",
@@ -150715,6 +150752,149 @@
             ]
           },
           "relation": "implements"
+        },
+        {
+          "source": "deepspec-verification",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "verify_draft_tokens",
+            "sha256": "994463f2e7558ef6ba25759e5826f8e11a4b0bb3ea5905f1fb8479486f466349",
+            "resolved_span": [
+              186,
+              304
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "deepspec-verification",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "generate_decoding_sample",
+            "sha256": "300a93c4953943c376b2600094558f8c8ed3dc13af7d740a38175de1da292040",
+            "resolved_span": [
+              308,
+              441
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "deepspec-draft",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "forward_dspark_draft_block",
+            "sha256": "7a478e97ca1334f82a525a80f96bcc205e4f6190b2a570e91d7e98b554cc3d47",
+            "resolved_span": [
+              22,
+              45
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "deepspec-draft",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "_confident_prefix_length",
+            "sha256": "7abd69f4aa63518584857c886a99c94e3fe7fb06bfa7aa1b4175ea7f44ddbd92",
+            "resolved_span": [
+              82,
+              93
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "deepspec-context",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Qwen3DSparkEvaluator._update",
+            "sha256": "00e93122c9f1985c4778e2912d3b9cce1ad9398ae8beca6083b6c21735ea7eae",
+            "resolved_span": [
+              134,
+              147
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "deepspec-sampling",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "sample_residual",
+            "sha256": "e41ea9ee5c08e5d44d78e8fa9f1680d447d931a033fd9dbd4cbc86fb2ad8b6f4",
+            "resolved_span": [
+              34,
+              44
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dsv4-dspark-code",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "Transformer.forward_spec",
+            "sha256": "71bebf07ba462e0a6822a2705c4754b22843abac476e93c96e766ed518e6c31c",
+            "resolved_span": [
+              929,
+              936
+            ]
+          },
+          "relation": "implements"
+        },
+        {
+          "source": "dspark-paper",
+          "anchor": {
+            "kind": "span",
+            "start": 606,
+            "end": 772,
+            "contains": [
+              "Hardware-Aware Prefix Scheduler"
+            ],
+            "sha256": "e4cb8992b2995899dda86d9a47d7e5269eb3aed2a8489aef4ad910e4480cfe41",
+            "resolved_span": [
+              606,
+              772
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "dspark-paper",
+          "anchor": {
+            "kind": "span",
+            "start": 1205,
+            "end": 1219,
+            "contains": [
+              "Hardware-Aware Prefix Scheduler"
+            ],
+            "sha256": "c6c9b95de5c293ecfeb159bdd095be7bdb32fe919c451eaea2377611e600c162",
+            "resolved_span": [
+              1205,
+              1219
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "dsv4-dspark-card",
+          "anchor": {
+            "kind": "span",
+            "start": 41,
+            "end": 41,
+            "contains": [
+              "same checkpoint",
+              "speculative decoding module"
+            ],
+            "sha256": "8e401daf21c5284e0c0d9a9893a1da87718cd3530e6e0c9e86dffe19b0aa4a29",
+            "resolved_span": [
+              41,
+              41
+            ]
+          },
+          "relation": "documents"
         }
       ],
       "dependencies": [
@@ -150744,8 +150924,7 @@
         "MODELS.dsv41.window",
         "function.cacheLedger",
         "function.parameterLedger",
-        "function.layerKind",
-        "deepdive.report-boundary"
+        "function.layerKind"
       ]
     },
     {
@@ -150753,7 +150932,7 @@
       "consumer": "file.src/deepdives.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "ffeb066e0709f2818e9dc135ed7d8f6f00e860e749a8e1c9ab6de6c0f29e4275",
+      "expected": "86bfa7527685b731736465b6acb5f2e14e4a9865be0cdcf34b3531dc7138acb8",
       "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
       "evidence": [],
       "dependencies": [
@@ -150769,7 +150948,7 @@
       "consumer": "file.src/diagram-deepdives.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "4e086bf57659b118c636651ffbb3523fb95b5ef7e29e6bb1912e8fbb71895362",
+      "expected": "e1a3b9c25b9f9819ea4525416b33189987c13da629367df32901c4927e8fe9ef",
       "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
       "evidence": [],
       "dependencies": [
@@ -151220,12 +151399,12 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.dspark.dspark-features.26d3ca9bc4e24fa9",
-      "consumer": "scene.dsv41.model.dspark.dspark-features.26d3ca9bc4e24fa9",
+      "id": "scene.dsv41.model.dspark.dspark-features.2cffd741e7daeb03",
+      "consumer": "scene.dsv41.model.dspark.dspark-features.2cffd741e7daeb03",
       "domain": "model",
       "classification": "derived",
-      "expected": "26d3ca9bc4e24fa9f683860cea627b1123d8633d624f8175d50c5602b04a1284",
-      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "expected": "2cffd741e7daeb0376b9aa3ad7cde04bf0ea184194a797808dd2d19784b2fb0c",
+      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
       "evidence": [],
       "dependencies": [
         "deepdive.dspark",
@@ -151233,12 +151412,12 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.dspark.dspark-draft.df0231b4adcdc511",
-      "consumer": "scene.dsv41.model.dspark.dspark-draft.df0231b4adcdc511",
+      "id": "scene.dsv41.model.dspark.dspark-draft.db6831e336fd6f48",
+      "consumer": "scene.dsv41.model.dspark.dspark-draft.db6831e336fd6f48",
       "domain": "model",
       "classification": "derived",
-      "expected": "df0231b4adcdc511c132b449f6d641c88316f4c8e8b98f6d66ef91f35a7861ba",
-      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "expected": "db6831e336fd6f48bde19df2f4145a74ac52159c570fd1ea559b8f93510893ee",
+      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
       "evidence": [],
       "dependencies": [
         "deepdive.dspark",
@@ -151246,12 +151425,12 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.dspark.dspark-markov.d198aaa234078af5",
-      "consumer": "scene.dsv41.model.dspark.dspark-markov.d198aaa234078af5",
+      "id": "scene.dsv41.model.dspark.dspark-markov.be4c98d73845bd27",
+      "consumer": "scene.dsv41.model.dspark.dspark-markov.be4c98d73845bd27",
       "domain": "model",
       "classification": "derived",
-      "expected": "d198aaa234078af59f11eed2580a05cc6d9b0ea8a0cefcba6fc5f44b369d9248",
-      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "expected": "be4c98d73845bd2751ee35543d6c240221344e8713e236d88596d372ca5016e6",
+      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
       "evidence": [],
       "dependencies": [
         "deepdive.dspark",
@@ -151259,12 +151438,12 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.dspark.dspark-confidence.f9da41154af63320",
-      "consumer": "scene.dsv41.model.dspark.dspark-confidence.f9da41154af63320",
+      "id": "scene.dsv41.model.dspark.dspark-confidence.69e8067e5219ce9e",
+      "consumer": "scene.dsv41.model.dspark.dspark-confidence.69e8067e5219ce9e",
       "domain": "model",
       "classification": "derived",
-      "expected": "f9da41154af63320475770f2097bae366ccd9aef33be2c4d137b78f5c9fd6e81",
-      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "expected": "69e8067e5219ce9e9f1a4db2fc14e39fedd402c269c9d0f6277bed60dfad7f05",
+      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
       "evidence": [],
       "dependencies": [
         "deepdive.dspark",
@@ -151272,12 +151451,12 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.dspark.dspark-schedule.05b306752b39e0c4",
-      "consumer": "scene.dsv41.model.dspark.dspark-schedule.05b306752b39e0c4",
+      "id": "scene.dsv41.model.dspark.dspark-schedule.f0083e06016888e1",
+      "consumer": "scene.dsv41.model.dspark.dspark-schedule.f0083e06016888e1",
       "domain": "model",
       "classification": "derived",
-      "expected": "05b306752b39e0c425acf608c89c2a640fbdfbc3e53130643370a2853d55d6bc",
-      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "expected": "f0083e06016888e1c6d2373d1bdf1965569be52b853ac6a585d9a3c12bfa77fe",
+      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
       "evidence": [],
       "dependencies": [
         "deepdive.dspark",
@@ -151285,12 +151464,12 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.dspark.dspark-verification.64b2e2c39d0efbb8",
-      "consumer": "scene.dsv41.model.dspark.dspark-verification.64b2e2c39d0efbb8",
+      "id": "scene.dsv41.model.dspark.dspark-verification.a86914ad20e4a0c7",
+      "consumer": "scene.dsv41.model.dspark.dspark-verification.a86914ad20e4a0c7",
       "domain": "model",
       "classification": "derived",
-      "expected": "64b2e2c39d0efbb8680438e5f9ab04378df9282cee3a6f6a986e99dd3a15d391",
-      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "expected": "a86914ad20e4a0c7b9ef21f9fe9ec24f630d0a58150cde80a7d7c3d5fc80db53",
+      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
       "evidence": [],
       "dependencies": [
         "deepdive.dspark",
@@ -151298,12 +151477,12 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.dspark.dspark-seed.7488bc9fc841b335",
-      "consumer": "scene.dsv41.model.dspark.dspark-seed.7488bc9fc841b335",
+      "id": "scene.dsv41.model.dspark.dspark-reuse.b40e4ce89fd8abf5",
+      "consumer": "scene.dsv41.model.dspark.dspark-reuse.b40e4ce89fd8abf5",
       "domain": "model",
       "classification": "derived",
-      "expected": "7488bc9fc841b3353f9b7beb497c097be3dc30802dfa381412100b2e6681bef0",
-      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "expected": "b40e4ce89fd8abf58535538c55d32c46b593a2beb9f78a2f3e62eaa1ab4eeef9",
+      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
       "evidence": [],
       "dependencies": [
         "deepdive.dspark",
@@ -151311,12 +151490,25 @@
       ]
     },
     {
-      "id": "scene.dsv41.model.dspark.graph.cc25bd5694a31d51",
-      "consumer": "scene.dsv41.model.dspark.graph.cc25bd5694a31d51",
+      "id": "scene.dsv41.model.dspark.dspark-seed.d0480c70a3ed79cf",
+      "consumer": "scene.dsv41.model.dspark.dspark-seed.d0480c70a3ed79cf",
       "domain": "model",
       "classification": "derived",
-      "expected": "cc25bd5694a31d510f6acddcecbc4da0ac733e6ca9b861d4b29998e5ac959347",
-      "statement": "Source-grounded mechanism; identity is not independent acceptance. Illustrative traces are labeled, not measured outputs.",
+      "expected": "d0480c70a3ed79cf2f2606557252d6dffaf2bd51a393f51b9c77334709d1a08c",
+      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
+      "evidence": [],
+      "dependencies": [
+        "deepdive.dspark",
+        "file.src/diagram-deepdives.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.dspark.graph.7403512b8d6c3e9a",
+      "consumer": "scene.dsv41.model.dspark.graph.7403512b8d6c3e9a",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "7403512b8d6c3e9a8d81d9046b4e3dd4d0b24500013491794c54270bc842a85e",
+      "statement": "Draft architecture and scoped DeepSpec offline verifier/reuse graph, with distinct source ownership; not a V4.1 production execution receipt.",
       "evidence": [],
       "dependencies": [
         "deepdive.dspark",
