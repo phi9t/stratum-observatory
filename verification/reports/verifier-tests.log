@@ -488,6 +488,7 @@ test_a_receipt_asserting_determinism_without_two_hashes_is_caught (test_integrat
 test_a_receipt_that_rewrites_its_browser_result_is_caught (test_integration.ReceiptTrustTests.test_a_receipt_that_rewrites_its_browser_result_is_caught) ... ok
 test_an_unattested_receipt_is_blocked_not_passed (test_integration.ReceiptTrustTests.test_an_unattested_receipt_is_blocked_not_passed) ... ok
 test_missing_accounting_command_is_rejected (test_integration.ReceiptTrustTests.test_missing_accounting_command_is_rejected) ... ok
+test_missing_cpu_validation_is_rejected (test_integration.ReceiptTrustTests.test_missing_cpu_validation_is_rejected) ... ok
 test_missing_page_identity_is_rejected (test_integration.ReceiptTrustTests.test_missing_page_identity_is_rejected) ... ok
 test_a_current_receipt_carries_both_build_hashes (test_integration.ReleaseContractTests.test_a_current_receipt_carries_both_build_hashes) ... skipped 'no engineering receipt yet'
 test_a_nondeterministic_build_is_caught (test_integration.ReleaseContractTests.test_a_nondeterministic_build_is_caught) ... ok
@@ -752,6 +753,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 618 tests in 411.734s
+Ran 619 tests in 418.911s
 
 OK (skipped=10)

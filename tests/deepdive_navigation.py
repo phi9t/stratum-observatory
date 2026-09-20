@@ -11,6 +11,7 @@ def exercise(page,root):
     page.goto(artifact.as_uri());page.wait_for_function('window.STRATUM')
     examples=json.loads(subprocess.check_output(['node','--input-type=module','-e',
         "import {PYTORCH_EXAMPLES,exampleProgram} from './src/pytorch.mjs'; console.log(JSON.stringify(PYTORCH_EXAMPLES.map(x=>({...x,program:exampleProgram(x.id)}))));"],cwd=root,text=True))
+    config_source=(Path(root)/'examples/deepseek_v41/config.py').read_text()
     expected=['encoder','decoder','engram','csa2','dspark']
     for stage in expected:
         page.locator(f'button[data-setting="stage"][data-value="{stage}"]').click()
@@ -25,8 +26,9 @@ def exercise(page,root):
         links=page.locator('#analysis-panel > .analysis-split a[href^="https:"]').evaluate_all('xs=>xs.map(a=>a.href)')
         assert links and all('/main/' not in href for href in links)
         assert all('huggingface.co/deepseek-ai/' in href or 'github.com/sgl-project/sglang/' in href or 'github.com/deepseek-ai/DeepSpec/' in href or 'arxiv.org/html/2607.05147v1' in href for href in links)
+        assert page.locator('details[data-example="config"] code').text_content()==config_source
         expected_examples=[x for x in examples if stage in x['stages']]
-        assert page.locator('.pytorch-example').count()==len(expected_examples)>0
+        assert page.locator('.pytorch-example:not([data-example="config"])').count()==len(expected_examples)>0
         for example in expected_examples:
             panel=page.locator(f'details[data-example="{example["id"]}"]')
             summary=panel.locator('summary')
@@ -57,7 +59,7 @@ def exercise(page,root):
             summary.press('Enter')
             assert not panel.evaluate('el=>el.open')
         # Exercise the denied-clipboard boundary: the existing download remains available.
-        first_panel=page.locator('.pytorch-example').first
+        first_panel=page.locator('.pytorch-example:not([data-example="config"])').first
         first_panel.locator('summary').click()
         page.evaluate("() => {window.originalCopy=navigator.clipboard.writeText.bind(navigator.clipboard);navigator.clipboard.writeText=async()=>{throw new Error('denied')};}")
         first_panel.locator('[data-copy-example]').click()
@@ -86,9 +88,9 @@ def exercise(page,root):
         assert page.evaluate('STRATUM.getState().stage')==stage
         assert f'stage={stage}' in page.url
         assert page.locator('#control-stage').input_value()==stage
-        assert page.locator('.pytorch-example').count()==1
-        assert page.locator('.pytorch-example').evaluate('el=>el.open')
-        assert page.locator('.pytorch-code code').text_content()==example['code']
+        assert page.locator('.pytorch-example:not([data-example="config"])').count()==1
+        assert page.locator('.pytorch-example:not([data-example="config"])').evaluate('el=>el.open')
+        assert page.locator(f'details[data-example="{example["id"]}"] .pytorch-code code').text_content()==example['code']
         assert page.evaluate('STRATUM.geometryReport().geometry_defects')==0
         scene=page.evaluate('STRATUM.getScene()')
         assert len(scene['nodes'])>=5

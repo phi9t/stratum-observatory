@@ -1,0 +1,12 @@
+Reduced-shape CPU module checks; no checkpoint weights or full-model parity.
+PASS backbone_mhc
+PASS backbone_moe
+PASS csa2_compression
+PASS csa2_selection
+PASS csa2_attention
+PASS engram_write
+PASS dspark_attention
+PASS dspark_heads
+PASS deepspec_verifier
+PASS 9 module checks on CPU float32; no GPU certification.
+DeepSpec is checked as a separate offline evaluator, not V4.1 serving.

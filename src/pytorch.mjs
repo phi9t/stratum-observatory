@@ -1,4 +1,5 @@
 /** One canonical, executable teaching example per mechanism; no upstream runtime imports. */
+import {PYTHON_SOURCES} from './pytorch-source.mjs';
 import {SOURCES} from './models.mjs';
 import {BACKBONE_EXAMPLES} from './pytorch-backbone.mjs';
 import {MEMORY_EXAMPLES} from './pytorch-memory.mjs';
@@ -27,6 +28,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.`;
 export const PYTORCH_EXAMPLES=[...BACKBONE_EXAMPLES,...MEMORY_EXAMPLES,...DSPARK_EXAMPLES];
 export function chapterExamples(stage){return PYTORCH_EXAMPLES.filter(x=>x.stages.includes(stage));}
+export const PYTORCH_CONFIG=PYTHON_SOURCES['config.py'];
+/** Flatten only the known package import for portable, single-file downloads. */
+export function standaloneCode(code){return code.replace(/^from \.config import V41Config\n/gm,'');}
 export function exampleProgram(id){
  const ordered=[],visiting=new Set();
  function visit(key){
@@ -37,7 +41,7 @@ export function exampleProgram(id){
   visiting.add(key);for(const dependency of example.requires)visit(dependency);visiting.delete(key);ordered.push(example);
  }
  visit(id);
- return PYTORCH_LICENSE.split('\n').map(line=>'# '+line).join('\n')+'\n\n'+ordered.map(x=>`# ${x.title}\n# Sources: ${x.sources.map(id=>SOURCES[id].url).join(' ')}\n# Source symbols: ${x.symbols.join(', ')}\n# Scope: ${x.limitations}\n${x.code}`).join('\n\n')+'\n';
+ return PYTORCH_LICENSE.split('\n').map(line=>'# '+line).join('\n')+'\n\n'+PYTORCH_CONFIG+'\n\n'+ordered.map(x=>`# ${x.title}\n# Sources: ${x.sources.map(id=>SOURCES[id].url).join(' ')}\n# Source symbols: ${x.symbols.join(', ')}\n# Scope: ${x.limitations}\n${standaloneCode(x.code)}`).join('\n\n')+'\n';
 }
 
 /** Module views use the example inventory, so code and navigation cannot diverge. */

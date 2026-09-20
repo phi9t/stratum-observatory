@@ -139,3 +139,9 @@ Transformer formula for specialized architecture coverage, or use `methodology_r
 as publisher/framework/vendor authority. Reader notes come from `core.accountingAssumptions`;
 they describe the current scenario, not a scientific PASS badge. Engineering requires the
 accounting command. Source acceptance remains in publication.
+
+PyTorch examples: `examples/deepseek_v41/*.py` is the importable source of truth.
+Constructors share `V41Config`; numerical CPU fixtures replace sizes, not architecture
+modes. Edit the Python files, then build to regenerate `src/pytorch-source.mjs`; never
+hand-edit that generated copy. `npm run validate:pytorch` runs the CPU program and
+`npm run test:pytorch` checks independent math, precision, gradients and source delivery.

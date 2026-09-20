@@ -20,7 +20,8 @@
     "verify:accounting": "uv run --frozen python -m verification.accounting",
     "verify:privacy": "uv run --frozen python -m verification.privacy",
     "package:public": "uv run --frozen python tools/export-public.py",
-    "test:pytorch": "uv run --frozen --group examples python -m unittest discover -s tests -p \"pytorch_*.py\" -v"
+    "test:pytorch": "uv run --frozen --group examples python -m unittest discover -s tests -p \"pytorch_*.py\" -v",
+    "validate:pytorch": "uv run --frozen --group examples python -m examples.deepseek_v41.validate"
   },
   "engines": {
     "node": ">=20"

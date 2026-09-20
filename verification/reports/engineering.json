@@ -1,21 +1,21 @@
 {
   "schema": "stratum-engineering/v1",
   "status": "PASS",
-  "started_at": "2026-09-20T08:17:53.390951+00:00",
-  "completed_at": "2026-09-20T08:26:46.134749+00:00",
-  "consumer_sha256": "1a8cd71b5674e0b94f64e35a83dd8e9cddc459a41b881671ab921d42266ee777",
-  "verifier_sha256": "faa3f681334efffe4aa0c4fde88b8d87024187c92c77e07e02c7fd26c2133117",
-  "lock_sha256": "84f0ed17a7e1426c3d55111d3b11124ea5e41ca6a724ee13ed9a0dd0594cedb4",
+  "started_at": "2026-09-20T08:48:08.918163+00:00",
+  "completed_at": "2026-09-20T08:57:05.739239+00:00",
+  "consumer_sha256": "5fda6030a0b24ee9aab6c2d8c1d1f615f6c90c63f83c2151647c01e6cd309ba4",
+  "verifier_sha256": "4f7b8873cb0ddae89ff80a88c19b97296e4e4676384fb1d31581b5732c400ff4",
+  "lock_sha256": "330ae9c651876da801bd091712989f9fd767f5e66e554a2e574e0845ca550595",
   "artifact_sha256": "7ab6e30672ff5c7040adf115414b1bb35e0e80971bf4b3f7ed5ff16f1b192a71",
   "artifacts": {
     "data-representation.html": "e288644184fbcb54ad8a1742e35671354ce93b96f1b2dac1375dacf59285e77e",
-    "deepseek-v4.1.html": "6397fa753e0acc4998dd5219b61d035c1f94cac8efc50d9a8cd451a8d1397ad1",
-    "foundations.html": "bc6a68a672085b50280cb45fbc40420641b2b2fa80eda4002c6abc5f3b223b17",
-    "hardware.html": "af80ffc15802340344b15915a8c891124cc3c7ff7558cd3cb32378d83ef80576",
+    "deepseek-v4.1.html": "2819c0ec685aaf51c0d0e6725c05be367859d26c6b84e0c9ce77b422f6b55d52",
+    "foundations.html": "a5a515505ad8e56ff549eaea3025723bcde64101233cd30127cc4ddb78706299",
+    "hardware.html": "064ab8fe72f7c9a60d4fb8813ed8c1523114605a62995145c1a00c7243c1ed3a",
     "index.html": "7ab6e30672ff5c7040adf115414b1bb35e0e80971bf4b3f7ed5ff16f1b192a71",
-    "kimi-k3.html": "5310ca0034b80dad93ee9f9fa36ceba4a200d110b57dc1edd7a2bb008fb0aaf4",
-    "networking.html": "f380e327dda3769c6d5074dc48dacada066d34885188a834f1f229ceedb27647",
-    "qwen3.8.html": "b8ffafac55f085d831c62c5300c5fdef91c26e54363b844a9aa087bdec3d35a1"
+    "kimi-k3.html": "456fe6de7a858a677811f3e97b51cea6843a8a0eaa1ed1c4951eedf5d958d6e6",
+    "networking.html": "2971cf3033978ae1be12934c4420415d64a605be47742f7d318751e8076bfe55",
+    "qwen3.8.html": "c83497d7dc32f97a2edb776904406208464c8338f8d2e8d095334a05c72e1013"
   },
   "repeat_build_sha256": "7ab6e30672ff5c7040adf115414b1bb35e0e80971bf4b3f7ed5ff16f1b192a71",
   "deterministic_build": true,
@@ -36,6 +36,19 @@
       "argv": [
         "npm",
         "test"
+      ],
+      "exit": 0
+    },
+    "pytorch-validation": {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "--group",
+        "examples",
+        "python",
+        "-m",
+        "examples.deepseek_v41.validate"
       ],
       "exit": 0
     },
@@ -109,9 +122,9 @@
     "requests": []
   },
   "test_counts": {
-    "verifier": 618,
-    "atlas": 139,
-    "pytorch": 34,
+    "verifier": 619,
+    "atlas": 140,
+    "pytorch": 44,
     "verifier_skipped": 10,
     "atlas_skipped": 0
   },

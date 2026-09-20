@@ -3,7 +3,7 @@ import ast
 import typing
 import unittest
 from torch import Tensor
-from pytorch_test_support import records
+from pytorch_test_support import records, local_module, ROOT
 
 
 class PythonProgramQualityTests(unittest.TestCase):
@@ -11,7 +11,9 @@ class PythonProgramQualityTests(unittest.TestCase):
         for record in records():
             with self.subTest(example=record['id']):
                 namespace={'__name__':'stratum_download'}
-                exec(compile(record['code'],record['id'],'exec'),namespace)
+                exec(compile(record['program'],record['id'],'exec'),namespace)
+                self.assertEqual(record['code'], (ROOT / record['sourceFile']).read_text())
+                self.assertNotIn('from .config', record['program'])
                 tree=ast.parse(record['code'])
                 for node in ast.walk(tree):
                     if isinstance(node,(ast.FunctionDef,ast.AsyncFunctionDef)):
@@ -33,8 +35,7 @@ class PythonProgramQualityTests(unittest.TestCase):
             for member in typing.get_args(annotation):
                 check(member,where)
         for record in records():
-            namespace={'__name__':'stratum_download'}
-            exec(compile(record['code'],record['id'],'exec'),namespace)
+            namespace=vars(local_module(record))
             for node in ast.parse(record['code']).body:
                 if isinstance(node,ast.FunctionDef):
                     functions=[namespace[node.name]]

@@ -1,18 +1,20 @@
 # V4.1 readable PyTorch modules
 
 The user requested straight-line PyTorch implementations in the five existing V4.1
-chapters. `src/pytorch-*.mjs` owns the executable teaching text. The builder serializes
-these records as data, so Python imports cannot be confused with JavaScript module
-imports. The UI, Python downloads, CPU checks and scientific consumer inventory read
-the same records. The encoder and decoder reuse the same mHC/flat-stack and MoE records.
+chapters. `examples/deepseek_v41/*.py` owns the importable implementation. The builder regenerates
+`src/pytorch-source.mjs` from those files; source-sync checks reject drift. Metadata in
+`src/pytorch-*.mjs` supplies attribution and scope. The UI shows the exact Python files,
+and downloads prepend the shared config and remove only the local config import.
+CPU tests import the local package directly; the consumer inventory binds its files. The encoder and decoder reuse the same mHC/flat-stack and MoE records.
 
 Each record names upstream symbols, immutable source links and its simplifications.
 Exact source-symbol byte anchors are recorded per example in the observatory manifest.
 These are derived consumers awaiting independent source acceptance, not new accepted
 source snapshots. CPU checks run only our authored adaptations, never upstream code.
 
-Numerical normalization, routing and clamp settings are explicit caller inputs where
-needed. Tests supply illustrative dimensions, scalars and weights. Attention examples
+The frozen `V41Config` dataclass carries the fixed Flash dimensions and numerical
+settings. `V41_CONFIG` allocates no tensors. CPU tests replace only numerical sizes
+and use illustrative weights through the same architecture path. Attention examples
 isolate already projected/rotated latent contractions, with the sink retained in the
 normalization. They do not supply quantization, ring-buffer management or checkpoint
 loading. The flat CED stack injects causal attention operators and exposes the boundary
@@ -40,7 +42,7 @@ selected input boundaries. It does not claim to be a symbolic shape checker.
 
 Reduced-precision checks exercise BF16 parameters, CPU autocast, output dtype and finite
 backpropagation. FP32-sensitive contractions disable autocast locally. The examples retain
-plain PyTorch operations and explicit scalar inputs, without configuration switches for
+plain PyTorch operations and a shared dataclass, without configuration switches for
 unused architectures. They remain unfused reference modules, with checkpoint loading,
 quantization and production serving integration bounded by each record's scope.
 

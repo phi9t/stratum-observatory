@@ -133,7 +133,7 @@ def check_receipt(root, receipt, expected_lock, inventory):
         from .engineering import delivery_artifacts
         if delivery_artifacts(root)!=receipt.get('artifacts'):
             add('ARTIFACT_STALE','FAIL','Delivered page set differs from the tested artifacts.')
-        for name in ('verifier-tests','node-tests','accounting','build','browser'):
+        for name in ('verifier-tests','node-tests','pytorch-validation','pytorch-examples','accounting','build','browser'):
             if receipt.get('commands',{}).get(name,{}).get('exit')!=0:add('ENGINEERING_COMMAND','FAIL',f'Missing/failing command: {name}.')
         b=receipt.get('browser',{})
         for key in ('geometry_defects','runtime_errors','external_runtime_requests'):

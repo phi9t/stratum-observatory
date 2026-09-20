@@ -19,7 +19,7 @@ for(const method of accounting.methods)fields[`accounting.method.${method.id}`]=
 for(const example of accounting.examples.filter(x=>x.sources?.length))fields[`accounting.example.${example.id}`]=example;
 function walk(value,path){if(value&&typeof value==='object'&&!Array.isArray(value)){for(const k of Object.keys(value).sort())walk(value[k],`${path}.${k}`);}else fields[path]=value;}
 for(const[name,v]of Object.entries(core))if(typeof v==='function')functions[`function.${name}`]={sha256:sha(v.toString())};else if(name!=='SOURCES')walk(v,name);
-for(const file of [...readdirSync(new URL('../src/',import.meta.url)).filter(x=>/\.(mjs|css)$/.test(x)).map(x=>'src/'+x),'build.mjs','index.html'])functions[`file.${file}`]={sha256:sha(readFileSync(new URL('../'+file,import.meta.url)))};
+for(const file of [...readdirSync(new URL('../src/',import.meta.url)).filter(x=>/\.(mjs|css)$/.test(x)).map(x=>'src/'+x),...readdirSync(new URL('../examples/deepseek_v41/',import.meta.url)).filter(x=>x.endsWith('.py')).map(x=>'examples/deepseek_v41/'+x),'build.mjs','index.html'])functions[`file.${file}`]={sha256:sha(readFileSync(new URL('../'+file,import.meta.url)))};
 const params=m=>{const p=core.parameterLedger(m);return{main:p.main,resident:p.resident,ngram:p.ngram,embedding:p.embedding,routed:p.routed,shared:p.shared,attention:p.attention,approximate:p.approximate};};
 const cases=[];
 for(const [model,m]of Object.entries(core.MODELS)){

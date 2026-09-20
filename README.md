@@ -124,8 +124,13 @@ adaptations with explicit shape contracts and omissions; they do not load weight
 reproduce a production serving stack. The dSpark chapter keeps the DeepSpec evaluator
 separate from the V4.1 draft path.
 
+The importable source is in `examples/deepseek_v41/`. Constructors receive the shared
+`V41Config` dataclass; `V41_CONFIG` holds the published Flash settings. Importing it
+does not allocate weights. Run `npm run validate:pytorch` for a small CPU numerical
+validation program using the same module path. It does not run a full checkpoint.
+
 `npm run test:pytorch` runs reduced-shape CPU checks using the locked `examples`
 dependency group. Engineering runs the same command before building. The browser checks
-the delivered code and downloads against the canonical records in `src/pytorch-*.mjs`,
+the delivered code and downloads against the checked-in Python files (the build generates `src/pytorch-source.mjs`),
 including keyboard access, mobile overflow and print disclosures. No Python runtime or
 external assets are shipped in the HTML. Upstream MIT notices accompany the examples.

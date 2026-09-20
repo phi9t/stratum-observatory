@@ -318,7 +318,7 @@ class ReceiptTrustTests(unittest.TestCase):
      'artifact_sha256':hashlib.sha256((self.root/'dist/index.html').read_bytes()).hexdigest(),
      'repeat_build_sha256':hashlib.sha256((self.root/'dist/index.html').read_bytes()).hexdigest(),
      'completed_at':datetime.now(timezone.utc).isoformat(),'deterministic_build':True,
-     'commands':{k:{'exit':0} for k in ('verifier-tests','node-tests','accounting','build','browser')},
+     'commands':{k:{'exit':0} for k in ('verifier-tests','node-tests','pytorch-validation','pytorch-examples','accounting','build','browser')},
      'browser':browser}
   r.update(over);return r
  def lock(self):
@@ -328,6 +328,10 @@ class ReceiptTrustTests(unittest.TestCase):
  def codes(self,receipt):
   from verification.runner import check_receipt
   return {f.code for f in check_receipt(self.root,receipt,self.lock(),self.inv)}
+ def test_missing_cpu_validation_is_rejected(self):
+  for name in ('pytorch-validation','pytorch-examples'):
+   receipt=self.receipt();receipt['commands'].pop(name,None)
+   self.assertIn('ENGINEERING_COMMAND',self.codes(receipt))
  def test_missing_accounting_command_is_rejected(self):
   receipt=self.receipt();receipt['commands'].pop('accounting',None)
   self.assertIn('ENGINEERING_COMMAND',self.codes(receipt))

@@ -9,7 +9,7 @@ from .delivery import artifact_names
 def toolchain_digest(root):
     files=[]
     # tests/ produces the browser evidence this receipt attests to, so it binds too.
-    for folder,pattern in [('verification','*.py'),('tools','*.mjs'),('tools','*.py'),('tests','*.py'),('tests','*.mjs'),('.github/workflows','*.y*ml')]:
+    for folder,pattern in [('verification','*.py'),('tools','*.mjs'),('tools','*.py'),('tests','*.py'),('tests','*.mjs'),('examples','*.py'),('.github/workflows','*.y*ml')]:
         files+=list((root/folder).rglob(pattern))
     files+=list((root/'verification/schemas').glob('*.json'))+list((root/'verification/trust').glob('*.json'))+list((root/'verification/trust').glob('*.pem'))
     # package.json defines the commands; the Python pin and lock define the interpreter and
@@ -63,7 +63,7 @@ def main():
     # `uv run` can re-resolve the lock mid-run. If it does, the receipt would bind a
     # toolchain the tests never used, so refuse rather than attest to the wrong one.
     toolchain_before=toolchain_digest(root)
-    steps=[('verifier-tests',[sys.executable,'-m','unittest','discover','-s','verification/tests','-v']),('node-tests',['npm','test']),('pytorch-examples',['uv','run','--frozen','--group','examples','python','-m','unittest','discover','-s','tests','-p','pytorch_*.py','-v']),('accounting',[sys.executable,'-m','verification.accounting']),('build',['npm','run','build'])]
+    steps=[('verifier-tests',[sys.executable,'-m','unittest','discover','-s','verification/tests','-v']),('node-tests',['npm','test']),('pytorch-validation',['uv','run','--frozen','--group','examples','python','-m','examples.deepseek_v41.validate']),('pytorch-examples',['uv','run','--frozen','--group','examples','python','-m','unittest','discover','-s','tests','-p','pytorch_*.py','-v']),('accounting',[sys.executable,'-m','verification.accounting']),('build',['npm','run','build'])]
     # 600s, not 180s: the verifier suite runs 383 tests taking 108-113s on an idle machine and
     # has already tripped 180s once under load. A timeout that fires on a slow machine reports a
     # failure that did not happen, which is the one thing this gate must never do.

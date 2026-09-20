@@ -1,8 +1,8 @@
 {
   "schema": "stratum-presentations/v1",
   "status": "PASS",
-  "generated_at": "2026-09-20T08:16:46.339639+00:00",
-  "artifact_sha256": "bc6a68a672085b50280cb45fbc40420641b2b2fa80eda4002c6abc5f3b223b17",
+  "generated_at": "2026-09-20T08:47:56.791125+00:00",
+  "artifact_sha256": "a5a515505ad8e56ff549eaea3025723bcde64101233cd30127cc4ddb78706299",
   "delivery": {
     "models": [
       "ds2",
@@ -113,7 +113,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "foundations.html",
-      "message": "387 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
+      "message": "389 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -140,7 +140,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "qwen3.8.html",
-      "message": "387 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
+      "message": "389 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -149,7 +149,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "kimi-k3.html",
-      "message": "387 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
+      "message": "389 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -158,7 +158,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "deepseek-v4.1.html",
-      "message": "387 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
+      "message": "389 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -167,7 +167,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "hardware.html",
-      "message": "387 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
+      "message": "389 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -176,7 +176,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "networking.html",
-      "message": "387 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
+      "message": "389 KiB, valid utf-8, nothing loaded from an external origin; 38 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
