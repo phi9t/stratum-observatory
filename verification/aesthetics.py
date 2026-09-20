@@ -591,9 +591,10 @@ def run(root,record=False):
         page.wait_for_function('window.STRATUM?.version === "3.0.0"')
         page.evaluate('document.fonts.ready')
         for case in cases(models,views,policy['themes'],focal):
-            dedicated=case['model']=='dsv41'
-            if bool(page.evaluate('document.body.dataset.pageModel'))!=dedicated:
-                page.set_content((root/'dist'/('deepseek-v4.1.html' if dedicated else 'index.html')).read_text(),wait_until='load')
+            from .delivery import page_for_model,artifact_name
+            dedicated=page_for_model(root,case['model'])
+            if page.evaluate('document.body.dataset.pageId || null')!=(dedicated['id'] if dedicated else None):
+                page.set_content((root/'dist'/artifact_name(root,case['model'])).read_text(),wait_until='load')
                 page.wait_for_function('window.STRATUM')
             page.evaluate('(p)=>STRATUM.setState(p)',case)
             # Closed native details hide the prose from rendered measurement. Measure the

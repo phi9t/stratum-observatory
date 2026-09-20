@@ -955,17 +955,31 @@ function innovationRows(m){return INNOVATIONS.map(r=>({id:r.id,title:r.title,rep
 
 return {SHORT_CONTEXT,INNOVATIONS,innovationRows};
 })();
+__modules["pages.mjs"] = (() => {
+/** Dedicated entry points share the atlas renderer and preserve exact variant identities. */
+const PAGES=[
+ {id:'qwen38',file:'qwen3.8.html',title:'Qwen3.8',models:['q3827','q38flash'],defaultModel:'q3827',stage:'block'},
+ {id:'kimi3',file:'kimi-k3.html',title:'Kimi K3',models:['kimi3'],defaultModel:'kimi3',stage:'block'},
+ {id:'dsv41',file:'deepseek-v4.1.html',title:'DeepSeek V4.1 Flash',models:['dsv41'],defaultModel:'dsv41',stage:'ced'},
+];
+function pageForModel(model){return PAGES.find(page=>page.models.includes(model));}
+function pageHref(model){const page=pageForModel(model);return page?`${page.file}${model===page.defaultModel?'':`#model=${encodeURIComponent(model)}`}`:'index.html';}
+
+return {PAGES,pageForModel,pageHref};
+})();
 __modules["app.mjs"] = (() => {
 const {MODELS,HARDWARE,SOURCES,VIEWS,VIEW_NAMES,DEFAULT_STATE,sanitizeState,getModel,focalStages,layerKind,layerPartition,ffnKind,parameterLedger,cacheLedger,servingLedger,trainingLedger,networkLedger,roofline,formatNum,formatParams,formatBytes,formatTime,evidenceSummary,accountingAssumptions} = __modules["core.mjs"];
 const {buildScene} = __modules["diagrams.mjs"];
 const {structuralReport} = __modules["scene.mjs"];
 const {innovationRows} = __modules["innovations.mjs"];
+const {PAGES,pageForModel,pageHref} = __modules["pages.mjs"];
 const $=id=>document.getElementById(id),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const F=formatNum,B=formatBytes,P=formatParams;
 const DESCRIPTIONS={model:'Tensor contracts, branches, and the state between layers.',compare:'Aligned mechanisms and accounting under one shared scenario.',training:'Dependency, residency, synchronization, and recovery.',serving:'What survives a token, a request, and a handoff.',hardware:'From on-chip resources to the connected GPU domain.',network:'Scale-out topology, payload, and completion semantics.',evidence:'Trace a visual claim back to implementations and obligations.'};
-const pageModel=MODELS[document.body.dataset.pageModel]?.id;
-const pageDefaults=pageModel?{model:pageModel,view:'model',stage:'ced'}:{};
-function pageState(input){return sanitizeState({...input,...(pageModel?{model:pageModel}:{})});}
+const pageInfo=PAGES.find(page=>page.id===document.body.dataset.pageId);
+const pageModel=pageInfo?.defaultModel;
+const pageDefaults=pageInfo?{model:pageModel,view:'model',stage:pageInfo.stage}:{};
+function pageState(input){return sanitizeState({...input,...(pageInfo&&!pageInfo.models.includes(input.model)?{model:pageModel}:{})});}
 let state=loadState(),scene=null,selected=null,focus=false,lastSearch=[],toastTimer;
 function loadState(){let saved={};try{saved.theme=localStorage.getItem('stratum-theme');}catch{}try{const p=Object.fromEntries(new URLSearchParams(location.hash.slice(1)));if('trace'in p)p.trace=p.trace==='true';return pageState({...pageDefaults,...saved,...p});}catch{return pageState({...pageDefaults,...saved});}}
 function saveState(){try{const p=new URLSearchParams();for(const[k,v]of Object.entries(state))p.set(k,String(v));history.replaceState(null,'','#'+p.toString());localStorage.setItem('stratum-theme',state.theme);}catch{}}
@@ -989,7 +1003,7 @@ function controls(){let html='',s=state,m=getModel(s.model);const context=()=>se
   // this replaces gated the N-gram tab on `m.id==='q38flash'` while three gates derived the same
   // page from `pleLayers`, so the two predicates agreed only by today's coincidence.
   const STAGE_LABEL={block:'Decoder block',inputs:'Inputs',residual:'Residual',ple:'N-gram memory',ced:'Encoder / decoder'};
-  const stageOrder=pageModel?['ced','block',...focalStages(m).filter(k=>k!=='ced')]:['block',...focalStages(m)];
+  const stageOrder=pageInfo?.stage==='ced'?['ced','block',...focalStages(m).filter(k=>k!=='ced')]:['block',...focalStages(m)];
   const stages=stageOrder.map(k=>[k,STAGE_LABEL[k]]);html+=segments('stage','Focus',stages);
   if(s.stage==='block'){html+=selectControl('layer','Decoder layer',Array.from({length:m.layers},(_,i)=>[i+1,`${String(i+1).padStart(2,'0')} · ${layerKind(m,i+1).toUpperCase()} · ${ffnKind(m,i+1)==='dense'?'dense':'MoE'}`]));html+=segments('detail','Edge labels',[['shapes','Tensor shapes'],['operators','Compact']]);}
  }else if(s.view==='compare')html+=selectControl('compare','Compare against',modelValues())+context()+batch()+kv();
@@ -1006,9 +1020,10 @@ function render(){
  $('model-title').textContent=m.name;$('model-subtitle').textContent=m.summary;
  $('model-eyebrow').textContent='REFERENCE CHECKPOINT / '+m.repo;
  $('identity-metrics').innerHTML=`<div class="identity-metric"><strong>${esc(P(p.resident))}</strong><span>${p.approximate?'rounded residency scope':'calculated text core'}</span></div><div class="identity-metric"><strong>${m.layers}</strong><span>decoder layers</span></div><div class="identity-metric"><strong>${esc(B(c.total/state.batch))}</strong><span>state / sequence · ${F(state.context)} positions</span><i>logical subtotal</i></div>`;
- $('model-strip').innerHTML=pageModel?`<a id="atlas-link" class="button" href="index.html">← All models</a><span class="button" aria-current="page">Causal encoder / decoder</span>`:Object.values(MODELS).map(x=>{const dedicated=x.id==='dsv41';return `<${dedicated?'a':'button'} class="model-card ${x.id===m.id?'active':''}" data-model="${x.id}" ${dedicated?'href="deepseek-v4.1.html"':`aria-pressed="${x.id===m.id}"`} title="${esc(x.repo)}"><span class="family">${esc(x.family)}</span><span class="variant">${esc(x.generation)}${dedicated?' ↗':''}</span><span class="motif">${dedicated?'Dedicated architecture page':esc(modelMotif(x))}</span></${dedicated?'a':'button'}>`;}).join('');
+ const cards=Object.values(MODELS).filter(x=>!pageInfo||pageInfo.models.length>1&&pageInfo.models.includes(x.id)).map(x=>{const dedicated=!pageInfo&&pageForModel(x.id);return `<${dedicated?'a':'button'} class="model-card ${x.id===m.id?'active':''}" data-model="${x.id}" ${dedicated?`href="${pageHref(x.id)}"`:`aria-pressed="${x.id===m.id}"`} title="${esc(x.repo)}"><span class="family">${esc(x.family)}</span><span class="variant">${esc(x.generation)}${dedicated?' ↗':''}</span><span class="motif">${dedicated?'Dedicated architecture page':esc(modelMotif(x))}</span></${dedicated?'a':'button'}>`;}).join('');
+ $('model-strip').innerHTML=(pageInfo?`<a id="atlas-link" class="button" href="index.html">← All models</a>`:'')+cards+(pageInfo&&pageInfo.models.length===1?`<span class="button" aria-current="page">${pageInfo.stage==='ced'?'Causal encoder / decoder':esc(pageInfo.title)}</span>`:'');
  $('inventory-summary').textContent=`${Object.keys(MODELS).length} model variants · ${Object.keys(HARDWARE).length} hardware profiles · ${VIEWS.length} connected lenses`;
- if(pageModel){document.querySelector('.brand').href='index.html';document.querySelector('.header-note').innerHTML='DeepSeek V4.1 Flash<br><b>Architecture study.</b>';}
+ if(pageModel){document.querySelector('.brand').href='index.html';document.querySelector('.header-note').innerHTML=`${esc(pageInfo.title)}<br><b>Architecture study.</b>`;}
 
  $('lens-tabs').innerHTML=VIEWS.map((v,i)=>`<button class="lens-tab ${v===state.view?'active':''}" data-view="${v}" aria-current="${v===state.view?'page':'false'}"><span class="idx">${String(i+1).padStart(2,'0')}</span>${VIEW_NAMES[v]}</button>`).join('');
  $('view-index').textContent=String(VIEWS.indexOf(state.view)+1).padStart(2,'0');$('view-heading').textContent=VIEW_NAMES[state.view];$('view-description').textContent=DESCRIPTIONS[state.view];
@@ -1095,8 +1110,8 @@ function executeSearch(i){const e=lastSearch[i];if(!e)return;$('search-dialog').
 function openSearch(){$('search-input').value='';renderSearch();$('search-dialog').showModal();$('search-input').focus();}
 function toggleFocus(){focus=!focus;document.body.classList.toggle('focus-mode',focus);$('focus-button').setAttribute('aria-pressed',String(focus));$('focus-button').textContent=focus?'Exit focus':'Focus canvas';requestAnimationFrame(applyZoom);}
 function chooseModel(id,patch={}){
- if(id==='dsv41'&&!pageModel){location.href='deepseek-v4.1.html';return;}
- if(pageModel&&id!==pageModel){location.href='index.html#'+new URLSearchParams({...state,...patch,model:id});return;}
+ if(pageForModel(id)&&(!pageInfo||!pageInfo.models.includes(id))){location.href=pageHref(id);return;}
+ if(pageInfo&&!pageInfo.models.includes(id)){location.href='index.html#'+new URLSearchParams({...state,...patch,model:id});return;}
  setState({...patch,model:id});
 }
 // One delegated input/action path keeps every visible control real and testable.

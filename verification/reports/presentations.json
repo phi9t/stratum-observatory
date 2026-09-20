@@ -1,8 +1,8 @@
 {
   "schema": "stratum-presentations/v1",
   "status": "PASS",
-  "generated_at": "2026-09-19T20:47:54.244095+00:00",
-  "artifact_sha256": "9eb7a654323149b2fd22c068989a33cc6eba45bc1c3a4de6bab1fb1546542727",
+  "generated_at": "2026-09-20T02:09:59.102596+00:00",
+  "artifact_sha256": "9b209a13e65edbabcabd85c15c5b8f64120eacdeaf621bb6f0e740cfbc2dbc77",
   "delivery": {
     "models": [
       "ds2",
@@ -26,7 +26,11 @@
       "q3827/inputs",
       "q38flash/inputs",
       "q38flash/residual",
-      "q38flash/ple"
+      "q38flash/ple",
+      "q3827/entry",
+      "q38flash/entry",
+      "kimi3/entry",
+      "dsv41/entry"
     ],
     "accounting": {
       "deepseek-v4.1.html": {
@@ -44,11 +48,27 @@
         "mobile_width": 390,
         "print_restored": true,
         "external_requests": 0
+      },
+      "kimi-k3.html": {
+        "origin": "file://",
+        "keyboard": true,
+        "dynamic_controls": true,
+        "mobile_width": 390,
+        "print_restored": true,
+        "external_requests": 0
+      },
+      "qwen3.8.html": {
+        "origin": "file://",
+        "keyboard": true,
+        "dynamic_controls": true,
+        "mobile_width": 390,
+        "print_restored": true,
+        "external_requests": 0
       }
     }
   },
   "counts": {
-    "PASS": 35
+    "PASS": 53
   },
   "findings": [
     {
@@ -56,7 +76,25 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "index.html",
-      "message": "223 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "message": "224 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PORTABILITY_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "qwen3.8.html",
+      "message": "224 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PORTABILITY_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "kimi-k3.html",
+      "message": "224 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -65,7 +103,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "deepseek-v4.1.html",
-      "message": "223 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
+      "message": "224 KiB, valid utf-8, nothing loaded from an external origin; 31 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -209,7 +247,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "kimi3/inputs",
-      "message": "10 headings ordered, 51 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "10 headings ordered, 43 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -218,7 +256,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "kimi3/residual",
-      "message": "10 headings ordered, 52 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "10 headings ordered, 44 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -227,7 +265,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "q3827/inputs",
-      "message": "10 headings ordered, 50 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "10 headings ordered, 44 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -236,7 +274,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "q38flash/inputs",
-      "message": "10 headings ordered, 52 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "10 headings ordered, 46 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -245,7 +283,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "q38flash/residual",
-      "message": "10 headings ordered, 53 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "10 headings ordered, 47 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -254,7 +292,43 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "q38flash/ple",
-      "message": "10 headings ordered, 52 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "10 headings ordered, 46 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "q3827/entry",
+      "message": "11 headings ordered, 127 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "q38flash/entry",
+      "message": "10 headings ordered, 120 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "kimi3/entry",
+      "message": "11 headings ordered, 165 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/entry",
+      "message": "12 headings ordered, 80 controls named, 1 table(s) with scoped headers over 8 rows, 33 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -263,7 +337,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "states",
-      "message": "Measured 10 states from a real file:// origin: default, dsv41/inputs, dsv41/residual, dsv41/ced, kimi3/inputs, kimi3/residual, q3827/inputs, q38flash/inputs, q38flash/residual, q38flash/ple.",
+      "message": "Measured 14 states from a real file:// origin: default, dsv41/inputs, dsv41/residual, dsv41/ced, kimi3/inputs, kimi3/residual, q3827/inputs, q38flash/inputs, q38flash/residual, q38flash/ple, q3827/entry, q38flash/entry, kimi3/entry, dsv41/entry.",
       "remedy": "",
       "evidence": []
     },
@@ -325,7 +399,7 @@
       "code": "DEDICATED_FOCUS",
       "domain": "presentations",
       "status": "PASS",
-      "subject": "dedicated",
+      "subject": "qwen3.8.html",
       "message": "Dedicated page keyboard entry has visible focus.",
       "remedy": "",
       "evidence": []
@@ -334,7 +408,7 @@
       "code": "DEDICATED_PRINT",
       "domain": "presentations",
       "status": "PASS",
-      "subject": "dedicated",
+      "subject": "qwen3.8.html",
       "message": "Dedicated page print contrast meets AA.",
       "remedy": "",
       "evidence": []
@@ -343,7 +417,97 @@
       "code": "DEDICATED_MOTION",
       "domain": "presentations",
       "status": "PASS",
-      "subject": "dedicated",
+      "subject": "qwen3.8.html",
+      "message": "Dedicated navigation honors reduced motion.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "EXPORT_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "svg",
+      "message": "Export is namespaced, self-contained and carries a backdrop.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "SCENARIO_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "export",
+      "message": "Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "DEDICATED_FOCUS",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "kimi-k3.html",
+      "message": "Dedicated page keyboard entry has visible focus.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "DEDICATED_PRINT",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "kimi-k3.html",
+      "message": "Dedicated page print contrast meets AA.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "DEDICATED_MOTION",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "kimi-k3.html",
+      "message": "Dedicated navigation honors reduced motion.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "EXPORT_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "svg",
+      "message": "Export is namespaced, self-contained and carries a backdrop.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "SCENARIO_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "export",
+      "message": "Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "DEDICATED_FOCUS",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "deepseek-v4.1.html",
+      "message": "Dedicated page keyboard entry has visible focus.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "DEDICATED_PRINT",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "deepseek-v4.1.html",
+      "message": "Dedicated page print contrast meets AA.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "DEDICATED_MOTION",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "deepseek-v4.1.html",
       "message": "Dedicated navigation honors reduced motion.",
       "remedy": "",
       "evidence": []
@@ -362,6 +526,24 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "index.html",
+      "message": "Native keyboard disclosure, dynamic controls, 390px layout, offline delivery and actual print restoration passed.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "ACCOUNTING_DELIVERY",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "kimi-k3.html",
+      "message": "Native keyboard disclosure, dynamic controls, 390px layout, offline delivery and actual print restoration passed.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "ACCOUNTING_DELIVERY",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "qwen3.8.html",
       "message": "Native keyboard disclosure, dynamic controls, 390px layout, offline delivery and actual print restoration passed.",
       "remedy": "",
       "evidence": []

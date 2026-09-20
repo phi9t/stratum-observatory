@@ -4,6 +4,7 @@ import hashlib,json,os,re,subprocess,sys
 from datetime import datetime,timezone
 from pathlib import Path
 from .evidence import digest,loads
+from .delivery import artifact_names
 
 def toolchain_digest(root):
     files=[]
@@ -23,7 +24,7 @@ def toolchain_digest(root):
 def delivery_artifacts(root):
     """Bind every delivered entry point, rejecting a missing page."""
     directory=Path(root)/'dist'
-    required={'index.html','deepseek-v4.1.html'}
+    required=artifact_names(root)
     present={p.name for p in directory.glob('*.html')}
     if not required<=present:raise FileNotFoundError(f'Missing delivered pages: {sorted(required-present)}')
     return {name:hashlib.sha256((directory/name).read_bytes()).hexdigest() for name in sorted(present)}

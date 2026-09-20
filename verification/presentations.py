@@ -11,6 +11,7 @@ from datetime import datetime,timezone
 from pathlib import Path
 from .model import Finding,aggregate,exit_code
 from .evidence import loads
+from .delivery import artifact_names,artifact_name,page_inventory
 from .schema import validate as shape_validate
 from .aesthetics import parse_color,contrast_ratio
 
@@ -93,7 +94,7 @@ def judge_preview_freshness(root,recorded=None):
     for capture in data.get('captures',[]):
         name=capture.get('artifact')
         if name:
-            if name not in ('index.html','deepseek-v4.1.html'):
+            if name not in artifact_names(root):
                 return [_bad('PREVIEW_STALE',str(name),'Unknown preview artifact.','Capture a delivered entry point.')]
             artifact=root/'dist'/name
             if not artifact.is_file() or hashlib.sha256(artifact.read_bytes()).hexdigest()!=capture.get('artifact_sha256'):
@@ -105,7 +106,7 @@ def judge_preview_artifacts(root):
     root=Path(root);out=[]
     captures=loads((root/'previews/manifest.json').read_text()).get('captures',[])
     for capture in captures:
-        expected='deepseek-v4.1.html' if capture.get('state',{}).get('model')=='dsv41' else 'index.html'
+        expected=artifact_name(root,capture.get('state',{}).get('model'))
         page=root/'dist'/expected
         if capture.get('artifact')!=expected or not page.is_file() or capture.get('artifact_sha256')!=hashlib.sha256(page.read_bytes()).hexdigest():
             out.append(_bad('PREVIEW_ARTIFACT',capture.get('name','preview'),
@@ -382,8 +383,8 @@ def run(root):
     models,samples=inventory(root)
     focal=samples['focal_stages']
     findings=list(judge_artifact_source(artifact,policy))
-    dedicated=root/'dist/deepseek-v4.1.html'
-    findings.extend(judge_artifact_source(dedicated,policy))
+    for entry in page_inventory(root):
+        findings.extend(judge_artifact_source(root/'dist'/entry['file'],policy))
     findings.extend(judge_preview_freshness(root))
     findings.extend(judge_preview_artifacts(root))
     findings.extend(judge_preview_coverage(root,models,focal))
@@ -434,10 +435,15 @@ def run(root):
         # and a report that says "9 headings ordered" was describing a different page.
         states=[{'label':'default','patch':None}]+[{'label':f"{c['model']}/{c['stage']}",'patch':c}
                                                    for c in focal_states(root,models,focal)]
+        for entry in page_inventory(root):
+            for model in entry['models']:
+                patch={'model':model,'view':'model','stage':entry['stage']}
+                if not any(st['patch']==patch for st in states):
+                    states.append({'label':f"{model}/entry",'patch':patch})
         checks['states']=[st['label'] for st in states]
         for st in states:
             if st['patch']:
-                target=dedicated if st['patch']['model']=='dsv41' else artifact
+                target=root/'dist'/artifact_name(root,st['patch']['model'])
                 page.goto(target.resolve().as_uri(),wait_until='load')
                 page.wait_for_function('window.STRATUM')
                 page.evaluate('(p)=>STRATUM.setState(p)',st['patch'])
@@ -517,22 +523,24 @@ def run(root):
         if not problems:
             findings.append(_ok('VISUAL_RECORD','scene',
                                 f"Measured visualization record over {len(record['nodes'])} nodes satisfies the scene contract."))
-        page.goto(dedicated.resolve().as_uri(),wait_until='load')
-        page.wait_for_function('window.STRATUM')
-        findings.extend(judge_exported_svg(page.evaluate('STRATUM.exportSVG()'),policy))
-        findings.extend(judge_scenario(json.loads(page.evaluate('STRATUM.exportConfig()')),root))
-        page.keyboard.press('Tab')
-        focus=page.evaluate("() => {const e=document.activeElement,s=getComputedStyle(e);return e!==document.body&&(s.outlineStyle!=='none'||s.boxShadow!=='none')}")
-        findings.append((_ok if focus else _bad)('DEDICATED_FOCUS','dedicated','Dedicated page keyboard entry has visible focus.',*(() if focus else ('Restore visible keyboard focus.',))))
-        page.emulate_media(media='print')
-        colors=page.evaluate("() => {const s=getComputedStyle(document.body);return [s.color,s.backgroundColor]}")
-        fg,bg=map(parse_color,colors)
-        readable=bool(fg and bg and contrast_ratio(fg[:3],bg[:3])>=4.5)
-        findings.append((_ok if readable else _bad)('DEDICATED_PRINT','dedicated','Dedicated page print contrast meets AA.',*(() if readable else ('Set readable print colors.',))))
-        page.emulate_media(media='screen',reduced_motion='reduce')
-        duration=page.locator('#atlas-link').evaluate("e=>getComputedStyle(e).transitionDuration")
-        quiet=duration in ('0s','0s, 0s')
-        findings.append((_ok if quiet else _bad)('DEDICATED_MOTION','dedicated','Dedicated navigation honors reduced motion.',*(() if quiet else ('Honor reduced motion.',))))
+        for entry in page_inventory(root):
+            page.emulate_media(media='screen',reduced_motion='no-preference')
+            page.goto((root/'dist'/entry['file']).resolve().as_uri(),wait_until='load')
+            page.wait_for_function('window.STRATUM')
+            findings.extend(judge_exported_svg(page.evaluate('STRATUM.exportSVG()'),policy))
+            findings.extend(judge_scenario(json.loads(page.evaluate('STRATUM.exportConfig()')),root))
+            page.keyboard.press('Tab')
+            focus=page.evaluate("() => {const e=document.activeElement,s=getComputedStyle(e);return e!==document.body&&(s.outlineStyle!=='none'||s.boxShadow!=='none')}")
+            findings.append((_ok if focus else _bad)('DEDICATED_FOCUS',entry['file'],'Dedicated page keyboard entry has visible focus.',*(() if focus else ('Restore visible keyboard focus.',))))
+            page.emulate_media(media='print')
+            colors=page.evaluate("() => {const s=getComputedStyle(document.body);return [s.color,s.backgroundColor]}")
+            fg,bg=map(parse_color,colors)
+            readable=bool(fg and bg and contrast_ratio(fg[:3],bg[:3])>=4.5)
+            findings.append((_ok if readable else _bad)('DEDICATED_PRINT',entry['file'],'Dedicated page print contrast meets AA.',*(() if readable else ('Set readable print colors.',))))
+            page.emulate_media(media='screen',reduced_motion='reduce')
+            duration=page.locator('#atlas-link').evaluate("e=>getComputedStyle(e).transitionDuration")
+            quiet=duration in ('0s','0s, 0s')
+            findings.append((_ok if quiet else _bad)('DEDICATED_MOTION',entry['file'],'Dedicated navigation honors reduced motion.',*(() if quiet else ('Honor reduced motion.',))))
         # Exercise native disclosure and actual Chromium printing on every delivered page.
         from accounting_panel import exercise_page as exercise_accounting_page
         from .engineering import delivery_artifacts

@@ -3,11 +3,13 @@
 No synthetic claim of upstream-code/GPU correctness is made by this suite.
 """
 from pathlib import Path
-import json, os, subprocess
+import json, os, subprocess, sys
 from playwright.sync_api import sync_playwright
 from browser_env import chromium_path
 
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT))
+from verification.delivery import page_for_model,artifact_name
 def app_models(root):
     """Layer counts and focal stages read from the application's own table, not a literal.
 
@@ -34,9 +36,10 @@ errors=[];requests=[];cases=[];responsive=[];failures=[]
 
 def check(page, patch, label='geometry'):
     current=page.evaluate('STRATUM.getState()')
-    dedicated=patch.get('model',current['model'])=='dsv41'
-    if bool(page.evaluate('document.body.dataset.pageModel'))!=dedicated:
-        page.set_content((ROOT/'dist'/('deepseek-v4.1.html' if dedicated else 'index.html')).read_text(),wait_until='load')
+    model=patch.get('model',current['model'])
+    dedicated=page_for_model(ROOT,model)
+    if page.evaluate('document.body.dataset.pageId || null')!=(dedicated['id'] if dedicated else None):
+        page.set_content((ROOT/'dist'/artifact_name(ROOT,model)).read_text(),wait_until='load')
         page.wait_for_function('window.STRATUM')
         patch={**current,**patch}
     r=page.evaluate('(p)=>{STRATUM.setState(p);return STRATUM.geometryReport()}',patch)
@@ -107,7 +110,8 @@ with sync_playwright() as p:
     (ROOT/'tests/geometry-results.json').write_text(json.dumps({'geometry_states':len(cases),'failures':failures},indent=2))
     assertion(not failures,'Geometry failures: inspect tests/geometry-results.json')
     # Real UI changes, not API-only smoke tests.
-    page.locator('button[data-model="q3827"]').click()
+    page.goto((ROOT/'dist/index.html').as_uri());page.wait_for_function('window.STRATUM')
+    page.locator('a[data-model="q3827"]').click();page.wait_for_function('window.STRATUM')
     assertion(page.evaluate('STRATUM.getState().model')=='q3827','model card')
     page.select_option('#control-layer','4')
     assertion(page.evaluate('STRATUM.getScene().nodes.some(n=>n.id==="kv-cache")'),'global attention selector')
@@ -162,6 +166,8 @@ with sync_playwright() as p:
     page.evaluate('STRATUM.setState({model:"<svg/onload=1>",layer:999999,batch:-2})')
     assertion(page.locator('script[src]').count()==0,'no external script dependency')
     assertion(page.evaluate('STRATUM.geometryReport().geometry_defects')==0,'sanitized state remains valid')
+    from dedicated_navigation import exercise as exercise_navigation
+    exercise_navigation(page,ROOT)
     from dedicated_page import exercise
     delivery=browser.new_page()
     delivery.on('pageerror',lambda e:errors.append(str(e)))

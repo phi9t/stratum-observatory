@@ -2,7 +2,7 @@
 
 **Nine exact model variants. Seven connected lenses. One offline scientific interface.**
 
-Open `dist/index.html` in a full desktop browser. It contains the application, styles and vector graphics: no installation, network service, API key, CDN, fonts, model weights or telemetry. External source links require connectivity. Some attachment viewers disable JavaScript; use a full browser. Run `npm start` to build and serve the portable pages at `http://localhost:8000`. DeepSeek V4.1 Flash has its own entry point at `deepseek-v4.1.html`, starting with the whole-network causal encoder/decoder view. The atlas card opens that page; “All models” returns to the atlas. Both pages share the same model definitions, accounting, and verification code.
+Open `dist/index.html` in a full desktop browser. It contains the application, styles and vector graphics: no installation, network service, API key, CDN, fonts, model weights or telemetry. External source links require connectivity. Some attachment viewers disable JavaScript; use a full browser. Run `npm start` to build and serve the portable pages at `http://localhost:8000`. The atlas links to dedicated [Qwen3.8](https://phi9t.github.io/stratum-pages/qwen3.8.html), [Kimi K3](https://phi9t.github.io/stratum-pages/kimi-k3.html), and [DeepSeek V4.1 Flash](https://phi9t.github.io/stratum-pages/deepseek-v4.1.html) pages. Qwen3.8 offers 27B and Flash-Next variants; DeepSeek opens the whole-network causal encoder/decoder view. “All models” returns to the [atlas](https://phi9t.github.io/stratum-pages/). The same filenames work offline under `dist/`. Every page shares model definitions, accounting, and verification code.
 
 ## Experience
 

@@ -1,17 +1,19 @@
 {
   "schema": "stratum-engineering/v1",
   "status": "PASS",
-  "started_at": "2026-09-19T20:50:55.791650+00:00",
-  "completed_at": "2026-09-19T20:54:53.606064+00:00",
-  "consumer_sha256": "7b9401b15e4ca329fa87fa11f62dd520a57d2888a83fbb1df250e9deecb5dfa4",
-  "verifier_sha256": "02ca868a343afb9ce5e395330c1dbb0ddd6de7f72988a7ed5cc22b6a4fefb9ef",
-  "lock_sha256": "3809252d06f344f77d8fe3014f24944f99a526eed8af7140076081f7e9291cb6",
-  "artifact_sha256": "9eb7a654323149b2fd22c068989a33cc6eba45bc1c3a4de6bab1fb1546542727",
+  "started_at": "2026-09-20T02:14:53.831952+00:00",
+  "completed_at": "2026-09-20T02:19:34.201506+00:00",
+  "consumer_sha256": "9200d667813f8005f6d3cf847fd8dd4d1b378bde81bc0c52057e33b12afd633e",
+  "verifier_sha256": "de617a69f55f74a11b05e073f20ea21b0cc8f4c92dab3f4153c34cb9c75022af",
+  "lock_sha256": "de8eb263dcd33db393fb822106abb2946cf7b5dca5b26b8a030a7aa5318dd667",
+  "artifact_sha256": "9b209a13e65edbabcabd85c15c5b8f64120eacdeaf621bb6f0e740cfbc2dbc77",
   "artifacts": {
-    "deepseek-v4.1.html": "b5d5720b6279a5f0f234533c427b8d2cb7ae9ff53e4c12dfff88abe41ea7f247",
-    "index.html": "9eb7a654323149b2fd22c068989a33cc6eba45bc1c3a4de6bab1fb1546542727"
+    "deepseek-v4.1.html": "ea549b802995facac84e4cd6d5b31bcee01ee6101d018069c51e1ceadd6fca0f",
+    "index.html": "9b209a13e65edbabcabd85c15c5b8f64120eacdeaf621bb6f0e740cfbc2dbc77",
+    "kimi-k3.html": "45a64671e3500ad823fc37bb7c418ca9fa0ef52802e7f916f8c74e09f11ab0bf",
+    "qwen3.8.html": "998d2ef1238ae6e407831aea25b3628428b8f2c9237c8060222030ac048f49c1"
   },
-  "repeat_build_sha256": "9eb7a654323149b2fd22c068989a33cc6eba45bc1c3a4de6bab1fb1546542727",
+  "repeat_build_sha256": "9b209a13e65edbabcabd85c15c5b8f64120eacdeaf621bb6f0e740cfbc2dbc77",
   "deterministic_build": true,
   "commands": {
     "verifier-tests": {

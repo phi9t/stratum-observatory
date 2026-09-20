@@ -1,9 +1,11 @@
 """Capture current portable application and export its own SVGs; no model execution."""
 from pathlib import Path
-import hashlib,json,os
+import hashlib,json,os,sys
 from playwright.sync_api import sync_playwright
 from browser_env import chromium_path
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT))
+from verification.delivery import artifact_name
 OUT=ROOT/'previews';OUT.mkdir(exist_ok=True)
 BASE={'model':'ds3','view':'model','stage':'block','layer':4,'theme':'dark','hardware':'h200','context':32768,'batch':1,'kvBytes':2,'stateBytes':4,'weightBytes':2,'ranks':8,'placement':'split','trainMode':'fsdp','traffic':'expert','fabric':'ib','library':'nccl','utilization':70,'oversub':1,'intensity':128,'compare':'kimi3','detail':'shapes','zoom':1,'trace':False}
 #: Read out of the rendered page rather than written down here. The model strip, the decoder-layer
@@ -81,7 +83,7 @@ with sync_playwright() as p:
  manifest=[]
  for name,patch in per_model_cases(page)+EXTRA_CASES:
   state={**BASE,**patch}
-  artifact=ROOT/'dist'/('deepseek-v4.1.html' if state['model']=='dsv41' else 'index.html')
+  artifact=ROOT/'dist'/artifact_name(ROOT,state['model'])
   page.goto(artifact.as_uri(),wait_until='load');page.wait_for_function('window.STRATUM')
   page.evaluate('(s)=>STRATUM.setState(s)',state)
   page.locator('.accounting-assumptions').evaluate('(el)=>el.open=true')
@@ -99,7 +101,7 @@ with sync_playwright() as p:
  # a viewport and a state but no `svg_sha256` -- an absent digest, not a fabricated one. Without
  # a record it was a published file the manifest never named, which `PREVIEW_INVENTORY` now
  # reports: bytes in the published directory attested by nothing.
- manifest.append({'name':'mobile','artifact':'index.html','artifact_sha256':hashlib.sha256((ROOT/'dist/index.html').read_bytes()).hexdigest(),'viewport':{'width':390,'height':844},
+ manifest.append({'name':'mobile','artifact':artifact.name,'artifact_sha256':hashlib.sha256(artifact.read_bytes()).hexdigest(),'viewport':{'width':390,'height':844},
                   'state':page.evaluate('STRATUM.getState()')})
  browser.close()
 (OUT/'manifest.json').write_text(json.dumps({'artifact_sha256':hashlib.sha256((ROOT/'dist/index.html').read_bytes()).hexdigest(),'captures':manifest},indent=2)+'\n')

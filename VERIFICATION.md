@@ -9,10 +9,10 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 616 verifier tests (10 skipped), 103 model/graph tests, two byte-identical builds of both portable entry points and 1,451 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Engineering | PASS | 0 | 616 verifier tests (10 skipped), 103 model/graph tests, two byte-identical builds of all four portable entry points and 1,451 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
 | Accounting arithmetic | PASS | 0 | 399 live scenarios; 309 agreement, 82 explained differences, 186 unsupported findings, zero contradictions; required by engineering |
 | Schematics | PASS | 0 | 757 scenes including all 544 decoder layers; 3,129 checks against core.mjs, of which 238 are recorded not-applicable passes |
-| Presentations | PASS | 0 | 35 checks over 10 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
+| Presentations | PASS | 0 | 53 checks over 14 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
 | Aesthetics | PASS | 0 | 182 scenarios, 427 checks; type, spacing, contrast, clearance, probe coverage and composition |
 | Scientific publication | BLOCKED | 2 | Nine-model consumer inventory and strict evidence/review audit; **no FAIL** |
 | Runtime certification | BLOCKED | 2 | Run on these bytes: 32 of 32 obligations NOT_RUN, **no FAIL and no `RUNTIME_STALE`**; all private hardware receipts were withdrawn for publication |
@@ -349,7 +349,7 @@ script, this gate's coverage judge, its focal-state list, both exporters, the br
 the aesthetics sweep all read it. `PREVIEW_COVERAGE` requires every model in the live table and
 every focal page that model offers; `PROSE_SCOPE` names the states it measured. **All nine
 checkpoints now appear in the 30 published previews, including every one of the 9 focal pages they
-offer**, and this gate measures **10 delivered states**: the default page plus every focal page in
+offer**, and this gate measures **14 delivered states**: the atlas, dedicated entry states, and every focal page in
 the application.
 
 **The manifest's own per-file digests had never been read, and the coverage question was only ever
@@ -425,21 +425,21 @@ inventory, not correctness of anything in it.
 | Item | Count |
 |---|---:|
 | Input leaves | 583 |
-| Function/file identities | 30 |
+| Function/file identities | 31 |
 | Distinct sampled scene contracts | 2883 |
-| Claims including domain obligations | 3519 |
+| Claims including domain obligations | 3520 |
 | Candidate source entries | 76 |
 | Accepted raw-byte snapshots | 74 |
 | Scientifically certified claims under the signed policy | 0 |
 | Passed presentation bindings | 0 |
 | Domain contracts / runtime obligations | 32 / 32 |
 
-The publication audit has **6,110 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
+The publication audit has **6,111 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
 from the current source and consumer bytes with a fresh engineering receipt:
 
 | Code | Status | Count |
 |---|---|---:|
-| `REVIEW_REQUIRED` | BLOCKED | 3,551 |
+| `REVIEW_REQUIRED` | BLOCKED | 3,552 |
 | `CLAIM_ANCHOR` | BLOCKED | 2,334 |
 | `CLAIM_ROLE` | BLOCKED | 89 |
 | `MODEL_DUAL_CODE` | BLOCKED | 77 |
@@ -455,7 +455,7 @@ from the current source and consumer bytes with a fresh engineering receipt:
 | `ENGINEERING_CURRENT` | PASS | 1 |
 
 Most of these are cascading source dependencies and absent independent reviews; this is **not** a
-claim that 6,110 facts are false. No review identity, accepted source hash or execution receipt was
+claim that 6,111 facts are false. No review identity, accepted source hash or execution receipt was
 invented.
 
 For the record, the evidence-anchor work began at **9,037 findings (9,013 BLOCKED)** with
@@ -729,7 +729,7 @@ Recorded so they are not mistaken for oversights:
 - **Two sources remain unfetched** — `ib-opensm` and `dynamo-nixl` — because their URLs redirect and
   the acquirer refuses to follow a redirect without inspecting the new origin. Pin the resolved
   origin; do not relax the guard.
-- **`REVIEW_REQUIRED` is 3,544 findings** and is independent of everything above.
+- **`REVIEW_REQUIRED` is 3,552 findings** and is independent of everything above.
   No amount of source acquisition or hardware access reduces it: it needs a reviewer identity in
   the protected trust root and an independent signer who is not the author.
 - **Independent V4.1 source is available, but full corroboration is incomplete.** The pinned
@@ -808,11 +808,11 @@ executes all three, and CI could never have executed the transcription compariso
 
 ## Artifact identity
 
-Portable HTML SHA-256: `9eb7a654323149b2fd22c068989a33cc6eba45bc1c3a4de6bab1fb1546542727`
+Portable HTML SHA-256: `9b209a13e65edbabcabd85c15c5b8f64120eacdeaf621bb6f0e740cfbc2dbc77`
 
-Scientific lock SHA-256: `3809252d06f344f77d8fe3014f24944f99a526eed8af7140076081f7e9291cb6`
+Scientific lock SHA-256: `de8eb263dcd33db393fb822106abb2946cf7b5dca5b26b8a030a7aa5318dd667`
 
-Verifier identity SHA-256: `02ca868a343afb9ce5e395330c1dbb0ddd6de7f72988a7ed5cc22b6a4fefb9ef`
+Verifier identity SHA-256: `de617a69f55f74a11b05e073f20ea21b0cc8f4c92dab3f4153c34cb9c75022af`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -855,7 +855,7 @@ reading. It used to be exactly that: a permanently failing `publication` job who
 indistinguishable from a contradiction, because `aggregate()` collapses BLOCKED and FAIL into one
 exit code and GitHub renders both the same.
 
-So completeness runs on a trusted machine — `npm run verify:science`, exit 2, **6,110 BLOCKED and
+So completeness runs on a trusted machine — `npm run verify:science`, exit 2, **6,111 BLOCKED and
 38 PASS findings, 0 FAIL** — and its report is committed as `verification/reports/publication.json`.
 This document states its figures, and `verification/tests/test_reported_numbers.py`, which runs
 inside the *green* engineering gate, fails if the record drifts from the report **or if the report
@@ -878,7 +878,7 @@ Success is not all-green; success is each gate telling the truth about what it a
 DeepSeek V4.1 Flash ships at `dist/deepseek-v4.1.html`, built from the shared shell and opening
 on the whole-network CED view. Atlas navigation, fixed checkpoint identity, serving phase
 inspection, reloads, exports, return navigation and mobile layout are exercised in Chromium.
-The same navigation also passed through `npm start` over HTTP. Both portable files participate
+The same navigation also passed through `npm start` over HTTP. All registered portable files participate
 in engineering identity, repeated builds, Pages packaging and attestation. Dedicated previews
 carry that page's own artifact hash. Publication and runtime status remain separate.
 
@@ -892,7 +892,7 @@ V4.1 dispatch and storage anchors. Main KV and packed indexer payload reconcile 
 window state and allocation overhead remain separate. [Research and source scope](docs/design/V41-SERVING-RESEARCH.md)
 record the development-branch serving implementation and Miles plugin. Neither is a runtime receipt.
 
-Dedicated HTML SHA-256: `b5d5720b6279a5f0f234533c427b8d2cb7ae9ff53e4c12dfff88abe41ea7f247`
+Dedicated HTML SHA-256: `ea549b802995facac84e4cd6d5b31bcee01ee6101d018069c51e1ceadd6fca0f`
 
 CED phase depths follow the report-level scheme. The pinned reference forward still visits all backbone layers; encoder-only prefill execution is not certified by that code. This distinction is visible in the CED caption and serving inspector.
 
@@ -927,3 +927,18 @@ Existing public branches require a history rewrite and an audit of every reachab
 private recovery bundles and unrevised local worktree refs must never be pushed. The clean
 archive also supports initializing a new repository. Public citations and code-owner handles
 remain as attribution and review ownership.
+
+## Dedicated model pages
+
+The atlas links to Qwen3.8, Kimi K3, and DeepSeek V4.1. Qwen3.8 keeps its 27B and
+Flash-Next variants on one page; the other pages fix their checkpoint identity. A shared
+registry drives page builds, artifact identity, browser routing and preview selection.
+Chromium exercises real atlas links, variant switches, reloads, identity enforcement,
+scenario exports and return links. All four portable files are included in the software gates.
+
+- `deepseek-v4.1.html` SHA-256: `ea549b802995facac84e4cd6d5b31bcee01ee6101d018069c51e1ceadd6fca0f`
+- `index.html` SHA-256: `9b209a13e65edbabcabd85c15c5b8f64120eacdeaf621bb6f0e740cfbc2dbc77`
+- `kimi-k3.html` SHA-256: `45a64671e3500ad823fc37bb7c418ca9fa0ef52802e7f916f8c74e09f11ab0bf`
+- `qwen3.8.html` SHA-256: `998d2ef1238ae6e407831aea25b3628428b8f2c9237c8060222030ac048f49c1`
+
+Publication coverage: 3552 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.

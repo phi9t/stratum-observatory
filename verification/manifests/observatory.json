@@ -23689,7 +23689,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/app.mjs",
-      "expected": "bb3682cd0d2b21e21caeb740f3f34e3ce7d701eda9f1b80a966e90d75af04cfb",
+      "expected": "ba14b19ac2debd3a75185484ec9ef55c8eb333909565604667f8e5e9bcb7b201",
       "statement": "file.src/app.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23951,7 +23951,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.build.mjs",
-      "expected": "489a066e0e4008313a8902ba48f2a3566042464c847d493dc2a639b8125f985b",
+      "expected": "98ac0deaa3f46da482e5e4a9db692538f1c804b84b008f0e45049765b26adb18",
       "statement": "file.build.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -149813,6 +149813,26 @@
         "accounting.method.book-training-state",
         "accounting.method.book-ring-allreduce",
         "accounting.method.book-roofline"
+      ]
+    },
+    {
+      "id": "file.src/pages.mjs",
+      "domain": "visualization",
+      "classification": "derived",
+      "consumer": "file.src/pages.mjs",
+      "expected": "af902b01e0080cba27178137e8d89d72d425e4a07fbac66916b1c2bda8fc4a11",
+      "statement": "file.src/pages.mjs: local entry-point routing identity; browser navigation must preserve exact checkpoint ownership and atlas return links. A digest is identity, not proof.",
+      "evidence": [],
+      "dependencies": [
+        "MODELS.ds2.d",
+        "MODELS.ds3.d",
+        "MODELS.q38.d",
+        "MODELS.q330.d",
+        "MODELS.q3235.d",
+        "MODELS.q3827.d",
+        "MODELS.q38flash.d",
+        "MODELS.kimi3.d",
+        "MODELS.dsv41.d"
       ]
     }
   ],

@@ -3,21 +3,21 @@
   "target": "stratum-observatory-3",
   "profile": "publication",
   "status": "BLOCKED",
-  "generated_at": "2026-09-19T20:55:45.300490+00:00",
-  "lock_sha256": "3809252d06f344f77d8fe3014f24944f99a526eed8af7140076081f7e9291cb6",
-  "consumer_sha256": "7b9401b15e4ca329fa87fa11f62dd520a57d2888a83fbb1df250e9deecb5dfa4",
+  "generated_at": "2026-09-20T02:19:53.815064+00:00",
+  "lock_sha256": "de8eb263dcd33db393fb822106abb2946cf7b5dca5b26b8a030a7aa5318dd667",
+  "consumer_sha256": "9200d667813f8005f6d3cf847fd8dd4d1b378bde81bc0c52057e33b12afd633e",
   "coverage": {
     "inputs": 583,
-    "functions_and_files": 30,
+    "functions_and_files": 31,
     "scene_contracts": 2883,
-    "claims": 3519,
+    "claims": 3520,
     "sources": 76,
     "verified_sources": 74,
     "verified_scientific_claims": 0,
     "passed_presentation_bindings": 0
   },
   "counts": {
-    "BLOCKED": 6110,
+    "BLOCKED": 6111,
     "PASS": 38
   },
   "domains": {
@@ -52877,6 +52877,15 @@
       "evidence": []
     },
     {
+      "code": "REVIEW_REQUIRED",
+      "domain": "evidence",
+      "status": "BLOCKED",
+      "subject": "file.src/pages.mjs",
+      "message": "No signed semantic review. A reviewed boolean is not evidence.",
+      "remedy": "Obtain an independent Ed25519-signed review of this exact claim/evidence/consumer digest.",
+      "evidence": []
+    },
+    {
       "code": "CLAIM_ROLE",
       "domain": "model",
       "status": "BLOCKED",
@@ -55284,7 +55293,7 @@
       "domain": "evidence",
       "status": "PASS",
       "subject": "claims",
-      "message": "26 multi-model claims each name all 9 supported models.",
+      "message": "27 multi-model claims each name all 9 supported models.",
       "remedy": "",
       "evidence": []
     },
