@@ -1,3 +1,4 @@
+import {PYTORCH_EXAMPLES,moduleStage} from '../src/pytorch.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';
 import {MODELS,HARDWARE,VIEWS,DEFAULT_STATE,layerKind,sanitizeState,focalStages} from '../src/core.mjs';import {buildScene} from '../src/diagrams.mjs';import {buildCED} from '../src/diagram-meta.mjs';import {attentionRenderer} from '../src/diagram-model.mjs';import {structuralReport} from '../src/scene.mjs';
 for(const id of Object.keys(MODELS))test(`${id}: every decoder layer has a contained, orthogonal scene`,()=>{for(let layer=1;layer<=MODELS[id].layers;layer++){const g=buildScene({...DEFAULT_STATE,model:id,layer});assert.deepEqual(structuralReport(g),[],`layer ${layer}`);assert.ok(g.nodes.every(n=>n.info?.sources.length));}});
@@ -57,7 +58,7 @@ test('every focal stage has exactly one builder, and an unoffered page throws ra
  // generated `<mid>/model/ple/4`, buildScene fell through to buildModel, and a signature
  // labelled as one page was baselined on another.
  const offered=new Set(Object.keys(MODELS).flatMap(id=>focalStages(id)));
- assert.deepEqual([...offered].sort(),['ced','csa2','decoder','dspark','encoder','engram','inputs','ple','residual'],'every focal stage a model offers');
+ assert.deepEqual([...offered].sort(),['ced','csa2','decoder','dspark','encoder','engram','inputs','ple','residual',...PYTORCH_EXAMPLES.map(x=>moduleStage(x.id))].sort(),'every focal stage a model offers');
  for(const id of Object.keys(MODELS)){
   const stages=focalStages(id);
   assert.deepEqual(stages,[...new Set(stages)],`${id} lists a stage twice`);

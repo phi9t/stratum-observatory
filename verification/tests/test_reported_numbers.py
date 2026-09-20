@@ -193,7 +193,9 @@ class RuntimeNumberTests(RecordTestCase):
         """
         total = len(loads((ROOT/'verification/manifests/observatory.json').read_text())
                     ['runtime_obligations'])
-        self.assertStated(self.statuses['NOT_RUN'], 'NOT_RUN runtime obligations',
+        # Missing engineering is also NOT_RUN, but it is not a runtime obligation.
+        unrun=sum(f['code']=='RUNTIME_NOT_RUN' for f in self.report['findings'])
+        self.assertStated(unrun, 'NOT_RUN runtime obligations',
                           unit=f'of {total} obligations')
 
     def test_receipt_staleness_is_recorded_as_operational_fact(self):

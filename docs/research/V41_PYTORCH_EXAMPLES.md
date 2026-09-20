@@ -48,3 +48,12 @@ The offline Python display lexer is lossless and escapes HTML. It supplies theme
 syntax tokens and nonselectable CSS line numbers. The native Clipboard API copies the
 standalone program with attribution; if clipboard permission is unavailable, the UI
 points to the Python download. Neither the lexer nor the page executes Python.
+
+## Operation schematics
+
+Every example also opens a dedicated operation schematic. Branches show explicit
+inputs, contractions, residual updates and retained state rather than implying a
+single sequential pipeline. Selecting an operation opens its equation, tensor axes
+and primary sources in the shared inspector. The full Python example remains below
+the diagram. Module URLs, SVG export and scenario export use the same state path as
+chapter diagrams; the source, browser and preview inventories cover every example.

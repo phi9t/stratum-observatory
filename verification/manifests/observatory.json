@@ -23011,7 +23011,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "function.focalStages",
-      "expected": "48b0d46619577824873a71725b459fa7555c10e202d501e87a30fc7bfe263571",
+      "expected": "fccefa592e7b2729402251a152d58fd2a3d04e9f359afd56e8418ddebc5b27d1",
       "statement": "function.focalStages: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23068,7 +23068,8 @@
         "MODELS.q3827.architecture",
         "MODELS.q38flash.architecture",
         "MODELS.kimi3.architecture",
-        "MODELS.dsv41.architecture"
+        "MODELS.dsv41.architecture",
+        "file.src/pytorch.mjs"
       ]
     },
     {
@@ -23698,7 +23699,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/app.mjs",
-      "expected": "5f9039cc8e7c5f2f4f11e61c7c12a726b88f0ec465e6d6dd79189c859ebeccb2",
+      "expected": "c5654d9e73f9b3e03483e9beb516cbcef9c221c34389a68c400e08a4e86040a9",
       "statement": "file.src/app.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23721,7 +23722,7 @@
       "domain": "model",
       "classification": "derived",
       "consumer": "file.src/core.mjs",
-      "expected": "697daef7e0aa7726fd2cd8e0adc17b9d0e1dcf7caf50aae6deb869c27c029cca",
+      "expected": "853472dacb0dd9d0e65f4b5b408d51e1551567470ceabcde84e0d8330c81297f",
       "statement": "file.src/core.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -23757,7 +23758,8 @@
         "MODELS.q3827.d",
         "MODELS.q38flash.d",
         "MODELS.kimi3.d",
-        "MODELS.dsv41.d"
+        "MODELS.dsv41.d",
+        "file.src/pytorch.mjs"
       ]
     },
     {
@@ -23849,7 +23851,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/diagrams.mjs",
-      "expected": "dd692ae3f76f99d722eadb585baae1c0e8f27cc2893261a812dfcf2e1fcad301",
+      "expected": "6ac0150b190c313fc0c05bc70376bcd6dc0ec563466d55832e53df692dad71fd",
       "statement": "file.src/diagrams.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23862,7 +23864,8 @@
         "MODELS.q38flash.d",
         "MODELS.kimi3.d",
         "MODELS.dsv41.d",
-        "file.src/diagram-deepdives.mjs"
+        "file.src/diagram-deepdives.mjs",
+        "file.src/pytorch.mjs"
       ]
     },
     {
@@ -23965,7 +23968,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.build.mjs",
-      "expected": "5f59864a4675e21207f8b4aaf7a6bb502cad1911e0bbe536dc5afdeb59a056c1",
+      "expected": "be2e5f7418d1e2abfe3678fb8045203f44b5cb4419fd47d224617ed2bf8ee731",
       "statement": "file.build.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -152303,7 +152306,7 @@
       "consumer": "file.src/pytorch.mjs",
       "domain": "model",
       "classification": "derived",
-      "expected": "e61b6c4cd7b37639728dd189d46a1706ac0bdc832f4320885561c566945d7e1e",
+      "expected": "cf5ca5f8e3882cbe9848a99a5dd7caeed809cba72f7aa4a68b70c59dbe782bb3",
       "statement": "Teaching example delivery fingerprint; identity is not source acceptance.",
       "evidence": [],
       "dependencies": [
@@ -152328,6 +152331,2550 @@
       "evidence": [],
       "dependencies": [
         "file.src/pytorch.mjs"
+      ]
+    },
+    {
+      "id": "file.src/diagram-pytorch-backbone.mjs",
+      "consumer": "file.src/diagram-pytorch-backbone.mjs",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "da1fb964c9646e150c39faf0f013f591ead0e78e4f652dd16ffd30327a89374a",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "pytorch.backbone-moe",
+        "MODELS.dsv41.active",
+        "MODELS.dsv41.activeDecode",
+        "MODELS.dsv41.architecture",
+        "MODELS.dsv41.candidateBlockSize",
+        "MODELS.dsv41.candidateBlocks",
+        "MODELS.dsv41.candidateSource",
+        "MODELS.dsv41.compressDecoder",
+        "MODELS.dsv41.compressEncoder",
+        "MODELS.dsv41.configMax",
+        "MODELS.dsv41.convKernel",
+        "MODELS.dsv41.d",
+        "MODELS.dsv41.denseLayers",
+        "MODELS.dsv41.dsparkBlock",
+        "MODELS.dsv41.dsparkExperts",
+        "MODELS.dsv41.dsparkTargets",
+        "MODELS.dsv41.dsparkTopK",
+        "MODELS.dsv41.encoderLayers",
+        "MODELS.dsv41.engramHeadDim",
+        "MODELS.dsv41.engramHeads",
+        "MODELS.dsv41.engramLayers",
+        "MODELS.dsv41.engramNgram",
+        "MODELS.dsv41.engramTables",
+        "MODELS.dsv41.expertFF",
+        "MODELS.dsv41.experts",
+        "MODELS.dsv41.family",
+        "MODELS.dsv41.ff",
+        "MODELS.dsv41.gate",
+        "MODELS.dsv41.generation",
+        "MODELS.dsv41.headDim",
+        "MODELS.dsv41.heads",
+        "MODELS.dsv41.id",
+        "MODELS.dsv41.indexSourceLayers",
+        "MODELS.dsv41.indexer",
+        "MODELS.dsv41.indexerBudget",
+        "MODELS.dsv41.indexerHeads",
+        "MODELS.dsv41.kvBytesPerToken",
+        "MODELS.dsv41.kvFormat",
+        "MODELS.dsv41.kvHeads",
+        "MODELS.dsv41.kvRank",
+        "MODELS.dsv41.kvSourceLayers",
+        "MODELS.dsv41.latent",
+        "MODELS.dsv41.layers",
+        "MODELS.dsv41.linearHeadDim",
+        "MODELS.dsv41.linearHeads",
+        "MODELS.dsv41.linearKeyHeads",
+        "MODELS.dsv41.maxContext",
+        "MODELS.dsv41.mtp",
+        "MODELS.dsv41.name",
+        "MODELS.dsv41.ngram",
+        "MODELS.dsv41.nopeDim",
+        "MODELS.dsv41.oGroups",
+        "MODELS.dsv41.oRank",
+        "MODELS.dsv41.pleLayers",
+        "MODELS.dsv41.qRank",
+        "MODELS.dsv41.qkNorm",
+        "MODELS.dsv41.repo",
+        "MODELS.dsv41.residual",
+        "MODELS.dsv41.ropeDim",
+        "MODELS.dsv41.routeScale",
+        "MODELS.dsv41.scoring",
+        "MODELS.dsv41.shared",
+        "MODELS.dsv41.sinkhornIters",
+        "MODELS.dsv41.sources",
+        "MODELS.dsv41.streams",
+        "MODELS.dsv41.summary",
+        "MODELS.dsv41.swaKvFormat",
+        "MODELS.dsv41.swaLayers",
+        "MODELS.dsv41.swigluLimit",
+        "MODELS.dsv41.topK",
+        "MODELS.dsv41.total",
+        "MODELS.dsv41.vDim",
+        "MODELS.dsv41.vision",
+        "MODELS.dsv41.visionD",
+        "MODELS.dsv41.visionFF",
+        "MODELS.dsv41.visionHeads",
+        "MODELS.dsv41.visionLayers",
+        "MODELS.dsv41.visionPatch",
+        "MODELS.dsv41.vocab",
+        "MODELS.dsv41.window",
+        "MODELS.dsv41.indexerScaleGroup",
+        "MODELS.dsv41.indexerKvFormat"
+      ]
+    },
+    {
+      "id": "file.src/diagram-pytorch-dspark.mjs",
+      "consumer": "file.src/diagram-pytorch-dspark.mjs",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "61fb0c8b996eae8bea33f3c35b27aabe7007735f0cb63fc0dc6039202e8d7289",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "pytorch.dspark-heads",
+        "pytorch.deepspec-verifier",
+        "MODELS.dsv41.active",
+        "MODELS.dsv41.activeDecode",
+        "MODELS.dsv41.architecture",
+        "MODELS.dsv41.candidateBlockSize",
+        "MODELS.dsv41.candidateBlocks",
+        "MODELS.dsv41.candidateSource",
+        "MODELS.dsv41.compressDecoder",
+        "MODELS.dsv41.compressEncoder",
+        "MODELS.dsv41.configMax",
+        "MODELS.dsv41.convKernel",
+        "MODELS.dsv41.d",
+        "MODELS.dsv41.denseLayers",
+        "MODELS.dsv41.dsparkBlock",
+        "MODELS.dsv41.dsparkExperts",
+        "MODELS.dsv41.dsparkTargets",
+        "MODELS.dsv41.dsparkTopK",
+        "MODELS.dsv41.encoderLayers",
+        "MODELS.dsv41.engramHeadDim",
+        "MODELS.dsv41.engramHeads",
+        "MODELS.dsv41.engramLayers",
+        "MODELS.dsv41.engramNgram",
+        "MODELS.dsv41.engramTables",
+        "MODELS.dsv41.expertFF",
+        "MODELS.dsv41.experts",
+        "MODELS.dsv41.family",
+        "MODELS.dsv41.ff",
+        "MODELS.dsv41.gate",
+        "MODELS.dsv41.generation",
+        "MODELS.dsv41.headDim",
+        "MODELS.dsv41.heads",
+        "MODELS.dsv41.id",
+        "MODELS.dsv41.indexSourceLayers",
+        "MODELS.dsv41.indexer",
+        "MODELS.dsv41.indexerBudget",
+        "MODELS.dsv41.indexerHeads",
+        "MODELS.dsv41.kvBytesPerToken",
+        "MODELS.dsv41.kvFormat",
+        "MODELS.dsv41.kvHeads",
+        "MODELS.dsv41.kvRank",
+        "MODELS.dsv41.kvSourceLayers",
+        "MODELS.dsv41.latent",
+        "MODELS.dsv41.layers",
+        "MODELS.dsv41.linearHeadDim",
+        "MODELS.dsv41.linearHeads",
+        "MODELS.dsv41.linearKeyHeads",
+        "MODELS.dsv41.maxContext",
+        "MODELS.dsv41.mtp",
+        "MODELS.dsv41.name",
+        "MODELS.dsv41.ngram",
+        "MODELS.dsv41.nopeDim",
+        "MODELS.dsv41.oGroups",
+        "MODELS.dsv41.oRank",
+        "MODELS.dsv41.pleLayers",
+        "MODELS.dsv41.qRank",
+        "MODELS.dsv41.qkNorm",
+        "MODELS.dsv41.repo",
+        "MODELS.dsv41.residual",
+        "MODELS.dsv41.ropeDim",
+        "MODELS.dsv41.routeScale",
+        "MODELS.dsv41.scoring",
+        "MODELS.dsv41.shared",
+        "MODELS.dsv41.sinkhornIters",
+        "MODELS.dsv41.sources",
+        "MODELS.dsv41.streams",
+        "MODELS.dsv41.summary",
+        "MODELS.dsv41.swaKvFormat",
+        "MODELS.dsv41.swaLayers",
+        "MODELS.dsv41.swigluLimit",
+        "MODELS.dsv41.topK",
+        "MODELS.dsv41.total",
+        "MODELS.dsv41.vDim",
+        "MODELS.dsv41.vision",
+        "MODELS.dsv41.visionD",
+        "MODELS.dsv41.visionFF",
+        "MODELS.dsv41.visionHeads",
+        "MODELS.dsv41.visionLayers",
+        "MODELS.dsv41.visionPatch",
+        "MODELS.dsv41.vocab",
+        "MODELS.dsv41.window",
+        "MODELS.dsv41.indexerScaleGroup",
+        "MODELS.dsv41.indexerKvFormat"
+      ]
+    },
+    {
+      "id": "file.src/diagram-pytorch-memory.mjs",
+      "consumer": "file.src/diagram-pytorch-memory.mjs",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "3d7bdcf2b54d27d280baad8a2d238593b9ef998e4ffe1c717e8a25c9095a2161",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.engram-write",
+        "pytorch.csa2-compression",
+        "pytorch.csa2-selection",
+        "pytorch.csa2-attention",
+        "MODELS.dsv41.active",
+        "MODELS.dsv41.activeDecode",
+        "MODELS.dsv41.architecture",
+        "MODELS.dsv41.candidateBlockSize",
+        "MODELS.dsv41.candidateBlocks",
+        "MODELS.dsv41.candidateSource",
+        "MODELS.dsv41.compressDecoder",
+        "MODELS.dsv41.compressEncoder",
+        "MODELS.dsv41.configMax",
+        "MODELS.dsv41.convKernel",
+        "MODELS.dsv41.d",
+        "MODELS.dsv41.denseLayers",
+        "MODELS.dsv41.dsparkBlock",
+        "MODELS.dsv41.dsparkExperts",
+        "MODELS.dsv41.dsparkTargets",
+        "MODELS.dsv41.dsparkTopK",
+        "MODELS.dsv41.encoderLayers",
+        "MODELS.dsv41.engramHeadDim",
+        "MODELS.dsv41.engramHeads",
+        "MODELS.dsv41.engramLayers",
+        "MODELS.dsv41.engramNgram",
+        "MODELS.dsv41.engramTables",
+        "MODELS.dsv41.expertFF",
+        "MODELS.dsv41.experts",
+        "MODELS.dsv41.family",
+        "MODELS.dsv41.ff",
+        "MODELS.dsv41.gate",
+        "MODELS.dsv41.generation",
+        "MODELS.dsv41.headDim",
+        "MODELS.dsv41.heads",
+        "MODELS.dsv41.id",
+        "MODELS.dsv41.indexSourceLayers",
+        "MODELS.dsv41.indexer",
+        "MODELS.dsv41.indexerBudget",
+        "MODELS.dsv41.indexerHeads",
+        "MODELS.dsv41.kvBytesPerToken",
+        "MODELS.dsv41.kvFormat",
+        "MODELS.dsv41.kvHeads",
+        "MODELS.dsv41.kvRank",
+        "MODELS.dsv41.kvSourceLayers",
+        "MODELS.dsv41.latent",
+        "MODELS.dsv41.layers",
+        "MODELS.dsv41.linearHeadDim",
+        "MODELS.dsv41.linearHeads",
+        "MODELS.dsv41.linearKeyHeads",
+        "MODELS.dsv41.maxContext",
+        "MODELS.dsv41.mtp",
+        "MODELS.dsv41.name",
+        "MODELS.dsv41.ngram",
+        "MODELS.dsv41.nopeDim",
+        "MODELS.dsv41.oGroups",
+        "MODELS.dsv41.oRank",
+        "MODELS.dsv41.pleLayers",
+        "MODELS.dsv41.qRank",
+        "MODELS.dsv41.qkNorm",
+        "MODELS.dsv41.repo",
+        "MODELS.dsv41.residual",
+        "MODELS.dsv41.ropeDim",
+        "MODELS.dsv41.routeScale",
+        "MODELS.dsv41.scoring",
+        "MODELS.dsv41.shared",
+        "MODELS.dsv41.sinkhornIters",
+        "MODELS.dsv41.sources",
+        "MODELS.dsv41.streams",
+        "MODELS.dsv41.summary",
+        "MODELS.dsv41.swaKvFormat",
+        "MODELS.dsv41.swaLayers",
+        "MODELS.dsv41.swigluLimit",
+        "MODELS.dsv41.topK",
+        "MODELS.dsv41.total",
+        "MODELS.dsv41.vDim",
+        "MODELS.dsv41.vision",
+        "MODELS.dsv41.visionD",
+        "MODELS.dsv41.visionFF",
+        "MODELS.dsv41.visionHeads",
+        "MODELS.dsv41.visionLayers",
+        "MODELS.dsv41.visionPatch",
+        "MODELS.dsv41.vocab",
+        "MODELS.dsv41.window",
+        "MODELS.dsv41.indexerScaleGroup",
+        "MODELS.dsv41.indexerKvFormat"
+      ]
+    },
+    {
+      "id": "file.src/diagram-pytorch.mjs",
+      "consumer": "file.src/diagram-pytorch.mjs",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "baac444fe9eea896b8992545cba4206420c25198466e0b848e2aaac302fa9146",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "pytorch.backbone-moe",
+        "pytorch.engram-write",
+        "pytorch.csa2-compression",
+        "pytorch.csa2-selection",
+        "pytorch.csa2-attention",
+        "pytorch.dspark-attention",
+        "pytorch.dspark-heads",
+        "pytorch.deepspec-verifier",
+        "MODELS.dsv41.active",
+        "MODELS.dsv41.activeDecode",
+        "MODELS.dsv41.architecture",
+        "MODELS.dsv41.candidateBlockSize",
+        "MODELS.dsv41.candidateBlocks",
+        "MODELS.dsv41.candidateSource",
+        "MODELS.dsv41.compressDecoder",
+        "MODELS.dsv41.compressEncoder",
+        "MODELS.dsv41.configMax",
+        "MODELS.dsv41.convKernel",
+        "MODELS.dsv41.d",
+        "MODELS.dsv41.denseLayers",
+        "MODELS.dsv41.dsparkBlock",
+        "MODELS.dsv41.dsparkExperts",
+        "MODELS.dsv41.dsparkTargets",
+        "MODELS.dsv41.dsparkTopK",
+        "MODELS.dsv41.encoderLayers",
+        "MODELS.dsv41.engramHeadDim",
+        "MODELS.dsv41.engramHeads",
+        "MODELS.dsv41.engramLayers",
+        "MODELS.dsv41.engramNgram",
+        "MODELS.dsv41.engramTables",
+        "MODELS.dsv41.expertFF",
+        "MODELS.dsv41.experts",
+        "MODELS.dsv41.family",
+        "MODELS.dsv41.ff",
+        "MODELS.dsv41.gate",
+        "MODELS.dsv41.generation",
+        "MODELS.dsv41.headDim",
+        "MODELS.dsv41.heads",
+        "MODELS.dsv41.id",
+        "MODELS.dsv41.indexSourceLayers",
+        "MODELS.dsv41.indexer",
+        "MODELS.dsv41.indexerBudget",
+        "MODELS.dsv41.indexerHeads",
+        "MODELS.dsv41.kvBytesPerToken",
+        "MODELS.dsv41.kvFormat",
+        "MODELS.dsv41.kvHeads",
+        "MODELS.dsv41.kvRank",
+        "MODELS.dsv41.kvSourceLayers",
+        "MODELS.dsv41.latent",
+        "MODELS.dsv41.layers",
+        "MODELS.dsv41.linearHeadDim",
+        "MODELS.dsv41.linearHeads",
+        "MODELS.dsv41.linearKeyHeads",
+        "MODELS.dsv41.maxContext",
+        "MODELS.dsv41.mtp",
+        "MODELS.dsv41.name",
+        "MODELS.dsv41.ngram",
+        "MODELS.dsv41.nopeDim",
+        "MODELS.dsv41.oGroups",
+        "MODELS.dsv41.oRank",
+        "MODELS.dsv41.pleLayers",
+        "MODELS.dsv41.qRank",
+        "MODELS.dsv41.qkNorm",
+        "MODELS.dsv41.repo",
+        "MODELS.dsv41.residual",
+        "MODELS.dsv41.ropeDim",
+        "MODELS.dsv41.routeScale",
+        "MODELS.dsv41.scoring",
+        "MODELS.dsv41.shared",
+        "MODELS.dsv41.sinkhornIters",
+        "MODELS.dsv41.sources",
+        "MODELS.dsv41.streams",
+        "MODELS.dsv41.summary",
+        "MODELS.dsv41.swaKvFormat",
+        "MODELS.dsv41.swaLayers",
+        "MODELS.dsv41.swigluLimit",
+        "MODELS.dsv41.topK",
+        "MODELS.dsv41.total",
+        "MODELS.dsv41.vDim",
+        "MODELS.dsv41.vision",
+        "MODELS.dsv41.visionD",
+        "MODELS.dsv41.visionFF",
+        "MODELS.dsv41.visionHeads",
+        "MODELS.dsv41.visionLayers",
+        "MODELS.dsv41.visionPatch",
+        "MODELS.dsv41.vocab",
+        "MODELS.dsv41.window",
+        "MODELS.dsv41.indexerScaleGroup",
+        "MODELS.dsv41.indexerKvFormat"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.embedded.e32de44b774a85c4",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.embedded.e32de44b774a85c4",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "e32de44b774a85c428530cc0226396caebb67b9e0d90cff41fd3f3118192b856",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.initial-premix.eaac023db65165bb",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.initial-premix.eaac023db65165bb",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "eaac023db65165bb5920616a988ef654b4a9e88dec6c66ba926e3cdb92bf30ab",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.expand-streams.53ab438e7e761255",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.expand-streams.53ab438e7e761255",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "53ab438e7e7612555d180693ed2a8a318bd713948d89aab1dea73f8f7acd29fb",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.attn-residual.83dcaaa20eb42a43",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.attn-residual.83dcaaa20eb42a43",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "83dcaaa20eb42a43f89def01eeb893273161067aed01fcf7fe5aaf01eaf13c3f",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.attn-mixer.873694ef7c799307",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.attn-mixer.873694ef7c799307",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "873694ef7c799307dec91f63a1bb6ed233619ad3107af005a02bf42362ee455e",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.attn-collapse.1561132c55ca0cbe",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.attn-collapse.1561132c55ca0cbe",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1561132c55ca0cbe13761ba3ae6f76ebb0cfa216415a8353ce9f636426217069",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.attn-split.1475a80e5153feed",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.attn-split.1475a80e5153feed",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1475a80e5153feed5354d614d2a48a13dd24f96b8265d4e5ace63194d3b1c51c",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.attn-next.71b1c45d4163e3ee",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.attn-next.71b1c45d4163e3ee",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "71b1c45d4163e3eef05d21ae1c844030fa5748701ae7a08677d23beebc39c537",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.attn-norm.9887707ed20ed6df",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.attn-norm.9887707ed20ed6df",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "9887707ed20ed6df003b505b7cffd76a5062024a213d0bd900c7dca7f058d152",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.attn-post.65cc0905d25547fe",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.attn-post.65cc0905d25547fe",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "65cc0905d25547fe118f226c398bad525667ac885cb9eaea3d410fd251c23b4f",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.attn-matrix.a2397d68d030f380",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.attn-matrix.a2397d68d030f380",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "a2397d68d030f3801cd7b447cd47bde29d73d46d36839a302c79c87bc17de94a",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.attn-operator.d1c3d131637a106d",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.attn-operator.d1c3d131637a106d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "d1c3d131637a106d9213fb4ecc7e2d6d953b3cd111e784f1271cd7a5c93da7d5",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.attn-expanded.3a98936b1e66e2dd",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.attn-expanded.3a98936b1e66e2dd",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "3a98936b1e66e2ddd157cdf3262bdfdcdf8a14befbc6f943370b2e3f02004eb8",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.attn-carried.f87475a13ed811a0",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.attn-carried.f87475a13ed811a0",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f87475a13ed811a028bce19bf21bf83f8d3f2012290ec042398c02ab94bc83d2",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.attn-combine.b04d76b9ce413d3c",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.attn-combine.b04d76b9ce413d3c",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "b04d76b9ce413d3c9829c64ac92b8cafd4302b7cf3bb9335f1347eaf71192f66",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.ffn-residual.83dcaaa20eb42a43",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.ffn-residual.83dcaaa20eb42a43",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "83dcaaa20eb42a43f89def01eeb893273161067aed01fcf7fe5aaf01eaf13c3f",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.ffn-mixer.873694ef7c799307",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.ffn-mixer.873694ef7c799307",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "873694ef7c799307dec91f63a1bb6ed233619ad3107af005a02bf42362ee455e",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.ffn-collapse.3f8b8828c5c27f55",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.ffn-collapse.3f8b8828c5c27f55",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "3f8b8828c5c27f55aa33a33a28f90a5f0408628cd0c926002616479d01687e9a",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.ffn-split.1475a80e5153feed",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.ffn-split.1475a80e5153feed",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1475a80e5153feed5354d614d2a48a13dd24f96b8265d4e5ace63194d3b1c51c",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.ffn-next.06f2b04cbeb70047",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.ffn-next.06f2b04cbeb70047",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "06f2b04cbeb7004743e1dda027b3c4defc73fd50cc9d0838adbf49938ede0754",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.ffn-norm.9887707ed20ed6df",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.ffn-norm.9887707ed20ed6df",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "9887707ed20ed6df003b505b7cffd76a5062024a213d0bd900c7dca7f058d152",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.ffn-post.65cc0905d25547fe",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.ffn-post.65cc0905d25547fe",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "65cc0905d25547fe118f226c398bad525667ac885cb9eaea3d410fd251c23b4f",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.ffn-matrix.a2397d68d030f380",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.ffn-matrix.a2397d68d030f380",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "a2397d68d030f3801cd7b447cd47bde29d73d46d36839a302c79c87bc17de94a",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.ffn-operator.a7d6ace49435735a",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.ffn-operator.a7d6ace49435735a",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "a7d6ace49435735ade6b452a00e33a68fef03734dfaad469ed06225512a4238a",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.ffn-expanded.3a98936b1e66e2dd",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.ffn-expanded.3a98936b1e66e2dd",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "3a98936b1e66e2ddd157cdf3262bdfdcdf8a14befbc6f943370b2e3f02004eb8",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.ffn-carried.f87475a13ed811a0",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.ffn-carried.f87475a13ed811a0",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f87475a13ed811a028bce19bf21bf83f8d3f2012290ec042398c02ab94bc83d2",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.ffn-combine.b04d76b9ce413d3c",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.ffn-combine.b04d76b9ce413d3c",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "b04d76b9ce413d3c9829c64ac92b8cafd4302b7cf3bb9335f1347eaf71192f66",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.flat-stack.1991b5bbb96fc24c",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.flat-stack.1991b5bbb96fc24c",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1991b5bbb96fc24c276378d272f93bb63f71efe8a17faa53cc056fe32d6c4ed1",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.boundary.e1b2d2d24bf1d356",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.boundary.e1b2d2d24bf1d356",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "e1b2d2d24bf1d35681b9f0664c47c337d9c697d9126c43c02fdb122b554dce36",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.final-collapse.f1e0c8e5e6391c59",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.final-collapse.f1e0c8e5e6391c59",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f1e0c8e5e6391c59b088c81ceffed47cd112825abd2d6344f713ddd9291b2363",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.tokens.ee7deb3e0aac024a",
+      "consumer": "scene.dsv41.model.module-backbone-moe.tokens.ee7deb3e0aac024a",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ee7deb3e0aac024aa4c8d3fca340086fd9de58390c22b9eef35a79175f55a18e",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.scores.a87d7b2b3968ccf7",
+      "consumer": "scene.dsv41.model.module-backbone-moe.scores.a87d7b2b3968ccf7",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "a87d7b2b3968ccf76b4fb56809df746e4f0ab264c9a2d88d824e83bfd7d31e1c",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.selection-bias.51b8f5a970a6562d",
+      "consumer": "scene.dsv41.model.module-backbone-moe.selection-bias.51b8f5a970a6562d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "51b8f5a970a6562d77b52f2b85992334b52b3c91a010b6b655b92807cf185045",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.select.48243983c11eabe9",
+      "consumer": "scene.dsv41.model.module-backbone-moe.select.48243983c11eabe9",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "48243983c11eabe91569c7a79cffeb0c815b93892aea629005f995461578a46b",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.weights.88e8a51c9f6fee7d",
+      "consumer": "scene.dsv41.model.module-backbone-moe.weights.88e8a51c9f6fee7d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "88e8a51c9f6fee7db4793f3e5791a1f0151352f285650a588dcff01a4311277d",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.dispatch.a3d7c3dbbe2b139a",
+      "consumer": "scene.dsv41.model.module-backbone-moe.dispatch.a3d7c3dbbe2b139a",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "a3d7c3dbbe2b139a48ae798d25d7901f62ad1e85ead9c3c2c364201da4e3dd97",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.routed-input.6f8a0a661bf367b7",
+      "consumer": "scene.dsv41.model.module-backbone-moe.routed-input.6f8a0a661bf367b7",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "6f8a0a661bf367b741d13a22efaf3ad773073af0c797ed0a8030417ae4bdcac6",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.shared-input.ab33193174e9a239",
+      "consumer": "scene.dsv41.model.module-backbone-moe.shared-input.ab33193174e9a239",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ab33193174e9a2391e90813cc1f2027e3cb28dcb391be071ab05b6b83b181866",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.routed-gate.b2c7f292ee7ce773",
+      "consumer": "scene.dsv41.model.module-backbone-moe.routed-gate.b2c7f292ee7ce773",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "b2c7f292ee7ce773459c6b4e9cb1d0cff52f961c1e1a12e505f8d68f2f6c2ad3",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.routed-up.d6dd47a9ceb7d442",
+      "consumer": "scene.dsv41.model.module-backbone-moe.routed-up.d6dd47a9ceb7d442",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "d6dd47a9ceb7d4421b2446de095a87b651a970d9ea450dbc8da0aa6af199ebdb",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.routed-product.94716d07e7f1fb3d",
+      "consumer": "scene.dsv41.model.module-backbone-moe.routed-product.94716d07e7f1fb3d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "94716d07e7f1fb3d149ae052e212f6a7c769adb87ec9c6fd3d472e3dca0145d5",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.routed-down.270ebd899efd640f",
+      "consumer": "scene.dsv41.model.module-backbone-moe.routed-down.270ebd899efd640f",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "270ebd899efd640fbc95609549eda8aa210adb9524fa6ecda376b0d8178b6f58",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.shared-gate.f2517eb6308c6ab3",
+      "consumer": "scene.dsv41.model.module-backbone-moe.shared-gate.f2517eb6308c6ab3",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f2517eb6308c6ab3f293e1f648a917cbd19057c00f6da746a26ea5df53be1c12",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.shared-up.8171c2de174d78bb",
+      "consumer": "scene.dsv41.model.module-backbone-moe.shared-up.8171c2de174d78bb",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "8171c2de174d78bbb3e2f875e905ab291117e6b65fb510c8ae38f2a68e10a847",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.shared-product.de8e138e8ba2f71e",
+      "consumer": "scene.dsv41.model.module-backbone-moe.shared-product.de8e138e8ba2f71e",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "de8e138e8ba2f71e2fcefc9e89164c21cf8ae1e31a147aa8381d9ac958d20e55",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.shared-down.d773c23ce018bbb1",
+      "consumer": "scene.dsv41.model.module-backbone-moe.shared-down.d773c23ce018bbb1",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "d773c23ce018bbb1683605baec1e4877e7b87b78c8f26afbdcd94f0112e042a7",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.scatter.9c8bc517d4b83da6",
+      "consumer": "scene.dsv41.model.module-backbone-moe.scatter.9c8bc517d4b83da6",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "9c8bc517d4b83da635df9418ee94c69d862c679283ef92b72fd9795096ba3775",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.output.32e84074a0b3a34e",
+      "consumer": "scene.dsv41.model.module-backbone-moe.output.32e84074a0b3a34e",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "32e84074a0b3a34e54730403b0f9c6170a24f163fd9a2aea14d2ad4409d437dc",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-moe.graph.0d9f00dc10f5a6de",
+      "consumer": "scene.dsv41.model.module-backbone-moe.graph.0d9f00dc10f5a6de",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "0d9f00dc10f5a6deebaba2abead104a6874d28b04011154b00bbf4095401324c",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-moe",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-engram-write.residual.f1cc21878b4c3809",
+      "consumer": "scene.dsv41.model.module-engram-write.residual.f1cc21878b4c3809",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f1cc21878b4c3809acd499569327e673aac6719aebff42066f2d565a7b767275",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.engram-write",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-engram-write.hash-ids.a155571a73fdbd71",
+      "consumer": "scene.dsv41.model.module-engram-write.hash-ids.a155571a73fdbd71",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "a155571a73fdbd71f1c68564736748e528146b9e1deb41e67238329839d11058",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.engram-write",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-engram-write.lookup.701c75f351eb4cee",
+      "consumer": "scene.dsv41.model.module-engram-write.lookup.701c75f351eb4cee",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "701c75f351eb4cee923605946bf7bbec28a76e5036922d93328e26bff7f3e44d",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.engram-write",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-engram-write.project.22b1846c24f71f3d",
+      "consumer": "scene.dsv41.model.module-engram-write.project.22b1846c24f71f3d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "22b1846c24f71f3d7e527ca960d394c97ac72b9741c73e6912f9b6082595fa79",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.engram-write",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-engram-write.keys.4ec68580016ad579",
+      "consumer": "scene.dsv41.model.module-engram-write.keys.4ec68580016ad579",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "4ec68580016ad579e9b02bc29f13683a8eb2c9e4131f90c15f847b678c8bf947",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.engram-write",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-engram-write.value.476f8996e27fc15d",
+      "consumer": "scene.dsv41.model.module-engram-write.value.476f8996e27fc15d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "476f8996e27fc15d30e2da334a642a1afeb2f2fa74c59d5b845ff2d5fcc41e0d",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.engram-write",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-engram-write.normalize.becbb8ca8fcf601a",
+      "consumer": "scene.dsv41.model.module-engram-write.normalize.becbb8ca8fcf601a",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "becbb8ca8fcf601a60067f3b1188cdac1948ada2ed8daf0efac826c93840f568",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.engram-write",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-engram-write.score.5e5e6c2e601fa173",
+      "consumer": "scene.dsv41.model.module-engram-write.score.5e5e6c2e601fa173",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "5e5e6c2e601fa173494b1f22df1c8e63dc532bebf6862268ceb77a9b653b2d46",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.engram-write",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-engram-write.signed-root.830fec9b3cb741b2",
+      "consumer": "scene.dsv41.model.module-engram-write.signed-root.830fec9b3cb741b2",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "830fec9b3cb741b2b18028ea48f719ed5aa4557d7d46e8b0c2a38c197ac6c122",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.engram-write",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-engram-write.token-mask.ab330b33b5ff82cb",
+      "consumer": "scene.dsv41.model.module-engram-write.token-mask.ab330b33b5ff82cb",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ab330b33b5ff82cbf2d9f6cbcd932c258ae3c9fc5c09f83a077e2cc6814b55b5",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.engram-write",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-engram-write.gate.8930fac543ecee23",
+      "consumer": "scene.dsv41.model.module-engram-write.gate.8930fac543ecee23",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "8930fac543ecee235ea54e2fceada1ad75a03bb51a6446ac5f98d26c0ac04b38",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.engram-write",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-engram-write.write.ea573166c7f352d8",
+      "consumer": "scene.dsv41.model.module-engram-write.write.ea573166c7f352d8",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ea573166c7f352d89167ba71b90801d8ac045d42859b49540253214e431bf6fa",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.engram-write",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-engram-write.output.0319d08df02256d9",
+      "consumer": "scene.dsv41.model.module-engram-write.output.0319d08df02256d9",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "0319d08df02256d96a3366607afeeb92671e3cf8333382f03ad159cb5daa6a90",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.engram-write",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-engram-write.graph.6431e84a73fea493",
+      "consumer": "scene.dsv41.model.module-engram-write.graph.6431e84a73fea493",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "6431e84a73fea493f6bee3053bafe03ff617652e9b1fa67fe724510bb03f73cb",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.engram-write",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-compression.tokens.9e3e79c8e34bd9cc",
+      "consumer": "scene.dsv41.model.module-csa2-compression.tokens.9e3e79c8e34bd9cc",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "9e3e79c8e34bd9cccadf2d953636d2300b673385919911d7d9d9451863eb9df4",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-compression",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-compression.direct-project.b42d07f402362d0e",
+      "consumer": "scene.dsv41.model.module-csa2-compression.direct-project.b42d07f402362d0e",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "b42d07f402362d0ed35c66a4a99559ad60e63d6e4ea8c4c897b78b90e2c13d62",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-compression",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-compression.direct-norm.f13e3f7596aae10d",
+      "consumer": "scene.dsv41.model.module-csa2-compression.direct-norm.f13e3f7596aae10d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f13e3f7596aae10db12063f6b1ce510b8ab137397bf1b321ca6fdb83e5107012",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-compression",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-compression.direct-output.ed156ff75bd6a1b6",
+      "consumer": "scene.dsv41.model.module-csa2-compression.direct-output.ed156ff75bd6a1b6",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ed156ff75bd6a1b6d495caf31220d4ca71f566eed609164fc938c66867d6d724",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-compression",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-compression.values.54e4e6e54aa6f179",
+      "consumer": "scene.dsv41.model.module-csa2-compression.values.54e4e6e54aa6f179",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "54e4e6e54aa6f179063be3243c94ce6c9a752e55dafcaa4ba79d632e62aabafd",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-compression",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-compression.scores.4fce11c6cee7eabc",
+      "consumer": "scene.dsv41.model.module-csa2-compression.scores.4fce11c6cee7eabc",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "4fce11c6cee7eabc193da24ddbb4b3c41e9fe28ca8d2b1a0d1f0242962212494",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-compression",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-compression.concat.7231154e1d8064e5",
+      "consumer": "scene.dsv41.model.module-csa2-compression.concat.7231154e1d8064e5",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "7231154e1d8064e5dc4567fccd3537ff0c8e43c9648c223597684cf8c5e85c1a",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-compression",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-compression.previous-state.790dcd069238e6b3",
+      "consumer": "scene.dsv41.model.module-csa2-compression.previous-state.790dcd069238e6b3",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "790dcd069238e6b3005f27b8f7b1d69bd9c5d17509b3c15c3660673f3ed25404",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-compression",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-compression.complete.7d8c03ef4af2cd5c",
+      "consumer": "scene.dsv41.model.module-csa2-compression.complete.7d8c03ef4af2cd5c",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "7d8c03ef4af2cd5cdeea87e2c85ac9d44ec3ff6dd8553526fec6ebb42e35f701",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-compression",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-compression.next-state.2597c07df0537ced",
+      "consumer": "scene.dsv41.model.module-csa2-compression.next-state.2597c07df0537ced",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "2597c07df0537ceda7294c8aca9f2fdd29b47f59f705a58bb025729f1758fd34",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-compression",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-compression.pool.3277ae999e3fd8ad",
+      "consumer": "scene.dsv41.model.module-csa2-compression.pool.3277ae999e3fd8ad",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "3277ae999e3fd8ad24669bb4bb0d9450a424c184e8bfd358f3de6bd046d7c57c",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-compression",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-compression.group-norm.fbd2551e165e8ee0",
+      "consumer": "scene.dsv41.model.module-csa2-compression.group-norm.fbd2551e165e8ee0",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "fbd2551e165e8ee0e634a891269f98c0997014f628588edc078b8c5f011ed44c",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-compression",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-compression.group-output.7df40bfbab0cf9af",
+      "consumer": "scene.dsv41.model.module-csa2-compression.group-output.7df40bfbab0cf9af",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "7df40bfbab0cf9af670c20f22425673ad580f9b1cbbe223c728874a39799932c",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-compression",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-compression.graph.789197a6bd876931",
+      "consumer": "scene.dsv41.model.module-csa2-compression.graph.789197a6bd876931",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "789197a6bd8769313d21ad3e791b4199e6b8f0bd77ef4bbe71f90c66139609a6",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-compression",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.query.f07222dc97798283",
+      "consumer": "scene.dsv41.model.module-csa2-selection.query.f07222dc97798283",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f07222dc97798283e278bdda9b1d2a03921bbae4f18d8220cd0b2e39c2e5def6",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-selection",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.keys.84e06861b37be73e",
+      "consumer": "scene.dsv41.model.module-csa2-selection.keys.84e06861b37be73e",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "84e06861b37be73edb0b997b7e7daf69488b34a3206432cff78c991a5cc6957f",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-selection",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.products.b579c9c79d5892aa",
+      "consumer": "scene.dsv41.model.module-csa2-selection.products.b579c9c79d5892aa",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "b579c9c79d5892aa741e2b536723a67a1cfc84b5506670345a6786329fc98533",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-selection",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.weights.9b4144bd1e082143",
+      "consumer": "scene.dsv41.model.module-csa2-selection.weights.9b4144bd1e082143",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "9b4144bd1e0821436ec3cd1bbeb2581049ff94d4db89134bc8fb1d64061c1b6c",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-selection",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.scores.348ccfff60670d29",
+      "consumer": "scene.dsv41.model.module-csa2-selection.scores.348ccfff60670d29",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "348ccfff60670d2923ee4309bf8208d93e83ffed56107b3396b33a833d9b833e",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-selection",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.causal.f1eef6c10966051e",
+      "consumer": "scene.dsv41.model.module-csa2-selection.causal.f1eef6c10966051e",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f1eef6c10966051eb28997571178c4bf180595ddb3dc6480195d7a3943cea765",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-selection",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.visible.a8352dff80584bd6",
+      "consumer": "scene.dsv41.model.module-csa2-selection.visible.a8352dff80584bd6",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "a8352dff80584bd6933dc3cd27e5786cafb35969f7d5e76efe79cdca9ae54269",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-selection",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.block-max.e3f1f174dd2e5393",
+      "consumer": "scene.dsv41.model.module-csa2-selection.block-max.e3f1f174dd2e5393",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "e3f1f174dd2e53931984b976004e405b651fdf823a98d30761273b6260f789c8",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-selection",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.newest-block.1da16e211e18311b",
+      "consumer": "scene.dsv41.model.module-csa2-selection.newest-block.1da16e211e18311b",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1da16e211e18311b3adfaadec687300cc473274de998fd600e2708d88d6d187f",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-selection",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.block-topk.10c1afbae5f491bc",
+      "consumer": "scene.dsv41.model.module-csa2-selection.block-topk.10c1afbae5f491bc",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "10c1afbae5f491bc37d84924aa9fd1a94136c45ad14eaff6c1ae953f8fa27127",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-selection",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.candidate-mask.699f89dc455195dd",
+      "consumer": "scene.dsv41.model.module-csa2-selection.candidate-mask.699f89dc455195dd",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "699f89dc455195dd2b62b1546f1230044bc4c01d7b07061fecd071188c29715f",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-selection",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.allowed.c6f2176c330dedac",
+      "consumer": "scene.dsv41.model.module-csa2-selection.allowed.c6f2176c330dedac",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "c6f2176c330dedac6f8e54b2edb8e7bb0615b2a1ada2d8ee1611090eec352b4f",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-selection",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.position-topk.e2331d21b3db8b5e",
+      "consumer": "scene.dsv41.model.module-csa2-selection.position-topk.e2331d21b3db8b5e",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "e2331d21b3db8b5ebba5be6655883f7fb4c20656bfff4b9eaa854eea909791b2",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-selection",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.selected.c8b2b58c83944e9d",
+      "consumer": "scene.dsv41.model.module-csa2-selection.selected.c8b2b58c83944e9d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "c8b2b58c83944e9dde028d03302ed7a7fba17548f581aca19e1e43cb0e1f0623",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-selection",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-selection.graph.659e94d5357006de",
+      "consumer": "scene.dsv41.model.module-csa2-selection.graph.659e94d5357006de",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "659e94d5357006de50f8c1960a2c27f4a1dd323a41146fc2f76f9f96ecbd5473",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-selection",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.local-cache.1f5c2e2e7d35cf8d",
+      "consumer": "scene.dsv41.model.module-csa2-attention.local-cache.1f5c2e2e7d35cf8d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1f5c2e2e7d35cf8d49c2440b567d0060d7b244d9f053b9c495196b02b97a022e",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.compressed-cache.a1a92ebcf22afecf",
+      "consumer": "scene.dsv41.model.module-csa2-attention.compressed-cache.a1a92ebcf22afecf",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "a1a92ebcf22afecfb40f7a3c38b0cb41274ef4d4779790c77b02bbf58b5328bc",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.cache.bb82a102bd82f327",
+      "consumer": "scene.dsv41.model.module-csa2-attention.cache.bb82a102bd82f327",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "bb82a102bd82f327313c8b8850065cf878e0e094781fe2610cd7ce9043e79385",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.positions.9d65b06659e848e2",
+      "consumer": "scene.dsv41.model.module-csa2-attention.positions.9d65b06659e848e2",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "9d65b06659e848e2776b60c8fdadc6c4c7ff30972123d30818e005d8fe257b4f",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.selected.88eb50666e9b0c58",
+      "consumer": "scene.dsv41.model.module-csa2-attention.selected.88eb50666e9b0c58",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "88eb50666e9b0c58031eb61a00764f3457d832b39c292d9934397cc184b58649",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.local-indices.26c7a6bf13070b0f",
+      "consumer": "scene.dsv41.model.module-csa2-attention.local-indices.26c7a6bf13070b0f",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "26c7a6bf13070b0f7f128c2998cca8986f1690e31d9fd1c65a1d36c2846d21cb",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.compressed-indices.e6b1aa9115ac6b19",
+      "consumer": "scene.dsv41.model.module-csa2-attention.compressed-indices.e6b1aa9115ac6b19",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "e6b1aa9115ac6b190e4f4d9f6fdb6582246ff8c76d37fa6e1cd071ef79f987ec",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.indices.274b5e37d080807c",
+      "consumer": "scene.dsv41.model.module-csa2-attention.indices.274b5e37d080807c",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "274b5e37d080807ce5373e99cc593a04fe6cec7c2a0499d67ecc6ccc4c723a1b",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.gather.300c7b787d2245af",
+      "consumer": "scene.dsv41.model.module-csa2-attention.gather.300c7b787d2245af",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "300c7b787d2245af1dbf121ee0ee11daebeae3760ee00e17f676dc55d7ad4c24",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.query.5555248aea7119cf",
+      "consumer": "scene.dsv41.model.module-csa2-attention.query.5555248aea7119cf",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "5555248aea7119cfb6b4f024a61f82f28f24fab462388aa918103022a8de6eb8",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.logits.819c96efba8e4dd8",
+      "consumer": "scene.dsv41.model.module-csa2-attention.logits.819c96efba8e4dd8",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "819c96efba8e4dd85781fd728e84a1a6c8728649f09f78bbe2846dfffb154f1d",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.sink.b5f890762ccd2aaa",
+      "consumer": "scene.dsv41.model.module-csa2-attention.sink.b5f890762ccd2aaa",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "b5f890762ccd2aaa3f9fdb65fcf38b3d3f320d70d70c6eb2b487ba99d5f1bfd3",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.softmax.b581660fa6631c4a",
+      "consumer": "scene.dsv41.model.module-csa2-attention.softmax.b581660fa6631c4a",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "b581660fa6631c4a3f4078b9764ae8620ee6c8076ca5cc98908d1ab484d6e9fa",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.weighted-sum.7984ab1245c545e7",
+      "consumer": "scene.dsv41.model.module-csa2-attention.weighted-sum.7984ab1245c545e7",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "7984ab1245c545e78fef1540749145cdcbef8b0e6d32eb83df6803057f434896",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.output.d76e83f0d8db0d83",
+      "consumer": "scene.dsv41.model.module-csa2-attention.output.d76e83f0d8db0d83",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "d76e83f0d8db0d83ab84f12585556bcf8c496afad4d3ba4d761e8496df56b80a",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-csa2-attention.graph.4ea3bda11eaa4af8",
+      "consumer": "scene.dsv41.model.module-csa2-attention.graph.4ea3bda11eaa4af8",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "4ea3bda11eaa4af8f64b596376d085755c5cdf3c607bb01148c6c0b5b161ce7c",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.csa2-attention",
+        "file.src/diagram-pytorch-memory.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-attention.queries.1b6065ed253317c1",
+      "consumer": "scene.dsv41.model.module-dspark-attention.queries.1b6065ed253317c1",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "1b6065ed253317c12d30187bb1d24d112d628e60a83e4404e5f3e136d6627b9a",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-attention.history.55ae4e52aece6367",
+      "consumer": "scene.dsv41.model.module-dspark-attention.history.55ae4e52aece6367",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "55ae4e52aece6367b62562c1755b5da0287fab47c16f8d3c27781368d057f913",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-attention.draft-kv.0543d56c3de59a42",
+      "consumer": "scene.dsv41.model.module-dspark-attention.draft-kv.0543d56c3de59a42",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "0543d56c3de59a4244d841a041f79a56eb754b3386b44c3723ae7f089223d18a",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-attention.guards.07b04926172f27e1",
+      "consumer": "scene.dsv41.model.module-dspark-attention.guards.07b04926172f27e1",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "07b04926172f27e129f46ed9349f6159d705260668f45c7562b52136c0395109",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-attention.key-values.bfcae632e69e052d",
+      "consumer": "scene.dsv41.model.module-dspark-attention.key-values.bfcae632e69e052d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "bfcae632e69e052da648ef7e6e5ac5111e632c763301727abd24bdc2e9aa69ab",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-attention.visibility.421f285eece7a797",
+      "consumer": "scene.dsv41.model.module-dspark-attention.visibility.421f285eece7a797",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "421f285eece7a7972a6aaacae4ee1d2dc2b1c13b7b035eef2d2ac4a11fa603c0",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-attention.dot-products.f4435d5bf878f89b",
+      "consumer": "scene.dsv41.model.module-dspark-attention.dot-products.f4435d5bf878f89b",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f4435d5bf878f89b308326c1317cc5d2040c115d4e7bcd2e9106a518d5a7b480",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-attention.scale.72db039d2d347393",
+      "consumer": "scene.dsv41.model.module-dspark-attention.scale.72db039d2d347393",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "72db039d2d347393657de7d77f6b0be3a5f0357ad356f37fe909a14fd24091e5",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-attention.sink.21ba4c230e0effa0",
+      "consumer": "scene.dsv41.model.module-dspark-attention.sink.21ba4c230e0effa0",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "21ba4c230e0effa0c5c7653cbe4dbf8b176112b63cd8d741d3c1f94841f5a1bb",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-attention.normalize.045fafe97d4fbd98",
+      "consumer": "scene.dsv41.model.module-dspark-attention.normalize.045fafe97d4fbd98",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "045fafe97d4fbd98827e96a1441c1a111a833c204195a5717f59b91572fd0767",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-attention.drop-sink.9df30985fbaf46aa",
+      "consumer": "scene.dsv41.model.module-dspark-attention.drop-sink.9df30985fbaf46aa",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "9df30985fbaf46aa98ea6f5e4af57930972149daab592a1a4ff0bee33e51c58e",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-attention.weighted-values.8f6f1a7e96b83ea9",
+      "consumer": "scene.dsv41.model.module-dspark-attention.weighted-values.8f6f1a7e96b83ea9",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "8f6f1a7e96b83ea9e5d4d6b21f4dd87977e9a00260bc348b6f1567b5f59fb7d4",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-attention.output.3874fe39c6c9585a",
+      "consumer": "scene.dsv41.model.module-dspark-attention.output.3874fe39c6c9585a",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "3874fe39c6c9585a702743a0516284725a3522a69b7c8191d86f49d021ddcd53",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-attention.graph.eaa372ddef2be404",
+      "consumer": "scene.dsv41.model.module-dspark-attention.graph.eaa372ddef2be404",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "eaa372ddef2be4040c81a7fa534c348fb4c046e8c69368b368e1c961a36c31e1",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-attention",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.hidden.ad7efebea8e5df6c",
+      "consumer": "scene.dsv41.model.module-dspark-heads.hidden.ad7efebea8e5df6c",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ad7efebea8e5df6cfbe53752c273cf9a974d0b5d16f84bef4d92d776132dec69",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.base-logits.34450ea39e167625",
+      "consumer": "scene.dsv41.model.module-dspark-heads.base-logits.34450ea39e167625",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "34450ea39e167625265c23ea8febe6af4eac6e3c2e20e3309f4be8781972bba0",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.seed.4ebd0ebfb8a7c62d",
+      "consumer": "scene.dsv41.model.module-dspark-heads.seed.4ebd0ebfb8a7c62d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "4ebd0ebfb8a7c62db4ba0627f4ec436ee15dd44c1a19ec49b0242dddf48a2533",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.guards.f4105032c9f85991",
+      "consumer": "scene.dsv41.model.module-dspark-heads.guards.f4105032c9f85991",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f4105032c9f85991f3105558dade6627e1d298721741043748dc868fbe613251",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.previous-token.b3d7a8da7e8fafeb",
+      "consumer": "scene.dsv41.model.module-dspark-heads.previous-token.b3d7a8da7e8fafeb",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "b3d7a8da7e8fafeb72e136e44660f4a028098f0d2946ee8828990c73f0f11ff2",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.previous-embedding.7de9ea66e081b131",
+      "consumer": "scene.dsv41.model.module-dspark-heads.previous-embedding.7de9ea66e081b131",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "7de9ea66e081b1315bd7e41fd3ddf2e19d5026a9f34f63c0eaf74f934b125161",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.markov-bias.d2ee47efa8486c87",
+      "consumer": "scene.dsv41.model.module-dspark-heads.markov-bias.d2ee47efa8486c87",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "d2ee47efa8486c879651ff372e4c1ca67f35d0ce010f15a8c7d18a642a76b98a",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.corrected.95227bc793f42434",
+      "consumer": "scene.dsv41.model.module-dspark-heads.corrected.95227bc793f42434",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "95227bc793f42434d885d1ed122536d55d1629252ea86b886ad560eda32d5d01",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.probabilities.5944aa0772a5ef82",
+      "consumer": "scene.dsv41.model.module-dspark-heads.probabilities.5944aa0772a5ef82",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "5944aa0772a5ef823712110263e1ef95dda7c038f30a85ee7f6eaf3619f579cf",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.sample.c6ad716bda2d00c7",
+      "consumer": "scene.dsv41.model.module-dspark-heads.sample.c6ad716bda2d00c7",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "c6ad716bda2d00c783968e369a6eb710017753fde17417ff6dfe330b28f86ee3",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.embedding-stack.f5082613df4e2ae1",
+      "consumer": "scene.dsv41.model.module-dspark-heads.embedding-stack.f5082613df4e2ae1",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f5082613df4e2ae1da109e754e2c0b50e5dad7da88c89876c1514392ad511100",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.confidence-features.684126d7fcb4a7a7",
+      "consumer": "scene.dsv41.model.module-dspark-heads.confidence-features.684126d7fcb4a7a7",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "684126d7fcb4a7a70e117f0e8800880654db75ac1277628cdf733c6d1561efb9",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.raw-confidence.20c998b1751c817f",
+      "consumer": "scene.dsv41.model.module-dspark-heads.raw-confidence.20c998b1751c817f",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "20c998b1751c817f0b3aa672c0b6250f7efc1070753044c9b89b2bc1011ce124",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.logits-stack.5690c5e735ac60e6",
+      "consumer": "scene.dsv41.model.module-dspark-heads.logits-stack.5690c5e735ac60e6",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "5690c5e735ac60e688825ffe709472fc9acac055c3284c96f7f904661978e65d",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.tokens-stack.f17bf6bda99bb75c",
+      "consumer": "scene.dsv41.model.module-dspark-heads.tokens-stack.f17bf6bda99bb75c",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f17bf6bda99bb75c2c2703783cc1300eb949ca35617595428cf2d5a9ef63bc85",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.return.44280a3656b89e65",
+      "consumer": "scene.dsv41.model.module-dspark-heads.return.44280a3656b89e65",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "44280a3656b89e65a579d450775d5c231722fe269ae73fe6b5c22bfffbc2aad7",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-dspark-heads.graph.324b48c681df1bc1",
+      "consumer": "scene.dsv41.model.module-dspark-heads.graph.324b48c681df1bc1",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "324b48c681df1bc162f5a8fd6f87c1835ebd792baa92055fd5312b3b97d5e24d",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.dspark-heads",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.output-norm.ff66d4c8625214b2",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.output-norm.ff66d4c8625214b2",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ff66d4c8625214b2ec23890cf6f47d399086c54e47dd2bc5e8114f23a5f8f818",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.return.d507c0d65fff45d9",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.return.d507c0d65fff45d9",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "d507c0d65fff45d9b2ae88382a4270778c74b02536efc0a18e1aba12a91e0f1b",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-backbone-mhc.graph.7c81c0d858945d86",
+      "consumer": "scene.dsv41.model.module-backbone-mhc.graph.7c81c0d858945d86",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "7c81c0d858945d86e0b0e6582e2990b9127197c5864ce3f501e4623d0950be3e",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.backbone-mhc",
+        "file.src/diagram-pytorch-backbone.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.confidence.33751f462b9fe4be",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.confidence.33751f462b9fe4be",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "33751f462b9fe4bea9975ca03d3ba682870349c78ac05259d5026383e8ce58e1",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.confidence-prefix.9f1cbc4b8525836c",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.confidence-prefix.9f1cbc4b8525836c",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "9f1cbc4b8525836ce86859f6d5ab5a682cc6d3fd6b01e73b6aaf1df86c7dd5a3",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.draft-forward.91cde2ea8c0014b3",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.draft-forward.91cde2ea8c0014b3",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "91cde2ea8c0014b30ccc9d2ec59d04aa8e8fa71b75e30a90295ce445aeb7a9a8",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.draft-crop.b0b986bbea43b377",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.draft-crop.b0b986bbea43b377",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "b0b986bbea43b377750caab5073fba00972b6f54b30be5a0491c74d100b0f04c",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.proposal.f2e25aa22a4b57f5",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.proposal.f2e25aa22a4b57f5",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f2e25aa22a4b57f5274843dde75fe6fce16b29167165f9ccf89453d01c9b1641",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.draft-probs.0d49d1c6c9de28d7",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.draft-probs.0d49d1c6c9de28d7",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "0d49d1c6c9de28d793799f77af622df59e03f1e7ed18f75de3d160a629b43337",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.target-probs.6100cf9ed2edcf2b",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.target-probs.6100cf9ed2edcf2b",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "6100cf9ed2edcf2b2246873c15a25944904caf8e999bdcc481aef7a309cff00c",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.gather.407566a9a96f265d",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.gather.407566a9a96f265d",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "407566a9a96f265dd0ff01808a5231b40b8cf547cf502cfb87e151a4d20313ba",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.uniforms.708b6dd1b82211a3",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.uniforms.708b6dd1b82211a3",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "708b6dd1b82211a37ce202c848bf53ab9678c1f71970d56a19f681099990026f",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.acceptance.df9be77390445eca",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.acceptance.df9be77390445eca",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "df9be77390445eca4d2c82dead709e3f331a91c1bad3cacb8a0f24e8d2e4329e",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.prefix.f70b0bd1e946d594",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.prefix.f70b0bd1e946d594",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "f70b0bd1e946d594bdf3e193490be5cbf80644d15ccd732e3a3075120db2464e",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.accepted.ea4cc69da0b9f5ad",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.accepted.ea4cc69da0b9f5ad",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ea4cc69da0b9f5ad55bad9ee24d41e5950f645b155034eaeb6a7f503e22ded0f",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.branch.d73eb23fd7ecbb19",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.branch.d73eb23fd7ecbb19",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "d73eb23fd7ecbb19b11fc6620a054eb362f3d4790635cca4626eaa6357b856df",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.residual.9647ff902a8add0f",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.residual.9647ff902a8add0f",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "9647ff902a8add0f6e0a3001645adeff474ea172cdd257d4722cbbef6066cbdc",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.bonus.da3c277412106048",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.bonus.da3c277412106048",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "da3c2774121060481166ec6ea4b1287d604ae2e689123811c4fb06f36137504f",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.fallback.bd6d9b6dde826088",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.fallback.bd6d9b6dde826088",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "bd6d9b6dde8260884303dcfad63fb732970c852e28c751c9d0e05068e41c7848",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.residual-normalize.90d35bd9bbff6476",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.residual-normalize.90d35bd9bbff6476",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "90d35bd9bbff6476ba66bdc27e33d0dd7c216e3c34e74fa1e88c28dac2c90042",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.next-token.818b57769001ae82",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.next-token.818b57769001ae82",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "818b57769001ae82186295cd95e613e3713de08ccf2df3e6c1cc61ec1ca54317",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.commit.6d1c530e4c363407",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.commit.6d1c530e4c363407",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "6d1c530e4c3634074961b91e1ff2721854dd4d0aa4a24e56c8c5849720d4ce46",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.state-guards.bc5bb4ad8da0ee87",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.state-guards.bc5bb4ad8da0ee87",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "bc5bb4ad8da0ee87cf8e935c7f66e9098a192bf224490547bf0715f0a996716e",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.target-crop.5d6d455beb191820",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.target-crop.5d6d455beb191820",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "5d6d455beb1918202c8a356f2ced1d86e8295d01674bf90452b4cb4c0570613f",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.feature-crop.3adcec2af23128aa",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.feature-crop.3adcec2af23128aa",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "3adcec2af23128aa7eed9777f60c0db273e50bbc2e1719f762ff4441f7aadfe5",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.next-round.ca23bdde738ce36f",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.next-round.ca23bdde738ce36f",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "ca23bdde738ce36f11dd98b2c12ccbb3b331987c8238b07e85f21f20560aa277",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
+      ]
+    },
+    {
+      "id": "scene.dsv41.model.module-deepspec-verifier.graph.c1cbca3a9799bbd7",
+      "consumer": "scene.dsv41.model.module-deepspec-verifier.graph.c1cbca3a9799bbd7",
+      "domain": "model",
+      "classification": "derived",
+      "expected": "c1cbca3a9799bbd7ccc9bf55c6cb708f6c759b1e269be143d1bc5bee9212b54c",
+      "statement": "Operation schematic for an authored PyTorch reference module; shape and ownership claims depend on the source-anchored example and checkpoint inputs. Local identity is not independent scientific acceptance.",
+      "evidence": [],
+      "dependencies": [
+        "pytorch.deepspec-verifier",
+        "file.src/diagram-pytorch-dspark.mjs"
       ]
     }
   ],

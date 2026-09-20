@@ -116,6 +116,9 @@ See [publication privacy](docs/PUBLICATION.md) for scope and limitations.
 
 The Encoder, Decoder, Engram, CSA2 and dSpark chapters include expandable reference
 implementations with syntax highlighting, line numbers, copy controls and Python downloads.
+Each example also has an inspectable operation schematic with tensor shapes, branch and
+state paths, equations and source links. Use **Module schematic** or **Inspect module schematic**
+to open it; module URLs and SVG exports preserve the selected diagram.
 Module signatures name tensor axes with `Annotated`, and operation notes explain the math. These are authored, source-linked teaching
 adaptations with explicit shape contracts and omissions; they do not load weights or
 reproduce a production serving stack. The dSpark chapter keeps the DeepSpec evaluator

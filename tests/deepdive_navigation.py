@@ -75,6 +75,48 @@ def exercise(page,root):
         page.set_viewport_size({'width':390,'height':1000})
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
         page.set_viewport_size({'width':1840,'height':1400})
+    # Every code record opens its own complete scene through the real reader controls.
+    for example in examples:
+        chapter=example['stages'][0]
+        stage='module-'+example['id']
+        page.locator(f'button[data-setting="stage"][data-value="{chapter}"]').first.click()
+        panel=page.locator(f'details[data-example="{example["id"]}"]')
+        panel.locator('summary').click()
+        panel.get_by_role('button',name='Inspect module schematic').click()
+        assert page.evaluate('STRATUM.getState().stage')==stage
+        assert f'stage={stage}' in page.url
+        assert page.locator('#control-stage').input_value()==stage
+        assert page.locator('.pytorch-example').count()==1
+        assert page.locator('.pytorch-example').evaluate('el=>el.open')
+        assert page.locator('.pytorch-code code').text_content()==example['code']
+        assert page.evaluate('STRATUM.geometryReport().geometry_defects')==0
+        scene=page.evaluate('STRATUM.getScene()')
+        assert len(scene['nodes'])>=5
+        for node in scene['nodes']:
+            page.locator(f'[data-node="{node["id"]}"]').focus()
+            page.keyboard.press('Enter')
+            assert page.locator('#inspector h3').inner_text()==node['info']['title']
+            assert page.locator('#inspector a.source-card').count()>0
+        page.locator('#trace-button').click()
+        assert page.locator('.trace-edge').count()>0 or not any(e['target']==scene['nodes'][-1]['id'] for e in scene['edges'])
+        page.locator('#trace-button').click()
+        assert json.loads(page.evaluate('STRATUM.exportConfig()'))['state']['stage']==stage
+        assert example['title'] in page.locator('#schematic > title').text_content()
+        for view,title in [('training','Training'),('serving','Serving'),('evidence','Evidence')]:
+            page.locator(f'#lens-tabs [data-view="{view}"]').click()
+            assert title in page.locator('#schematic > title').text_content()
+            assert example['title'] not in page.locator('#schematic > title').text_content()
+            assert title in page.evaluate('STRATUM.exportSVG()')
+        page.locator('#lens-tabs [data-view="model"]').click()
+        assert page.evaluate('STRATUM.getState().stage')==stage
+        assert example['title'] in page.locator('#schematic > title').text_content()
+        page.reload();page.wait_for_function('window.STRATUM')
+        assert page.evaluate('STRATUM.getState().stage')==stage
+        page.set_viewport_size({'width':390,'height':1000})
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
+        page.set_viewport_size({'width':1840,'height':1400})
+        page.select_option('#control-stage','ced')
+        assert page.evaluate('STRATUM.getState().stage')=='ced'
     page.locator('button[data-setting="stage"][data-value="csa2"]').click()
     assert page.locator('button[data-setting="detail"]').count()==0
     for layer in ['3','25','26']:

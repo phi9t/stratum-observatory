@@ -18,7 +18,7 @@ BASE={'model':'ds3','view':'model','stage':'block','layer':4,'theme':'dark','har
 #: focal page a model offers, so a tenth checkpoint cannot go undepicted in silence either.
 MODEL_IDS="[...document.querySelectorAll('#model-strip [data-model]')].map(b=>b.dataset.model)"
 LAYER_OPTIONS="[...document.querySelectorAll('#control-layer option')].map(o=>o.textContent)"
-FOCUS_STAGES="[...document.querySelectorAll('[data-setting=\"stage\"]')].map(b=>b.dataset.value)"
+FOCUS_STAGES="[...new Set([...document.querySelectorAll('[data-setting=\"stage\"]')].map(b=>b.dataset.value).concat([...document.querySelectorAll('#control-stage option')].map(o=>o.value)))]"
 
 def representative_layer(options):
  """The layer whose attention motif the stack is mostly made of.

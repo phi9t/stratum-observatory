@@ -39,3 +39,10 @@ export function exampleProgram(id){
  visit(id);
  return PYTORCH_LICENSE.split('\n').map(line=>'# '+line).join('\n')+'\n\n'+ordered.map(x=>`# ${x.title}\n# Sources: ${x.sources.map(id=>SOURCES[id].url).join(' ')}\n# Source symbols: ${x.symbols.join(', ')}\n# Scope: ${x.limitations}\n${x.code}`).join('\n\n')+'\n';
 }
+
+/** Module views use the example inventory, so code and navigation cannot diverge. */
+export function moduleStage(id){
+ if(!PYTORCH_EXAMPLES.some(example=>example.id===id))throw new RangeError(`Unknown PyTorch example: ${id}`);
+ return `module-${id}`;
+}
+export function moduleExample(stage){return PYTORCH_EXAMPLES.find(example=>`module-${example.id}`===stage)||null;}
