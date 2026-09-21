@@ -1,8 +1,8 @@
 {
   "schema": "stratum-presentations/v1",
   "status": "PASS",
-  "generated_at": "2026-09-21T00:59:24.588299+00:00",
-  "artifact_sha256": "fa0ce9863973a4dcd8e5d4b25ec133ec9c6cb7a6ab08f5661c1c0765e0bb7a62",
+  "generated_at": "2026-09-21T02:20:52.889228+00:00",
+  "artifact_sha256": "b5d9c50ee02420cec477cff40ae492f77c3850484e1215392ee93c548ba4adf5",
   "delivery": {
     "models": [
       "ds2",
@@ -662,6 +662,15 @@
         "stage": "inputs",
         "layer": 1,
         "module": "patches",
+        "panel": "chapter",
+        "example": ""
+      },
+      {
+        "model": "dsv41",
+        "view": "model",
+        "stage": "inputs",
+        "layer": 1,
+        "module": "patches",
         "panel": "maths",
         "example": "inputs"
       },
@@ -725,6 +734,15 @@
         "stage": "residual",
         "layer": 1,
         "module": "expand",
+        "panel": "chapter",
+        "example": ""
+      },
+      {
+        "model": "dsv41",
+        "view": "model",
+        "stage": "residual",
+        "layer": 1,
+        "module": "expand",
         "panel": "maths",
         "example": "residual"
       },
@@ -771,7 +789,7 @@
         "layer": 1,
         "module": "expand",
         "panel": "worked",
-        "example": "residual--ffn_coefficients"
+        "example": "residual--attention_sinkhorn_matrices"
       },
       {
         "model": "dsv41",
@@ -932,6 +950,15 @@
         "stage": "engram",
         "layer": 1,
         "module": "engram-table",
+        "panel": "chapter",
+        "example": ""
+      },
+      {
+        "model": "dsv41",
+        "view": "model",
+        "stage": "engram",
+        "layer": 1,
+        "module": "engram-table",
         "panel": "maths",
         "example": ""
       },
@@ -951,6 +978,15 @@
         "layer": 1,
         "module": "engram-table",
         "panel": "pytorch",
+        "example": ""
+      },
+      {
+        "model": "dsv41",
+        "view": "model",
+        "stage": "csa2",
+        "layer": 1,
+        "module": "csa2-window",
+        "panel": "chapter",
         "example": ""
       },
       {
@@ -1051,6 +1087,15 @@
         "module": "csa2-window",
         "panel": "worked",
         "example": "query--contributions"
+      },
+      {
+        "model": "dsv41",
+        "view": "model",
+        "stage": "dspark",
+        "layer": 1,
+        "module": "dspark-read",
+        "panel": "chapter",
+        "example": ""
       },
       {
         "model": "dsv41",
@@ -1230,7 +1275,7 @@
         "layer": 1,
         "module": "embedded",
         "panel": "worked",
-        "example": "residual--ffn_coefficients"
+        "example": "residual--attention_sinkhorn_matrices"
       },
       {
         "model": "dsv41",
@@ -1627,9 +1672,57 @@
         "module": "prefill",
         "panel": "sources",
         "example": ""
+      },
+      {
+        "model": "dsv41",
+        "view": "model",
+        "panel": "chapter",
+        "layer": 1,
+        "stage": "csa2",
+        "module": "csa2-union",
+        "example": "chap--csa2--3",
+        "phase": "decode"
+      },
+      {
+        "model": "dsv41",
+        "view": "model",
+        "panel": "chapter",
+        "layer": 1,
+        "stage": "csa2",
+        "module": "csa2-union",
+        "example": "chap--csa2--0",
+        "phase": "prefill"
+      },
+      {
+        "model": "dsv41",
+        "view": "model",
+        "panel": "chapter",
+        "layer": 1,
+        "stage": "engram",
+        "module": "engram-gate",
+        "example": "chap--engram--1"
+      },
+      {
+        "model": "dsv41",
+        "view": "model",
+        "panel": "chapter",
+        "layer": 1,
+        "stage": "residual",
+        "module": "attention-mixer",
+        "example": "chap--residual--39"
+      },
+      {
+        "model": "dsv41",
+        "view": "model",
+        "panel": "chapter",
+        "layer": 1,
+        "stage": "inputs",
+        "module": "expanded-ids",
+        "example": "chap--chart-question--3"
       }
     ],
     "workspace_panels": [
+      "chapter",
       "maths",
       "pytorch",
       "sources",
@@ -1744,6 +1837,7 @@
       "dsv41/model/encoder/index-select/worked/selection",
       "dsv41/model/encoder/index-select/worked/selection--keys",
       "dsv41/model/encoder/index-select/worked/selection--selector_scores",
+      "dsv41/model/inputs/patches/chapter/",
       "dsv41/model/inputs/patches/maths/inputs",
       "dsv41/model/inputs/vision-merge/sources/inputs",
       "dsv41/model/inputs/engram-lookup/pytorch/",
@@ -1751,12 +1845,13 @@
       "dsv41/model/inputs/patches/worked/inputs",
       "dsv41/model/inputs/patches/worked/inputs--patches",
       "dsv41/model/inputs/patches/worked/inputs--grouped_patches",
+      "dsv41/model/residual/expand/chapter/",
       "dsv41/model/residual/expand/maths/residual",
       "dsv41/model/residual/attention-write/sources/residual",
       "dsv41/model/residual/expand/pytorch/residual",
       "dsv41/model/residual/expand/worked/residual",
       "dsv41/model/residual/expand/worked/residual--previous_p",
-      "dsv41/model/residual/expand/worked/residual--ffn_coefficients",
+      "dsv41/model/residual/expand/worked/residual--attention_sinkhorn_matrices",
       "dsv41/model/ced/enc-out/maths/",
       "dsv41/model/ced/enc-out/sources/",
       "dsv41/model/ced/candidate-pool/pytorch/selection",
@@ -1774,9 +1869,11 @@
       "dsv41/model/decoder/attention/worked/query--dictionary",
       "dsv41/model/decoder/attention/worked/query--contributions",
       "dsv41/model/decoder/router/pytorch/",
+      "dsv41/model/engram/engram-table/chapter/",
       "dsv41/model/engram/engram-table/maths/",
       "dsv41/model/engram/engram-gate/sources/",
       "dsv41/model/engram/engram-table/pytorch/",
+      "dsv41/model/csa2/csa2-window/chapter/",
       "dsv41/model/csa2/csa2-reindex/maths/selection",
       "dsv41/model/csa2/csa2-full/pytorch/",
       "dsv41/model/csa2/csa2-candidates/sources/selection",
@@ -1788,6 +1885,7 @@
       "dsv41/model/csa2/csa2-window/worked/query",
       "dsv41/model/csa2/csa2-window/worked/query--dictionary",
       "dsv41/model/csa2/csa2-window/worked/query--contributions",
+      "dsv41/model/dspark/dspark-read/chapter/",
       "dsv41/model/dspark/dspark-read/maths/",
       "dsv41/model/dspark/dspark-ownership/sources/",
       "dsv41/model/dspark/dspark-read/pytorch/",
@@ -1807,7 +1905,7 @@
       "dsv41/model/module-backbone-mhc/embedded/pytorch/residual",
       "dsv41/model/module-backbone-mhc/embedded/worked/residual",
       "dsv41/model/module-backbone-mhc/embedded/worked/residual--previous_p",
-      "dsv41/model/module-backbone-mhc/embedded/worked/residual--ffn_coefficients",
+      "dsv41/model/module-backbone-mhc/embedded/worked/residual--attention_sinkhorn_matrices",
       "dsv41/model/module-backbone-mhc/attn-matrix/sources/residual",
       "dsv41/model/module-backbone-moe/tokens/maths/",
       "dsv41/model/module-backbone-moe/tokens/pytorch/",
@@ -1851,7 +1949,12 @@
       "dsv41/training/block/forward/maths/",
       "dsv41/training/block/forward/sources/",
       "dsv41/serving/block/prefill/maths/",
-      "dsv41/serving/block/prefill/sources/"
+      "dsv41/serving/block/prefill/sources/",
+      "dsv41/model/csa2/csa2-union/chapter/chap--csa2--3",
+      "dsv41/model/csa2/csa2-union/chapter/chap--csa2--0",
+      "dsv41/model/engram/engram-gate/chapter/chap--engram--1",
+      "dsv41/model/residual/attention-mixer/chapter/chap--residual--39",
+      "dsv41/model/inputs/expanded-ids/chapter/chap--chart-question--3"
     ],
     "accounting": {
       "foundations.html": {
@@ -1905,7 +2008,7 @@
     }
   },
   "counts": {
-    "PASS": 816
+    "PASS": 856
   },
   "findings": [
     {
@@ -1913,7 +2016,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "foundations.html",
-      "message": "399 KiB, valid utf-8, nothing loaded from an external origin; 1 source citations are clickable by design.",
+      "message": "335 KiB, valid utf-8, nothing loaded from an external origin; 0 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -1922,7 +2025,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "index.html",
-      "message": "49 KiB, valid utf-8, nothing loaded from an external origin; 0 source citations are clickable by design.",
+      "message": "62 KiB, valid utf-8, nothing loaded from an external origin; 0 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -1931,7 +2034,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "data-representation.html",
-      "message": "48 KiB, valid utf-8, nothing loaded from an external origin; 7 source citations are clickable by design.",
+      "message": "61 KiB, valid utf-8, nothing loaded from an external origin; 7 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -1940,7 +2043,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "qwen3.8.html",
-      "message": "399 KiB, valid utf-8, nothing loaded from an external origin; 1 source citations are clickable by design.",
+      "message": "335 KiB, valid utf-8, nothing loaded from an external origin; 0 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -1949,7 +2052,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "kimi-k3.html",
-      "message": "399 KiB, valid utf-8, nothing loaded from an external origin; 1 source citations are clickable by design.",
+      "message": "335 KiB, valid utf-8, nothing loaded from an external origin; 0 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -1958,7 +2061,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "deepseek-v4.1.html",
-      "message": "399 KiB, valid utf-8, nothing loaded from an external origin; 1 source citations are clickable by design.",
+      "message": "335 KiB, valid utf-8, nothing loaded from an external origin; 0 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -1967,7 +2070,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "hardware.html",
-      "message": "399 KiB, valid utf-8, nothing loaded from an external origin; 1 source citations are clickable by design.",
+      "message": "335 KiB, valid utf-8, nothing loaded from an external origin; 0 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -1976,7 +2079,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "networking.html",
-      "message": "399 KiB, valid utf-8, nothing loaded from an external origin; 1 source citations are clickable by design.",
+      "message": "335 KiB, valid utf-8, nothing loaded from an external origin; 0 source citations are clickable by design.",
       "remedy": "",
       "evidence": []
     },
@@ -1985,7 +2088,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "69 captures match the built artifacts.",
+      "message": "99 captures match the built artifacts.",
       "remedy": "",
       "evidence": []
     },
@@ -2003,7 +2106,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "All 9 checkpoints appear in the 69 published previews, including every one of the 25 focal pages they offer.",
+      "message": "All 9 checkpoints appear in the 99 published previews, including every one of the 25 focal pages they offer.",
       "remedy": "",
       "evidence": []
     },
@@ -2012,7 +2115,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "66 published SVG previews each hash to the digest the manifest records.",
+      "message": "96 published SVG previews each hash to the digest the manifest records.",
       "remedy": "",
       "evidence": []
     },
@@ -2021,7 +2124,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "Every one of the 69 published preview files is named by a capture record.",
+      "message": "Every one of the 99 published preview files is named by a capture record.",
       "remedy": "",
       "evidence": []
     },
@@ -2030,7 +2133,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "previews",
-      "message": "20 derived operation-panel representatives are depicted.",
+      "message": "30 derived operation-panel representatives are depicted.",
       "remedy": "",
       "evidence": []
     },
@@ -2102,7 +2205,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/inputs",
-      "message": "20 headings ordered, 86 controls named, 3 table(s) with scoped headers over 25 rows, 13 citations named.",
+      "message": "34 headings ordered, 129 controls named, 4 table(s) with scoped headers over 26 rows, 22 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2111,7 +2214,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/residual",
-      "message": "21 headings ordered, 83 controls named, 3 table(s) with scoped headers over 51 rows, 8 citations named.",
+      "message": "44 headings ordered, 108 controls named, 8 table(s) with scoped headers over 85 rows, 18 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2129,7 +2232,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/encoder",
-      "message": "17 headings ordered, 124 controls named, 1 table(s) with scoped headers over 4 rows, 11 citations named.",
+      "message": "17 headings ordered, 125 controls named, 1 table(s) with scoped headers over 4 rows, 11 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2138,7 +2241,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/decoder",
-      "message": "18 headings ordered, 128 controls named, 2 table(s) with scoped headers over 16 rows, 12 citations named.",
+      "message": "18 headings ordered, 129 controls named, 2 table(s) with scoped headers over 16 rows, 12 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2147,7 +2250,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/engram",
-      "message": "16 headings ordered, 70 controls named, 1 table(s) with scoped headers over 4 rows, 9 citations named.",
+      "message": "25 headings ordered, 93 controls named, 4 table(s) with scoped headers over 13 rows, 18 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2156,7 +2259,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/csa2",
-      "message": "16 headings ordered, 85 controls named, 3 table(s) with scoped headers over 24 rows, 13 citations named.",
+      "message": "33 headings ordered, 153 controls named, 6 table(s) with scoped headers over 32 rows, 23 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2165,7 +2268,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/dspark",
-      "message": "23 headings ordered, 118 controls named, 3 table(s) with scoped headers over 31 rows, 23 citations named.",
+      "message": "31 headings ordered, 139 controls named, 4 table(s) with scoped headers over 34 rows, 34 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2174,7 +2277,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/module-vision-inputs",
-      "message": "13 headings ordered, 78 controls named, 2 table(s) with scoped headers over 21 rows, 5 citations named.",
+      "message": "13 headings ordered, 79 controls named, 2 table(s) with scoped headers over 21 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2183,7 +2286,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/module-backbone-mhc",
-      "message": "14 headings ordered, 95 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
+      "message": "14 headings ordered, 96 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2192,7 +2295,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/module-backbone-moe",
-      "message": "13 headings ordered, 77 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "message": "13 headings ordered, 78 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2201,7 +2304,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/module-engram-write",
-      "message": "11 headings ordered, 70 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
+      "message": "11 headings ordered, 71 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2210,7 +2313,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/module-csa2-compression",
-      "message": "12 headings ordered, 70 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "message": "12 headings ordered, 71 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2219,7 +2322,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/module-csa2-selection",
-      "message": "13 headings ordered, 70 controls named, 1 table(s) with scoped headers over 13 rows, 4 citations named.",
+      "message": "13 headings ordered, 71 controls named, 1 table(s) with scoped headers over 13 rows, 4 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2228,7 +2331,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/module-csa2-attention",
-      "message": "12 headings ordered, 75 controls named, 1 table(s) with scoped headers over 7 rows, 6 citations named.",
+      "message": "12 headings ordered, 76 controls named, 1 table(s) with scoped headers over 7 rows, 6 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2237,7 +2340,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/module-dspark-pro-block",
-      "message": "13 headings ordered, 90 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
+      "message": "13 headings ordered, 91 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2246,7 +2349,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/module-dspark-attention",
-      "message": "13 headings ordered, 70 controls named, 2 table(s) with scoped headers over 26 rows, 5 citations named.",
+      "message": "13 headings ordered, 71 controls named, 2 table(s) with scoped headers over 26 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2255,7 +2358,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/module-dspark-heads",
-      "message": "14 headings ordered, 74 controls named, 2 table(s) with scoped headers over 26 rows, 4 citations named.",
+      "message": "14 headings ordered, 75 controls named, 2 table(s) with scoped headers over 26 rows, 4 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -2264,7 +2367,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/module-deepspec-verifier",
-      "message": "13 headings ordered, 83 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "13 headings ordered, 84 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -4613,7 +4716,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/encoder/router/maths/",
-      "message": "26 headings ordered, 115 controls named, 1 table(s) with scoped headers over 4 rows, 11 citations named.",
+      "message": "26 headings ordered, 116 controls named, 1 table(s) with scoped headers over 4 rows, 11 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -4685,7 +4788,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/encoder/attention/pytorch/query",
-      "message": "19 headings ordered, 125 controls named, 1 table(s) with scoped headers over 4 rows, 13 citations named.",
+      "message": "19 headings ordered, 126 controls named, 1 table(s) with scoped headers over 4 rows, 13 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -4721,7 +4824,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/encoder/attention/worked/query",
-      "message": "20 headings ordered, 121 controls named, 2 table(s) with scoped headers over 11 rows, 11 citations named.",
+      "message": "20 headings ordered, 122 controls named, 2 table(s) with scoped headers over 11 rows, 11 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -4757,7 +4860,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/encoder/attention/worked/query--dictionary",
-      "message": "20 headings ordered, 121 controls named, 2 table(s) with scoped headers over 11 rows, 11 citations named.",
+      "message": "20 headings ordered, 122 controls named, 2 table(s) with scoped headers over 11 rows, 11 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -4793,7 +4896,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/encoder/attention/worked/query--contributions",
-      "message": "20 headings ordered, 121 controls named, 2 table(s) with scoped headers over 11 rows, 11 citations named.",
+      "message": "20 headings ordered, 122 controls named, 2 table(s) with scoped headers over 11 rows, 11 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -4829,7 +4932,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/encoder/router/pytorch/",
-      "message": "18 headings ordered, 119 controls named, 1 table(s) with scoped headers over 4 rows, 12 citations named.",
+      "message": "18 headings ordered, 120 controls named, 1 table(s) with scoped headers over 4 rows, 12 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -4865,7 +4968,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/encoder/index-select/pytorch/selection",
-      "message": "16 headings ordered, 120 controls named, 1 table(s) with scoped headers over 4 rows, 12 citations named.",
+      "message": "16 headings ordered, 121 controls named, 1 table(s) with scoped headers over 4 rows, 12 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -4901,7 +5004,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/encoder/index-select/worked/selection",
-      "message": "17 headings ordered, 117 controls named, 2 table(s) with scoped headers over 17 rows, 11 citations named.",
+      "message": "17 headings ordered, 118 controls named, 2 table(s) with scoped headers over 17 rows, 11 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -4937,7 +5040,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/encoder/index-select/worked/selection--keys",
-      "message": "17 headings ordered, 117 controls named, 2 table(s) with scoped headers over 17 rows, 11 citations named.",
+      "message": "17 headings ordered, 118 controls named, 2 table(s) with scoped headers over 17 rows, 11 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -4973,7 +5076,43 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/encoder/index-select/worked/selection--selector_scores",
-      "message": "17 headings ordered, 117 controls named, 2 table(s) with scoped headers over 17 rows, 11 citations named.",
+      "message": "17 headings ordered, 118 controls named, 2 table(s) with scoped headers over 17 rows, 11 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "WORKSPACE_PANEL",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "{'model': 'dsv41', 'view': 'model', 'stage': 'inputs', 'layer': 1, 'module': 'patches', 'panel': 'chapter', 'example': ''}",
+      "message": "Selected operation panel is visible, nonempty, active and preserves its state.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "EXPORT_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "svg",
+      "message": "Export is namespaced, self-contained and carries a backdrop.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "SCENARIO_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "export",
+      "message": "Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/model/inputs/patches/chapter/",
+      "message": "33 headings ordered, 128 controls named, 4 table(s) with scoped headers over 26 rows, 22 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5009,7 +5148,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/inputs/patches/maths/inputs",
-      "message": "29 headings ordered, 85 controls named, 3 table(s) with scoped headers over 25 rows, 13 citations named.",
+      "message": "29 headings ordered, 87 controls named, 3 table(s) with scoped headers over 25 rows, 13 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5045,7 +5184,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/inputs/vision-merge/sources/inputs",
-      "message": "24 headings ordered, 95 controls named, 3 table(s) with scoped headers over 25 rows, 23 citations named.",
+      "message": "24 headings ordered, 97 controls named, 3 table(s) with scoped headers over 25 rows, 23 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5081,7 +5220,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/inputs/engram-lookup/pytorch/",
-      "message": "21 headings ordered, 88 controls named, 3 table(s) with scoped headers over 25 rows, 15 citations named.",
+      "message": "21 headings ordered, 90 controls named, 3 table(s) with scoped headers over 25 rows, 15 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5117,7 +5256,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/inputs/patches/pytorch/inputs",
-      "message": "21 headings ordered, 90 controls named, 3 table(s) with scoped headers over 25 rows, 15 citations named.",
+      "message": "21 headings ordered, 92 controls named, 3 table(s) with scoped headers over 25 rows, 15 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5153,7 +5292,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/inputs/patches/worked/inputs",
-      "message": "22 headings ordered, 86 controls named, 5 table(s) with scoped headers over 46 rows, 13 citations named.",
+      "message": "22 headings ordered, 88 controls named, 5 table(s) with scoped headers over 46 rows, 13 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5189,7 +5328,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/inputs/patches/worked/inputs--patches",
-      "message": "22 headings ordered, 86 controls named, 5 table(s) with scoped headers over 46 rows, 13 citations named.",
+      "message": "22 headings ordered, 88 controls named, 5 table(s) with scoped headers over 46 rows, 13 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5225,7 +5364,43 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/inputs/patches/worked/inputs--grouped_patches",
-      "message": "22 headings ordered, 86 controls named, 5 table(s) with scoped headers over 46 rows, 13 citations named.",
+      "message": "22 headings ordered, 88 controls named, 5 table(s) with scoped headers over 46 rows, 13 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "WORKSPACE_PANEL",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "{'model': 'dsv41', 'view': 'model', 'stage': 'residual', 'layer': 1, 'module': 'expand', 'panel': 'chapter', 'example': ''}",
+      "message": "Selected operation panel is visible, nonempty, active and preserves its state.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "EXPORT_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "svg",
+      "message": "Export is namespaced, self-contained and carries a backdrop.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "SCENARIO_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "export",
+      "message": "Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/model/residual/expand/chapter/",
+      "message": "42 headings ordered, 102 controls named, 8 table(s) with scoped headers over 85 rows, 18 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5261,7 +5436,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/residual/expand/maths/residual",
-      "message": "35 headings ordered, 77 controls named, 3 table(s) with scoped headers over 51 rows, 8 citations named.",
+      "message": "35 headings ordered, 79 controls named, 3 table(s) with scoped headers over 65 rows, 8 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5297,7 +5472,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/residual/attention-write/sources/residual",
-      "message": "25 headings ordered, 90 controls named, 3 table(s) with scoped headers over 51 rows, 15 citations named.",
+      "message": "25 headings ordered, 92 controls named, 3 table(s) with scoped headers over 65 rows, 15 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5333,7 +5508,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/residual/expand/pytorch/residual",
-      "message": "21 headings ordered, 82 controls named, 3 table(s) with scoped headers over 51 rows, 10 citations named.",
+      "message": "21 headings ordered, 84 controls named, 3 table(s) with scoped headers over 65 rows, 10 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5369,7 +5544,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/residual/expand/worked/residual",
-      "message": "21 headings ordered, 78 controls named, 3 table(s) with scoped headers over 51 rows, 8 citations named.",
+      "message": "21 headings ordered, 80 controls named, 3 table(s) with scoped headers over 65 rows, 8 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5405,7 +5580,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/residual/expand/worked/residual--previous_p",
-      "message": "21 headings ordered, 78 controls named, 3 table(s) with scoped headers over 51 rows, 8 citations named.",
+      "message": "21 headings ordered, 80 controls named, 3 table(s) with scoped headers over 65 rows, 8 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5413,7 +5588,7 @@
       "code": "WORKSPACE_PANEL",
       "domain": "presentations",
       "status": "PASS",
-      "subject": "{'model': 'dsv41', 'view': 'model', 'stage': 'residual', 'layer': 1, 'module': 'expand', 'panel': 'worked', 'example': 'residual--ffn_coefficients'}",
+      "subject": "{'model': 'dsv41', 'view': 'model', 'stage': 'residual', 'layer': 1, 'module': 'expand', 'panel': 'worked', 'example': 'residual--attention_sinkhorn_matrices'}",
       "message": "Selected operation panel is visible, nonempty, active and preserves its state.",
       "remedy": "",
       "evidence": []
@@ -5440,8 +5615,8 @@
       "code": "PROSE_OK",
       "domain": "presentations",
       "status": "PASS",
-      "subject": "dsv41/model/residual/expand/worked/residual--ffn_coefficients",
-      "message": "21 headings ordered, 78 controls named, 3 table(s) with scoped headers over 51 rows, 8 citations named.",
+      "subject": "dsv41/model/residual/expand/worked/residual--attention_sinkhorn_matrices",
+      "message": "21 headings ordered, 80 controls named, 3 table(s) with scoped headers over 65 rows, 8 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5549,7 +5724,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/ced/candidate-pool/pytorch/selection",
-      "message": "12 headings ordered, 102 controls named, 1 table(s) with scoped headers over 8 rows, 30 citations named.",
+      "message": "12 headings ordered, 103 controls named, 1 table(s) with scoped headers over 8 rows, 30 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5585,7 +5760,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/ced/candidate-pool/worked/selection",
-      "message": "13 headings ordered, 99 controls named, 2 table(s) with scoped headers over 21 rows, 29 citations named.",
+      "message": "13 headings ordered, 100 controls named, 2 table(s) with scoped headers over 21 rows, 29 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5621,7 +5796,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/ced/candidate-pool/worked/selection--keys",
-      "message": "13 headings ordered, 99 controls named, 2 table(s) with scoped headers over 21 rows, 29 citations named.",
+      "message": "13 headings ordered, 100 controls named, 2 table(s) with scoped headers over 21 rows, 29 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5657,7 +5832,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/ced/candidate-pool/worked/selection--selector_scores",
-      "message": "13 headings ordered, 99 controls named, 2 table(s) with scoped headers over 21 rows, 29 citations named.",
+      "message": "13 headings ordered, 100 controls named, 2 table(s) with scoped headers over 21 rows, 29 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5693,7 +5868,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/decoder/router/maths/",
-      "message": "27 headings ordered, 121 controls named, 2 table(s) with scoped headers over 16 rows, 12 citations named.",
+      "message": "27 headings ordered, 122 controls named, 2 table(s) with scoped headers over 16 rows, 12 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5765,7 +5940,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/decoder/index-proj/pytorch/selection",
-      "message": "19 headings ordered, 126 controls named, 2 table(s) with scoped headers over 16 rows, 13 citations named.",
+      "message": "19 headings ordered, 127 controls named, 2 table(s) with scoped headers over 16 rows, 13 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5801,7 +5976,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/decoder/index-proj/worked/selection",
-      "message": "20 headings ordered, 123 controls named, 3 table(s) with scoped headers over 29 rows, 12 citations named.",
+      "message": "20 headings ordered, 124 controls named, 3 table(s) with scoped headers over 29 rows, 12 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5837,7 +6012,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/decoder/index-proj/worked/selection--keys",
-      "message": "20 headings ordered, 123 controls named, 3 table(s) with scoped headers over 29 rows, 12 citations named.",
+      "message": "20 headings ordered, 124 controls named, 3 table(s) with scoped headers over 29 rows, 12 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5873,7 +6048,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/decoder/index-proj/worked/selection--selector_scores",
-      "message": "20 headings ordered, 123 controls named, 3 table(s) with scoped headers over 29 rows, 12 citations named.",
+      "message": "20 headings ordered, 124 controls named, 3 table(s) with scoped headers over 29 rows, 12 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5909,7 +6084,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/decoder/attention/pytorch/query",
-      "message": "20 headings ordered, 133 controls named, 2 table(s) with scoped headers over 16 rows, 14 citations named.",
+      "message": "20 headings ordered, 134 controls named, 2 table(s) with scoped headers over 16 rows, 14 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5945,7 +6120,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/decoder/attention/worked/query",
-      "message": "21 headings ordered, 129 controls named, 3 table(s) with scoped headers over 23 rows, 12 citations named.",
+      "message": "21 headings ordered, 130 controls named, 3 table(s) with scoped headers over 23 rows, 12 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -5981,7 +6156,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/decoder/attention/worked/query--dictionary",
-      "message": "21 headings ordered, 129 controls named, 3 table(s) with scoped headers over 23 rows, 12 citations named.",
+      "message": "21 headings ordered, 130 controls named, 3 table(s) with scoped headers over 23 rows, 12 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6017,7 +6192,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/decoder/attention/worked/query--contributions",
-      "message": "21 headings ordered, 129 controls named, 3 table(s) with scoped headers over 23 rows, 12 citations named.",
+      "message": "21 headings ordered, 130 controls named, 3 table(s) with scoped headers over 23 rows, 12 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6053,7 +6228,43 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/decoder/router/pytorch/",
-      "message": "19 headings ordered, 125 controls named, 2 table(s) with scoped headers over 16 rows, 13 citations named.",
+      "message": "19 headings ordered, 126 controls named, 2 table(s) with scoped headers over 16 rows, 13 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "WORKSPACE_PANEL",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "{'model': 'dsv41', 'view': 'model', 'stage': 'engram', 'layer': 1, 'module': 'engram-table', 'panel': 'chapter', 'example': ''}",
+      "message": "Selected operation panel is visible, nonempty, active and preserves its state.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "EXPORT_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "svg",
+      "message": "Export is namespaced, self-contained and carries a backdrop.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "SCENARIO_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "export",
+      "message": "Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/model/engram/engram-table/chapter/",
+      "message": "24 headings ordered, 91 controls named, 4 table(s) with scoped headers over 13 rows, 18 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6089,7 +6300,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/engram/engram-table/maths/",
-      "message": "20 headings ordered, 68 controls named, 1 table(s) with scoped headers over 4 rows, 9 citations named.",
+      "message": "20 headings ordered, 70 controls named, 1 table(s) with scoped headers over 4 rows, 9 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6125,7 +6336,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/engram/engram-gate/sources/",
-      "message": "20 headings ordered, 77 controls named, 1 table(s) with scoped headers over 4 rows, 16 citations named.",
+      "message": "20 headings ordered, 79 controls named, 1 table(s) with scoped headers over 4 rows, 16 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6161,7 +6372,43 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/engram/engram-table/pytorch/",
-      "message": "17 headings ordered, 73 controls named, 1 table(s) with scoped headers over 4 rows, 11 citations named.",
+      "message": "17 headings ordered, 75 controls named, 1 table(s) with scoped headers over 4 rows, 11 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "WORKSPACE_PANEL",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "{'model': 'dsv41', 'view': 'model', 'stage': 'csa2', 'layer': 1, 'module': 'csa2-window', 'panel': 'chapter', 'example': ''}",
+      "message": "Selected operation panel is visible, nonempty, active and preserves its state.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "EXPORT_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "svg",
+      "message": "Export is namespaced, self-contained and carries a backdrop.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "SCENARIO_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "export",
+      "message": "Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/model/csa2/csa2-window/chapter/",
+      "message": "32 headings ordered, 151 controls named, 6 table(s) with scoped headers over 32 rows, 23 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6197,7 +6444,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/csa2/csa2-reindex/maths/selection",
-      "message": "17 headings ordered, 83 controls named, 3 table(s) with scoped headers over 24 rows, 13 citations named.",
+      "message": "17 headings ordered, 85 controls named, 3 table(s) with scoped headers over 24 rows, 13 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6233,7 +6480,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/csa2/csa2-full/pytorch/",
-      "message": "16 headings ordered, 86 controls named, 3 table(s) with scoped headers over 24 rows, 14 citations named.",
+      "message": "16 headings ordered, 88 controls named, 3 table(s) with scoped headers over 24 rows, 14 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6269,7 +6516,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/csa2/csa2-candidates/sources/selection",
-      "message": "22 headings ordered, 95 controls named, 3 table(s) with scoped headers over 24 rows, 22 citations named.",
+      "message": "22 headings ordered, 97 controls named, 3 table(s) with scoped headers over 24 rows, 22 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6305,7 +6552,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/csa2/csa2-reindex/pytorch/selection",
-      "message": "16 headings ordered, 87 controls named, 3 table(s) with scoped headers over 24 rows, 14 citations named.",
+      "message": "16 headings ordered, 89 controls named, 3 table(s) with scoped headers over 24 rows, 14 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6341,7 +6588,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/csa2/csa2-reindex/worked/selection",
-      "message": "17 headings ordered, 84 controls named, 4 table(s) with scoped headers over 37 rows, 13 citations named.",
+      "message": "17 headings ordered, 86 controls named, 4 table(s) with scoped headers over 37 rows, 13 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6377,7 +6624,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/csa2/csa2-reindex/worked/selection--keys",
-      "message": "17 headings ordered, 84 controls named, 4 table(s) with scoped headers over 37 rows, 13 citations named.",
+      "message": "17 headings ordered, 86 controls named, 4 table(s) with scoped headers over 37 rows, 13 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6413,7 +6660,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/csa2/csa2-reindex/worked/selection--selector_scores",
-      "message": "17 headings ordered, 84 controls named, 4 table(s) with scoped headers over 37 rows, 13 citations named.",
+      "message": "17 headings ordered, 86 controls named, 4 table(s) with scoped headers over 37 rows, 13 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6449,7 +6696,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/csa2/csa2-window/pytorch/query",
-      "message": "17 headings ordered, 88 controls named, 3 table(s) with scoped headers over 24 rows, 15 citations named.",
+      "message": "17 headings ordered, 90 controls named, 3 table(s) with scoped headers over 24 rows, 15 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6485,7 +6732,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/csa2/csa2-window/worked/query",
-      "message": "18 headings ordered, 84 controls named, 4 table(s) with scoped headers over 31 rows, 13 citations named.",
+      "message": "18 headings ordered, 86 controls named, 4 table(s) with scoped headers over 31 rows, 13 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6521,7 +6768,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/csa2/csa2-window/worked/query--dictionary",
-      "message": "18 headings ordered, 84 controls named, 4 table(s) with scoped headers over 31 rows, 13 citations named.",
+      "message": "18 headings ordered, 86 controls named, 4 table(s) with scoped headers over 31 rows, 13 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6557,7 +6804,43 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/csa2/csa2-window/worked/query--contributions",
-      "message": "18 headings ordered, 84 controls named, 4 table(s) with scoped headers over 31 rows, 13 citations named.",
+      "message": "18 headings ordered, 86 controls named, 4 table(s) with scoped headers over 31 rows, 13 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "WORKSPACE_PANEL",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "{'model': 'dsv41', 'view': 'model', 'stage': 'dspark', 'layer': 1, 'module': 'dspark-read', 'panel': 'chapter', 'example': ''}",
+      "message": "Selected operation panel is visible, nonempty, active and preserves its state.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "EXPORT_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "svg",
+      "message": "Export is namespaced, self-contained and carries a backdrop.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "SCENARIO_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "export",
+      "message": "Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/model/dspark/dspark-read/chapter/",
+      "message": "30 headings ordered, 137 controls named, 4 table(s) with scoped headers over 34 rows, 34 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6593,7 +6876,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/dspark/dspark-read/maths/",
-      "message": "36 headings ordered, 116 controls named, 3 table(s) with scoped headers over 31 rows, 23 citations named.",
+      "message": "36 headings ordered, 118 controls named, 3 table(s) with scoped headers over 31 rows, 23 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6629,7 +6912,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/dspark/dspark-ownership/sources/",
-      "message": "23 headings ordered, 117 controls named, 3 table(s) with scoped headers over 31 rows, 30 citations named.",
+      "message": "23 headings ordered, 118 controls named, 3 table(s) with scoped headers over 31 rows, 30 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6665,7 +6948,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/dspark/dspark-read/pytorch/",
-      "message": "24 headings ordered, 121 controls named, 3 table(s) with scoped headers over 31 rows, 25 citations named.",
+      "message": "24 headings ordered, 123 controls named, 3 table(s) with scoped headers over 31 rows, 25 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6701,7 +6984,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/dspark/dspark-attention/pytorch/dspark",
-      "message": "25 headings ordered, 123 controls named, 3 table(s) with scoped headers over 31 rows, 25 citations named.",
+      "message": "25 headings ordered, 125 controls named, 3 table(s) with scoped headers over 31 rows, 25 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6737,7 +7020,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/dspark/dspark-attention/worked/dspark",
-      "message": "26 headings ordered, 119 controls named, 5 table(s) with scoped headers over 57 rows, 23 citations named.",
+      "message": "26 headings ordered, 121 controls named, 5 table(s) with scoped headers over 57 rows, 23 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6773,7 +7056,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/dspark/dspark-attention/worked/dspark--base_logits",
-      "message": "26 headings ordered, 119 controls named, 5 table(s) with scoped headers over 57 rows, 23 citations named.",
+      "message": "26 headings ordered, 121 controls named, 5 table(s) with scoped headers over 57 rows, 23 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6809,7 +7092,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/dspark/dspark-attention/worked/dspark--attention_probabilities",
-      "message": "26 headings ordered, 119 controls named, 5 table(s) with scoped headers over 57 rows, 23 citations named.",
+      "message": "26 headings ordered, 121 controls named, 5 table(s) with scoped headers over 57 rows, 23 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6845,7 +7128,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/dspark/dspark-parallel-logits/pytorch/dspark",
-      "message": "24 headings ordered, 123 controls named, 3 table(s) with scoped headers over 31 rows, 24 citations named.",
+      "message": "24 headings ordered, 125 controls named, 3 table(s) with scoped headers over 31 rows, 24 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6881,7 +7164,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/dspark/dspark-verification/pytorch/",
-      "message": "24 headings ordered, 122 controls named, 3 table(s) with scoped headers over 31 rows, 27 citations named.",
+      "message": "24 headings ordered, 124 controls named, 3 table(s) with scoped headers over 31 rows, 27 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6917,7 +7200,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-vision-inputs/prompt/maths/inputs",
-      "message": "32 headings ordered, 76 controls named, 2 table(s) with scoped headers over 21 rows, 5 citations named.",
+      "message": "32 headings ordered, 77 controls named, 2 table(s) with scoped headers over 21 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6953,7 +7236,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-vision-inputs/prompt/pytorch/inputs",
-      "message": "14 headings ordered, 81 controls named, 2 table(s) with scoped headers over 21 rows, 7 citations named.",
+      "message": "14 headings ordered, 82 controls named, 2 table(s) with scoped headers over 21 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -6989,7 +7272,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-vision-inputs/prompt/worked/inputs",
-      "message": "15 headings ordered, 77 controls named, 4 table(s) with scoped headers over 42 rows, 5 citations named.",
+      "message": "15 headings ordered, 78 controls named, 4 table(s) with scoped headers over 42 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7025,7 +7308,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-vision-inputs/prompt/worked/inputs--patches",
-      "message": "15 headings ordered, 77 controls named, 4 table(s) with scoped headers over 42 rows, 5 citations named.",
+      "message": "15 headings ordered, 78 controls named, 4 table(s) with scoped headers over 42 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7061,7 +7344,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-vision-inputs/prompt/worked/inputs--grouped_patches",
-      "message": "15 headings ordered, 77 controls named, 4 table(s) with scoped headers over 42 rows, 5 citations named.",
+      "message": "15 headings ordered, 78 controls named, 4 table(s) with scoped headers over 42 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7097,7 +7380,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-vision-inputs/vision-merge/sources/inputs",
-      "message": "17 headings ordered, 87 controls named, 2 table(s) with scoped headers over 21 rows, 15 citations named.",
+      "message": "17 headings ordered, 88 controls named, 2 table(s) with scoped headers over 21 rows, 15 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7133,7 +7416,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-backbone-mhc/embedded/maths/residual",
-      "message": "45 headings ordered, 91 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
+      "message": "45 headings ordered, 92 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7169,7 +7452,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-backbone-mhc/embedded/pytorch/residual",
-      "message": "14 headings ordered, 96 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "14 headings ordered, 97 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7205,7 +7488,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-backbone-mhc/embedded/worked/residual",
-      "message": "14 headings ordered, 92 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
+      "message": "14 headings ordered, 93 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7241,7 +7524,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-backbone-mhc/embedded/worked/residual--previous_p",
-      "message": "14 headings ordered, 92 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
+      "message": "14 headings ordered, 93 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7249,7 +7532,7 @@
       "code": "WORKSPACE_PANEL",
       "domain": "presentations",
       "status": "PASS",
-      "subject": "{'model': 'dsv41', 'view': 'model', 'stage': 'module-backbone-mhc', 'layer': 1, 'module': 'embedded', 'panel': 'worked', 'example': 'residual--ffn_coefficients'}",
+      "subject": "{'model': 'dsv41', 'view': 'model', 'stage': 'module-backbone-mhc', 'layer': 1, 'module': 'embedded', 'panel': 'worked', 'example': 'residual--attention_sinkhorn_matrices'}",
       "message": "Selected operation panel is visible, nonempty, active and preserves its state.",
       "remedy": "",
       "evidence": []
@@ -7276,8 +7559,8 @@
       "code": "PROSE_OK",
       "domain": "presentations",
       "status": "PASS",
-      "subject": "dsv41/model/module-backbone-mhc/embedded/worked/residual--ffn_coefficients",
-      "message": "14 headings ordered, 92 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
+      "subject": "dsv41/model/module-backbone-mhc/embedded/worked/residual--attention_sinkhorn_matrices",
+      "message": "14 headings ordered, 93 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7313,7 +7596,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-backbone-mhc/attn-matrix/sources/residual",
-      "message": "16 headings ordered, 94 controls named, 0 table(s) with scoped headers over 0 rows, 8 citations named.",
+      "message": "16 headings ordered, 95 controls named, 0 table(s) with scoped headers over 0 rows, 8 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7349,7 +7632,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-backbone-moe/tokens/maths/",
-      "message": "31 headings ordered, 76 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "message": "31 headings ordered, 77 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7385,7 +7668,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-backbone-moe/tokens/pytorch/",
-      "message": "14 headings ordered, 80 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
+      "message": "14 headings ordered, 81 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7421,7 +7704,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-backbone-moe/output/sources/",
-      "message": "16 headings ordered, 77 controls named, 0 table(s) with scoped headers over 0 rows, 6 citations named.",
+      "message": "16 headings ordered, 78 controls named, 0 table(s) with scoped headers over 0 rows, 6 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7457,7 +7740,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-engram-write/residual/maths/",
-      "message": "25 headings ordered, 70 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
+      "message": "25 headings ordered, 71 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7493,7 +7776,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-engram-write/residual/pytorch/",
-      "message": "13 headings ordered, 75 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "13 headings ordered, 76 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7529,7 +7812,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-engram-write/score/sources/",
-      "message": "18 headings ordered, 76 controls named, 0 table(s) with scoped headers over 0 rows, 8 citations named.",
+      "message": "18 headings ordered, 77 controls named, 0 table(s) with scoped headers over 0 rows, 8 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7565,7 +7848,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-csa2-compression/tokens/maths/",
-      "message": "26 headings ordered, 70 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
+      "message": "26 headings ordered, 71 controls named, 0 table(s) with scoped headers over 0 rows, 4 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7601,7 +7884,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-csa2-compression/tokens/pytorch/",
-      "message": "14 headings ordered, 74 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
+      "message": "14 headings ordered, 75 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7637,7 +7920,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-csa2-compression/concat/sources/",
-      "message": "18 headings ordered, 74 controls named, 0 table(s) with scoped headers over 0 rows, 6 citations named.",
+      "message": "18 headings ordered, 75 controls named, 0 table(s) with scoped headers over 0 rows, 6 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7673,7 +7956,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-csa2-selection/query/maths/selection",
-      "message": "28 headings ordered, 70 controls named, 1 table(s) with scoped headers over 13 rows, 4 citations named.",
+      "message": "28 headings ordered, 71 controls named, 1 table(s) with scoped headers over 13 rows, 4 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7709,7 +7992,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-csa2-selection/query/pytorch/selection",
-      "message": "15 headings ordered, 74 controls named, 1 table(s) with scoped headers over 13 rows, 5 citations named.",
+      "message": "15 headings ordered, 75 controls named, 1 table(s) with scoped headers over 13 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7745,7 +8028,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-csa2-selection/query/worked/selection",
-      "message": "16 headings ordered, 71 controls named, 2 table(s) with scoped headers over 26 rows, 4 citations named.",
+      "message": "16 headings ordered, 72 controls named, 2 table(s) with scoped headers over 26 rows, 4 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7781,7 +8064,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-csa2-selection/query/worked/selection--keys",
-      "message": "16 headings ordered, 71 controls named, 2 table(s) with scoped headers over 26 rows, 4 citations named.",
+      "message": "16 headings ordered, 72 controls named, 2 table(s) with scoped headers over 26 rows, 4 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7817,7 +8100,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-csa2-selection/query/worked/selection--selector_scores",
-      "message": "16 headings ordered, 71 controls named, 2 table(s) with scoped headers over 26 rows, 4 citations named.",
+      "message": "16 headings ordered, 72 controls named, 2 table(s) with scoped headers over 26 rows, 4 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7853,7 +8136,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-csa2-selection/position-topk/sources/selection",
-      "message": "18 headings ordered, 73 controls named, 1 table(s) with scoped headers over 13 rows, 6 citations named.",
+      "message": "18 headings ordered, 74 controls named, 1 table(s) with scoped headers over 13 rows, 6 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7889,7 +8172,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-csa2-attention/local-cache/maths/query",
-      "message": "31 headings ordered, 75 controls named, 1 table(s) with scoped headers over 7 rows, 6 citations named.",
+      "message": "31 headings ordered, 76 controls named, 1 table(s) with scoped headers over 7 rows, 6 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7925,7 +8208,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-csa2-attention/local-cache/pytorch/query",
-      "message": "14 headings ordered, 80 controls named, 1 table(s) with scoped headers over 7 rows, 8 citations named.",
+      "message": "14 headings ordered, 81 controls named, 1 table(s) with scoped headers over 7 rows, 8 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7961,7 +8244,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-csa2-attention/local-cache/worked/query",
-      "message": "15 headings ordered, 76 controls named, 2 table(s) with scoped headers over 14 rows, 6 citations named.",
+      "message": "15 headings ordered, 77 controls named, 2 table(s) with scoped headers over 14 rows, 6 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -7997,7 +8280,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-csa2-attention/local-cache/worked/query--dictionary",
-      "message": "15 headings ordered, 76 controls named, 2 table(s) with scoped headers over 14 rows, 6 citations named.",
+      "message": "15 headings ordered, 77 controls named, 2 table(s) with scoped headers over 14 rows, 6 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8033,7 +8316,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-csa2-attention/local-cache/worked/query--contributions",
-      "message": "15 headings ordered, 76 controls named, 2 table(s) with scoped headers over 14 rows, 6 citations named.",
+      "message": "15 headings ordered, 77 controls named, 2 table(s) with scoped headers over 14 rows, 6 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8069,7 +8352,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-csa2-attention/query-readouts/sources/query",
-      "message": "17 headings ordered, 79 controls named, 1 table(s) with scoped headers over 7 rows, 9 citations named.",
+      "message": "17 headings ordered, 80 controls named, 1 table(s) with scoped headers over 7 rows, 9 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8105,7 +8388,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-dspark-pro-block/dspark-features/maths/",
-      "message": "41 headings ordered, 85 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
+      "message": "41 headings ordered, 86 controls named, 0 table(s) with scoped headers over 0 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8141,7 +8424,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-dspark-pro-block/dspark-features/pytorch/",
-      "message": "12 headings ordered, 90 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "12 headings ordered, 91 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8177,7 +8460,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-dspark-pro-block/dspark-ownership/sources/",
-      "message": "13 headings ordered, 91 controls named, 0 table(s) with scoped headers over 0 rows, 12 citations named.",
+      "message": "13 headings ordered, 92 controls named, 0 table(s) with scoped headers over 0 rows, 12 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8213,7 +8496,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-dspark-attention/queries/maths/dspark",
-      "message": "27 headings ordered, 70 controls named, 2 table(s) with scoped headers over 26 rows, 5 citations named.",
+      "message": "27 headings ordered, 71 controls named, 2 table(s) with scoped headers over 26 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8249,7 +8532,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-dspark-attention/queries/pytorch/dspark",
-      "message": "15 headings ordered, 75 controls named, 2 table(s) with scoped headers over 26 rows, 7 citations named.",
+      "message": "15 headings ordered, 76 controls named, 2 table(s) with scoped headers over 26 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8285,7 +8568,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-dspark-attention/queries/worked/dspark",
-      "message": "16 headings ordered, 71 controls named, 4 table(s) with scoped headers over 52 rows, 5 citations named.",
+      "message": "16 headings ordered, 72 controls named, 4 table(s) with scoped headers over 52 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8321,7 +8604,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-dspark-attention/queries/worked/dspark--base_logits",
-      "message": "16 headings ordered, 71 controls named, 4 table(s) with scoped headers over 52 rows, 5 citations named.",
+      "message": "16 headings ordered, 72 controls named, 4 table(s) with scoped headers over 52 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8357,7 +8640,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-dspark-attention/queries/worked/dspark--attention_probabilities",
-      "message": "16 headings ordered, 71 controls named, 4 table(s) with scoped headers over 52 rows, 5 citations named.",
+      "message": "16 headings ordered, 72 controls named, 4 table(s) with scoped headers over 52 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8393,7 +8676,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-dspark-attention/visibility/sources/dspark",
-      "message": "17 headings ordered, 73 controls named, 2 table(s) with scoped headers over 26 rows, 8 citations named.",
+      "message": "17 headings ordered, 74 controls named, 2 table(s) with scoped headers over 26 rows, 8 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8429,7 +8712,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-dspark-heads/hidden/maths/dspark",
-      "message": "30 headings ordered, 73 controls named, 2 table(s) with scoped headers over 26 rows, 4 citations named.",
+      "message": "30 headings ordered, 74 controls named, 2 table(s) with scoped headers over 26 rows, 4 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8465,7 +8748,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-dspark-heads/hidden/pytorch/dspark",
-      "message": "15 headings ordered, 77 controls named, 2 table(s) with scoped headers over 26 rows, 5 citations named.",
+      "message": "15 headings ordered, 78 controls named, 2 table(s) with scoped headers over 26 rows, 5 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8501,7 +8784,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-dspark-heads/hidden/worked/dspark",
-      "message": "16 headings ordered, 74 controls named, 4 table(s) with scoped headers over 52 rows, 4 citations named.",
+      "message": "16 headings ordered, 75 controls named, 4 table(s) with scoped headers over 52 rows, 4 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8537,7 +8820,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-dspark-heads/hidden/worked/dspark--base_logits",
-      "message": "16 headings ordered, 74 controls named, 4 table(s) with scoped headers over 52 rows, 4 citations named.",
+      "message": "16 headings ordered, 75 controls named, 4 table(s) with scoped headers over 52 rows, 4 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8573,7 +8856,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-dspark-heads/hidden/worked/dspark--attention_probabilities",
-      "message": "16 headings ordered, 74 controls named, 4 table(s) with scoped headers over 52 rows, 4 citations named.",
+      "message": "16 headings ordered, 75 controls named, 4 table(s) with scoped headers over 52 rows, 4 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8609,7 +8892,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-dspark-heads/return/sources/dspark",
-      "message": "17 headings ordered, 76 controls named, 2 table(s) with scoped headers over 26 rows, 6 citations named.",
+      "message": "17 headings ordered, 77 controls named, 2 table(s) with scoped headers over 26 rows, 6 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8645,7 +8928,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-deepspec-verifier/confidence/maths/",
-      "message": "36 headings ordered, 81 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
+      "message": "36 headings ordered, 82 controls named, 0 table(s) with scoped headers over 0 rows, 7 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8681,7 +8964,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-deepspec-verifier/confidence/pytorch/",
-      "message": "14 headings ordered, 88 controls named, 0 table(s) with scoped headers over 0 rows, 11 citations named.",
+      "message": "14 headings ordered, 89 controls named, 0 table(s) with scoped headers over 0 rows, 11 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8717,7 +9000,7 @@
       "domain": "presentations",
       "status": "PASS",
       "subject": "dsv41/model/module-deepspec-verifier/confidence-prefix/sources/",
-      "message": "17 headings ordered, 87 controls named, 0 table(s) with scoped headers over 0 rows, 12 citations named.",
+      "message": "17 headings ordered, 88 controls named, 0 table(s) with scoped headers over 0 rows, 12 citations named.",
       "remedy": "",
       "evidence": []
     },
@@ -8866,11 +9149,191 @@
       "evidence": []
     },
     {
+      "code": "WORKSPACE_PANEL",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "{'model': 'dsv41', 'view': 'model', 'panel': 'chapter', 'layer': 1, 'stage': 'csa2', 'module': 'csa2-union', 'example': 'chap--csa2--3', 'phase': 'decode'}",
+      "message": "Selected operation panel is visible, nonempty, active and preserves its state.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "EXPORT_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "svg",
+      "message": "Export is namespaced, self-contained and carries a backdrop.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "SCENARIO_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "export",
+      "message": "Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/model/csa2/csa2-union/chapter/chap--csa2--3",
+      "message": "34 headings ordered, 154 controls named, 6 table(s) with scoped headers over 32 rows, 23 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "WORKSPACE_PANEL",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "{'model': 'dsv41', 'view': 'model', 'panel': 'chapter', 'layer': 1, 'stage': 'csa2', 'module': 'csa2-union', 'example': 'chap--csa2--0', 'phase': 'prefill'}",
+      "message": "Selected operation panel is visible, nonempty, active and preserves its state.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "EXPORT_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "svg",
+      "message": "Export is namespaced, self-contained and carries a backdrop.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "SCENARIO_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "export",
+      "message": "Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/model/csa2/csa2-union/chapter/chap--csa2--0",
+      "message": "34 headings ordered, 154 controls named, 8 table(s) with scoped headers over 40 rows, 23 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "WORKSPACE_PANEL",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "{'model': 'dsv41', 'view': 'model', 'panel': 'chapter', 'layer': 1, 'stage': 'engram', 'module': 'engram-gate', 'example': 'chap--engram--1'}",
+      "message": "Selected operation panel is visible, nonempty, active and preserves its state.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "EXPORT_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "svg",
+      "message": "Export is namespaced, self-contained and carries a backdrop.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "SCENARIO_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "export",
+      "message": "Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/model/engram/engram-gate/chapter/chap--engram--1",
+      "message": "25 headings ordered, 93 controls named, 4 table(s) with scoped headers over 13 rows, 18 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "WORKSPACE_PANEL",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "{'model': 'dsv41', 'view': 'model', 'panel': 'chapter', 'layer': 1, 'stage': 'residual', 'module': 'attention-mixer', 'example': 'chap--residual--39'}",
+      "message": "Selected operation panel is visible, nonempty, active and preserves its state.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "EXPORT_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "svg",
+      "message": "Export is namespaced, self-contained and carries a backdrop.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "SCENARIO_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "export",
+      "message": "Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/model/residual/attention-mixer/chapter/chap--residual--39",
+      "message": "43 headings ordered, 104 controls named, 8 table(s) with scoped headers over 85 rows, 18 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "WORKSPACE_PANEL",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "{'model': 'dsv41', 'view': 'model', 'panel': 'chapter', 'layer': 1, 'stage': 'inputs', 'module': 'expanded-ids', 'example': 'chap--chart-question--3'}",
+      "message": "Selected operation panel is visible, nonempty, active and preserves its state.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "EXPORT_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "svg",
+      "message": "Export is namespaced, self-contained and carries a backdrop.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "SCENARIO_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "export",
+      "message": "Exported scenario matches stratum-observatory-scenario/v1 and reports BLOCKED / NOT_RUN.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
+      "code": "PROSE_OK",
+      "domain": "presentations",
+      "status": "PASS",
+      "subject": "dsv41/model/inputs/expanded-ids/chapter/chap--chart-question--3",
+      "message": "36 headings ordered, 1839 controls named, 4 table(s) with scoped headers over 26 rows, 22 citations named.",
+      "remedy": "",
+      "evidence": []
+    },
+    {
       "code": "PROSE_SCOPE",
       "domain": "presentations",
       "status": "PASS",
       "subject": "states",
-      "message": "Measured 216 states from a real file:// origin: default, dsv41/inputs, dsv41/residual, dsv41/ced, dsv41/encoder, dsv41/decoder, dsv41/engram, dsv41/csa2, dsv41/dspark, dsv41/module-vision-inputs, dsv41/module-backbone-mhc, dsv41/module-backbone-moe, dsv41/module-engram-write, dsv41/module-csa2-compression, dsv41/module-csa2-selection, dsv41/module-csa2-attention, dsv41/module-dspark-pro-block, dsv41/module-dspark-attention, dsv41/module-dspark-heads, dsv41/module-deepspec-verifier, kimi3/inputs, kimi3/residual, q3827/inputs, q38flash/inputs, q38flash/residual, q38flash/ple, foundations/ds2/entry, foundations/ds3/entry, foundations/q38/entry, foundations/q330/entry, foundations/q3235/entry, qwen38/q3827/entry, qwen38/q38flash/entry, kimi3/kimi3/entry, dsv41/dsv41/entry, hardware/ds3/entry, network/ds3/entry, ds2/model/block/attention/maths/, ds2/model/block/attention/sources/, ds2/training/block/train-ledger/maths/, ds2/training/block/train-ledger/sources/, ds2/serving/block/omissions/maths/, ds2/serving/block/omissions/sources/, ds3/model/block/attention/maths/, ds3/model/block/attention/sources/, ds3/training/block/train-ledger/maths/, ds3/training/block/train-ledger/sources/, ds3/serving/block/omissions/maths/, ds3/serving/block/omissions/sources/, q38/model/block/attention/maths/, q38/model/block/attention/sources/, q38/training/block/train-ledger/maths/, q38/training/block/train-ledger/sources/, q38/serving/block/omissions/maths/, q38/serving/block/omissions/sources/, q330/model/block/dispatch/maths/, q330/model/block/dispatch/sources/, q330/training/block/forward/maths/, q330/training/block/forward/sources/, q330/serving/block/omissions/maths/, q330/serving/block/omissions/sources/, q3235/model/block/dispatch/maths/, q3235/model/block/dispatch/sources/, q3235/training/block/forward/maths/, q3235/training/block/forward/sources/, q3235/serving/block/omissions/maths/, q3235/serving/block/omissions/sources/, q3827/model/block/attention/maths/, q3827/model/block/attention/sources/, q3827/model/inputs/patches/maths/, q3827/model/inputs/patches/sources/, q3827/training/block/forward/maths/, q3827/training/block/forward/sources/, q3827/serving/block/omissions/maths/, q3827/serving/block/omissions/sources/, q38flash/model/block/norm1/maths/, q38flash/model/block/norm1/sources/, q38flash/model/inputs/patches/maths/, q38flash/model/inputs/patches/sources/, q38flash/model/residual/depth-version/maths/, q38flash/model/residual/depth-version/sources/, q38flash/model/ple/ple-fusion/maths/, q38flash/model/ple/ple-fusion/sources/, q38flash/training/block/forward/maths/, q38flash/training/block/forward/sources/, q38flash/serving/block/omissions/maths/, q38flash/serving/block/omissions/sources/, kimi3/model/block/attention/maths/, kimi3/model/block/attention/sources/, kimi3/model/inputs/patches/maths/, kimi3/model/inputs/patches/sources/, kimi3/model/residual/depth-write/maths/, kimi3/model/residual/depth-write/sources/, kimi3/training/block/train-ledger/maths/, kimi3/training/block/train-ledger/sources/, kimi3/serving/block/omissions/maths/, kimi3/serving/block/omissions/sources/, dsv41/model/encoder/router/maths/, dsv41/model/encoder/merge-attn/sources/, dsv41/model/encoder/attention/pytorch/query, dsv41/model/encoder/attention/worked/query, dsv41/model/encoder/attention/worked/query--dictionary, dsv41/model/encoder/attention/worked/query--contributions, dsv41/model/encoder/router/pytorch/, dsv41/model/encoder/index-select/pytorch/selection, dsv41/model/encoder/index-select/worked/selection, dsv41/model/encoder/index-select/worked/selection--keys, dsv41/model/encoder/index-select/worked/selection--selector_scores, dsv41/model/inputs/patches/maths/inputs, dsv41/model/inputs/vision-merge/sources/inputs, dsv41/model/inputs/engram-lookup/pytorch/, dsv41/model/inputs/patches/pytorch/inputs, dsv41/model/inputs/patches/worked/inputs, dsv41/model/inputs/patches/worked/inputs--patches, dsv41/model/inputs/patches/worked/inputs--grouped_patches, dsv41/model/residual/expand/maths/residual, dsv41/model/residual/attention-write/sources/residual, dsv41/model/residual/expand/pytorch/residual, dsv41/model/residual/expand/worked/residual, dsv41/model/residual/expand/worked/residual--previous_p, dsv41/model/residual/expand/worked/residual--ffn_coefficients, dsv41/model/ced/enc-out/maths/, dsv41/model/ced/enc-out/sources/, dsv41/model/ced/candidate-pool/pytorch/selection, dsv41/model/ced/candidate-pool/worked/selection, dsv41/model/ced/candidate-pool/worked/selection--keys, dsv41/model/ced/candidate-pool/worked/selection--selector_scores, dsv41/model/decoder/router/maths/, dsv41/model/decoder/merge-attn/sources/, dsv41/model/decoder/index-proj/pytorch/selection, dsv41/model/decoder/index-proj/worked/selection, dsv41/model/decoder/index-proj/worked/selection--keys, dsv41/model/decoder/index-proj/worked/selection--selector_scores, dsv41/model/decoder/attention/pytorch/query, dsv41/model/decoder/attention/worked/query, dsv41/model/decoder/attention/worked/query--dictionary, dsv41/model/decoder/attention/worked/query--contributions, dsv41/model/decoder/router/pytorch/, dsv41/model/engram/engram-table/maths/, dsv41/model/engram/engram-gate/sources/, dsv41/model/engram/engram-table/pytorch/, dsv41/model/csa2/csa2-reindex/maths/selection, dsv41/model/csa2/csa2-full/pytorch/, dsv41/model/csa2/csa2-candidates/sources/selection, dsv41/model/csa2/csa2-reindex/pytorch/selection, dsv41/model/csa2/csa2-reindex/worked/selection, dsv41/model/csa2/csa2-reindex/worked/selection--keys, dsv41/model/csa2/csa2-reindex/worked/selection--selector_scores, dsv41/model/csa2/csa2-window/pytorch/query, dsv41/model/csa2/csa2-window/worked/query, dsv41/model/csa2/csa2-window/worked/query--dictionary, dsv41/model/csa2/csa2-window/worked/query--contributions, dsv41/model/dspark/dspark-read/maths/, dsv41/model/dspark/dspark-ownership/sources/, dsv41/model/dspark/dspark-read/pytorch/, dsv41/model/dspark/dspark-attention/pytorch/dspark, dsv41/model/dspark/dspark-attention/worked/dspark, dsv41/model/dspark/dspark-attention/worked/dspark--base_logits, dsv41/model/dspark/dspark-attention/worked/dspark--attention_probabilities, dsv41/model/dspark/dspark-parallel-logits/pytorch/dspark, dsv41/model/dspark/dspark-verification/pytorch/, dsv41/model/module-vision-inputs/prompt/maths/inputs, dsv41/model/module-vision-inputs/prompt/pytorch/inputs, dsv41/model/module-vision-inputs/prompt/worked/inputs, dsv41/model/module-vision-inputs/prompt/worked/inputs--patches, dsv41/model/module-vision-inputs/prompt/worked/inputs--grouped_patches, dsv41/model/module-vision-inputs/vision-merge/sources/inputs, dsv41/model/module-backbone-mhc/embedded/maths/residual, dsv41/model/module-backbone-mhc/embedded/pytorch/residual, dsv41/model/module-backbone-mhc/embedded/worked/residual, dsv41/model/module-backbone-mhc/embedded/worked/residual--previous_p, dsv41/model/module-backbone-mhc/embedded/worked/residual--ffn_coefficients, dsv41/model/module-backbone-mhc/attn-matrix/sources/residual, dsv41/model/module-backbone-moe/tokens/maths/, dsv41/model/module-backbone-moe/tokens/pytorch/, dsv41/model/module-backbone-moe/output/sources/, dsv41/model/module-engram-write/residual/maths/, dsv41/model/module-engram-write/residual/pytorch/, dsv41/model/module-engram-write/score/sources/, dsv41/model/module-csa2-compression/tokens/maths/, dsv41/model/module-csa2-compression/tokens/pytorch/, dsv41/model/module-csa2-compression/concat/sources/, dsv41/model/module-csa2-selection/query/maths/selection, dsv41/model/module-csa2-selection/query/pytorch/selection, dsv41/model/module-csa2-selection/query/worked/selection, dsv41/model/module-csa2-selection/query/worked/selection--keys, dsv41/model/module-csa2-selection/query/worked/selection--selector_scores, dsv41/model/module-csa2-selection/position-topk/sources/selection, dsv41/model/module-csa2-attention/local-cache/maths/query, dsv41/model/module-csa2-attention/local-cache/pytorch/query, dsv41/model/module-csa2-attention/local-cache/worked/query, dsv41/model/module-csa2-attention/local-cache/worked/query--dictionary, dsv41/model/module-csa2-attention/local-cache/worked/query--contributions, dsv41/model/module-csa2-attention/query-readouts/sources/query, dsv41/model/module-dspark-pro-block/dspark-features/maths/, dsv41/model/module-dspark-pro-block/dspark-features/pytorch/, dsv41/model/module-dspark-pro-block/dspark-ownership/sources/, dsv41/model/module-dspark-attention/queries/maths/dspark, dsv41/model/module-dspark-attention/queries/pytorch/dspark, dsv41/model/module-dspark-attention/queries/worked/dspark, dsv41/model/module-dspark-attention/queries/worked/dspark--base_logits, dsv41/model/module-dspark-attention/queries/worked/dspark--attention_probabilities, dsv41/model/module-dspark-attention/visibility/sources/dspark, dsv41/model/module-dspark-heads/hidden/maths/dspark, dsv41/model/module-dspark-heads/hidden/pytorch/dspark, dsv41/model/module-dspark-heads/hidden/worked/dspark, dsv41/model/module-dspark-heads/hidden/worked/dspark--base_logits, dsv41/model/module-dspark-heads/hidden/worked/dspark--attention_probabilities, dsv41/model/module-dspark-heads/return/sources/dspark, dsv41/model/module-deepspec-verifier/confidence/maths/, dsv41/model/module-deepspec-verifier/confidence/pytorch/, dsv41/model/module-deepspec-verifier/confidence-prefix/sources/, dsv41/training/block/forward/maths/, dsv41/training/block/forward/sources/, dsv41/serving/block/prefill/maths/, dsv41/serving/block/prefill/sources/.",
+      "message": "Measured 226 states from a real file:// origin: default, dsv41/inputs, dsv41/residual, dsv41/ced, dsv41/encoder, dsv41/decoder, dsv41/engram, dsv41/csa2, dsv41/dspark, dsv41/module-vision-inputs, dsv41/module-backbone-mhc, dsv41/module-backbone-moe, dsv41/module-engram-write, dsv41/module-csa2-compression, dsv41/module-csa2-selection, dsv41/module-csa2-attention, dsv41/module-dspark-pro-block, dsv41/module-dspark-attention, dsv41/module-dspark-heads, dsv41/module-deepspec-verifier, kimi3/inputs, kimi3/residual, q3827/inputs, q38flash/inputs, q38flash/residual, q38flash/ple, foundations/ds2/entry, foundations/ds3/entry, foundations/q38/entry, foundations/q330/entry, foundations/q3235/entry, qwen38/q3827/entry, qwen38/q38flash/entry, kimi3/kimi3/entry, dsv41/dsv41/entry, hardware/ds3/entry, network/ds3/entry, ds2/model/block/attention/maths/, ds2/model/block/attention/sources/, ds2/training/block/train-ledger/maths/, ds2/training/block/train-ledger/sources/, ds2/serving/block/omissions/maths/, ds2/serving/block/omissions/sources/, ds3/model/block/attention/maths/, ds3/model/block/attention/sources/, ds3/training/block/train-ledger/maths/, ds3/training/block/train-ledger/sources/, ds3/serving/block/omissions/maths/, ds3/serving/block/omissions/sources/, q38/model/block/attention/maths/, q38/model/block/attention/sources/, q38/training/block/train-ledger/maths/, q38/training/block/train-ledger/sources/, q38/serving/block/omissions/maths/, q38/serving/block/omissions/sources/, q330/model/block/dispatch/maths/, q330/model/block/dispatch/sources/, q330/training/block/forward/maths/, q330/training/block/forward/sources/, q330/serving/block/omissions/maths/, q330/serving/block/omissions/sources/, q3235/model/block/dispatch/maths/, q3235/model/block/dispatch/sources/, q3235/training/block/forward/maths/, q3235/training/block/forward/sources/, q3235/serving/block/omissions/maths/, q3235/serving/block/omissions/sources/, q3827/model/block/attention/maths/, q3827/model/block/attention/sources/, q3827/model/inputs/patches/maths/, q3827/model/inputs/patches/sources/, q3827/training/block/forward/maths/, q3827/training/block/forward/sources/, q3827/serving/block/omissions/maths/, q3827/serving/block/omissions/sources/, q38flash/model/block/norm1/maths/, q38flash/model/block/norm1/sources/, q38flash/model/inputs/patches/maths/, q38flash/model/inputs/patches/sources/, q38flash/model/residual/depth-version/maths/, q38flash/model/residual/depth-version/sources/, q38flash/model/ple/ple-fusion/maths/, q38flash/model/ple/ple-fusion/sources/, q38flash/training/block/forward/maths/, q38flash/training/block/forward/sources/, q38flash/serving/block/omissions/maths/, q38flash/serving/block/omissions/sources/, kimi3/model/block/attention/maths/, kimi3/model/block/attention/sources/, kimi3/model/inputs/patches/maths/, kimi3/model/inputs/patches/sources/, kimi3/model/residual/depth-write/maths/, kimi3/model/residual/depth-write/sources/, kimi3/training/block/train-ledger/maths/, kimi3/training/block/train-ledger/sources/, kimi3/serving/block/omissions/maths/, kimi3/serving/block/omissions/sources/, dsv41/model/encoder/router/maths/, dsv41/model/encoder/merge-attn/sources/, dsv41/model/encoder/attention/pytorch/query, dsv41/model/encoder/attention/worked/query, dsv41/model/encoder/attention/worked/query--dictionary, dsv41/model/encoder/attention/worked/query--contributions, dsv41/model/encoder/router/pytorch/, dsv41/model/encoder/index-select/pytorch/selection, dsv41/model/encoder/index-select/worked/selection, dsv41/model/encoder/index-select/worked/selection--keys, dsv41/model/encoder/index-select/worked/selection--selector_scores, dsv41/model/inputs/patches/chapter/, dsv41/model/inputs/patches/maths/inputs, dsv41/model/inputs/vision-merge/sources/inputs, dsv41/model/inputs/engram-lookup/pytorch/, dsv41/model/inputs/patches/pytorch/inputs, dsv41/model/inputs/patches/worked/inputs, dsv41/model/inputs/patches/worked/inputs--patches, dsv41/model/inputs/patches/worked/inputs--grouped_patches, dsv41/model/residual/expand/chapter/, dsv41/model/residual/expand/maths/residual, dsv41/model/residual/attention-write/sources/residual, dsv41/model/residual/expand/pytorch/residual, dsv41/model/residual/expand/worked/residual, dsv41/model/residual/expand/worked/residual--previous_p, dsv41/model/residual/expand/worked/residual--attention_sinkhorn_matrices, dsv41/model/ced/enc-out/maths/, dsv41/model/ced/enc-out/sources/, dsv41/model/ced/candidate-pool/pytorch/selection, dsv41/model/ced/candidate-pool/worked/selection, dsv41/model/ced/candidate-pool/worked/selection--keys, dsv41/model/ced/candidate-pool/worked/selection--selector_scores, dsv41/model/decoder/router/maths/, dsv41/model/decoder/merge-attn/sources/, dsv41/model/decoder/index-proj/pytorch/selection, dsv41/model/decoder/index-proj/worked/selection, dsv41/model/decoder/index-proj/worked/selection--keys, dsv41/model/decoder/index-proj/worked/selection--selector_scores, dsv41/model/decoder/attention/pytorch/query, dsv41/model/decoder/attention/worked/query, dsv41/model/decoder/attention/worked/query--dictionary, dsv41/model/decoder/attention/worked/query--contributions, dsv41/model/decoder/router/pytorch/, dsv41/model/engram/engram-table/chapter/, dsv41/model/engram/engram-table/maths/, dsv41/model/engram/engram-gate/sources/, dsv41/model/engram/engram-table/pytorch/, dsv41/model/csa2/csa2-window/chapter/, dsv41/model/csa2/csa2-reindex/maths/selection, dsv41/model/csa2/csa2-full/pytorch/, dsv41/model/csa2/csa2-candidates/sources/selection, dsv41/model/csa2/csa2-reindex/pytorch/selection, dsv41/model/csa2/csa2-reindex/worked/selection, dsv41/model/csa2/csa2-reindex/worked/selection--keys, dsv41/model/csa2/csa2-reindex/worked/selection--selector_scores, dsv41/model/csa2/csa2-window/pytorch/query, dsv41/model/csa2/csa2-window/worked/query, dsv41/model/csa2/csa2-window/worked/query--dictionary, dsv41/model/csa2/csa2-window/worked/query--contributions, dsv41/model/dspark/dspark-read/chapter/, dsv41/model/dspark/dspark-read/maths/, dsv41/model/dspark/dspark-ownership/sources/, dsv41/model/dspark/dspark-read/pytorch/, dsv41/model/dspark/dspark-attention/pytorch/dspark, dsv41/model/dspark/dspark-attention/worked/dspark, dsv41/model/dspark/dspark-attention/worked/dspark--base_logits, dsv41/model/dspark/dspark-attention/worked/dspark--attention_probabilities, dsv41/model/dspark/dspark-parallel-logits/pytorch/dspark, dsv41/model/dspark/dspark-verification/pytorch/, dsv41/model/module-vision-inputs/prompt/maths/inputs, dsv41/model/module-vision-inputs/prompt/pytorch/inputs, dsv41/model/module-vision-inputs/prompt/worked/inputs, dsv41/model/module-vision-inputs/prompt/worked/inputs--patches, dsv41/model/module-vision-inputs/prompt/worked/inputs--grouped_patches, dsv41/model/module-vision-inputs/vision-merge/sources/inputs, dsv41/model/module-backbone-mhc/embedded/maths/residual, dsv41/model/module-backbone-mhc/embedded/pytorch/residual, dsv41/model/module-backbone-mhc/embedded/worked/residual, dsv41/model/module-backbone-mhc/embedded/worked/residual--previous_p, dsv41/model/module-backbone-mhc/embedded/worked/residual--attention_sinkhorn_matrices, dsv41/model/module-backbone-mhc/attn-matrix/sources/residual, dsv41/model/module-backbone-moe/tokens/maths/, dsv41/model/module-backbone-moe/tokens/pytorch/, dsv41/model/module-backbone-moe/output/sources/, dsv41/model/module-engram-write/residual/maths/, dsv41/model/module-engram-write/residual/pytorch/, dsv41/model/module-engram-write/score/sources/, dsv41/model/module-csa2-compression/tokens/maths/, dsv41/model/module-csa2-compression/tokens/pytorch/, dsv41/model/module-csa2-compression/concat/sources/, dsv41/model/module-csa2-selection/query/maths/selection, dsv41/model/module-csa2-selection/query/pytorch/selection, dsv41/model/module-csa2-selection/query/worked/selection, dsv41/model/module-csa2-selection/query/worked/selection--keys, dsv41/model/module-csa2-selection/query/worked/selection--selector_scores, dsv41/model/module-csa2-selection/position-topk/sources/selection, dsv41/model/module-csa2-attention/local-cache/maths/query, dsv41/model/module-csa2-attention/local-cache/pytorch/query, dsv41/model/module-csa2-attention/local-cache/worked/query, dsv41/model/module-csa2-attention/local-cache/worked/query--dictionary, dsv41/model/module-csa2-attention/local-cache/worked/query--contributions, dsv41/model/module-csa2-attention/query-readouts/sources/query, dsv41/model/module-dspark-pro-block/dspark-features/maths/, dsv41/model/module-dspark-pro-block/dspark-features/pytorch/, dsv41/model/module-dspark-pro-block/dspark-ownership/sources/, dsv41/model/module-dspark-attention/queries/maths/dspark, dsv41/model/module-dspark-attention/queries/pytorch/dspark, dsv41/model/module-dspark-attention/queries/worked/dspark, dsv41/model/module-dspark-attention/queries/worked/dspark--base_logits, dsv41/model/module-dspark-attention/queries/worked/dspark--attention_probabilities, dsv41/model/module-dspark-attention/visibility/sources/dspark, dsv41/model/module-dspark-heads/hidden/maths/dspark, dsv41/model/module-dspark-heads/hidden/pytorch/dspark, dsv41/model/module-dspark-heads/hidden/worked/dspark, dsv41/model/module-dspark-heads/hidden/worked/dspark--base_logits, dsv41/model/module-dspark-heads/hidden/worked/dspark--attention_probabilities, dsv41/model/module-dspark-heads/return/sources/dspark, dsv41/model/module-deepspec-verifier/confidence/maths/, dsv41/model/module-deepspec-verifier/confidence/pytorch/, dsv41/model/module-deepspec-verifier/confidence-prefix/sources/, dsv41/training/block/forward/maths/, dsv41/training/block/forward/sources/, dsv41/serving/block/prefill/maths/, dsv41/serving/block/prefill/sources/, dsv41/model/csa2/csa2-union/chapter/chap--csa2--3, dsv41/model/csa2/csa2-union/chapter/chap--csa2--0, dsv41/model/engram/engram-gate/chapter/chap--engram--1, dsv41/model/residual/attention-mixer/chapter/chap--residual--39, dsv41/model/inputs/expanded-ids/chapter/chap--chart-question--3.",
       "remedy": "",
       "evidence": []
     },

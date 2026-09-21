@@ -14,7 +14,7 @@ from torch.nn import functional as F
 
 from .backbone_mhc import (
     HyperConnectionMixer, RMSNorm, ResidualStates, StreamWeights, TransformerBlock,
-    collapse_residual_streams, combine_residual_streams,
+    collapse_residual_streams, combine_residual_streams, sinkhorn_trace,
 )
 from .config import V41_CONFIG, V41Config
 
@@ -70,6 +70,9 @@ def residual_example() -> dict[str, Any]:
         projected = F.linear(flat, mixer.projection.weight.float())
         coefficients = projected * inverse_rms
         next_p, q, matrix = mixer(residual)
+        matrix_logits = (coefficients[..., 2 * config.streams:] * mixer.scales[2]
+                         + mixer.offsets[2 * config.streams:]).unflatten(-1, (config.streams, config.streams))
+        iterations = sinkhorn_trace(matrix_logits, config)
         read = collapse_residual_streams(residual, previous_p)
         normalized = norm(read)
         output = sublayer(normalized)
@@ -78,6 +81,13 @@ def residual_example() -> dict[str, Any]:
         following = combine_residual_streams(output, residual, q, matrix)
         label = 'Attention' if prefix == 'attention' else 'FFN'
         items = [
+            ('current_p', 'Current read weights inherited from the preceding sublayer', 'p_previous', previous_p, stream_axes),
+            ('matrix_logits', 'Unbalanced carry logits', 'α_M c_M + β_M', matrix_logits, ['batch', 'tokens', 'input_streams', 'output_streams']),
+            ('sinkhorn_matrices', 'Every executed Sinkhorn balancing state', 'softmax plus epsilon; column; then row/column pairs', iterations, ['balancing_step', 'batch', 'tokens', 'input_streams', 'output_streams']),
+            ('sinkhorn_row_sums', 'Row sums at every balancing step', 'sum over output streams', iterations.sum(-1), ['balancing_step', 'batch', 'tokens', 'input_streams']),
+            ('sinkhorn_column_sums', 'Column sums at every balancing step', 'sum over input streams', iterations.sum(-2), ['balancing_step', 'batch', 'tokens', 'output_streams']),
+            ('sinkhorn_row_error', 'Maximum row-sum deviation from one', 'max(abs(row_sum - 1))', (iterations.sum(-1) - 1).abs().amax(-1), ['balancing_step', 'batch', 'tokens']),
+            ('sinkhorn_column_error', 'Maximum column-sum deviation from one', 'max(abs(column_sum - 1))', (iterations.sum(-2) - 1).abs().amax(-1), ['balancing_step', 'batch', 'tokens']),
             ('flattened', 'Flatten residual streams', 'flatten(X)', flat, ['batch', 'tokens', 'streams_times_hidden_dim']),
             ('inverse_rms', 'Inverse RMS across all streams and channels', 'rsqrt(mean(flatten(X)²) + ε_norm)', inverse_rms, ['batch', 'tokens', 'singleton']),
             ('projection', 'Coefficient projection before RMS scaling', 'flatten(X) Wᵀ', projected, ['batch', 'tokens', 'coefficients']),

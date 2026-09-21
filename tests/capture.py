@@ -82,8 +82,11 @@ with sync_playwright() as p:
  page.set_content((ROOT/'dist/foundations.html').read_text(),wait_until='load')
  page.wait_for_function('window.STRATUM?.version === "3.0.0"');page.evaluate('document.fonts.ready')
  manifest=[]
- panel_cases=[(f"{s['model']}-workspace-{s['panel']}",s) for s in workspace_preview_states(ROOT)]
- for name,patch in per_model_cases(page)+EXTRA_CASES+panel_cases:
+ panel_cases=[(f"{s['model']}-workspace-{s['panel']}"+("-"+s["stage"]+("-"+s["example"] if s.get("example") else "") if s["panel"]=="chapter" else ""),s) for s in workspace_preview_states(ROOT)]
+ chapter_cases=[(name+'-light',{**patch,'theme':'light'}) for name,patch in panel_cases if patch['panel']=='chapter']
+ chapter_cases += [(name+'-mobile-'+theme,{**patch,'theme':theme,'capture_mobile':True}) for name,patch in panel_cases if patch['panel']=='chapter' and patch.get('example') for theme in ['dark','light']]
+ for name,patch in per_model_cases(page)+EXTRA_CASES+panel_cases+chapter_cases:
+  page.set_viewport_size({'width':390,'height':844} if patch.get('capture_mobile') else {'width':1840,'height':1300})
   state={**BASE,**patch}
   artifact=ROOT/'dist'/artifact_name(ROOT,state['model'],state['view'])
   page.goto(artifact.as_uri(),wait_until='load');page.wait_for_function('window.STRATUM')
@@ -92,7 +95,7 @@ with sync_playwright() as p:
    page.locator('.chapter-reference').evaluate_all('(els)=>els.forEach(el=>el.open=true)')
    page.locator('.accounting-assumptions').evaluate('(el)=>el.open=true')
   else:
-   page.evaluate(OPEN_READER_CONTENT)
+   if state["panel"]!="chapter":page.evaluate(OPEN_READER_CONTENT)
    problems=[f for f in judge_workspace_delivery(patch,page.evaluate(PROBE_WORKSPACE)) if f.status!='PASS']
    if problems:raise AssertionError((name,[f.message for f in problems]))
   expanded=page.evaluate("() => {const el=document.querySelector('.pytorch-example');if(!el)return [];el.open=true;return [el.dataset.example];}")

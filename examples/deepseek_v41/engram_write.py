@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, TypedDict
 import torch
 from torch import Tensor, nn
 from torch.nn import functional as F
@@ -9,6 +9,16 @@ from .config import V41Config
 EngramResidual = Annotated[Tensor, "batch tokens streams hidden_dim"]
 EngramHashIds = Annotated[Tensor, "batch tokens hash_columns; global table row IDs"]
 EngramTokenMask = Annotated[Tensor, "batch tokens; boolean write permission"]
+
+
+class EngramTrace(TypedDict):
+    lookup: Annotated[Tensor, "batch tokens hash_columns row_dim"]
+    keys: EngramResidual
+    value: Annotated[Tensor, "batch tokens hidden_dim"]
+    scores: Annotated[Tensor, "batch tokens streams"]
+    gates: Annotated[Tensor, "batch tokens streams"]
+    write: EngramResidual
+    output: EngramResidual
 
 
 class EngramMemory(nn.Module):
@@ -32,6 +42,11 @@ class EngramMemory(nn.Module):
         token_mask: EngramTokenMask,
     ) -> EngramResidual:
         """Accept residual [B,T,S,D], global row IDs [B,T,C], and bool mask [B,T]."""
+        return self.trace(residual, hash_ids, token_mask)['output']
+
+    def trace(self, residual: EngramResidual, hash_ids: EngramHashIds,
+              token_mask: EngramTokenMask) -> EngramTrace:
+        """Expose executed lookup, projection and write intermediates for teaching."""
         if residual.ndim != 4 or residual.shape[-2:] != (self.streams, self.dim):
             raise ValueError("residual must have shape [batch, tokens, streams, dim]")
         if hash_ids.shape != (*residual.shape[:2], self.hash_columns):
@@ -41,7 +56,8 @@ class EngramMemory(nn.Module):
         with torch.autocast(device_type=residual.device.type, enabled=False):
             # Parameters may be BF16; projection and gate arithmetic accumulate in FP32.
             # Lookup appends row_dim; flatten combines hash columns with their row vectors.
-            embedded = self.table(hash_ids).flatten(-2).float()
+            lookup = self.table(hash_ids)
+            embedded = lookup.flatten(-2).float()
             projected = F.linear(embedded, self.project.weight.float())
             keys, value = projected.split([self.streams * self.dim, self.dim], dim=-1)
             keys = keys.unflatten(-1, (self.streams, self.dim))
@@ -54,4 +70,6 @@ class EngramMemory(nn.Module):
             signed_root = torch.copysign(score.abs().clamp_min(self.score_floor).sqrt(), score)
             gate = signed_root.sigmoid().masked_fill(~token_mask[..., None], 0)
             # Broadcast the shared value across streams, scaled by each stream gate.
-            return (hidden + gate[..., None] * value[..., None, :]).to(residual.dtype)
+            write = gate[..., None] * value[..., None, :]
+            return dict(lookup=lookup, keys=keys, value=value, scores=score,
+                        gates=gate, write=write, output=(hidden + write).to(residual.dtype))

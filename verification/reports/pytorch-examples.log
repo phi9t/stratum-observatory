@@ -38,6 +38,12 @@ test_partial_rotation_and_inverse_against_scalar_trigonometry (pytorch_dspark_pr
 test_query_has_pro_specific_unit_rms_after_low_rank_projection (pytorch_dspark_pro.ProDraftTests.test_query_has_pro_specific_unit_rms_after_low_rank_projection) ... ok
 test_rejects_unreleased_unclipped_mode (pytorch_dspark_pro.ProDraftTests.test_rejects_unreleased_unclipped_mode) ... ok
 test_sink_and_all_draft_slots_against_scalar_average (pytorch_dspark_pro.ProDraftTests.test_sink_and_all_draft_slots_against_scalar_average) ... ok
+test_compressed_groups_and_local_membership_are_causal (pytorch_mechanism_chapters.MechanismChapters.test_compressed_groups_and_local_membership_are_causal) ... ok
+test_engram_sites_preserve_mask_and_have_different_gates (pytorch_mechanism_chapters.MechanismChapters.test_engram_sites_preserve_mask_and_have_different_gates) ... ok
+test_hashes_match_scalar_xor_and_disjoint_ranges (pytorch_mechanism_chapters.MechanismChapters.test_hashes_match_scalar_xor_and_disjoint_ranges) ... ok
+test_sinkhorn_snapshots_match_scalar_normalization_order (pytorch_mechanism_chapters.MechanismChapters.test_sinkhorn_snapshots_match_scalar_normalization_order) ... ok
+test_sinkhorn_steps_and_previous_gate_handoff (pytorch_mechanism_chapters.MechanismChapters.test_sinkhorn_steps_and_previous_gate_handoff) ... ok
+test_verification_commits_prefix_then_correction_and_crops_cache (pytorch_mechanism_chapters.MechanismChapters.test_verification_commits_prefix_then_correction_and_crops_cache) ... ok
 test_attention_bfloat16_float32_sink_and_backward (pytorch_memory.MemoryExamplesTest.test_attention_bfloat16_float32_sink_and_backward) ... ok
 test_bfloat16_modules_preserve_dtype_and_finite_gradients (pytorch_memory.MemoryExamplesTest.test_bfloat16_modules_preserve_dtype_and_finite_gradients) ... ok
 test_candidates_pin_latest_and_exclude_future (pytorch_memory.MemoryExamplesTest.test_candidates_pin_latest_and_exclude_future) ... ok
@@ -78,6 +84,6 @@ test_changed_source_fingerprint_fails_before_numbers (pytorch_worked_artifact.Wo
 test_saved_intermediates_and_outputs_match_current_cpu (pytorch_worked_artifact.WorkedArtifactTests.test_saved_intermediates_and_outputs_match_current_cpu) ... ok
 
 ----------------------------------------------------------------------
-Ran 78 tests in 0.507s
+Ran 84 tests in 0.711s
 
 OK

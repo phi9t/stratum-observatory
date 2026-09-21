@@ -14,8 +14,19 @@ def text(value):
         return str(value).lower()
     if isinstance(value, float):
         # JavaScript toPrecision rounds exact ties away from zero.
-        rounded = float(Context(prec=6, rounding=ROUND_HALF_UP).create_decimal_from_float(value))
-        return format(rounded, '.6g')
+        if value.is_integer():
+            return str(int(value))
+        decimal = Context(prec=6, rounding=ROUND_HALF_UP).create_decimal_from_float(value)
+        rounded = float(decimal)
+        # Number.toString uses fixed notation here; Python's .6g switches earlier.
+        if 1e-6 <= abs(rounded) < 1e21:
+            fixed = format(decimal, 'f')
+            return fixed.rstrip('0').rstrip('.') if '.' in fixed else fixed
+        scientific = format(rounded, '.6g')
+        if 'e' in scientific:
+            mantissa, exponent = scientific.split('e')
+            return f'{mantissa}e{int(exponent):+d}'
+        return scientific
     return str(value)
 
 
@@ -25,7 +36,7 @@ def exercise(page, root):
     stages = {'dspark':['dspark'], 'module-dspark-attention':['dspark'], 'module-dspark-heads':['dspark'], 'inputs':['inputs'], 'module-vision-inputs':['inputs'], 'residual':['residual'], 'decoder':['replay'], 'csa2':['selection','query'],
               'module-csa2-selection':['selection'], 'module-csa2-attention':['query']}
     for stage, ids in stages.items():
-        page.goto(url + '#stage=' + stage)
+        page.goto(url + '#stage=' + stage + '&panel=schematic')
         page.wait_for_function('window.STRATUM')
         open_chapter_reference(page)
         for identifier in ids:
@@ -37,7 +48,7 @@ def exercise(page, root):
             audit.locator('summary').focus();audit.locator('summary').press('Enter')
             assert audit.evaluate('el=>el.open')
             for step in example['inputs'] + example['steps']:
-                assert panel.locator(f'[data-worked-values="{step["id"]}"]').inner_text() == text(step['values'])
+                assert panel.locator(f'[data-worked-values="{step["id"]}"]').inner_text() == text(step['values']), (stage, identifier, step['id'])
                 row_text = panel.locator(f'[data-worked-step="{step["id"]}"]').inner_text()
                 assert step['dtype'] in row_text
                 assert ' × '.join(step['axes']) in row_text

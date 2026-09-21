@@ -42,6 +42,7 @@ MODEL_FIELDS = {
     'index_topk': 'indexerBudget',
     'candidate_blocks': 'candidateBlocks',
     'candidate_block_size': 'candidateBlockSize',
+    'engram_layer_ids': 'engramLayers',
     'engram_row_dim': 'engramHeadDim',
     'engram_heads': 'engramHeads',
     'engram_max_ngram': 'engramNgram',
@@ -71,7 +72,8 @@ class V41ConfigTests(unittest.TestCase):
         model = self.live['model']
         for field, model_field in MODEL_FIELDS.items():
             with self.subTest(field=field, model_field=model_field):
-                self.assertEqual(getattr(V41_CONFIG, field), model[model_field])
+                value = getattr(V41_CONFIG, field)
+                self.assertEqual(list(value) if isinstance(value, tuple) else value, model[model_field])
         self.assertEqual(V41_CONFIG.engram_rows, model['engramTables'][0],
                          'the default excerpt uses the first Engram insertion table')
         self.assertEqual(V41_CONFIG.engram_hash_columns,
@@ -117,7 +119,7 @@ class RejectTensorRuntime(importlib.abc.MetaPathFinder):
 
 sys.meta_path.insert(0, RejectTensorRuntime())
 from examples.deepseek_v41.config import V41_CONFIG
-assert all(type(getattr(V41_CONFIG, field.name)) in (int, float)
+assert all(type(getattr(V41_CONFIG, field.name)) in (int, float, tuple)
            for field in dataclasses.fields(V41_CONFIG))
 assert not any(name.split('.')[0] in {'torch', 'numpy'} for name in sys.modules)
 '''

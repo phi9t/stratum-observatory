@@ -1,0 +1,9 @@
+test_cached_source_hashes_when_available (input_cases.InputCasesTests.test_cached_source_hashes_when_available) ... ok
+test_exact_sources_and_generator_current (input_cases.InputCasesTests.test_exact_sources_and_generator_current) ... ok
+test_fixture_contract_and_tampering (input_cases.InputCasesTests.test_fixture_contract_and_tampering) ... ok
+test_text_image_distinction (input_cases.InputCasesTests.test_text_image_distinction) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.064s
+
+OK

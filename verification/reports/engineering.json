@@ -1,23 +1,23 @@
 {
   "schema": "stratum-engineering/v1",
   "status": "PASS",
-  "started_at": "2026-09-21T00:58:33.191323+00:00",
-  "completed_at": "2026-09-21T01:03:59.691842+00:00",
-  "consumer_sha256": "c6f2c8f4a1ab58ac2b9674ba82bba32d6842cce7620c013ad06ab1653e6722a2",
-  "verifier_sha256": "c0e11d9ea16b73bb563f57545a9b0b302a4ee709cedf7c307665c0ea367cfd33",
-  "lock_sha256": "270bfab3ac5b0426ea605aa634def2e1a60f1904d1a0ff84c8b261ef15c96bdd",
-  "artifact_sha256": "327b52951fbfba31cbaa50fe5f18b3945d38d22ad0e1629e0840a95f4e9532c0",
+  "started_at": "2026-09-21T02:33:29.880019+00:00",
+  "completed_at": "2026-09-21T02:39:16.345024+00:00",
+  "consumer_sha256": "a0cd74cc2fa149f86de10b25fe6a8f743343540b761f946f43aaf7bc3a56604e",
+  "verifier_sha256": "3f23392bf5f3f90fd97f66bed1d7ff6b3cff6179b31f0d66c1caa72f675910f3",
+  "lock_sha256": "1c98f0592895951493759023585d56f68491cb1a34ae5a0652b603b5f34ecc5e",
+  "artifact_sha256": "681120311d72174f0c1f1b49063c80cc740df132b0b805df08fe7285b66a7364",
   "artifacts": {
-    "data-representation.html": "e4b2a8d1c9e292b86cdf0a94a1116f469ecd2d98015d14cbfe248d79c0166e1b",
-    "deepseek-v4.1.html": "ca2910c701cef05eb4243626e1492a86ebd601c76551c0be39a57b0c8ec5a98d",
-    "foundations.html": "fa0ce9863973a4dcd8e5d4b25ec133ec9c6cb7a6ab08f5661c1c0765e0bb7a62",
-    "hardware.html": "1ded09a2fcc1f2c68418cc5af75da6e0400b2bbf627da0c512e43b25eb78ab60",
-    "index.html": "327b52951fbfba31cbaa50fe5f18b3945d38d22ad0e1629e0840a95f4e9532c0",
-    "kimi-k3.html": "11331d5a5b3ac78566c602ab5130e7da5a30816550c2efefada9b038b5eba37c",
-    "networking.html": "58e407836767a190d3518f89e3619bc17537544770b2e2d9baa2cc43bc5ad3c7",
-    "qwen3.8.html": "017b8b25e905c391c495885ad9329f20d9ff0388ef4ab58770e6bdefae6fc68d"
+    "data-representation.html": "234b9d1be2d2a3dd37edff2a98f41f88806179297426227ab072d08d293c6a86",
+    "deepseek-v4.1.html": "341e2fd37dcce8284b6a5f329d514394c2e22d5d589cdc39a01b67a0fda73ecb",
+    "foundations.html": "b5d9c50ee02420cec477cff40ae492f77c3850484e1215392ee93c548ba4adf5",
+    "hardware.html": "c9fa3a4bcdf8bd3ca3525dd50b0ba4ce020ab6b1ddb2c074ef50d963122a64e7",
+    "index.html": "681120311d72174f0c1f1b49063c80cc740df132b0b805df08fe7285b66a7364",
+    "kimi-k3.html": "43dcb7b5f8674b343abd27dc14d9904a88a2e4e0f250217f2a6bbb600d07adbd",
+    "networking.html": "4b9bc1f5eb60ca1b1953035fdec5e26d9fae6aa0d1050329060ea5f612eff590",
+    "qwen3.8.html": "75e1990f52213bf8d7e73c269065b8d18aa3621c0ad2d73bef8f6c7e1fa399ce"
   },
-  "repeat_build_sha256": "327b52951fbfba31cbaa50fe5f18b3945d38d22ad0e1629e0840a95f4e9532c0",
+  "repeat_build_sha256": "681120311d72174f0c1f1b49063c80cc740df132b0b805df08fe7285b66a7364",
   "deterministic_build": true,
   "commands": {
     "verifier-tests": {
@@ -71,6 +71,33 @@
       ],
       "exit": 0
     },
+    "input-fixtures": {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "input_cases.py",
+        "-v"
+      ],
+      "exit": 0
+    },
+    "worked-freshness": {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "--group",
+        "examples",
+        "python",
+        "tools/export-worked.py",
+        "--check"
+      ],
+      "exit": 0
+    },
     "accounting": {
       "argv": [
         "python3",
@@ -98,6 +125,13 @@
       "argv": [
         "python",
         "tests/workspace_browser.py"
+      ],
+      "exit": 0
+    },
+    "mechanism-chapters": {
+      "argv": [
+        "python",
+        "tests/mechanism_chapters.py"
       ],
       "exit": 0
     }
@@ -129,9 +163,9 @@
     "requests": []
   },
   "test_counts": {
-    "verifier": 633,
-    "atlas": 178,
-    "pytorch": 78,
+    "verifier": 637,
+    "atlas": 184,
+    "pytorch": 84,
     "verifier_skipped": 10,
     "atlas_skipped": 0
   },

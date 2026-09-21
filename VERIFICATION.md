@@ -9,11 +9,11 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 633 verifier tests (10 skipped), 178 model/graph tests, two byte-identical builds of all eight portable entry points and 1483 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Engineering | PASS | 0 | 637 verifier tests (10 skipped), 184 model/graph tests, two byte-identical builds of all eight portable entry points and 1483 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
 | Accounting arithmetic | PASS | 0 | 399 live scenarios; 309 agreement, 82 explained differences, 186 unsupported findings, zero contradictions; required by engineering |
 | Schematics | PASS | 0 | 773 scenes including all 544 decoder layers; 3209 checks against core.mjs, of which 266 are recorded not-applicable passes |
-| Presentations | PASS | 0 | 816 checks across the delivered page and workspace matrix — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
-| Aesthetics | PASS | 0 | 214 scenarios plus 358 workspace theme cases, 1259 checks; type, spacing, contrast, clearance, probe coverage and composition |
+| Presentations | PASS | 0 | 856 checks across the delivered page and workspace matrix — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
+| Aesthetics | PASS | 0 | 214 scenarios plus 378 workspace theme cases, 1471 checks; type, spacing, contrast, clearance, probe coverage and composition |
 | Scientific publication | BLOCKED | 2 | Nine-model consumer inventory and strict evidence/review audit; **no FAIL** |
 | Runtime certification | BLOCKED | 2 | Run on these bytes: 32 of 32 obligations NOT_RUN, **no FAIL and no `RUNTIME_STALE`**; all private hardware receipts were withdrawn for publication |
 
@@ -68,7 +68,7 @@ or GPU execution.
 
 ## Aesthetics evidence
 
-`npm run verify:aesthetics` passes: **1259 checks, 0 failures** across 214 scenarios and 162
+`npm run verify:aesthetics` passes: **1471 checks, 0 failures** across 214 scenarios and 248
 distinct measurements. The first run of this gate failed on 21 defects that shipped in the
 delivered artifact; all are now fixed at the source rather than by moving a threshold.
 
@@ -424,22 +424,22 @@ inventory, not correctness of anything in it.
 
 | Item | Count |
 |---|---:|
-| Input leaves | 638 |
-| Function/file identities | 73 |
+| Input leaves | 647 |
+| Function/file identities | 78 |
 | Distinct sampled scene contracts | 3203 |
-| Claims including domain obligations | 3938 |
+| Claims including domain obligations | 3952 |
 | Candidate source entries | 92 |
 | Accepted raw-byte snapshots | 90 |
 | Scientifically certified claims under the signed policy | 0 |
 | Passed presentation bindings | 0 |
 | Domain contracts / runtime obligations | 32 / 32 |
 
-The publication audit has **7336 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
+The publication audit has **7350 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
 from the current source and consumer bytes:
 
 | Code | Status | Count |
 |---|---|---:|
-| `REVIEW_REQUIRED` | BLOCKED | 3970 |
+| `REVIEW_REQUIRED` | BLOCKED | 3984 |
 | `CLAIM_ANCHOR` | BLOCKED | 2334 |
 | `CLAIM_ROLE` | BLOCKED | 491 |
 | `MODEL_DUAL_CODE` | BLOCKED | 452 |
@@ -465,7 +465,7 @@ provenance, and letting derived scene claims carry provenance through their depe
 removed 3853 BLOCKED findings without a single fabricated anchor.
 
 Runtime certification was run on these bytes and reports the same population plus its
-obligations: **7336 BLOCKED, 38 PASS, 32 NOT_RUN, no FAIL.**
+obligations: **7350 BLOCKED, 38 PASS, 32 NOT_RUN, no FAIL.**
 
 **Adding a ninth checkpoint did not make any receipt stale, and an earlier draft of this section
 was wrong to predict that it would.** The prediction came from reading the coupling rule instead of
@@ -804,11 +804,11 @@ executes all three, and CI could never have executed the transcription compariso
 
 ## Artifact identity
 
-Portable HTML SHA-256: `327b52951fbfba31cbaa50fe5f18b3945d38d22ad0e1629e0840a95f4e9532c0`
+Portable HTML SHA-256: `681120311d72174f0c1f1b49063c80cc740df132b0b805df08fe7285b66a7364`
 
-Scientific lock SHA-256: `270bfab3ac5b0426ea605aa634def2e1a60f1904d1a0ff84c8b261ef15c96bdd`
+Scientific lock SHA-256: `1c98f0592895951493759023585d56f68491cb1a34ae5a0652b603b5f34ecc5e`
 
-Verifier identity SHA-256: `c0e11d9ea16b73bb563f57545a9b0b302a4ee709cedf7c307665c0ea367cfd33`
+Verifier identity SHA-256: `3f23392bf5f3f90fd97f66bed1d7ff6b3cff6179b31f0d66c1caa72f675910f3`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -932,10 +932,10 @@ registry drives page builds, artifact identity, browser routing and preview sele
 Chromium exercises real landing links, variant switches, reloads, identity enforcement,
 scenario exports and return links. All eight portable files are included in the software gates.
 
-- `deepseek-v4.1.html` SHA-256: `ca2910c701cef05eb4243626e1492a86ebd601c76551c0be39a57b0c8ec5a98d`
-- `index.html` SHA-256: `327b52951fbfba31cbaa50fe5f18b3945d38d22ad0e1629e0840a95f4e9532c0`
-- `kimi-k3.html` SHA-256: `11331d5a5b3ac78566c602ab5130e7da5a30816550c2efefada9b038b5eba37c`
-- `qwen3.8.html` SHA-256: `017b8b25e905c391c495885ad9329f20d9ff0388ef4ab58770e6bdefae6fc68d`
+- `deepseek-v4.1.html` SHA-256: `341e2fd37dcce8284b6a5f329d514394c2e22d5d589cdc39a01b67a0fda73ecb`
+- `index.html` SHA-256: `681120311d72174f0c1f1b49063c80cc740df132b0b805df08fe7285b66a7364`
+- `kimi-k3.html` SHA-256: `43dcb7b5f8674b343abd27dc14d9904a88a2e4e0f250217f2a6bbb600d07adbd`
+- `qwen3.8.html` SHA-256: `75e1990f52213bf8d7e73c269065b8d18aa3621c0ad2d73bef8f6c7e1fa399ce`
 
 Publication coverage: 3970 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
 
@@ -949,12 +949,12 @@ exposes a workload-model selector, and links preserve the originating scenario. 
 system bookmarks redirect to these shared pages. Repeated local arrow-key navigation keeps focus
 in the model tabs. All eight files receive artifact identity and portable delivery checks.
 
-- `hardware.html` SHA-256: `1ded09a2fcc1f2c68418cc5af75da6e0400b2bbf627da0c512e43b25eb78ab60`
-- `networking.html` SHA-256: `58e407836767a190d3518f89e3619bc17537544770b2e2d9baa2cc43bc5ad3c7`
+- `hardware.html` SHA-256: `c9fa3a4bcdf8bd3ca3525dd50b0ba4ce020ab6b1ddb2c074ef50d963122a64e7`
+- `networking.html` SHA-256: `4b9bc1f5eb60ca1b1953035fdec5e26d9fae6aa0d1050329060ea5f612eff590`
 
-- `foundations.html` SHA-256: `fa0ce9863973a4dcd8e5d4b25ec133ec9c6cb7a6ab08f5661c1c0765e0bb7a62`
+- `foundations.html` SHA-256: `b5d9c50ee02420cec477cff40ae492f77c3850484e1215392ee93c548ba4adf5`
 
-- `data-representation.html` SHA-256: `e4b2a8d1c9e292b86cdf0a94a1116f469ecd2d98015d14cbfe248d79c0166e1b`
+- `data-representation.html` SHA-256: `234b9d1be2d2a3dd37edff2a98f41f88806179297426227ab072d08d293c6a86`
 
 ## Landing directory and data reference
 
@@ -1011,7 +1011,7 @@ separately scoped DeepSpec verifier. The encoder and decoder reuse the same back
 records. Exact source-symbol anchors bind each record in the publication inventory;
 independent scientific acceptance remains BLOCKED.
 
-78 PyTorch CPU tests exercise reduced-shape mathematics, masks, partial compression
+84 PyTorch CPU tests exercise reduced-shape mathematics, masks, partial compression
 state, previous-sublayer mixing, asymmetric SwiGLU clamps, unbiased expert weighting,
 draft visibility, Markov conditioning, rejection sampling and cache ownership. They run
 our authored examples with illustrative inputs, not upstream code or checkpoint weights.
@@ -1184,4 +1184,35 @@ support without the required registration and execution evidence. Three new Mega
 snapshots are unreviewed candidates with resolved symbols, not scientific approvals.
 
 The stylesheet is compressed within each portable HTML and decoded before initialization,
-with no external runtime assets. Source Python and CPU fixtures remain unchanged.
+with no external runtime assets. The mechanism-chapter pass below extends the canonical Python and CPU fixtures.
+
+## Integrated V4.1 mechanism chapters
+
+CSA2, Engram, Inputs, Residual and dSpark now contain 17 connected sections with
+model context, focused visual structures, offline MathML and saved CPU intermediates.
+The full schematics, canonical Python, operator inspectors and source panels remain
+available. Token and matrix selections survive URL restoration and panel navigation.
+The inspector opens only after an operation is selected.
+
+The current capture manifest contains 99 registered PNG/SVG pairs. New chapter states
+include selected examples in desktop and mobile layouts, both themes. Chromium
+140.0.7339.16 checked the five chapter reader journeys. The accepted schematic
+composition baseline was not changed. Presentation checks cover accessible tables,
+print, offline loading, exports and all entry points.
+
+The input fixture was reproduced by executing pinned publisher formatting, tokenization
+and image preparation in a sandbox. It contains 22 text-conversation tokens and 199
+mixed chart-question positions, with 176 image features. These exact source-derived
+positions are labelled separately from reduced-width teaching tensors. No upstream
+tokenizer assets, checkpoint weights or runtime network requests are shipped.
+
+CPU traces include joint local/global attention with the sink, causal compressed-memory
+availability, layer-specific Engram lookup and gates, 40 mHC normalization snapshots,
+and speculative acceptance with retained/discarded state. mHC displays finite row and
+column errors rather than claiming exact stochasticity. V4-Pro architecture evidence,
+V4.1 mappings and the offline verification example retain separate scope labels.
+
+The V4.1 artifact is 342851 bytes, below the portable artifact limit. Application code
+and fixtures are compressed inside the HTML; privacy checks inspect decoded nested
+payloads. Scientific source acceptance remains BLOCKED and GPU runtime obligations
+remain NOT_RUN, independently of software and CPU validation.

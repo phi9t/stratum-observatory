@@ -3,6 +3,9 @@
 Public citations and code-owner handles are attribution, not local machine identity.
 This is a regression guard, not a guarantee that arbitrary prose contains no PII.
 """
+import base64
+import gzip
+import zlib
 import ipaddress
 import json
 import re
@@ -45,6 +48,31 @@ def findings(path, text):
     return found
 
 
+def packed_findings(path, text):
+    """Inspect our offline gzip payloads as data, including nested fixture payloads."""
+    issues = findings(path, text)
+    pending = [text]
+    seen = set()
+    for depth in range(4):
+        following = []
+        for content in pending:
+            for match in re.finditer(r"H4sI[A-Za-z0-9+/=]{24,}", content):
+                payload = match.group()
+                if payload in seen:
+                    continue
+                seen.add(payload)
+                try:
+                    decoded = gzip.decompress(base64.b64decode(payload, validate=True)).decode('utf-8')
+                except (ValueError, OSError, EOFError, UnicodeError, zlib.error):
+                    continue
+                issues.extend(findings(path + ':gzip', decoded))
+                following.append(decoded)
+        pending = following
+        if not pending:
+            break
+    return issues
+
+
 def public_files(root):
     result = subprocess.run(['git', 'ls-files', '-z', '--cached', '--others', '--exclude-standard'],
                             cwd=root, check=True, capture_output=True)
@@ -73,7 +101,7 @@ def scan(root):
                     issues.append({'path': name, 'line': 0, 'kind': 'image-metadata-review-required'})
                 offset += size + 12
         else:
-            issues.extend(findings(name, data.decode('utf-8', errors='replace')))
+            issues.extend(packed_findings(name, data.decode('utf-8', errors='replace')))
     return {'status': 'FAIL' if issues else 'PASS', 'files': len(paths), 'findings': issues,
             'scope': 'Current tracked and non-ignored files only; excludes Git history and ignored private data.'}
 

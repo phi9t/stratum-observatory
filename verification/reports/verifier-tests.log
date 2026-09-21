@@ -513,6 +513,8 @@ test_yaml_workflows_are_covered (test_integration.ToolchainDigestTests.test_yaml
 test_a_value_contradicting_upstream_is_caught (test_integration.UpstreamComparisonTests.test_a_value_contradicting_upstream_is_caught) ... ok
 test_equal_relations_are_registered (test_integration.UpstreamComparisonTests.test_equal_relations_are_registered) ... ok
 test_the_shipped_values_agree_with_upstream (test_integration.UpstreamComparisonTests.test_the_shipped_values_agree_with_upstream) ... ok
+test_chapter_symbols_resolve_in_the_cited_pinned_files (test_mechanism_sources.MechanismSourceTests.test_chapter_symbols_resolve_in_the_cited_pinned_files) ... ok
+test_symbol_ownership_does_not_accept_a_similar_class (test_mechanism_sources.MechanismSourceTests.test_symbol_ownership_does_not_accept_a_similar_class) ... ok
 test_allowed_snapshot (test_methodology_sources.MethodologySources.test_allowed_snapshot) ... ok
 test_cannot_masquerade_as_code_or_vendor (test_methodology_sources.MethodologySources.test_cannot_masquerade_as_code_or_vendor) ... ok
 test_tampered_snapshot_fails (test_methodology_sources.MethodologySources.test_tampered_snapshot_fails) ... ok
@@ -567,6 +569,8 @@ And the real page, so the negatives above are not tests of a probe nothing runs.
 test_unscoped_headers_are_caught_in_both_directions (test_presentations.ProseProbeTests.test_unscoped_headers_are_caught_in_both_directions) ... ok
 test_a_scenario_claiming_certification_is_rejected (test_presentations.ScenarioSchemaTests.test_a_scenario_claiming_certification_is_rejected) ... ok
 test_schema_exists_and_accepts_a_real_export (test_presentations.ScenarioSchemaTests.test_schema_exists_and_accepts_a_real_export) ... ok
+test_corrupt_or_benign_payload_is_not_executed (test_privacy_packed.PackedPrivacyTests.test_corrupt_or_benign_payload_is_not_executed) ... ok
+test_nested_offline_payload_cannot_hide_machine_identity (test_privacy_packed.PackedPrivacyTests.test_nested_offline_payload_cannot_hide_machine_identity) ... ok
 test_archive_excludes_history_and_ignored_files_and_normalizes_ownership (test_publication_privacy.PrivacyTests.test_archive_excludes_history_and_ignored_files_and_normalizes_ownership) ... ok
 test_argv_preserves_arguments_without_publishing_interpreter_path (test_publication_privacy.PrivacyTests.test_argv_preserves_arguments_without_publishing_interpreter_path) ... ok
 test_current_public_files_are_clean (test_publication_privacy.PrivacyTests.test_current_public_files_are_clean) ... ok
@@ -767,6 +771,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 633 tests in 139.035s
+Ran 637 tests in 141.740s
 
 OK (skipped=10)

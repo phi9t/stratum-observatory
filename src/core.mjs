@@ -5,7 +5,7 @@ export const DEFAULT_STATE={model:'ds3',view:'model',stage:'block',layer:4,hardw
 export function getModel(id){if(typeof id==='object'&&id?.id)return id;const m=MODELS[id];if(!m)throw new RangeError(`Unknown model: ${id}`);return m;}
 export function sanitizeState(input={}){
  const s={...DEFAULT_STATE};
- const choices={panel:['schematic','maths','pytorch','worked','sources'],model:Object.keys(MODELS),compare:Object.keys(MODELS),view:VIEWS,hardware:Object.keys(HARDWARE),stage:['block',...new Set(Object.keys(MODELS).flatMap(focalStages))],placement:['split','colocated'],trainMode:['fsdp','ddp','rl'],traffic:['expert','allreduce','handoff'],fabric:['ib','roce'],library:['nccl','nvshmem','nixl'],theme:['dark','light'],detail:['shapes','operators'],phase:['prefill','decode']};
+ const choices={panel:['chapter','schematic','maths','pytorch','worked','sources'],model:Object.keys(MODELS),compare:Object.keys(MODELS),view:VIEWS,hardware:Object.keys(HARDWARE),stage:['block',...new Set(Object.keys(MODELS).flatMap(focalStages))],placement:['split','colocated'],trainMode:['fsdp','ddp','rl'],traffic:['expert','allreduce','handoff'],fabric:['ib','roce'],library:['nccl','nvshmem','nixl'],theme:['dark','light'],detail:['shapes','operators'],phase:['prefill','decode']};
  for(const [k,opts]of Object.entries(choices))if(opts.includes(input[k]))s[k]=input[k];
  for(const key of ['module','example'])if(typeof input[key]==='string'&&/^[a-zA-Z0-9_-]{0,100}$/.test(input[key]))s[key]=input[key];
  const numeric={context:[1,1048576],batch:[1,256],ranks:[1,4096],utilization:[1,100],oversub:[1,16],intensity:[1,2048],layer:[1,MODELS[s.model].layers]};

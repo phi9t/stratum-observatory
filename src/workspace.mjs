@@ -1,3 +1,5 @@
+import {hasMechanismChapter} from './mechanism-chapters.mjs';
+import {normalizeChapterExample} from './mechanism-visuals.mjs';
 /** Navigation bindings only. Tensor contracts and explanations remain in their source records. */
 import {PYTORCH_EXAMPLES,moduleExample} from './pytorch.mjs';
 import {WORKED_RESULTS} from './worked-results.mjs';
@@ -63,10 +65,10 @@ export function resolveWorkspace(state,scene){
  const fixtureId=workedIds.includes(requestedFixture)?requestedFixture:workedIds[0]||null;
  const fixture=fixtureId?WORKED_RESULTS[fixtureId]:null;
  const step=fixture&&requestedFixture===fixtureId?[...fixture.inputs,...fixture.steps].find(row=>row.id===requestedStep&&state.example===`${fixtureId}--${row.id}`)||null:null;
- const exampleId=fixtureId?(step?`${fixtureId}--${step.id}`:fixtureId):'';
+ const exampleId=normalizeChapterExample(state)||(state.panel==='chapter'?'':fixtureId?(step?`${fixtureId}--${step.id}`:fixtureId):'');
  const info=node?.info||null;
  const mathematics=nodes.filter(n=>n===node||(example&&exampleKey(state,n)===example.id)).map(n=>n.info).filter(info=>info&&(info.formula||info.facts?.length));
- const panels=['schematic'];
+ const panels=hasMechanismChapter(state)?['chapter','schematic']:['schematic'];
  if(mathematics.length)panels.push('maths');
  if(example)panels.push('pytorch');
  if(workedIds.length)panels.push('worked');

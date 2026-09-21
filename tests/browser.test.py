@@ -35,6 +35,7 @@ MODELS={k:m['layers'] for k,m in APP.items()}
 errors=[];requests=[];cases=[];responsive=[];failures=[]
 
 def check(page, patch, label='geometry'):
+    patch={**patch,'panel':'schematic'}
     current=page.evaluate('STRATUM.getState()')
     model=patch.get('model',current['model'])
     view=patch.get('view',current['view'])

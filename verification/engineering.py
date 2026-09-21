@@ -63,7 +63,7 @@ def main():
     # `uv run` can re-resolve the lock mid-run. If it does, the receipt would bind a
     # toolchain the tests never used, so refuse rather than attest to the wrong one.
     toolchain_before=toolchain_digest(root)
-    steps=[('verifier-tests',[sys.executable,'-m','unittest','discover','-s','verification/tests','-v']),('node-tests',['npm','test']),('pytorch-validation',['uv','run','--frozen','--group','examples','python','-m','examples.deepseek_v41.validate']),('pytorch-examples',['uv','run','--frozen','--group','examples','python','-m','unittest','discover','-s','tests','-p','pytorch_*.py','-v']),('accounting',[sys.executable,'-m','verification.accounting']),('build',['npm','run','build'])]
+    steps=[('verifier-tests',[sys.executable,'-m','unittest','discover','-s','verification/tests','-v']),('node-tests',['npm','test']),('pytorch-validation',['uv','run','--frozen','--group','examples','python','-m','examples.deepseek_v41.validate']),('pytorch-examples',['uv','run','--frozen','--group','examples','python','-m','unittest','discover','-s','tests','-p','pytorch_*.py','-v']),('input-fixtures',[sys.executable,'-m','unittest','discover','-s','tests','-p','input_cases.py','-v']),('worked-freshness',['uv','run','--frozen','--group','examples','python','tools/export-worked.py','--check']),('accounting',[sys.executable,'-m','verification.accounting']),('build',['npm','run','build'])]
     # The full verifier suite can exceed 600 seconds on a loaded host. Give that
     # step more time without changing its assertions or accepting partial results.
     for name,cmd in steps:
@@ -85,6 +85,10 @@ def main():
     (out/'workspace-browser.log').write_text(public_log(workspace_result.stdout,root));commands['workspace-browser']={'argv':['python','tests/workspace_browser.py'],'exit':workspace_result.returncode}
     print(workspace_result.stdout)
     if workspace_result.returncode:return workspace_result.returncode
+    mechanism_result=subprocess.run([sys.executable,'tests/mechanism_chapters.py'],cwd=root,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=300)
+    (out/'mechanism-chapters.log').write_text(public_log(mechanism_result.stdout,root));commands['mechanism-chapters']={'argv':['python','tests/mechanism_chapters.py'],'exit':mechanism_result.returncode}
+    print(mechanism_result.stdout)
+    if mechanism_result.returncode:return mechanism_result.returncode
     browser=loads(old.read_text())
     if any(browser.get(k)!=0 for k in ('geometry_defects','runtime_errors','external_runtime_requests')):return 1
     if toolchain_digest(root)!=toolchain_before:print('FAIL: verifier toolchain changed during the run');return 1

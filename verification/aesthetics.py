@@ -304,6 +304,8 @@ CHROME_TEXT_SELECTORS=('.code-symbol-picker', '.code-symbol-picker select', '.si
                        '.innovation-table td','.innovation-table a','.accounting-assumptions summary',
                        '.accounting-assumptions h4','.accounting-assumptions p','.accounting-citations a','.pytorch-section h4','.pytorch-section p','.pytorch-example summary','.pytorch-code','.worked-code summary','.pytorch-license summary','.pytorch-code span','.code-language')
 
+CHROME_TEXT_SELECTORS+= ('.mechanism-intro>h3', '.mechanism-intro>p', '.mechanism-intro nav button', '.mechanism-intro nav code', '.section-step', '.mechanism-section h3', '.mechanism-section>header p', '.mechanism-visual h4', '.mechanism-explanation h4', '.mechanism-explanation>p', '.math-scroll', '.chapter-equation details', '.chapter-provenance', '.chapter-provenance a', '.visual-caption', '.data-chip>span', '.data-chip code', '.mechanism-flow li+li::before', '.mechanism-flow strong', '.mechanism-flow span', '.visual-selector>span', '.visual-selector button', '.query-origin', '.position-cell small', '.position-cell span', '.position-cell code', '.joint-attention', '.join-symbol', '.tensor-matrix', '.tensor-matrix caption', '.tensor-matrix code', '.chapter-tensor summary', '.chapter-tensor pre', '.tensor-value', '.compression-arrow', '.compression-arrow span', '.index-column', '.index-column code', '.ownership-key', '.ownership-row', '.depth-cell', '.depth-cell strong', '.prompt-code', '.fixture-tag', '.sequence-position', '.sequence-position small', '.position-detail p', '.position-detail pre', '.stream-bank>div', '.equation-plus', '.gate-timeline code', '.variant-boundary', '.variant-boundary span', '.draft-slots>div', '.verification-timeline>div', '.draft-slots code', '.verification-timeline code', '.draft-slots small', '.chapter-footer', '.visual-selector select', '.visual-selector label')
+
 #: Reading-size chrome rules that the probe does **not** measure. This is recorded debt, not an
 #: exemption on principle: each entry is chrome text at or above `reading_px` whose contrast is
 #: therefore unverified by this gate. Eight of these measure between 4.89:1 and 6.87:1 when probed
@@ -443,15 +445,19 @@ PROBE=r"""
   for (const el of document.querySelectorAll(CHROME_TEXT)) {
     const st = rgba(el); const box = el.getBoundingClientRect();
     if (!box.width || !box.height || !el.checkVisibility({visibilityProperty:true})) continue;
-    let bg = null;
+    const backgrounds = [];
     for (let n = el; n && n.nodeType === 1; n = n.parentElement) {
       const c = getComputedStyle(n).backgroundColor;
-      if (c && c !== 'rgba(0, 0, 0, 0)' && c !== 'transparent') { bg = c; break; }
+      if (c && c !== 'rgba(0, 0, 0, 0)' && c !== 'transparent') {
+        backgrounds.unshift({color:c,alpha:1});
+        const components=c.match(/[\d.]+/g)?.map(Number)||[];
+        if(components.length===3||components[3]===1)break;
+      }
     }
     out.texts.push({ surface: 'chrome', workspace: !!el.closest('#module-panel'), accounting: !!el.closest('.accounting-assumptions'), id: el.className && el.className.baseVal !== undefined ? el.className.baseVal : (el.className || el.tagName),
       fill: st.color, alpha: chain(el),
       px: parseFloat(st.fontSize), weight: parseInt(st.fontWeight, 10) || 400,
-      backdrop: bg ? [{ color: bg, alpha: 1 }] : null, text: (el.textContent || '').slice(0, 60) });
+      backdrop: backgrounds.length ? backgrounds : null, text: (el.textContent || '').slice(0, 60) });
   }
   // "Core labels cannot ellipsize" -- OBSERVATORY.md.
   out.truncated = Array.from(document.querySelectorAll('.model-card .variant, .model-card .motif, .comparison-table td, .comparison-table th, .search-result small'))
@@ -495,10 +501,11 @@ import {MODELS,sanitizeState,focalStages} from './src/core.mjs';
 import {MODEL_VIEWS} from './src/pages.mjs';
 import {buildScene} from './src/diagrams.mjs';
 import {resolveWorkspace} from './src/workspace.mjs';
+import {mechanismReaderStates} from './src/mechanism-visuals.mjs';
 const representatives=new Map();
 const offer=(state,workspace,panel,example='',kind='')=>{
  const patch={model:state.model,view:state.view,stage:state.stage,layer:state.layer,
-  module:workspace.module,panel,example:example||workspace.exampleId};
+  module:workspace.module,panel,example:panel==='chapter'?'':example||workspace.exampleId};
  const identity=[state.model,state.view,state.stage,panel,
   panel==='pytorch'?workspace.example?.id:panel==='worked'?example.split('--')[0]+kind:''].join('/');
  // The longest reading sample exercises wrapping without copying a panel-size inventory.
@@ -533,7 +540,7 @@ for(const model of Object.values(MODELS))for(const view of MODEL_VIEWS){
   }
  }
 }
-console.log(JSON.stringify([...representatives.values()].map(r=>r.patch)));
+console.log(JSON.stringify([...representatives.values()].map(r=>r.patch).concat(mechanismReaderStates())));
 """
 
 
@@ -556,7 +563,7 @@ def workspace_preview_states(root,states=None):
     chosen={}
     for state in states:
         if state['view']!='model':continue
-        key=(state['model'],state['panel'])
+        key=(state['model'],state['panel'],state['stage']+'/'+state.get('example','') if state['panel']=='chapter' else '')
         score=(bool(state.get('example')) and '--' not in state['example'],state['stage']=='csa2')
         if key not in chosen or score>chosen[key][0]:chosen[key]=(score,state)
     # Reindex's mapping comes from resolveWorkspace, not a transcribed list of its panels.
@@ -572,13 +579,13 @@ for(const m of Object.values(MODELS))for(const stage of focalStages(m)){
  const scene=buildScene(s),node=scene.nodes.find(n=>n.id==='csa2-reindex');
  if(!node)continue;
  const w=resolveWorkspace({...s,module:node.id},scene);
- for(const panel of w.panels.filter(p=>p!=='schematic'))out.push({model:m.id,view:'model',stage:s.stage,layer:s.layer,module:node.id,panel,example:w.exampleId});
+ for(const panel of w.panels.filter(p=>p!=='schematic'))out.push({model:m.id,view:'model',stage:s.stage,layer:s.layer,module:node.id,panel,example:panel==='chapter'?'':w.exampleId});
 }
 console.log(JSON.stringify(out));
 """
     reindex=loads(subprocess.run(['node','--input-type=module','-e',code],cwd=root,text=True,
                                 capture_output=True,check=True,timeout=60).stdout)
-    for state in reindex:chosen[(state['model'],state['panel'])]=((),state)
+    for state in reindex:chosen[(state['model'],state['panel'],state['stage']+'/'+state.get('example','') if state['panel']=='chapter' else '')]=((),state)
     return [entry[1] for entry in chosen.values()]
 
 
@@ -761,7 +768,7 @@ def run(root,record=False):
         browser.close()
     findings.extend(judge_type_scale(root/'src/styles.css',policy))
     findings.extend(judge_spacing_scale(root/'src/styles.css',policy))
-    findings.extend(judge_chrome_probe(root/'src/styles.css',(root/'src/app.mjs',root/'src/worked-examples.mjs',root/'src/workspace-ui.mjs',root/'index.html')))
+    findings.extend(judge_chrome_probe(root/'src/styles.css',(root/'src/app.mjs',root/'src/worked-examples.mjs',root/'src/workspace-ui.mjs',root/'src/mechanism-visuals.mjs',root/'index.html')))
     findings.extend(judge_chrome_coverage(root/'src/styles.css',policy))
     if errors:
         findings.append(Finding('AESTHETIC_RUNTIME','aesthetics','FAIL','page',f'{len(errors)} runtime errors while measuring: {errors[0][:200]}','Fix the page error; measurements taken during an exception are not trustworthy.'))

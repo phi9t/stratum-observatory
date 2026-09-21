@@ -7,6 +7,8 @@ import subprocess
 
 
 def open_chapter_reference(page):
+    if page.evaluate("STRATUM.getState().panel") != "schematic":
+        page.locator('#workspace-tabs [data-panel="schematic"]').click()
     reference=page.locator("#analysis-panel > details.chapter-reference")
     assert reference.count()==1
     if not reference.evaluate("el=>el.open"):
@@ -41,6 +43,7 @@ def exercise(page,root):
     for stage in expected:
         page.locator(f'#chapter-nav button[data-setting="stage"][data-value="{stage}"]').click()
         assert page.evaluate('STRATUM.getState().stage')==stage
+        page.locator('#workspace-tabs [data-panel="schematic"]').click()
         if stage in ('inputs','residual','dspark'):
             # Build-time compression must preserve the complete pure scene, not
             # merely a rendering that happens to have valid geometry.
@@ -188,9 +191,11 @@ def exercise(page,root):
         assert page.evaluate('STRATUM.getState().stage')=='ced'
     page.locator('#chapter-nav button[data-setting="stage"][data-value="csa2"]').click()
     assert page.locator('button[data-setting="detail"]').count()==0
+    open_chapter_reference(page)
     for layer in ['3','25','26']:
         page.select_option('#control-layer',layer)
         assert page.evaluate('STRATUM.getState().layer')==int(layer)
+        assert page.evaluate('STRATUM.getState().panel')=='schematic'
         assert f'Layer {layer} is' in page.locator('#analysis-panel').text_content()
     fixed_cpu=page.locator('[data-worked-values]').all_text_contents()
     before=page.locator('#analysis-panel .chapter-notes > .table-scroll > table > tbody').text_content()

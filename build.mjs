@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {gzipSync} from 'node:zlib';
+import {createHash} from 'node:crypto';
 import * as presets from './src/models.mjs';
 import {PAGES} from './src/pages.mjs';
 import {landingHTML,dataHTML} from './src/landing.mjs';
@@ -8,7 +9,10 @@ import {syncWorkedResults} from './tools/sync-worked.mjs';
 import {syncPythonSources} from './tools/sync-pytorch.mjs';
 syncPythonSources();
 syncWorkedResults();
-const files=['models','worked-results','worked-examples','pytorch-source','pytorch-inputs','pytorch-backbone','pytorch-memory','pytorch-dspark','pytorch','core','scene','diagram-model','diagram-systems','diagram-residual','diagram-inputs','diagram-dspark','diagram-meta','deepdives','python-highlight','diagram-deepdives','diagram-pytorch-backbone','diagram-pytorch-memory','diagram-pytorch-dspark','diagram-pytorch','diagrams','innovations','pages','workspace','implementation-sources','workspace-ui','app'];
+const inputCases=JSON.parse(fs.readFileSync('examples/deepseek_v41/input-cases.json','utf8'));
+for(const [file,sha] of Object.entries(inputCases.recipe_sha256))if(createHash('sha256').update(fs.readFileSync(file)).digest('hex')!==sha)throw new Error('Stale prompt fixtures: '+file);
+fs.writeFileSync('src/input-cases.mjs','/** Generated publisher-derived input fixtures. */\nexport const INPUT_CASES='+JSON.stringify(inputCases)+';\n');
+const files=['models','worked-results','worked-examples','pytorch-source','pytorch-inputs','pytorch-backbone','pytorch-memory','pytorch-dspark','pytorch','core','scene','diagram-model','diagram-systems','diagram-residual','diagram-inputs','diagram-dspark','diagram-meta','deepdives','python-highlight','diagram-deepdives','diagram-pytorch-backbone','diagram-pytorch-memory','diagram-pytorch-dspark','diagram-pytorch','diagrams','innovations','pages','input-cases','mechanism-chapters','mechanism-visuals','workspace','implementation-sources','workspace-ui','app'];
 const modules=[];
 for(const name of files){let code=fs.readFileSync(`src/${name}.mjs`,'utf8');const exports=new Set();
  if(['pytorch-inputs','pytorch-backbone','pytorch-memory','pytorch-dspark'].includes(name)){
@@ -43,9 +47,9 @@ for(const name of files){let code=fs.readFileSync(`src/${name}.mjs`,'utf8');cons
   modules.push(`__modules['models.mjs'] = JSON.parse(await new Response(new Blob([Uint8Array.from(atob('${compressed}'),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('gzip'))).text());`);
   continue;
  }
- if(name==='pytorch-source'||name==='worked-results'){
+ if(name==='pytorch-source'||name==='worked-results'||name==='input-cases'){
   // Decode exact local data before the dependent modules run; no external assets.
-  const symbol=name==='pytorch-source'?'PYTHON_SOURCES':'WORKED_RESULTS';
+  const symbol=name==='pytorch-source'?'PYTHON_SOURCES':name==='input-cases'?'INPUT_CASES':'WORKED_RESULTS';
   const match=code.match(new RegExp('export const '+symbol+'=(.*);\\n$'));
   if(!match)throw new Error('Malformed generated data module: '+name);
   const compressed=gzipSync(Buffer.from(match[1]),{level:9}).toString('base64');
@@ -62,7 +66,7 @@ for(const name of files){let code=fs.readFileSync(`src/${name}.mjs`,'utf8');cons
 const stylesheet=fs.readFileSync('src/styles.css','utf8');
 const packedStyles=gzipSync(Buffer.from(stylesheet),{level:9}).toString('base64');
 const js=`(async()=>{'use strict';document.getElementById('stratum-styles').textContent=await new Response(new Blob([Uint8Array.from(atob('${packedStyles}'),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('gzip'))).text();const __modules=Object.create(null);\n${modules.join('\n')}\n})();`;
-let html=fs.readFileSync('index.html','utf8');html=html.replace('<link rel="stylesheet" href="src/styles.css">',()=>'<style id="stratum-styles"></style>');html=html.replace('<script type="module" src="src/app.mjs"></script>',()=>`<script>${js.replace(/<\/script/gi,'<\\/script')}</script>`);
+let html=fs.readFileSync('index.html','utf8');html=html.replace('<link rel="stylesheet" href="src/styles.css">',()=>'<style id="stratum-styles"></style>');const packedApp=gzipSync(Buffer.from(js),{level:9}).toString('base64');html=html.replace('<script type="module" src="src/app.mjs"></script>',()=>`<script>(async()=>{const app=document.createElement('script');app.textContent=await new Response(new Blob([Uint8Array.from(atob('${packedApp}'),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('gzip'))).text();document.body.append(app);})();</script>`);
 fs.mkdirSync('dist',{recursive:true});fs.writeFileSync('dist/index.html',landingHTML(fs.readFileSync('src/styles.css','utf8')));
 fs.writeFileSync('dist/data-representation.html',dataHTML(fs.readFileSync('src/styles.css','utf8')));
 for(const page of PAGES){

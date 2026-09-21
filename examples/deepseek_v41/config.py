@@ -34,6 +34,7 @@ class V41Config:
     candidate_blocks: int = 2048
     candidate_block_size: int = 8
     engram_score_floor: float = 1e-6
+    engram_layer_ids: tuple[int, ...] = (1, 14)
     engram_rows: int = 384006168
     engram_row_dim: int = 256
     engram_heads: int = 8

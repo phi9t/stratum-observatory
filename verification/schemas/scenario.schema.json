@@ -70,7 +70,8 @@
         "panel": {
           "type": "string",
           "enum": [
-            "schematic",
+            "chapter",
+        "schematic",
             "maths",
             "pytorch",
             "worked",

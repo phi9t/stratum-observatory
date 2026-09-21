@@ -145,8 +145,9 @@ def run_worked_examples() -> dict[str, dict[str, Any]]:
     from .residual_example import residual_example
     from .vision_example import inputs_example
     from .dspark_example import dspark_example
+    from .mechanism_examples import csa2_example, engram_example, verification_example
     with torch.no_grad():
-        return dict(dspark=dspark_example(), inputs=inputs_example(), residual=residual_example(), replay=replay_example(), selection=selection_example(), query=query_example())
+        return dict(csa2=csa2_example(), engram=engram_example(), verification=verification_example(), dspark=dspark_example(), inputs=inputs_example(), residual=residual_example(), replay=replay_example(), selection=selection_example(), query=query_example())
 
 
 if __name__ == '__main__':

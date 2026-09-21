@@ -200,7 +200,7 @@ class ChromeProbeCoverageTests(unittest.TestCase):
  def setUp(self):
   self.policy=json.loads((ROOT/'verification/baselines/aesthetics/policy.json').read_text())
   self.css=ROOT/'src/styles.css'
-  self.markup=(ROOT/'src/app.mjs',ROOT/'src/worked-examples.mjs',ROOT/'src/workspace-ui.mjs',ROOT/'index.html')
+  self.markup=(ROOT/'src/app.mjs',ROOT/'src/worked-examples.mjs',ROOT/'src/workspace-ui.mjs',ROOT/'src/mechanism-visuals.mjs',ROOT/'index.html')
  def test_the_shipped_probe_list_is_live_and_complete(self):
   for judge in (a.judge_chrome_probe(self.css,self.markup),
                 a.judge_chrome_coverage(self.css,self.policy)):

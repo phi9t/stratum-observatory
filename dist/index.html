@@ -207,5 +207,155 @@ body.focus-mode .chapter-nav,body.focus-mode .workspace-tabs{display:none}
 .connected-workspace .chapter-nav{position:fixed;bottom:0;overflow:auto}
 @media print{.connected-workspace .site-header{position:static}}
 
+/* Integrated mechanism chapters: time, depth and matrix axes form the visual grammar. */
+.reading-chapter .workbench{display:block}
+.reading-chapter #module-panel{border:0;background:none;padding:0;overflow:visible}
+.reading-chapter #inspector{display:none}
+.reading-chapter.chapter-inspector-open #inspector{display:block;position:fixed;z-index:95;top:80px;right:24px;width:360px;max-height:calc(100vh - 104px);overflow:auto;background:var(--panel);box-shadow:0 16px 48px #0005}
+.close-inspector{margin:16px}
+.mechanism-chapter{max-width:1600px;margin:0 auto}
+.mechanism-intro{padding:32px 0 40px;border-bottom:1px solid var(--line)}
+.mechanism-intro>h3{font:400 32px/1.2 Georgia,'Times New Roman',serif;max-width:900px;margin:16px 0}
+.mechanism-intro>p{max-width:800px;font-size:16px;line-height:1.7;color:var(--text)}
+.mechanism-intro nav{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.mechanism-intro nav button{display:flex;gap:12px;text-align:left;align-items:baseline;border:0;background:none;padding:12px 0;margin-right:24px;font-size:14px;color:var(--text)}
+.mechanism-intro nav code{color:var(--text);font-size:16px}
+.mechanism-section{padding:48px 0;border-bottom:1px solid var(--line);scroll-margin-top:96px}
+.mechanism-section>header{display:flex;gap:24px;align-items:baseline;margin-bottom:32px}
+.section-step{font:400 24px/1 var(--mono);color:var(--accent)}
+.mechanism-section h3{font:400 24px/1.3 Georgia,'Times New Roman',serif;margin:0 0 12px}
+.mechanism-section>header p{max-width:880px;font-size:16px;line-height:1.7;margin:0;color:var(--text)}
+.mechanism-section-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,1fr);gap:40px;align-items:start}
+.mechanism-visual{min-width:0;padding:24px;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.mechanism-visual h4,.mechanism-explanation h4{font-size:14px;font-weight:600;margin:0 0 16px;color:var(--text)}
+.mechanism-explanation{min-width:0}
+.mechanism-explanation>p{font-size:14px;line-height:1.8;color:var(--text);margin:20px 0}
+.chapter-equation{padding:20px 0;border-top:1px solid var(--line)}
+.math-scroll{overflow:auto;padding:12px 0;font-size:16px}
+.math-scroll math{margin:0;text-align:left;color:var(--text)}
+.chapter-equation details{margin-top:12px;font-size:12px;color:var(--text)}
+.chapter-equation details code{display:block;white-space:pre-wrap;line-height:1.7;padding:12px 0;overflow-wrap:anywhere}
+.chapter-provenance{margin-top:24px;font-size:12px;color:var(--text)}
+.chapter-provenance code{display:block;white-space:normal;overflow-wrap:anywhere;margin:16px 0;line-height:1.7}
+.chapter-provenance a{display:block;margin:12px 0;font-size:12px;color:var(--text)}
+.visual-caption{font-size:12px;line-height:1.7;color:var(--text);margin:20px 0 0}
+.data-chip{display:inline-flex;flex-direction:column;gap:8px;padding:12px 16px;border:1px solid var(--line);border-radius:4px;max-width:100%;margin:4px 8px 4px 0;background:var(--bg)}
+.data-chip>span{font-size:12px;color:var(--text)}
+.data-chip code{font-size:14px;white-space:normal;overflow-wrap:anywhere;color:var(--text)}
+.data-chip.compute{border-left:4px solid var(--accent)}
+.data-chip.state{border-left:4px solid var(--amber)}
+.mechanism-flow{list-style:none;display:flex;gap:20px;align-items:stretch;padding:0;margin:20px 0;overflow:auto}
+.mechanism-flow li{position:relative;flex:1;min-width:104px;border-top:2px solid var(--line);padding:16px 0}
+.mechanism-flow li+li::before{content:'→';position:absolute;left:-20px;top:16px;font-size:16px;color:var(--text)}
+.mechanism-flow li.compute{border-color:var(--accent)}
+.mechanism-flow li.state{border-color:var(--amber)}
+.mechanism-flow strong{display:block;font-size:14px;line-height:1.6;color:var(--text)}
+.mechanism-flow span{display:block;margin-top:8px;font:12px/1.7 var(--mono);color:var(--text)}
+.visual-selector{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0;align-items:center}
+.visual-selector>span{font-size:12px;margin-right:8px;color:var(--text)}
+.visual-selector button{padding:8px 12px;border:1px solid var(--line);background:var(--bg);border-radius:4px;font-size:12px;color:var(--text)}
+.visual-selector button[aria-pressed=true]{border-color:var(--accent);box-shadow:inset 0 -2px var(--accent)}
+.query-origin{display:flex;align-items:center;gap:16px;font-size:12px;color:var(--text);padding-bottom:20px}
+.kv-lanes{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.kv-lane{min-width:0;border-top:3px solid var(--amber);padding-top:16px}
+.kv-lane:first-child{border-color:var(--accent)}
+.position-strip{display:flex;gap:8px;overflow:auto;padding:12px 0}
+.position-cell{display:flex;flex-direction:column;gap:8px;min-width:60px;padding:12px 8px;text-align:center;border:1px solid var(--line);border-radius:4px;color:var(--text)}
+.position-cell small,.position-cell span{font-size:10px}
+.position-cell code{font-size:16px}
+.position-cell.is-active{border-bottom:3px solid var(--accent)}
+.position-cell.is-global{border-bottom:3px solid var(--amber)}
+.position-cell.is-muted{border-style:dashed}
+.joint-attention{padding-top:24px;margin-top:20px;border-top:1px solid var(--line);font-size:14px;color:var(--text)}
+.join-symbol{font-size:24px;display:inline-block;margin-right:16px;color:var(--accent)}
+.matrix-scroll{overflow:auto;max-width:100%;margin:16px 0}
+.tensor-matrix{border-collapse:separate;border-spacing:4px;width:100%;font-size:12px}
+.tensor-matrix caption{text-align:left;font:12px/1.7 var(--mono);color:var(--text);padding:0 0 12px}
+.tensor-matrix th{font-weight:400;padding:8px;color:var(--text);white-space:nowrap}
+.tensor-matrix td{padding:12px 8px;text-align:center;background:rgba(100,190,165,calc(var(--cell-mass)*.12));border:1px solid var(--line);color:var(--text)}
+.tensor-matrix code{font:12px/1.5 var(--mono);white-space:nowrap}
+.tensor-matrix .cell-present{border-bottom:3px solid var(--accent)}
+.tensor-matrix .cell-absent{border-style:dashed}
+.chapter-tensor{border-top:1px solid var(--line);padding:16px 0;color:var(--text)}
+.chapter-tensor summary{font-size:12px;line-height:1.7;cursor:pointer}
+.chapter-tensor summary code{margin-left:8px}
+.chapter-tensor pre,.tensor-value{overflow:auto;font:12px/1.8 var(--mono);max-height:320px;padding:16px;background:var(--bg);color:var(--text)}
+.compression-columns{display:grid;grid-template-columns:minmax(0,1fr) 64px minmax(0,1fr);gap:16px;align-items:center}
+.compression-arrow{text-align:center;font-size:24px;color:var(--accent)}
+.compression-arrow span{display:block;font-size:10px;line-height:1.7;color:var(--text)}
+.indexing-grid{display:flex;gap:8px;overflow:auto}
+.index-column{min-width:80px;flex:1;display:flex;flex-direction:column;gap:20px;padding:16px 8px;text-align:center;border:1px solid var(--line);font-size:10px;color:var(--text)}
+.index-column code{font-size:12px}
+.index-column.is-selected{border-bottom:3px solid var(--accent)}
+.index-rule{padding:8px 4px;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
+.index-rule.kept{border-style:solid;border-color:var(--amber)}
+.ownership-key,.ownership-row{display:grid;grid-template-columns:40px 1fr 1fr 1fr;gap:12px;text-align:left;align-items:center}
+.ownership-key{font-size:10px;line-height:1.6;color:var(--text);padding:0 8px 16px}
+.ownership-rails{max-height:560px;overflow:auto}
+.ownership-row{width:100%;border:0;border-top:1px solid var(--line);background:none;font-size:12px;color:var(--text);padding:8px}
+.ownership-row.is-selected{box-shadow:inset 4px 0 var(--accent);background:var(--bg)}
+.ownership-row.decoder-boundary{border-top:3px solid var(--amber)}
+.depth-strip{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;padding-bottom:20px}
+.depth-cell{display:flex;flex-direction:column;gap:8px;padding:12px 4px;text-align:center;border:1px solid var(--line);font-size:12px;color:var(--text)}
+.depth-cell strong{font-size:10px}
+.depth-cell.injection-site{border-color:var(--accent);border-top-width:4px}
+.depth-cell.depth-boundary{border-left:4px solid var(--amber)}
+.prompt-comparison{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.prompt-comparison>div{min-width:0}
+.prompt-code{font:12px/1.8 var(--mono);color:var(--text);background:var(--bg);padding:16px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:440px;overflow:auto}
+.fixture-tag{display:inline-block;font:10px/1.6 var(--mono);padding:8px 0;color:var(--text)}
+.sequence-layout{display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:20px}
+.token-sequence{display:flex;flex-wrap:wrap;gap:4px;max-height:440px;overflow:auto;padding:4px}
+.sequence-position{display:flex;flex-direction:column;gap:4px;min-width:44px;max-width:140px;padding:8px;border:1px solid var(--line);border-radius:4px;background:var(--bg);font:10px/1.5 var(--mono);color:var(--text)}
+.sequence-position small{font-size:10px}
+.sequence-position span{overflow-wrap:anywhere}
+.sequence-position.visual-token{border-bottom:3px solid var(--amber)}
+.sequence-position.is-selected{outline:2px solid var(--accent);outline-offset:0}
+.position-detail{border-left:1px solid var(--line);padding-left:16px;min-width:0}
+.position-detail p{font-size:12px;line-height:1.7;color:var(--text)}
+.position-detail pre{font:12px/1.7 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere}
+.image-to-tokens{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+.example-chart{display:block;width:100%;height:auto;border:1px solid var(--line)}
+.patch-grid{display:grid;grid-template-columns:repeat(var(--patch-columns),1fr);gap:0;aspect-ratio:3/2;border:1px solid var(--line)}
+.image-patch{min-width:0;padding:0;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;background:var(--bg)}
+.image-patch.is-selected{background:var(--accent);outline:1px solid var(--text)}
+.vision-block,.draft-block-detail{border:1px dashed var(--line);padding:20px;margin:24px 0}
+.stream-bank{margin:24px 0}
+.stream-bank>div{display:flex;gap:16px;align-items:center;margin:16px 0;font-size:12px;color:var(--text)}
+.stream-bank i{flex:1;border-top:2px solid var(--amber)}
+.stream-bank>div:nth-child(even) i{border-color:var(--accent)}
+.residual-equation-visual{display:grid;grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr);gap:16px;align-items:center}
+.equation-plus{font-size:24px;color:var(--accent)}
+.sum-pair{display:flex;flex-wrap:wrap}
+.gate-timeline{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.gate-timeline>div{border-left:2px solid var(--amber);padding:12px;min-width:0}
+.gate-timeline code{font-size:12px;white-space:normal;overflow-wrap:anywhere;color:var(--text)}
+.variant-boundary{display:flex;flex-direction:column;gap:8px;border-left:4px solid var(--amber);padding:12px 16px;font-size:14px;color:var(--text)}
+.variant-boundary span{font-size:12px}
+.draft-slots,.verification-timeline{display:flex;gap:12px;overflow:auto;margin:20px 0}
+.draft-slots>div,.verification-timeline>div{flex:1;min-width:88px;display:flex;flex-direction:column;gap:16px;padding:16px;border:1px solid var(--line);font-size:12px;color:var(--text)}
+.draft-slots code,.verification-timeline code{font-size:20px}
+.draft-slots small{font-size:10px;line-height:1.6}
+.verification-timeline .accepted-token{border-bottom:4px solid var(--accent)}
+.verification-timeline .rejected-token{border-style:dashed}
+.chapter-footer{padding:32px 0;font-size:12px;color:var(--text)}
+@media(max-width:1400px){.mechanism-section-grid{grid-template-columns:minmax(0,1.3fr) minmax(260px,1fr);gap:24px}.kv-lanes{grid-template-columns:1fr}.prompt-comparison{grid-template-columns:1fr}}
+@media(max-width:1200px){.mechanism-section-grid{grid-template-columns:1fr}.mechanism-explanation{max-width:880px}.kv-lanes{grid-template-columns:1fr 1fr}.prompt-comparison{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.mechanism-intro>h3{font-size:24px}.mechanism-section{padding:32px 0}.mechanism-section>header{gap:12px}.mechanism-visual{padding:16px}.kv-lanes,.prompt-comparison,.sequence-layout,.image-to-tokens{grid-template-columns:1fr}.position-detail{border-left:0;border-top:1px solid var(--line);padding:16px 0 0}.depth-strip{grid-template-columns:repeat(5,1fr)}.compression-columns,.residual-equation-visual{grid-template-columns:1fr}.compression-arrow,.equation-plus{padding:8px}.gate-timeline{grid-template-columns:1fr}.reading-chapter.chapter-inspector-open #inspector{top:80px;right:12px;left:12px;width:auto;max-height:calc(100vh - 104px)}.ownership-key,.ownership-row{grid-template-columns:28px 1fr 1fr 1fr;gap:8px}}
+@media print{.mechanism-section{break-inside:avoid}.mechanism-section-grid{grid-template-columns:1fr}.mechanism-flow,.matrix-scroll,.position-strip,.indexing-grid,.ownership-rails,.token-sequence,.math-scroll{overflow:visible;max-height:none}.reading-chapter #inspector{display:none!important}.mechanism-intro nav,.chapter-footer button{display:none}}
+
+:root{--mono:ui-monospace,SFMono-Regular,Consolas,monospace}
+
+.visual-selector select{font-size:12px;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:8px;max-width:100%}
+.visual-selector label{font-size:12px;color:var(--text)}
+.visual-selector button:disabled{opacity:1;border-style:dashed;cursor:default}
+
+.chapter-model-context{margin-top:24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.chapter-model-context .mechanism-flow{margin:0}
+.reading-chapter .identity{padding-bottom:0}
+.reading-chapter .identity-sub{display:none}
+
+.mechanism-section.selected-operation>header{border-left:3px solid var(--accent);padding-left:16px}
+
 .directory-header{max-width:1200px;margin:auto;padding:24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.directory{max-width:1200px;padding:0 24px 32px}.directory-intro{padding:48px 0 32px;max-width:760px}.directory-intro h1{font-size:32px;line-height:1.2}.directory-intro p,.directory-card p{font-size:14px;line-height:1.7;color:var(--text)}.directory-section{padding:24px 0;border-top:1px solid var(--line)}.directory-section h2{font-size:20px;margin:0 0 16px}.directory-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.directory-grid.systems{grid-template-columns:repeat(2,minmax(0,1fr))}.directory-card{display:block;padding:24px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--text)}.directory-card:hover{border-color:var(--accent);text-decoration:none;background:var(--raised)}.directory-card h3{font-size:16px;line-height:1.5;margin:0 0 8px;font-weight:500}.directory-card h3 span{color:var(--accent);float:right}.directory-card p{margin:0}.guide{max-width:900px}.guide section p,.guide li{font-size:14px;line-height:1.8;color:var(--text)}.guide nav{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:24px}.guide h2{scroll-margin-top:24px}.guide code{overflow-wrap:anywhere}.guide .directory-section a{text-decoration:underline}.directory-card:focus-visible{outline:2px solid var(--focus);outline-offset:4px}.directory-note{font-size:12px;line-height:1.7;color:var(--text);padding:24px 0;border-top:1px solid var(--line)}@media(max-width:800px){.directory-grid,.directory-grid.systems{grid-template-columns:1fr}.directory-header,.directory{padding-left:16px;padding-right:16px}.directory-intro{padding:32px 0 24px}.directory-intro h1{font-size:24px}.directory-card{padding:20px}}@media print{.directory-header,.directory-card{background:white;color:#222}.directory p,.directory a,.directory-header a,.directory-header span{color:#222}.directory-card,.directory-card:hover{break-inside:avoid;background:white}.guide section p,.guide li,.guide a{color:#222}}
 </style></head><body><a class="skip-link" href="#directory">Skip to learning paths</a><header class="directory-header"><a class="brand" href="index.html">STRATUM</a><span class="eyebrow">MODEL SYSTEMS OBSERVATORY</span></header><main id="directory" class="directory"><section class="directory-intro"><p class="eyebrow">FROM MODEL STRUCTURE TO SYSTEM BEHAVIOR</p><h1>Models, systems, and the data between them.</h1><p>Start with the foundations, explore a model architecture, or follow the hardware and communication that support it.</p></section><section class="directory-section"><h2>Modeling Foundations</h2><a class="directory-card" data-destination="foundations" href="foundations.html"><h3>Modeling Foundations <span aria-hidden="true">↗</span></h3><p>Build intuition with DeepSeek V2/V3 and Qwen3: attention, experts, retained state, training, and serving.</p></a></section><section class="directory-section"><h2>Model architectures</h2><div class="directory-grid"><a class="directory-card" data-destination="qwen38" href="qwen3.8.html"><h3>Qwen3.8 <span aria-hidden="true">↗</span></h3><p>Explore the 27B and Flash-Next variants, recurrent attention, sparse reads, and n-gram memory.</p></a><a class="directory-card" data-destination="dsv41" href="deepseek-v4.1.html"><h3>DeepSeek V4.1 Flash <span aria-hidden="true">↗</span></h3><p>Follow the causal encoder/decoder, compressed attention, and residual-stream ownership.</p></a><a class="directory-card" data-destination="kimi3" href="kimi-k3.html"><h3>Kimi K3 <span aria-hidden="true">↗</span></h3><p>Trace depth recurrence, Kimi Delta Attention, latent experts, and layer-by-layer state.</p></a></div></section><section class="directory-section"><h2>Systems</h2><div class="directory-grid systems"><a class="directory-card" data-destination="hardware" href="hardware.html"><h3>GPU Hardware <span aria-hidden="true">↗</span></h3><p>Explore GPU memory, compute, scale-up connections, and theoretical roofline bounds.</p></a><a class="directory-card" data-destination="network" href="networking.html"><h3>Networking <span aria-hidden="true">↗</span></h3><p>Follow buffers across ranks: fabrics, communication libraries, ownership, and completion.</p></a></div></section><section class="directory-section"><h2>Data</h2><a class="directory-card" data-destination="data" href="data-representation.html"><h3>Data Representation <span aria-hidden="true">↗</span></h3><p>Follow text into token IDs, packed sequences, attention and loss masks, and stored records.</p></a></section><p class="directory-note">Inspectable schematics and explicit accounting assumptions. Scientific publication remains blocked pending evidence and review; runtime experiments are not certified. Every page works offline. No telemetry or external runtime assets.</p></main><script>function migrateScenario(){if(new URLSearchParams(location.hash.slice(1)).has('model')||new URLSearchParams(location.hash.slice(1)).has('view')){const state=Object.fromEntries(new URLSearchParams(location.hash.slice(1)));if(state.view==='compare')state.view='model';const pages=[{"id":"foundations","file":"foundations.html","title":"Modeling Foundations","models":["ds2","ds3","q38","q330","q3235"],"defaultModel":"ds3","stage":"block"},{"id":"qwen38","file":"qwen3.8.html","title":"Qwen3.8","models":["q3827","q38flash"],"defaultModel":"q3827","stage":"block"},{"id":"kimi3","file":"kimi-k3.html","title":"Kimi K3","models":["kimi3"],"defaultModel":"kimi3","stage":"block"},{"id":"dsv41","file":"deepseek-v4.1.html","title":"DeepSeek V4.1 Flash","models":["dsv41"],"defaultModel":"dsv41","stage":"ced"},{"id":"hardware","file":"hardware.html","title":"GPU Hardware","models":[],"defaultModel":"ds3","stage":"block","view":"hardware"},{"id":"network","file":"networking.html","title":"Networking","models":[],"defaultModel":"ds3","stage":"block","view":"network"}];const page=pages.find(p=>p.view&&p.view===state.view)||pages.find(p=>p.models.includes(state.model))||pages.find(p=>p.id==='foundations');location.replace(page.file+'#'+new URLSearchParams(state));}}migrateScenario();addEventListener('hashchange',migrateScenario);</script></body></html>

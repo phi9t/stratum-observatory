@@ -1,4 +1,4 @@
-from collections.abc import Sequence
+from collections.abc import Iterator, Sequence
 from typing import Annotated
 
 import torch
@@ -55,12 +55,33 @@ def split_mixing_coefficients(
     )
     matrix_logits = coefficients[..., 2 * streams:] * scales[2] + offsets[2 * streams:]
     # Split coefficient axis into input/output streams; normalize rows then columns.
-    residual_matrix = matrix_logits.unflatten(-1, (streams, streams)).softmax(-1) + epsilon
-    residual_matrix = residual_matrix / (residual_matrix.sum(-2, keepdim=True) + epsilon)
-    for _ in range(config.sinkhorn_iterations - 1):
-        residual_matrix = residual_matrix / (residual_matrix.sum(-1, keepdim=True) + epsilon)
-        residual_matrix = residual_matrix / (residual_matrix.sum(-2, keepdim=True) + epsilon)
+    for residual_matrix in sinkhorn_steps(matrix_logits.unflatten(-1, (streams, streams)), config):
+        pass  # Keep only the last state; tracing is an opt-in observation.
+
     return input_weights, output_weights, residual_matrix
+
+
+def sinkhorn_steps(
+    matrix_logits: ResidualMixingMatrix, config: V41Config,
+) -> Iterator[ResidualMixingMatrix]:
+    """Yield source-ordered normalizations without retaining all matrices."""
+    epsilon = config.mixing_epsilon
+    matrix = matrix_logits.float().softmax(-1) + epsilon
+    yield matrix
+    matrix = matrix / (matrix.sum(-2, keepdim=True) + epsilon)
+    yield matrix
+    for _ in range(config.sinkhorn_iterations - 1):
+        matrix = matrix / (matrix.sum(-1, keepdim=True) + epsilon)
+        yield matrix
+        matrix = matrix / (matrix.sum(-2, keepdim=True) + epsilon)
+        yield matrix
+
+
+def sinkhorn_trace(
+    matrix_logits: ResidualMixingMatrix, config: V41Config,
+) -> Annotated[Tensor, "balancing_step batch tokens input_streams output_streams"]:
+    """Stack [balancing_step, batch, tokens, input_streams, output_streams]."""
+    return torch.stack(list(sinkhorn_steps(matrix_logits, config)))
 
 
 def collapse_residual_streams(
