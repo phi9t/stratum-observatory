@@ -11,7 +11,7 @@ def exercise(page,root):
         page.keyboard.press('ArrowRight')
         assert page.evaluate('STRATUM.getState().view')==expected
         assert page.evaluate('document.activeElement.dataset.view')==expected
-    page.locator('#site-nav a[data-section="network"]').click()
+    page.locator('#chapter-nav .sidebar-sections').get_by_role('link',name='Networking',exact=True).click()
     page.wait_for_function('window.STRATUM && STRATUM.getState().view==="network"')
     assert page.url.split('#')[0]==(dist/'networking.html').as_uri()
     assert page.locator('h1').inner_text()=='Networking'
@@ -21,16 +21,19 @@ def exercise(page,root):
     assert page.evaluate('STRATUM.getState().model')=='kimi3'
     page.reload();page.wait_for_function('window.STRATUM')
     assert page.locator('#control-model').input_value()=='kimi3'
-    page.locator('#site-nav a[data-section="hardware"]').click()
+    page.locator('#chapter-nav .sidebar-sections').get_by_role('link',name='GPU Hardware',exact=True).click()
     page.wait_for_function('window.STRATUM && STRATUM.getState().view==="hardware"')
     assert page.url.split('#')[0]==(dist/'hardware.html').as_uri()
     assert page.locator('h1').inner_text()=='GPU Hardware'
     assert page.locator('#control-model').count()==0
-    assert page.locator('#identity-metrics').inner_text()==''
+    assert page.locator('#identity-metrics').text_content()==''
     page.set_viewport_size({'width':390,'height':844})
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
-    for link in page.locator('#site-nav a').all():assert link.is_visible()
-    page.locator('#site-nav a[data-section="models"]').click()
+    assert not page.locator('#chapter-nav').is_visible()
+    page.locator('#navigation-toggle').click()
+    assert page.locator('#navigation-toggle').get_attribute('aria-expanded')=='true'
+    for link in page.locator('#chapter-nav .sidebar-sections a').all():assert link.is_visible()
+    page.locator('#chapter-nav .sidebar-sections').get_by_role('link',name='Home',exact=True).click()
     assert page.url.split('#')[0]==(dist/'index.html').as_uri()
     for filename in ['index.html','qwen3.8.html','kimi-k3.html','deepseek-v4.1.html']:
         page.goto((dist/filename).as_uri()+'#view=network&model=kimi3&hardware=b200')

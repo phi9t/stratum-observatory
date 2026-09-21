@@ -8,7 +8,7 @@ import {syncWorkedResults} from './tools/sync-worked.mjs';
 import {syncPythonSources} from './tools/sync-pytorch.mjs';
 syncPythonSources();
 syncWorkedResults();
-const files=['models','worked-results','worked-examples','pytorch-source','pytorch-inputs','pytorch-backbone','pytorch-memory','pytorch-dspark','pytorch','core','scene','diagram-model','diagram-systems','diagram-residual','diagram-inputs','diagram-dspark','diagram-meta','deepdives','python-highlight','diagram-deepdives','diagram-pytorch-backbone','diagram-pytorch-memory','diagram-pytorch-dspark','diagram-pytorch','diagrams','innovations','pages','app'];
+const files=['models','worked-results','worked-examples','pytorch-source','pytorch-inputs','pytorch-backbone','pytorch-memory','pytorch-dspark','pytorch','core','scene','diagram-model','diagram-systems','diagram-residual','diagram-inputs','diagram-dspark','diagram-meta','deepdives','python-highlight','diagram-deepdives','diagram-pytorch-backbone','diagram-pytorch-memory','diagram-pytorch-dspark','diagram-pytorch','diagrams','innovations','pages','workspace','implementation-sources','workspace-ui','app'];
 const modules=[];
 for(const name of files){let code=fs.readFileSync(`src/${name}.mjs`,'utf8');const exports=new Set();
  if(['pytorch-inputs','pytorch-backbone','pytorch-memory','pytorch-dspark'].includes(name)){
@@ -59,8 +59,10 @@ for(const name of files){let code=fs.readFileSync(`src/${name}.mjs`,'utf8');cons
  if(/^import\s|^export\s/m.test(code))throw new Error(`Unsupported module syntax in ${name}`);
  modules.push(`__modules[${JSON.stringify(name+'.mjs')}] = (() => {\n${code}\nreturn {${[...exports].join(',')}};\n})();`);
 }
-const js=`(async()=>{'use strict';const __modules=Object.create(null);\n${modules.join('\n')}\n})();`;
-let html=fs.readFileSync('index.html','utf8');html=html.replace('<link rel="stylesheet" href="src/styles.css">',()=>`<style id="stratum-styles">${fs.readFileSync('src/styles.css','utf8')}</style>`);html=html.replace('<script type="module" src="src/app.mjs"></script>',()=>`<script>${js.replace(/<\/script/gi,'<\\/script')}</script>`);
+const stylesheet=fs.readFileSync('src/styles.css','utf8');
+const packedStyles=gzipSync(Buffer.from(stylesheet),{level:9}).toString('base64');
+const js=`(async()=>{'use strict';document.getElementById('stratum-styles').textContent=await new Response(new Blob([Uint8Array.from(atob('${packedStyles}'),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('gzip'))).text();const __modules=Object.create(null);\n${modules.join('\n')}\n})();`;
+let html=fs.readFileSync('index.html','utf8');html=html.replace('<link rel="stylesheet" href="src/styles.css">',()=>'<style id="stratum-styles"></style>');html=html.replace('<script type="module" src="src/app.mjs"></script>',()=>`<script>${js.replace(/<\/script/gi,'<\\/script')}</script>`);
 fs.mkdirSync('dist',{recursive:true});fs.writeFileSync('dist/index.html',landingHTML(fs.readFileSync('src/styles.css','utf8')));
 fs.writeFileSync('dist/data-representation.html',dataHTML(fs.readFileSync('src/styles.css','utf8')));
 for(const page of PAGES){

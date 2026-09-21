@@ -78,6 +78,9 @@ test_failing_pair_is_reported_as_a_contradiction (test_aesthetics.ThresholdTests
 test_indeterminate_backdrop_blocks_rather_than_passes (test_aesthetics.ThresholdTests.test_indeterminate_backdrop_blocks_rather_than_passes) ... ok
 test_large_text_uses_the_relaxed_threshold (test_aesthetics.ThresholdTests.test_large_text_uses_the_relaxed_threshold) ... ok
 test_passing_pair_is_reported_as_pass (test_aesthetics.ThresholdTests.test_passing_pair_is_reported_as_pass) ... ok
+test_every_live_model_has_its_supported_reading_panels_measured (test_aesthetics.WorkspacePanelCoverageTests.test_every_live_model_has_its_supported_reading_panels_measured) ... ok
+test_workspace_inventory_derives_panel_support_from_live_operations (test_aesthetics.WorkspacePanelCoverageTests.test_workspace_inventory_derives_panel_support_from_live_operations) ... ok
+test_workspace_preview_coverage_rejects_a_missing_panel (test_aesthetics.WorkspacePanelCoverageTests.test_workspace_preview_coverage_rejects_a_missing_panel) ... ok
 test_array_index_past_the_end_writes_no_anchor (test_anchor_tools.AnchorConfigTests.test_array_index_past_the_end_writes_no_anchor) ... ok
 test_array_index_pointer_selects_that_element (test_anchor_tools.AnchorConfigTests.test_array_index_pointer_selects_that_element)
 A per-layer list is addressable: the anchor pins one element, not the whole array. ... ok
@@ -764,6 +767,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 630 tests in 387.365s
+Ran 633 tests in 139.035s
 
 OK (skipped=10)

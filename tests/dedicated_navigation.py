@@ -15,19 +15,19 @@ def exercise(page, root):
         page.locator(f'main a[href="{filename}"]').click()
         page.wait_for_function('window.STRATUM')
         if page.evaluate('STRATUM.getState().model')!=model:
-            page.locator(f'#model-strip button[data-model="{model}"]').click()
+            page.get_by_role('combobox',name='Exact checkpoint').select_option(model)
         assert page.url.split('#')[0] == (root/'dist'/filename).as_uri()
         page.reload();page.wait_for_function('window.STRATUM')
         assert page.evaluate('STRATUM.getState().model') == model
         assert page.evaluate('STRATUM.geometryReport().geometry_defects') == 0
         page.evaluate('STRATUM.setState({model:"invalid-checkpoint"})')
         assert page.evaluate('STRATUM.getState().model') in entry['models']
-        page.locator('#atlas-link').click()
+        page.locator('#chapter-nav .sidebar-sections').get_by_role('link',name='Home',exact=True).click()
         assert page.url.split('#')[0] == (root/'dist/index.html').as_uri()
     page.goto((root/'dist/qwen3.8.html').as_uri())
     page.wait_for_function('window.STRATUM')
     for model in ['q38flash','q3827']:
-        page.locator(f'button[data-model="{model}"]').click()
+        page.get_by_role('combobox',name='Exact checkpoint').select_option(model)
         assert page.evaluate('STRATUM.getState().model') == model
         assert page.url.split('#')[0] == (root/'dist/qwen3.8.html').as_uri()
         assert page.evaluate('JSON.parse(STRATUM.exportConfig()).model.id') == model

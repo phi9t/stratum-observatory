@@ -6,6 +6,8 @@ Open `dist/index.html` in a full browser for the [landing directory](https://phi
 
 ## Experience
 
+Use the chapter sidebar to choose a checkpoint and lens, then select an operation. Switch between its available Schematic, Maths, PyTorch, Worked example and Sources panels without losing the selected layer or module. Back/Forward and shared URLs restore that context. V4.1 Python panels show the checked-in source with function navigation, copy and download; worked examples expose CPU-generated intermediate tensors. Other models show only the content actually mapped to them.
+
 Choose a checkpoint, choose a lens, and inspect an operation. Every model keeps the same visual language while its actual motif changes. Parameter, cache, memory and traffic accounting are derived from shared model definitions, not duplicated display totals.
 
 | Variant | Implemented architectural distinctions |

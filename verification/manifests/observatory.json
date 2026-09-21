@@ -23522,7 +23522,7 @@
       "domain": "model",
       "classification": "presentation",
       "consumer": "function.sanitizeState",
-      "expected": "8c02b56c83549aba9db63c08811314756d09f7277e3b70db3df885342b5f2d19",
+      "expected": "c65c1c439ee1ba2d477893ab467c58ec3d247c959a6ffcc14414ecfc4a3e172e",
       "statement": "function.sanitizeState: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -23701,7 +23701,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.src/app.mjs",
-      "expected": "905f18471022f6972684726784921ac8c2a7d1ba66da6c208c10258f1da4e1a6",
+      "expected": "23f6e971603aa5f377a061ba7541c2ba824532d51b7706ce4083438b064c3268",
       "statement": "file.src/app.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23718,7 +23718,10 @@
         "file.src/pytorch.mjs",
         "file.src/python-highlight.mjs",
         "function.layerNumbers",
-        "file.src/worked-examples.mjs"
+        "file.src/worked-examples.mjs",
+        "file.src/workspace.mjs",
+        "file.src/workspace-ui.mjs",
+        "file.src/implementation-sources.mjs"
       ]
     },
     {
@@ -23726,7 +23729,7 @@
       "domain": "model",
       "classification": "derived",
       "consumer": "file.src/core.mjs",
-      "expected": "2134a3122997594321fb7f0c4dc0ab88c7e2b190d2c09a23b57285646dffe28a",
+      "expected": "1aba43558a2feaf89b31373256911e1830fba2b9e77e093784a6c73f12bd07a0",
       "statement": "file.src/core.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -23899,7 +23902,7 @@
       "domain": "model",
       "classification": "derived",
       "consumer": "file.src/models.mjs",
-      "expected": "2bb34e9b45974d2fbfac57e7b08f25e59e034e2fefee6704d541864188e7509a",
+      "expected": "8ed52ade96fd7ceb0158e260568359ba4e58b3dfacebef5ee2cfd69487a64f94",
       "statement": "file.src/models.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [
         {
@@ -23963,7 +23966,7 @@
       "domain": "visualization",
       "classification": "presentation",
       "consumer": "file.src/styles.css",
-      "expected": "8c2e8ee7249d25186df1285e14bd4eb3103b1c562e2c3d9336f609718fb30710",
+      "expected": "cb125811b688459deb0fb1489f937c9ed47cec3cb2836bdf4a4f4e72ec508ab6",
       "statement": "file.src/styles.css: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": []
@@ -23973,7 +23976,7 @@
       "domain": "visualization",
       "classification": "derived",
       "consumer": "file.build.mjs",
-      "expected": "8dd9a6b38453efcd4869ed365e8883edc5582af00c1d1c7cf555cb104bc87014",
+      "expected": "f96fad09992f0d8cb048ca1c044e3a6ba55e449faed02ecd31271f270c65038b",
       "statement": "file.build.mjs: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": [
@@ -23997,7 +24000,7 @@
       "domain": "visualization",
       "classification": "presentation",
       "consumer": "file.index.html",
-      "expected": "2d6009fa3974646efe1c434ce0163a5914eb86d09d3e41b664471986fd974360",
+      "expected": "2aaba1d3b2e7507861e371b8939af1e3b931c41439423fb3af433c0c2d2f4465",
       "statement": "file.index.html: local implementation fingerprint; code review must reconcile all supported models, scenario units and excluded state. A digest is identity, not proof.",
       "evidence": [],
       "dependencies": []
@@ -162162,6 +162165,175 @@
       ],
       "evidence": [],
       "statement": "Published Pro DSpark architecture, explicit Flash mapping and independently checked CPU teaching arithmetic. Source acceptance and full checkpoint execution remain separate."
+    },
+    {
+      "id": "DEFAULT_STATE.module",
+      "domain": "visualization",
+      "classification": "assumed",
+      "consumer": "DEFAULT_STATE.module",
+      "expected": "",
+      "statement": "User-controlled workspace navigation, not a model or runtime fact.",
+      "evidence": [],
+      "dependencies": [],
+      "scope": "Selected presentation, operation and CPU fixture.",
+      "units": "Categorical UI choice"
+    },
+    {
+      "id": "file.src/workspace.mjs",
+      "domain": "visualization",
+      "classification": "derived",
+      "consumer": "file.src/workspace.mjs",
+      "expected": "978e71081ac409304f4ba27f977c977bbf0ea67efaea52810f2269b91ae5de64",
+      "statement": "Connected workspace presentation and reference mapping. Local fingerprint identifies code, not scientific approval. Source roles and exact checkpoint support remain explicit.",
+      "evidence": [],
+      "dependencies": [
+        "file.src/pytorch.mjs",
+        "file.src/worked-results.mjs",
+        "file.src/diagrams.mjs"
+      ]
+    },
+    {
+      "id": "file.src/workspace-ui.mjs",
+      "domain": "visualization",
+      "classification": "derived",
+      "consumer": "file.src/workspace-ui.mjs",
+      "expected": "23dfe2167b59126b2e5530064b016b3ceea0dfde0bc5379727d9a1a026ad2bcb",
+      "statement": "Connected workspace presentation and reference mapping. Local fingerprint identifies code, not scientific approval. Source roles and exact checkpoint support remain explicit.",
+      "evidence": [],
+      "dependencies": [
+        "file.src/workspace.mjs",
+        "file.src/implementation-sources.mjs",
+        "file.src/deepdives.mjs",
+        "file.src/worked-examples.mjs"
+      ]
+    },
+    {
+      "id": "file.src/implementation-sources.mjs",
+      "domain": "visualization",
+      "classification": "derived",
+      "consumer": "file.src/implementation-sources.mjs",
+      "expected": "7296ab0fee294108b3394120f5c08ed60bae70fa19fdb9641a2b1dd8529eb6d6",
+      "statement": "Connected workspace presentation and reference mapping. Local fingerprint identifies code, not scientific approval. Source roles and exact checkpoint support remain explicit.",
+      "evidence": [
+        {
+          "source": "megatron-parallel-layers",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "ColumnParallelLinear",
+            "sha256": "f072d0fb7d8f535ed1fa09625bc0db403e6cd8f31811c5affe692ea993d653c9",
+            "resolved_span": [
+              997,
+              1390
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "megatron-parallel-layers",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "RowParallelLinear",
+            "sha256": "a75d4b7ca2d9d8dde52ed56d1988ae5b0a01bd9ff7a08ce89985049d0ee1df86",
+            "resolved_span": [
+              1393,
+              1676
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "megatron-parallel-layers",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "VocabParallelEmbedding",
+            "sha256": "8e5a90b5e3c29e01b0af0d503904e828cbae5c4db34aa95a10d13493bb000ed0",
+            "resolved_span": [
+              297,
+              472
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "megatron-expert-dispatch",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "MoEAlltoAllTokenDispatcher.token_dispatch",
+            "sha256": "a502384713c6203b854d650f18088cb77f3ae4ae0fdfd2e1ea5a6a6d17353b4e",
+            "resolved_span": [
+              682,
+              726
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "megatron-expert-dispatch",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "MoEAlltoAllTokenDispatcher.token_combine",
+            "sha256": "86ca3779d0d814113010dbb14d8a332f734fc62e5bf31dd05735c58abcd97521",
+            "resolved_span": [
+              837,
+              874
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "megatron-schedules",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "get_forward_backward_func",
+            "sha256": "d971b1c259dd6a8bcbf4077e01dca718a86133cc6addcb15bc2cfa3690b585eb",
+            "resolved_span": [
+              53,
+              168
+            ]
+          },
+          "relation": "documents"
+        },
+        {
+          "source": "megatron-schedules",
+          "anchor": {
+            "kind": "python_symbol",
+            "symbol": "forward_backward_pipelining_without_interleaving",
+            "sha256": "6ff85db5c2834f7cfdb0f1466bcb9ec996eb39564bdaa8c080c04c6ecb9ca1e7",
+            "resolved_span": [
+              2147,
+              2509
+            ]
+          },
+          "relation": "documents"
+        }
+      ],
+      "dependencies": [
+        "file.src/models.mjs"
+      ]
+    },
+    {
+      "id": "DEFAULT_STATE.panel",
+      "domain": "visualization",
+      "classification": "assumed",
+      "consumer": "DEFAULT_STATE.panel",
+      "expected": "schematic",
+      "statement": "User-controlled workspace navigation, not a model or runtime fact.",
+      "evidence": [],
+      "dependencies": [],
+      "scope": "Selected presentation, operation and CPU fixture.",
+      "units": "Categorical UI choice"
+    },
+    {
+      "id": "DEFAULT_STATE.example",
+      "domain": "visualization",
+      "classification": "assumed",
+      "consumer": "DEFAULT_STATE.example",
+      "expected": "",
+      "statement": "User-controlled workspace navigation, not a model or runtime fact.",
+      "evidence": [],
+      "dependencies": [],
+      "scope": "Selected presentation, operation and CPU fixture.",
+      "units": "Categorical UI choice"
     }
   ],
   "contracts": [

@@ -6,6 +6,7 @@ Read `README.md`, `docs/design/OBSERVATORY.md`, `docs/AGENT_VERIFIER.md`, and th
 - Data/source identities: `src/models.mjs`. Math: `src/core.mjs`. No DOM in either.
 - Visual IR: `src/scene.mjs`. Model motifs: `src/diagram-model.mjs`. Systems: `src/diagram-systems.mjs`. Comparison/evidence/focal views: `src/diagram-meta.mjs`.
 - UI/state/export: `src/app.mjs`; shared style tokens: `src/styles.css`.
+- Connected workspaces: `src/workspace.mjs` resolves scene node identities and supported panels; `src/workspace-ui.mjs` renders navigation, module panels and inspectors. `src/implementation-sources.mjs` maps pinned baseline/serving/training references with explicit support scope. Never infer executable coverage from node names or framework family resemblance.
 - `src/diagrams.mjs` dispatches templates. `build.mjs` is dependency-free and deterministic.
 - Written exposition: `src/innovations.mjs`. Every record's `effect` is a **function** of the model, never a string, so no architectural number can be retyped into prose. `replaces`/`mechanism` are the only authored sentences and carry **no quantity at all** — not a digit, and not a cardinal spelled as a word; "the bottom half of the stack" asserts `encoderLayers === layers / 2` where nothing can check it, and a test rejects it. A quantity belongs in `effect`. Every record cites `SOURCES` ids that must resolve.
 - Current scientific target is `verification/manifests/observatory.json`; `kimi-k3.json` is historical, not the current consumer inventory.
@@ -164,3 +165,9 @@ Keep surrounding prose readable; do not reduce type sizes to fit notation.
 V4.1 encoder/decoder layer selectors group absolute layer tiles by the checkpoint's
 SWA and Full/Reindex-with-Reuse bundles, derived through `layerBands`, rather than
 wrapping the chapter's layers into an arbitrary rectangular grid.
+
+Connected workspace state: `panel`, `module` and `example` are sanitized scenario fields.
+Resolve supported content through `resolveWorkspace`, preserve selection across panel switches,
+and test meaningful Back/Forward navigation. Canonical Python still comes only from
+`examples/deepseek_v41`; other models must not gain fabricated local code coverage. Reading
+panels are included in `workspace_states`, presentation sweeps and generated previews.

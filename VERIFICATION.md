@@ -9,18 +9,18 @@ again.
 
 | Gate | Result | Exit | What actually ran |
 |---|---|---:|---|
-| Engineering | PASS | 0 | 630 verifier tests (10 skipped), 155 model/graph tests, two byte-identical builds of all eight portable entry points and 1483 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
+| Engineering | PASS | 0 | 633 verifier tests (10 skipped), 178 model/graph tests, two byte-identical builds of all eight portable entry points and 1483 Chromium states over all nine checkpoints; the receipt binds the consumer inventory, the verifier identity, the scientific lock and the artifact |
 | Accounting arithmetic | PASS | 0 | 399 live scenarios; 309 agreement, 82 explained differences, 186 unsupported findings, zero contradictions; required by engineering |
 | Schematics | PASS | 0 | 773 scenes including all 544 decoder layers; 3209 checks against core.mjs, of which 266 are recorded not-applicable passes |
-| Presentations | PASS | 0 | 99 checks over 37 delivered states — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
-| Aesthetics | PASS | 0 | 214 scenarios, 527 checks; type, spacing, contrast, clearance, probe coverage and composition |
+| Presentations | PASS | 0 | 816 checks across the delivered page and workspace matrix — exports, accessibility, table semantics, print, portability, preview freshness and preview coverage from a real file:// origin |
+| Aesthetics | PASS | 0 | 214 scenarios plus 358 workspace theme cases, 1259 checks; type, spacing, contrast, clearance, probe coverage and composition |
 | Scientific publication | BLOCKED | 2 | Nine-model consumer inventory and strict evidence/review audit; **no FAIL** |
 | Runtime certification | BLOCKED | 2 | Run on these bytes: 32 of 32 obligations NOT_RUN, **no FAIL and no `RUNTIME_STALE`**; all private hardware receipts were withdrawn for publication |
 
 ## Toolchain
 
 CPython 3.13.12 and Playwright 1.55.0, both provisioned by uv from `uv.lock`.
-OpenSSL 3.6.0 verifies review signatures. `uv sync --frozen` then
+OpenSSL 3.6.2 verifies review signatures. `uv sync --frozen` then
 `uv run --frozen playwright install chromium` reproduces it. The interpreter, the lock, the
 Python pin, `tests/`, `.github/CODEOWNERS` and the aesthetics policy are all inside
 `toolchain_digest`, so a receipt cannot outlive any of them.
@@ -68,7 +68,7 @@ or GPU execution.
 
 ## Aesthetics evidence
 
-`npm run verify:aesthetics` passes: **527 checks, 0 failures** across 214 scenarios and 154
+`npm run verify:aesthetics` passes: **1259 checks, 0 failures** across 214 scenarios and 162
 distinct measurements. The first run of this gate failed on 21 defects that shipped in the
 delivered artifact; all are now fixed at the source rather than by moving a threshold.
 
@@ -349,7 +349,7 @@ script, this gate's coverage judge, its focal-state list, both exporters, the br
 the aesthetics sweep all read it. `PREVIEW_COVERAGE` requires every model in the live table and
 every focal page that model offers; `PROSE_SCOPE` names the states it measured. **All nine
 checkpoints now appear in the 49 published previews, including every focal page they
-offer**, and this gate measures **37 delivered states**: Foundations, dedicated entry states, and every focal page in
+offer**, and this gate measures **37 base delivered states plus 179 workspace states**: Foundations, dedicated entry states, and every focal page in
 the application.
 
 **The manifest's own per-file digests had never been read, and the coverage question was only ever
@@ -424,22 +424,22 @@ inventory, not correctness of anything in it.
 
 | Item | Count |
 |---|---:|
-| Input leaves | 635 |
-| Function/file identities | 70 |
+| Input leaves | 638 |
+| Function/file identities | 73 |
 | Distinct sampled scene contracts | 3203 |
-| Claims including domain obligations | 3932 |
-| Candidate source entries | 89 |
-| Accepted raw-byte snapshots | 87 |
+| Claims including domain obligations | 3938 |
+| Candidate source entries | 92 |
+| Accepted raw-byte snapshots | 90 |
 | Scientifically certified claims under the signed policy | 0 |
 | Passed presentation bindings | 0 |
 | Domain contracts / runtime obligations | 32 / 32 |
 
-The publication audit has **7330 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
-from the current source and consumer bytes with a fresh engineering receipt:
+The publication audit has **7336 BLOCKED findings, 38 PASS and no FAIL contradictions**, read
+from the current source and consumer bytes:
 
 | Code | Status | Count |
 |---|---|---:|
-| `REVIEW_REQUIRED` | BLOCKED | 3964 |
+| `REVIEW_REQUIRED` | BLOCKED | 3970 |
 | `CLAIM_ANCHOR` | BLOCKED | 2334 |
 | `CLAIM_ROLE` | BLOCKED | 491 |
 | `MODEL_DUAL_CODE` | BLOCKED | 452 |
@@ -465,7 +465,7 @@ provenance, and letting derived scene claims carry provenance through their depe
 removed 3853 BLOCKED findings without a single fabricated anchor.
 
 Runtime certification was run on these bytes and reports the same population plus its
-obligations: **7330 BLOCKED, 38 PASS, 32 NOT_RUN, no FAIL.**
+obligations: **7336 BLOCKED, 38 PASS, 32 NOT_RUN, no FAIL.**
 
 **Adding a ninth checkpoint did not make any receipt stale, and an earlier draft of this section
 was wrong to predict that it would.** The prediction came from reading the coupling rule instead of
@@ -804,11 +804,11 @@ executes all three, and CI could never have executed the transcription compariso
 
 ## Artifact identity
 
-Portable HTML SHA-256: `98be3fc6bf564a0ede8cfe10be30b9fb7f4d6e83122c4ab1b5d583ff9cb47ee1`
+Portable HTML SHA-256: `327b52951fbfba31cbaa50fe5f18b3945d38d22ad0e1629e0840a95f4e9532c0`
 
-Scientific lock SHA-256: `c94e1d842c72ebf7105f8f5a6b88ff0ae9dd4079a41989a49aee6ef72ff8e8bf`
+Scientific lock SHA-256: `270bfab3ac5b0426ea605aa634def2e1a60f1904d1a0ff84c8b261ef15c96bdd`
 
-Verifier identity SHA-256: `a77b8babb5a7ba6648757a6b24624cf89ff81cd6eb7a433d7a80d092f5cee6a5`
+Verifier identity SHA-256: `c0e11d9ea16b73bb563f57545a9b0b302a4ee709cedf7c307665c0ea367cfd33`
 
 Complete command logs and receipts: `verification/reports/`. Full browser matrix:
 `tests/browser-cases.json`. Re-run after changing application, verifier or evidence; old receipts
@@ -836,8 +836,8 @@ until an independent reviewer signs, so the page could never ship, and the artif
 in fact unreachable: it sat inside the publication job *after* `verify:science`, which exits 2.
 Deployment now requires `engineering`, `schematics`, `aesthetics`, `presentations` and a
 `package` job that exists so building the deployable artifact is never entangled with the
-scientific audit. Each must genuinely pass; none is `continue-on-error`. The `publication` job
-still runs on every push and still reports BLOCKED — the published page states its own
+scientific audit. Each must genuinely pass; none is `continue-on-error`. The `publication-contradictions` job
+still runs on every push and accepts honest BLOCKED results — the published page states its own
 scientific status rather than being withheld, which is the point: a reader can see both that
 the software is verified and that the science is not.
 
@@ -932,12 +932,12 @@ registry drives page builds, artifact identity, browser routing and preview sele
 Chromium exercises real landing links, variant switches, reloads, identity enforcement,
 scenario exports and return links. All eight portable files are included in the software gates.
 
-- `deepseek-v4.1.html` SHA-256: `7539f278418cd08239e64fa3e90b0453f7335ff73f8b84e3090365e472a13e84`
-- `index.html` SHA-256: `98be3fc6bf564a0ede8cfe10be30b9fb7f4d6e83122c4ab1b5d583ff9cb47ee1`
-- `kimi-k3.html` SHA-256: `bb140d3cdb721e21d2dfedc716e1a05b9a84b848cfce85d2057a5cf2a9168eb2`
-- `qwen3.8.html` SHA-256: `fd363a4754bd76ab49bb3c27c1a2ebe9f2d92354ef858235752b4fd33806d712`
+- `deepseek-v4.1.html` SHA-256: `ca2910c701cef05eb4243626e1492a86ebd601c76551c0be39a57b0c8ec5a98d`
+- `index.html` SHA-256: `327b52951fbfba31cbaa50fe5f18b3945d38d22ad0e1629e0840a95f4e9532c0`
+- `kimi-k3.html` SHA-256: `11331d5a5b3ac78566c602ab5130e7da5a30816550c2efefada9b038b5eba37c`
+- `qwen3.8.html` SHA-256: `017b8b25e905c391c495885ad9329f20d9ff0388ef4ab58770e6bdefae6fc68d`
 
-Publication coverage: 3964 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
+Publication coverage: 3970 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
 
 ## Shared systems sections
 
@@ -949,12 +949,12 @@ exposes a workload-model selector, and links preserve the originating scenario. 
 system bookmarks redirect to these shared pages. Repeated local arrow-key navigation keeps focus
 in the model tabs. All eight files receive artifact identity and portable delivery checks.
 
-- `hardware.html` SHA-256: `f615be5caf0a1b1604133406432ff28b200a8eb5d43dd50febefb0aa2083f9b9`
-- `networking.html` SHA-256: `1795ea5e9c207e8ec13729619d000893ff09cb911fca6efad573a26ea43ca8c2`
+- `hardware.html` SHA-256: `1ded09a2fcc1f2c68418cc5af75da6e0400b2bbf627da0c512e43b25eb78ab60`
+- `networking.html` SHA-256: `58e407836767a190d3518f89e3619bc17537544770b2e2d9baa2cc43bc5ad3c7`
 
-- `foundations.html` SHA-256: `a11c096fdd1a2f425603d6d7d78bf4adb97966d92ba529ccfc5289ebe0615fa5`
+- `foundations.html` SHA-256: `fa0ce9863973a4dcd8e5d4b25ec133ec9c6cb7a6ab08f5661c1c0765e0bb7a62`
 
-- `data-representation.html` SHA-256: `1c0bc18eafbff1b9b1d1d1ff4a921283baa38f476b90a7db01982adae3c77c0d`
+- `data-representation.html` SHA-256: `e4b2a8d1c9e292b86cdf0a94a1116f469ecd2d98015d14cbfe248d79c0166e1b`
 
 ## Landing directory and data reference
 
@@ -1161,3 +1161,27 @@ Browser journeys compare every decoded module scene to its source scene exactly.
 Only the dSpark chapter and its new module changed composition signatures.
 
 Current publisher transcription audit: All 84 transcribed fields are either mapped to config.json or recorded in NOT_IN_CONFIG with a reason. 57 transcribed fields re-derived from the publisher config and equal, 0 unresolved.
+
+## Connected model workspace rollout
+
+Model pages now share a persistent chapter sidebar, selected-operation inspector and supported
+Schematic, Maths, PyTorch, Worked example and Sources panels. The reading matrix is derived
+from live capabilities: 179 workspace states, measured in both themes for 358 additional
+aesthetic cases. Capture produces 69 registered PNG/SVG pairs, including every model's
+available reading panels. The original composition baseline is unchanged; scene geometry and
+canvas typography remain intact, with scrolling instead of shrinking to fit the new sidebar.
+
+The CSA2 Reindex browser journey opens mathematics, canonical Python and CPU fixtures, returns
+to the schematic, restores URL state and exercises Back navigation. Keyboard checks cover
+panel and operator navigation, the mobile drawer and unavailable clipboard handling. Shared
+systems panels retain their own source chain. No non-V4.1 module gains executable Python
+coverage from a similar name.
+
+Publisher-owned Hugging Face configurations and implementations are the baseline where present.
+Transformers references are separately labelled. Serving and training references identify
+pinned symbols and their family/component scope; none is labelled exact-checkpoint executable
+support without the required registration and execution evidence. Three new Megatron source
+snapshots are unreviewed candidates with resolved symbols, not scientific approvals.
+
+The stylesheet is compressed within each portable HTML and decoded before initialization,
+with no external runtime assets. Source Python and CPU fixtures remain unchanged.

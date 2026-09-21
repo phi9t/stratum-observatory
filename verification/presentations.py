@@ -13,7 +13,7 @@ from .model import Finding,aggregate,exit_code
 from .evidence import loads
 from .delivery import artifact_names,artifact_name,page_inventory,guide_inventory
 from .schema import validate as shape_validate
-from .aesthetics import parse_color,contrast_ratio
+from .aesthetics import parse_color,contrast_ratio,workspace_states,workspace_preview_states,OPEN_READER_CONTENT,PROBE_WORKSPACE,judge_workspace_delivery
 
 EXTERNAL=re.compile(r'https?://(?!www\.w3\.org/)[^\s"\'<>)]+')
 # A URL the page LOADS breaks portability. A URL the reader may CLICK is the provenance
@@ -157,6 +157,20 @@ def judge_preview_coverage(root,models,focal):
     return out or [_ok('PREVIEW_COVERAGE','previews',
                        f'All {len(models)} checkpoints appear in the {len(captures)} published previews, '
                        f'including every one of the {pages} focal pages they offer.')]
+
+
+def judge_workspace_preview_coverage(captures,states):
+    """Required representative panels must be recorded as panels, not just nearby chapters."""
+    keys=('model','view','stage','module','panel','example')
+    identity=lambda state:tuple(state.get(k,'') for k in keys)
+    captured={identity(capture.get('state') or {}) for capture in captures}
+    missing=[state for state in states if identity(state) not in captured]
+    if missing:
+        return [_bad('PREVIEW_WORKSPACE',str(state),
+                     'No published preview depicts this supported operation panel.',
+                     'Run npm run capture; a schematic screenshot does not depict a reading panel.')
+                for state in missing]
+    return [_ok('PREVIEW_WORKSPACE','previews',f'{len(states)} derived operation-panel representatives are depicted.')]
 
 
 def judge_preview_integrity(root):
@@ -383,6 +397,7 @@ def run(root):
     from .ced import inventory
     models,samples=inventory(root)
     focal=samples['focal_stages']
+    workspace=workspace_states(root)
     findings=list(judge_artifact_source(artifact,policy))
     for entry in guide_inventory(root)+[p for p in page_inventory(root) if p['file']!=artifact.name]:
         findings.extend(judge_artifact_source(root/'dist'/entry['file'],policy))
@@ -391,11 +406,16 @@ def run(root):
     findings.extend(judge_preview_coverage(root,models,focal))
     findings.extend(judge_preview_integrity(root))
     findings.extend(judge_preview_inventory(root))
+    preview_manifest=root/'previews/manifest.json'
+    if preview_manifest.exists():
+        findings.extend(judge_workspace_preview_coverage(loads(preview_manifest.read_text()).get('captures',[]),workspace_preview_states(root,workspace)))
     checks={'models':sorted(models)}
     with sync_playwright() as pw:
         browser=pw.chromium.launch(executable_path=chromium_path(pw),headless=True,args=['--no-sandbox','--allow-file-access-from-files'])
         page=browser.new_page(viewport={'width':1440,'height':1000})
         errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+        external_requests=[]
+        page.on('request',lambda req:external_requests.append(req.url) if req.url.startswith(('http://','https://')) else None)
         # The path a reader actually takes. Every other suite injects with set_content().
         page.goto(artifact.resolve().as_uri(),wait_until='load')
         page.wait_for_function('window.STRATUM?.version === "3.0.0"')
@@ -441,6 +461,9 @@ def run(root):
                 patch={'model':model,'view':entry.get('view','model'),'stage':entry['stage']}
                 if not any(st['patch']==patch for st in states):
                     states.append({'label':f"{entry['id']}/{model}/entry",'patch':patch})
+        states.extend({'label':'/'.join(str(c.get(k,'')) for k in ('model','view','stage','module','panel','example')),'patch':c} for c in workspace)
+        checks['workspace_states']=workspace
+        checks['workspace_panels']=sorted({c['panel'] for c in workspace})
         checks['states']=[st['label'] for st in states]
         for st in states:
             if st['patch']:
@@ -449,6 +472,16 @@ def run(root):
                 page.wait_for_function('window.STRATUM')
                 page.evaluate('(p)=>STRATUM.setState(p)',st['patch'])
             where=st['label']
+            page.evaluate(OPEN_READER_CONTENT)
+            if st['patch'] and st['patch'].get('panel','schematic')!='schematic':
+                findings.extend(judge_workspace_delivery(st['patch'],page.evaluate(PROBE_WORKSPACE)))
+                findings.extend(judge_exported_svg(page.evaluate('STRATUM.exportSVG()'),policy))
+                findings.extend(judge_scenario(json.loads(page.evaluate('STRATUM.exportConfig()')),root))
+                page.emulate_media(media='print')
+                printable=page.evaluate(PROBE_WORKSPACE)
+                if not printable['visible'] or not printable['text']:
+                    findings.append(_bad('WORKSPACE_PRINT',where,'The active reading panel disappears in print.','Keep the selected panel printable.'))
+                page.emulate_media(media='screen')
             # The default state's headings and control names are already reported above as
             # A11Y_OK; re-running the same probe on it would double every finding it produces.
             local=page.evaluate(PROBE_A11Y) if st['patch'] else a11y
@@ -479,7 +512,7 @@ def run(root):
                                 f"Measured {len(states)} states from a real file:// origin: {', '.join(checks['states'])}."))
         page.goto(artifact.resolve().as_uri(),wait_until='load')
         page.wait_for_function('window.STRATUM')
-        page.evaluate('(p)=>STRATUM.setState(p)',{'model':'ds3','view':'model','stage':'block'})
+        page.evaluate('(p)=>STRATUM.setState(p)',{'model':'ds3','view':'model','stage':'block','panel':'schematic','module':'','example':''})
 
         # Focus must be visible to someone navigating by keyboard.
         page.keyboard.press('Tab')
@@ -528,6 +561,7 @@ def run(root):
             page.emulate_media(media='screen',reduced_motion='no-preference')
             page.goto((root/'dist'/entry['file']).resolve().as_uri(),wait_until='load')
             page.wait_for_function('window.STRATUM')
+            page.evaluate('STRATUM.setState({panel:"schematic",module:"",example:""})')
             findings.extend(judge_exported_svg(page.evaluate('STRATUM.exportSVG()'),policy))
             findings.extend(judge_scenario(json.loads(page.evaluate('STRATUM.exportConfig()')),root))
             page.keyboard.press('Tab')
@@ -566,6 +600,7 @@ def run(root):
                                      'Restore accessible disclosure, responsive notes, live accounting and printable assumptions on this entry point.'))
             finally:
                 accounting_page.close()
+        if external_requests:findings.append(_bad('PORTABILITY_REQUEST','workspace panels',str(sorted(set(external_requests))),'Reading panels must not load external runtime assets.'))
         if errors:findings.append(_bad('DELIVERY_RUNTIME','all pages',str(errors),'Fix all delivered page errors.'))
         browser.close()
 

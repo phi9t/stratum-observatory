@@ -46,7 +46,7 @@ summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 .worked-code summary,.pytorch-license summary{font-size:14px;padding:12px 0;cursor:pointer;color:var(--text)}
 .pytorch-license summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 :root{--code-keyword:#d9b5f4;--code-function:#9fd9f4;--code-string:#a8d5ab;--code-number:#f0c38a;--code-comment:#a6b6be;--code-type:#9addcc}
-:root[data-theme=light]{--code-keyword:#66388d;--code-function:#205776;--code-string:#315e32;--code-number:#79441b;--code-comment:#3f505a;--code-type:#255e50}
+:root[data-theme=light]{--code-keyword:#66388d;--code-function:#194860;--code-string:#315e32;--code-number:#79441b;--code-comment:#3f505a;--code-type:#1c4e40}
 .pytorch-actions{align-items:center;flex-wrap:wrap}
 .code-language{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;color:var(--text);margin-right:auto}
 .pytorch-code code{font:inherit;counter-reset:code-line}
@@ -112,6 +112,100 @@ summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 .numeric-token{font:inherit;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-variant-numeric:tabular-nums}
 
 .worked-residual-table th:nth-child(1){width:45%}.worked-residual-table th:nth-child(2){width:55%}
+
+/* Connected workspace: the schematic is the document, navigation stays at its edge. */
+body.connected-workspace{--workspace-nav:224px}
+.connected-workspace .site-header{height:72px;max-width:none;padding:0 24px;gap:24px;background:var(--surface)}
+.connected-workspace .header-note{display:none}
+.connected-workspace main{max-width:none;margin-left:var(--workspace-nav);padding:0 24px}
+.chapter-nav{position:absolute;left:0;top:72px;width:var(--workspace-nav);min-height:calc(100vh - 72px);padding:24px 16px;background:var(--surface);border-right:1px solid var(--line)}
+.sidebar-heading{font-size:12px;color:var(--text);margin-bottom:16px;font-weight:600}
+.chapter-link,.sidebar-sections a{display:block;width:100%;text-align:left;padding:8px 12px;margin:4px 0;font-size:14px;color:var(--text);border-radius:6px}
+.chapter-link.active{background:var(--accent-bg);color:var(--accent)}
+.sidebar-sections{border-top:1px solid var(--line);margin-top:24px;padding-top:16px}
+.sidebar-note{font-size:12px;line-height:1.8;color:var(--text);padding:16px 12px}
+.connected-workspace #lens-tabs{display:flex;flex-direction:column;gap:0;border:0;border-top:1px solid var(--line);padding-top:16px;margin-top:24px}
+.connected-workspace #lens-tabs .lens-tab{padding:8px 12px;font-size:14px;border-radius:6px;color:var(--text)}
+.connected-workspace #lens-tabs .lens-tab.active{background:var(--accent-bg);color:var(--accent)}
+.connected-workspace #lens-tabs .lens-tab.active:after,.connected-workspace #lens-tabs .idx{display:none}
+.connected-workspace .identity{padding:24px 0 16px;min-height:0;display:block}
+.connected-workspace h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-.03em;font-size:32px}
+.connected-workspace .identity-sub{max-width:95ch;font-size:14px;line-height:1.7;color:var(--text)}
+.connected-workspace .identity-metrics{margin-top:24px;padding:16px;border:1px solid var(--line);border-radius:6px;background:var(--surface);gap:24px}
+.connected-workspace .identity-metric{flex:1;padding-left:24px}
+.connected-workspace .identity-metric:first-child{border:0;padding-left:0}
+.connected-workspace .identity-metric strong{font-size:20px;letter-spacing:0}
+.connected-workspace .identity-metric span,.connected-workspace .identity-metric i{font-size:12px;color:var(--text)}
+.connected-workspace .workbench-heading{padding:8px 0 16px;gap:16px}
+.connected-workspace .section-number,.connected-workspace .section-identity p{display:none}
+.connected-workspace .section-identity h2{font-size:20px;font-family:Georgia,'Times New Roman',serif;font-weight:400}
+.workspace-tabs{display:flex;gap:8px;border-bottom:1px solid var(--line);margin-bottom:16px;overflow:auto}
+.workspace-tab{font-size:14px;white-space:nowrap;padding:12px 16px;border-bottom:2px solid transparent;color:var(--text)}
+.workspace-tab.active{border-color:var(--accent);color:var(--accent);background:var(--accent-bg);border-radius:6px 6px 0 0}
+.connected-workspace .workbench{grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start}
+.connected-workspace .controls{min-height:0;padding:0 0 16px}
+.connected-workspace .inspector{margin-top:0;display:block}
+.connected-workspace .inspector p{font-size:14px;line-height:1.7;color:var(--text)}
+.connected-workspace .inspector h3{font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:400}
+.connected-workspace .inspector-section h4{font-size:12px;letter-spacing:.04em;color:var(--text)}
+.connected-workspace .fact dd{font-size:14px;color:var(--text)}
+.connected-workspace .fact dt{color:var(--text)}
+.operator-navigation{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);font-size:12px;color:var(--text)}
+.operator-navigation span{margin-right:auto}
+.operator-contract{padding:0;margin:0;list-style:none}
+.operator-contract li{margin:8px 0;line-height:1.6}
+.operator-contract button{padding:0;text-align:left;font-size:14px;color:var(--text);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:3px}
+.operator-contract code{display:block;font-size:12px;color:var(--text);overflow-wrap:anywhere}
+.module-panel{min-width:0;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:24px}
+.module-panel-heading{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:24px}
+.module-panel-heading h3{font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:400;margin:8px 0 0}
+.module-panel .pytorch-section{padding:0}
+.module-panel .formula{font-size:14px;color:var(--text)}
+.module-panel .worked-example{padding:0}
+.workspace-copy,.implementation-reference p{font-size:14px;color:var(--text);line-height:1.7}
+.reference-group{margin:24px 0}
+.reference-group h4{font-size:16px;margin:0 0 12px}
+.implementation-reference{padding:16px 0;border-top:1px solid var(--line)}
+.implementation-reference>a{font-size:16px;color:var(--text);text-decoration:underline;text-underline-offset:3px}
+.implementation-reference code{font-size:12px;overflow-wrap:anywhere;color:var(--text)}
+.implementation-reference summary,.complete-references summary{font-size:14px;color:var(--text);cursor:pointer}
+.chapter-reference>summary{padding:16px 24px;font-size:14px;color:var(--text);cursor:pointer}
+.checkpoint-picker select{max-width:260px;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:8px;font-size:14px}
+#navigation-toggle{display:none}
+body.connected-workspace.focus-mode main{margin-left:0}
+body.focus-mode .chapter-nav,body.focus-mode .workspace-tabs{display:none}
+@media(max-width:1199px){.connected-workspace .workbench{grid-template-columns:minmax(0,1fr)}.connected-workspace .inspector{display:grid;grid-template-columns:1fr 1fr}.operator-navigation{grid-column:1/-1}.connected-workspace .inspector-top{grid-row:auto}}
+@media(max-width:899px){
+ .connected-workspace main{margin-left:0;padding:0 16px}
+ .connected-workspace .site-header{padding:0 16px;gap:12px;height:auto;min-height:72px;flex-wrap:wrap;padding-bottom:12px;padding-top:12px}
+ .connected-workspace .brand-sub{display:none}
+ .checkpoint-picker{order:3;width:100%}.checkpoint-picker select{max-width:100%;width:100%}
+ #navigation-toggle{display:inline-flex;margin:12px 16px 0}
+ .chapter-nav{display:none;position:fixed;top:0;bottom:0;overflow:auto;z-index:90;width:280px;min-height:100vh;box-shadow:0 0 0 100vmax var(--shadow)}
+ .navigation-open .chapter-nav{display:block}
+ .connected-workspace .identity-metrics{gap:16px;padding:12px;margin-top:16px}
+ .connected-workspace .identity-metric{padding-left:12px;min-width:0}
+ .connected-workspace .identity-metric span{font-size:12px}
+ .connected-workspace .identity-metric strong{font-size:16px}
+ .workspace-tab{padding:8px 12px}
+ .module-panel{padding:16px}
+}
+@media(max-width:520px){.connected-workspace .inspector{display:block}.connected-workspace .identity-metric:last-child{display:none}.connected-workspace h1{font-size:24px}.connected-workspace .identity-metrics{display:flex}.connected-workspace .identity-metric{border-right:0}.connected-workspace .section-identity h2{font-size:20px}}
+@media print{.chapter-nav,#navigation-toggle,.workspace-tabs{display:none!important}.connected-workspace main{margin-left:0}.chapter-reference>summary{display:none}.module-panel{border:0}}
+.step-picker{display:block;font-size:14px;color:var(--text);margin-bottom:16px}
+.step-picker select{display:block;width:100%;padding:12px;margin-top:8px;background:var(--surface);border:1px solid var(--line);border-radius:6px;color:var(--text);font-size:14px}
+.cpu-step{padding:16px;border:1px solid var(--line);border-radius:6px;margin-bottom:24px}
+.cpu-step h4,.module-mathematics h4{font-size:16px;margin:0 0 12px;color:var(--text)}
+.cpu-step code{font-size:12px;color:var(--text)}
+.cpu-step .formula{margin-top:16px}
+/* Navigation uses colour for the marker; reading text keeps enhanced contrast. */
+.chapter-link.active,.connected-workspace #lens-tabs .lens-tab.active,.workspace-tab.active{color:var(--text)}
+.code-symbol-picker{display:block;font-size:14px;margin:12px 0;color:var(--text)}
+.code-symbol-picker select{margin-left:12px;padding:8px;background:var(--canvas);color:var(--text);border:1px solid var(--line);border-radius:4px;font-size:14px;max-width:100%}
+.code-entry{background:var(--accent-bg);outline:1px solid var(--line-strong)}
+.connected-workspace .site-header{position:sticky;top:0;z-index:80}
+.connected-workspace .chapter-nav{position:fixed;bottom:0;overflow:auto}
+@media print{.connected-workspace .site-header{position:static}}
 
 .directory-header{max-width:1200px;margin:auto;padding:24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.directory{max-width:1200px;padding:0 24px 32px}.directory-intro{padding:48px 0 32px;max-width:760px}.directory-intro h1{font-size:32px;line-height:1.2}.directory-intro p,.directory-card p{font-size:14px;line-height:1.7;color:var(--text)}.directory-section{padding:24px 0;border-top:1px solid var(--line)}.directory-section h2{font-size:20px;margin:0 0 16px}.directory-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.directory-grid.systems{grid-template-columns:repeat(2,minmax(0,1fr))}.directory-card{display:block;padding:24px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--text)}.directory-card:hover{border-color:var(--accent);text-decoration:none;background:var(--raised)}.directory-card h3{font-size:16px;line-height:1.5;margin:0 0 8px;font-weight:500}.directory-card h3 span{color:var(--accent);float:right}.directory-card p{margin:0}.guide{max-width:900px}.guide section p,.guide li{font-size:14px;line-height:1.8;color:var(--text)}.guide nav{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:24px}.guide h2{scroll-margin-top:24px}.guide code{overflow-wrap:anywhere}.guide .directory-section a{text-decoration:underline}.directory-card:focus-visible{outline:2px solid var(--focus);outline-offset:4px}.directory-note{font-size:12px;line-height:1.7;color:var(--text);padding:24px 0;border-top:1px solid var(--line)}@media(max-width:800px){.directory-grid,.directory-grid.systems{grid-template-columns:1fr}.directory-header,.directory{padding-left:16px;padding-right:16px}.directory-intro{padding:32px 0 24px}.directory-intro h1{font-size:24px}.directory-card{padding:20px}}@media print{.directory-header,.directory-card{background:white;color:#222}.directory p,.directory a,.directory-header a,.directory-header span{color:#222}.directory-card,.directory-card:hover{break-inside:avoid;background:white}.guide section p,.guide li,.guide a{color:#222}}
 </style></head><body><a class="skip-link" href="#directory">Skip to learning paths</a><header class="directory-header"><a class="brand" href="index.html">STRATUM</a><span class="eyebrow">MODEL SYSTEMS OBSERVATORY</span></header><main id="directory" class="directory guide"><section class="directory-intro"><p class="eyebrow">DATA REPRESENTATION</p><h1>From text to training inputs.</h1><p>A compact reference to the representations between raw records and model computation. These are general concepts; they do not specify the preprocessing recipe of any model in the observatory.</p></section><nav aria-label="Data topics"><a href="#tokenizer">Tokenization</a><a href="#packing">Packing</a><a href="#masking">Masking</a><a href="#storage">Storage formats</a></nav><section class="directory-section" id="tokenizer"><h2>Tokenization</h2><p>A tokenizer turns text into vocabulary IDs. Its pipeline can normalize text, split it before tokenization, apply a learned tokenization model, and add special tokens. Keep the tokenizer configuration alongside the dataset so those IDs retain their meaning.</p><p><a href="https://huggingface.co/docs/tokenizers/pipeline">Hugging Face Tokenizers pipeline</a></p></section><section class="directory-section" id="packing"><h2>Packing</h2><p>Packing places shorter examples into a shared sequence to reduce padding. Record where each example begins and ends. When examples must remain independent, the attention implementation must respect those boundaries; concatenating token IDs alone does not express that requirement.</p><p><a href="https://docs.nvidia.com/nemo/megatron-bridge/latest/training/packed-sequences.html">NVIDIA Megatron Bridge packed sequences</a></p></section><section class="directory-section" id="masking"><h2>Masking</h2><p>Attention masks control which positions can attend to which other positions. Loss masks select the targets that contribute to the objective. Ignoring a target in the loss does not hide its input from attention. Keep causal visibility, padding, example boundaries, and target selection explicit.</p><p><a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.MultiheadAttention.html">PyTorch attention masks</a> · <a href="https://docs.pytorch.org/docs/2.14/generated/torch.nn.CrossEntropyLoss.html">PyTorch ignored loss targets</a></p></section><section class="directory-section" id="storage"><h2>Storage formats</h2><p>Arrow defines columnar data in memory and its serialization. Parquet is a columnar file format for stored data. Safetensors stores tensors, such as checkpoint weights. Choose the representation for the object being stored, and keep the schema and preprocessing configuration with it. A file extension alone does not specify tokenization, packing, or masking.</p><p><a href="https://arrow.apache.org/docs/format/Columnar.html">Apache Arrow columnar format</a> · <a href="https://parquet.apache.org/docs/overview/">Apache Parquet overview</a> · <a href="https://huggingface.co/docs/safetensors/index">Hugging Face Safetensors</a></p></section><p class="directory-note"><a href="index.html">← Home</a> · <a href="foundations.html">Explore Modeling Foundations →</a><br>Source links require connectivity. This reference works offline and does not certify a model’s training pipeline.</p></main></body></html>

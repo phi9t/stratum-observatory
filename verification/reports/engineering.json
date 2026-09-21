@@ -1,23 +1,23 @@
 {
   "schema": "stratum-engineering/v1",
   "status": "PASS",
-  "started_at": "2026-09-20T23:02:54.405979+00:00",
-  "completed_at": "2026-09-20T23:11:33.360650+00:00",
-  "consumer_sha256": "7b519d265688b80fda6cbd2520439257220a33980af9498d743303efa8522652",
-  "verifier_sha256": "a77b8babb5a7ba6648757a6b24624cf89ff81cd6eb7a433d7a80d092f5cee6a5",
-  "lock_sha256": "c94e1d842c72ebf7105f8f5a6b88ff0ae9dd4079a41989a49aee6ef72ff8e8bf",
-  "artifact_sha256": "98be3fc6bf564a0ede8cfe10be30b9fb7f4d6e83122c4ab1b5d583ff9cb47ee1",
+  "started_at": "2026-09-21T00:58:33.191323+00:00",
+  "completed_at": "2026-09-21T01:03:59.691842+00:00",
+  "consumer_sha256": "c6f2c8f4a1ab58ac2b9674ba82bba32d6842cce7620c013ad06ab1653e6722a2",
+  "verifier_sha256": "c0e11d9ea16b73bb563f57545a9b0b302a4ee709cedf7c307665c0ea367cfd33",
+  "lock_sha256": "270bfab3ac5b0426ea605aa634def2e1a60f1904d1a0ff84c8b261ef15c96bdd",
+  "artifact_sha256": "327b52951fbfba31cbaa50fe5f18b3945d38d22ad0e1629e0840a95f4e9532c0",
   "artifacts": {
-    "data-representation.html": "1c0bc18eafbff1b9b1d1d1ff4a921283baa38f476b90a7db01982adae3c77c0d",
-    "deepseek-v4.1.html": "7539f278418cd08239e64fa3e90b0453f7335ff73f8b84e3090365e472a13e84",
-    "foundations.html": "a11c096fdd1a2f425603d6d7d78bf4adb97966d92ba529ccfc5289ebe0615fa5",
-    "hardware.html": "f615be5caf0a1b1604133406432ff28b200a8eb5d43dd50febefb0aa2083f9b9",
-    "index.html": "98be3fc6bf564a0ede8cfe10be30b9fb7f4d6e83122c4ab1b5d583ff9cb47ee1",
-    "kimi-k3.html": "bb140d3cdb721e21d2dfedc716e1a05b9a84b848cfce85d2057a5cf2a9168eb2",
-    "networking.html": "1795ea5e9c207e8ec13729619d000893ff09cb911fca6efad573a26ea43ca8c2",
-    "qwen3.8.html": "fd363a4754bd76ab49bb3c27c1a2ebe9f2d92354ef858235752b4fd33806d712"
+    "data-representation.html": "e4b2a8d1c9e292b86cdf0a94a1116f469ecd2d98015d14cbfe248d79c0166e1b",
+    "deepseek-v4.1.html": "ca2910c701cef05eb4243626e1492a86ebd601c76551c0be39a57b0c8ec5a98d",
+    "foundations.html": "fa0ce9863973a4dcd8e5d4b25ec133ec9c6cb7a6ab08f5661c1c0765e0bb7a62",
+    "hardware.html": "1ded09a2fcc1f2c68418cc5af75da6e0400b2bbf627da0c512e43b25eb78ab60",
+    "index.html": "327b52951fbfba31cbaa50fe5f18b3945d38d22ad0e1629e0840a95f4e9532c0",
+    "kimi-k3.html": "11331d5a5b3ac78566c602ab5130e7da5a30816550c2efefada9b038b5eba37c",
+    "networking.html": "58e407836767a190d3518f89e3619bc17537544770b2e2d9baa2cc43bc5ad3c7",
+    "qwen3.8.html": "017b8b25e905c391c495885ad9329f20d9ff0388ef4ab58770e6bdefae6fc68d"
   },
-  "repeat_build_sha256": "98be3fc6bf564a0ede8cfe10be30b9fb7f4d6e83122c4ab1b5d583ff9cb47ee1",
+  "repeat_build_sha256": "327b52951fbfba31cbaa50fe5f18b3945d38d22ad0e1629e0840a95f4e9532c0",
   "deterministic_build": true,
   "commands": {
     "verifier-tests": {
@@ -93,6 +93,13 @@
         "tests/browser.test.py"
       ],
       "exit": 0
+    },
+    "workspace-browser": {
+      "argv": [
+        "python",
+        "tests/workspace_browser.py"
+      ],
+      "exit": 0
     }
   },
   "browser": {
@@ -122,15 +129,15 @@
     "requests": []
   },
   "test_counts": {
-    "verifier": 630,
-    "atlas": 155,
+    "verifier": 633,
+    "atlas": 178,
     "pytorch": 78,
     "verifier_skipped": 10,
     "atlas_skipped": 0
   },
   "toolchain": {
     "python": "3.13.12",
-    "openssl": "OpenSSL 3.6.0 1 Oct 2025 (Library: OpenSSL 3.6.0 1 Oct 2025)",
+    "openssl": "OpenSSL 3.6.2 7 Apr 2026 (Library: OpenSSL 3.6.2 7 Apr 2026)",
     "browser": "Chromium"
   },
   "scope": "Local software/geometry tests only. Does not attest to upstream source truth, GPU execution or physical fabric conformance."

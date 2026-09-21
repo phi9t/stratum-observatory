@@ -6,8 +6,9 @@ from browser_env import chromium_path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from verification.delivery import artifact_name,guide_inventory
+from verification.aesthetics import workspace_preview_states,OPEN_READER_CONTENT,PROBE_WORKSPACE,judge_workspace_delivery
 OUT=ROOT/'previews';OUT.mkdir(exist_ok=True)
-BASE={'model':'ds3','view':'model','stage':'block','layer':4,'theme':'dark','hardware':'h200','context':32768,'batch':1,'kvBytes':2,'stateBytes':4,'weightBytes':2,'ranks':8,'placement':'split','trainMode':'fsdp','traffic':'expert','fabric':'ib','library':'nccl','utilization':70,'oversub':1,'intensity':128,'compare':'kimi3','detail':'shapes','zoom':1,'trace':False}
+BASE={'model':'ds3','view':'model','stage':'block','layer':4,'theme':'dark','hardware':'h200','context':32768,'batch':1,'kvBytes':2,'stateBytes':4,'weightBytes':2,'ranks':8,'placement':'split','trainMode':'fsdp','traffic':'expert','fabric':'ib','library':'nccl','utilization':70,'oversub':1,'intensity':128,'compare':'kimi3','detail':'shapes','zoom':1,'trace':False,'panel':'schematic','module':'','example':''}
 #: Read out of the rendered page rather than written down here. The model strip, the decoder-layer
 #: options and the focus segments are all emitted from `MODELS` -- the segments from
 #: `core.focalStages` -- so this list is the application's own inventory. The literal it replaces
@@ -81,19 +82,27 @@ with sync_playwright() as p:
  page.set_content((ROOT/'dist/foundations.html').read_text(),wait_until='load')
  page.wait_for_function('window.STRATUM?.version === "3.0.0"');page.evaluate('document.fonts.ready')
  manifest=[]
- for name,patch in per_model_cases(page)+EXTRA_CASES:
+ panel_cases=[(f"{s['model']}-workspace-{s['panel']}",s) for s in workspace_preview_states(ROOT)]
+ for name,patch in per_model_cases(page)+EXTRA_CASES+panel_cases:
   state={**BASE,**patch}
   artifact=ROOT/'dist'/artifact_name(ROOT,state['model'],state['view'])
   page.goto(artifact.as_uri(),wait_until='load');page.wait_for_function('window.STRATUM')
   page.evaluate('(s)=>STRATUM.setState(s)',state)
-  page.locator('.accounting-assumptions').evaluate('(el)=>el.open=true')
+  if state['panel']=='schematic':
+   page.locator('.chapter-reference').evaluate_all('(els)=>els.forEach(el=>el.open=true)')
+   page.locator('.accounting-assumptions').evaluate('(el)=>el.open=true')
+  else:
+   page.evaluate(OPEN_READER_CONTENT)
+   problems=[f for f in judge_workspace_delivery(patch,page.evaluate(PROBE_WORKSPACE)) if f.status!='PASS']
+   if problems:raise AssertionError((name,[f.message for f in problems]))
   expanded=page.evaluate("() => {const el=document.querySelector('.pytorch-example');if(!el)return [];el.open=true;return [el.dataset.example];}")
   page.evaluate('document.fonts.ready');page.wait_for_timeout(50)
-  report=page.evaluate('STRATUM.geometryReport()')
-  if report['geometry_defects']:raise AssertionError((name,report))
+  if state['panel']=='schematic':
+   report=page.evaluate('STRATUM.geometryReport()')
+   if report['geometry_defects']:raise AssertionError((name,report))
   page.screenshot(path=str(OUT/f'{name}.png'),full_page=True)
   svg=page.evaluate('STRATUM.exportSVG()');(OUT/f'{name}.svg').write_text(svg)
-  manifest.append({'name':name,'accounting_expanded':True,'pytorch_expanded':expanded,'artifact':artifact.name,'artifact_sha256':hashlib.sha256(artifact.read_bytes()).hexdigest(),'state':page.evaluate('STRATUM.getState()'),'svg_sha256':hashlib.sha256(svg.encode()).hexdigest()})
+  manifest.append({'name':name,'accounting_expanded':state['panel']=='schematic','pytorch_expanded':expanded,'artifact':artifact.name,'artifact_sha256':hashlib.sha256(artifact.read_bytes()).hexdigest(),'state':page.evaluate('STRATUM.getState()'),'svg_sha256':hashlib.sha256(svg.encode()).hexdigest()})
   print(name,flush=True)
  artifact=ROOT/'dist'/artifact_name(ROOT,'q38flash','serving')
  page.goto(artifact.as_uri(),wait_until='load');page.wait_for_function('window.STRATUM')

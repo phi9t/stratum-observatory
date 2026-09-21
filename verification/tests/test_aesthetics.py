@@ -200,7 +200,7 @@ class ChromeProbeCoverageTests(unittest.TestCase):
  def setUp(self):
   self.policy=json.loads((ROOT/'verification/baselines/aesthetics/policy.json').read_text())
   self.css=ROOT/'src/styles.css'
-  self.markup=(ROOT/'src/app.mjs',ROOT/'src/worked-examples.mjs',ROOT/'index.html')
+  self.markup=(ROOT/'src/app.mjs',ROOT/'src/worked-examples.mjs',ROOT/'src/workspace-ui.mjs',ROOT/'index.html')
  def test_the_shipped_probe_list_is_live_and_complete(self):
   for judge in (a.judge_chrome_probe(self.css,self.markup),
                 a.judge_chrome_coverage(self.css,self.policy)):
@@ -397,3 +397,32 @@ class CoverageTests(unittest.TestCase):
   observed=report['edge_crossings']['max'];budget=report['edge_crossings']['budget']
   self.assertLessEqual(budget,max(observed*2,observed+4),
                        f'budget {budget} against an observed max of {observed} cannot fail')
+
+class WorkspacePanelCoverageTests(unittest.TestCase):
+ def test_workspace_inventory_derives_panel_support_from_live_operations(self):
+  states=a.workspace_states(ROOT)
+  self.assertTrue(states)
+  self.assertTrue(all(s['panel']!='schematic' and s['module'] for s in states))
+  self.assertEqual(len(states),len({json.dumps(s,sort_keys=True) for s in states}))
+  import subprocess
+  code="""import {sanitizeState} from './src/core.mjs';
+import {buildScene} from './src/diagrams.mjs';
+import {resolveWorkspace} from './src/workspace.mjs';
+let text='';for await(const chunk of process.stdin)text+=chunk;
+const cases=JSON.parse(text);const invalid=cases.filter(c=>{const s=sanitizeState(c),w=resolveWorkspace(s,buildScene(s));return w.panel!==c.panel||w.module!==c.module||(c.example&&w.exampleId!==c.example)});console.log(JSON.stringify(invalid));"""
+  invalid=json.loads(subprocess.check_output(['node','--input-type=module','-e',code],cwd=ROOT,input=json.dumps(states),text=True))
+  self.assertEqual(invalid,[])
+ def test_every_live_model_has_its_supported_reading_panels_measured(self):
+  states=a.workspace_states(ROOT)
+  models=a.scenario_models(ROOT)
+  self.assertEqual({s['model'] for s in states},set(models))
+  for mid in models:
+   panels={s['panel'] for s in states if s['model']==mid}
+   self.assertTrue({'maths','sources'}<=panels,mid)
+  self.assertTrue(any(s['example'] for s in states if s['panel']=='worked'))
+ def test_workspace_preview_coverage_rejects_a_missing_panel(self):
+  from verification.presentations import judge_workspace_preview_coverage
+  states=[{'model':'m','view':'model','stage':'chapter','module':'op','panel':'maths','example':''}]
+  self.assertTrue(any(f.status=='FAIL' for f in judge_workspace_preview_coverage([],states)))
+  captures=[{'state':states[0]}]
+  self.assertTrue(all(f.status=='PASS' for f in judge_workspace_preview_coverage(captures,states)))

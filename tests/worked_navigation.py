@@ -2,6 +2,7 @@
 import json
 from decimal import Context, ROUND_HALF_UP
 from pathlib import Path
+from deepdive_navigation import open_chapter_reference
 
 
 def text(value):
@@ -26,6 +27,7 @@ def exercise(page, root):
     for stage, ids in stages.items():
         page.goto(url + '#stage=' + stage)
         page.wait_for_function('window.STRATUM')
+        open_chapter_reference(page)
         for identifier in ids:
             panel = page.locator(f'[data-worked="{identifier}"]')
             assert panel.is_visible()

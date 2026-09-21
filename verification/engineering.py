@@ -81,6 +81,10 @@ def main():
     result=subprocess.run([sys.executable,'tests/browser.test.py'],cwd=root,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=600)
     (out/'browser.log').write_text(public_log(result.stdout, root));commands['browser']={'argv':public_argv([sys.executable,'tests/browser.test.py']),'exit':result.returncode};print(result.stdout)
     if result.returncode:return result.returncode
+    workspace_result=subprocess.run([sys.executable,'tests/workspace_browser.py'],cwd=root,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=300)
+    (out/'workspace-browser.log').write_text(public_log(workspace_result.stdout,root));commands['workspace-browser']={'argv':['python','tests/workspace_browser.py'],'exit':workspace_result.returncode}
+    print(workspace_result.stdout)
+    if workspace_result.returncode:return workspace_result.returncode
     browser=loads(old.read_text())
     if any(browser.get(k)!=0 for k in ('geometry_defects','runtime_errors','external_runtime_requests')):return 1
     if toolchain_digest(root)!=toolchain_before:print('FAIL: verifier toolchain changed during the run');return 1

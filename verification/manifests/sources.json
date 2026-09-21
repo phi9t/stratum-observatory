@@ -1219,6 +1219,45 @@
       "cache": ".verification-cache/sha256/9dd2a89255469e120b333668ef5a169b7ae46c00f6bbab786bf0be457546aec0.txt",
       "license": "Reference capture only; preserve upstream notices; no upstream bytes redistributed.",
       "retrieved_at": "2026-09-20T22:44:42.259581+00:00"
+    },
+    {
+      "id": "megatron-parallel-layers",
+      "kind": "git",
+      "role": "framework_code",
+      "provider": "github",
+      "repo": "NVIDIA/Megatron-LM",
+      "path": "megatron/core/tensor_parallel/layers.py",
+      "revision": "56ef6ed61ccb3edffa138ec581c212d479d9ec06",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Megatron-LM/56ef6ed61ccb3edffa138ec581c212d479d9ec06/megatron/core/tensor_parallel/layers.py",
+      "sha256": "6f571d15161fed1e0ccb04b34569cdc55fc5aad085778ee24b36f81ac6796b4e",
+      "cache": ".verification-cache/sha256/6f571d15161fed1e0ccb04b34569cdc55fc5aad085778ee24b36f81ac6796b4e.txt",
+      "license": "No source redistributed."
+    },
+    {
+      "id": "megatron-expert-dispatch",
+      "kind": "git",
+      "role": "framework_code",
+      "provider": "github",
+      "repo": "NVIDIA/Megatron-LM",
+      "path": "megatron/core/transformer/moe/token_dispatcher.py",
+      "revision": "56ef6ed61ccb3edffa138ec581c212d479d9ec06",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Megatron-LM/56ef6ed61ccb3edffa138ec581c212d479d9ec06/megatron/core/transformer/moe/token_dispatcher.py",
+      "sha256": "18f9b0ef848ab36006d2cee2ac94da1be16426bbcc1200a327bcaf0ddb97d7de",
+      "cache": ".verification-cache/sha256/18f9b0ef848ab36006d2cee2ac94da1be16426bbcc1200a327bcaf0ddb97d7de.txt",
+      "license": "No source redistributed."
+    },
+    {
+      "id": "megatron-schedules",
+      "kind": "git",
+      "role": "framework_code",
+      "provider": "github",
+      "repo": "NVIDIA/Megatron-LM",
+      "path": "megatron/core/pipeline_parallel/schedules.py",
+      "revision": "56ef6ed61ccb3edffa138ec581c212d479d9ec06",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Megatron-LM/56ef6ed61ccb3edffa138ec581c212d479d9ec06/megatron/core/pipeline_parallel/schedules.py",
+      "sha256": "a003ff59b4d28766a9b38b722c0df76a36054697f4cce40c385a2f5b9828f2cb",
+      "cache": ".verification-cache/sha256/a003ff59b4d28766a9b38b722c0df76a36054697f4cce40c385a2f5b9828f2cb.txt",
+      "license": "No source redistributed."
     }
   ]
 }

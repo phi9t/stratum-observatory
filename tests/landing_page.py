@@ -21,7 +21,7 @@ def exercise(page,root):
     page.locator('a[data-destination="foundations"]').click();page.wait_for_function('window.STRATUM')
     assert page.url.split('#')[0]==(dist/'foundations.html').as_uri()
     assert set(page.locator('#model-strip [data-model]').evaluate_all('xs=>xs.map(x=>x.dataset.model)'))=={'ds2','ds3','q38','q330','q3235'}
-    page.locator('#atlas-link').click()
+    page.locator('#chapter-nav .sidebar-sections a[href="index.html"]').click()
     assert page.url.split('#')[0]==(dist/'index.html').as_uri()
     for width in [390,768,1440]:
         page.set_viewport_size({'width':width,'height':1000})

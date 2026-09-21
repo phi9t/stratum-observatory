@@ -6,6 +6,15 @@ import re
 import subprocess
 
 
+def open_chapter_reference(page):
+    reference=page.locator("#analysis-panel > details.chapter-reference")
+    assert reference.count()==1
+    if not reference.evaluate("el=>el.open"):
+        reference.locator(":scope > summary").focus()
+        reference.locator(":scope > summary").press("Enter")
+    assert reference.evaluate("el=>el.open")
+
+
 def exercise(page,root):
     page.context.grant_permissions(['clipboard-read','clipboard-write'])
     page.goto((Path(root)/'dist/qwen3.8.html').as_uri()+'#model=q38flash&stage=ple')
@@ -26,11 +35,11 @@ def exercise(page,root):
     assert page.evaluate('STRATUM.getState().stage')=='encoder'
     assert page.evaluate('STRATUM.getState().layer')==3
     assert page.locator('[data-setting="stage"][data-value="block"]').count()==0
-    assert page.locator('#identity-metrics .identity-metric').nth(1).locator('strong').inner_text()==f"{model['encoderLayers']} + {model['layers']-model['encoderLayers']}"
+    assert page.locator('#identity-metrics .identity-metric').nth(1).locator('strong').text_content()==f"{model['encoderLayers']} + {model['layers']-model['encoderLayers']}"
     assert page.locator('#identity-metrics').get_by_text('encoder + decoder layers',exact=True).count()==1
     expected=['encoder','decoder','engram','csa2','dspark','residual','inputs']
     for stage in expected:
-        page.locator(f'button[data-setting="stage"][data-value="{stage}"]').click()
+        page.locator(f'#chapter-nav button[data-setting="stage"][data-value="{stage}"]').click()
         assert page.evaluate('STRATUM.getState().stage')==stage
         if stage in ('inputs','residual','dspark'):
             # Build-time compression must preserve the complete pure scene, not
@@ -39,7 +48,7 @@ def exercise(page,root):
                 "import {buildScene} from './src/diagrams.mjs'; console.log(JSON.stringify(buildScene("+
                 json.dumps(page.evaluate('STRATUM.getState()'))+")));"],cwd=root,text=True))
             assert page.evaluate('STRATUM.getScene()')==expected_scene
-        credit=page.locator('#analysis-panel > .innovation-note a[href="https://zartbot.github.io/blog/model_arch/dsv41flash_arch/en.html"]')
+        credit=page.locator('#analysis-panel > .chapter-reference > .innovation-note a[href="https://zartbot.github.io/blog/model_arch/dsv41flash_arch/en.html"]')
         assert credit.count()==int(stage in ('decoder','csa2','module-csa2-attention'))
         assert f'stage={stage}' in page.url
         if stage in ('encoder','decoder'):
@@ -57,6 +66,7 @@ def exercise(page,root):
             assert page.evaluate('STRATUM.getState().layer')==first
         page.reload();page.wait_for_function('window.STRATUM')
         assert page.evaluate('STRATUM.getState().stage')==stage
+        open_chapter_reference(page)
         assert page.locator('#analysis-panel').get_by_text('Execution order',exact=True).count()==1
         notes=page.locator('.chapter-notes')
         if notes.count():
@@ -125,14 +135,16 @@ def exercise(page,root):
     for example in examples:
         chapter=example['stages'][0]
         stage='module-'+example['id']
-        page.locator(f'button[data-setting="stage"][data-value="{chapter}"]').first.click()
+        page.locator(f'#chapter-nav button[data-setting="stage"][data-value="{chapter}"]').first.click()
+        open_chapter_reference(page)
         panel=page.locator(f'details[data-example="{example["id"]}"]')
         panel.locator('summary').click()
         panel.get_by_role('button',name='Inspect module schematic').click()
         assert page.evaluate('STRATUM.getState().stage')==stage
         assert f'stage={stage}' in page.url
-        credit=page.locator('#analysis-panel > .innovation-note a[href="https://zartbot.github.io/blog/model_arch/dsv41flash_arch/en.html"]')
+        credit=page.locator('#analysis-panel > .chapter-reference > .innovation-note a[href="https://zartbot.github.io/blog/model_arch/dsv41flash_arch/en.html"]')
         assert credit.count()==int(example['id']=='csa2-attention')
+        open_chapter_reference(page)
         assert page.locator('#control-stage').input_value()==stage
         assert page.locator('.pytorch-example:not([data-example="config"])').count()==1
         assert page.locator('.pytorch-example:not([data-example="config"])').evaluate('el=>el.open')
@@ -148,7 +160,12 @@ def exercise(page,root):
             page.locator(f'[data-node="{node["id"]}"]').focus()
             page.keyboard.press('Enter')
             assert page.locator('#inspector h3').inner_text()==node['info']['title']
-            assert page.locator('#inspector a.source-card').count()>0
+            page.locator('#inspector [data-panel="sources"]').click()
+            chain=page.locator('#module-panel .complete-references')
+            chain.locator('summary').click()
+            assert chain.locator('a.source-card').count()>0
+            assert chain.locator('a.source-card').first.is_visible()
+            page.locator('#workspace-tabs [data-panel="schematic"]').click()
         page.locator('#trace-button').click()
         assert page.locator('.trace-edge').count()>0 or not any(e['target']==scene['nodes'][-1]['id'] for e in scene['edges'])
         page.locator('#trace-button').click()
@@ -169,7 +186,7 @@ def exercise(page,root):
         page.set_viewport_size({'width':1840,'height':1400})
         page.select_option('#control-stage','ced')
         assert page.evaluate('STRATUM.getState().stage')=='ced'
-    page.locator('button[data-setting="stage"][data-value="csa2"]').click()
+    page.locator('#chapter-nav button[data-setting="stage"][data-value="csa2"]').click()
     assert page.locator('button[data-setting="detail"]').count()==0
     for layer in ['3','25','26']:
         page.select_option('#control-layer',layer)
@@ -180,7 +197,7 @@ def exercise(page,root):
     page.select_option('#control-context','131072')
     assert page.locator('#analysis-panel .chapter-notes > .table-scroll > table > tbody').text_content()!=before
     assert page.locator('[data-worked-values]').all_text_contents()==fixed_cpu
-    page.locator('button[data-setting="stage"][data-value="ced"]').click()
+    page.locator('#chapter-nav button[data-setting="stage"][data-value="ced"]').click()
     assert page.locator('.innovation-table').count()==1
 
 if __name__=='__main__':

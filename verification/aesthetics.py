@@ -299,7 +299,7 @@ def judge_spacing_scale(stylesheet,policy):
 #: in `UNMEASURED_CHROME`. Without those, renaming a class silently removes it from measurement
 #: while the gate still reports PASS -- which is the failure this list was added to fix, one layer
 #: up from the prose it was added for.
-CHROME_TEXT_SELECTORS=('.worked-example .worked-lead','.worked-caption','.worked-number','.worked-path-title','.worked-block-label','.worked-query-label','.worked-pair-label','.worked-token-label','.worked-result span','.worked-block-score','.worked-dictionary-row span','.worked-audit summary','.chapter-notes>summary','.worked-table th','.worked-table td','.worked-table code','.worked-table caption','.chart text','.metric-note','.chart-caption','.source-role','.status-pill',
+CHROME_TEXT_SELECTORS=('.code-symbol-picker', '.code-symbol-picker select', '.sidebar-heading', '.chapter-link', '.sidebar-sections a', '.sidebar-note', '.connected-workspace #lens-tabs .lens-tab', '.connected-workspace .identity-sub', '.connected-workspace .identity-metric strong', '.connected-workspace .identity-metric span', '.connected-workspace .identity-metric i', '.connected-workspace .section-identity h2', '.workspace-tab', '.connected-workspace .inspector p', '.connected-workspace .inspector-section h4', '.connected-workspace .fact dd', '.operator-navigation', '.operator-contract button', '.operator-contract code', '.module-panel .formula', '.workspace-copy', '.implementation-reference p', '.reference-group h4', '.implementation-reference>a', '.implementation-reference code', '.implementation-reference summary', '.complete-references summary', '.chapter-reference>summary', '.checkpoint-picker select', '.step-picker', '.step-picker select', '.cpu-step h4', '.module-mathematics h4', '.cpu-step code')+('.worked-example .worked-lead','.worked-caption','.worked-number','.worked-path-title','.worked-block-label','.worked-query-label','.worked-pair-label','.worked-token-label','.worked-result span','.worked-block-score','.worked-dictionary-row span','.worked-audit summary','.chapter-notes>summary','.worked-table th','.worked-table td','.worked-table code','.worked-table caption','.chart text','.metric-note','.chart-caption','.source-role','.status-pill',
                        '.fact dt','.lens-tab .idx','.innovation-note','.innovation-table th',
                        '.innovation-table td','.innovation-table a','.accounting-assumptions summary',
                        '.accounting-assumptions h4','.accounting-assumptions p','.accounting-citations a','.pytorch-section h4','.pytorch-section p','.pytorch-example summary','.pytorch-code','.worked-code summary','.pytorch-license summary','.pytorch-code span','.code-language')
@@ -406,7 +406,7 @@ PROBE=r"""
   // An SVG text node's backdrop is every painted rect earlier in document order that
   // fully contains it. Partial coverage is deliberately left unresolved.
   const painted = [];
-  if (svg) {
+  if (svg && svg.checkVisibility({visibilityProperty:true})) {
     const ctm = svg.getScreenCTM();
     const toScreen = el => { const b = el.getBBox(); const m = el.getScreenCTM();
       const pt = (x, y) => { const p = svg.createSVGPoint(); p.x = x; p.y = y; return p.matrixTransform(m); };
@@ -442,20 +442,20 @@ PROBE=r"""
   // citations are measured here rather than left to the eye; at >= reading_px they are held to AAA.
   for (const el of document.querySelectorAll(CHROME_TEXT)) {
     const st = rgba(el); const box = el.getBoundingClientRect();
-    if (!box.width || !box.height) continue;
+    if (!box.width || !box.height || !el.checkVisibility({visibilityProperty:true})) continue;
     let bg = null;
     for (let n = el; n && n.nodeType === 1; n = n.parentElement) {
       const c = getComputedStyle(n).backgroundColor;
       if (c && c !== 'rgba(0, 0, 0, 0)' && c !== 'transparent') { bg = c; break; }
     }
-    out.texts.push({ surface: 'chrome', accounting: !!el.closest('.accounting-assumptions'), id: el.className && el.className.baseVal !== undefined ? el.className.baseVal : (el.className || el.tagName),
+    out.texts.push({ surface: 'chrome', workspace: !!el.closest('#module-panel'), accounting: !!el.closest('.accounting-assumptions'), id: el.className && el.className.baseVal !== undefined ? el.className.baseVal : (el.className || el.tagName),
       fill: st.color, alpha: chain(el),
       px: parseFloat(st.fontSize), weight: parseInt(st.fontWeight, 10) || 400,
       backdrop: bg ? [{ color: bg, alpha: 1 }] : null, text: (el.textContent || '').slice(0, 60) });
   }
   // "Core labels cannot ellipsize" -- OBSERVATORY.md.
   out.truncated = Array.from(document.querySelectorAll('.model-card .variant, .model-card .motif, .comparison-table td, .comparison-table th, .search-result small'))
-    .filter(el => el.scrollWidth > el.clientWidth + 1)
+    .filter(el => el.checkVisibility({visibilityProperty:true}) && el.scrollWidth > el.clientWidth + 1)
     .map(el => ({ id: el.className || el.tagName, text: (el.textContent || '').slice(0, 60) }));
   return out;
 }
@@ -488,6 +488,127 @@ def scenario_inventory(root):
 def scenario_models(root):
     """The model table alone, for a caller that does not need the focal-stage or lens lists."""
     return scenario_inventory(root)[0]
+
+
+WORKSPACE_INVENTORY = r"""
+import {MODELS,sanitizeState,focalStages} from './src/core.mjs';
+import {MODEL_VIEWS} from './src/pages.mjs';
+import {buildScene} from './src/diagrams.mjs';
+import {resolveWorkspace} from './src/workspace.mjs';
+const representatives=new Map();
+const offer=(state,workspace,panel,example='',kind='')=>{
+ const patch={model:state.model,view:state.view,stage:state.stage,layer:state.layer,
+  module:workspace.module,panel,example:example||workspace.exampleId};
+ const identity=[state.model,state.view,state.stage,panel,
+  panel==='pytorch'?workspace.example?.id:panel==='worked'?example.split('--')[0]+kind:''].join('/');
+ // The longest reading sample exercises wrapping without copying a panel-size inventory.
+ const score=JSON.stringify(panel==='maths'?workspace.mathematics:panel==='sources'?workspace.info:
+  panel==='worked'?workspace.fixture:workspace.example).length;
+ const existing=representatives.get(identity);
+ if(!existing||score>existing.score)representatives.set(identity,{patch,score});
+};
+for(const model of Object.values(MODELS))for(const view of MODEL_VIEWS){
+ // The Evidence view renders its existing report rather than the workspace tab strip.
+ if(view==='evidence')continue;
+ const stages=view==='model'?['block',...focalStages(model)]:['block'];
+ for(const stage of stages)for(const layer of view==='model'?__LAYERS__:[4]){
+  const state=sanitizeState({model:model.id,view,stage,layer,module:'',panel:'schematic',example:''});
+  const scene=buildScene(state);
+  for(const node of scene.nodes){
+   const workspace=resolveWorkspace({...state,module:node.id},scene);
+   for(const panel of workspace.panels){
+    if(panel==='schematic')continue;
+    if(panel==='worked'){
+     for(const fixture of workspace.workedIds){
+      const current=resolveWorkspace({...state,module:node.id,example:fixture},scene);
+      offer(state,current,panel,fixture);
+      // Input and computed-step modes have different content; exercise both live variants.
+      for(const [kind,rows] of [['input',current.fixture.inputs],['step',current.fixture.steps]]){
+       const row=rows.reduce((best,row)=>!best||JSON.stringify(row).length>JSON.stringify(best).length?row:best,null);
+       if(row)offer(state,current,panel,`${fixture}--${row.id}`,kind);
+      }
+     }
+    }else offer(state,workspace,panel);
+   }
+  }
+ }
+}
+console.log(JSON.stringify([...representatives.values()].map(r=>r.patch)));
+"""
+
+
+def workspace_states(root):
+    """Live model/chapter/panel matrix, including every mapped Python/CPU fixture type.
+
+    Choose the longest operation content per reading-panel template. Every Python example
+    and worked fixture keeps its own entry; inputs and computed steps are measured separately.
+    This measures delivered panel types, not numerical parity or every operator/layer pairing.
+    """
+    code=WORKSPACE_INVENTORY.replace('__LAYERS__',json.dumps(LAYER_SAMPLE))
+    result=subprocess.run(['node','--input-type=module','-e',code],cwd=root,text=True,
+                          capture_output=True,check=True,timeout=60)
+    return loads(result.stdout)
+
+
+def workspace_preview_states(root,states=None):
+    """One representative per model/panel plus the live reindex panel set, when offered."""
+    states=workspace_states(root) if states is None else states
+    chosen={}
+    for state in states:
+        if state['view']!='model':continue
+        key=(state['model'],state['panel'])
+        score=(bool(state.get('example')) and '--' not in state['example'],state['stage']=='csa2')
+        if key not in chosen or score>chosen[key][0]:chosen[key]=(score,state)
+    # Reindex's mapping comes from resolveWorkspace, not a transcribed list of its panels.
+    # Reuse the representative stage content with its actual reindex node when it is present.
+    code=r"""
+import {MODELS,sanitizeState,focalStages,layerKind} from './src/core.mjs';
+import {buildScene} from './src/diagrams.mjs';
+import {resolveWorkspace} from './src/workspace.mjs';
+const out=[];
+for(const m of Object.values(MODELS))for(const stage of focalStages(m)){
+ const reindexLayer=Array.from({length:m.layers},(_,i)=>i+1).find(layer=>layerKind(m,layer)==='csa2-reindex');
+ const s=sanitizeState({model:m.id,view:'model',stage,layer:reindexLayer,module:'',panel:'schematic',example:''});
+ const scene=buildScene(s),node=scene.nodes.find(n=>n.id==='csa2-reindex');
+ if(!node)continue;
+ const w=resolveWorkspace({...s,module:node.id},scene);
+ for(const panel of w.panels.filter(p=>p!=='schematic'))out.push({model:m.id,view:'model',stage:s.stage,layer:s.layer,module:node.id,panel,example:w.exampleId});
+}
+console.log(JSON.stringify(out));
+"""
+    reindex=loads(subprocess.run(['node','--input-type=module','-e',code],cwd=root,text=True,
+                                capture_output=True,check=True,timeout=60).stdout)
+    for state in reindex:chosen[(state['model'],state['panel'])]=((),state)
+    return [entry[1] for entry in chosen.values()]
+
+
+OPEN_READER_CONTENT = r"""() => {
+ document.querySelectorAll('details').forEach(el=>el.open=true);
+ const visible=el=>el.checkVisibility?el.checkVisibility({visibilityProperty:true}):!!el.getClientRects().length;
+ const notes=document.querySelector('details.accounting-assumptions');
+ return notes&&visible(notes)?notes.querySelectorAll('summary,h4,p,.accounting-citations a').length:0;
+}"""
+
+
+PROBE_WORKSPACE = r"""() => {
+ const state=STRATUM.getState(),panel=document.querySelector('#module-panel');
+ const visible=el=>!!el&&(el.checkVisibility?el.checkVisibility({visibilityProperty:true}):!!el.getClientRects().length);
+ return {state,visible:visible(panel),text:panel?.innerText.trim().length||0,
+  svgVisible:visible(document.querySelector('#scene-mount svg')),
+  active:[...document.querySelectorAll('[data-panel]')].some(el=>el.dataset.panel===state.panel&&el.getAttribute('aria-pressed')==='true')};
+}"""
+
+
+def judge_workspace_delivery(case,probe):
+    """Requested panel must really render; state clamping cannot silently pass the sweep."""
+    wrong=[key for key in ('model','view','stage','module','panel','example')
+           if probe.get('state',{}).get(key,'')!=case.get(key,'')]
+    if wrong or not probe.get('visible') or not probe.get('text') or not probe.get('active') or probe.get('svgVisible'):
+        return [Finding('WORKSPACE_PANEL','presentations','FAIL',str(case),
+                        f'Requested panel did not reach the reader: mismatched={wrong}, probe={probe}.',
+                        'Render the selected operation panel and keep its active tab and URL state consistent.')]
+    return [Finding('WORKSPACE_PANEL','presentations','PASS',str(case),
+                    'Selected operation panel is visible, nonempty, active and preserves its state.')]
 
 
 def cases(models,views,themes,focal):
@@ -580,6 +701,7 @@ def run(root,record=False):
     from browser_env import chromium_path
     policy=loads((root/POLICY_PATH).read_text())
     models,focal,views=scenario_inventory(root)
+    workspace=workspace_states(root)
     artifact=root/'dist/foundations.html'
     findings=[];signatures={};truncations=[];crossing_report={}
     unique={}
@@ -590,7 +712,9 @@ def run(root,record=False):
         page.set_content(artifact.read_text(),wait_until='load')
         page.wait_for_function('window.STRATUM?.version === "3.0.0"')
         page.evaluate('document.fonts.ready')
-        for case in cases(models,views,policy['themes'],focal):
+        reading_cases=[{**state,'theme':theme} for state in workspace for theme in policy['themes']]
+        diagram_cases=[{**state,'panel':'schematic','module':'','example':''} for state in cases(models,views,policy['themes'],focal)]
+        for case in diagram_cases+reading_cases:
             from .delivery import page_for_model,artifact_name
             dedicated=page_for_model(root,case['model'],case['view'])
             if page.evaluate('document.body.dataset.pageId || null')!=(dedicated['id'] if dedicated else None):
@@ -600,21 +724,23 @@ def run(root,record=False):
             page.evaluate('(p)=>STRATUM.setState(p)',case)
             # Closed native details hide the prose from rendered measurement. Measure the
             # expanded reader state for every model, lens and theme in the live matrix.
-            accounting_expected=page.evaluate("""() => {
-                const notes=document.querySelector('details.accounting-assumptions');
-                if(!notes)return 0;
-                notes.open=true;
-                return notes.querySelectorAll('summary,h4,p,.accounting-citations a').length;
-            }""")
-            page.evaluate("() => document.querySelectorAll('.pytorch-example,.pytorch-license,.worked-code,.worked-audit,.chapter-notes').forEach(el=>el.open=true)")
+            accounting_expected=page.evaluate(OPEN_READER_CONTENT)
             data=page.evaluate(PROBE)
             measured=sum(1 for text in data['texts'] if text.get('accounting'))
-            if not accounting_expected or measured!=accounting_expected:
+            if (case['panel']=='schematic' and not accounting_expected) or measured!=accounting_expected:
                 findings.append(Finding('ACCOUNTING_TEXT_MEASURED','aesthetics','FAIL',str(case),
                                         f'{measured} accounting text elements measured against {accounting_expected} rendered elements.',
                                         'Expand the disclosure and measure every heading, paragraph, summary and citation.'))
             scenario=f"{case['model']}/{case['view']}/{case['stage']}/{case['layer']}"
             if case.get("phase")=="prefill":scenario+="/prefill"
+            if case['panel']!='schematic':
+                scenario+=f"/{case['module']}/{case['panel']}/{case['example']}"
+                for f in judge_workspace_delivery(case,page.evaluate(PROBE_WORKSPACE)):
+                    findings.append(Finding(f.code,'aesthetics',f.status,f.subject,f.message,f.remedy))
+                if not any(t.get('workspace') for t in data['texts']):
+                    findings.append(Finding('WORKSPACE_TEXT_MEASURED','aesthetics','FAIL',scenario,
+                                            'The visible workspace panel contributed no text measurements.',
+                                            'Measure its rendered text with CHROME_TEXT_SELECTORS.'))
             label=f"{scenario}/{case['theme']}"
             for t in data['texts']:
                 key=sample_key(t)
@@ -630,12 +756,12 @@ def run(root,record=False):
                 findings.append(Finding('AESTHETIC_CROSSINGS','aesthetics','FAIL',label,
                                         f'{crossings} edge crossings exceed the budget of {policy["layout"]["max_edge_crossings"]}.',
                                         'Reroute through reserved lanes rather than accepting a denser tangle.'))
-            signatures[label]=composition_signature(scene,data['tokens'])
+            if case['panel']=='schematic':signatures[label]=composition_signature(scene,data['tokens'])
             for item in data.get('truncated',[]):truncations.append({'case':label,**item})
         browser.close()
     findings.extend(judge_type_scale(root/'src/styles.css',policy))
     findings.extend(judge_spacing_scale(root/'src/styles.css',policy))
-    findings.extend(judge_chrome_probe(root/'src/styles.css',(root/'src/app.mjs',root/'src/worked-examples.mjs',root/'index.html')))
+    findings.extend(judge_chrome_probe(root/'src/styles.css',(root/'src/app.mjs',root/'src/worked-examples.mjs',root/'src/workspace-ui.mjs',root/'index.html')))
     findings.extend(judge_chrome_coverage(root/'src/styles.css',policy))
     if errors:
         findings.append(Finding('AESTHETIC_RUNTIME','aesthetics','FAIL','page',f'{len(errors)} runtime errors while measuring: {errors[0][:200]}','Fix the page error; measurements taken during an exception are not trustworthy.'))
@@ -672,7 +798,7 @@ def run(root,record=False):
             'generated_at':datetime.now(timezone.utc).isoformat(),
             'artifact_sha256':hashlib.sha256(artifact.read_bytes()).hexdigest(),
             'policy_sha256':hashlib.sha256((root/POLICY_PATH).read_bytes()).hexdigest(),
-            'scenarios':len(signatures),'distinct_measurements':len(unique),
+            'scenarios':len(signatures),'workspace_scenarios':len(reading_cases),'distinct_measurements':len(unique),
             # The axes this run actually swept, so a reader -- and
             # `test_aesthetics.CoverageTests` -- can reconcile the gate's coverage against the
             # application instead of inferring it from a scenario count. A count of 180 looks
@@ -680,7 +806,8 @@ def run(root,record=False):
             # sat beside a derived model list here without anything noticing.
             'axes':{'models':sorted(models),'views':list(views),
                     'stages':sorted({c['stage'] for c in cases(models,views,policy['themes'],focal)}),
-                    'themes':list(policy['themes'])},
+                    'themes':list(policy['themes']),'panels':sorted({s['panel'] for s in workspace}),
+                    'workspace_states':workspace},
             'edge_crossings':{'max':max(crossing_report.values()) if crossing_report else 0,'budget':policy['layout']['max_edge_crossings']},
             'counts':{},'findings':[f.json() for f in findings],
             'scope':'Measured on this artifact in one Chromium build. WCAG ratios use specified colours and are an upper bound on legibility; they are not a substitute for a person reading the page.'}
@@ -692,7 +819,7 @@ def run(root,record=False):
 def markdown(report):
     lines=[f"# Aesthetics — {report['status']}",f"\nGenerated: {report['generated_at']}",
            f"\nArtifact `{report['artifact_sha256'][:16]}…`, policy `{report['policy_sha256'][:16]}…`",
-           f"\n{report['scenarios']} scenarios, {report['distinct_measurements']} distinct measurements.",
+           f"\n{report['scenarios']} diagram scenarios, {report.get('workspace_scenarios',0)} reading-panel scenarios, {report['distinct_measurements']} distinct measurements.",
            '\nMeasured legibility and composition only. A passing gate is not a claim that the page is well designed.',
            '\n## Findings by failure mode','\n| Code | Status | Count |','|---|---|---:|']
     from collections import Counter

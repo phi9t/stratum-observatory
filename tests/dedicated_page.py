@@ -9,9 +9,9 @@ def exercise(page, root):
     page.goto((Path(root)/'dist/foundations.html').as_uri())
     page.wait_for_function('window.STRATUM')
     page.locator('[data-view="serving"]').first.click()
-    page.locator('#model-strip [data-model="q38"]').click()
+    page.get_by_role('combobox',name='Exact checkpoint').select_option('q38')
     assert page.evaluate('STRATUM.getState().view') == 'serving'
-    page.locator('#atlas-link').click()
+    page.locator('#chapter-nav .sidebar-sections a[href="index.html"]').click()
     page.locator('a[data-destination="dsv41"]').click()
     page.wait_for_function('window.STRATUM && STRATUM.getState().stage === "ced"')
     assert page.url.split('#')[0] == artifact.as_uri()
@@ -43,7 +43,7 @@ def exercise(page, root):
             page.evaluate('(theme)=>STRATUM.setState({theme,view:"model",stage:"ced"})',theme)
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
             assert page.evaluate('STRATUM.geometryReport().geometry_defects') == 0
-    page.locator('#atlas-link').click()
+    page.locator('#chapter-nav .sidebar-sections a[href="index.html"]').click()
     assert page.url.split('#')[0] == (Path(root)/'dist/index.html').as_uri()
 
 

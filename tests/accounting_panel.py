@@ -13,6 +13,9 @@ def exercise_page(page, artifact):
         page.goto(Path(artifact).resolve().as_uri())
         page.wait_for_function('window.STRATUM')
         assert page.url.startswith('file://')
+        reference=page.locator('.chapter-reference')
+        if reference.count():
+            reference.locator(':scope > summary').click()
         panel = page.locator('details.accounting-assumptions')
         summary = panel.locator('summary')
         assert panel.count() == 1
@@ -50,10 +53,11 @@ def exercise_page(page, artifact):
             assert page.evaluate('STRATUM.getState().ranks') == int(alternate)
             assert panel.evaluate('e=>e.open')
             assert training.inner_text() == before, 'Global persistent totals must not change with rank count'
-            if page.locator('#model-strip button[data-model]').count()>1:
+            if page.get_by_role('combobox',name='Exact checkpoint').count():
                 current = page.evaluate('STRATUM.getState().model')
-                cards = page.locator('#model-strip button[data-model]').all()
-                next(card for card in cards if card.get_attribute('data-model') != current).click()
+                picker = page.get_by_role('combobox',name='Exact checkpoint')
+                options = picker.locator('option').evaluate_all('xs=>xs.map(x=>x.value)')
+                picker.select_option(next(value for value in options if value != current))
                 assert page.evaluate('STRATUM.getState().view') == 'training'
                 assert training.inner_text() != before, 'Training totals must follow the selected model'
                 assert panel.evaluate('e=>e.open')
