@@ -55,6 +55,8 @@ export class Ctx {
     readonly mode: "shape" | "value",
     private readonly weights: Weights | null = null,
     seed = 0,
+    /** Spread of seeded weights. Raise it when a toy run looks uniform (attention near 1/n everywhere). */
+    private readonly gain = 1,
   ) {
     this.random = rng(seed);
   }
@@ -82,7 +84,7 @@ export class Ctx {
     if (this.weights !== null) {
       fail(`weights have no tensor named ${name}`);
     }
-    const scale = 1 / Math.sqrt(shape[shape.length - 1]);
+    const scale = this.gain / Math.sqrt(shape[shape.length - 1]);
     return tensor(
       shape,
       Array.from({ length: size(shape) }, () => (this.random() * 2 - 1) * scale),

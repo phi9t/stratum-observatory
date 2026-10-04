@@ -80,6 +80,15 @@ is unverified and why.
   weights (`new ref.Ctx("value", null, seed)`) and shows something computed: attention
   weights as a `Heatmap`, router scores and the experts actually chosen, the norm of
   the stream after each layer. Give it controls (layer, head, seed, a position).
+- **Show what is distinctive about this model**, not the experiment the worked example
+  happens to use. GPT-2's page shows a causal attention heatmap because that is all
+  GPT-2 has. A grouped-query model should show keys shared across query heads; a
+  latent-attention model the latent that is cached against the keys rebuilt from it; a
+  mixture-of-experts model which experts each token of a toy sequence is sent to and
+  with what weights; a sliding-window or sparse model the keys actually reached.
+  Write your own sentence and takeaways about what your figure shows.
+- Seeded weights can make a toy run look uniform. Pass a `gain` to `ref.Ctx` (GPT-2
+  uses 4) until the figure has visible structure.
 - Say plainly that the weights are random: the experiment shows how the mechanism
   behaves, never what the trained model does.
 - Prefer computed values over synthetic ones everywhere: a router demo should run the

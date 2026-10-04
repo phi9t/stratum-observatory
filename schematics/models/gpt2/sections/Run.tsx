@@ -29,7 +29,7 @@ const TOY: Gpt2Config = {
 };
 const LAYERS = Array.from({ length: f.TOY.layers }, (_unused, index) => String(index));
 const HEADS = Array.from({ length: f.TOY.heads }, (_unused, index) => String(index));
-const LAYOUT = { seedMax: 999, idStride: 7 };
+const LAYOUT = { seedMax: 999, idStride: 7, gain: 4 };
 
 export function Run() {
   const [seed, setSeed] = useUrlNumber("runSeed", 1, 0, LAYOUT.seedMax);
@@ -38,7 +38,7 @@ export function Run() {
   const [query, setQuery] = useUrlNumber("runQ", f.TOY.tokens - 1, 0, f.TOY.tokens - 1);
 
   // The clean reference, run here in the browser: seeded weights, seeded token ids.
-  const ctx = new ref.Ctx("value", null, seed);
+  const ctx = new ref.Ctx("value", null, seed, LAYOUT.gain);
   const ids = [
     Array.from({ length: f.TOY.tokens }, (_unused, index) => (index * LAYOUT.idStride + seed) % f.TOY.vocab),
   ];
