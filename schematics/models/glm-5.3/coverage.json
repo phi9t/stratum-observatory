@@ -1,0 +1,45 @@
+{
+  "source": "reference",
+  "classes": {
+    "GlmMoeDsaRMSNorm": {
+      "section": "layers"
+    },
+    "GlmMoeDsaRotaryEmbedding": {
+      "section": "attention"
+    },
+    "GlmMoeDsaIndexer": {
+      "section": "indexer"
+    },
+    "GlmMoeDsaAttention": {
+      "section": "attention"
+    },
+    "GlmMoeDsaMLP": {
+      "section": "experts"
+    },
+    "GlmMoeDsaTopkRouter": {
+      "section": "experts"
+    },
+    "GlmMoeDsaExperts": {
+      "section": "experts"
+    },
+    "GlmMoeDsaMoE": {
+      "section": "experts"
+    },
+    "GlmMoeDsaDecoderLayer": {
+      "section": "layers"
+    },
+    "GlmMoeDsaModel": {
+      "section": "overview"
+    },
+    "GlmMoeDsaForCausalLM": {
+      "section": "overview"
+    },
+    "GlmMoeDsaPreTrainedModel": {
+      "excluded": "Framework initialization and capability metadata, no forward computation. Ignores auxiliary checkpoint layer 78; MTP is outside decoder scope."
+    }
+  },
+  "serving": {
+    "source": "serving",
+    "notes": "Registry maps exact GlmMoeDsaForCausalLM architecture to DeepseekV32 package. Read NVIDIA model and attention: fused qkv_a, wk/head-weight and gate/up projections; fused embedding+norm and residual/allreduce/RMSNorm; latent sparse MQA plus W_UV output expansion; FP8 index keys; latent norm epsilon 1e-5 versus reference 1e-6. Serving frequency/offset schedule verified equal to explicit config indexer list."
+  }
+}

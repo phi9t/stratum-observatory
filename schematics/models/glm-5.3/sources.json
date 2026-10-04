@@ -1,0 +1,72 @@
+{
+  "checkpoint": {
+    "repo": "zai-org/GLM-5.3",
+    "revision": "aca966e4e02791568aa6a4ced368624b3d897f42"
+  },
+  "sources": [
+    {
+      "id": "config",
+      "kind": "hf",
+      "repo": "zai-org/GLM-5.3",
+      "revision": "aca966e4e02791568aa6a4ced368624b3d897f42",
+      "path": "config.json",
+      "role": "config"
+    },
+    {
+      "id": "reference",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "revision": "469230357aab0f2b303b0d638c1f8d06edb14184",
+      "path": "src/transformers/models/glm_moe_dsa/modeling_glm_moe_dsa.py",
+      "role": "reference"
+    },
+    {
+      "id": "serving",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "revision": "155488d853a0bc42df227dbfc74005b3fd488e94",
+      "path": "vllm/models/deepseek_v32/nvidia/model.py",
+      "role": "serving"
+    },
+    {
+      "id": "configuration",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "revision": "469230357aab0f2b303b0d638c1f8d06edb14184",
+      "path": "src/transformers/models/glm_moe_dsa/configuration_glm_moe_dsa.py",
+      "role": "extra"
+    },
+    {
+      "id": "registry",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "revision": "155488d853a0bc42df227dbfc74005b3fd488e94",
+      "path": "vllm/model_executor/models/registry.py",
+      "role": "extra"
+    },
+    {
+      "id": "serving-attention",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "revision": "155488d853a0bc42df227dbfc74005b3fd488e94",
+      "path": "vllm/models/deepseek_v32/attention.py",
+      "role": "extra"
+    },
+    {
+      "id": "tensor-index",
+      "kind": "hf",
+      "repo": "zai-org/GLM-5.3",
+      "revision": "aca966e4e02791568aa6a4ced368624b3d897f42",
+      "path": "model.safetensors.index.json",
+      "role": "extra"
+    },
+    {
+      "id": "serving-mtp",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "revision": "155488d853a0bc42df227dbfc74005b3fd488e94",
+      "path": "vllm/models/deepseek_v32/nvidia/mtp.py",
+      "role": "extra"
+    }
+  ]
+}

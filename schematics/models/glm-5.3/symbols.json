@@ -1,0 +1,670 @@
+{
+  "configuration": {
+    "GlmMoeDsaConfig": [
+      29,
+      170
+    ],
+    "GlmMoeDsaConfig.__post_init__": [
+      135,
+      170
+    ],
+    "__post_init__": [
+      135,
+      170
+    ]
+  },
+  "reference": {
+    "GlmMoeDsaAttention": [
+      306,
+      459
+    ],
+    "GlmMoeDsaAttention.__init__": [
+      315,
+      357
+    ],
+    "GlmMoeDsaAttention.expand_kv": [
+      359,
+      376
+    ],
+    "GlmMoeDsaAttention.forward": [
+      378,
+      459
+    ],
+    "GlmMoeDsaDecoderLayer": [
+      583,
+      624
+    ],
+    "GlmMoeDsaDecoderLayer.__init__": [
+      584,
+      592
+    ],
+    "GlmMoeDsaDecoderLayer.forward": [
+      594,
+      624
+    ],
+    "GlmMoeDsaExperts": [
+      520,
+      556
+    ],
+    "GlmMoeDsaExperts.__init__": [
+      523,
+      530
+    ],
+    "GlmMoeDsaExperts.forward": [
+      532,
+      556
+    ],
+    "GlmMoeDsaForCausalLM": [
+      740,
+      814
+    ],
+    "GlmMoeDsaForCausalLM.__init__": [
+      746,
+      753
+    ],
+    "GlmMoeDsaForCausalLM.forward": [
+      757,
+      814
+    ],
+    "GlmMoeDsaIndexer": [
+      161,
+      250
+    ],
+    "GlmMoeDsaIndexer.__init__": [
+      174,
+      190
+    ],
+    "GlmMoeDsaIndexer.forward": [
+      193,
+      250
+    ],
+    "GlmMoeDsaMLP": [
+      462,
+      475
+    ],
+    "GlmMoeDsaMLP.__init__": [
+      463,
+      471
+    ],
+    "GlmMoeDsaMLP.forward": [
+      473,
+      475
+    ],
+    "GlmMoeDsaMoE": [
+      559,
+      580
+    ],
+    "GlmMoeDsaMoE.__init__": [
+      564,
+      571
+    ],
+    "GlmMoeDsaMoE.forward": [
+      573,
+      580
+    ],
+    "GlmMoeDsaModel": [
+      660,
+      736
+    ],
+    "GlmMoeDsaModel.__init__": [
+      661,
+      675
+    ],
+    "GlmMoeDsaModel.forward": [
+      680,
+      736
+    ],
+    "GlmMoeDsaPreTrainedModel": [
+      628,
+      656
+    ],
+    "GlmMoeDsaPreTrainedModel._init_weights": [
+      649,
+      656
+    ],
+    "GlmMoeDsaRMSNorm": [
+      47,
+      64
+    ],
+    "GlmMoeDsaRMSNorm.__init__": [
+      48,
+      54
+    ],
+    "GlmMoeDsaRMSNorm.extra_repr": [
+      63,
+      64
+    ],
+    "GlmMoeDsaRMSNorm.forward": [
+      56,
+      61
+    ],
+    "GlmMoeDsaRotaryEmbedding": [
+      67,
+      119
+    ],
+    "GlmMoeDsaRotaryEmbedding.__init__": [
+      68,
+      82
+    ],
+    "GlmMoeDsaRotaryEmbedding.compute_default_rope_parameters": [
+      85,
+      101
+    ],
+    "GlmMoeDsaRotaryEmbedding.forward": [
+      105,
+      119
+    ],
+    "GlmMoeDsaTopkRouter": [
+      478,
+      516
+    ],
+    "GlmMoeDsaTopkRouter.__init__": [
+      479,
+      489
+    ],
+    "GlmMoeDsaTopkRouter.forward": [
+      491,
+      516
+    ],
+    "_init_weights": [
+      649,
+      656
+    ],
+    "apply_rotary_pos_emb_interleave": [
+      122,
+      158
+    ],
+    "compute_default_rope_parameters": [
+      85,
+      101
+    ],
+    "eager_attention_forward": [
+      265,
+      287
+    ],
+    "expand_kv": [
+      359,
+      376
+    ],
+    "extra_repr": [
+      63,
+      64
+    ],
+    "repeat_kv": [
+      253,
+      262
+    ],
+    "yarn_apply_mscale": [
+      296,
+      303
+    ],
+    "yarn_get_mscale": [
+      290,
+      293
+    ]
+  },
+  "registry": {
+    "_BaseRegisteredModel": [
+      918,
+      925
+    ],
+    "_BaseRegisteredModel.inspect_model_cls": [
+      920,
+      921
+    ],
+    "_BaseRegisteredModel.load_model_cls": [
+      924,
+      925
+    ],
+    "_LazyRegisteredModel": [
+      950,
+      1083
+    ],
+    "_LazyRegisteredModel._get_cache_dir": [
+      957,
+      958
+    ],
+    "_LazyRegisteredModel._get_cache_filename": [
+      960,
+      962
+    ],
+    "_LazyRegisteredModel._get_modelinfo_module_hash": [
+      965,
+      981
+    ],
+    "_LazyRegisteredModel._load_modelinfo_from_cache": [
+      983,
+      1013
+    ],
+    "_LazyRegisteredModel._save_modelinfo_to_cache": [
+      1015,
+      1030
+    ],
+    "_LazyRegisteredModel.inspect_model_cls": [
+      1033,
+      1079
+    ],
+    "_LazyRegisteredModel.load_model_cls": [
+      1081,
+      1083
+    ],
+    "_ModelInfo": [
+      856,
+      915
+    ],
+    "_ModelInfo.from_model_cls": [
+      881,
+      915
+    ],
+    "_ModelRegistry": [
+      1114,
+      1505
+    ],
+    "_ModelRegistry._normalize_arch": [
+      1286,
+      1310
+    ],
+    "_ModelRegistry._raise_for_unsupported": [
+      1166,
+      1197
+    ],
+    "_ModelRegistry._try_inspect_model_cls": [
+      1205,
+      1209
+    ],
+    "_ModelRegistry._try_load_model_cls": [
+      1199,
+      1203
+    ],
+    "_ModelRegistry._try_resolve_transformers": [
+      1211,
+      1284
+    ],
+    "_ModelRegistry.get_supported_archs": [
+      1118,
+      1119
+    ],
+    "_ModelRegistry.inspect_model_cls": [
+      1312,
+      1363
+    ],
+    "_ModelRegistry.is_attention_free_model": [
+      1467,
+      1473
+    ],
+    "_ModelRegistry.is_hybrid_model": [
+      1475,
+      1481
+    ],
+    "_ModelRegistry.is_multimodal_model": [
+      1435,
+      1441
+    ],
+    "_ModelRegistry.is_multimodal_raw_input_only_model": [
+      1443,
+      1449
+    ],
+    "_ModelRegistry.is_noops_model": [
+      1483,
+      1489
+    ],
+    "_ModelRegistry.is_pooling_model": [
+      1427,
+      1433
+    ],
+    "_ModelRegistry.is_pp_supported_model": [
+      1451,
+      1457
+    ],
+    "_ModelRegistry.is_text_generation_model": [
+      1419,
+      1425
+    ],
+    "_ModelRegistry.is_transcription_model": [
+      1491,
+      1497
+    ],
+    "_ModelRegistry.is_transcription_only_model": [
+      1499,
+      1505
+    ],
+    "_ModelRegistry.model_has_inner_state": [
+      1459,
+      1465
+    ],
+    "_ModelRegistry.register_model": [
+      1121,
+      1164
+    ],
+    "_ModelRegistry.resolve_model_cls": [
+      1365,
+      1417
+    ],
+    "_RegisteredModel": [
+      929,
+      946
+    ],
+    "_RegisteredModel.from_model_cls": [
+      936,
+      940
+    ],
+    "_RegisteredModel.inspect_model_cls": [
+      942,
+      943
+    ],
+    "_RegisteredModel.load_model_cls": [
+      945,
+      946
+    ],
+    "_get_cache_dir": [
+      957,
+      958
+    ],
+    "_get_cache_filename": [
+      960,
+      962
+    ],
+    "_get_modelinfo_module_hash": [
+      965,
+      981
+    ],
+    "_load_modelinfo_from_cache": [
+      983,
+      1013
+    ],
+    "_normalize_arch": [
+      1286,
+      1310
+    ],
+    "_raise_for_unsupported": [
+      1166,
+      1197
+    ],
+    "_resolve_module_name": [
+      1508,
+      1527
+    ],
+    "_run": [
+      1560,
+      1575
+    ],
+    "_run_in_subprocess": [
+      1530,
+      1557
+    ],
+    "_save_modelinfo_to_cache": [
+      1015,
+      1030
+    ],
+    "_try_inspect_model_cls": [
+      1102,
+      1110
+    ],
+    "_try_load_model_cls": [
+      1087,
+      1098
+    ],
+    "_try_resolve_transformers": [
+      1211,
+      1284
+    ],
+    "get_supported_archs": [
+      1118,
+      1119
+    ],
+    "is_attention_free_model": [
+      1467,
+      1473
+    ],
+    "is_hybrid_model": [
+      1475,
+      1481
+    ],
+    "is_multimodal_model": [
+      1435,
+      1441
+    ],
+    "is_multimodal_raw_input_only_model": [
+      1443,
+      1449
+    ],
+    "is_noops_model": [
+      1483,
+      1489
+    ],
+    "is_pooling_model": [
+      1427,
+      1433
+    ],
+    "is_pp_supported_model": [
+      1451,
+      1457
+    ],
+    "is_text_generation_model": [
+      1419,
+      1425
+    ],
+    "is_transcription_model": [
+      1491,
+      1497
+    ],
+    "is_transcription_only_model": [
+      1499,
+      1505
+    ],
+    "model_has_inner_state": [
+      1459,
+      1465
+    ],
+    "register_model": [
+      1121,
+      1164
+    ],
+    "resolve_model_cls": [
+      1365,
+      1417
+    ]
+  },
+  "serving": {
+    "DeepseekV32DecoderLayer": [
+      57,
+      166
+    ],
+    "DeepseekV32DecoderLayer.__init__": [
+      58,
+      120
+    ],
+    "DeepseekV32DecoderLayer.forward": [
+      122,
+      166
+    ],
+    "DeepseekV32ForCausalLM": [
+      427,
+      454
+    ],
+    "DeepseekV32ForCausalLM.__init__": [
+      435,
+      438
+    ],
+    "DeepseekV32ForCausalLM.set_moe_parameters": [
+      440,
+      454
+    ],
+    "DeepseekV32Model": [
+      169,
+      424
+    ],
+    "DeepseekV32Model.__init__": [
+      172,
+      236
+    ],
+    "DeepseekV32Model.embed_input_ids": [
+      238,
+      239
+    ],
+    "DeepseekV32Model.forward": [
+      241,
+      324
+    ],
+    "DeepseekV32Model.load_weights": [
+      326,
+      424
+    ],
+    "embed_input_ids": [
+      238,
+      239
+    ],
+    "load_weights": [
+      326,
+      424
+    ],
+    "set_moe_parameters": [
+      440,
+      454
+    ]
+  },
+  "serving-attention": {
+    "DeepseekV32Attention": [
+      121,
+      653
+    ],
+    "DeepseekV32Attention.__init__": [
+      126,
+      284
+    ],
+    "DeepseekV32Attention._should_prepare_mqa_query": [
+      286,
+      296
+    ],
+    "DeepseekV32Attention._sparse_indexer_and_attn": [
+      466,
+      653
+    ],
+    "DeepseekV32Attention.forward": [
+      298,
+      463
+    ],
+    "DeepseekV32Indexer": [
+      50,
+      118
+    ],
+    "DeepseekV32Indexer.__init__": [
+      53,
+      118
+    ],
+    "_should_prepare_mqa_query": [
+      286,
+      296
+    ],
+    "_sparse_indexer_and_attn": [
+      466,
+      653
+    ],
+    "forward": [
+      298,
+      463
+    ]
+  },
+  "serving-mtp": {
+    "DeepseekV32MTP": [
+      274,
+      488
+    ],
+    "DeepseekV32MTP.__init__": [
+      275,
+      287
+    ],
+    "DeepseekV32MTP._rewrite_spec_layer_name": [
+      334,
+      357
+    ],
+    "DeepseekV32MTP.compute_logits": [
+      319,
+      324
+    ],
+    "DeepseekV32MTP.embed_input_ids": [
+      303,
+      304
+    ],
+    "DeepseekV32MTP.forward": [
+      306,
+      317
+    ],
+    "DeepseekV32MTP.get_top_tokens": [
+      326,
+      332
+    ],
+    "DeepseekV32MTP.load_weights": [
+      359,
+      488
+    ],
+    "DeepseekV32MTP.set_moe_parameters": [
+      289,
+      301
+    ],
+    "DeepseekV32MultiTokenPredictor": [
+      171,
+      271
+    ],
+    "DeepseekV32MultiTokenPredictor.__init__": [
+      172,
+      197
+    ],
+    "DeepseekV32MultiTokenPredictor.compact_topk_indices": [
+      206,
+      213
+    ],
+    "DeepseekV32MultiTokenPredictor.compute_logits": [
+      244,
+      254
+    ],
+    "DeepseekV32MultiTokenPredictor.embed_input_ids": [
+      215,
+      216
+    ],
+    "DeepseekV32MultiTokenPredictor.forward": [
+      218,
+      242
+    ],
+    "DeepseekV32MultiTokenPredictor.get_top_tokens": [
+      256,
+      271
+    ],
+    "DeepseekV32MultiTokenPredictor.set_skip_topk": [
+      199,
+      204
+    ],
+    "DeepseekV32MultiTokenPredictorLayer": [
+      64,
+      168
+    ],
+    "DeepseekV32MultiTokenPredictorLayer.__init__": [
+      65,
+      100
+    ],
+    "DeepseekV32MultiTokenPredictorLayer.forward": [
+      102,
+      168
+    ],
+    "_rewrite_spec_layer_name": [
+      334,
+      357
+    ],
+    "compact_topk_indices": [
+      206,
+      213
+    ],
+    "load_weights": [
+      359,
+      488
+    ],
+    "set_moe_parameters": [
+      289,
+      301
+    ],
+    "set_skip_topk": [
+      199,
+      204
+    ]
+  }
+}

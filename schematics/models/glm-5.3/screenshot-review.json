@@ -1,0 +1,146 @@
+{
+  "artifact": "dist/glm-5.3.html",
+  "artifact_sha256": "9983686e352df4a5405140a7b84dcd90d450d64a4dd7d32f065f28095cc8a43a",
+  "browser": "Google Chrome 145.0.7632.75",
+  "rounds": 4,
+  "views": {
+    "desktop-light": "1440\u00d71000, scale 1",
+    "desktop-dark": "1440\u00d71000, scale 1",
+    "mobile-light": "390\u00d7844, scale 2"
+  },
+  "scope": "Hero plus all ten sections, default state; each PNG opened and visually inspected. Wide figures/tables scroll internally on mobile.",
+  "screenshots": [
+    {
+      "path": "runs/shots/glm-5.3/desktop-dark-ms-attention.png",
+      "sha256": "56ac11dedbdcd42e2b20d9992fefd0631a7d5544048ea4ce26d76535f556c553"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-dark-ms-data.png",
+      "sha256": "ddb8a2ee523fecbd6f4d66d804611e584ce396d64a89569f7f0cc079fc49432d"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-dark-ms-experts.png",
+      "sha256": "0174fc741587788c9298a009d1b2516867a471f0e32a86679c0ea6877caed607"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-dark-ms-hero.png",
+      "sha256": "3dd0020a1838a2534f864778b2ef5ae515470e98440eae8e15134aefde3725cf"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-dark-ms-indexer.png",
+      "sha256": "1febd4edce15a9f6bc099411c2b5ba80ff9fd80e69c7fb123f9364dc935e8975"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-dark-ms-layers.png",
+      "sha256": "3766ebe0821277aa81fb0d4e1892d9b8716888e4d09f24ceca68e4c7e0514f06"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-dark-ms-overview.png",
+      "sha256": "866273f51605863b39fae017089d1a21e07e37800afcc828de05a68c50ecce79"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-dark-ms-run.png",
+      "sha256": "5e5ab59707bcabfff7a75453e1badcacc2c5056754300bab884a78d054b0d29f"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-dark-ms-serving.png",
+      "sha256": "915f124a8e38e472a7d1a8e16ee1a135480dfef4c58c985a7dbd1e0948e0a5d4"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-dark-ms-sources.png",
+      "sha256": "a9887e02b050871623cdf44c933e184376b94b2e0b31215f53837464f58db2b8"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-dark-ms-weights.png",
+      "sha256": "7a510cdbefd7c6cfe849a471bb999747eadbadb41477841237009be26f03c430"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-light-ms-attention.png",
+      "sha256": "dc0f21735d1d17a75c62674f5d1e645b776afb18cab13a4a374b9ea5c4b46e73"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-light-ms-data.png",
+      "sha256": "ea172f72d6d6e34cafb245d532474c55b9354f20810cf63473e53a350fd3a129"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-light-ms-experts.png",
+      "sha256": "a9380b318369cb486c012acc1ab1471a5e6bc91456500f1272d144219a0673a7"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-light-ms-hero.png",
+      "sha256": "6a708609d0428e6da2a8e071300ce0543a46d06624f43f510e32ef5a92e544cc"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-light-ms-indexer.png",
+      "sha256": "d3aae00a0480f3a7727f197f095519f4b40b7f97bba73692830616859f14ccd6"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-light-ms-layers.png",
+      "sha256": "59b67a32c5c008eeb792201a04115c5ab57e9e94a19807ae8f8a3a534b55b54f"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-light-ms-overview.png",
+      "sha256": "38155c430f836480228dd9a76a47910603889a1bda45cd8d7e7b6f0163d8ec28"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-light-ms-run.png",
+      "sha256": "89090a0311b8c466c6d71410e1885982cc5374733090c6ea66384eeb606881f6"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-light-ms-serving.png",
+      "sha256": "48022d289434fca0d116ad8127a803b38a5461e9ae3049d027cc218556d56129"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-light-ms-sources.png",
+      "sha256": "18dd1ec0edc0b7816118f8456a93e80e7e7afe5bb5341d9994c40f1a0de39705"
+    },
+    {
+      "path": "runs/shots/glm-5.3/desktop-light-ms-weights.png",
+      "sha256": "89dd9b7f3a8051e57b77588e58b595f58b856925825840926c9ae34324177af7"
+    },
+    {
+      "path": "runs/shots/glm-5.3/mobile-light-ms-attention.png",
+      "sha256": "7141c3f1741d543ef859c3acb063d179c83788b2b1dd6abac799658b53e2a8ce"
+    },
+    {
+      "path": "runs/shots/glm-5.3/mobile-light-ms-data.png",
+      "sha256": "43d91a868e2b5a2ccedcdfab7ebd0b7e6a272a7eba69ff1fd4338cf91358d809"
+    },
+    {
+      "path": "runs/shots/glm-5.3/mobile-light-ms-experts.png",
+      "sha256": "970a094058b1b7369a1603e706e7fedf0ee6dff730c83bd247de0a502a9a32c4"
+    },
+    {
+      "path": "runs/shots/glm-5.3/mobile-light-ms-hero.png",
+      "sha256": "a20e017102740686d79cb5c734839a2889bdb432dd1a6bb240671337505c4c9c"
+    },
+    {
+      "path": "runs/shots/glm-5.3/mobile-light-ms-indexer.png",
+      "sha256": "cc3e2ec9ee957798a6869c91330b842b47910c3479967375e839b293a0212f37"
+    },
+    {
+      "path": "runs/shots/glm-5.3/mobile-light-ms-layers.png",
+      "sha256": "cbde6d7defb8a9624a47fcd5096ee0bb5ae47222f12a38b982cb0d2b7cc9e5d7"
+    },
+    {
+      "path": "runs/shots/glm-5.3/mobile-light-ms-overview.png",
+      "sha256": "b667af110b02625a1086505fef55155ccadbc27525f2529461f643906be7bb0f"
+    },
+    {
+      "path": "runs/shots/glm-5.3/mobile-light-ms-run.png",
+      "sha256": "eaef014c5d70c93c588f4298f17c52643920c003aa36bf711350e0b9cae50246"
+    },
+    {
+      "path": "runs/shots/glm-5.3/mobile-light-ms-serving.png",
+      "sha256": "1f4883f30a03e135fffe11a0a8f1270c8d0f868e89e4e81b449a043cdf5c46b1"
+    },
+    {
+      "path": "runs/shots/glm-5.3/mobile-light-ms-sources.png",
+      "sha256": "e2f1acd4f487db43c3ee2d053e9e74fd160e3932241c795fe448e4b5cccc62bc"
+    },
+    {
+      "path": "runs/shots/glm-5.3/mobile-light-ms-weights.png",
+      "sha256": "115ef11abe6649d6e493552f96a265368cb94f9a117bef56a8a3428911c2e49d"
+    }
+  ]
+}
