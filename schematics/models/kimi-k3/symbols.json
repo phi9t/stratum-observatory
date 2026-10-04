@@ -1,0 +1,2443 @@
+{
+  "configuration": {
+    "KimiK3Config": [
+      229,
+      285
+    ],
+    "KimiK3Config.__init__": [
+      263,
+      285
+    ],
+    "KimiK3VisionConfig": [
+      159,
+      226
+    ],
+    "KimiK3VisionConfig.__init__": [
+      161,
+      226
+    ],
+    "KimiLinearConfig": [
+      6,
+      156
+    ],
+    "KimiLinearConfig.__init__": [
+      10,
+      124
+    ],
+    "KimiLinearConfig.is_kda_layer": [
+      152,
+      156
+    ],
+    "KimiLinearConfig.is_linear_attn": [
+      142,
+      150
+    ],
+    "KimiLinearConfig.is_mla": [
+      127,
+      135
+    ],
+    "KimiLinearConfig.is_moe": [
+      138,
+      139
+    ],
+    "is_kda_layer": [
+      152,
+      156
+    ],
+    "is_linear_attn": [
+      142,
+      150
+    ],
+    "is_mla": [
+      127,
+      135
+    ],
+    "is_moe": [
+      138,
+      139
+    ]
+  },
+  "conv-module": {
+    "ShortConvolution": [
+      24,
+      252
+    ],
+    "ShortConvolution.__init__": [
+      52,
+      97
+    ],
+    "ShortConvolution.extra_repr": [
+      99,
+      117
+    ],
+    "ShortConvolution.forward": [
+      119,
+      201
+    ],
+    "ShortConvolution.state_size": [
+      251,
+      252
+    ],
+    "ShortConvolution.step": [
+      203,
+      248
+    ],
+    "__init__": [
+      52,
+      97
+    ],
+    "extra_repr": [
+      99,
+      117
+    ],
+    "forward": [
+      119,
+      201
+    ],
+    "state_size": [
+      251,
+      252
+    ],
+    "step": [
+      203,
+      248
+    ]
+  },
+  "kda-gate": {
+    "KDAGateFunction": [
+      321,
+      356
+    ],
+    "KDAGateFunction.backward": [
+      347,
+      356
+    ],
+    "KDAGateFunction.forward": [
+      325,
+      342
+    ],
+    "backward": [
+      347,
+      356
+    ],
+    "forward": [
+      325,
+      342
+    ],
+    "fused_kda_gate": [
+      361,
+      387
+    ],
+    "kda_gate_bwd": [
+      280,
+      318
+    ],
+    "kda_gate_bwd_kernel": [
+      175,
+      244
+    ],
+    "kda_gate_chunk_cumsum": [
+      474,
+      515
+    ],
+    "kda_gate_chunk_cumsum.grid": [
+      498,
+      515
+    ],
+    "kda_gate_chunk_cumsum_vector_kernel": [
+      407,
+      469
+    ],
+    "kda_gate_fwd": [
+      248,
+      276
+    ],
+    "kda_gate_fwd.grid": [
+      260,
+      276
+    ],
+    "kda_gate_fwd_kernel": [
+      113,
+      156
+    ],
+    "naive_kda_gate": [
+      27,
+      55
+    ],
+    "naive_kda_lowerbound_gate": [
+      58,
+      93
+    ]
+  },
+  "kda-math": {
+    "naive_chunk_kda": [
+      69,
+      166
+    ],
+    "naive_recurrent_kda": [
+      12,
+      66
+    ]
+  },
+  "multimodal": {
+    "IdentityMap": [
+      725,
+      731
+    ],
+    "IdentityMap.__init__": [
+      727,
+      728
+    ],
+    "IdentityMap.forward": [
+      730,
+      731
+    ],
+    "KimiK3ForConditionalGeneration": [
+      893,
+      1317
+    ],
+    "KimiK3ForConditionalGeneration.__init__": [
+      899,
+      925
+    ],
+    "KimiK3ForConditionalGeneration._extract_image_features": [
+      1092,
+      1111
+    ],
+    "KimiK3ForConditionalGeneration._merge_input_ids_with_image_features": [
+      958,
+      1090
+    ],
+    "KimiK3ForConditionalGeneration._reorder_cache": [
+      1316,
+      1317
+    ],
+    "KimiK3ForConditionalGeneration._supports_default_dynamic_cache": [
+      896,
+      897
+    ],
+    "KimiK3ForConditionalGeneration.forward": [
+      1113,
+      1251
+    ],
+    "KimiK3ForConditionalGeneration.get_decoder": [
+      942,
+      943
+    ],
+    "KimiK3ForConditionalGeneration.get_input_embeddings": [
+      927,
+      928
+    ],
+    "KimiK3ForConditionalGeneration.get_output_embeddings": [
+      933,
+      934
+    ],
+    "KimiK3ForConditionalGeneration.prepare_inputs_for_generation": [
+      1253,
+      1314
+    ],
+    "KimiK3ForConditionalGeneration.resize_token_embeddings": [
+      948,
+      956
+    ],
+    "KimiK3ForConditionalGeneration.set_decoder": [
+      939,
+      940
+    ],
+    "KimiK3ForConditionalGeneration.set_input_embeddings": [
+      930,
+      931
+    ],
+    "KimiK3ForConditionalGeneration.set_output_embeddings": [
+      936,
+      937
+    ],
+    "KimiK3ForConditionalGeneration.tie_weights": [
+      945,
+      946
+    ],
+    "KimiK3PreTrainedModel": [
+      818,
+      850
+    ],
+    "KimiK3PreTrainedModel._init_weights": [
+      832,
+      850
+    ],
+    "Learnable2DInterpPosEmbDivided_fixed": [
+      233,
+      283
+    ],
+    "Learnable2DInterpPosEmbDivided_fixed.__init__": [
+      235,
+      255
+    ],
+    "Learnable2DInterpPosEmbDivided_fixed.forward": [
+      260,
+      283
+    ],
+    "Learnable2DInterpPosEmbDivided_fixed.reset_parameters": [
+      257,
+      258
+    ],
+    "MLP": [
+      734,
+      753
+    ],
+    "MLP.__init__": [
+      736,
+      742
+    ],
+    "MLP.forward": [
+      744,
+      753
+    ],
+    "MLP2": [
+      437,
+      458
+    ],
+    "MLP2.__init__": [
+      444,
+      453
+    ],
+    "MLP2.forward": [
+      455,
+      458
+    ],
+    "MoonViT3dEncoder": [
+      567,
+      618
+    ],
+    "MoonViT3dEncoder.__init__": [
+      569,
+      593
+    ],
+    "MoonViT3dEncoder.forward": [
+      595,
+      618
+    ],
+    "MoonViT3dPretrainedModel": [
+      649,
+      722
+    ],
+    "MoonViT3dPretrainedModel.__init__": [
+      656,
+      692
+    ],
+    "MoonViT3dPretrainedModel.forward": [
+      694,
+      722
+    ],
+    "MoonViTEncoderLayer": [
+      461,
+      564
+    ],
+    "MoonViTEncoderLayer.__init__": [
+      463,
+      505
+    ],
+    "MoonViTEncoderLayer.attention_qkvpacked": [
+      507,
+      543
+    ],
+    "MoonViTEncoderLayer.forward": [
+      545,
+      564
+    ],
+    "MoonVision3dPatchEmbed": [
+      286,
+      338
+    ],
+    "MoonVision3dPatchEmbed.__init__": [
+      288,
+      323
+    ],
+    "MoonVision3dPatchEmbed.forward": [
+      325,
+      338
+    ],
+    "PatchMergerMLP": [
+      756,
+      780
+    ],
+    "PatchMergerMLP.__init__": [
+      758,
+      768
+    ],
+    "PatchMergerMLP.forward": [
+      770,
+      780
+    ],
+    "PatchMergerMLPV2": [
+      783,
+      815
+    ],
+    "PatchMergerMLPV2.__init__": [
+      785,
+      801
+    ],
+    "PatchMergerMLPV2.forward": [
+      803,
+      815
+    ],
+    "ProjectorConfig": [
+      881,
+      892
+    ],
+    "ProjectorConfig.__init__": [
+      883,
+      892
+    ],
+    "Rope2DPosEmbRepeated": [
+      341,
+      434
+    ],
+    "Rope2DPosEmbRepeated.__init__": [
+      363,
+      373
+    ],
+    "Rope2DPosEmbRepeated._precompute_freqs_cis": [
+      378,
+      404
+    ],
+    "Rope2DPosEmbRepeated.extra_repr": [
+      375,
+      376
+    ],
+    "Rope2DPosEmbRepeated.get_freqs_cis": [
+      406,
+      434
+    ],
+    "VisionTowerConfig": [
+      853,
+      878
+    ],
+    "VisionTowerConfig.__init__": [
+      856,
+      878
+    ],
+    "_apply_rope_input_validation": [
+      142,
+      146
+    ],
+    "_extract_image_features": [
+      1092,
+      1111
+    ],
+    "_init_weights": [
+      832,
+      850
+    ],
+    "_merge_input_ids_with_image_features": [
+      958,
+      1090
+    ],
+    "_precompute_freqs_cis": [
+      378,
+      404
+    ],
+    "_reorder_cache": [
+      1316,
+      1317
+    ],
+    "_supports_default_dynamic_cache": [
+      896,
+      897
+    ],
+    "apply_rope": [
+      172,
+      193
+    ],
+    "attention_qkvpacked": [
+      507,
+      543
+    ],
+    "eager_attention": [
+      102,
+      139
+    ],
+    "extra_repr": [
+      375,
+      376
+    ],
+    "get_1d_sincos_pos_embed": [
+      219,
+      230
+    ],
+    "get_1d_sincos_pos_embed_from_grid": [
+      196,
+      216
+    ],
+    "get_decoder": [
+      942,
+      943
+    ],
+    "get_freqs_cis": [
+      406,
+      434
+    ],
+    "get_input_embeddings": [
+      927,
+      928
+    ],
+    "get_output_embeddings": [
+      933,
+      934
+    ],
+    "get_rope_shape": [
+      164,
+      169
+    ],
+    "get_rope_shape_decorate": [
+      149,
+      159
+    ],
+    "get_rope_shape_decorate.wrapper": [
+      152,
+      159
+    ],
+    "multihead_attention": [
+      59,
+      99
+    ],
+    "prepare_inputs_for_generation": [
+      1253,
+      1314
+    ],
+    "reset_parameters": [
+      257,
+      258
+    ],
+    "resize_token_embeddings": [
+      948,
+      956
+    ],
+    "set_decoder": [
+      939,
+      940
+    ],
+    "set_input_embeddings": [
+      930,
+      931
+    ],
+    "set_output_embeddings": [
+      936,
+      937
+    ],
+    "tie_weights": [
+      945,
+      946
+    ],
+    "tpool_patch_merger": [
+      621,
+      646
+    ],
+    "wrapper": [
+      152,
+      159
+    ]
+  },
+  "reference": {
+    "KimiBlockSparseMLP": [
+      242,
+      270
+    ],
+    "KimiBlockSparseMLP.__init__": [
+      243,
+      260
+    ],
+    "KimiBlockSparseMLP.forward": [
+      262,
+      270
+    ],
+    "KimiDecoderLayer": [
+      877,
+      1046
+    ],
+    "KimiDecoderLayer.__init__": [
+      878,
+      917
+    ],
+    "KimiDecoderLayer._forward_attn_residual": [
+      973,
+      1046
+    ],
+    "KimiDecoderLayer.forward": [
+      919,
+      971
+    ],
+    "KimiDeltaAttention": [
+      477,
+      663
+    ],
+    "KimiDeltaAttention.__init__": [
+      478,
+      541
+    ],
+    "KimiDeltaAttention.forward": [
+      543,
+      663
+    ],
+    "KimiDynamicCache": [
+      120,
+      223
+    ],
+    "KimiDynamicCache.__init__": [
+      127,
+      152
+    ],
+    "KimiDynamicCache.__len__": [
+      154,
+      155
+    ],
+    "KimiDynamicCache.get_mask_sizes": [
+      206,
+      216
+    ],
+    "KimiDynamicCache.get_seq_length": [
+      198,
+      204
+    ],
+    "KimiDynamicCache.has_previous_state": [
+      219,
+      223
+    ],
+    "KimiDynamicCache.reorder_cache": [
+      175,
+      196
+    ],
+    "KimiDynamicCache.update": [
+      157,
+      173
+    ],
+    "KimiLinearForCausalLM": [
+      1236,
+      1314
+    ],
+    "KimiLinearForCausalLM.__init__": [
+      1243,
+      1251
+    ],
+    "KimiLinearForCausalLM._supports_default_dynamic_cache": [
+      1238,
+      1241
+    ],
+    "KimiLinearForCausalLM.forward": [
+      1255,
+      1314
+    ],
+    "KimiLinearModel": [
+      1090,
+      1233
+    ],
+    "KimiLinearModel.__init__": [
+      1091,
+      1122
+    ],
+    "KimiLinearModel._apply_output_attn_res": [
+      1226,
+      1233
+    ],
+    "KimiLinearModel._update_linear_attn_mask": [
+      1124,
+      1134
+    ],
+    "KimiLinearModel.forward": [
+      1138,
+      1224
+    ],
+    "KimiMLAAttention": [
+      335,
+      474
+    ],
+    "KimiMLAAttention.__init__": [
+      340,
+      403
+    ],
+    "KimiMLAAttention.forward": [
+      405,
+      474
+    ],
+    "KimiMLP": [
+      273,
+      301
+    ],
+    "KimiMLP.__init__": [
+      274,
+      292
+    ],
+    "KimiMLP.forward": [
+      294,
+      301
+    ],
+    "KimiMoEGate": [
+      666,
+      759
+    ],
+    "KimiMoEGate.__init__": [
+      676,
+      696
+    ],
+    "KimiMoEGate.forward": [
+      703,
+      759
+    ],
+    "KimiMoEGate.reset_parameters": [
+      698,
+      701
+    ],
+    "KimiPreTrainedModel": [
+      1049,
+      1072
+    ],
+    "KimiPreTrainedModel._init_weights": [
+      1063,
+      1072
+    ],
+    "KimiRMSNorm": [
+      226,
+      239
+    ],
+    "KimiRMSNorm.__init__": [
+      227,
+      230
+    ],
+    "KimiRMSNorm.forward": [
+      232,
+      239
+    ],
+    "KimiSparseMoeBlock": [
+      762,
+      874
+    ],
+    "KimiSparseMoeBlock.__init__": [
+      768,
+      813
+    ],
+    "KimiSparseMoeBlock.forward": [
+      815,
+      838
+    ],
+    "KimiSparseMoeBlock.moe_infer": [
+      841,
+      874
+    ],
+    "SituAndMul": [
+      64,
+      85
+    ],
+    "SituAndMul.__init__": [
+      70,
+      73
+    ],
+    "SituAndMul.forward": [
+      75,
+      85
+    ],
+    "__len__": [
+      154,
+      155
+    ],
+    "_apply_attn_res": [
+      1075,
+      1088
+    ],
+    "_apply_output_attn_res": [
+      1226,
+      1233
+    ],
+    "_forward_attn_residual": [
+      973,
+      1046
+    ],
+    "_get_situ_activation_params": [
+      88,
+      91
+    ],
+    "_init_weights": [
+      1063,
+      1072
+    ],
+    "_supports_default_dynamic_cache": [
+      1238,
+      1241
+    ],
+    "_update_linear_attn_mask": [
+      1124,
+      1134
+    ],
+    "eager_attention_forward": [
+      311,
+      332
+    ],
+    "get_mask_sizes": [
+      206,
+      216
+    ],
+    "get_seq_length": [
+      198,
+      204
+    ],
+    "get_unpad_data": [
+      99,
+      106
+    ],
+    "has_previous_state": [
+      219,
+      223
+    ],
+    "index_first_axis": [
+      94,
+      95
+    ],
+    "moe_infer": [
+      841,
+      874
+    ],
+    "pad_input": [
+      109,
+      117
+    ],
+    "reorder_cache": [
+      175,
+      196
+    ],
+    "repeat_kv": [
+      304,
+      308
+    ],
+    "reset_parameters": [
+      698,
+      701
+    ],
+    "update": [
+      157,
+      173
+    ]
+  },
+  "serving": {
+    "KimiK3DecoderLayer": [
+      2391,
+      2845
+    ],
+    "KimiK3DecoderLayer.__init__": [
+      2394,
+      2555
+    ],
+    "KimiK3DecoderLayer.__init__._sp_o_proj_forward": [
+      2540,
+      2555
+    ],
+    "KimiK3DecoderLayer._finish_attn_reduce": [
+      2557,
+      2588
+    ],
+    "KimiK3DecoderLayer._forward_attn_residual": [
+      2709,
+      2845
+    ],
+    "KimiK3DecoderLayer._run_self_attn": [
+      2590,
+      2633
+    ],
+    "KimiK3DecoderLayer._run_self_attn_inner": [
+      2635,
+      2664
+    ],
+    "KimiK3DecoderLayer.forward": [
+      2666,
+      2707
+    ],
+    "KimiK3DeltaAttention": [
+      1503,
+      2166
+    ],
+    "KimiK3DeltaAttention.__init__": [
+      1506,
+      1818
+    ],
+    "KimiK3DeltaAttention.__init__._a_log_weight_loader": [
+      1749,
+      1818
+    ],
+    "KimiK3DeltaAttention._may_fuse_kda_inproj": [
+      1904,
+      1927
+    ],
+    "KimiK3DeltaAttention._merge_bfa_weights": [
+      1830,
+      1869
+    ],
+    "KimiK3DeltaAttention._merge_kda_inproj_weights_hip": [
+      1871,
+      1902
+    ],
+    "KimiK3DeltaAttention._prepare_fused_decode": [
+      1929,
+      2026
+    ],
+    "KimiK3DeltaAttention.forward": [
+      2103,
+      2166
+    ],
+    "KimiK3DeltaAttention.forward_qkvbfg": [
+      1820,
+      1828
+    ],
+    "KimiK3DeltaAttention.forward_qkvbfg_fused": [
+      2028,
+      2101
+    ],
+    "KimiK3ForConditionalGeneration": [
+      3574,
+      4014
+    ],
+    "KimiK3ForConditionalGeneration.__init__": [
+      3616,
+      3650
+    ],
+    "KimiK3ForConditionalGeneration.__setattr__": [
+      3656,
+      3659
+    ],
+    "KimiK3ForConditionalGeneration.end_layer": [
+      3924,
+      3927
+    ],
+    "KimiK3ForConditionalGeneration.forward": [
+      3957,
+      3975
+    ],
+    "KimiK3ForConditionalGeneration.get_aux_hidden_states_width": [
+      3706,
+      3709
+    ],
+    "KimiK3ForConditionalGeneration.get_image_feature": [
+      3737,
+      3911
+    ],
+    "KimiK3ForConditionalGeneration.get_image_feature.materialize_item_features": [
+      3758,
+      3911
+    ],
+    "KimiK3ForConditionalGeneration.get_input_embeddings": [
+      3674,
+      3679
+    ],
+    "KimiK3ForConditionalGeneration.get_pp_proxy_dspark_hidden_size": [
+      3687,
+      3690
+    ],
+    "KimiK3ForConditionalGeneration.lm_head": [
+      3682,
+      3685
+    ],
+    "KimiK3ForConditionalGeneration.load_weights": [
+      3977,
+      4014
+    ],
+    "KimiK3ForConditionalGeneration.load_weights.stream_language_weights": [
+      3988,
+      4014
+    ],
+    "KimiK3ForConditionalGeneration.model": [
+      3653,
+      3654
+    ],
+    "KimiK3ForConditionalGeneration.pad_input_ids": [
+      3913,
+      3915
+    ],
+    "KimiK3ForConditionalGeneration.post_load_weights": [
+      3661,
+      3664
+    ],
+    "KimiK3ForConditionalGeneration.precompile_kernels_after_loading": [
+      3666,
+      3672
+    ],
+    "KimiK3ForConditionalGeneration.prepare_context_parallel_metadata_for_dcp": [
+      3929,
+      3955
+    ],
+    "KimiK3ForConditionalGeneration.preprocess_mm_for_encoder": [
+      3711,
+      3735
+    ],
+    "KimiK3ForConditionalGeneration.set_dflash_layers_to_capture": [
+      3692,
+      3697
+    ],
+    "KimiK3ForConditionalGeneration.set_dspark_layers_to_capture": [
+      3699,
+      3704
+    ],
+    "KimiK3ForConditionalGeneration.start_layer": [
+      3918,
+      3921
+    ],
+    "KimiK3LinearForCausalLM": [
+      3124,
+      3571
+    ],
+    "KimiK3LinearForCausalLM.__init__": [
+      3134,
+      3175
+    ],
+    "KimiK3LinearForCausalLM.forward": [
+      3205,
+      3229
+    ],
+    "KimiK3LinearForCausalLM.get_aux_hidden_states_width": [
+      3186,
+      3189
+    ],
+    "KimiK3LinearForCausalLM.get_input_embeddings": [
+      3177,
+      3178
+    ],
+    "KimiK3LinearForCausalLM.get_pp_proxy_dspark_hidden_size": [
+      3180,
+      3184
+    ],
+    "KimiK3LinearForCausalLM.load_weights": [
+      3259,
+      3454
+    ],
+    "KimiK3LinearForCausalLM.post_load_weights": [
+      3456,
+      3571
+    ],
+    "KimiK3LinearForCausalLM.post_load_weights._warm_cw": [
+      3520,
+      3571
+    ],
+    "KimiK3LinearForCausalLM.prepare_context_parallel_metadata_for_dcp": [
+      3231,
+      3257
+    ],
+    "KimiK3LinearForCausalLM.set_dflash_layers_to_capture": [
+      3199,
+      3202
+    ],
+    "KimiK3LinearForCausalLM.set_dspark_layers_to_capture": [
+      3191,
+      3197
+    ],
+    "KimiK3LinearModel": [
+      2848,
+      3121
+    ],
+    "KimiK3LinearModel.__init__": [
+      2851,
+      2915
+    ],
+    "KimiK3LinearModel._dspark_capture_stream": [
+      3094,
+      3121
+    ],
+    "KimiK3LinearModel.forward": [
+      2917,
+      3085
+    ],
+    "KimiK3LinearModel.packs_aux_hidden_states": [
+      3088,
+      3092
+    ],
+    "KimiK3MLAAttention": [
+      2169,
+      2388
+    ],
+    "KimiK3MLAAttention.__init__": [
+      2172,
+      2331
+    ],
+    "KimiK3MLAAttention.__init__._gated_o_proj_forward": [
+      2312,
+      2331
+    ],
+    "KimiK3MLAAttention.__init__._symm_o_proj_forward": [
+      2268,
+      2310
+    ],
+    "KimiK3MLAAttention._compute_output_gate": [
+      2365,
+      2373
+    ],
+    "KimiK3MLAAttention._fork_output_gate": [
+      2351,
+      2363
+    ],
+    "KimiK3MLAAttention._split_kv_b_weight_loader": [
+      2334,
+      2343
+    ],
+    "KimiK3MLAAttention.dispatch_attn_forward_method": [
+      2345,
+      2349
+    ],
+    "KimiK3MLAAttention.forward": [
+      2375,
+      2388
+    ],
+    "KimiK3MLP": [
+      295,
+      385
+    ],
+    "KimiK3MLP.__init__": [
+      298,
+      356
+    ],
+    "KimiK3MLP.forward": [
+      358,
+      385
+    ],
+    "KimiK3MoE": [
+      427,
+      1500
+    ],
+    "KimiK3MoE.__init__": [
+      430,
+      691
+    ],
+    "KimiK3MoE._can_overlap_shared_experts_npu": [
+      1035,
+      1061
+    ],
+    "KimiK3MoE._eligible_for_fused_front": [
+      747,
+      761
+    ],
+    "KimiK3MoE._ep_front": [
+      922,
+      961
+    ],
+    "KimiK3MoE._ep_front_eligible": [
+      909,
+      920
+    ],
+    "KimiK3MoE._ep_front_overlap": [
+      963,
+      997
+    ],
+    "KimiK3MoE._forward_fused": [
+      1327,
+      1459
+    ],
+    "KimiK3MoE._forward_mega_experts": [
+      776,
+      862
+    ],
+    "KimiK3MoE._forward_routed": [
+      1284,
+      1294
+    ],
+    "KimiK3MoE._forward_routed_deferred": [
+      1296,
+      1307
+    ],
+    "KimiK3MoE._forward_shared": [
+      1309,
+      1320
+    ],
+    "KimiK3MoE._forward_shared_experts": [
+      1024,
+      1033
+    ],
+    "KimiK3MoE._forward_unfused": [
+      1063,
+      1244
+    ],
+    "KimiK3MoE._forward_unfused.issue_shared": [
+      1084,
+      1110
+    ],
+    "KimiK3MoE._forward_unfused.run_experts": [
+      1112,
+      1154
+    ],
+    "KimiK3MoE._forward_unfused.run_experts.post_dispatch": [
+      1129,
+      1154
+    ],
+    "KimiK3MoE._forward_unfused.run_experts.pre_dispatch": [
+      1120,
+      1127
+    ],
+    "KimiK3MoE._forward_unfused.wait_and_finalize_shared_experts": [
+      1156,
+      1244
+    ],
+    "KimiK3MoE._front_fp32": [
+      764,
+      774
+    ],
+    "KimiK3MoE._gather_shared_expert_inputs": [
+      1006,
+      1015
+    ],
+    "KimiK3MoE._get_fused_norm_params": [
+      1322,
+      1325
+    ],
+    "KimiK3MoE._latent_norm": [
+      864,
+      867
+    ],
+    "KimiK3MoE._merge_front_weights": [
+      693,
+      740
+    ],
+    "KimiK3MoE._moe_front_needs_dense_bf16": [
+      1247,
+      1266
+    ],
+    "KimiK3MoE._reduce_latent": [
+      999,
+      1004
+    ],
+    "KimiK3MoE._reduce_scatter_shared_experts": [
+      1017,
+      1022
+    ],
+    "KimiK3MoE._route_quant_fuse_eligible": [
+      1269,
+      1282
+    ],
+    "KimiK3MoE._routed_needs_reduce": [
+      743,
+      744
+    ],
+    "KimiK3MoE._routing_contract_ok": [
+      870,
+      906
+    ],
+    "KimiK3MoE.forward": [
+      1461,
+      1500
+    ],
+    "__setattr__": [
+      3656,
+      3659
+    ],
+    "_a_log_weight_loader": [
+      1749,
+      1818
+    ],
+    "_add3": [
+      388,
+      410
+    ],
+    "_can_overlap_shared_experts_npu": [
+      1035,
+      1061
+    ],
+    "_cdiv": [
+      147,
+      148
+    ],
+    "_compute_output_gate": [
+      2365,
+      2373
+    ],
+    "_dp_local_buffer_group": [
+      265,
+      270
+    ],
+    "_dspark_capture_stream": [
+      3094,
+      3121
+    ],
+    "_eligible_for_fused_front": [
+      747,
+      761
+    ],
+    "_ep_front": [
+      922,
+      961
+    ],
+    "_ep_front_eligible": [
+      909,
+      920
+    ],
+    "_ep_front_overlap": [
+      963,
+      997
+    ],
+    "_finish_attn_reduce": [
+      2557,
+      2588
+    ],
+    "_fork_output_gate": [
+      2351,
+      2363
+    ],
+    "_forward_attn_residual": [
+      2709,
+      2845
+    ],
+    "_forward_fused": [
+      1327,
+      1459
+    ],
+    "_forward_mega_experts": [
+      776,
+      862
+    ],
+    "_forward_routed": [
+      1284,
+      1294
+    ],
+    "_forward_routed_deferred": [
+      1296,
+      1307
+    ],
+    "_forward_shared": [
+      1309,
+      1320
+    ],
+    "_forward_shared_experts": [
+      1024,
+      1033
+    ],
+    "_forward_unfused": [
+      1063,
+      1244
+    ],
+    "_front_fp32": [
+      764,
+      774
+    ],
+    "_gated_o_proj_forward": [
+      2312,
+      2331
+    ],
+    "_gather_shared_expert_inputs": [
+      1006,
+      1015
+    ],
+    "_get_fused_norm_params": [
+      1322,
+      1325
+    ],
+    "_get_k3_dense_weight": [
+      174,
+      184
+    ],
+    "_is_unquantized_mergeable": [
+      228,
+      234
+    ],
+    "_k3_bf16_gemm": [
+      187,
+      225
+    ],
+    "_k3_symm_o_proj_out": [
+      419,
+      424
+    ],
+    "_latent_norm": [
+      864,
+      867
+    ],
+    "_may_fuse_kda_inproj": [
+      1904,
+      1927
+    ],
+    "_maybe_map_fp8_pb_scale_name": [
+      165,
+      171
+    ],
+    "_merge_bfa_weights": [
+      1830,
+      1869
+    ],
+    "_merge_front_weights": [
+      693,
+      740
+    ],
+    "_merge_kda_inproj_weights_hip": [
+      1871,
+      1902
+    ],
+    "_merge_weights_as_views": [
+      237,
+      264
+    ],
+    "_moe_front_needs_dense_bf16": [
+      1247,
+      1266
+    ],
+    "_o_proj_takes_output": [
+      413,
+      416
+    ],
+    "_prepare_fused_decode": [
+      1929,
+      2026
+    ],
+    "_reduce_latent": [
+      999,
+      1004
+    ],
+    "_reduce_scatter_shared_experts": [
+      1017,
+      1022
+    ],
+    "_route_quant_fuse_eligible": [
+      1269,
+      1282
+    ],
+    "_routed_needs_reduce": [
+      743,
+      744
+    ],
+    "_routing_contract_ok": [
+      870,
+      906
+    ],
+    "_run_self_attn": [
+      2590,
+      2633
+    ],
+    "_run_self_attn_inner": [
+      2635,
+      2664
+    ],
+    "_sp_all_gather_rows": [
+      273,
+      285
+    ],
+    "_sp_local_rows": [
+      288,
+      292
+    ],
+    "_sp_o_proj_forward": [
+      2540,
+      2555
+    ],
+    "_split_kv_b_weight_loader": [
+      2334,
+      2343
+    ],
+    "_symm_o_proj_forward": [
+      2268,
+      2310
+    ],
+    "_uses_modelopt_fp8_pb_wo": [
+      151,
+      155
+    ],
+    "_uses_split_gguf_kv_b": [
+      158,
+      162
+    ],
+    "_warm_cw": [
+      3520,
+      3571
+    ],
+    "dispatch_attn_forward_method": [
+      2345,
+      2349
+    ],
+    "end_layer": [
+      3924,
+      3927
+    ],
+    "forward_qkvbfg": [
+      1820,
+      1828
+    ],
+    "forward_qkvbfg_fused": [
+      2028,
+      2101
+    ],
+    "get_image_feature": [
+      3737,
+      3911
+    ],
+    "issue_shared": [
+      1084,
+      1110
+    ],
+    "lm_head": [
+      3682,
+      3685
+    ],
+    "materialize_item_features": [
+      3758,
+      3911
+    ],
+    "model": [
+      3653,
+      3654
+    ],
+    "packs_aux_hidden_states": [
+      3088,
+      3092
+    ],
+    "pad_input_ids": [
+      3913,
+      3915
+    ],
+    "post_dispatch": [
+      1129,
+      1154
+    ],
+    "pre_dispatch": [
+      1120,
+      1127
+    ],
+    "precompile_kernels_after_loading": [
+      3666,
+      3672
+    ],
+    "preprocess_mm_for_encoder": [
+      3711,
+      3735
+    ],
+    "run_experts": [
+      1112,
+      1154
+    ],
+    "start_layer": [
+      3918,
+      3921
+    ],
+    "stream_language_weights": [
+      3988,
+      4014
+    ],
+    "wait_and_finalize_shared_experts": [
+      1156,
+      1244
+    ]
+  },
+  "serving-linear": {
+    "KimiDecoderLayer": [
+      554,
+      656
+    ],
+    "KimiDecoderLayer.__init__": [
+      555,
+      634
+    ],
+    "KimiDecoderLayer.forward": [
+      636,
+      656
+    ],
+    "KimiDeltaAttention": [
+      190,
+      551
+    ],
+    "KimiDeltaAttention.__init__": [
+      191,
+      452
+    ],
+    "KimiDeltaAttention.forward": [
+      506,
+      551
+    ],
+    "KimiDeltaAttention.forward_qkvbfg": [
+      454,
+      466
+    ],
+    "KimiDeltaAttention.forward_qkvbfg_fused": [
+      468,
+      504
+    ],
+    "KimiLinearForCausalLM": [
+      775,
+      1027
+    ],
+    "KimiLinearForCausalLM.__init__": [
+      776,
+      802
+    ],
+    "KimiLinearForCausalLM._is_non_local_pp_weight": [
+      879,
+      890
+    ],
+    "KimiLinearForCausalLM.forward": [
+      822,
+      849
+    ],
+    "KimiLinearForCausalLM.get_input_embeddings": [
+      804,
+      805
+    ],
+    "KimiLinearForCausalLM.get_pp_proxy_dspark_hidden_size": [
+      807,
+      811
+    ],
+    "KimiLinearForCausalLM.load_weights": [
+      892,
+      1008
+    ],
+    "KimiLinearForCausalLM.post_load_weights": [
+      1010,
+      1027
+    ],
+    "KimiLinearForCausalLM.prepare_context_parallel_metadata_for_dcp": [
+      851,
+      877
+    ],
+    "KimiLinearForCausalLM.set_dspark_layers_to_capture": [
+      813,
+      819
+    ],
+    "KimiLinearModel": [
+      659,
+      772
+    ],
+    "KimiLinearModel.__init__": [
+      660,
+      706
+    ],
+    "KimiLinearModel.forward": [
+      708,
+      772
+    ],
+    "KimiMoE": [
+      77,
+      187
+    ],
+    "KimiMoE.__init__": [
+      78,
+      153
+    ],
+    "KimiMoE.forward": [
+      155,
+      187
+    ],
+    "_get_kda_local_num_heads": [
+      60,
+      65
+    ],
+    "_is_non_local_pp_weight": [
+      879,
+      890
+    ],
+    "_is_sparse_layer": [
+      68,
+      74
+    ],
+    "forward_qkvbfg": [
+      454,
+      466
+    ],
+    "forward_qkvbfg_fused": [
+      468,
+      504
+    ],
+    "get_input_embeddings": [
+      804,
+      805
+    ],
+    "get_pp_proxy_dspark_hidden_size": [
+      807,
+      811
+    ],
+    "load_weights": [
+      892,
+      1008
+    ],
+    "post_load_weights": [
+      1010,
+      1027
+    ],
+    "prepare_context_parallel_metadata_for_dcp": [
+      851,
+      877
+    ],
+    "set_dspark_layers_to_capture": [
+      813,
+      819
+    ]
+  },
+  "serving-mla": {
+    "DeepseekV2AttentionMLA": [
+      2045,
+      2597
+    ],
+    "DeepseekV2AttentionMLA.__init__": [
+      2054,
+      2297
+    ],
+    "DeepseekV2AttentionMLA._get_q_b_proj_quant_config": [
+      2589,
+      2597
+    ],
+    "DeepseekV2AttentionMLA.dispatch_attn_forward_method": [
+      2327,
+      2354
+    ],
+    "DeepseekV2AttentionMLA.forward": [
+      2374,
+      2393
+    ],
+    "DeepseekV2AttentionMLA.forward_core": [
+      2511,
+      2545
+    ],
+    "DeepseekV2AttentionMLA.forward_prepare": [
+      2395,
+      2509
+    ],
+    "DeepseekV2AttentionMLA.maybe_use_decode_attn_tp": [
+      2300,
+      2325
+    ],
+    "DeepseekV2AttentionMLA.op_core": [
+      2364,
+      2372
+    ],
+    "DeepseekV2AttentionMLA.op_prepare": [
+      2356,
+      2362
+    ],
+    "DeepseekV2AttentionMLA.prepare_qkv_latent": [
+      2547,
+      2572
+    ],
+    "DeepseekV2AttentionMLA.q_b_proj_forward": [
+      2574,
+      2586
+    ],
+    "DeepseekV2DecoderLayer": [
+      2604,
+      2923
+    ],
+    "DeepseekV2DecoderLayer.__init__": [
+      2605,
+      2714
+    ],
+    "DeepseekV2DecoderLayer._build_stages": [
+      2716,
+      2761
+    ],
+    "DeepseekV2DecoderLayer._detect_gfx95_quant_format": [
+      2763,
+      2782
+    ],
+    "DeepseekV2DecoderLayer._is_layer_sparse": [
+      2795,
+      2800
+    ],
+    "DeepseekV2DecoderLayer._resolve_gfx95_quant_format": [
+      2784,
+      2793
+    ],
+    "DeepseekV2DecoderLayer.forward": [
+      2802,
+      2869
+    ],
+    "DeepseekV2DecoderLayer.op_comm_postprocess_layer": [
+      2902,
+      2923
+    ],
+    "DeepseekV2DecoderLayer.op_comm_prepare_attn": [
+      2871,
+      2892
+    ],
+    "DeepseekV2DecoderLayer.op_comm_prepare_mlp": [
+      2894,
+      2900
+    ],
+    "DeepseekV2ForCausalLM": [
+      3255,
+      3522
+    ],
+    "DeepseekV2ForCausalLM.__init__": [
+      3259,
+      3319
+    ],
+    "DeepseekV2ForCausalLM.determine_num_fused_shared_experts": [
+      3402,
+      3406
+    ],
+    "DeepseekV2ForCausalLM.end_layer": [
+      3440,
+      3441
+    ],
+    "DeepseekV2ForCausalLM.forward": [
+      3412,
+      3433
+    ],
+    "DeepseekV2ForCausalLM.get_embed_and_head": [
+      3446,
+      3447
+    ],
+    "DeepseekV2ForCausalLM.get_input_embeddings": [
+      3408,
+      3409
+    ],
+    "DeepseekV2ForCausalLM.get_model_config_for_expert_location": [
+      3458,
+      3463
+    ],
+    "DeepseekV2ForCausalLM.load_weights": [
+      3443,
+      3444
+    ],
+    "DeepseekV2ForCausalLM.prepare_context_parallel_metadata_for_dcp": [
+      3494,
+      3522
+    ],
+    "DeepseekV2ForCausalLM.routed_experts_weights_of_layer": [
+      3322,
+      3328
+    ],
+    "DeepseekV2ForCausalLM.set_dflash_layers_to_capture": [
+      3482,
+      3492
+    ],
+    "DeepseekV2ForCausalLM.set_eagle3_layers_to_capture": [
+      3465,
+      3480
+    ],
+    "DeepseekV2ForCausalLM.set_embed_and_head": [
+      3449,
+      3455
+    ],
+    "DeepseekV2ForCausalLM.shared_experts_fusion_disable_reason": [
+      3331,
+      3400
+    ],
+    "DeepseekV2ForCausalLM.start_layer": [
+      3436,
+      3437
+    ],
+    "DeepseekV2MLP": [
+      268,
+      481
+    ],
+    "DeepseekV2MLP.__init__": [
+      269,
+      324
+    ],
+    "DeepseekV2MLP.forward": [
+      326,
+      481
+    ],
+    "DeepseekV2MoE": [
+      590,
+      2042
+    ],
+    "DeepseekV2MoE.__init__": [
+      591,
+      918
+    ],
+    "DeepseekV2MoE._adds_replicated_output": [
+      1471,
+      1475
+    ],
+    "DeepseekV2MoE._can_dual_stream_graph": [
+      936,
+      950
+    ],
+    "DeepseekV2MoE._compute_moe_quant_once_enabled": [
+      1807,
+      1871
+    ],
+    "DeepseekV2MoE._compute_routed_mxfp8_prequant_enabled": [
+      1898,
+      1923
+    ],
+    "DeepseekV2MoE._forward_shared_experts": [
+      1765,
+      1787
+    ],
+    "DeepseekV2MoE._maybe_quant_moe_input_once": [
+      1873,
+      1892
+    ],
+    "DeepseekV2MoE._moe_quant_once_enabled": [
+      1789,
+      1805
+    ],
+    "DeepseekV2MoE._routed_mxfp8_prequant_static_enabled": [
+      1895,
+      1896
+    ],
+    "DeepseekV2MoE._should_quant_routed_input_mxfp8": [
+      1925,
+      1934
+    ],
+    "DeepseekV2MoE.forward": [
+      952,
+      1015
+    ],
+    "DeepseekV2MoE.forward_cpu": [
+      1477,
+      1530
+    ],
+    "DeepseekV2MoE.forward_deepep": [
+      1532,
+      1763
+    ],
+    "DeepseekV2MoE.forward_deepep._deepep_dispatch_hook": [
+      1592,
+      1596
+    ],
+    "DeepseekV2MoE.forward_deepep._post_combine_hook": [
+      1614,
+      1635
+    ],
+    "DeepseekV2MoE.forward_deepep._post_dispatch_hook": [
+      1598,
+      1612
+    ],
+    "DeepseekV2MoE.forward_deepep._pre_combine_hook": [
+      1654,
+      1670
+    ],
+    "DeepseekV2MoE.forward_normal": [
+      1292,
+      1469
+    ],
+    "DeepseekV2MoE.forward_normal._post_combine_hook": [
+      1389,
+      1469
+    ],
+    "DeepseekV2MoE.forward_normal._pre_combine_hook": [
+      1377,
+      1387
+    ],
+    "DeepseekV2MoE.forward_normal_dual_stream": [
+      1017,
+      1290
+    ],
+    "DeepseekV2MoE.get_moe_weights": [
+      920,
+      934
+    ],
+    "DeepseekV2MoE.op_combine_a": [
+      2008,
+      2014
+    ],
+    "DeepseekV2MoE.op_combine_b": [
+      2016,
+      2020
+    ],
+    "DeepseekV2MoE.op_dispatch_a": [
+      1986,
+      1992
+    ],
+    "DeepseekV2MoE.op_dispatch_b": [
+      1994,
+      2001
+    ],
+    "DeepseekV2MoE.op_experts": [
+      2003,
+      2006
+    ],
+    "DeepseekV2MoE.op_gate": [
+      1936,
+      1941
+    ],
+    "DeepseekV2MoE.op_output": [
+      2022,
+      2042
+    ],
+    "DeepseekV2MoE.op_select_experts": [
+      1952,
+      1984
+    ],
+    "DeepseekV2MoE.op_shared_experts": [
+      1943,
+      1950
+    ],
+    "DeepseekV2Model": [
+      2933,
+      3252
+    ],
+    "DeepseekV2Model.__init__": [
+      2936,
+      3089
+    ],
+    "DeepseekV2Model._dsa_forward_uses_topk": [
+      3094,
+      3099
+    ],
+    "DeepseekV2Model.forward": [
+      3101,
+      3252
+    ],
+    "DeepseekV2Model.get_input_embeddings": [
+      3091,
+      3092
+    ],
+    "DeepseekV32ForCausalLM": [
+      3529,
+      3530
+    ],
+    "DeepseekV3ForCausalLM": [
+      3525,
+      3526
+    ],
+    "MoEGate": [
+      484,
+      587
+    ],
+    "MoEGate.__init__": [
+      485,
+      541
+    ],
+    "MoEGate.forward": [
+      543,
+      587
+    ],
+    "_adds_replicated_output": [
+      1471,
+      1475
+    ],
+    "_build_stages": [
+      2716,
+      2761
+    ],
+    "_can_dual_stream_graph": [
+      936,
+      950
+    ],
+    "_compute_moe_quant_once_enabled": [
+      1807,
+      1871
+    ],
+    "_compute_routed_mxfp8_prequant_enabled": [
+      1898,
+      1923
+    ],
+    "_deepep_dispatch_hook": [
+      1592,
+      1596
+    ],
+    "_detect_gfx95_quant_format": [
+      2763,
+      2782
+    ],
+    "_dsa_forward_uses_topk": [
+      3094,
+      3099
+    ],
+    "_forward_shared_experts": [
+      1765,
+      1787
+    ],
+    "_get_q_b_proj_quant_config": [
+      2589,
+      2597
+    ],
+    "_is_layer_sparse": [
+      2795,
+      2800
+    ],
+    "_maybe_quant_moe_input_once": [
+      1873,
+      1892
+    ],
+    "_moe_quant_once_enabled": [
+      1789,
+      1805
+    ],
+    "_resolve_gfx95_quant_format": [
+      2784,
+      2793
+    ],
+    "_routed_mxfp8_prequant_static_enabled": [
+      1895,
+      1896
+    ],
+    "_should_quant_routed_input_mxfp8": [
+      1925,
+      1934
+    ],
+    "_use_mnnvl_cutedsl_fusion": [
+      2600,
+      2601
+    ],
+    "determine_num_fused_shared_experts": [
+      3402,
+      3406
+    ],
+    "dispatch_attn_forward_method": [
+      2327,
+      2354
+    ],
+    "dsv2_flashinfer_moe_dual_stream_graph": [
+      3534,
+      3558
+    ],
+    "end_layer": [
+      3440,
+      3441
+    ],
+    "forward_core": [
+      2511,
+      2545
+    ],
+    "forward_cpu": [
+      1477,
+      1530
+    ],
+    "forward_deepep": [
+      1532,
+      1763
+    ],
+    "forward_normal": [
+      1292,
+      1469
+    ],
+    "forward_normal_dual_stream": [
+      1017,
+      1290
+    ],
+    "forward_prepare": [
+      2395,
+      2509
+    ],
+    "get_embed_and_head": [
+      3446,
+      3447
+    ],
+    "get_model_config_for_expert_location": [
+      3458,
+      3463
+    ],
+    "get_moe_weights": [
+      920,
+      934
+    ],
+    "load_weights": [
+      3443,
+      3444
+    ],
+    "maybe_use_decode_attn_tp": [
+      2300,
+      2325
+    ],
+    "op_combine_a": [
+      2008,
+      2014
+    ],
+    "op_combine_b": [
+      2016,
+      2020
+    ],
+    "op_comm_postprocess_layer": [
+      2902,
+      2923
+    ],
+    "op_comm_prepare_attn": [
+      2871,
+      2892
+    ],
+    "op_comm_prepare_mlp": [
+      2894,
+      2900
+    ],
+    "op_core": [
+      2364,
+      2372
+    ],
+    "op_dispatch_a": [
+      1986,
+      1992
+    ],
+    "op_dispatch_b": [
+      1994,
+      2001
+    ],
+    "op_experts": [
+      2003,
+      2006
+    ],
+    "op_gate": [
+      1936,
+      1941
+    ],
+    "op_output": [
+      2022,
+      2042
+    ],
+    "op_prepare": [
+      2356,
+      2362
+    ],
+    "op_select_experts": [
+      1952,
+      1984
+    ],
+    "op_shared_experts": [
+      1943,
+      1950
+    ],
+    "pp_stage_needs_embedding": [
+      2926,
+      2930
+    ],
+    "prepare_context_parallel_metadata_for_dcp": [
+      3494,
+      3522
+    ],
+    "prepare_qkv_latent": [
+      2547,
+      2572
+    ],
+    "q_b_proj_forward": [
+      2574,
+      2586
+    ],
+    "routed_experts_weights_of_layer": [
+      3322,
+      3328
+    ],
+    "set_dflash_layers_to_capture": [
+      3482,
+      3492
+    ],
+    "set_eagle3_layers_to_capture": [
+      3465,
+      3480
+    ],
+    "set_embed_and_head": [
+      3449,
+      3455
+    ],
+    "shared_experts_fusion_disable_reason": [
+      3331,
+      3400
+    ],
+    "start_layer": [
+      3436,
+      3437
+    ]
+  },
+  "serving-vl": {
+    "KimiK3MultiModalProjector": [
+      904,
+      937
+    ],
+    "KimiK3MultiModalProjector.__init__": [
+      908,
+      926
+    ],
+    "KimiK3MultiModalProjector.forward": [
+      928,
+      937
+    ],
+    "KimiK3VisionForwardMetadata": [
+      539,
+      546
+    ],
+    "KimiK3VisionTower": [
+      732,
+      901
+    ],
+    "KimiK3VisionTower.__init__": [
+      733,
+      788
+    ],
+    "KimiK3VisionTower._forward_eager": [
+      870,
+      901
+    ],
+    "KimiK3VisionTower.device": [
+      795,
+      796
+    ],
+    "KimiK3VisionTower.dtype": [
+      791,
+      792
+    ],
+    "KimiK3VisionTower.forward": [
+      826,
+      868
+    ],
+    "KimiK3VisionTower.precompile_attention_backend": [
+      801,
+      802
+    ],
+    "KimiK3VisionTower.precompile_fused_rope": [
+      798,
+      799
+    ],
+    "KimiK3VisionTower.prepare_forward_metadata": [
+      804,
+      824
+    ],
+    "Learnable2DInterpPosEmbDividedFixed": [
+      208,
+      271
+    ],
+    "Learnable2DInterpPosEmbDividedFixed.__init__": [
+      209,
+      230
+    ],
+    "Learnable2DInterpPosEmbDividedFixed.forward": [
+      259,
+      271
+    ],
+    "Learnable2DInterpPosEmbDividedFixed.position_embeddings": [
+      232,
+      257
+    ],
+    "MLP2": [
+      393,
+      402
+    ],
+    "MLP2.__init__": [
+      394,
+      399
+    ],
+    "MLP2.forward": [
+      401,
+      402
+    ],
+    "MoonViT3dEncoder": [
+      549,
+      729
+    ],
+    "MoonViT3dEncoder.__init__": [
+      550,
+      587
+    ],
+    "MoonViT3dEncoder.forward": [
+      692,
+      729
+    ],
+    "MoonViT3dEncoder.precompile_attention_backend": [
+      599,
+      642
+    ],
+    "MoonViT3dEncoder.precompile_fused_rope": [
+      589,
+      597
+    ],
+    "MoonViT3dEncoder.prepare_forward_metadata": [
+      644,
+      690
+    ],
+    "MoonViTEncoderLayer": [
+      413,
+      535
+    ],
+    "MoonViTEncoderLayer.__init__": [
+      414,
+      461
+    ],
+    "MoonViTEncoderLayer._attention": [
+      463,
+      507
+    ],
+    "MoonViTEncoderLayer.forward": [
+      509,
+      535
+    ],
+    "MoonVision3dPatchEmbed": [
+      274,
+      338
+    ],
+    "MoonVision3dPatchEmbed.__init__": [
+      275,
+      308
+    ],
+    "MoonVision3dPatchEmbed.forward": [
+      310,
+      338
+    ],
+    "Rope2DPosEmbRepeated": [
+      341,
+      390
+    ],
+    "Rope2DPosEmbRepeated.__init__": [
+      342,
+      350
+    ],
+    "Rope2DPosEmbRepeated._precompute_freqs_cis": [
+      352,
+      366
+    ],
+    "Rope2DPosEmbRepeated.get_freqs_cis": [
+      368,
+      390
+    ],
+    "_attention": [
+      463,
+      507
+    ],
+    "_can_use_fused_rope": [
+      115,
+      120
+    ],
+    "_can_use_fused_rope_for_shape": [
+      123,
+      138
+    ],
+    "_forward_eager": [
+      870,
+      901
+    ],
+    "_get_mm_attention_backend": [
+      60,
+      65
+    ],
+    "_is_fa4_available": [
+      68,
+      75
+    ],
+    "_make_norm": [
+      405,
+      410
+    ],
+    "_precompute_freqs_cis": [
+      352,
+      366
+    ],
+    "_resolve_grid_thw_list": [
+      53,
+      57
+    ],
+    "_resolve_mm_attention_backend": [
+      78,
+      101
+    ],
+    "apply_rope": [
+      104,
+      112
+    ],
+    "device": [
+      795,
+      796
+    ],
+    "dtype": [
+      791,
+      792
+    ],
+    "get_1d_sincos_pos_embed": [
+      188,
+      190
+    ],
+    "get_1d_sincos_pos_embed_from_grid": [
+      174,
+      185
+    ],
+    "get_freqs_cis": [
+      368,
+      390
+    ],
+    "interpolate_pos_emb": [
+      193,
+      205
+    ],
+    "position_embeddings": [
+      232,
+      257
+    ],
+    "sdpa_varlen_attention": [
+      141,
+      171
+    ]
+  },
+  "short-conv": {}
+}

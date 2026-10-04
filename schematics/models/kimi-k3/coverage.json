@@ -1,0 +1,48 @@
+{
+  "source": "reference",
+  "classes": {
+    "SituAndMul": {
+      "section": "experts"
+    },
+    "KimiDynamicCache": {
+      "section": "serving"
+    },
+    "KimiRMSNorm": {
+      "section": "residual"
+    },
+    "KimiBlockSparseMLP": {
+      "section": "experts"
+    },
+    "KimiMLP": {
+      "section": "experts"
+    },
+    "KimiMLAAttention": {
+      "section": "attention"
+    },
+    "KimiDeltaAttention": {
+      "section": "kda"
+    },
+    "KimiMoEGate": {
+      "section": "experts"
+    },
+    "KimiSparseMoeBlock": {
+      "section": "experts"
+    },
+    "KimiDecoderLayer": {
+      "section": "stack"
+    },
+    "KimiPreTrainedModel": {
+      "excluded": "Framework initialization base class, no inference forward computation."
+    },
+    "KimiLinearModel": {
+      "section": "overview"
+    },
+    "KimiLinearForCausalLM": {
+      "section": "overview"
+    }
+  },
+  "serving": {
+    "source": "serving",
+    "notes": "Read K3-specific implementation in full. Fused KDA q/k/v/output-gate projections, covered fused recurrence/norm with fallback; absorbed MLA kv_b precompute and skip_rope; reduce latent expert sums before RMSNorm, original-width shared branch; precomputed depth score weights and delayed prefix additions. Publisher MLA latent norm default epsilon differs from SGLang config epsilon. GPU paths and packed precision unverified. See NOTES.md."
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "checkpoint": {
+    "repo": "moonshotai/Kimi-K3",
+    "revision": "f831ab66814297da540d832a5235f8e904f29d06"
+  },
+  "sources": [
+    {
+      "id": "config",
+      "kind": "hf",
+      "repo": "moonshotai/Kimi-K3",
+      "revision": "f831ab66814297da540d832a5235f8e904f29d06",
+      "path": "config.json",
+      "role": "config"
+    },
+    {
+      "id": "reference",
+      "kind": "hf",
+      "repo": "moonshotai/Kimi-K3",
+      "revision": "f831ab66814297da540d832a5235f8e904f29d06",
+      "path": "modeling_kimi_linear.py",
+      "role": "reference"
+    },
+    {
+      "id": "multimodal",
+      "kind": "hf",
+      "repo": "moonshotai/Kimi-K3",
+      "revision": "f831ab66814297da540d832a5235f8e904f29d06",
+      "path": "modeling_kimi_k3.py",
+      "role": "extra"
+    },
+    {
+      "id": "configuration",
+      "kind": "hf",
+      "repo": "moonshotai/Kimi-K3",
+      "revision": "f831ab66814297da540d832a5235f8e904f29d06",
+      "path": "configuration_kimi_k3.py",
+      "role": "extra"
+    },
+    {
+      "id": "publisher-readme",
+      "kind": "hf",
+      "repo": "moonshotai/Kimi-K3",
+      "revision": "f831ab66814297da540d832a5235f8e904f29d06",
+      "path": "README.md",
+      "role": "extra"
+    },
+    {
+      "id": "serving",
+      "kind": "github",
+      "repo": "sgl-project/sglang",
+      "revision": "fea3c088a1412ba794b1f7998521360ad280c714",
+      "path": "python/sglang/srt/models/kimi_k3.py",
+      "role": "serving"
+    },
+    {
+      "id": "serving-linear",
+      "kind": "github",
+      "repo": "sgl-project/sglang",
+      "revision": "fea3c088a1412ba794b1f7998521360ad280c714",
+      "path": "python/sglang/srt/models/kimi_linear.py",
+      "role": "extra"
+    },
+    {
+      "id": "serving-vl",
+      "kind": "github",
+      "repo": "sgl-project/sglang",
+      "revision": "fea3c088a1412ba794b1f7998521360ad280c714",
+      "path": "python/sglang/srt/models/kimi_k3_vl.py",
+      "role": "extra"
+    },
+    {
+      "id": "kda-math",
+      "kind": "github",
+      "repo": "fla-org/flash-linear-attention",
+      "revision": "3e52d5abb6ad85312846f39c3e946c2e9881a823",
+      "path": "fla/ops/kda/naive.py",
+      "role": "extra"
+    },
+    {
+      "id": "kda-gate",
+      "kind": "github",
+      "repo": "fla-org/flash-linear-attention",
+      "revision": "3e52d5abb6ad85312846f39c3e946c2e9881a823",
+      "path": "fla/ops/kda/gate.py",
+      "role": "extra"
+    },
+    {
+      "id": "short-conv",
+      "kind": "github",
+      "repo": "fla-org/flash-linear-attention",
+      "revision": "3e52d5abb6ad85312846f39c3e946c2e9881a823",
+      "path": "fla/modules/convolution.py",
+      "role": "extra"
+    },
+    {
+      "id": "conv-module",
+      "kind": "github",
+      "repo": "fla-org/flash-linear-attention",
+      "revision": "3e52d5abb6ad85312846f39c3e946c2e9881a823",
+      "path": "fla/modules/conv/short_conv.py",
+      "role": "extra"
+    },
+    {
+      "id": "serving-mla",
+      "kind": "github",
+      "repo": "sgl-project/sglang",
+      "revision": "fea3c088a1412ba794b1f7998521360ad280c714",
+      "path": "python/sglang/srt/models/deepseek_v2.py",
+      "role": "extra"
+    }
+  ]
+}
