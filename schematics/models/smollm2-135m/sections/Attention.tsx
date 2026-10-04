@@ -63,7 +63,7 @@ function op(
                 ? [
                     ["Q", shape("B", f.heads.value, "S", f.headDim.value)],
                     ["K", shape("B", f.kvHeads.value, "S", f.headDim.value)],
-                    ["cos / sin", shape("B", "S", f.headDim.value)],
+                    ["cos / sin", shape(1, "S", f.headDim.value)],
                   ]
                 : [["input", input]],
       output:
@@ -73,11 +73,14 @@ function op(
             ? ["Q; K retains its KV-head axis", output]
             : [id, output],
       params,
-      note: ["dot", "scale", "mask", "softmax"].includes(id)
-        ? "Score gauges use the shown prefix length; T is the full available key length. The serving backend may fuse operations."
-        : "No learned parameter is added unless listed. Shapes show the reference circuit; serving may fuse these operations.",
+      note:
+        id === "dot"
+          ? "Score gauges here and in the next three steps use the shown prefix length; T is the full available key length."
+          : undefined,
       refs: [
-        { source: "training", symbol: "CausalSelfAttention._forward_training" },
+        ...(["write", "cache", "repeat"].includes(id)
+          ? []
+          : [{ source: "training", symbol: "CausalSelfAttention._forward_training" }]),
         ...(id === "freq" || id === "trig"
           ? [
               { source: "reference", symbol: "LlamaRotaryEmbedding.forward" },
@@ -97,8 +100,8 @@ function op(
 const chain = (ops: Op[]): Edge[] => ops.slice(1).map((o, i) => ({ from: ops[i].id, to: o.id }));
 export function Attention() {
   const [layer] = useLayer();
-  const [q, setQ] = useUrlNumber("q", 0, 0, f.DISPLAY.tokens - 1);
-  const [pos, setPos] = useUrlNumber("ropePos", 0, 0, f.positions.value - 1);
+  const [q, setQ] = useUrlNumber("q", f.DISPLAY.startQuery, 0, f.DISPLAY.tokens - 1);
+  const [pos, setPos] = useUrlNumber("ropePos", f.DISPLAY.startRope, 0, f.positions.value - 1);
   const d = f.hidden.value,
     h = f.headDim.value;
   const x = shape("B", "S", d),
@@ -200,10 +203,10 @@ export function Attention() {
       0,
       0,
       f.rotaryPairs.value,
-      shape("B", "S", f.rotaryPairs.value),
-      "Compute shared rotary angles once for the whole stack.",
+      shape(1, "S", f.rotaryPairs.value),
+      "Compute shared rotary angles once for the whole stack; they broadcast over the batch.",
       `angle = position × ${n(f.theta.value)}^(-2i/${n(h)})`,
-      shape("B", "S"),
+      shape(1, "S"),
     ),
     op(
       "trig",
@@ -211,10 +214,10 @@ export function Attention() {
       1,
       0,
       h,
-      shape("B", "S", h),
+      shape(1, "S", h),
       "Duplicate half-width frequencies, then compute cosine and sine in float32.",
       "concat(angle,angle), then cos and sin",
-      shape("B", "S", f.rotaryPairs.value),
+      shape(1, "S", f.rotaryPairs.value),
     ),
     op(
       "rope",

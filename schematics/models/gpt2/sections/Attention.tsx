@@ -146,7 +146,7 @@ export function Attention() {
         inputs: [["attn_weights", scores]],
         output: ["attn_weights", scores],
         refs: [{ source: "reference", symbol: "GPT2Attention" }, eager],
-        note: "The code can also divide by layer_idx + 1; this checkpoint's config leaves scale_attn_by_inverse_layer_idx off, and vllm asserts that it is off.",
+        note: "The code scales only when scale_attn_weights is set; config.json omits it and the configuration class (not pinned here) defaults it to on. The code can also divide by layer_idx + 1; scale_attn_by_inverse_layer_idx is likewise absent from the config, and vllm asserts that it is off.",
       },
     },
     {

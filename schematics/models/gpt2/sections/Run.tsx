@@ -86,7 +86,7 @@ export function Run() {
         {grid[query][strongest].toFixed(2)}, on position {n(strongest)}. Its weights sum to {rowSum.toFixed(2)}.
       </Sentence>
       <Figure
-        caption="Computed, not drawn: these are the softmax outputs of the reference implementation. The upper triangle is exactly zero because the causal mask set those scores to minus infinity before the softmax."
+        caption="Computed, not drawn: these are the softmax outputs of the reference implementation. The upper triangle is zero because the causal mask pushed those scores far below every allowed one before the softmax (the clean reference uses minus infinity; upstream adds a very negative number)."
         label="Computed attention weights"
       >
         <Heatmap
@@ -113,8 +113,8 @@ export function Run() {
       <Prose>
         The code that produced this is <code>models/gpt2/reference/model.ts</code>: one file, the checkpoint’s own
         parameter names, no framework. A test loads weights exported from the upstream implementation at this toy width
-        and requires the same logits to within one part in ten thousand; the same code run without data at full width
-        yields every shape on this page and the parameter total.
+        and requires the same logits to within an absolute difference of 0.0001; the same code run without data at full
+        width yields every shape on this page and the parameter total.
       </Prose>
       <Takeaways
         items={[

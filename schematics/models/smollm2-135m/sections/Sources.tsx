@@ -5,7 +5,7 @@ export function Sources() {
   return (
     <Section
       id="sources"
-      lede="Everything above is read from these files at these commits."
+      lede="The page is drawn from these files at these commits. Helpers they call that are not pinned here (the serving layer\u2019s fused norm and activation, the cache container) are described from their call sites only."
       source={[{ source: "reference", symbol: "LlamaForCausalLM" }]}
       title="Sources and boundaries"
     >

@@ -19,7 +19,7 @@ export function Serving() {
     <Section
       id="serving"
       title="What serving changes"
-      lede="A decode step projects the new token and reads prior rotated keys and values. Packed projections and fused residual updates change execution, while preserving the logical circuit."
+      lede="A decode step projects the new token and reads prior rotated keys and unrotated values. Packed projections and fused residual updates change execution, while preserving the logical circuit."
       source={[
         { source: "serving", symbol: "LlamaAttention" },
         { source: "serving", symbol: "LlamaDecoderLayer" },
@@ -99,7 +99,7 @@ export function Serving() {
       </Check>
       <Takeaways
         items={[
-          "Queries are recomputed; old keys and values persist.",
+          "Only the new token\u2019s query is computed; queries are never cached, while earlier keys and values persist.",
           "Logical cache bytes are a capacity calculation, not a measured throughput or memory allocation result.",
         ]}
       />

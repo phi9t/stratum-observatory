@@ -66,6 +66,8 @@ not reuse a lane for a second meaning. Three lanes plus ink is usually enough.
 - Numbers: plain digits, no thousands separators (`129280`, `[B, S, 7168]`). Use
   `approx()` only beside the exact value. Use `n()` and `shape()` from the kit.
 - Captions say what to notice, not what the figure is.
+- Say a thing once. A note that applies to a whole figure goes in its caption, not in
+  every op's inspector; an inspector `note` is for what is particular to that op.
 
 ## Code
 

@@ -68,6 +68,8 @@ export function cacheScalars(batch: number, context: number) {
 }
 export const DISPLAY = {
   tokens: 24,
+  startQuery: 9,
+  startRope: 12,
   batchMax: 16,
   context: 256,
   bytes: 2,

@@ -45,6 +45,13 @@ Widgets that need inputs (router logits, attention scores) use seeded synthetic 
 from `kit/lib/rng`. Say so in the caption: the *rule* is the checkpoint's, the
 *numbers going in* are synthetic. Never present synthetic output as model output.
 
+## Defaults
+
+The default state of every control is what most readers will see, so it must already
+show the point: a query in the middle of the sequence, not position 0 where the causal
+mask hides everything; a rotary position where the dials have turned; a layer of the
+most interesting kind; a seed whose result has visible structure.
+
 ## Do not
 
 - Add a control that changes nothing meaningful (a theme toggle counts as nothing).

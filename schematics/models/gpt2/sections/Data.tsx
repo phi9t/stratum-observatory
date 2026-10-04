@@ -13,7 +13,7 @@ export function Data() {
       title="Data representation"
     >
       <Figure
-        caption={`Drawn for a ${n(tokens)}-token sequence. The MLP's hidden activation is the widest tensor the model ever makes; the key/value cache keeps two stream-width tensors per layer.`}
+        caption={`Drawn for a ${n(tokens)}-token sequence. The MLP's hidden activation is the widest tensor inside a block (only the final logits are wider); the key/value cache keeps two stream-width tensors per layer.`}
         label="Tensor scale drawing"
       >
         <TensorScale
@@ -77,7 +77,10 @@ export function Data() {
           ],
           [
             "Order",
-            <>Nothing but the position table tells the model where a token is. Attention itself is order-blind.</>,
+            <>
+              The position table is the only explicit position signal. Attention scores themselves ignore order; the
+              causal mask only limits which positions can be read.
+            </>,
           ],
         ]}
       />

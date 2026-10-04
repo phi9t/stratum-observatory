@@ -49,8 +49,9 @@ export function Serving() {
           [
             "Cache ownership",
             <>
-              The reference passes a cache object through every forward call; vllm's attention layer owns the cache, so
-              its block forward takes only the hidden states.
+              The reference passes a cache object through every forward call; vllm's block forward takes only the hidden
+              states, and its attention layer is built with the cache configuration; the cache itself is managed outside
+              the pinned file.
             </>,
           ],
           [

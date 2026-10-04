@@ -26,7 +26,7 @@ export function Overview() {
   return (
     <Section
       id="overview"
-      lede="Token ids become vectors, a learned position vector is added, twelve identical blocks rewrite the stream in place, and the last vector at each position is compared against every token embedding to score the next token."
+      lede="Token ids become vectors, a learned position vector is added, twelve identical blocks each add two corrections to the stream, and the last vector at each position is compared against every token embedding to score the next token."
       source={[
         { source: "reference", symbol: "GPT2Model.forward" },
         { source: "reference", symbol: "GPT2LMHeadModel.forward" },

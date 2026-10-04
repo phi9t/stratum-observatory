@@ -175,8 +175,7 @@ export function Block() {
       />
       <Check question="If you deleted both LayerNorms inside a block, would any tensor change shape?">
         No. A LayerNorm rescales each position's vector and keeps its width, so every shape in the drawing would stay{" "}
-        {shape("B", "S", d)}. What changes is the scale of what attention and the MLP read, which is why training
-        without them is unstable.
+        {shape("B", "S", d)}. What changes is the scale of what attention and the MLP read.
       </Check>
       <Takeaways
         items={[
