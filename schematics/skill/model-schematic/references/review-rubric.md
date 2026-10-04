@@ -35,5 +35,12 @@ line passes or the failure is a stated, justified scope decision.
 16. Each section's lede states its point; captions say what to notice.
 17. The page reads as one design.
 
+## Teaching
+18. Every data-path op has a `width`, so gauges show where the stream narrows and widens.
+19. Every section ends with `Takeaways`; mechanism sections have a `Check` whose answer
+    needs reasoning, not lookup.
+20. Each distinctive mechanism has one sentence on what it buys, with a derived number.
+21. The glossary defines every term the page introduces.
+
 ## Honesty
-18. `REPORT.md` lists exclusions with reasons, unverified items, and skipped gates.
+22. `REPORT.md` lists exclusions with reasons, unverified items, and skipped gates.

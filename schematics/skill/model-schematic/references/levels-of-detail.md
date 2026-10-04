@@ -18,6 +18,8 @@ section.
 | Serving | **What serving changes** | The decode-time view: what is cached per token and per layer and its size as a function of batch and context (derived, with sliders); what the serving implementation fuses, skips or reorders. |
 | Provenance | **Sources and boundaries** | Table of pinned sources (role, repo, commit, file). What the page does not cover (other modalities, training losses, quantisation, sampling) stated plainly. |
 
+Every section also ends with the study aids described in `study-material.md`.
+
 ## What "op level" means
 
 An op is one thing the code does that changes values or meaning: a linear projection,

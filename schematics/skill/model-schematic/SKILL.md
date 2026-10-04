@@ -39,7 +39,8 @@ its content.
 4. **Plan the sections** against `references/levels-of-detail.md`, which lists the
    required levels and what each must contain. Write `coverage.json` as you go.
 5. **Build the sections** with the kit (`references/kit.md`). Style rules are in
-   `references/style.md`; interaction requirements in `references/playability.md`.
+   `references/style.md`; interaction requirements in `references/playability.md`;
+   how to make it teach in `references/study-material.md`.
 6. **Check, look, fix.** `npm run check -- <slug>` until every gate passes or is
    honestly skipped. Then `npm run shoot -- <slug>` and open every PNG in
    `runs/shots/<slug>/` (light, dark, mobile). Fix what is ugly or unclear and repeat.

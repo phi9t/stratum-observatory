@@ -63,6 +63,7 @@ Each section file exports one component that returns
 | `Slider`, `Segments`, `Stepper`, `Button` | Controls. |
 | `Sentence`, `Readout` | The words and exact values under an interactive figure. |
 | `FactList`, `Boundary` | Short facts with hairlines; the scope note. |
+| `Takeaways`, `Check`, `Glossary` | Study aids: what to remember, a self-check question with a hidden answer, terms defined once. See `study-material.md`. |
 | `Node`, `Wire`, `Junction`, `ArrowDefs`, `ColumnLabel`, `Note`, `nodeWidth` | Hand-laid SVG. |
 | `SourceRef` | Link to a pinned symbol with its line range. |
 
@@ -99,6 +100,8 @@ const edges: Edge[] = [
 - List ops in execution order: stepping follows the array.
 - `id` (the prop) is the URL key and must be unique per page.
 - `sub` is short (a width or a shape). Long text goes in `detail`.
+- `width` is the op's output width per token. Give it on every data-path op: the
+  gauge under the box shows bottlenecks and expansions at a glance.
 - Wide graphs scroll; if one exceeds about 14 columns, split it into two graphs at a
   natural seam (e.g. "build q, k, v" and "attend and project").
 - Build ops with a function of the selected layer or variant when they differ, so the

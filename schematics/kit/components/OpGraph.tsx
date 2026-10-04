@@ -35,6 +35,12 @@ export type Op = Readonly<{
   lane?: Lane;
   col: number;
   row: number;
+  /**
+   * Width of this op's output per token (its last dimension). When given, a gauge
+   * under the box shows it relative to the widest op in the figure, so bottlenecks
+   * and expansions are visible at a glance. Give it for every op on the data path.
+   */
+  width?: number;
   detail: OpDetail;
 }>;
 
@@ -55,6 +61,8 @@ const NODE_H = 46;
 const ROUND = 26;
 const MARGIN = 24;
 const SKIP_LANE = 18;
+const GAUGE_PX = 60;
+const GAUGE_H = 4;
 
 type Box = Readonly<{ op: Op; x: number; y: number; w: number; h: number }>;
 
@@ -183,6 +191,8 @@ export function OpGraph({
   const [selectedId, select] = useUrlChoice(id, ids[0], ids);
   const index = ids.indexOf(selectedId);
   const selected = ops[index];
+  const widest = Math.max(1, ...ops.map((op) => op.width ?? 0));
+  const gauged = ops.some((op) => op.width !== undefined);
   const skips = edges.filter((edge) => edge.kind === "skip");
   const { boxes, width, height, top } = layout(ops, skips.length);
   const box = (opId: string): Box => {
@@ -221,7 +231,20 @@ export function OpGraph({
       <Sentence>
         {selected.label}: {selected.detail.what}
       </Sentence>
-      <Figure caption={caption} label={title}>
+      <Figure
+        caption={
+          gauged ? (
+            <>
+              {caption}
+              {caption === undefined ? "" : " "}
+              The bar under a box is the width of its output, relative to the widest in this figure.
+            </>
+          ) : (
+            caption
+          )
+        }
+        label={title}
+      >
         <svg
           aria-labelledby={titleId}
           className="ms-fig"
@@ -250,6 +273,19 @@ export function OpGraph({
                     {edge.label}
                   </text>
                 )}
+              </g>
+            );
+          })}
+          {ops.map((op) => {
+            const b = box(op.id);
+            if (op.width === undefined || op.kind === "sum" || op.kind === "mul") {
+              return null;
+            }
+            const x = b.x + b.w / 2 - GAUGE_PX / 2;
+            return (
+              <g className="ms-gauge" data-lane={op.lane ?? "merged"} key={`gauge-${op.id}`}>
+                <rect className="ms-gauge__track" height={GAUGE_H} rx={2} width={GAUGE_PX} x={x} y={b.y + b.h + 6} />
+                <rect className="ms-gauge__fill" height={GAUGE_H} rx={2} width={Math.max(2, (op.width / widest) * GAUGE_PX)} x={x} y={b.y + b.h + 6} />
               </g>
             );
           })}

@@ -1373,6 +1373,115 @@
   text-decoration-color: currentcolor;
 }
 
+.ms-gauge__track {
+  fill: var(--ms-rule);
+}
+
+.ms-gauge__fill {
+  fill: var(--lane);
+}
+
+/* ---- study aids ---------------------------------------------------------- */
+
+.ms-takeaways {
+  max-width: 46rem;
+  margin-block: 1.75rem 0;
+  padding: 0.9rem 1.1rem 1rem;
+  border: 1px solid var(--ms-rule);
+  border-radius: 10px;
+  background: var(--ms-sunken);
+}
+
+.ms-takeaways__label,
+.ms-check__label {
+  color: var(--ms-ink-3);
+  font-family: var(--ms-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ms .ms-takeaways ul {
+  display: grid;
+  gap: 0.4rem;
+  margin-block-start: 0.5rem;
+  padding-inline-start: 1.1rem;
+  color: var(--ms-ink);
+  font-family: var(--ms-serif);
+  font-size: 1.0625rem;
+  line-height: 1.4;
+}
+
+.ms-check {
+  max-width: 46rem;
+  margin-block: 1rem 0;
+  border-block: 1px solid var(--ms-rule);
+}
+
+.ms-check summary {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.7rem 1.75rem 0.7rem 0;
+  color: var(--ms-ink);
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.ms-check summary::-webkit-details-marker {
+  display: none;
+}
+
+.ms-check summary::after {
+  position: absolute;
+  inset-block-start: 1.1rem;
+  inset-inline-end: 0.25rem;
+  color: var(--ms-ink-3);
+  font-family: var(--ms-mono);
+  content: "+";
+}
+
+.ms-check[open] summary::after {
+  content: "−";
+}
+
+.ms-check summary:focus-visible {
+  outline: 2px solid transparent;
+  box-shadow: var(--focus-ring);
+}
+
+.ms-check__answer {
+  padding: 0 0 0.9rem;
+  color: var(--ms-ink-2);
+}
+
+.ms .ms-glossary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 0 2.5rem;
+  margin-block: 1rem;
+}
+
+.ms .ms-glossary > div {
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--ms-rule);
+}
+
+.ms .ms-glossary dt {
+  margin: 0;
+  color: var(--ms-ink);
+  font-family: var(--ms-serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.ms .ms-glossary dd {
+  margin: 0.15rem 0 0;
+  color: var(--ms-ink-2);
+  font-size: 0.875rem;
+}
+
 /* ---- widgets ------------------------------------------------------------- */
 
 .ms .ms-button {

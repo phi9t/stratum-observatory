@@ -286,3 +286,44 @@ export function Table({
     </div>
   );
 }
+
+/** Two to four sentences a reader should leave the section with. One per section. */
+export function Takeaways({ items }: { items: readonly ReactNode[] }) {
+  return (
+    <aside aria-label="What to remember" className="ms-takeaways">
+      <div className="ms-takeaways__label">What to remember</div>
+      <ul>
+        {items.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </aside>
+  );
+}
+
+/** A self-check question with a hidden answer. Ask what the figure lets the reader work out. */
+export function Check({ question, children }: { question: string; children: ReactNode }) {
+  return (
+    <details className="ms-check">
+      <summary>
+        <span className="ms-check__label">Check yourself</span>
+        {question}
+      </summary>
+      <div className="ms-check__answer">{children}</div>
+    </details>
+  );
+}
+
+/** Terms the page introduces, each defined in one sentence, in order of first use. */
+export function Glossary({ terms }: { terms: readonly (readonly [string, ReactNode])[] }) {
+  return (
+    <dl className="ms-glossary">
+      {terms.map(([term, definition]) => (
+        <div key={term}>
+          <dt>{term}</dt>
+          <dd>{definition}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
