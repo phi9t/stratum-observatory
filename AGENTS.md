@@ -171,3 +171,12 @@ Resolve supported content through `resolveWorkspace`, preserve selection across 
 and test meaningful Back/Forward navigation. Canonical Python still comes only from
 `examples/deepseek_v41`; other models must not gain fabricated local code coverage. Reading
 panels are included in `workspace_states`, presentation sweeps and generated previews.
+
+## Model schematics
+
+`schematics/` is a self-contained subtree that builds one playable, source-faithful
+architecture page per model checkpoint (kit, tensor library, tools and skill). For any
+request to visualize or explain a model architecture as a page, read
+`schematics/AGENTS.md` and follow `schematics/skill/model-schematic/SKILL.md`. That
+work stays inside `schematics/`: it has its own gates (`npm run check` there) and must
+not change `src/`, `tools/`, `verification/`, workflows or the root `package.json`.
