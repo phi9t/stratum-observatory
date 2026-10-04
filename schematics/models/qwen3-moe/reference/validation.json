@@ -1,0 +1,16 @@
+{
+  "logits_max_abs": 2.980232238769531e-7,
+  "attention_max_abs": 1.7881393432617188e-7,
+  "router_logits_max_abs": 2.086162567138672e-7,
+  "router_weight_max_abs": 1.1920928955078125e-7,
+  "router_ids_max_abs": 0,
+  "fixture_parameter_tensors": 45,
+  "real_parameter_total": 235093634560,
+  "real_parameter_tensors": 36945,
+  "fingerprints": {
+    "models/qwen3-moe/reference/model.ts": "6bab080357db431ce587694ce932641122d5ba391698b62c909c8dbd79d1d299",
+    "models/qwen3-moe/reference/ops.ts": "62c8eac03f084dbf966238172c0a938a9dfb3e38f9aa58f2c445d61e129c84e4",
+    "models/qwen3-moe/reference/fixture.json": "91504ca11132faba196eaebeb116d592b373beb7ac97d66371d098800e6508fd",
+    "models/qwen3-moe/facts.ts": "f7af55ef54c1f3600f28a792d8e27eea8e39c1b27c0e2a07edf4cb8ccc1955a4"
+  }
+}

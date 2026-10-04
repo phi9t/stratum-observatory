@@ -1,0 +1,56 @@
+{
+  "checkpoint": {
+    "repo": "Qwen/Qwen3-235B-A22B",
+    "revision": "8efa61729e24bd65b1d152b5ab5409052aa80e65"
+  },
+  "sources": [
+    {
+      "id": "config",
+      "kind": "hf",
+      "repo": "Qwen/Qwen3-235B-A22B",
+      "revision": "8efa61729e24bd65b1d152b5ab5409052aa80e65",
+      "path": "config.json",
+      "role": "config"
+    },
+    {
+      "id": "reference",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "revision": "5f4ecf2d9f867a1255131d2461d75793c0cf1db2",
+      "path": "src/transformers/models/qwen3_moe/modeling_qwen3_moe.py",
+      "role": "reference"
+    },
+    {
+      "id": "configuration",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "revision": "5f4ecf2d9f867a1255131d2461d75793c0cf1db2",
+      "path": "src/transformers/models/qwen3_moe/configuration_qwen3_moe.py",
+      "role": "extra"
+    },
+    {
+      "id": "serving",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "revision": "3015d5634e74d59704e2b39bab0dbe2e6f86a38a",
+      "path": "vllm/model_executor/models/qwen3_moe.py",
+      "role": "serving"
+    },
+    {
+      "id": "training",
+      "kind": "github",
+      "repo": "NVIDIA-NeMo/Megatron-Bridge",
+      "revision": "ec4ec358c3622134905144ca193516b194feddd5",
+      "path": "src/megatron/bridge/models/qwen/qwen3_moe_bridge.py",
+      "role": "training"
+    },
+    {
+      "id": "rope-utils",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "revision": "5f4ecf2d9f867a1255131d2461d75793c0cf1db2",
+      "path": "src/transformers/modeling_rope_utils.py",
+      "role": "extra"
+    }
+  ]
+}

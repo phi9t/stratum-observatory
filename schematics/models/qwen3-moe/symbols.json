@@ -1,0 +1,536 @@
+{
+  "configuration": {
+    "Qwen3MoeConfig": [
+      25,
+      240
+    ],
+    "Qwen3MoeConfig.__init__": [
+      168,
+      240
+    ],
+    "__init__": [
+      168,
+      240
+    ]
+  },
+  "reference": {
+    "KwargsForCausalLM": [
+      861,
+      861
+    ],
+    "Qwen3MoeAttention": [
+      137,
+      220
+    ],
+    "Qwen3MoeAttention.__init__": [
+      140,
+      170
+    ],
+    "Qwen3MoeAttention.forward": [
+      172,
+      220
+    ],
+    "Qwen3MoeDecoderLayer": [
+      312,
+      407
+    ],
+    "Qwen3MoeDecoderLayer.__init__": [
+      313,
+      330
+    ],
+    "Qwen3MoeDecoderLayer.forward": [
+      332,
+      407
+    ],
+    "Qwen3MoeForCausalLM": [
+      946,
+      1102
+    ],
+    "Qwen3MoeForCausalLM.__init__": [
+      951,
+      961
+    ],
+    "Qwen3MoeForCausalLM.forward": [
+      985,
+      1102
+    ],
+    "Qwen3MoeForCausalLM.get_decoder": [
+      978,
+      979
+    ],
+    "Qwen3MoeForCausalLM.get_input_embeddings": [
+      963,
+      964
+    ],
+    "Qwen3MoeForCausalLM.get_output_embeddings": [
+      969,
+      970
+    ],
+    "Qwen3MoeForCausalLM.set_decoder": [
+      975,
+      976
+    ],
+    "Qwen3MoeForCausalLM.set_input_embeddings": [
+      966,
+      967
+    ],
+    "Qwen3MoeForCausalLM.set_output_embeddings": [
+      972,
+      973
+    ],
+    "Qwen3MoeForQuestionAnswering": [
+      1278,
+      1358
+    ],
+    "Qwen3MoeForQuestionAnswering.__init__": [
+      1281,
+      1287
+    ],
+    "Qwen3MoeForQuestionAnswering.forward": [
+      1297,
+      1358
+    ],
+    "Qwen3MoeForQuestionAnswering.get_input_embeddings": [
+      1289,
+      1290
+    ],
+    "Qwen3MoeForQuestionAnswering.set_input_embeddings": [
+      1292,
+      1293
+    ],
+    "Qwen3MoeForSequenceClassification": [
+      1103,
+      1186
+    ],
+    "Qwen3MoeForSequenceClassification.__init__": [
+      1104,
+      1111
+    ],
+    "Qwen3MoeForSequenceClassification.forward": [
+      1121,
+      1186
+    ],
+    "Qwen3MoeForSequenceClassification.get_input_embeddings": [
+      1113,
+      1114
+    ],
+    "Qwen3MoeForSequenceClassification.set_input_embeddings": [
+      1116,
+      1117
+    ],
+    "Qwen3MoeForTokenClassification": [
+      1196,
+      1268
+    ],
+    "Qwen3MoeForTokenClassification.__init__": [
+      1197,
+      1211
+    ],
+    "Qwen3MoeForTokenClassification.forward": [
+      1226,
+      1268
+    ],
+    "Qwen3MoeForTokenClassification.get_input_embeddings": [
+      1213,
+      1214
+    ],
+    "Qwen3MoeForTokenClassification.set_input_embeddings": [
+      1216,
+      1217
+    ],
+    "Qwen3MoeMLP": [
+      223,
+      236
+    ],
+    "Qwen3MoeMLP.__init__": [
+      224,
+      232
+    ],
+    "Qwen3MoeMLP.forward": [
+      234,
+      236
+    ],
+    "Qwen3MoeModel": [
+      562,
+      858
+    ],
+    "Qwen3MoeModel.__init__": [
+      570,
+      584
+    ],
+    "Qwen3MoeModel._prepare_4d_causal_attention_mask_with_cache_position": [
+      792,
+      858
+    ],
+    "Qwen3MoeModel._update_causal_mask": [
+      708,
+      789
+    ],
+    "Qwen3MoeModel.forward": [
+      594,
+      706
+    ],
+    "Qwen3MoeModel.get_input_embeddings": [
+      586,
+      587
+    ],
+    "Qwen3MoeModel.set_input_embeddings": [
+      589,
+      590
+    ],
+    "Qwen3MoePreTrainedModel": [
+      465,
+      555
+    ],
+    "Qwen3MoePreTrainedModel._init_weights": [
+      479,
+      555
+    ],
+    "Qwen3MoeRMSNorm": [
+      292,
+      309
+    ],
+    "Qwen3MoeRMSNorm.__init__": [
+      293,
+      299
+    ],
+    "Qwen3MoeRMSNorm.extra_repr": [
+      308,
+      309
+    ],
+    "Qwen3MoeRMSNorm.forward": [
+      301,
+      306
+    ],
+    "Qwen3MoeRotaryEmbedding": [
+      410,
+      458
+    ],
+    "Qwen3MoeRotaryEmbedding.__init__": [
+      411,
+      426
+    ],
+    "Qwen3MoeRotaryEmbedding.forward": [
+      430,
+      458
+    ],
+    "Qwen3MoeSparseMoeBlock": [
+      239,
+      289
+    ],
+    "Qwen3MoeSparseMoeBlock.__init__": [
+      240,
+      250
+    ],
+    "Qwen3MoeSparseMoeBlock.forward": [
+      252,
+      289
+    ],
+    "_init_weights": [
+      479,
+      555
+    ],
+    "_prepare_4d_causal_attention_mask_with_cache_position": [
+      792,
+      858
+    ],
+    "_update_causal_mask": [
+      708,
+      789
+    ],
+    "apply_rotary_pos_emb": [
+      72,
+      96
+    ],
+    "eager_attention_forward": [
+      111,
+      134
+    ],
+    "extra_repr": [
+      308,
+      309
+    ],
+    "get_decoder": [
+      978,
+      979
+    ],
+    "get_output_embeddings": [
+      969,
+      970
+    ],
+    "load_balancing_loss_func": [
+      864,
+      943
+    ],
+    "load_balancing_loss_func.presented": [
+      874,
+      943
+    ],
+    "presented": [
+      874,
+      943
+    ],
+    "repeat_kv": [
+      99,
+      108
+    ],
+    "rotate_half": [
+      65,
+      69
+    ],
+    "set_decoder": [
+      975,
+      976
+    ],
+    "set_output_embeddings": [
+      972,
+      973
+    ]
+  },
+  "rope-utils": {
+    "_check_received_keys": [
+      441,
+      467
+    ],
+    "_compute_default_rope_parameters": [
+      92,
+      131
+    ],
+    "_compute_dynamic_ntk_parameters": [
+      175,
+      223
+    ],
+    "_compute_linear_scaling_rope_parameters": [
+      134,
+      172
+    ],
+    "_compute_llama3_parameters": [
+      385,
+      438
+    ],
+    "_compute_longrope_parameters": [
+      322,
+      382
+    ],
+    "_compute_yarn_parameters": [
+      226,
+      319
+    ],
+    "_compute_yarn_parameters.find_correction_dim": [
+      287,
+      289
+    ],
+    "_compute_yarn_parameters.find_correction_range": [
+      291,
+      295
+    ],
+    "_compute_yarn_parameters.get_mscale": [
+      269,
+      286
+    ],
+    "_compute_yarn_parameters.linear_ramp_factor": [
+      297,
+      319
+    ],
+    "_validate_default_rope_parameters": [
+      470,
+      475
+    ],
+    "_validate_dynamic_scaling_rope_parameters": [
+      490,
+      501
+    ],
+    "_validate_linear_scaling_rope_parameters": [
+      478,
+      487
+    ],
+    "_validate_llama3_parameters": [
+      592,
+      636
+    ],
+    "_validate_longrope_parameters": [
+      542,
+      589
+    ],
+    "_validate_yarn_parameters": [
+      504,
+      539
+    ],
+    "dynamic_frequency_update": [
+      62,
+      79
+    ],
+    "dynamic_rope_update": [
+      30,
+      89
+    ],
+    "dynamic_rope_update.dynamic_frequency_update": [
+      62,
+      79
+    ],
+    "dynamic_rope_update.longrope_frequency_update": [
+      43,
+      60
+    ],
+    "dynamic_rope_update.wrapper": [
+      82,
+      89
+    ],
+    "find_correction_dim": [
+      287,
+      289
+    ],
+    "find_correction_range": [
+      291,
+      295
+    ],
+    "get_mscale": [
+      269,
+      286
+    ],
+    "linear_ramp_factor": [
+      297,
+      319
+    ],
+    "longrope_frequency_update": [
+      43,
+      60
+    ],
+    "rope_config_validation": [
+      639,
+      655
+    ],
+    "wrapper": [
+      82,
+      89
+    ]
+  },
+  "serving": {
+    "Qwen3MoeAttention": [
+      146,
+      238
+    ],
+    "Qwen3MoeAttention.__init__": [
+      148,
+      216
+    ],
+    "Qwen3MoeAttention.forward": [
+      218,
+      238
+    ],
+    "Qwen3MoeDecoderLayer": [
+      241,
+      314
+    ],
+    "Qwen3MoeDecoderLayer.__init__": [
+      243,
+      290
+    ],
+    "Qwen3MoeDecoderLayer.forward": [
+      292,
+      314
+    ],
+    "Qwen3MoeForCausalLM": [
+      478,
+      528
+    ],
+    "Qwen3MoeForCausalLM.__init__": [
+      482,
+      497
+    ],
+    "Qwen3MoeForCausalLM.compute_logits": [
+      513,
+      520
+    ],
+    "Qwen3MoeForCausalLM.forward": [
+      502,
+      511
+    ],
+    "Qwen3MoeForCausalLM.get_input_embeddings": [
+      499,
+      500
+    ],
+    "Qwen3MoeForCausalLM.load_weights": [
+      522,
+      528
+    ],
+    "Qwen3MoeMLP": [
+      62,
+      94
+    ],
+    "Qwen3MoeMLP.__init__": [
+      64,
+      88
+    ],
+    "Qwen3MoeMLP.forward": [
+      90,
+      94
+    ],
+    "Qwen3MoeModel": [
+      318,
+      475
+    ],
+    "Qwen3MoeModel.__init__": [
+      320,
+      345
+    ],
+    "Qwen3MoeModel.forward": [
+      350,
+      376
+    ],
+    "Qwen3MoeModel.get_input_embeddings": [
+      347,
+      348
+    ],
+    "Qwen3MoeModel.load_weights": [
+      378,
+      475
+    ],
+    "Qwen3MoeSparseMoeBlock": [
+      97,
+      143
+    ],
+    "Qwen3MoeSparseMoeBlock.__init__": [
+      99,
+      126
+    ],
+    "Qwen3MoeSparseMoeBlock.forward": [
+      128,
+      143
+    ],
+    "compute_logits": [
+      513,
+      520
+    ]
+  },
+  "training": {
+    "Qwen3MoEBridge": [
+      29,
+      129
+    ],
+    "Qwen3MoEBridge.mapping_registry": [
+      72,
+      129
+    ],
+    "Qwen3MoEBridge.megatron_to_hf_config": [
+      44,
+      49
+    ],
+    "Qwen3MoEBridge.provider_bridge": [
+      51,
+      70
+    ],
+    "mapping_registry": [
+      72,
+      129
+    ],
+    "megatron_to_hf_config": [
+      44,
+      49
+    ],
+    "provider_bridge": [
+      51,
+      70
+    ]
+  }
+}

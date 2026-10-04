@@ -1,0 +1,104 @@
+{
+  "checkpoint": {
+    "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+    "revision": "2cba9e42aa026125f3ed06c6d98c1db82f7ca027"
+  },
+  "sources": [
+    {
+      "id": "config",
+      "kind": "hf",
+      "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "revision": "2cba9e42aa026125f3ed06c6d98c1db82f7ca027",
+      "path": "config.json",
+      "role": "config"
+    },
+    {
+      "id": "reference",
+      "kind": "hf",
+      "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "revision": "2cba9e42aa026125f3ed06c6d98c1db82f7ca027",
+      "path": "inference/model.py",
+      "role": "reference"
+    },
+    {
+      "id": "engram",
+      "kind": "hf",
+      "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "revision": "2cba9e42aa026125f3ed06c6d98c1db82f7ca027",
+      "path": "inference/engram.py",
+      "role": "extra"
+    },
+    {
+      "id": "vision",
+      "kind": "hf",
+      "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "revision": "2cba9e42aa026125f3ed06c6d98c1db82f7ca027",
+      "path": "inference/vision.py",
+      "role": "extra"
+    },
+    {
+      "id": "inference-config",
+      "kind": "hf",
+      "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "revision": "2cba9e42aa026125f3ed06c6d98c1db82f7ca027",
+      "path": "inference/config.json",
+      "role": "extra"
+    },
+    {
+      "id": "publisher-readme",
+      "kind": "hf",
+      "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "revision": "2cba9e42aa026125f3ed06c6d98c1db82f7ca027",
+      "path": "README.md",
+      "role": "extra"
+    },
+    {
+      "id": "inference-readme",
+      "kind": "hf",
+      "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "revision": "2cba9e42aa026125f3ed06c6d98c1db82f7ca027",
+      "path": "inference/README.md",
+      "role": "extra"
+    },
+    {
+      "id": "serving",
+      "kind": "github",
+      "repo": "sgl-project/sglang",
+      "revision": "bab04cd7913ff50d1bf1a677a2d10e5015dc4c3b",
+      "path": "python/sglang/srt/models/deepseek_v4.py",
+      "role": "serving"
+    },
+    {
+      "id": "training",
+      "kind": "github",
+      "repo": "pytorch/torchtitan",
+      "revision": "e3929368edd2f2457456913890ba2b4c0f27da31",
+      "path": "torchtitan/models/deepseek_v4/model.py",
+      "role": "training"
+    },
+    {
+      "id": "kernel",
+      "kind": "hf",
+      "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "revision": "2cba9e42aa026125f3ed06c6d98c1db82f7ca027",
+      "path": "inference/kernel.py",
+      "role": "extra"
+    },
+    {
+      "id": "serving-config",
+      "kind": "github",
+      "repo": "sgl-project/sglang",
+      "revision": "bab04cd7913ff50d1bf1a677a2d10e5015dc4c3b",
+      "path": "python/sglang/srt/configs/deepseek_v4.py",
+      "role": "extra"
+    },
+    {
+      "id": "serving-sparse",
+      "kind": "github",
+      "repo": "sgl-project/sglang",
+      "revision": "bab04cd7913ff50d1bf1a677a2d10e5015dc4c3b",
+      "path": "python/sglang/srt/layers/attention/dsv4/dsv41_sparse.py",
+      "role": "extra"
+    }
+  ]
+}

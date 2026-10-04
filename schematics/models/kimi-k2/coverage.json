@@ -1,0 +1,54 @@
+{
+  "source": "reference",
+  "classes": {
+    "DeepseekV3RMSNorm": {
+      "section": "block"
+    },
+    "DeepseekV3RotaryEmbedding": {
+      "excluded": "Unscaled rotary base; selected YaRN subclass is shown instead."
+    },
+    "DeepseekV3LinearScalingRotaryEmbedding": {
+      "excluded": "Disabled: rope_scaling.type=yarn."
+    },
+    "DeepseekV3DynamicNTKScalingRotaryEmbedding": {
+      "excluded": "Disabled: rope_scaling.type=yarn."
+    },
+    "DeepseekV3YarnRotaryEmbedding": {
+      "section": "attention"
+    },
+    "DeepseekV3MLP": {
+      "section": "experts"
+    },
+    "MoEGate": {
+      "section": "experts"
+    },
+    "DeepseekV3MoE": {
+      "section": "experts"
+    },
+    "DeepseekV3Attention": {
+      "section": "attention"
+    },
+    "DeepseekV3FlashAttention2": {
+      "section": "attention"
+    },
+    "DeepseekV3DecoderLayer": {
+      "section": "block"
+    },
+    "DeepseekV3PreTrainedModel": {
+      "excluded": "Framework initialization base with no decoder forward computation."
+    },
+    "DeepseekV3Model": {
+      "section": "overview"
+    },
+    "DeepseekV3ForCausalLM": {
+      "section": "overview"
+    },
+    "DeepseekV3ForSequenceClassification": {
+      "excluded": "Unused task: checkpoint architectures names DeepseekV3ForCausalLM."
+    }
+  },
+  "serving": {
+    "source": "serving",
+    "notes": "vLLM fuses q_a+kv_a, gate+up and residual-add+RMSNorm; FusedMoE dispatches routed tokens and may fuse shared execution. Its MLA decode backend stores normalized content latent plus positional key instead of publisher expanded keys and values. FP16 overflow scaling and runtime parallel partitions are outside the BF16/eager schematic. No V3.2 indexer exists for this config."
+  }
+}

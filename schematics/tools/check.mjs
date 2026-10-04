@@ -208,9 +208,11 @@ await gate("tests", () => {
   const output = `${result.stdout}\n${result.stderr}`;
   const summary = output.split("\n").find((line) => /^\s*Tests\s/.test(line))?.trim() ?? "";
   const hasReference = existsSync(join(root, "reference", "model.ts"));
-  const note = hasReference ? "includes the clean reference's parity test" : "no reference/model.ts: no clean reference implementation";
+  const note = hasReference ? "runs the clean reference's tests" : "no reference/model.ts: no clean reference implementation";
   if (result.status === 0) {
-    return record("tests", "pass", [`${summary}; ${note}`]);
+    // A skipped test is not a passed one: say so, since the parity test is the usual one skipped.
+    const skipped = /skipped/.test(summary) ? "; some tests were SKIPPED, so parity may be unverified: see REPORT.md" : "";
+    return record("tests", "pass", [`${summary}; ${note}${skipped}`]);
   }
   const failed = output
     .split("\n")

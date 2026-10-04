@@ -1,0 +1,1614 @@
+{
+  "engram": {
+    "EngramLayout": [
+      87,
+      126
+    ],
+    "EngramLayout.from_args": [
+      103,
+      126
+    ],
+    "NgramHashState": [
+      129,
+      184
+    ],
+    "NgramHashState.__init__": [
+      140,
+      157
+    ],
+    "NgramHashState.forward": [
+      160,
+      184
+    ],
+    "__init__": [
+      140,
+      157
+    ],
+    "build_compressed_token_map": [
+      17,
+      61
+    ],
+    "compute_hash_multipliers": [
+      64,
+      83
+    ],
+    "find_next_prime": [
+      9,
+      14
+    ],
+    "forward": [
+      160,
+      184
+    ],
+    "from_args": [
+      103,
+      126
+    ]
+  },
+  "kernel": {
+    "act_quant": [
+      98,
+      124
+    ],
+    "act_quant_kernel": [
+      41,
+      95
+    ],
+    "act_quant_kernel.act_quant_kernel_": [
+      55,
+      95
+    ],
+    "act_quant_kernel_": [
+      55,
+      95
+    ],
+    "fast_log2_ceil": [
+      22,
+      27
+    ],
+    "fast_pow2": [
+      30,
+      33
+    ],
+    "fast_round_scale": [
+      36,
+      37
+    ],
+    "fp4_act_quant": [
+      184,
+      204
+    ],
+    "fp4_gemm": [
+      562,
+      591
+    ],
+    "fp4_gemm_kernel": [
+      478,
+      559
+    ],
+    "fp4_gemm_kernel.fp4_gemm_kernel_": [
+      510,
+      559
+    ],
+    "fp4_gemm_kernel_": [
+      510,
+      559
+    ],
+    "fp4_quant_kernel": [
+      128,
+      181
+    ],
+    "fp4_quant_kernel.fp4_quant_kernel_": [
+      139,
+      181
+    ],
+    "fp4_quant_kernel_": [
+      139,
+      181
+    ],
+    "fp8_gemm": [
+      277,
+      307
+    ],
+    "fp8_gemm_kernel": [
+      208,
+      274
+    ],
+    "fp8_gemm_kernel.fp8_gemm_kernel_": [
+      227,
+      274
+    ],
+    "fp8_gemm_kernel_": [
+      227,
+      274
+    ],
+    "hc_split_sinkhorn": [
+      465,
+      474
+    ],
+    "hc_split_sinkhorn_kernel": [
+      407,
+      462
+    ],
+    "hc_split_sinkhorn_kernel.hc_split_sinkhorn_kernel_": [
+      413,
+      462
+    ],
+    "hc_split_sinkhorn_kernel_": [
+      413,
+      462
+    ],
+    "sparse_attn": [
+      392,
+      403
+    ],
+    "sparse_attn_kernel": [
+      311,
+      389
+    ],
+    "sparse_attn_kernel.sparse_attn_kernel_": [
+      328,
+      389
+    ],
+    "sparse_attn_kernel_": [
+      328,
+      389
+    ]
+  },
+  "reference": {
+    "Attention": [
+      613,
+      789
+    ],
+    "Attention.__init__": [
+      622,
+      698
+    ],
+    "Attention._compress_kv": [
+      739,
+      763
+    ],
+    "Attention._compress_topk_idxs": [
+      722,
+      737
+    ],
+    "Attention._window_kv": [
+      700,
+      720
+    ],
+    "Attention.forward": [
+      765,
+      789
+    ],
+    "Block": [
+      907,
+      994
+    ],
+    "Block.__init__": [
+      919,
+      946
+    ],
+    "Block.forward": [
+      968,
+      994
+    ],
+    "Block.hc_mixes": [
+      948,
+      955
+    ],
+    "Block.hc_post": [
+      962,
+      966
+    ],
+    "Block.hc_pre": [
+      957,
+      960
+    ],
+    "ColumnParallelLinear": [
+      246,
+      257
+    ],
+    "ColumnParallelLinear.__init__": [
+      249,
+      254
+    ],
+    "ColumnParallelLinear.forward": [
+      256,
+      257
+    ],
+    "Compressor": [
+      429,
+      485
+    ],
+    "Compressor.__init__": [
+      437,
+      456
+    ],
+    "Compressor.forward": [
+      458,
+      485
+    ],
+    "DSparkAttention": [
+      1032,
+      1074
+    ],
+    "DSparkAttention.forward": [
+      1033,
+      1074
+    ],
+    "DSparkBlock": [
+      1100,
+      1156
+    ],
+    "DSparkBlock.__init__": [
+      1105,
+      1120
+    ],
+    "DSparkBlock.forward": [
+      1122,
+      1126
+    ],
+    "DSparkBlock.forward_embed": [
+      1128,
+      1135
+    ],
+    "DSparkBlock.forward_head": [
+      1137,
+      1156
+    ],
+    "DSparkConfidenceHead": [
+      1089,
+      1097
+    ],
+    "DSparkConfidenceHead.__init__": [
+      1090,
+      1093
+    ],
+    "DSparkConfidenceHead.forward": [
+      1095,
+      1097
+    ],
+    "DSparkMarkovHead": [
+      1077,
+      1086
+    ],
+    "DSparkMarkovHead.__init__": [
+      1078,
+      1081
+    ],
+    "DSparkMarkovHead.forward": [
+      1083,
+      1086
+    ],
+    "Engram": [
+      328,
+      365
+    ],
+    "Engram.__init__": [
+      335,
+      348
+    ],
+    "Engram.forward": [
+      350,
+      365
+    ],
+    "Expert": [
+      830,
+      851
+    ],
+    "Expert.__init__": [
+      834,
+      839
+    ],
+    "Expert.forward": [
+      841,
+      851
+    ],
+    "Gate": [
+      792,
+      827
+    ],
+    "Gate.__init__": [
+      796,
+      807
+    ],
+    "Gate.forward": [
+      809,
+      827
+    ],
+    "Indexer": [
+      488,
+      580
+    ],
+    "Indexer.__init__": [
+      496,
+      525
+    ],
+    "Indexer.forward": [
+      527,
+      580
+    ],
+    "Linear": [
+      210,
+      243
+    ],
+    "Linear.__init__": [
+      214,
+      240
+    ],
+    "Linear.forward": [
+      242,
+      243
+    ],
+    "MoE": [
+      854,
+      904
+    ],
+    "MoE.__init__": [
+      858,
+      887
+    ],
+    "MoE.forward": [
+      889,
+      904
+    ],
+    "ModelArgs": [
+      45,
+      149
+    ],
+    "ModelArgs.get_moe_config": [
+      142,
+      149
+    ],
+    "ModelArgs.vision_enabled": [
+      139,
+      140
+    ],
+    "ParallelEmbedding": [
+      152,
+      178
+    ],
+    "ParallelEmbedding.__init__": [
+      156,
+      166
+    ],
+    "ParallelEmbedding.forward": [
+      168,
+      178
+    ],
+    "ParallelEngramEmbedding": [
+      296,
+      325
+    ],
+    "ParallelEngramEmbedding.__init__": [
+      299,
+      310
+    ],
+    "ParallelEngramEmbedding.forward": [
+      312,
+      325
+    ],
+    "ParallelHead": [
+      997,
+      1017
+    ],
+    "ParallelHead.__init__": [
+      998,
+      1006
+    ],
+    "ParallelHead.forward": [
+      1008,
+      1017
+    ],
+    "RMSNorm": [
+      281,
+      293
+    ],
+    "RMSNorm.__init__": [
+      282,
+      286
+    ],
+    "RMSNorm.forward": [
+      288,
+      293
+    ],
+    "RowParallelLinear": [
+      260,
+      278
+    ],
+    "RowParallelLinear.__init__": [
+      264,
+      269
+    ],
+    "RowParallelLinear.forward": [
+      271,
+      278
+    ],
+    "SharedAttentionRuntime": [
+      1166,
+      1180
+    ],
+    "SharedAttentionRuntime.__init__": [
+      1172,
+      1180
+    ],
+    "Transformer": [
+      1183,
+      1282
+    ],
+    "Transformer.__init__": [
+      1187,
+      1222
+    ],
+    "Transformer.encode_image": [
+      1225,
+      1226
+    ],
+    "Transformer.forward": [
+      1242,
+      1272
+    ],
+    "Transformer.forward_spec": [
+      1275,
+      1282
+    ],
+    "Transformer.merge_image_embeddings": [
+      1228,
+      1239
+    ],
+    "_compress_kv": [
+      739,
+      763
+    ],
+    "_compress_topk_idxs": [
+      722,
+      737
+    ],
+    "_window_kv": [
+      700,
+      720
+    ],
+    "apply_rotary_emb": [
+      392,
+      406
+    ],
+    "corrected_dim": [
+      379,
+      389
+    ],
+    "encode_image": [
+      1225,
+      1226
+    ],
+    "forward_embed": [
+      1128,
+      1135
+    ],
+    "forward_head": [
+      1137,
+      1156
+    ],
+    "forward_spec": [
+      1275,
+      1282
+    ],
+    "get_dspark_topk_idxs": [
+      1021,
+      1029
+    ],
+    "get_moe_config": [
+      142,
+      149
+    ],
+    "get_window_topk_idxs": [
+      410,
+      426
+    ],
+    "hc_mixes": [
+      948,
+      955
+    ],
+    "hc_post": [
+      962,
+      966
+    ],
+    "hc_pre": [
+      957,
+      960
+    ],
+    "linear": [
+      181,
+      207
+    ],
+    "make_identity_pre_mix": [
+      1159,
+      1163
+    ],
+    "merge_image_embeddings": [
+      1228,
+      1239
+    ],
+    "precompute_freqs_cis": [
+      369,
+      389
+    ],
+    "precompute_freqs_cis.corrected_dim": [
+      379,
+      389
+    ],
+    "sample": [
+      1285,
+      1309
+    ],
+    "select_candidate_blocks": [
+      583,
+      610
+    ],
+    "set_dtype": [
+      34,
+      41
+    ],
+    "vision_enabled": [
+      139,
+      140
+    ]
+  },
+  "serving": {
+    "DeepseekV4DecoderLayer": [
+      2679,
+      4290
+    ],
+    "DeepseekV4DecoderLayer.__init__": [
+      2680,
+      2769
+    ],
+    "DeepseekV4DecoderLayer._build_self_attn": [
+      2771,
+      2788
+    ],
+    "DeepseekV4DecoderLayer._get_hc_stats_stream": [
+      3528,
+      3566
+    ],
+    "DeepseekV4DecoderLayer._hc_combine": [
+      3286,
+      3374
+    ],
+    "DeepseekV4DecoderLayer._hc_combine.combine_and_norm": [
+      3305,
+      3374
+    ],
+    "DeepseekV4DecoderLayer._hc_mix_and_combine": [
+      3505,
+      3526
+    ],
+    "DeepseekV4DecoderLayer._hc_mix_stats": [
+      3376,
+      3397
+    ],
+    "DeepseekV4DecoderLayer._hc_mix_stats_impl": [
+      3399,
+      3503
+    ],
+    "DeepseekV4DecoderLayer._hc_post_with_combine": [
+      3568,
+      3625
+    ],
+    "DeepseekV4DecoderLayer._input_norm": [
+      2848,
+      2865
+    ],
+    "DeepseekV4DecoderLayer._run_moe_ffn_dp_sync": [
+      3871,
+      4047
+    ],
+    "DeepseekV4DecoderLayer.forward": [
+      3117,
+      3284
+    ],
+    "DeepseekV4DecoderLayer.forward_hc_pre_from_prev": [
+      3627,
+      3869
+    ],
+    "DeepseekV4DecoderLayer.hc_post": [
+      3027,
+      3115
+    ],
+    "DeepseekV4DecoderLayer.hc_post.hc_post_torch_impl": [
+      3109,
+      3115
+    ],
+    "DeepseekV4DecoderLayer.hc_pre": [
+      2867,
+      3025
+    ],
+    "DeepseekV4DecoderLayer.hc_pre.hc_pre_torch_impl": [
+      2880,
+      3025
+    ],
+    "DeepseekV4DecoderLayer.op_combine_a": [
+      4259,
+      4279
+    ],
+    "DeepseekV4DecoderLayer.op_combine_b": [
+      4281,
+      4290
+    ],
+    "DeepseekV4DecoderLayer.op_gather_a": [
+      4200,
+      4236
+    ],
+    "DeepseekV4DecoderLayer.op_gather_b": [
+      4238,
+      4242
+    ],
+    "DeepseekV4DecoderLayer.op_mhc_post_attn_pre_mlp": [
+      4089,
+      4164
+    ],
+    "DeepseekV4DecoderLayer.op_mhc_postprocess": [
+      4166,
+      4199
+    ],
+    "DeepseekV4DecoderLayer.op_mhc_prepare_attn": [
+      4048,
+      4087
+    ],
+    "DeepseekV4DecoderLayer.op_moe": [
+      4244,
+      4257
+    ],
+    "DeepseekV4DecoderLayer.refresh_mhc_norm_weight_cache": [
+      2790,
+      2846
+    ],
+    "DeepseekV4ForCausalLM": [
+      4979,
+      5931
+    ],
+    "DeepseekV4ForCausalLM.__init__": [
+      4982,
+      5058
+    ],
+    "DeepseekV4ForCausalLM._prepare_mm_embeddings": [
+      5154,
+      5168
+    ],
+    "DeepseekV4ForCausalLM._prewarm_mhc_kernels": [
+      5446,
+      5512
+    ],
+    "DeepseekV4ForCausalLM._setup_fp8_wo_a_scales": [
+      5286,
+      5338
+    ],
+    "DeepseekV4ForCausalLM.autotune_prefill_kernels": [
+      5064,
+      5115
+    ],
+    "DeepseekV4ForCausalLM.determine_num_fused_shared_experts": [
+      5212,
+      5216
+    ],
+    "DeepseekV4ForCausalLM.forward": [
+      5218,
+      5284
+    ],
+    "DeepseekV4ForCausalLM.get_embed_and_head": [
+      5909,
+      5910
+    ],
+    "DeepseekV4ForCausalLM.get_image_feature": [
+      5126,
+      5152
+    ],
+    "DeepseekV4ForCausalLM.get_input_embeddings": [
+      5170,
+      5171
+    ],
+    "DeepseekV4ForCausalLM.get_model_config_for_expert_location": [
+      5923,
+      5931
+    ],
+    "DeepseekV4ForCausalLM.load_weights": [
+      5514,
+      5907
+    ],
+    "DeepseekV4ForCausalLM.load_weights.auto_weight_loader": [
+      5559,
+      5907
+    ],
+    "DeepseekV4ForCausalLM.pad_input_ids": [
+      5121,
+      5124
+    ],
+    "DeepseekV4ForCausalLM.post_load_weights": [
+      5340,
+      5359
+    ],
+    "DeepseekV4ForCausalLM.precompile_kernels_after_loading": [
+      5361,
+      5373
+    ],
+    "DeepseekV4ForCausalLM.remap_weight_name_to_dpsk_hf_format": [
+      5376,
+      5444
+    ],
+    "DeepseekV4ForCausalLM.routed_experts_weights_of_layer": [
+      5118,
+      5119
+    ],
+    "DeepseekV4ForCausalLM.set_dspark_layers_to_capture": [
+      5173,
+      5181
+    ],
+    "DeepseekV4ForCausalLM.set_embed_and_head": [
+      5912,
+      5920
+    ],
+    "DeepseekV4ForCausalLM.shared_experts_fusion_disable_reason": [
+      5184,
+      5210
+    ],
+    "DeepseekV4ForCausalLM.wants_prefill_autotune": [
+      5061,
+      5062
+    ],
+    "DeepseekV4Model": [
+      4305,
+      4976
+    ],
+    "DeepseekV4Model.__init__": [
+      4308,
+      4435
+    ],
+    "DeepseekV4Model._can_run_tbo": [
+      4698,
+      4724
+    ],
+    "DeepseekV4Model._check_late_layer_tail_readers": [
+      4476,
+      4496
+    ],
+    "DeepseekV4Model._forward_layers_hc_pre_from_prev": [
+      4498,
+      4696
+    ],
+    "DeepseekV4Model._forward_layers_tbo": [
+      4726,
+      4813
+    ],
+    "DeepseekV4Model.forward": [
+      4816,
+      4976
+    ],
+    "DeepseekV4Model.get_input_embeddings": [
+      4437,
+      4438
+    ],
+    "DeepseekV4Model.hc_head": [
+      4440,
+      4474
+    ],
+    "MQALayer": [
+      1066,
+      2657
+    ],
+    "MQALayer.__init__": [
+      1069,
+      1222
+    ],
+    "MQALayer._apply": [
+      1224,
+      1229
+    ],
+    "MQALayer._compute_kv_bf16": [
+      1412,
+      1431
+    ],
+    "MQALayer._compute_kv_to_cache": [
+      1368,
+      1410
+    ],
+    "MQALayer._compute_q_a": [
+      1322,
+      1331
+    ],
+    "MQALayer._compute_q_b": [
+      1333,
+      1366
+    ],
+    "MQALayer._forward_prepare": [
+      1774,
+      2141
+    ],
+    "MQALayer._forward_prepare_low_ratio_multi_stream": [
+      1497,
+      1559
+    ],
+    "MQALayer._forward_prepare_multi_stream": [
+      1433,
+      1495
+    ],
+    "MQALayer._forward_prepare_multi_stream_hip": [
+      1661,
+      1772
+    ],
+    "MQALayer._forward_prepare_multi_stream_npu": [
+      1561,
+      1659
+    ],
+    "MQALayer._get_npu_rope_position_cache": [
+      1231,
+      1251
+    ],
+    "MQALayer._normalize_q_lora": [
+      1283,
+      1320
+    ],
+    "MQALayer._project_wo_b": [
+      2594,
+      2644
+    ],
+    "MQALayer.accepts_mxfp8_swizzled_input": [
+      1253,
+      1281
+    ],
+    "MQALayer.accepts_mxfp8_swizzled_input._takes_swizzled": [
+      1264,
+      1281
+    ],
+    "MQALayer.forward": [
+      2143,
+      2592
+    ],
+    "MQALayer.op_attn": [
+      2645,
+      2657
+    ],
+    "MhcOps": [
+      207,
+      213
+    ],
+    "MqaAttentionBase": [
+      773,
+      1063
+    ],
+    "MqaAttentionBase.__init__": [
+      777,
+      971
+    ],
+    "MqaAttentionBase._kernel_num_heads": [
+      985,
+      1005
+    ],
+    "MqaAttentionBase._local_attn_sink": [
+      1007,
+      1030
+    ],
+    "MqaAttentionBase.maybe_use_decode_attn_tp": [
+      1033,
+      1063
+    ],
+    "MqaAttentionBase.use_flashinfer_mxfp8_wo_b": [
+      974,
+      983
+    ],
+    "_apply": [
+      1224,
+      1229
+    ],
+    "_apply_gguf_grouped_wo_a": [
+      644,
+      683
+    ],
+    "_apply_wo_a_bf16_matmul": [
+      453,
+      551
+    ],
+    "_build_self_attn": [
+      2771,
+      2788
+    ],
+    "_can_run_tbo": [
+      4698,
+      4724
+    ],
+    "_check_late_layer_tail_readers": [
+      4476,
+      4496
+    ],
+    "_clone_if_runai_streamed_tensor": [
+      5958,
+      5961
+    ],
+    "_compute_kv_bf16": [
+      1412,
+      1431
+    ],
+    "_compute_kv_to_cache": [
+      1368,
+      1410
+    ],
+    "_compute_q_a": [
+      1322,
+      1331
+    ],
+    "_compute_q_b": [
+      1333,
+      1366
+    ],
+    "_cuda_sm_count": [
+      298,
+      299
+    ],
+    "_dequant_fp8": [
+      5934,
+      5955
+    ],
+    "_dequant_fp8_wo_a": [
+      6009,
+      6025
+    ],
+    "_dequant_fp8_wo_a_streaming": [
+      5964,
+      6006
+    ],
+    "_every_row_routed": [
+      2661,
+      2676
+    ],
+    "_flashinfer_hc_pre": [
+      314,
+      372
+    ],
+    "_flashinfer_mhc_pre_num_splits": [
+      302,
+      311
+    ],
+    "_forward_layers_hc_pre_from_prev": [
+      4498,
+      4696
+    ],
+    "_forward_layers_tbo": [
+      4726,
+      4813
+    ],
+    "_forward_prepare": [
+      1774,
+      2141
+    ],
+    "_forward_prepare_low_ratio_multi_stream": [
+      1497,
+      1559
+    ],
+    "_forward_prepare_multi_stream": [
+      1433,
+      1495
+    ],
+    "_forward_prepare_multi_stream_hip": [
+      1661,
+      1772
+    ],
+    "_forward_prepare_multi_stream_npu": [
+      1561,
+      1659
+    ],
+    "_freqs_cis_to_cos_sin": [
+      627,
+      641
+    ],
+    "_fuse_deepseek_v4_wqkv_a_pair": [
+      6040,
+      6054
+    ],
+    "_fused_rmsnorm_fp8_quant": [
+      554,
+      573
+    ],
+    "_fused_wo_a_arch_supported": [
+      449,
+      450
+    ],
+    "_get_hc_stats_stream": [
+      3528,
+      3566
+    ],
+    "_get_mhc_ops": [
+      217,
+      263
+    ],
+    "_get_npu_rope_position_cache": [
+      1231,
+      1251
+    ],
+    "_hc_combine": [
+      3286,
+      3374
+    ],
+    "_hc_mix_and_combine": [
+      3505,
+      3526
+    ],
+    "_hc_mix_stats": [
+      3376,
+      3397
+    ],
+    "_hc_mix_stats_impl": [
+      3399,
+      3503
+    ],
+    "_hc_post_with_combine": [
+      3568,
+      3625
+    ],
+    "_input_norm": [
+      2848,
+      2865
+    ],
+    "_is_fused_mhc_post_pre_enabled_xpu": [
+      286,
+      294
+    ],
+    "_kernel_num_heads": [
+      985,
+      1005
+    ],
+    "_local_attn_sink": [
+      1007,
+      1030
+    ],
+    "_normalize_q_lora": [
+      1283,
+      1320
+    ],
+    "_prepare_deepseek_v4_weights": [
+      6028,
+      6037
+    ],
+    "_prepare_mm_embeddings": [
+      5154,
+      5168
+    ],
+    "_prewarm_mhc_kernels": [
+      5446,
+      5512
+    ],
+    "_project_wo_b": [
+      2594,
+      2644
+    ],
+    "_run_moe_ffn_dp_sync": [
+      3871,
+      4047
+    ],
+    "_scatter_tail_rows": [
+      4293,
+      4302
+    ],
+    "_setup_fp8_wo_a_scales": [
+      5286,
+      5338
+    ],
+    "_takes_swizzled": [
+      1264,
+      1281
+    ],
+    "_wo_a_aiter_gemm_eligible": [
+      375,
+      445
+    ],
+    "accepts_mxfp8_swizzled_input": [
+      1253,
+      1281
+    ],
+    "auto_weight_loader": [
+      5559,
+      5907
+    ],
+    "autotune_prefill_kernels": [
+      5064,
+      5115
+    ],
+    "combine_and_norm": [
+      3305,
+      3374
+    ],
+    "deepseek_v4_attention_with_output": [
+      688,
+      739
+    ],
+    "deepseek_v4_engram_hash_ids": [
+      764,
+      770
+    ],
+    "deepseek_v4_low_ratio_sources": [
+      742,
+      761
+    ],
+    "determine_num_fused_shared_experts": [
+      5212,
+      5216
+    ],
+    "forward_hc_pre_from_prev": [
+      3627,
+      3869
+    ],
+    "get_embed_and_head": [
+      5909,
+      5910
+    ],
+    "get_image_feature": [
+      5126,
+      5152
+    ],
+    "get_model_config_for_expert_location": [
+      5923,
+      5931
+    ],
+    "hc_head": [
+      4440,
+      4474
+    ],
+    "hc_head_torch": [
+      604,
+      624
+    ],
+    "hc_post": [
+      3027,
+      3115
+    ],
+    "hc_post_torch_impl": [
+      3109,
+      3115
+    ],
+    "hc_pre": [
+      2867,
+      3025
+    ],
+    "hc_pre_torch_impl": [
+      2880,
+      3025
+    ],
+    "load_weights": [
+      5514,
+      5907
+    ],
+    "make_hc_head_params": [
+      593,
+      601
+    ],
+    "make_hc_mixing_params": [
+      576,
+      590
+    ],
+    "maybe_use_decode_attn_tp": [
+      1033,
+      1063
+    ],
+    "op_attn": [
+      2645,
+      2657
+    ],
+    "op_combine_a": [
+      4259,
+      4279
+    ],
+    "op_combine_b": [
+      4281,
+      4290
+    ],
+    "op_gather_a": [
+      4200,
+      4236
+    ],
+    "op_gather_b": [
+      4238,
+      4242
+    ],
+    "op_mhc_post_attn_pre_mlp": [
+      4089,
+      4164
+    ],
+    "op_mhc_postprocess": [
+      4166,
+      4199
+    ],
+    "op_mhc_prepare_attn": [
+      4048,
+      4087
+    ],
+    "op_moe": [
+      4244,
+      4257
+    ],
+    "pad_input_ids": [
+      5121,
+      5124
+    ],
+    "post_load_weights": [
+      5340,
+      5359
+    ],
+    "precompile_kernels_after_loading": [
+      5361,
+      5373
+    ],
+    "refresh_mhc_norm_weight_cache": [
+      2790,
+      2846
+    ],
+    "remap_weight_name_to_dpsk_hf_format": [
+      5376,
+      5444
+    ],
+    "routed_experts_weights_of_layer": [
+      5118,
+      5119
+    ],
+    "set_dspark_layers_to_capture": [
+      5173,
+      5181
+    ],
+    "set_embed_and_head": [
+      5912,
+      5920
+    ],
+    "shared_experts_fusion_disable_reason": [
+      5184,
+      5210
+    ],
+    "use_flashinfer_mxfp8_wo_b": [
+      974,
+      983
+    ],
+    "wants_prefill_autotune": [
+      5061,
+      5062
+    ],
+    "wo_a_fp8_gemm_enabled": [
+      266,
+      283
+    ]
+  },
+  "serving-config": {
+    "DeepSeekV4Config": [
+      48,
+      138
+    ],
+    "try_detect_fp4_experts": [
+      13,
+      44
+    ]
+  },
+  "serving-sparse": {
+    "DeepseekV41Compressor": [
+      112,
+      172
+    ],
+    "DeepseekV41Compressor.__init__": [
+      116,
+      147
+    ],
+    "DeepseekV41Compressor.finish": [
+      166,
+      167
+    ],
+    "DeepseekV41Compressor.pool_pairs": [
+      170,
+      172
+    ],
+    "DeepseekV41Compressor.project": [
+      149,
+      160
+    ],
+    "DeepseekV41Compressor.project_fused": [
+      162,
+      164
+    ],
+    "DeepseekV41Indexer": [
+      184,
+      291
+    ],
+    "DeepseekV41Indexer.__init__": [
+      189,
+      237
+    ],
+    "DeepseekV41Indexer.forward_wk": [
+      239,
+      250
+    ],
+    "DeepseekV41Indexer.head_weight_scale": [
+      279,
+      280
+    ],
+    "DeepseekV41Indexer.head_weights": [
+      282,
+      283
+    ],
+    "DeepseekV41Indexer.head_weights_raw": [
+      269,
+      276
+    ],
+    "DeepseekV41Indexer.index_keys": [
+      252,
+      255
+    ],
+    "DeepseekV41Indexer.queries": [
+      257,
+      267
+    ],
+    "DeepseekV41Indexer.scores": [
+      285,
+      291
+    ],
+    "RMSNorm": [
+      48,
+      70
+    ],
+    "RMSNorm.__init__": [
+      51,
+      54
+    ],
+    "RMSNorm.forward": [
+      56,
+      70
+    ],
+    "_fused_dsv41_kernels": [
+      26,
+      28
+    ],
+    "_rope_fq4": [
+      31,
+      45
+    ],
+    "_small_weights_proj_max_m": [
+      175,
+      181
+    ],
+    "finish": [
+      166,
+      167
+    ],
+    "forward": [
+      56,
+      70
+    ],
+    "forward_wk": [
+      239,
+      250
+    ],
+    "fused_low_ratio_compress_supported": [
+      101,
+      109
+    ],
+    "head_weight_scale": [
+      279,
+      280
+    ],
+    "head_weights": [
+      282,
+      283
+    ],
+    "head_weights_raw": [
+      269,
+      276
+    ],
+    "index_keys": [
+      252,
+      255
+    ],
+    "pool_pairs": [
+      170,
+      172
+    ],
+    "project": [
+      149,
+      160
+    ],
+    "project_fused": [
+      162,
+      164
+    ],
+    "queries": [
+      257,
+      267
+    ],
+    "rope_tail": [
+      89,
+      98
+    ],
+    "scores": [
+      285,
+      291
+    ],
+    "token_req_indices": [
+      73,
+      86
+    ]
+  },
+  "training": {
+    "DeepSeekV4Model": [
+      115,
+      401
+    ],
+    "DeepSeekV4Model.Config": [
+      160,
+      231
+    ],
+    "DeepSeekV4Model.Config.get_nparams_and_flops": [
+      174,
+      222
+    ],
+    "DeepSeekV4Model.Config.set_sharding_": [
+      224,
+      231
+    ],
+    "DeepSeekV4Model.__init__": [
+      233,
+      266
+    ],
+    "DeepSeekV4Model._apply_fsdp": [
+      128,
+      157
+    ],
+    "DeepSeekV4Model._register_optimizer_hooks": [
+      121,
+      126
+    ],
+    "DeepSeekV4Model.forward": [
+      322,
+      370
+    ],
+    "DeepSeekV4Model.get_attention_masks": [
+      268,
+      283
+    ],
+    "DeepSeekV4Model.mtp_forward": [
+      372,
+      401
+    ],
+    "DeepSeekV4Model.preprocess_inputs": [
+      285,
+      320
+    ],
+    "DeepSeekV4TransformerBlock": [
+      40,
+      112
+    ],
+    "DeepSeekV4TransformerBlock.Config": [
+      44,
+      48
+    ],
+    "DeepSeekV4TransformerBlock.__init__": [
+      50,
+      69
+    ],
+    "DeepSeekV4TransformerBlock.forward": [
+      71,
+      112
+    ],
+    "_apply_fsdp": [
+      128,
+      157
+    ],
+    "_register_optimizer_hooks": [
+      121,
+      126
+    ],
+    "get_attention_masks": [
+      268,
+      283
+    ],
+    "get_nparams_and_flops": [
+      174,
+      222
+    ],
+    "mtp_forward": [
+      372,
+      401
+    ],
+    "preprocess_inputs": [
+      285,
+      320
+    ],
+    "set_sharding_": [
+      224,
+      231
+    ]
+  },
+  "vision": {
+    "Aligner": [
+      106,
+      119
+    ],
+    "Aligner.__init__": [
+      107,
+      112
+    ],
+    "Aligner.forward": [
+      114,
+      119
+    ],
+    "Attention": [
+      46,
+      60
+    ],
+    "Attention.__init__": [
+      47,
+      52
+    ],
+    "Attention.forward": [
+      54,
+      60
+    ],
+    "Block": [
+      74,
+      84
+    ],
+    "Block.__init__": [
+      75,
+      80
+    ],
+    "Block.forward": [
+      82,
+      84
+    ],
+    "MLP": [
+      63,
+      71
+    ],
+    "MLP.__init__": [
+      64,
+      67
+    ],
+    "MLP.forward": [
+      69,
+      71
+    ],
+    "PatchEmbed": [
+      37,
+      43
+    ],
+    "PatchEmbed.__init__": [
+      38,
+      40
+    ],
+    "PatchEmbed.forward": [
+      42,
+      43
+    ],
+    "RMSNorm": [
+      24,
+      34
+    ],
+    "RMSNorm.__init__": [
+      25,
+      28
+    ],
+    "RMSNorm.forward": [
+      30,
+      34
+    ],
+    "ViT": [
+      87,
+      103
+    ],
+    "ViT.__init__": [
+      90,
+      96
+    ],
+    "ViT.forward": [
+      98,
+      103
+    ],
+    "apply_rotary": [
+      18,
+      21
+    ],
+    "get_vision_cos_sin": [
+      9,
+      15
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+ "source":"reference",
+ "classes":{
+ "Qwen3MoeAttention":{"section":"attention"},
+ "Qwen3MoeMLP":{"section":"experts"},
+ "Qwen3MoeSparseMoeBlock":{"section":"experts"},
+ "Qwen3MoeRMSNorm":{"section":"block"},
+ "Qwen3MoeDecoderLayer":{"section":"block"},
+ "Qwen3MoeRotaryEmbedding":{"section":"attention"},
+ "Qwen3MoePreTrainedModel":{"excluded":"Initialization and backend capability base; no decoder forward computation."},
+ "Qwen3MoeModel":{"section":"overview"},
+ "KwargsForCausalLM":{"excluded":"Typed keyword arguments, no computation."},
+ "Qwen3MoeForCausalLM":{"section":"overview"},
+ "Qwen3MoeForSequenceClassification":{"excluded":"Checkpoint architectures contains Qwen3MoeForCausalLM only; no classification head."},
+ "Qwen3MoeForTokenClassification":{"excluded":"Checkpoint does not ship a token classification head."},
+ "Qwen3MoeForQuestionAnswering":{"excluded":"Checkpoint does not ship a span question answering head."}
+ },
+ "serving":{"source":"serving","notes":"vLLM stacks Q/K/V and expert gate/up weights, uses FusedMoE instead of Python dispatch, carries residual/update separately to fuse add into RMSNorm, delegates paged cache to Attention, shards query heads and partitions or replicates KV heads by TP size; compute_logits is separate from forward. No GPU parity or speed claim."}
+}

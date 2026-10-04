@@ -1,0 +1,19 @@
+{
+  "checkpoint": {
+    "repo": "moonshotai/Kimi-K2-Instruct",
+    "revision": "fd1984e2b7a3350dbf7305fe73a4ede25c14de50"
+  },
+  "inspected_shards": [
+    "model-1-of-61.safetensors",
+    "model-2-of-61.safetensors"
+  ],
+  "header_sha256": [
+    "1f8e1393aba60234d125f279f5bc665876d4e057ef5533ecc68810c7f001da57",
+    "70b8e1aedf366bf9a30d7b348d05eee9989e3ed61ad3e5820f855ef2761cd510"
+  ],
+  "observed_frequency_widths": [
+    56,
+    56
+  ],
+  "scope": "Headers only; remaining shards not inspected. Repeated frequency width inferred and reconciled against pinned Hub total."
+}

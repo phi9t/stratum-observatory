@@ -1,0 +1,75 @@
+{
+  "source": "reference",
+  "classes": {
+    "ModelArgs": {
+      "excluded": "Configuration and runtime limits, no tensor forward."
+    },
+    "ParallelEmbedding": {
+      "section": "overview"
+    },
+    "Linear": {
+      "section": "attention"
+    },
+    "ColumnParallelLinear": {
+      "section": "attention"
+    },
+    "RowParallelLinear": {
+      "section": "attention"
+    },
+    "RMSNorm": {
+      "section": "block"
+    },
+    "ParallelEngramEmbedding": {
+      "section": "engram"
+    },
+    "Engram": {
+      "section": "engram"
+    },
+    "Compressor": {
+      "section": "compression"
+    },
+    "Indexer": {
+      "section": "compression"
+    },
+    "Attention": {
+      "section": "attention"
+    },
+    "Gate": {
+      "section": "experts"
+    },
+    "Expert": {
+      "section": "experts"
+    },
+    "MoE": {
+      "section": "experts"
+    },
+    "Block": {
+      "section": "block"
+    },
+    "ParallelHead": {
+      "section": "overview"
+    },
+    "DSparkAttention": {
+      "section": "auxiliary"
+    },
+    "DSparkMarkovHead": {
+      "section": "auxiliary"
+    },
+    "DSparkConfidenceHead": {
+      "section": "auxiliary"
+    },
+    "DSparkBlock": {
+      "section": "auxiliary"
+    },
+    "SharedAttentionRuntime": {
+      "section": "serving"
+    },
+    "Transformer": {
+      "section": "overview"
+    }
+  },
+  "serving": {
+    "source": "serving",
+    "notes": "Explicit V4.1 branch: fused query-latent/KV projection; fused norm/RoPE paged cache store; delayed-pre path disables same-sublayer boundary fusion. Platform packing and rounding differ; no numerical parity claim."
+  }
+}
