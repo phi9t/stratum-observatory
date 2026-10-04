@@ -573,7 +573,7 @@ export function Serving() {
         items={[
           [
             "Fused projections",
-            "The reference projects q_a and kv_a independently; serving fuses qkv_a. Projection shapes match, while the launch schedule changes.",
+            "The reference projects q_a and kv_a independently; serving fuses qkv_a. Projection shapes match.",
           ],
           [
             "Latent decode",

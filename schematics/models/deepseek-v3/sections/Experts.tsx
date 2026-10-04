@@ -637,7 +637,7 @@ export function Experts() {
           { term: "Toy groups kept", value: `${n(f.TOY.topGroups)} / ${n(f.TOY.groups)}` },
           { term: "Weight sum", value: n(routing.weights.reduce((a, b) => a + b, 0)) },
           {
-            term: "Checkpoint FFN matrices used",
+            term: "Checkpoint FFN parameters used per token",
             value: n(f.activeFfnParams.value),
             note: `of ${n(f.storedFfnParams.value)} stored parameters per MoE layer`,
           },

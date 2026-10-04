@@ -128,9 +128,9 @@ export function Run() {
       <Sub>What head normalization changes</Sub>
       <Prose>
         Follow the selected query head’s scaled dot products against every key. The first comparison omits head
-        normalization and rotation; the next applies the learned Q/K RMSNorm gains; the last rotates those normalized
-        vectors. These diagnostic comparisons reuse the same projections, not separate model runs. Only the last scores
-        enter the actual forward pass.
+        normalization and rotation; the next applies the Q/K RMSNorm gains (random in this toy); the last rotates those
+        normalized vectors. These diagnostic comparisons reuse the same projections, not separate model runs. Only the
+        last scores enter the actual forward pass.
       </Prose>
       <Sentence>
         Head {head} at query position {n(query)} scores key {n(key)} as {format(scoreAt("scores_raw", key))} before head

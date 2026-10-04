@@ -82,3 +82,42 @@ Different naming or fused operations are not disagreement; describe them. If two
 implementations compute different things (an extra norm, a different scale, a
 different default), show the reference on the diagram, state the difference in the
 op's inspector `note`, and list it in `REPORT.md`. Do not average them.
+
+## What the gates cannot check
+
+The gates prove that config values, symbols, parameter totals and (with a fixture) the
+clean reference's arithmetic are right. They do not read your prose, your inspector
+shapes or your takeaways. An independent audit of the first eight pages found no error
+in architecture or formulas, and found every one of the following more than once. Check
+your page for each before you report:
+
+- **Inspector shapes on parallel branches.** An op that reads the block input, not the
+  previous box's output, needs its input written out. Do not let a helper default an
+  op's input to the previous op's output. Shapes around a reshape must match the code
+  line by line: if the norm runs before the transpose, the norm's input still has the
+  head axis after the sequence axis.
+- **Row-shaped tensors.** Inside expert dispatch the tensors are rows of selected
+  tokens, not `[B, S, width]`. Use a symbolic count for the first axis and say what it
+  counts.
+- **Claims about code that is not pinned.** If the pinned file only calls a helper (a
+  cache class, a fused kernel, a serving layer), you may describe the call, not what the
+  helper stores or does. Pin the helper as an extra source, or say it is not pinned.
+- **Defaults you did not see.** A value that comes from a config-class default is a
+  `code` fact with a locator in a pinned file, or it is stated as not pinned.
+- **A path the model does not run.** If the code always dispatches to another backend,
+  say that the drawn arithmetic is the equivalent eager form.
+- **"Learned", "trained", "why it helps".** Toy weights are random: do not call them
+  learned. Do not state training behaviour, stability or design intent unless a pinned
+  source states it.
+- **Superlatives and totals.** "The widest tensor", "the only signal", "everything
+  above" are claims; check them against the whole model, including the logits and the
+  mask.
+- **Conditions.** State the condition the code tests, then say what it reduces to for
+  this checkpoint; do not state the reduced form as the rule.
+- **Readout labels and units.** A count of parameters is not a count of matrices.
+- **Differences in the clean reference.** List in `REPORT.md` every place
+  `reference/model.ts` departs from the upstream `forward` (an omitted no-op, an
+  unconditional branch, a different tie-break), even when the result is identical.
+
+If you can, have a second agent that has not seen your reasoning audit the finished page
+against the pinned sources, claim by claim, before it is published.

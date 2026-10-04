@@ -8,6 +8,7 @@ type Spec = {
   formula: string;
   output?: string;
   input?: string;
+  inputs?: [string, string][];
   params?: [string, string][];
   note?: string;
   kind?: Op["kind"];
@@ -30,7 +31,7 @@ export function graph(
     detail: {
       what: s.what,
       formula: s.formula,
-      inputs: [
+      inputs: s.inputs ?? [
         [
           "input",
           s.input ??
@@ -342,10 +343,14 @@ export const kvGraph = () =>
         kind: "state",
         lane: "instance",
         width: kv + r,
-        what: "Appends normalized content and rotated key, then reads all previous tokens.",
-        formula: "cache[t] = concat(ĉ[t],k_rot[t])",
-        output: shape("B", 1, "T", kv + r),
-        note: "Prefill reference experiment disables caching; decode keeps these tensors before expansion.",
+        what: "Hands normalized content and the rotated key to the cache as two separate tensors, then reads back all previous tokens.",
+        formula: "ĉ_all, k_rot_all = cache.update(ĉ, k_rot, layer)",
+        inputs: [
+          ["ĉ", shape("B", 1, "S", kv)],
+          ["k_rot", shape("B", 1, "S", r)],
+        ],
+        output: `${shape("B", 1, "T", kv)} and ${shape("B", 1, "T", r)}`,
+        note: "Prefill reference experiment disables caching; decode keeps these tensors before expansion. The cache class is not pinned, so its storage layout is not shown.",
       },
     ],
     "GlmMoeDsaAttention.forward",
@@ -353,13 +358,18 @@ export const kvGraph = () =>
 export const expandGraph = () =>
   graph(
     [
-      projection(
-        "kv_b_proj",
-        "KV expand",
-        kv,
-        heads * (nd + vd),
-        "Expands latent content to a key and value for each attention head.",
-      ),
+      {
+        ...projection(
+          "kv_b_proj",
+          "KV expand",
+          kv,
+          heads * (nd + vd),
+          "Expands latent content to a key and value for each attention head.",
+        ),
+        input: shape("B", 1, "T", kv),
+        output: shape("B", 1, "T", heads * (nd + vd)),
+        note: "Runs after the cache read, so the token axis is T (all cached tokens) and the latent is still single-head.",
+      },
       {
         id: "kvheads",
         label: "split K / V",
@@ -653,6 +663,7 @@ export function attentionTopology() {
         width: kv + r,
         what: "Compress content and position; normalize content, rotate key, then cache.",
         formula: "cache = KV_path(x)",
+        input: shape("B", "S", h),
       },
       {
         id: "selection",
@@ -661,6 +672,11 @@ export function attentionTopology() {
         lane: "instance",
         what: "Select key identities or read prior selection.",
         formula: "indices = indexer(x,q_latent) or previous_indices",
+        inputs: [
+          ["x", shape("B", "S", h)],
+          ["q_latent", shape("B", "S", f.qRank.value)],
+        ],
+        output: shape("B", "S", `min(${f.indexTopK.value},T)`),
       },
       {
         id: "join",
@@ -668,6 +684,12 @@ export function attentionTopology() {
         width: heads * vd,
         what: "Read selected causal keys and form weighted values.",
         formula: "z = softmax(mask(qkᵀ))v",
+        inputs: [
+          ["q", shape("B", heads, "S", nd + r)],
+          ["K", shape("B", heads, "T", nd + r)],
+          ["V", shape("B", heads, "T", vd)],
+          ["mask", shape("B", 1, "S", "T")],
+        ],
       },
       {
         id: "project",
@@ -728,6 +750,8 @@ export function moeGraph() {
         lane: "low",
         what: "Each selected expert applies its own packed gate/up and down weights.",
         formula: "y_e = down_e(SiLU(gate_e(x_e)) × up_e(x_e))",
+        output: shape("selected tokens", h),
+        note: "Rows are the tokens routed to one expert, not the batch and sequence axes.",
         params: [
           ["experts.gate_up_proj", shape(f.experts.value, 2 * f.expertWidth.value, h)],
           ["experts.down_proj", shape(f.experts.value, h, f.expertWidth.value)],
@@ -740,6 +764,8 @@ export function moeGraph() {
         lane: "low",
         what: "Multiply each selected expert output by its router weight.",
         formula: "weighted_e = y_e × router_weight_e",
+        output: shape("selected tokens", h),
+        note: "Still one row per selected token; index_add_ restores token positions in the next step.",
       },
       {
         id: "scatter",
@@ -756,6 +782,7 @@ export function moeGraph() {
         lane: "low",
         what: "Run the always-on shared expert from the common input without routing.",
         formula: "shared = down(SiLU(gate(x)) × up(x))",
+        input: shape("B", "S", h),
         params: [
           ["shared gate/up", shape(f.expertWidth.value * f.shared.value, h)],
           ["shared down", shape(h, f.expertWidth.value * f.shared.value)],

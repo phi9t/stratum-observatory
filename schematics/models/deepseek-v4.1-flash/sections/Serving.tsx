@@ -67,9 +67,10 @@ export function Serving() {
         identical.
       </Prose>
       <Prose>
-        <b>Depth hand-off.</b> The explicit V4.1 path carries incoming pre coefficients and excludes same-sublayer
-        collapse fusion: <SourceRef source="serving" symbol="DeepseekV4Model._forward_layers_hc_pre_from_prev" />.
-        Engram invalidates precomputed collapsed inputs at its layer boundary.
+        <b>Depth hand-off.</b> When its previous-sublayer option is set, SGLang carries incoming pre coefficients and
+        excludes same-sublayer collapse fusion (where that option is enabled for V4.1 is not in the pinned files):{" "}
+        <SourceRef source="serving" symbol="DeepseekV4Model._forward_layers_hc_pre_from_prev" />. Engram invalidates
+        precomputed collapsed inputs at its layer boundary.
       </Prose>
       <Prose>
         <b>Training boundary.</b> The pinned torchtitan V4 block consumes its own current pre coefficients and uses a

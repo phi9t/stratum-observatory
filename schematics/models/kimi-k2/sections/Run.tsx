@@ -64,7 +64,7 @@ export function Run() {
       <Sub>Attention reconstructed from the latent</Sub>
       <Figure
         label="Computed toy attention"
-        caption="The triangular zeros come from the causal mask. The normalized latent below is the content state serving can retain instead of expanded head keys and values."
+        caption="The triangular zeros come from the causal mask. The latent below is the content half of the latent-plus-positional-key cache that the pinned serving backend is given in place of expanded head keys and values; the layer that writes that cache is not pinned here."
       >
         <Heatmap title="Computed attention weights" values={values} rowLabel="query" columnLabel="key" marked={token} />
       </Figure>

@@ -207,7 +207,7 @@ export function Attention() {
         ],
         output: ["cached K", shape("B", h, "T", f.qDim.value)],
         refs,
-        note: "Reference DynamicCache.update writes AND returns history. This and the next box expose those two effects of the same call. FlashAttention pads V before this call; compressed serving stores a different form.",
+        note: "The reference calls the cache\u2019s update, which returns the concatenated history (the cache class itself is not pinned here). This and the next box expose those two effects of the same call. FlashAttention pads V before this call; compressed serving stores a different form.",
       },
       "instance",
       1,

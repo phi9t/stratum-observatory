@@ -525,7 +525,8 @@ export function Attention() {
       />
       <Check question="Why must the positional key stay outside the shared content latent?">
         Its rotation depends on absolute position. The implementation expands content separately and rotates the
-        positional slice directly, so serving can cache both without reconstructing every head.
+        positional slice directly: the content latent and the positional key are both produced before per-head
+        expansion.
       </Check>
       <Takeaways
         items={[

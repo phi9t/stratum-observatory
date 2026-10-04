@@ -45,7 +45,7 @@ export function Kda() {
             what: "Normalize each head vector inside the recurrent kernel.",
             formula: "z ← z / sqrt(Σ z² + ε_L2)",
             output: shape("B", "S", f.heads.value, f.dim.value),
-            note: "This is unit-length normalization, not learned RMSNorm.",
+            note: "This is unit-length normalization, not learned RMSNorm. The publisher only sets use_qk_l2norm_in_kernel; the fused kernel and its l2norm, including the epsilon, are not pinned.",
           },
         ]),
   ];
@@ -173,6 +173,7 @@ export function Kda() {
       what: "Read the newly updated memory using the current normalized query.",
       formula: `o_t = (q_t / sqrt(${n(f.dim.value)}))ᵀ M_t`,
       output: shape("B", f.heads.value, f.dim.value),
+      note: "The query scale comes from the pinned naive reference recurrence, whose default is K^(-1/2). The fused kernel the publisher calls is not pinned.",
     },
     {
       id: "store",
@@ -304,6 +305,8 @@ export function Kda() {
       row: 0,
       what: "Normalize each head output and multiply by the sigmoid output gate.",
       formula: "o = RMSNorm_head(o) × sigmoid(o_gate)",
+      output: shape("B", "S", f.heads.value, f.dim.value),
+      note: "The output keeps its head axis; heads are flattened afterwards, before o_proj.",
     },
     {
       id: "out",

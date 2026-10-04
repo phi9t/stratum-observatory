@@ -66,7 +66,7 @@ export function Sources() {
       <Takeaways
         items={[
           "Pinned implementation evidence establishes the circuit, not learned behavior or measured performance.",
-          "The original Instruct checkpoint has no sparse-attention indexer or next-token prediction layers in this decoder.",
+          "The original Instruct checkpoint has no sparse-attention indexer and no multi-token-prediction (next-n) layers in this decoder.",
         ]}
       />
     </Section>

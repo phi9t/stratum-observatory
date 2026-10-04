@@ -61,7 +61,7 @@ A deterministic random sample (`Random(41)`) selected five attention/FFN operati
 | Operation | Source and evidence |
 | --- | --- |
 | Router `topk` | `model.py`, Gate.forward L809–827: selection bias applies before top-k; original scores are gathered at L821–824; selected shape is `[B*S, 6]`. |
-| Router `score` | Gate.forward L816: sqrt(softplus) follows the fp32 projection; scores are `[B*S, 384]`. |
+| Router `score` | Gate.forward L817: sqrt(softplus) follows the fp32 projection; scores are `[B*S, 384]`. |
 | Window `kvquant` | Attention._window_kv L700–720: whole-vector fake FP8 follows tail RoPE at L707; shared KV is `[B, S, 512]`. |
 | Window `kvnorm` | Attention._window_kv L705: normalization follows KV projection and precedes tail rotation. |
 | Expert `down` | Expert.forward L841–851: clipping, SiLU product and routing weight precede w2; output is `[T, 5120]`. |
@@ -96,3 +96,20 @@ A deterministic random sample (`Random(41)`) selected five attention/FFN operati
 | 22 | PASS: this report lists exclusions, unverified parity, skipped test and non-applicable root gates. |
 
 Only files under `models/deepseek-v4.1-flash/` were authored; tool outputs are in the allowed ignored directories. No commits, branches, pushes, global installations or changes to shared tools/kit were made.
+
+## Undisclosed-until-audit differences between `reference/model.ts` and the publisher code
+
+An independent read of the publisher `forward` against the clean reference found these
+differences that the page did not previously state. None changes a result at this
+checkpoint's configuration, and none has numerical parity evidence.
+
+- The router's division by `gate_temp` is omitted; the value is 1.0.
+- The expert clamp and the top-k normalisation are applied unconditionally; the
+  publisher applies them under conditions that hold for this config.
+- Sparse top-k drops minus-infinity scores before selecting; the publisher selects and
+  then filters by index. The two differ only if fewer candidates than top-k exist, which
+  cannot happen at 2048 blocks of 8 against a top-k of 512, nor at the toy sizes.
+- Ties in top-k are broken by lowest index; `torch.topk` makes no such promise.
+- The softmax maximum includes the sink term; the publisher's does not. The results are
+  algebraically equal.
+

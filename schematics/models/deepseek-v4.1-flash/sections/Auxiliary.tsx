@@ -259,8 +259,9 @@ export function Auxiliary() {
         ]}
       />
       <Check question="Does a dSpark forward implementation establish a complete speculative-decoding server?">
-        No. The publisher implements the draft forward pass, but its generation code does not call the speculative loop.
-        Acceptance, rollback, batching and performance are outside this page.
+        No. The publisher implements the draft forward pass; a comment in its model code and its inference README say
+        the generation script does not use it (that script is not pinned here). Acceptance, rollback, batching and
+        performance are outside this page.
       </Check>
       <Takeaways
         items={[

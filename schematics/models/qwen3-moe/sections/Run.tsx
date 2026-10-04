@@ -113,7 +113,7 @@ export function Run() {
       </Sentence>
       <Figure
         label="Actual toy decoder router output"
-        caption="These scores come from the post-attention normalized hidden stream of the full toy forward pass. Each toy expert has its own learned matrix set."
+        caption="These scores come from the post-attention normalized hidden stream of the full toy forward pass. Each toy expert has its own matrix set; here the values are seeded random numbers."
       >
         <ToyRouter routing={routing} />
       </Figure>

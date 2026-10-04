@@ -215,6 +215,11 @@ export function Experts() {
       "instance",
     ),
   ];
+  const routed = f.kindOf(layer) === "moe";
+  const rows = (width: number) => (routed ? shape("N_e", width) : shape("B", "S", width));
+  const rowsNote = routed
+    ? "N_e is the number of token assignments routed to this expert; the batch and sequence axes are flattened and gathered before the expert runs."
+    : undefined;
   const expert = [
     op(
       "input",
@@ -222,12 +227,15 @@ export function Experts() {
       f.hidden.value,
       { col: 0, row: 0 },
       "DeepseekV3MLP",
-      "Each position is transformed independently of other token positions.",
+      routed
+        ? "A routed expert receives only the rows assigned to it; each row is transformed independently."
+        : "Each position is transformed independently of other token positions.",
       "x",
-      stream,
-      stream,
+      rows(f.hidden.value),
+      rows(f.hidden.value),
       [],
       "merged",
+      rowsNote,
     ),
     op(
       "gate",
@@ -237,8 +245,8 @@ export function Experts() {
       "DeepseekV3MLP",
       "Build the activation gate before multiplying it with the parallel up branch.",
       "x W_gateᵀ",
-      stream,
-      shape("B", "S", inner),
+      rows(f.hidden.value),
+      rows(inner),
       [["gate_proj.weight", shape(inner, f.hidden.value)]],
       "low",
     ),
@@ -250,8 +258,8 @@ export function Experts() {
       "DeepseekV3MLP",
       "Build a separate set of features to be gated.",
       "x W_upᵀ",
-      stream,
-      shape("B", "S", inner),
+      rows(f.hidden.value),
+      rows(inner),
       [["up_proj.weight", shape(inner, f.hidden.value)]],
       "low",
     ),
@@ -263,8 +271,8 @@ export function Experts() {
       "DeepseekV3MLP",
       "Smoothly gate the first projection.",
       "gate × sigmoid(gate)",
-      shape("B", "S", inner),
-      shape("B", "S", inner),
+      rows(inner),
+      rows(inner),
       [],
       "low",
     ),
@@ -276,8 +284,8 @@ export function Experts() {
       "DeepseekV3MLP",
       "Combine the activated gate with the up projection elementwise.",
       "SiLU(gate) × up",
-      shape("B", "S", inner),
-      shape("B", "S", inner),
+      rows(inner),
+      rows(inner),
       [],
       "low",
     ),
@@ -289,10 +297,11 @@ export function Experts() {
       "DeepseekV3MLP",
       "Return the gated features to residual width.",
       "product W_downᵀ",
-      shape("B", "S", inner),
-      stream,
+      rows(inner),
+      rows(f.hidden.value),
       [["down_proj.weight", shape(f.hidden.value, inner)]],
       "low",
+      rowsNote,
     ),
   ];
   const expertEdges: Edge[] = [
@@ -449,7 +458,10 @@ export function Experts() {
         {f.kindOf(layer) === "dense"
           ? `the dense FFN, inner width ${n(inner)}`
           : `routed expert FFNs, inner width ${n(inner)}`}
-        . The shared FFN has inner width {n(f.expert.value * f.shared.value)}.
+        .
+        {routed
+          ? ` Each routed expert runs on its N_e assigned token rows. The shared FFN has inner width ${n(f.expert.value * f.shared.value)}.`
+          : " This dense layer has no router and no shared FFN."}
       </Sentence>
       <OpGraph
         id="expert-ops"

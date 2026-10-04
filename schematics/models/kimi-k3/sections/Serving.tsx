@@ -143,15 +143,15 @@ export function Weights() {
         rows={[
           ["Text decoder", n(f.parameterTotal.value)],
           ["Vision tower and projector", n(f.visionParams.value)],
-          ["Stored A_log surplus", n(f.serializationPadding.value)],
+          ["A_log surplus (inferred from a serving-code comment)", n(f.serializationPadding.value)],
           ["Hub safetensors.total", n(f.hubTotal)],
-          ["Unexplained remainder", n(f.unexplainedDifference - f.serializationPadding.value)],
+          ["Remainder after that inference", n(f.unexplainedDifference - f.serializationPadding.value)],
         ]}
       />
       <Takeaways
         items={[
           "Resident and active parameter counts answer different questions.",
-          "The separate vision ledger and serialization surplus reconcile the exact hub total.",
+          "The separate vision ledger accounts for most of the gap to the hub total; the rest matches an A_log surplus inferred from a serving-code comment, not a verified tensor shape.",
           "Logical parameter counts do not measure packed checkpoint byte size.",
         ]}
       />

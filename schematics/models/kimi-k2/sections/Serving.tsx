@@ -28,7 +28,7 @@ export function Serving() {
         { source: "serving", symbol: "DeepseekV2MLAAttention" },
         { source: "mla-backend", symbol: "FlashAttnMLAImpl.forward_mqa" },
       ]}
-      lede="The publisher eager path caches expanded keys and values. The vLLM MLA decode path keeps the normalized content latent and rotated positional key, and computes attention in that smaller space."
+      lede="The publisher eager path caches expanded keys and values. The pinned vLLM serving file delegates caching to a wrapper layer that is not pinned here; the pinned MLA backend is handed a combined content-latent and positional-key cache, slices it, and computes attention in that smaller space."
     >
       <Segments<"latent" | "expanded">
         legend="Cache representation"
@@ -92,8 +92,9 @@ export function Serving() {
       </Prose>
       <Prose>
         <strong>Expert dispatch.</strong> FusedMoE routes tokens, executes selected expert matrices and combines them.
-        Shared-expert fusion is backend-dependent; the logical shared expert still consumes no router logit.{" "}
-        <SourceRef source="serving" symbol="DeepseekV2MoE" />
+        Shared-expert fusion is backend-dependent; the logical shared expert still consumes no router logit. vLLM can
+        apply the routed scaling factor to the combined expert output, where the publisher multiplies the routing
+        weights by it. <SourceRef source="serving" symbol="DeepseekV2MoE" />
       </Prose>
       <Check question="Does selecting FP8 weights imply the cache uses one byte per scalar?">
         No. Weight storage and cache dtype are separate settings. This calculator explicitly assumes BF16 cache scalars,

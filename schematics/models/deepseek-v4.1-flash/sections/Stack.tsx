@@ -35,7 +35,16 @@ export function Stack() {
           ["Compression ratio", n(f.ratios.value[layer])],
           ["Compressed KV owner", f.ratios.value[layer] ? n(f.owner(layer, f.kvSources.value)!) : "none"],
           ["Index owner", f.ratios.value[layer] ? n(f.owner(layer, f.indexSources.value)!) : "none"],
-          ["Candidate source", layer >= f.candidateSource.value ? n(f.candidateSource.value) : "not yet"],
+          [
+            "Candidate blocks",
+            layer < f.candidateSource.value
+              ? "not yet built"
+              : layer === f.candidateSource.value
+                ? "built here, not applied"
+                : f.owner(layer, f.indexSources.value) === f.candidateSource.value
+                  ? `not applied: reuses layer ${n(f.candidateSource.value)}'s selection`
+                  : `selection masked to layer ${n(f.candidateSource.value)}'s blocks`,
+          ],
           ["Engram", f.engramLayers.value.includes(layer) ? "before attention" : "absent"],
         ]}
       />

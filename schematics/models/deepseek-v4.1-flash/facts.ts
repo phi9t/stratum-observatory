@@ -73,8 +73,8 @@ export const gateTemperature = code(1, {
 });
 export const quantBlock = code(32, {
   source: "reference",
-  symbol: "Linear.__init__",
-  contains: "in_features // fp4_block_size",
+  symbol: "Indexer.forward",
+  contains: "fp4_act_quant(q, fp4_block_size, True)",
 });
 export const compressedQuantBlock = code(16, {
   source: "reference",

@@ -73,8 +73,8 @@ export function Data() {
           [
             "State",
             <>
-              Per layer, rotated K and V each have shape {shape("B", f.kvHeads.value, "T", f.headDim.value)}. Positions
-              index rotations, not a learned table.
+              Per layer, rotated K and unrotated V each have shape {shape("B", f.kvHeads.value, "T", f.headDim.value)}.
+              Positions index rotations, not a learned table.
             </>,
           ],
         ]}

@@ -146,14 +146,16 @@ export function Attention() {
       what: "Remove future positions from the readable set.",
       formula: "scores += causal_mask (0 or −∞)",
       output: shape("B", f.heads.value, "S", "T"),
+      note: "Eager-equivalent arithmetic; the publisher always dispatches to FlashAttention, which does not add this mask in this form.",
     },
     {
       id: "softmax",
       label: "softmax",
       width: f.qDim.value,
-      what: "Normalize scores over key positions in float32.",
+      what: "Normalize scores over key positions; the eager function does this in float32.",
       formula: "P = softmax_key(scores)",
       output: shape("B", f.heads.value, "S", "T"),
+      note: "Eager-equivalent arithmetic; the publisher always dispatches to FlashAttention.",
     },
     {
       id: "weighted",
@@ -364,7 +366,7 @@ export function Attention() {
       />
       <Prose>
         Current and cached keys participate in the same causal score calculation. The query slice called q_rot remains
-        unrotated.
+        unrotated. The graph below is eager-equivalent arithmetic; the publisher always dispatches to FlashAttention.
       </Prose>
       <Graph
         id="mla-attend"

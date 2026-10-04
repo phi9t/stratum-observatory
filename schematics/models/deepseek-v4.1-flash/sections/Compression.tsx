@@ -32,7 +32,7 @@ export function Compression() {
   return (
     <Section
       id="compression"
-      title="Compress once, index less often, reuse between"
+      title="Compress at four layers, re-index at eight, reuse in between"
       source={[
         { source: "reference", symbol: "Compressor" },
         { source: "reference", symbol: "Indexer" },

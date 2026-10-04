@@ -32,10 +32,15 @@ export function Stack() {
         . Its attention still has {n(f.heads.value)} heads.
       </Sentence>
       <Table
-        caption="The exact zero-based layer condition"
+        caption={`The zero-based layer condition. The reference tests the experts condition and falls back to dense otherwise; with moe_layer_freq = ${n(f.frequency.value)} the dense rows are exactly index < first_k_dense_replace.`}
         head={["Kind", "Condition", "Layers", "Inner width"]}
         rows={[
-          ["Dense", "index < first_k_dense_replace", n(f.denseLayers.value), n(f.dense.value)],
+          [
+            "Dense",
+            "otherwise (index < first_k_dense_replace or index % moe_layer_freq ≠ 0)",
+            n(f.denseLayers.value),
+            n(f.dense.value),
+          ],
           [
             "Experts",
             "index ≥ first_k_dense_replace and index % moe_layer_freq = 0",
