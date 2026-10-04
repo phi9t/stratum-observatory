@@ -311,6 +311,93 @@ export function Attention() {
       linearDetail("Return the attention correction to the residual width.", f.outputWidth.value, d, refs),
     ),
   ];
+  const topology: Op[] = [
+    op(
+      "input",
+      "normalized stream",
+      0,
+      d,
+      {
+        what: "The block's attention norm supplies both projection paths.",
+        formula: "x = input_layernorm(hidden)",
+        inputs: [["hidden", stream]],
+        output: ["x", stream],
+        refs,
+      },
+      "merged",
+      0,
+      "tensor",
+      stream,
+    ),
+    op("queries", "Query path", 1, f.qWidth.value, {
+      what: "The Build queries graph compresses, normalizes and expands queries.",
+      formula: "Q = Q_B(RMSNorm(Q_A(x)))",
+      inputs: [["x", stream]],
+      output: ["query channels", qShape],
+      refs,
+    }),
+    op(
+      "keyvalues",
+      "KV path",
+      1,
+      f.kvWidth.value,
+      {
+        what: "The Build keys and values graph produces a normalized latent, shared positional key and expanded head-specific content.",
+        formula: "K_content,V = KV_B(RMSNorm(c)); c,k_pe = split(KV_A(x))",
+        inputs: [["x", stream]],
+        output: ["KV", kvShape],
+        refs,
+      },
+      "high",
+      1,
+    ),
+    op("position", "Rotate + assemble", 2, f.qWidth.value, {
+      what: "The positional graph rotates Q/K slices and assembles full queries and keys. Values bypass rotation.",
+      formula: "Q,K = concat(content, rotated_position)",
+      inputs: [
+        ["queries", qShape],
+        ["KV", kvShape],
+      ],
+      output: ["Q,K", qShape],
+      refs,
+    }),
+    op(
+      "history",
+      "Cache history",
+      2,
+      f.eagerCacheWidth.value,
+      {
+        what: "The eager cache appends full keys and values and returns historical K/V.",
+        formula: "K,V = cache.update(K,V,layer)",
+        inputs: [
+          ["K", qShape],
+          ["V", shape("B", h, "S", f.valueDim.value)],
+        ],
+        output: ["K history", shape("B", h, "T", f.qDim.value)],
+        refs,
+      },
+      "instance",
+      1,
+      "state",
+    ),
+    op("attend", "Attend over history", LAYOUT.columns[3], f.outputWidth.value, {
+      what: "The Attend over history graph compares queries to cached keys, masks, normalizes and averages values.",
+      formula: "A = softmax(mask(scale(Q Kᵀ))) V",
+      inputs: [
+        ["Q", qShape],
+        ["K,V history", shape("B", h, "T", f.qDim.value)],
+      ],
+      output: ["head outputs", shape("B", h, "S", f.valueDim.value)],
+      refs,
+    }),
+    op("output", "Merge + project", LAYOUT.columns[4], d, {
+      what: "The Return to the stream graph merges heads and projects the correction back to residual width.",
+      formula: "out = O(concat_heads(A))",
+      inputs: [["head outputs", shape("B", h, "S", f.valueDim.value)]],
+      output: ["attention correction", stream],
+      refs,
+    }),
+  ];
   return (
     <Section
       id="attention"
@@ -318,6 +405,28 @@ export function Attention() {
       source={[{ source: "reference", symbol: "DeepseekV3Attention.forward" }]}
       lede="Queries and KV use separate compressed paths. Both expand for the eager forward pass, but only a slice of each query and key carries rotary position information."
     >
+      <OpGraph
+        heading="How the attention paths connect"
+        id="attention-topology"
+        title="Attention topology"
+        ops={topology}
+        edges={[
+          { from: "input", to: "queries" },
+          { from: "input", to: "keyvalues" },
+          { from: "queries", to: "position" },
+          { from: "keyvalues", to: "position" },
+          { from: "position", to: "history", kind: "state" },
+          { from: "keyvalues", to: "history" },
+          { from: "position", to: "attend" },
+          { from: "history", to: "attend", kind: "state" },
+          { from: "attend", to: "output" },
+        ]}
+        caption="Each box summarizes a detailed graph below. The query and KV paths share an input; rotary assembly joins them, and historical K/V meet fresh queries at attention."
+      />
+      <Prose>
+        Start with the query path, then follow the parallel KV path. Both feed assembly; only keys and values persist in
+        history.
+      </Prose>
       <OpGraph heading="Build queries" id="query-op" title="Query path" ops={q} edges={chain(q)} />
       <Prose>
         The same normalized stream also feeds KV A. Its positional key bypasses the latent norm and expansion.

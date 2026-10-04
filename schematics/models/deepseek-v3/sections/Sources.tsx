@@ -40,6 +40,16 @@ export function Sources() {
           ["RoPE", "Rotary positional embedding: rotate query/key channel pairs by position-dependent phases."],
           ["YaRN", "Frequency blending and scale adjustments configured for this checkpoint's rotary scheme."],
           ["MoE", "A mixture of experts: token-selected feed-forward transforms combined with route weights."],
+          ["Top-k", "Select the highest-scoring expert ids after restricting candidates to the surviving groups."],
+          ["Dense FFN", "A feed-forward transform used for every token rather than chosen from a routed bank."],
+          [
+            "Renormalization",
+            "Divide the chosen original sigmoid scores by their sum before applying the route scale.",
+          ],
+          [
+            "FP8 block scale",
+            "A stored scale for a block of quantized matrix entries, counted separately from main model parameters.",
+          ],
           ["Correction bias", "An expert preference added for selection, excluded from mixture weights."],
           ["Shared expert", "An always-on feed-forward path added separately from the routed mixture."],
           [
@@ -53,6 +63,27 @@ export function Sources() {
           ],
           ["FP8 / BF16", "Storage and arithmetic formats; counting scalars does not determine their byte size."],
           ["Logits", "Unnormalized vocabulary scores before sampling or probability normalization."],
+          [
+            "noaux_tc",
+            "The configured inference router: corrected grouped selection followed by unbiased mixture weights.",
+          ],
+          [
+            "Parity fixture",
+            "Toy inputs, perturbed upstream parameters and saved outputs used to test the clean reference independently.",
+          ],
+          [
+            "Eager / FlashAttention",
+            "Explicit attention tensor operations versus a fused attention kernel; their cache forms can differ.",
+          ],
+          [
+            "Group selection",
+            "A restriction to the groups with the strongest sums of corrected expert scores before individual expert selection.",
+          ],
+          ["FP16 / float32", "Floating-point arithmetic formats with different precision and representable ranges."],
+          [
+            "Collectives / sharding",
+            "Cross-device communication and partitioning of tensors in distributed implementations.",
+          ],
         ]}
       />
       <Boundary>
@@ -60,8 +91,9 @@ export function Sources() {
         identified as implementation alternatives. The auxiliary MTP tensors are reconciled in storage accounting but
         their training/speculative execution is outside the main circuit. Tokenizer internals, sampling, training
         losses, distributed collectives and quantization kernels are not drawn. No weights, learned router biases or
-        model predictions were loaded; synthetic routing fixtures do not establish checkpoint parity. Configured context
-        is not tested capability. No GPU memory or speed benchmark is claimed.
+        model predictions were loaded. The clean toy reference matches a pinned upstream CPU fixture; this does not
+        establish trained checkpoint parity. Configured context is not tested capability. No GPU memory or speed
+        benchmark is claimed.
       </Boundary>
       <Takeaways
         items={[

@@ -10,6 +10,7 @@ import { Experts } from "./sections/Experts";
 import { Weights } from "./sections/Weights";
 import { Serving } from "./sections/Serving";
 import { Sources } from "./sections/Sources";
+import { Run } from "./sections/Run";
 export const sections = [
   { id: "overview", label: "Overview" },
   { id: "data", label: "Data" },
@@ -18,6 +19,7 @@ export const sections = [
   { id: "attention", label: "Attention" },
   { id: "positions", label: "Positions" },
   { id: "experts", label: "Experts" },
+  { id: "run", label: "Run it" },
   { id: "weights", label: "Weights" },
   { id: "serving", label: "Serving" },
   { id: "sources", label: "Sources" },
@@ -52,6 +54,7 @@ export function Page() {
       <Attention />
       <Positions />
       <Experts />
+      <Run />
       <Weights />
       <Serving />
       <Sources />

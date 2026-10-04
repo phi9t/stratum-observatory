@@ -1,12 +1,12 @@
+import { ToyRouter } from "./ToyRouter";
+import { useMemo } from "react";
 import {
   Section,
   OpGraph,
   Sub,
   Prose,
   Figure,
-  MoeRouter,
   Button,
-  Segments,
   Sentence,
   Readout,
   Check,
@@ -14,11 +14,12 @@ import {
   n,
   shape,
   useUrlNumber,
-  useUrlChoice,
   type Op,
   type Edge,
 } from "../../../kit";
 import * as f from "../facts";
+import * as ref from "../../../tnsr/tensor";
+import { forward, TOY } from "../reference/model";
 import { operation as op, chain, routerRefs, ffnRefs, stream, linearDetail } from "../graph";
 import { useLayer } from "./Stack";
 const LAYOUT = { columns: [0, 1, 2, 3, 4, 5, 6, 7] };
@@ -28,9 +29,19 @@ export function Experts() {
   const dense = f.kindOf(layer) === "dense";
   const d = f.hidden.value;
   const w = dense ? f.denseWidth.value : f.expertWidth.value;
-  const [seed, setSeed] = useUrlNumber("seed", f.DEMO.seed, 0, f.DEMO.maxSeed);
-  const [bias, setBias] = useUrlChoice("bias", "synthetic", ["synthetic", "zero"] as const);
-  const routing = f.syntheticRoute(seed, bias === "synthetic");
+  const [seed, setSeed] = useUrlNumber("seed", f.TOY.seed, 0, f.DEMO.maxSeed);
+  const routing = useMemo(() => {
+    const ctx = new ref.Ctx("value", null, seed, f.TOY.gain);
+    forward(ctx, TOY, f.TOY.ids);
+    const get = (id: string, width: number) =>
+      Array.from(ctx.trace.get(`h${f.TOY.firstDense}.${id}`)!.data!.slice(0, width));
+    return {
+      scores: get("sigmoid", f.TOY.experts),
+      chosen: get("topk", f.TOY.topK),
+      chosenGroups: get("groups", f.TOY.topGroups),
+      weights: get("routeweights", f.TOY.topK),
+    };
+  }, [seed]);
   const e = f.experts.value,
     scoreShape = shape("B·S", e),
     chosenShape = shape("B·S", f.topK.value);
@@ -418,6 +429,109 @@ export function Experts() {
       "",
     ),
   ];
+  const overview: Op[] = [
+    op(
+      "moex",
+      "normalized stream",
+      0,
+      d,
+      {
+        what: "All MoE paths read the same normalized token stream.",
+        formula: "x = post_attention_layernorm(hidden)",
+        inputs: [["hidden", stream]],
+        output: ["x", stream],
+        refs: moeRefs,
+      },
+      "merged",
+      1,
+      "tensor",
+      stream,
+    ),
+    op(
+      "choose",
+      "Choose identities",
+      1,
+      e,
+      {
+        what: "The choice graph applies sigmoid, correction bias, group restriction and expert top-k.",
+        formula: "ids = topk(group_mask(sigmoid(x Wᵀ) + bias))",
+        inputs: [["x", stream]],
+        output: ["ids", chosenShape],
+        refs: routerRefs,
+      },
+      "instance",
+    ),
+    op(
+      "mixture",
+      "Compute weights",
+      2,
+      f.topK.value,
+      {
+        what: "The weight graph gathers original scores and renormalizes before scaling.",
+        formula: "w = scale · gather(scores,ids) / sum(gather(scores,ids))",
+        inputs: [
+          ["ids", chosenShape],
+          ["scores", scoreShape],
+        ],
+        output: ["weights", chosenShape],
+        refs: routerRefs,
+      },
+      "instance",
+    ),
+    op(
+      "routedff",
+      "Dispatch + FFNs",
+      LAYOUT.columns[3],
+      d,
+      {
+        what: "The combination graph dispatches tokens to selected FFNs and sums their weighted outputs.",
+        formula: "routed = Σ_e w_e · FFN_e(x)",
+        inputs: [
+          ["x", stream],
+          ["ids,weights", chosenShape],
+        ],
+        output: ["routed", stream],
+        refs: moeRefs,
+      },
+      "low",
+      1,
+    ),
+    op(
+      "always",
+      "Shared FFN",
+      1,
+      d,
+      {
+        what: "The shared FFN reads tokens without participating in selection.",
+        formula: "shared = FFN_shared(x)",
+        inputs: [["x", stream]],
+        output: ["shared", stream],
+        refs: moeRefs,
+      },
+      "low",
+      2,
+    ),
+    op(
+      "moesum",
+      "Add shared",
+      LAYOUT.columns[4],
+      d,
+      {
+        what: "Combine the routed mixture with the always-on shared transform.",
+        formula: "out = routed + shared",
+        inputs: [
+          ["routed", stream],
+          ["shared", stream],
+        ],
+        output: ["out", stream],
+        refs: moeRefs,
+      },
+      "merged",
+      1,
+      "sum",
+      "",
+    ),
+  ];
   return (
     <Section
       id="experts"
@@ -429,6 +543,26 @@ export function Experts() {
       ]}
       lede="Every feed-forward transform uses a gated product. Later layers keep many small transforms, select a few for each token, and add a shared transform that never competes for routing."
     >
+      <OpGraph
+        heading="How the MoE paths connect"
+        id="moe-topology"
+        title="MoE topology"
+        ops={overview}
+        edges={[
+          { from: "moex", to: "choose" },
+          { from: "moex", to: "always" },
+          { from: "moex", to: "routedff" },
+          { from: "choose", to: "mixture" },
+          { from: "mixture", to: "routedff" },
+          { from: "routedff", to: "moesum" },
+          { from: "always", to: "moesum" },
+        ]}
+        caption="Each box names a detailed computation below. The shared FFN bypasses the router and joins after the weighted routed output."
+      />
+      <Prose>
+        The FFN graph below is reused by dense layers, routed experts and the shared path, with the corresponding
+        intermediate width.
+      </Prose>
       <Sentence>
         Layer {n(layer)} uses {dense ? `the dense width ${n(w)}` : `expert width ${n(w)}`}. Its FFN below changes with
         the layer selection.
@@ -479,41 +613,31 @@ export function Experts() {
           { from: "shared", to: "sum" },
         ]}
       />
-      <Sub>Route a synthetic token</Sub>
-      <Segments
-        legend="Correction bias fixture"
-        options={[
-          { id: "synthetic", label: "Synthetic biases" },
-          { id: "zero", label: "Zero biases" },
-        ]}
-        value={bias}
-        onChange={setBias}
-      />
+      <Sub>Route a computed toy token</Sub>
+      <Prose>
+        The diagrams above retain checkpoint widths. This widget runs the clean reference at toy widths with random
+        weights on the first token of the toy sequence. The Run it section shows the complete sequence and reconstructed
+        KV.
+      </Prose>
       <Button onClick={() => setSeed((current) => (current + 1) % (f.DEMO.maxSeed + 1))}>Route another token</Button>
       <Sentence>
-        Fixture seed {n(seed)} selects experts {routing.chosen.map(n).join(", ")} in groups{" "}
+        Toy seed {n(seed)} selects experts {routing.chosen.map(n).join(", ")} in groups{" "}
         {routing.chosenGroups.map(n).join(", ")}; the shared path stays on.
       </Sentence>
       <Figure
-        label="Synthetic grouped routing"
-        caption="Logits and correction biases are seeded synthetic inputs. Bar heights are original sigmoid scores; group highlights and selected bars use corrected scores. This is a rule demonstration, not a checkpoint prediction."
+        label="Computed grouped routing"
+        caption="Random toy weights generate the normalized stream, router logits and correction biases through the reference. Bar heights are original sigmoid scores; highlights use corrected scores. This shows the mechanism, not a trained checkpoint prediction."
       >
-        <MoeRouter
-          title="Reference noaux_tc routing"
-          routing={routing}
-          experts={e}
-          groups={f.groups.value}
-          shared={f.shared.value}
-        />
+        <ToyRouter routing={routing} />
       </Figure>
       <Readout
         label="Expert selection"
         items={[
-          { term: "Selected", value: `${n(f.topK.value)} / ${n(e)}` },
-          { term: "Groups kept", value: `${n(f.topGroups.value)} / ${n(f.groups.value)}` },
+          { term: "Toy selected", value: `${n(f.TOY.topK)} / ${n(f.TOY.experts)}` },
+          { term: "Toy groups kept", value: `${n(f.TOY.topGroups)} / ${n(f.TOY.groups)}` },
           { term: "Weight sum", value: n(routing.weights.reduce((a, b) => a + b, 0)) },
           {
-            term: "FFN matrices used",
+            term: "Checkpoint FFN matrices used",
             value: n(f.activeFfnParams.value),
             note: `of ${n(f.storedFfnParams.value)} stored parameters per MoE layer`,
           },
