@@ -1,7 +1,7 @@
 # The clean reference implementation
 
 Every page ships `models/<slug>/reference/model.ts`: the checkpoint's forward pass
-written once, cleanly, in TypeScript on `kit/ref/tensor.ts`. It is the page's
+written once, cleanly, in TypeScript on `tnsr/tensor.ts`. It is the page's
 authoritative statement of what the model computes, and it does three jobs:
 
 1. **It is readable.** One file, top to bottom, with no framework glue.
@@ -33,7 +33,7 @@ authoritative statement of what the model computes, and it does three jobs:
   match the op ids in your `OpGraph`s so shapes can be read from the trace.
 - **A config type with only what the forward pass needs**, built from `facts.ts` for
   the real size and from a `TOY` constant for experiments.
-- If an op is missing from `kit/ref/tensor.ts`, write it as a small pure function in
+- If an op is missing from `tnsr/tensor.ts`, write it as a small pure function in
   `reference/ops.ts` in the same style (shape mode must work: return
   `{ shape, data: null }` when any input has no data), and test it.
 - The first lines of the file say which upstream classes it was distilled from and at
@@ -77,7 +77,7 @@ is unverified and why.
 ## Using it on the page
 
 - A **"Run it" section** runs the reference in the browser at toy width with seeded
-  weights (`new ref.Ctx("value", null, seed)`) and shows something computed: attention
+  weights (`new tnsr.Ctx("value", null, seed)`) and shows something computed: attention
   weights as a `Heatmap`, router scores and the experts actually chosen, the norm of
   the stream after each layer. Give it controls (layer, head, seed, a position).
 - **Show what is distinctive about this model**, not the experiment the worked example
@@ -87,7 +87,7 @@ is unverified and why.
   mixture-of-experts model which experts each token of a toy sequence is sent to and
   with what weights; a sliding-window or sparse model the keys actually reached.
   Write your own sentence and takeaways about what your figure shows.
-- Seeded weights can make a toy run look uniform. Pass a `gain` to `ref.Ctx` (GPT-2
+- Seeded weights can make a toy run look uniform. Pass a `gain` to `tnsr.Ctx` (GPT-2
   uses 4) until the figure has visible structure.
 - Say plainly that the weights are random: the experiment shows how the mechanism
   behaves, never what the trained model does.

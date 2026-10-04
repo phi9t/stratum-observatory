@@ -20,7 +20,7 @@ import {
   type Tensor,
   tensor,
   topk,
-} from "../../../kit/ref/tensor";
+} from "../../../tnsr/tensor";
 import { expertAssignments, gatherTokens, normalizeSelected, repeatKV, rotary, scatterWeighted } from "./ops";
 export type QwenConfig = Readonly<{
   vocab: number;

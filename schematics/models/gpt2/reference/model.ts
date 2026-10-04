@@ -22,7 +22,7 @@ import {
   softmax,
   splitLast,
   type Tensor,
-} from "../../../kit/ref/tensor";
+} from "../../../tnsr/tensor";
 
 export type Gpt2Config = Readonly<{
   vocab: number;

@@ -23,7 +23,7 @@ import {
   topk,
   type Ctx,
   type Tensor,
-} from "../../../kit/ref/tensor";
+} from "../../../tnsr/tensor";
 
 export type KimiConfig = Readonly<{
   vocab: number;

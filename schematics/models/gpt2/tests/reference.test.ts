@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { Ctx, maxAbsDiff, tensor, type Weights } from "../../../kit/ref/tensor";
+import { Ctx, maxAbsDiff, tensor, type Weights } from "../../../tnsr/tensor";
 import * as f from "../facts";
 import fixture from "../reference/fixture.json";
 import { forward, type Gpt2Config } from "../reference/model";

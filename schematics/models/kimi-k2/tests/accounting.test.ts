@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
-import { Ctx } from "../../../kit/ref/tensor";
+import { Ctx } from "../../../tnsr/tensor";
 import { forward } from "../reference/model";
 import * as f from "../facts";
 import metadata from "../storage-evidence.json";

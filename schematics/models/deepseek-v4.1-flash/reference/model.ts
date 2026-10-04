@@ -4,7 +4,7 @@
 // Scope: text-only prefill to full logits. Engram receives hash IDs at the
 // tokenizer boundary. Value mode is floating arithmetic, NOT FP8/FP4 parity;
 // caches, image encoder, draft heads, sampling and distributed collectives omitted.
-import * as ref from "../../../kit/ref/tensor";
+import * as ref from "../../../tnsr/tensor";
 import * as f from "../facts";
 import { make, map, rope, route, sinkhorn, candidateMask } from "./ops";
 export type Config = {

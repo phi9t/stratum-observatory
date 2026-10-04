@@ -13,7 +13,7 @@ import {
   Boundary,
 } from "../../../kit";
 import * as f from "../facts";
-import { Ctx } from "../../../kit/ref/tensor";
+import { Ctx } from "../../../tnsr/tensor";
 import { forward, TOY, TOY_IDS, toyHashes } from "../reference/model";
 import { useLayer } from "./Stack";
 export function Run() {

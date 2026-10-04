@@ -1,5 +1,5 @@
 import { expect, it } from "vitest";
-import { Ctx } from "../../../kit/ref/tensor";
+import { Ctx } from "../../../tnsr/tensor";
 import { forward, realConfig } from "../reference/model";
 import * as f from "../facts";
 it("real shape mode reconciles the ledger and grouped head shapes", () => {
@@ -12,7 +12,7 @@ it("real shape mode reconciles the ledger and grouped head shapes", () => {
 });
 
 import fixture from "../reference/fixture.json";
-import { maxAbsDiff, tensor, type Weights } from "../../../kit/ref/tensor";
+import { maxAbsDiff, tensor, type Weights } from "../../../tnsr/tensor";
 it("matches pinned upstream logits, attention and parameter names with perturbed weights", () => {
   const cfg = {
     vocab: fixture.config.vocab_size,

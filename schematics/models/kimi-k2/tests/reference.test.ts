@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { Ctx, maxAbsDiff, tensor } from "../../../kit/ref/tensor";
+import { Ctx, maxAbsDiff, tensor } from "../../../tnsr/tensor";
 import fixture from "../reference/fixture.json";
 import { forward, type KimiConfig, routeScores, yarnFrequency } from "../reference/model";
 import { real, parameterTotal, latentWidth, expandedCache, scale } from "../facts";

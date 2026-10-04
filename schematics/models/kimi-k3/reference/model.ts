@@ -2,7 +2,7 @@
 // Text decoder prefill to logits. No padding, decode plumbing, vision, loss or packed-weight execution.
 // FLA naive recurrence and lower-bound gate at pinned 3e52d5abb6ad underpin scalar KDA.
 // Whole-model parity with publisher GPU kernels is UNVERIFIED; see REPORT.md.
-import * as r from "../../../kit/ref/tensor";
+import * as r from "../../../tnsr/tensor";
 import { attnRes, route, mapped, convolution, l2norm, decayGate, kdaRecurrence, gatedNorm } from "./ops";
 import * as f from "../facts";
 export type Config = {

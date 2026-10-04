@@ -1,4 +1,4 @@
-# kit/ref: a tensor library meant to be read
+# tnsr: a tensor library meant to be read
 
 `tensor.ts` is what the clean reference implementations (`models/<slug>/reference/`) are
 written on, so that a forward pass, its gradients and a training step can be read and

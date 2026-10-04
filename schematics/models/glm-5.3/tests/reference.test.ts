@@ -1,5 +1,5 @@
 import { expect, it } from "vitest";
-import * as ref from "../../../kit/ref/tensor";
+import * as ref from "../../../tnsr/tensor";
 import { forward, REAL, TOY } from "../reference/model";
 import { parameterTotal, indexTypes, indexFreq, indexOffset, layers } from "../facts";
 it("counts real decoder weights and traces real widths without allocation", () => {

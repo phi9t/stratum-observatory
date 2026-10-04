@@ -1,4 +1,4 @@
-import { tensor, type Tensor } from "../../../kit/ref/tensor";
+import { tensor, type Tensor } from "../../../tnsr/tensor";
 
 /** Split-half rotation, not adjacent pairs; q/k are [B,H,S,D]. */
 export function rotary(x: Tensor, theta: number): Tensor {

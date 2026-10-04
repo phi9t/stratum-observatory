@@ -16,7 +16,7 @@ import {
 import * as f from "../facts";
 import { boundaryGraph, mixingGraph } from "../graphs";
 import { useLayer } from "./Stack";
-import { Ctx } from "../../../kit/ref/tensor";
+import { Ctx } from "../../../tnsr/tensor";
 import { forward, TOY, TOY_IDS, toyHashes } from "../reference/model";
 export function Block() {
   const [layer] = useLayer();

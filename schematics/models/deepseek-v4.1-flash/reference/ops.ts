@@ -1,4 +1,4 @@
-import { type Tensor, tensor } from "../../../kit/ref/tensor";
+import { type Tensor, tensor } from "../../../tnsr/tensor";
 
 export function route(logits: readonly number[], bias: readonly number[], k: number, scale: number) {
   const scores = logits.map((x) => Math.sqrt(Math.max(x, 0) + Math.log1p(Math.exp(-Math.abs(x)))));

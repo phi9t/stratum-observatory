@@ -15,7 +15,7 @@
 //
 // Nothing here is fast. It is meant to be read, and to be small enough to trust.
 
-import { rng } from "../lib/rng";
+import { rng } from "./rng";
 import type { Back, Tape } from "./tape";
 
 export { Tape } from "./tape";

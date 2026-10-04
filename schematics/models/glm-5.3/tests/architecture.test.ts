@@ -1,7 +1,7 @@
 import { expect, it } from "vitest";
 import { kvGraph, indexQGraph, expertGraph, moeGraph, attendGraph, indexScoreGraph } from "../architecture";
 import { GlmMoeDsaTopkRouter, TOY } from "../reference/model";
-import { Ctx, tensor } from "../../../kit/ref/tensor";
+import { Ctx, tensor } from "../../../tnsr/tensor";
 it("preserves independent projection and shared-expert dependencies", () => {
   expect(kvGraph().edges).toContainEqual({ from: "kvsplit", to: "krope" });
   expect(kvGraph().edges).not.toContainEqual({ from: "kvnorm", to: "krope" });

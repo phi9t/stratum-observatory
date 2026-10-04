@@ -4,7 +4,7 @@ import {
   Heatmap,
   Prose,
   Readout,
-  ref,
+  tnsr,
   Section,
   Segments,
   Sentence,
@@ -38,7 +38,7 @@ export function Run() {
   const [query, setQuery] = useUrlNumber("runQ", f.TOY.tokens - 1, 0, f.TOY.tokens - 1);
 
   // The clean reference, run here in the browser: seeded weights, seeded token ids.
-  const ctx = new ref.Ctx("value", null, seed, LAYOUT.gain);
+  const ctx = new tnsr.Ctx("value", null, seed, LAYOUT.gain);
   const ids = [
     Array.from({ length: f.TOY.tokens }, (_unused, index) => (index * LAYOUT.idStride + seed) % f.TOY.vocab),
   ];

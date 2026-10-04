@@ -68,8 +68,8 @@ Each section file exports one component that returns
 | `Node`, `Wire`, `Junction`, `ArrowDefs`, `ColumnLabel`, `Note`, `nodeWidth` | Hand-laid SVG. |
 | `SourceRef` | Link to a pinned symbol with its line range. |
 
-`ref` (from `kit/ref/tensor.ts`) is the tensor library for the clean reference
-implementation: `ref.Ctx`, `affine`, `matmul`, `rmsNorm`, `softmax`, `topk`, … It runs
+`tnsr` (from `tnsr/tensor.ts`, at the top of `schematics/`) is the tensor library for the clean reference
+implementation: `tnsr.Ctx`, `affine`, `matmul`, `rmsNorm`, `softmax`, `topk`, … It runs
 in shape mode or value mode; see `reference-implementation.md`. `Heatmap` draws a
 computed matrix.
 

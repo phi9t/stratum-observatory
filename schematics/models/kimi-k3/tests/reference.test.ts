@@ -1,7 +1,7 @@
 import { expect, it } from "vitest";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
-import { Ctx, tensor, maxAbsDiff, type Weights } from "../../../kit/ref/tensor";
+import { Ctx, tensor, maxAbsDiff, type Weights } from "../../../tnsr/tensor";
 import { KimiSparseMoeBlock, KimiMLAAttention } from "../reference/model";
 import { attnRes, kdaRecurrence, decayGate } from "../reference/ops";
 import * as f from "../facts";

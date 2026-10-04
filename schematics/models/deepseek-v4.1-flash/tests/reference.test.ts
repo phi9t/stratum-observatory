@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { Ctx } from "../../../kit/ref/tensor";
+import { Ctx } from "../../../tnsr/tensor";
 import { forward, REAL, TOY, TOY_IDS, toyHashes } from "../reference/model";
 import { parameterTotal } from "../facts";
 describe("clean text backbone", () => {

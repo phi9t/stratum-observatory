@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import sources from "../sources.json";
 import { describe, expect, it } from "vitest";
-import { Ctx, maxAbsDiff, tensor, type Weights } from "../../../kit/ref/tensor";
+import { Ctx, maxAbsDiff, tensor, type Weights } from "../../../tnsr/tensor";
 import * as f from "../facts";
 import { forward, type QwenConfig } from "../reference/model";
 import fixture from "../reference/fixture.json";

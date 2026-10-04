@@ -4,8 +4,8 @@
 
 import { describe, expect, it } from "vitest";
 
-import { AdamW, type Optimizer, sgd, trainable, trainStep } from "../../../kit/ref/optim";
-import { crossEntropy, Ctx, Tape, type Weights } from "../../../kit/ref/tensor";
+import { AdamW, type Optimizer, sgd, trainable, trainStep } from "../../../tnsr/optim";
+import { crossEntropy, Ctx, Tape, type Weights } from "../../../tnsr/tensor";
 import * as f from "../facts";
 import fixture from "../reference/fixture.json";
 import { forward, type Gpt2Config } from "../reference/model";

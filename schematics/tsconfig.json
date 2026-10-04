@@ -12,5 +12,5 @@
     "noEmit": true,
     "types": ["node", "vite/client"]
   },
-  "include": ["kit", "models", "tools/*.ts", "vitest.config.ts"]
+  "include": ["kit", "tnsr", "models", "tools/*.ts", "vitest.config.ts"]
 }

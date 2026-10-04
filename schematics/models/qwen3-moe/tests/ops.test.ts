@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { tensor } from "../../../kit/ref/tensor";
+import { tensor } from "../../../tnsr/tensor";
 import { repeatKV, rotary } from "../reference/ops";
 describe("head-axis contracts", () => {
   it("rejects fractional KV repetition rather than inventing a head axis", () => {

@@ -7,6 +7,7 @@ kit. This subtree is self-contained: it does not touch Stratum's `src/`, `tools/
 ```
 skill/model-schematic/   the skill agents follow (start at SKILL.md)
 kit/                     shared components, styles, helpers, and the gallery page
+tnsr/                    the tensor library: ops with forward and backward, tape, optimizers
 tools/                   new-model, fetch-sources, build, check, shoot, launch-worker
 models/<slug>/           one page per checkpoint
 runs/                    (ignored) worker transcripts, check reports, screenshots

@@ -1,5 +1,5 @@
 import { expect, it } from "vitest";
-import { tensor, Ctx } from "../../../kit/ref/tensor";
+import { tensor, Ctx } from "../../../tnsr/tensor";
 import { route, attnRes, kdaRecurrence, gatedNorm } from "../reference/ops";
 import { forward, realConfig } from "../reference/model";
 import * as f from "../facts";

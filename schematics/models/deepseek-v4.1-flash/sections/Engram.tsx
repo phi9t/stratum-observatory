@@ -15,7 +15,7 @@ import {
 } from "../../../kit";
 import * as f from "../facts";
 import { engramGraph } from "../graphs";
-import { Ctx } from "../../../kit/ref/tensor";
+import { Ctx } from "../../../tnsr/tensor";
 import { Engram as runEngram, TOY } from "../reference/model";
 export function Engram() {
   const [hash, setHash] = useUrlNumber("lookup", 0, 0, TOY.engramRows[0] - 1);

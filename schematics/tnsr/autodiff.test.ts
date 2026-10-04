@@ -6,7 +6,7 @@
 
 import { describe, expect, it } from "vitest";
 
-import { rng } from "../lib/rng";
+import { rng } from "./rng";
 import * as ref from "./tensor";
 import { type Tensor } from "./tensor";
 

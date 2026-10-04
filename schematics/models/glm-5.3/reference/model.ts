@@ -1,7 +1,7 @@
 // Distilled from pinned GlmMoeDsa{Model,Attention,Indexer,MoE,Experts,TopkRouter,MLP}.
 // See sources.json for Transformers commit. Text decoder prefill to logits only.
 // No training loss, MTP, quantized storage, incremental cache or GPU kernels.
-import * as r from "../../../kit/ref/tensor";
+import * as r from "../../../tnsr/tensor";
 import * as f from "../facts";
 export type Config = {
   hidden: number;

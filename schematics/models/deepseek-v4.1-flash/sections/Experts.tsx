@@ -15,7 +15,7 @@ import {
 import { ToyRouter } from "../widgets";
 import * as f from "../facts";
 import { routerGraph, expertGraph, graph, stream } from "../graphs";
-import { Ctx } from "../../../kit/ref/tensor";
+import { Ctx } from "../../../tnsr/tensor";
 import { forward, TOY, TOY_IDS, toyHashes } from "../reference/model";
 import { useLayer } from "./Stack";
 export function Experts() {

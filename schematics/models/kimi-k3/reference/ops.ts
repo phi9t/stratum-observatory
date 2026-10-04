@@ -1,5 +1,5 @@
-// Scalar operations missing from kit/ref. Shape mode never allocates value arrays.
-import { tensor, sigmoid, add, topk, gatherLast, softmax, rmsNorm, type Tensor } from "../../../kit/ref/tensor";
+// Scalar operations missing from tnsr. Shape mode never allocates value arrays.
+import { tensor, sigmoid, add, topk, gatherLast, softmax, rmsNorm, type Tensor } from "../../../tnsr/tensor";
 export function mapped(x: Tensor, fn: (x: number, i: number) => number): Tensor {
   return x.data === null ? { shape: x.shape, data: null } : tensor(x.shape, Array.from(x.data, fn));
 }

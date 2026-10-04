@@ -1,4 +1,4 @@
-import { Ctx, input } from "../../kit/ref/tensor";
+import { Ctx, input } from "../../tnsr/tensor";
 import { normals, type Routing } from "../../kit";
 import { Qwen3MoeRouter, forward } from "./reference/model";
 import * as f from "./facts";

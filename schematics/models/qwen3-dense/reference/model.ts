@@ -17,7 +17,7 @@ import {
   softmax,
   tensor,
   type Tensor,
-} from "../../../kit/ref/tensor";
+} from "../../../tnsr/tensor";
 import * as f from "../facts";
 export type QwenConfig = {
   vocab: number;
