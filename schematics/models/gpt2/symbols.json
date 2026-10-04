@@ -1,0 +1,558 @@
+{
+  "activations": {
+    "AccurateGELUActivation": [
+      151,
+      164
+    ],
+    "AccurateGELUActivation.__init__": [
+      159,
+      161
+    ],
+    "AccurateGELUActivation.forward": [
+      163,
+      164
+    ],
+    "ClassInstantier": [
+      224,
+      228
+    ],
+    "ClassInstantier.__getitem__": [
+      225,
+      228
+    ],
+    "ClippedGELUActivation": [
+      126,
+      148
+    ],
+    "ClippedGELUActivation.__init__": [
+      139,
+      145
+    ],
+    "ClippedGELUActivation.forward": [
+      147,
+      148
+    ],
+    "FastGELUActivation": [
+      107,
+      113
+    ],
+    "FastGELUActivation.forward": [
+      112,
+      113
+    ],
+    "GELUActivation": [
+      70,
+      89
+    ],
+    "GELUActivation.__init__": [
+      78,
+      83
+    ],
+    "GELUActivation._gelu_python": [
+      85,
+      86
+    ],
+    "GELUActivation.forward": [
+      88,
+      89
+    ],
+    "GELUTanh": [
+      31,
+      55
+    ],
+    "GELUTanh.__init__": [
+      40,
+      45
+    ],
+    "GELUTanh._gelu_tanh_python": [
+      47,
+      48
+    ],
+    "GELUTanh.forward": [
+      50,
+      55
+    ],
+    "LaplaceActivation": [
+      193,
+      203
+    ],
+    "LaplaceActivation.forward": [
+      201,
+      203
+    ],
+    "LinearActivation": [
+      184,
+      190
+    ],
+    "LinearActivation.forward": [
+      189,
+      190
+    ],
+    "MishActivation": [
+      167,
+      181
+    ],
+    "MishActivation.__init__": [
+      173,
+      175
+    ],
+    "MishActivation._mish_python": [
+      177,
+      178
+    ],
+    "MishActivation.forward": [
+      180,
+      181
+    ],
+    "NewGELUActivation": [
+      59,
+      66
+    ],
+    "NewGELUActivation.forward": [
+      65,
+      66
+    ],
+    "QuickGELUActivation": [
+      117,
+      123
+    ],
+    "QuickGELUActivation.forward": [
+      122,
+      123
+    ],
+    "ReLUSquaredActivation": [
+      206,
+      214
+    ],
+    "ReLUSquaredActivation.forward": [
+      211,
+      214
+    ],
+    "SiLUActivation": [
+      93,
+      103
+    ],
+    "SiLUActivation.forward": [
+      102,
+      103
+    ],
+    "SqrtSoftplusActivation": [
+      217,
+      221
+    ],
+    "SqrtSoftplusActivation.forward": [
+      220,
+      221
+    ],
+    "XIELUActivation": [
+      231,
+      350
+    ],
+    "XIELUActivation.__init__": [
+      239,
+      279
+    ],
+    "XIELUActivation._xielu_cuda": [
+      290,
+      313
+    ],
+    "XIELUActivation._xielu_python": [
+      281,
+      288
+    ],
+    "XIELUActivation.forward": [
+      315,
+      350
+    ],
+    "__getitem__": [
+      225,
+      228
+    ],
+    "_gelu_python": [
+      85,
+      86
+    ],
+    "_gelu_tanh_python": [
+      47,
+      48
+    ],
+    "_mish_python": [
+      177,
+      178
+    ],
+    "_xielu_cuda": [
+      290,
+      313
+    ],
+    "_xielu_python": [
+      281,
+      288
+    ],
+    "get_activation": [
+      353,
+      369
+    ]
+  },
+  "reference": {
+    "GPT2Attention": [
+      75,
+      226
+    ],
+    "GPT2Attention.__init__": [
+      76,
+      111
+    ],
+    "GPT2Attention._upcast_and_reordered_attn": [
+      113,
+      142
+    ],
+    "GPT2Attention.forward": [
+      144,
+      226
+    ],
+    "GPT2Block": [
+      246,
+      312
+    ],
+    "GPT2Block.__init__": [
+      247,
+      260
+    ],
+    "GPT2Block.forward": [
+      262,
+      312
+    ],
+    "GPT2DoubleHeadsModel": [
+      727,
+      857
+    ],
+    "GPT2DoubleHeadsModel.__init__": [
+      730,
+      738
+    ],
+    "GPT2DoubleHeadsModel.forward": [
+      742,
+      857
+    ],
+    "GPT2DoubleHeadsModelOutput": [
+      459,
+      482
+    ],
+    "GPT2ForQuestionAnswering": [
+      1044,
+      1131
+    ],
+    "GPT2ForQuestionAnswering.__init__": [
+      1045,
+      1052
+    ],
+    "GPT2ForQuestionAnswering.forward": [
+      1056,
+      1131
+    ],
+    "GPT2ForSequenceClassification": [
+      858,
+      960
+    ],
+    "GPT2ForSequenceClassification.__init__": [
+      859,
+      866
+    ],
+    "GPT2ForSequenceClassification.forward": [
+      870,
+      960
+    ],
+    "GPT2ForTokenClassification": [
+      964,
+      1040
+    ],
+    "GPT2ForTokenClassification.__init__": [
+      965,
+      980
+    ],
+    "GPT2ForTokenClassification.forward": [
+      984,
+      1040
+    ],
+    "GPT2LMHeadModel": [
+      636,
+      716
+    ],
+    "GPT2LMHeadModel.__init__": [
+      639,
+      645
+    ],
+    "GPT2LMHeadModel.forward": [
+      649,
+      716
+    ],
+    "GPT2MLP": [
+      229,
+      243
+    ],
+    "GPT2MLP.__init__": [
+      230,
+      236
+    ],
+    "GPT2MLP.forward": [
+      238,
+      243
+    ],
+    "GPT2Model": [
+      486,
+      627
+    ],
+    "GPT2Model.__init__": [
+      487,
+      503
+    ],
+    "GPT2Model.forward": [
+      514,
+      627
+    ],
+    "GPT2Model.get_input_embeddings": [
+      505,
+      506
+    ],
+    "GPT2Model.set_input_embeddings": [
+      508,
+      509
+    ],
+    "GPT2PreTrainedModel": [
+      413,
+      450
+    ],
+    "GPT2PreTrainedModel._init_weights": [
+      433,
+      450
+    ],
+    "GPT2SequenceSummary": [
+      313,
+      409
+    ],
+    "GPT2SequenceSummary.__init__": [
+      339,
+      366
+    ],
+    "GPT2SequenceSummary.forward": [
+      368,
+      409
+    ],
+    "_init_weights": [
+      433,
+      450
+    ],
+    "_upcast_and_reordered_attn": [
+      113,
+      142
+    ],
+    "eager_attention_forward": [
+      54,
+      72
+    ],
+    "get_input_embeddings": [
+      505,
+      506
+    ],
+    "set_input_embeddings": [
+      508,
+      509
+    ]
+  },
+  "serving": {
+    "GPT2Attention": [
+      63,
+      112
+    ],
+    "GPT2Attention.__init__": [
+      64,
+      102
+    ],
+    "GPT2Attention.forward": [
+      104,
+      112
+    ],
+    "GPT2Block": [
+      148,
+      182
+    ],
+    "GPT2Block.__init__": [
+      149,
+      165
+    ],
+    "GPT2Block.forward": [
+      167,
+      182
+    ],
+    "GPT2ForSequenceClassification": [
+      321,
+      375
+    ],
+    "GPT2ForSequenceClassification.__init__": [
+      336,
+      352
+    ],
+    "GPT2ForSequenceClassification.embed_input_ids": [
+      354,
+      355
+    ],
+    "GPT2ForSequenceClassification.forward": [
+      362,
+      375
+    ],
+    "GPT2ForSequenceClassification.load_weights": [
+      357,
+      360
+    ],
+    "GPT2LMHeadModel": [
+      269,
+      318
+    ],
+    "GPT2LMHeadModel.__init__": [
+      270,
+      291
+    ],
+    "GPT2LMHeadModel.compute_logits": [
+      308,
+      313
+    ],
+    "GPT2LMHeadModel.embed_input_ids": [
+      293,
+      294
+    ],
+    "GPT2LMHeadModel.forward": [
+      296,
+      306
+    ],
+    "GPT2LMHeadModel.load_weights": [
+      315,
+      318
+    ],
+    "GPT2MLP": [
+      115,
+      145
+    ],
+    "GPT2MLP.__init__": [
+      116,
+      139
+    ],
+    "GPT2MLP.forward": [
+      141,
+      145
+    ],
+    "GPT2Model": [
+      186,
+      266
+    ],
+    "GPT2Model.__init__": [
+      192,
+      219
+    ],
+    "GPT2Model._transpose_conv1d": [
+      249,
+      260
+    ],
+    "GPT2Model.embed_input_ids": [
+      221,
+      222
+    ],
+    "GPT2Model.forward": [
+      224,
+      247
+    ],
+    "GPT2Model.load_weights": [
+      262,
+      266
+    ],
+    "_add_transformer_prefix": [
+      378,
+      388
+    ],
+    "_transpose_conv1d": [
+      249,
+      260
+    ],
+    "compute_logits": [
+      308,
+      313
+    ]
+  },
+  "utils": {
+    "Conv1D": [
+      95,
+      121
+    ],
+    "Conv1D.__init__": [
+      106,
+      112
+    ],
+    "Conv1D.__repr__": [
+      114,
+      115
+    ],
+    "Conv1D.forward": [
+      117,
+      121
+    ],
+    "__init__": [
+      106,
+      112
+    ],
+    "__repr__": [
+      114,
+      115
+    ],
+    "apply_chunking_to_forward": [
+      124,
+      199
+    ],
+    "apply_chunking_to_forward.forward": [
+      161,
+      199
+    ],
+    "apply_chunking_to_forward.forward_chunk": [
+      155,
+      160
+    ],
+    "compile_compatible_method_lru_cache": [
+      237,
+      255
+    ],
+    "compile_compatible_method_lru_cache.decorator": [
+      243,
+      255
+    ],
+    "compile_compatible_method_lru_cache.decorator.wrapper": [
+      247,
+      255
+    ],
+    "decorator": [
+      243,
+      255
+    ],
+    "forward_chunk": [
+      155,
+      160
+    ],
+    "id_tensor_storage": [
+      211,
+      233
+    ],
+    "meshgrid": [
+      202,
+      208
+    ],
+    "prune_linear_layer": [
+      61,
+      92
+    ],
+    "softmax_backward_data": [
+      50,
+      58
+    ],
+    "wrapper": [
+      247,
+      255
+    ]
+  }
+}

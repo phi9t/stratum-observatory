@@ -1,0 +1,1565 @@
+/* Model schematic kit. Everything is scoped under .ms. Colours are tokens;
+   components never hard-code one. Lane colour comes from data-lane. */
+
+.ms-body {
+  margin: 0;
+  background: #faf8f3;
+}
+
+.ms {
+  --ms-paper: #faf8f3;
+  --ms-surface: #ffffff;
+  --ms-sunken: #f2efe7;
+  --ms-ink: #161a22;
+  --ms-ink-2: #434b59;
+  --ms-ink-3: #636d7c;
+  --ms-rule: #e3dfd3;
+  --ms-rule-strong: #c4bfb0;
+  --ms-high: #1f5fbf;
+  --ms-high-tint: #e2ecfa;
+  --ms-low: #b4500b;
+  --ms-low-tint: #fbe9d6;
+  --ms-instance: #6f3fae;
+  --ms-instance-tint: #efe6f9;
+  --ms-skip: #0b756b;
+  --ms-skip-tint: #d9f1ed;
+  --ms-mark: #ffe07a;
+  --ms-mark-soft: #fff4c7;
+  --ms-mark-ink: #5a4300;
+  --ms-shadow: 0 1px 2px rgb(22 26 34 / 5%), 0 8px 24px -12px rgb(22 26 34 / 14%);
+  --ms-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --ms-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --ms-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --focus-ring: 0 0 0 2px var(--ms-paper), 0 0 0 4px var(--ms-high);
+  --lane: var(--ms-ink);
+  --lane-tint: var(--ms-sunken);
+
+  color: var(--ms-ink);
+  background: var(--ms-paper);
+  font-family: var(--ms-sans);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ms-body {
+    background: #0e1116;
+  }
+
+  .ms {
+    --ms-paper: #0e1116;
+    --ms-surface: #151a21;
+    --ms-sunken: #1c222b;
+    --ms-ink: #e9ecf1;
+    --ms-ink-2: #b6bfcc;
+    --ms-ink-3: #909aa9;
+    --ms-rule: #262d38;
+    --ms-rule-strong: #3c4656;
+    --ms-high: #7fb2ff;
+    --ms-high-tint: #152742;
+    --ms-low: #f3a266;
+    --ms-low-tint: #3b2513;
+    --ms-instance: #c19df2;
+    --ms-instance-tint: #2b1e40;
+    --ms-skip: #56d3c2;
+    --ms-skip-tint: #0f2f2b;
+    --ms-mark: #7a6200;
+    --ms-mark-soft: #2e2710;
+    --ms-mark-ink: #ffe9a3;
+    --ms-shadow: 0 1px 2px rgb(0 0 0 / 40%), 0 10px 28px -14px rgb(0 0 0 / 70%);
+  }
+}
+
+.ms [data-lane="high"] {
+  --lane: var(--ms-high);
+  --lane-tint: var(--ms-high-tint);
+}
+
+.ms [data-lane="low"] {
+  --lane: var(--ms-low);
+  --lane-tint: var(--ms-low-tint);
+}
+
+.ms [data-lane="instance"] {
+  --lane: var(--ms-instance);
+  --lane-tint: var(--ms-instance-tint);
+}
+
+.ms [data-lane="skip"] {
+  --lane: var(--ms-skip);
+  --lane-tint: var(--ms-skip-tint);
+}
+
+.ms [data-lane="merged"] {
+  --lane: var(--ms-ink);
+  --lane-tint: var(--ms-sunken);
+}
+
+.ms *,
+.ms *::before,
+.ms *::after {
+  box-sizing: border-box;
+}
+
+.ms :where(p, ul, ol, dl, dd, figure, h1, h2, h3, h4, h5) {
+  margin: 0;
+  padding: 0;
+}
+
+.ms code {
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: none;
+  font-family: var(--ms-mono);
+  font-size: 0.92em;
+}
+
+.ms :where(button, input, [tabindex]):focus-visible {
+  outline: 2px solid transparent;
+  box-shadow: var(--focus-ring);
+}
+
+.ms-visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- page frame ---------------------------------------------------------- */
+
+.ms > :is(.ms-hero, .ms-section) {
+  width: min(100% - 2 * clamp(1rem, 4vw, 2.5rem), 82.5rem);
+  margin-inline: auto;
+}
+
+.ms:not([data-standalone]) {
+  border: 1px solid var(--ms-rule);
+  border-radius: 14px;
+  padding-block-end: 2rem;
+}
+
+.ms[data-standalone] {
+  min-height: 100vh;
+  padding-block-end: 6rem;
+}
+
+.ms-nav {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 0.5rem clamp(1rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--ms-rule);
+  background: var(--ms-paper);
+}
+
+.ms[data-standalone] .ms-nav {
+  position: sticky;
+  z-index: 5;
+  top: 0;
+}
+
+.ms:not([data-standalone]) .ms-nav {
+  border-radius: 14px 14px 0 0;
+}
+
+.ms-nav__mark {
+  flex: none;
+  color: var(--ms-ink);
+  font-family: var(--ms-serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.ms-nav ul {
+  display: flex;
+  gap: 0.125rem;
+  overflow-x: auto;
+  list-style: none;
+  scrollbar-width: none;
+}
+
+.ms .ms-nav button {
+  min-height: 2rem;
+  padding: 0.25rem 0.7rem;
+  border: 0;
+  border-radius: 999px;
+  color: var(--ms-ink-2);
+  background: none;
+  font: 500 0.8125rem/1 var(--ms-sans);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.ms .ms-nav button:hover {
+  color: var(--ms-ink);
+  background: var(--ms-sunken);
+}
+
+.ms .ms-nav button[aria-current="true"] {
+  color: var(--ms-paper);
+  background: var(--ms-ink);
+}
+
+/* ---- hero ---------------------------------------------------------------- */
+
+.ms-hero {
+  padding-block: clamp(2.5rem, 7vw, 5rem) clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.ms-hero__eyebrow,
+.ms-section__source,
+.ms-fig__column {
+  color: var(--ms-ink-3);
+  font-family: var(--ms-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ms .ms-hero__title {
+  margin-block: 0.5rem 0.75rem;
+  color: var(--ms-ink);
+  font-family: var(--ms-serif);
+  font-size: clamp(3rem, 9vw, 5.5rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+
+.ms:not([data-standalone]) .ms-hero__title {
+  font-size: clamp(2.25rem, 6vw, 3.25rem);
+}
+
+.ms-hero__tagline {
+  max-width: 38rem;
+  color: var(--ms-ink-2);
+  font-family: var(--ms-serif);
+  font-size: clamp(1.125rem, 2.2vw, 1.4375rem);
+  line-height: 1.4;
+}
+
+.ms .ms-hero__spec {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0;
+  margin-block: 1.75rem 1rem;
+  list-style: none;
+  color: var(--ms-ink-2);
+  font-size: 0.875rem;
+}
+
+.ms-hero__spec li {
+  padding-inline: 0 1.125rem;
+  margin-inline-end: 1.125rem;
+  border-inline-end: 1px solid var(--ms-rule-strong);
+}
+
+.ms-hero__spec li:last-child {
+  border: 0;
+}
+
+.ms-hero__spec b {
+  margin-inline-end: 0.25rem;
+  color: var(--ms-ink);
+  font-family: var(--ms-mono);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.ms-titleblock {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--ms-rule-strong);
+  border-radius: 999px;
+  color: var(--ms-ink-2);
+  background: var(--ms-surface);
+  font-size: 0.8125rem;
+}
+
+.ms-titleblock code {
+  color: var(--ms-ink);
+  font-weight: 600;
+}
+
+/* ---- sections ------------------------------------------------------------ */
+
+.ms-section {
+  padding-block: clamp(2.25rem, 5vw, 3.75rem) 0;
+  margin-block-start: clamp(2.25rem, 5vw, 3.75rem);
+  border-top: 1px solid var(--ms-rule);
+  scroll-margin-top: 3rem;
+}
+
+.ms-section__head {
+  margin-block-end: 1.5rem;
+}
+
+.ms-section__source code {
+  font-size: 1em;
+}
+
+.ms .ms-section__head :is(h2, h4) {
+  margin-block: 0.4rem 0.6rem;
+  color: var(--ms-ink);
+  font-family: var(--ms-serif);
+  font-size: clamp(1.625rem, 3.4vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+.ms-section__lede {
+  max-width: 44rem;
+  color: var(--ms-ink-2);
+  font-size: 1.0625rem;
+}
+
+.ms .ms-sub {
+  margin-block: 2.5rem 0.5rem;
+  color: var(--ms-ink);
+  font-family: var(--ms-serif);
+  font-size: 1.3125rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.ms .ms-prose {
+  max-width: 44rem;
+  margin-block: 0.75rem 1rem;
+  color: var(--ms-ink-2);
+}
+
+.ms-prose code,
+.ms-boundary code,
+.ms-facts code {
+  color: var(--ms-ink);
+}
+
+/* ---- figures ------------------------------------------------------------- */
+
+.ms-figure {
+  margin-block: 1.25rem;
+}
+
+.ms-scroll {
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid var(--ms-rule);
+  border-radius: 12px;
+  background: var(--ms-surface);
+  box-shadow: var(--ms-shadow);
+}
+
+.ms-figure figcaption {
+  max-width: 44rem;
+  margin-block-start: 0.75rem;
+  color: var(--ms-ink-2);
+  font-size: 0.875rem;
+}
+
+.ms-fig {
+  display: block;
+  flex: none;
+  margin-inline: auto;
+}
+
+.ms-fig text {
+  fill: var(--ms-ink-2);
+  font-family: var(--ms-mono);
+  font-size: 11.5px;
+}
+
+.ms-fig .ms-fig__column {
+  fill: var(--ms-ink-3);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.ms-fig .ms-fig__note {
+  fill: var(--ms-ink-2);
+  font-family: var(--ms-sans);
+  font-size: 12px;
+}
+
+.ms-fig .ms-fig__note[data-lane] {
+  fill: var(--lane);
+}
+
+.ms-node rect {
+  fill: var(--ms-surface);
+  stroke: var(--lane);
+  stroke-width: 1.25;
+}
+
+.ms-node[data-kind="tensor"] rect,
+.ms-node[data-lane="skip"] rect,
+.ms-node[data-lane="high"] rect,
+.ms-node[data-lane="low"] rect,
+.ms-node[data-lane="instance"] rect {
+  fill: var(--lane-tint);
+}
+
+.ms-node__plate {
+  fill: var(--ms-surface);
+  stroke: var(--ms-ink);
+  stroke-width: 1.25;
+}
+
+.ms-fig .ms-node__title {
+  fill: var(--ms-ink);
+  font-family: var(--ms-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.ms-fig .ms-node__line {
+  fill: var(--ms-ink-2);
+  font-size: 11px;
+}
+
+.ms-wire {
+  fill: none;
+  stroke: var(--lane);
+  stroke-width: 1.5;
+}
+
+.ms-wire--skip {
+  stroke: var(--ms-skip);
+  stroke-dasharray: 5 4;
+}
+
+.ms-wire--gate {
+  stroke: var(--ms-instance);
+}
+
+.ms-arrowhead {
+  fill: var(--ms-ink-2);
+  fill: context-stroke;
+}
+
+.ms-sum circle {
+  fill: var(--ms-surface);
+  stroke: var(--ms-ink);
+  stroke-width: 1.25;
+}
+
+.ms-sum path {
+  fill: none;
+  stroke: var(--ms-ink);
+  stroke-width: 1.5;
+}
+
+.ms-fig .ms-chain__io {
+  fill: var(--ms-ink);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.ms-fig .ms-ffn__width {
+  fill: var(--ms-ink-3);
+  font-size: 11px;
+}
+
+.ms-overview__tap line {
+  stroke: var(--ms-skip);
+  stroke-dasharray: 1.5 3;
+}
+
+.ms-overview__tap rect {
+  fill: var(--ms-skip-tint);
+  stroke: var(--ms-skip);
+}
+
+.ms-overview__braid {
+  stroke: var(--ms-ink);
+  stroke-width: 1.25;
+}
+
+.ms-overview__windows rect {
+  fill: var(--ms-skip);
+  opacity: 0.85;
+}
+
+.ms-scale__ribbon polygon {
+  fill: var(--lane);
+  opacity: 0.1;
+}
+
+.ms-scale__tensor {
+  fill: var(--lane-tint);
+  stroke: var(--lane);
+  stroke-width: 1.25;
+}
+
+.ms-fig .ms-scale__name {
+  fill: var(--lane);
+  font-family: var(--ms-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.ms-fig .ms-scale__shape {
+  fill: var(--ms-ink);
+}
+
+.ms-fig .ms-scale__count,
+.ms-fig .ms-scale__group-label {
+  fill: var(--ms-ink-3);
+  font-size: 11px;
+}
+
+.ms-fig .ms-scale__group-label[data-active="true"] {
+  fill: var(--ms-ink);
+  font-weight: 700;
+}
+
+.ms-scale__tick {
+  stroke: var(--ms-ink);
+  opacity: 0.28;
+}
+
+.ms-scale__group {
+  fill: var(--ms-mark-soft);
+  stroke: var(--ms-mark-ink);
+  stroke-dasharray: 3 3;
+  stroke-width: 0.75;
+}
+
+.ms-scale__trace rect {
+  fill: var(--ms-mark);
+  stroke: var(--ms-mark-ink);
+  stroke-width: 1;
+}
+
+.ms-headmix__grid rect {
+  fill: var(--ms-sunken);
+  stroke: var(--ms-rule-strong);
+  stroke-width: 0.75;
+}
+
+.ms-headmix__grid rect[data-active="true"] {
+  fill: var(--ms-skip-tint);
+  stroke: var(--ms-skip);
+}
+
+.ms-headmix__grid[data-written="true"] rect[data-active="true"] {
+  fill: var(--ms-skip);
+}
+
+.ms-strip__bar {
+  fill: var(--ms-ink);
+}
+
+.ms-strip [data-kind="local"] .ms-strip__bar {
+  fill: var(--ms-skip);
+}
+
+.ms-fig .ms-strip__label {
+  fill: var(--ms-ink-3);
+  font-size: 11px;
+}
+
+.ms-strip__base {
+  stroke: var(--ms-rule-strong);
+}
+
+/* ---- stage ledger -------------------------------------------------------- */
+
+.ms .ms-stages {
+  display: block;
+  overflow: visible;
+  margin-block: 1.5rem 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  list-style: none;
+}
+
+.ms .ms-stages .ms-stage {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr) auto;
+  gap: 0.375rem 1.5rem;
+  align-items: start;
+  min-width: 0;
+  margin: 0;
+  padding: 0.8rem 0;
+  border: 0;
+  border-top: 1px solid var(--ms-rule);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  flex: none;
+  scroll-snap-align: none;
+  overflow-wrap: anywhere;
+}
+
+.ms .ms-stages .ms-stage::before,
+.ms .ms-stages .ms-stage::after {
+  content: none;
+}
+
+.ms .ms-stages .ms-stage :is(h3, h5) {
+  color: var(--ms-ink);
+  font-family: var(--ms-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.ms .ms-stages .ms-stage p {
+  max-width: 40rem;
+  color: var(--ms-ink-2);
+  font-size: 0.875rem;
+}
+
+.ms .ms-stages strong {
+  color: var(--ms-ink);
+  font-family: var(--ms-mono);
+  font-size: 0.92em;
+  font-weight: 600;
+}
+
+.ms-stage__tensors {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-end;
+}
+
+.ms-tensor {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--ms-rule-strong);
+  border-radius: 6px;
+  background: var(--ms-surface);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.ms .ms-tensor code {
+  padding: 0.1rem 0.45rem;
+  font-size: 1em;
+}
+
+.ms .ms-tensor .ms-tensor__shape {
+  border-inline-start: 1px solid var(--ms-rule-strong);
+  color: var(--ms-ink-2);
+  background: var(--ms-sunken);
+}
+
+/* ---- controls ------------------------------------------------------------ */
+
+.ms-control,
+.ms-stepper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: center;
+  margin-block: 0.5rem 0.75rem;
+}
+
+.ms-stepper__scrub {
+  display: flex;
+  flex: 1 1 18rem;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.ms :is(.ms-control, .ms-stepper) label {
+  display: inline;
+  flex: none;
+  color: var(--ms-ink);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.ms :is(.ms-control, .ms-stepper) input[type="range"] {
+  flex: 1 1 12rem;
+  min-width: 8rem;
+  min-height: 1.75rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  accent-color: var(--ms-skip);
+}
+
+.ms-control input[type="range"] {
+  max-width: 28rem;
+}
+
+.ms-control__value,
+.ms-stepper__value {
+  flex: none;
+  min-width: 4.5rem;
+  color: var(--ms-ink);
+  font-family: var(--ms-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.ms-control__value[data-lane] {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  color: var(--lane);
+  background: var(--lane-tint);
+  text-align: center;
+}
+
+.ms .ms-stepper button {
+  min-height: 2.125rem;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid var(--ms-rule-strong);
+  border-radius: 999px;
+  color: var(--ms-ink);
+  background: var(--ms-surface);
+  font: 600 0.8125rem/1 var(--ms-sans);
+  cursor: pointer;
+}
+
+.ms .ms-stepper button:hover:not(:disabled) {
+  border-color: var(--ms-ink);
+}
+
+.ms .ms-stepper button:disabled {
+  color: var(--ms-ink-3);
+  background: var(--ms-sunken);
+  cursor: default;
+}
+
+.ms .ms-segments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  min-width: 0;
+  margin: 1rem 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.ms .ms-segments legend {
+  margin-block-end: 0.4rem;
+  padding: 0;
+  color: var(--ms-ink-3);
+  font-family: var(--ms-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ms .ms-segments label {
+  display: inline-flex;
+  position: relative;
+  cursor: pointer;
+}
+
+.ms .ms-segments input {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ms .ms-segments span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.25rem 0.8rem;
+  border: 1px solid var(--ms-rule-strong);
+  border-radius: 999px;
+  color: var(--ms-ink-2);
+  background: var(--ms-surface);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.ms .ms-segments input:checked + span {
+  border-color: var(--ms-ink);
+  color: var(--ms-paper);
+  background: var(--ms-ink);
+}
+
+.ms .ms-segments input:focus-visible + span {
+  box-shadow: var(--focus-ring);
+}
+
+.ms .ms-sentence,
+.ms .ms-readout__sentence {
+  max-width: 38rem;
+  margin-block: 0.5rem 1rem;
+  padding: 0.35rem 0 0.35rem 0.85rem;
+  border-inline-start: 3px solid var(--ms-mark);
+  color: var(--ms-ink);
+  font-family: var(--ms-serif);
+  font-size: 1.0625rem;
+  line-height: 1.4;
+}
+
+.ms .ms-readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 0;
+  margin-block: 0.75rem;
+  border-block: 1px solid var(--ms-rule);
+}
+
+.ms .ms-readout > div {
+  padding: 0.6rem 1rem 0.7rem 0;
+}
+
+.ms .ms-readout dt,
+.ms .ms-ledger dt {
+  margin: 0;
+  color: var(--ms-ink-3);
+  font-family: var(--ms-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ms .ms-readout dd,
+.ms .ms-ledger dd {
+  margin: 0;
+  color: var(--ms-ink);
+  font-family: var(--ms-mono);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.ms .ms-readout dd.ms-readout__text {
+  color: var(--ms-ink-2);
+  font-family: var(--ms-sans);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.ms .ms-readout dd span,
+.ms .ms-ledger dd span {
+  color: var(--ms-ink-3);
+  font-family: var(--ms-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+/* ---- pipes --------------------------------------------------------------- */
+
+.ms-pipes {
+  display: grid;
+  gap: 0;
+  margin-block: 1rem;
+  border: 1px solid var(--ms-rule);
+  border-radius: 12px;
+  background: var(--ms-surface);
+  box-shadow: var(--ms-shadow);
+}
+
+.ms-pipe {
+  display: grid;
+  grid-template-columns: 9.5rem minmax(0, 1fr);
+  gap: 0.5rem 1rem;
+  align-items: start;
+  padding: 0.9rem 1rem;
+  border-inline-start: 4px solid var(--lane);
+}
+
+.ms-pipe + .ms-pipe {
+  border-top: 1px solid var(--ms-rule);
+}
+
+.ms-pipe:first-child {
+  border-start-start-radius: 11px;
+}
+
+.ms-pipe:last-child {
+  border-end-start-radius: 11px;
+}
+
+.ms-pipe__label {
+  padding-block-start: 0.2rem;
+  color: var(--lane);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.ms .ms-pipe ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0;
+  list-style: none;
+}
+
+.ms-pipe li {
+  display: grid;
+  grid-template-areas: "arrow node" "arrow sub";
+  grid-template-columns: auto auto;
+  align-items: center;
+}
+
+.ms-pipe li::before {
+  grid-area: arrow;
+  content: "";
+}
+
+.ms-pipe li + li::before {
+  padding-inline: 0.45rem;
+  color: var(--ms-ink-3);
+  content: "→";
+}
+
+.ms-pipe li > span {
+  grid-area: node;
+  justify-self: start;
+  padding: 0.2rem 0.65rem;
+  border: 1px solid var(--lane);
+  border-radius: 999px;
+  color: var(--ms-ink);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ms-pipe li[data-kind="tensor"] > span {
+  border-color: transparent;
+  border-radius: 5px;
+  background: var(--lane-tint);
+  font-family: var(--ms-mono);
+  font-size: 0.78125rem;
+}
+
+.ms-pipe li > small {
+  grid-area: sub;
+  padding: 0.15rem 0.3rem 0;
+  color: var(--ms-ink-3);
+  font-size: 0.71875rem;
+}
+
+/* ---- tables -------------------------------------------------------------- */
+
+.ms-table-scroll {
+  overflow-x: auto;
+  margin-block: 1rem;
+}
+
+.ms table.ms-table {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  border-collapse: collapse;
+  background: none;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.ms .ms-table caption {
+  padding: 0 0 0.5rem;
+  color: var(--ms-ink);
+  font-family: var(--ms-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.ms .ms-table :is(th, td) {
+  padding: 0.5rem 0.9rem 0.5rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--ms-rule);
+  border-radius: 0;
+  color: var(--ms-ink-2);
+  background: none;
+  text-align: left;
+  vertical-align: top;
+}
+
+.ms .ms-table thead th {
+  border-bottom-color: var(--ms-rule-strong);
+  color: var(--ms-ink-3);
+  font-family: var(--ms-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ms .ms-table tbody th,
+.ms .ms-table tfoot th {
+  color: var(--ms-ink);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ms .ms-table tfoot :is(th, td) {
+  border-top: 1px solid var(--ms-rule-strong);
+  border-bottom: 0;
+  color: var(--ms-ink);
+  font-weight: 600;
+}
+
+.ms .ms-table--dense :is(th, td) {
+  padding-block: 0.22rem;
+  font-family: var(--ms-mono);
+  font-size: 0.78125rem;
+  white-space: nowrap;
+}
+
+.ms .ms-table tr[aria-current="step"] :is(th, td),
+.ms .ms-table tr[data-fed="true"] :is(th, td) {
+  color: var(--ms-ink);
+  background: var(--ms-mark-soft);
+}
+
+.ms-table__marker {
+  display: inline-block;
+  width: 1.1em;
+  color: var(--ms-skip);
+}
+
+.ms-window-strip {
+  margin-inline-end: 0.6rem;
+  vertical-align: -1px;
+}
+
+.ms-window-strip rect {
+  fill: var(--ms-rule);
+}
+
+.ms-window-strip rect[data-on="true"] {
+  fill: var(--ms-skip);
+}
+
+.ms .ms-num {
+  color: var(--ms-ink);
+  font-family: var(--ms-mono);
+  white-space: nowrap;
+}
+
+.ms .ms-table tfoot .ms-budget__note {
+  color: var(--ms-ink-2);
+  font-weight: 400;
+}
+
+.ms .ms-budget :is(th, td):nth-child(3) {
+  text-align: right;
+  padding-inline-end: 2rem;
+}
+
+.ms .ms-budget__share {
+  width: 34%;
+  min-width: 9rem;
+  white-space: nowrap;
+}
+
+.ms-budget__bar {
+  display: inline-block;
+  max-width: calc(100% - 4.5rem);
+  height: 0.6rem;
+  margin-inline-end: 0.5rem;
+  border-radius: 2px;
+  background: var(--ms-skip);
+}
+
+.ms .ms-pins {
+  display: grid;
+  gap: 0.2rem;
+  list-style: none;
+}
+
+.ms .ms-pins span {
+  color: var(--ms-ink-3);
+  font-size: 0.8125rem;
+}
+
+.ms .ms-pins code {
+  color: var(--ms-ink);
+  overflow-wrap: anywhere;
+}
+
+/* ---- heads + boundary ---------------------------------------------------- */
+
+.ms-output {
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  gap: 1rem 3rem;
+  align-items: start;
+  margin-block: 1.5rem 0;
+}
+
+.ms .ms-output__label {
+  margin-block-end: 0.5rem;
+  color: var(--ms-ink);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.ms .ms-tasks {
+  display: grid;
+  gap: 0.3rem;
+  list-style: none;
+}
+
+.ms-tasks li {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.ms-tasks li span {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 5px;
+  color: var(--ms-ink-2);
+  background: var(--ms-sunken);
+  font-family: var(--ms-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.ms .ms-ledger {
+  margin-block-start: 1.5rem;
+  border-top: 1px solid var(--ms-rule);
+}
+
+.ms .ms-ledger > div {
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--ms-rule);
+}
+
+.ms .ms-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 0 2rem;
+  margin-block: 1.5rem 0;
+  list-style: none;
+  color: var(--ms-ink-2);
+  font-size: 0.875rem;
+}
+
+.ms .ms-facts li {
+  padding: 0.8rem 0;
+  border-top: 1px solid var(--ms-rule);
+}
+
+.ms .ms-facts b {
+  color: var(--ms-ink);
+}
+
+.ms .ms-boundary {
+  max-width: 40rem;
+  margin-block: 1.5rem 0;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--ms-rule);
+  border-inline-start: 3px solid var(--ms-ink);
+  border-radius: 0 8px 8px 0;
+  color: var(--ms-ink-2);
+  background: var(--ms-surface);
+  font-size: 0.875rem;
+}
+
+
+/* ---- layer map ----------------------------------------------------------- */
+
+.ms-layermap {
+  margin-block: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--ms-rule);
+  border-radius: 12px;
+  background: var(--ms-surface);
+  box-shadow: var(--ms-shadow);
+}
+
+.ms .ms-layermap__tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  list-style: none;
+}
+
+.ms .ms-layermap__tiles button {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--lane);
+  border-radius: 5px;
+  color: var(--ms-ink);
+  background: var(--lane-tint);
+  font: 500 0.6875rem/1 var(--ms-mono);
+  cursor: pointer;
+}
+
+.ms .ms-layermap__tiles button:hover {
+  border-width: 2px;
+}
+
+.ms .ms-layermap__tiles button[aria-pressed="true"] {
+  border-color: var(--ms-ink);
+  color: var(--ms-paper);
+  background: var(--ms-ink);
+  font-weight: 700;
+}
+
+.ms .ms-layermap__legend,
+.ms .ms-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin-block-start: 0.75rem;
+  list-style: none;
+  color: var(--ms-ink-2);
+  font-size: 0.8125rem;
+}
+
+.ms-layermap__legend li,
+.ms-legend li {
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.ms-swatch {
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 1px solid var(--lane);
+  border-radius: 3px;
+  background: var(--lane-tint);
+}
+
+/* ---- op graph + inspector ------------------------------------------------ */
+
+.ms-node[data-op] {
+  cursor: pointer;
+}
+
+.ms-node[data-op]:hover rect,
+.ms-node[data-op]:hover circle {
+  stroke-width: 2.25;
+}
+
+.ms-node[data-selected="true"] rect,
+.ms-node[data-selected="true"] circle {
+  fill: var(--ms-mark);
+  stroke: var(--ms-ink);
+  stroke-width: 2.25;
+}
+
+.ms-node[data-selected="true"] text {
+  fill: var(--ms-ink);
+}
+
+.ms-node[data-kind="state"] rect {
+  stroke-dasharray: 4 3;
+}
+
+.ms-node circle {
+  fill: var(--ms-surface);
+  stroke: var(--lane);
+  stroke-width: 1.25;
+}
+
+.ms-node:focus-visible {
+  outline: none;
+}
+
+.ms-node:focus-visible rect,
+.ms-node:focus-visible circle {
+  stroke: var(--ms-high);
+  stroke-width: 3;
+}
+
+.ms-wire--state {
+  stroke: var(--ms-instance);
+  stroke-dasharray: 2 3;
+}
+
+.ms-fig .ms-wire__label {
+  fill: var(--ms-ink-3);
+  font-size: 11px;
+}
+
+.ms-inspector {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 0.25rem 2.5rem;
+  margin-block: 0.75rem 1.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--ms-rule);
+  border-inline-start: 3px solid var(--ms-mark);
+  border-radius: 0 10px 10px 0;
+  background: var(--ms-surface);
+}
+
+.ms .ms-inspector__title {
+  grid-column: 1 / -1;
+  color: var(--ms-ink);
+  font-family: var(--ms-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.ms .ms-inspector__what {
+  max-width: 40rem;
+  color: var(--ms-ink-2);
+  font-size: 0.9375rem;
+}
+
+.ms .ms-inspector__formula {
+  margin-block-start: 0.6rem;
+  padding: 0.45rem 0.7rem;
+  border-radius: 6px;
+  color: var(--ms-ink);
+  background: var(--ms-sunken);
+  font-family: var(--ms-mono);
+  font-size: 0.8125rem;
+  white-space: pre-wrap;
+}
+
+.ms .ms-inspector dl {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.3rem 0.9rem;
+  align-content: start;
+  font-size: 0.8125rem;
+}
+
+.ms .ms-inspector dt {
+  margin: 0;
+  color: var(--ms-ink-3);
+  font-family: var(--ms-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ms .ms-inspector dd {
+  margin: 0;
+  color: var(--ms-ink);
+  font-family: var(--ms-mono);
+  overflow-wrap: anywhere;
+}
+
+.ms .ms-inspector dd span {
+  color: var(--ms-ink-3);
+}
+
+.ms .ms-ref {
+  color: var(--ms-high);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--ms-high) 40%, transparent);
+  text-underline-offset: 2px;
+}
+
+.ms .ms-ref:hover {
+  text-decoration-color: currentcolor;
+}
+
+/* ---- widgets ------------------------------------------------------------- */
+
+.ms .ms-button {
+  min-height: 2.125rem;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid var(--ms-rule-strong);
+  border-radius: 999px;
+  color: var(--ms-ink);
+  background: var(--ms-surface);
+  font: 600 0.8125rem/1 var(--ms-sans);
+  cursor: pointer;
+}
+
+.ms .ms-button:hover:not(:disabled) {
+  border-color: var(--ms-ink);
+}
+
+.ms .ms-button:disabled {
+  color: var(--ms-ink-3);
+  background: var(--ms-sunken);
+  cursor: default;
+}
+
+.ms-grid__cell {
+  fill: var(--ms-sunken);
+  stroke: var(--ms-surface);
+  stroke-width: 1;
+}
+
+.ms-grid__cell[data-state="attend"] {
+  fill: var(--ms-skip);
+}
+
+.ms-grid__cell[data-state="window"] {
+  fill: var(--ms-high);
+}
+
+.ms-grid__cell[data-state="sparse"] {
+  fill: var(--ms-low);
+}
+
+.ms-grid__cell[data-state="self"] {
+  fill: var(--ms-ink);
+}
+
+.ms-grid__row {
+  fill: none;
+  stroke: var(--ms-mark-ink);
+  stroke-width: 1.5;
+  pointer-events: none;
+}
+
+.ms-grid__hit {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.ms-router__bar {
+  fill: var(--ms-rule-strong);
+}
+
+.ms-router__bar[data-chosen="true"] {
+  fill: var(--ms-skip);
+}
+
+.ms-router__bar[data-shared="true"] {
+  fill: var(--ms-instance);
+}
+
+.ms-router__group {
+  fill: var(--ms-sunken);
+}
+
+.ms-router__group[data-chosen="true"] {
+  fill: var(--ms-mark-soft);
+}
+
+.ms-router__axis {
+  stroke: var(--ms-rule-strong);
+}
+
+.ms-dial circle {
+  fill: none;
+  stroke: var(--ms-rule-strong);
+}
+
+.ms-dial line {
+  stroke: var(--ms-high);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.ms-dial line[data-ghost="true"] {
+  stroke: var(--ms-rule-strong);
+  stroke-width: 1.25;
+}
+
+.ms .ms-ledger__share {
+  width: 34%;
+  min-width: 9rem;
+  white-space: nowrap;
+}
+
+.ms-ledger__bar {
+  display: inline-block;
+  max-width: calc(100% - 4.5rem);
+  height: 0.6rem;
+  margin-inline-end: 0.5rem;
+  border-radius: 2px;
+  background: var(--lane, var(--ms-skip));
+}
+
+.ms .ms-ledger :is(th, td):nth-child(3) {
+  padding-inline-end: 2rem;
+  text-align: right;
+}
+
+.ms .ms-table a,
+.ms .ms-prose a,
+.ms .ms-boundary a {
+  color: var(--ms-high);
+}
+
+@media (max-width: 760px) {
+  .ms .ms-stages .ms-stage {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ms-stage__tensors {
+    align-items: flex-start;
+  }
+
+  .ms-pipe,
+  .ms-output,
+  .ms-inspector {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ms-nav__mark {
+    display: none;
+  }
+
+  .ms-scroll {
+    padding: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms *,
+  .ms *::before,
+  .ms *::after {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .ms-wire,
+  .ms-node rect,
+  .ms-node circle,
+  .ms-node__plate,
+  .ms-scale__tensor {
+    stroke: CanvasText;
+  }
+
+  .ms-node[data-selected="true"] rect,
+  .ms-grid__cell[data-state],
+  .ms-router__bar[data-chosen="true"],
+  .ms-scale__trace rect {
+    fill: Highlight;
+  }
+
+  .ms-fig text {
+    fill: CanvasText;
+  }
+}
+
+@media print {
+  .ms-nav,
+  .ms-stepper,
+  .ms-control,
+  .ms-segments {
+    display: none;
+  }
+
+  .ms-scroll {
+    overflow: visible;
+    box-shadow: none;
+  }
+}

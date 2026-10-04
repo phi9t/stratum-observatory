@@ -1,0 +1,30 @@
+{
+  "name": "stratum-model-schematics",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "new": "node tools/new-model.mjs",
+    "fetch": "node tools/fetch-sources.mjs",
+    "dev": "node tools/build.mjs --dev",
+    "build": "node tools/build.mjs",
+    "check": "node tools/check.mjs",
+    "shoot": "node tools/shoot.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "typescript": "5.9.3",
+    "vite": "8.0.13",
+    "vitest": "4.1.10"
+  }
+}

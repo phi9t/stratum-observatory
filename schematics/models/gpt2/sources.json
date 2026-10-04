@@ -1,0 +1,48 @@
+{
+  "checkpoint": {
+    "repo": "openai-community/gpt2",
+    "revision": "607a30d783dfa663caf39e06633721c8d4cfcd7e"
+  },
+  "sources": [
+    {
+      "id": "config",
+      "kind": "hf",
+      "repo": "openai-community/gpt2",
+      "revision": "607a30d783dfa663caf39e06633721c8d4cfcd7e",
+      "path": "config.json",
+      "role": "config"
+    },
+    {
+      "id": "reference",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "revision": "469230357aab0f2b303b0d638c1f8d06edb14184",
+      "path": "src/transformers/models/gpt2/modeling_gpt2.py",
+      "role": "reference"
+    },
+    {
+      "id": "utils",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "revision": "469230357aab0f2b303b0d638c1f8d06edb14184",
+      "path": "src/transformers/pytorch_utils.py",
+      "role": "extra"
+    },
+    {
+      "id": "activations",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "revision": "469230357aab0f2b303b0d638c1f8d06edb14184",
+      "path": "src/transformers/activations.py",
+      "role": "extra"
+    },
+    {
+      "id": "serving",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "revision": "155488d853a0bc42df227dbfc74005b3fd488e94",
+      "path": "vllm/model_executor/models/gpt2.py",
+      "role": "serving"
+    }
+  ]
+}

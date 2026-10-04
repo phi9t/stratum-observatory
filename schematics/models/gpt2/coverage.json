@@ -1,0 +1,21 @@
+{
+  "source": "reference",
+  "classes": {
+    "GPT2Attention": { "section": "attention" },
+    "GPT2MLP": { "section": "mlp" },
+    "GPT2Block": { "section": "block" },
+    "GPT2Model": { "section": "overview" },
+    "GPT2LMHeadModel": { "section": "overview" },
+    "GPT2PreTrainedModel": { "section": "weights" },
+    "GPT2SequenceSummary": { "excluded": "used only by GPT2DoubleHeadsModel; the checkpoint's architectures list is GPT2LMHeadModel" },
+    "GPT2DoubleHeadsModelOutput": { "excluded": "output dataclass, no computation" },
+    "GPT2DoubleHeadsModel": { "excluded": "multiple-choice head; the checkpoint's architectures list is GPT2LMHeadModel" },
+    "GPT2ForSequenceClassification": { "excluded": "classification head not shipped by this checkpoint" },
+    "GPT2ForTokenClassification": { "excluded": "classification head not shipped by this checkpoint" },
+    "GPT2ForQuestionAnswering": { "excluded": "span head not shipped by this checkpoint" }
+  },
+  "serving": {
+    "source": "serving",
+    "notes": "vllm fuses q, k and v into one QKVParallelLinear and chunks the result three ways, hands attention to its own Attention layer which owns the KV cache, asserts scale_attn_by_inverse_layer_idx is off, and has no cross-attention or reorder_and_upcast branch. Block order, norms, MLP and tied head match the reference."
+  }
+}
