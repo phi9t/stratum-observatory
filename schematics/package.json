@@ -11,6 +11,7 @@
     "fetch": "node tools/fetch-sources.mjs",
     "dev": "node tools/build.mjs --dev",
     "build": "node tools/build.mjs",
+    "index": "node tools/build-index.mjs",
     "check": "node tools/check.mjs",
     "shoot": "node tools/shoot.mjs",
     "format": "node tools/format.mjs",
