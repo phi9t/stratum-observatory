@@ -1,6 +1,6 @@
 ---
 name: model-schematic
-description: Build a model schematic — a single-page, playable, source-faithful architecture deep dive for one neural-network checkpoint, drawn at model, layer, block and op level from its real implementation. Use when asked to visualize, diagram or explain a model architecture, forward pass or data representation as a web page.
+description: Build a model schematic in the stratum-observatory repository — a single-page, playable, source-faithful architecture deep dive for one neural-network checkpoint, drawn at model, layer, block and op level from its real implementation. Use when asked to visualize, diagram or explain a model architecture, forward pass or data representation as a web page. The kit and tools live in that repository under schematics/; in any other repository, follow that repository's own agent guide instead.
 ---
 
 # Model schematic
@@ -17,6 +17,10 @@ Two things make these pages good, and both are easy to skip:
   code implies and nobody wrote down.
 - **You look at what you built.** SVG text overflows, labels collide and dark mode
   breaks in ways you cannot see in source. Screenshot, look, fix, repeat.
+
+This skill belongs to the `stratum-observatory` repository. If the repository you are
+in has no `schematics/` directory with `kit/`, `tnsr/` and `tools/`, stop: this
+procedure does not apply there, and that repository's own agent guide does.
 
 Work inside `schematics/`. Read `README.md` there first: it defines the folder
 contract and the gates. The worked example is `models/gpt2/`; copy its patterns, not

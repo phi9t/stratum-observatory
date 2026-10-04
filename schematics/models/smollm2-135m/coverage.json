@@ -1,0 +1,45 @@
+{
+  "source": "reference",
+  "classes": {
+    "LlamaRMSNorm": {
+      "section": "block"
+    },
+    "LlamaRotaryEmbedding": {
+      "section": "attention"
+    },
+    "LlamaMLP": {
+      "section": "mlp"
+    },
+    "LlamaAttention": {
+      "section": "attention"
+    },
+    "LlamaDecoderLayer": {
+      "section": "block"
+    },
+    "LlamaPreTrainedModel": {
+      "excluded": "Framework metadata with no forward computation."
+    },
+    "LlamaModel": {
+      "section": "overview"
+    },
+    "KwargsForCausalLM": {
+      "excluded": "Framework metadata with no forward computation."
+    },
+    "LlamaForCausalLM": {
+      "section": "overview"
+    },
+    "LlamaForSequenceClassification": {
+      "excluded": "Task head absent from this checkpoint; architectures specifies LlamaForCausalLM."
+    },
+    "LlamaForQuestionAnswering": {
+      "excluded": "Task head absent from this checkpoint; architectures specifies LlamaForCausalLM."
+    },
+    "LlamaForTokenClassification": {
+      "excluded": "Task head absent from this checkpoint; architectures specifies LlamaForCausalLM."
+    }
+  },
+  "serving": {
+    "source": "serving",
+    "notes": "Packed QKV and gate/up projections; SiluAndMul; backend-owned KV cache; deferred residual addition fused with RMSNorm; tied embedding/head preserved. KV heads partitioned or replicated under supported tensor parallel sizes."
+  }
+}

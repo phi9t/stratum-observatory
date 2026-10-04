@@ -1,0 +1,764 @@
+{
+  "configuration": {
+    "LlamaConfig": [
+      26,
+      224
+    ],
+    "LlamaConfig.__init__": [
+      160,
+      224
+    ],
+    "__init__": [
+      160,
+      224
+    ]
+  },
+  "reference": {
+    "KwargsForCausalLM": [
+      730,
+      730
+    ],
+    "LlamaAttention": [
+      214,
+      287
+    ],
+    "LlamaAttention.__init__": [
+      217,
+      238
+    ],
+    "LlamaAttention.forward": [
+      240,
+      287
+    ],
+    "LlamaDecoderLayer": [
+      290,
+      358
+    ],
+    "LlamaDecoderLayer.__init__": [
+      291,
+      299
+    ],
+    "LlamaDecoderLayer.forward": [
+      301,
+      358
+    ],
+    "LlamaForCausalLM": [
+      733,
+      866
+    ],
+    "LlamaForCausalLM.__init__": [
+      738,
+      745
+    ],
+    "LlamaForCausalLM.forward": [
+      769,
+      866
+    ],
+    "LlamaForCausalLM.get_decoder": [
+      762,
+      763
+    ],
+    "LlamaForCausalLM.get_input_embeddings": [
+      747,
+      748
+    ],
+    "LlamaForCausalLM.get_output_embeddings": [
+      753,
+      754
+    ],
+    "LlamaForCausalLM.set_decoder": [
+      759,
+      760
+    ],
+    "LlamaForCausalLM.set_input_embeddings": [
+      750,
+      751
+    ],
+    "LlamaForCausalLM.set_output_embeddings": [
+      756,
+      757
+    ],
+    "LlamaForQuestionAnswering": [
+      960,
+      1031
+    ],
+    "LlamaForQuestionAnswering.__init__": [
+      964,
+      970
+    ],
+    "LlamaForQuestionAnswering.forward": [
+      980,
+      1031
+    ],
+    "LlamaForQuestionAnswering.get_input_embeddings": [
+      972,
+      973
+    ],
+    "LlamaForQuestionAnswering.set_input_embeddings": [
+      975,
+      976
+    ],
+    "LlamaForSequenceClassification": [
+      867,
+      950
+    ],
+    "LlamaForSequenceClassification.__init__": [
+      868,
+      875
+    ],
+    "LlamaForSequenceClassification.forward": [
+      885,
+      950
+    ],
+    "LlamaForSequenceClassification.get_input_embeddings": [
+      877,
+      878
+    ],
+    "LlamaForSequenceClassification.set_input_embeddings": [
+      880,
+      881
+    ],
+    "LlamaForTokenClassification": [
+      1041,
+      1123
+    ],
+    "LlamaForTokenClassification.__init__": [
+      1042,
+      1056
+    ],
+    "LlamaForTokenClassification.forward": [
+      1071,
+      1123
+    ],
+    "LlamaForTokenClassification.get_input_embeddings": [
+      1058,
+      1059
+    ],
+    "LlamaForTokenClassification.set_input_embeddings": [
+      1061,
+      1062
+    ],
+    "LlamaMLP": [
+      160,
+      173
+    ],
+    "LlamaMLP.__init__": [
+      161,
+      169
+    ],
+    "LlamaMLP.forward": [
+      171,
+      173
+    ],
+    "LlamaModel": [
+      462,
+      727
+    ],
+    "LlamaModel.__init__": [
+      470,
+      484
+    ],
+    "LlamaModel._prepare_4d_causal_attention_mask_with_cache_position": [
+      672,
+      727
+    ],
+    "LlamaModel._update_causal_mask": [
+      601,
+      669
+    ],
+    "LlamaModel.forward": [
+      494,
+      599
+    ],
+    "LlamaModel.get_input_embeddings": [
+      486,
+      487
+    ],
+    "LlamaModel.set_input_embeddings": [
+      489,
+      490
+    ],
+    "LlamaPreTrainedModel": [
+      365,
+      455
+    ],
+    "LlamaPreTrainedModel._init_weights": [
+      379,
+      455
+    ],
+    "LlamaRMSNorm": [
+      69,
+      89
+    ],
+    "LlamaRMSNorm.__init__": [
+      70,
+      76
+    ],
+    "LlamaRMSNorm.extra_repr": [
+      85,
+      89
+    ],
+    "LlamaRMSNorm.forward": [
+      78,
+      83
+    ],
+    "LlamaRotaryEmbedding": [
+      92,
+      123
+    ],
+    "LlamaRotaryEmbedding.__init__": [
+      93,
+      108
+    ],
+    "LlamaRotaryEmbedding.forward": [
+      112,
+      123
+    ],
+    "_init_weights": [
+      379,
+      455
+    ],
+    "_prepare_4d_causal_attention_mask_with_cache_position": [
+      672,
+      727
+    ],
+    "_update_causal_mask": [
+      601,
+      669
+    ],
+    "apply_rotary_pos_emb": [
+      133,
+      157
+    ],
+    "eager_attention_forward": [
+      188,
+      211
+    ],
+    "extra_repr": [
+      85,
+      89
+    ],
+    "get_decoder": [
+      762,
+      763
+    ],
+    "get_output_embeddings": [
+      753,
+      754
+    ],
+    "repeat_kv": [
+      176,
+      185
+    ],
+    "rotate_half": [
+      126,
+      130
+    ],
+    "set_decoder": [
+      759,
+      760
+    ],
+    "set_output_embeddings": [
+      756,
+      757
+    ]
+  },
+  "rope": {
+    "_check_received_keys": [
+      441,
+      467
+    ],
+    "_compute_default_rope_parameters": [
+      92,
+      131
+    ],
+    "_compute_dynamic_ntk_parameters": [
+      175,
+      223
+    ],
+    "_compute_linear_scaling_rope_parameters": [
+      134,
+      172
+    ],
+    "_compute_llama3_parameters": [
+      385,
+      438
+    ],
+    "_compute_longrope_parameters": [
+      322,
+      382
+    ],
+    "_compute_yarn_parameters": [
+      226,
+      319
+    ],
+    "_compute_yarn_parameters.find_correction_dim": [
+      287,
+      289
+    ],
+    "_compute_yarn_parameters.find_correction_range": [
+      291,
+      295
+    ],
+    "_compute_yarn_parameters.get_mscale": [
+      269,
+      286
+    ],
+    "_compute_yarn_parameters.linear_ramp_factor": [
+      297,
+      319
+    ],
+    "_validate_default_rope_parameters": [
+      470,
+      475
+    ],
+    "_validate_dynamic_scaling_rope_parameters": [
+      490,
+      501
+    ],
+    "_validate_linear_scaling_rope_parameters": [
+      478,
+      487
+    ],
+    "_validate_llama3_parameters": [
+      592,
+      636
+    ],
+    "_validate_longrope_parameters": [
+      542,
+      589
+    ],
+    "_validate_yarn_parameters": [
+      504,
+      539
+    ],
+    "dynamic_frequency_update": [
+      62,
+      79
+    ],
+    "dynamic_rope_update": [
+      30,
+      89
+    ],
+    "dynamic_rope_update.dynamic_frequency_update": [
+      62,
+      79
+    ],
+    "dynamic_rope_update.longrope_frequency_update": [
+      43,
+      60
+    ],
+    "dynamic_rope_update.wrapper": [
+      82,
+      89
+    ],
+    "find_correction_dim": [
+      287,
+      289
+    ],
+    "find_correction_range": [
+      291,
+      295
+    ],
+    "get_mscale": [
+      269,
+      286
+    ],
+    "linear_ramp_factor": [
+      297,
+      319
+    ],
+    "longrope_frequency_update": [
+      43,
+      60
+    ],
+    "rope_config_validation": [
+      639,
+      655
+    ],
+    "wrapper": [
+      82,
+      89
+    ]
+  },
+  "serving": {
+    "LlamaAttention": [
+      97,
+      208
+    ],
+    "LlamaAttention.__init__": [
+      99,
+      196
+    ],
+    "LlamaAttention.forward": [
+      198,
+      208
+    ],
+    "LlamaDecoderLayer": [
+      211,
+      287
+    ],
+    "LlamaDecoderLayer.__init__": [
+      213,
+      265
+    ],
+    "LlamaDecoderLayer.forward": [
+      267,
+      287
+    ],
+    "LlamaForCausalLM": [
+      448,
+      619
+    ],
+    "LlamaForCausalLM.__init__": [
+      484,
+      529
+    ],
+    "LlamaForCausalLM._init_model": [
+      538,
+      544
+    ],
+    "LlamaForCausalLM.compute_logits": [
+      560,
+      567
+    ],
+    "LlamaForCausalLM.forward": [
+      549,
+      558
+    ],
+    "LlamaForCausalLM.get_eagle3_aux_hidden_state_layers": [
+      534,
+      536
+    ],
+    "LlamaForCausalLM.get_input_embeddings": [
+      546,
+      547
+    ],
+    "LlamaForCausalLM.load_weights": [
+      569,
+      581
+    ],
+    "LlamaForCausalLM.maybe_remap_mistral": [
+      582,
+      619
+    ],
+    "LlamaForCausalLM.maybe_remap_mistral.permute": [
+      588,
+      619
+    ],
+    "LlamaForCausalLM.set_aux_hidden_state_layers": [
+      531,
+      532
+    ],
+    "LlamaMLP": [
+      57,
+      94
+    ],
+    "LlamaMLP.__init__": [
+      59,
+      88
+    ],
+    "LlamaMLP.forward": [
+      90,
+      94
+    ],
+    "LlamaModel": [
+      291,
+      445
+    ],
+    "LlamaModel.__init__": [
+      293,
+      338
+    ],
+    "LlamaModel.forward": [
+      343,
+      379
+    ],
+    "LlamaModel.get_input_embeddings": [
+      340,
+      341
+    ],
+    "LlamaModel.load_weights": [
+      381,
+      445
+    ],
+    "_init_model": [
+      538,
+      544
+    ],
+    "compute_logits": [
+      560,
+      567
+    ],
+    "get_eagle3_aux_hidden_state_layers": [
+      534,
+      536
+    ],
+    "maybe_remap_mistral": [
+      582,
+      619
+    ],
+    "permute": [
+      588,
+      619
+    ],
+    "set_aux_hidden_state_layers": [
+      531,
+      532
+    ]
+  },
+  "training": {
+    "CausalSelfAttention": [
+      335,
+      717
+    ],
+    "CausalSelfAttention.__init__": [
+      336,
+      435
+    ],
+    "CausalSelfAttention._forward_inference": [
+      483,
+      673
+    ],
+    "CausalSelfAttention._forward_training": [
+      675,
+      717
+    ],
+    "CausalSelfAttention.forward": [
+      437,
+      481
+    ],
+    "CoreAttention": [
+      253,
+      304
+    ],
+    "CoreAttention.__init__": [
+      254,
+      264
+    ],
+    "CoreAttention.forward": [
+      267,
+      304
+    ],
+    "Embedding": [
+      785,
+      812
+    ],
+    "Embedding.__init__": [
+      786,
+      795
+    ],
+    "Embedding.forward": [
+      797,
+      812
+    ],
+    "GLUActivation": [
+      198,
+      205
+    ],
+    "GLUActivation.__init__": [
+      199,
+      201
+    ],
+    "GLUActivation.forward": [
+      203,
+      205
+    ],
+    "LlamaDecoderLayer": [
+      720,
+      782
+    ],
+    "LlamaDecoderLayer.__init__": [
+      721,
+      740
+    ],
+    "LlamaDecoderLayer._checkpointed_forward": [
+      761,
+      766
+    ],
+    "LlamaDecoderLayer._core_forward": [
+      742,
+      759
+    ],
+    "LlamaDecoderLayer.forward": [
+      768,
+      782
+    ],
+    "LlamaForTraining": [
+      1026,
+      1154
+    ],
+    "LlamaForTraining.__init__": [
+      1027,
+      1058
+    ],
+    "LlamaForTraining.forward": [
+      1060,
+      1079
+    ],
+    "LlamaForTraining.get_block_compute_costs": [
+      1148,
+      1150
+    ],
+    "LlamaForTraining.get_embeddings_lm_head_tied_names": [
+      1141,
+      1146
+    ],
+    "LlamaForTraining.get_flops_per_sec": [
+      1152,
+      1154
+    ],
+    "LlamaForTraining.init_model_randomly": [
+      1082,
+      1139
+    ],
+    "LlamaModel": [
+      815,
+      973
+    ],
+    "LlamaModel.__init__": [
+      818,
+      905
+    ],
+    "LlamaModel.forward": [
+      907,
+      912
+    ],
+    "LlamaModel.forward_with_hidden_states": [
+      914,
+      936
+    ],
+    "LlamaModel.get_block_compute_costs": [
+      938,
+      950
+    ],
+    "LlamaModel.get_flops_per_sec": [
+      952,
+      973
+    ],
+    "LlamaRotaryEmbedding": [
+      127,
+      195
+    ],
+    "LlamaRotaryEmbedding.__init__": [
+      128,
+      133
+    ],
+    "LlamaRotaryEmbedding.apply_rotary_pos_emb": [
+      173,
+      195
+    ],
+    "LlamaRotaryEmbedding.forward": [
+      148,
+      165
+    ],
+    "LlamaRotaryEmbedding.init_rotary_embeddings": [
+      135,
+      145
+    ],
+    "LlamaRotaryEmbedding.rotate_half": [
+      167,
+      171
+    ],
+    "Loss": [
+      982,
+      1000
+    ],
+    "Loss.__init__": [
+      983,
+      985
+    ],
+    "Loss.forward": [
+      987,
+      1000
+    ],
+    "LossWithZLoss": [
+      1003,
+      1023
+    ],
+    "LossWithZLoss.__init__": [
+      1004,
+      1006
+    ],
+    "LossWithZLoss.forward": [
+      1008,
+      1023
+    ],
+    "MLP": [
+      208,
+      250
+    ],
+    "MLP.__init__": [
+      209,
+      245
+    ],
+    "MLP.forward": [
+      247,
+      250
+    ],
+    "RotaryEmbedding": [
+      54,
+      126
+    ],
+    "RotaryEmbedding.__init__": [
+      55,
+      64
+    ],
+    "RotaryEmbedding.forward": [
+      92,
+      126
+    ],
+    "RotaryEmbedding.init_rotary_embeddings": [
+      66,
+      90
+    ],
+    "_checkpointed_forward": [
+      761,
+      766
+    ],
+    "_core_forward": [
+      742,
+      759
+    ],
+    "_forward_inference": [
+      483,
+      673
+    ],
+    "_forward_training": [
+      675,
+      717
+    ],
+    "apply_rotary_pos_emb": [
+      173,
+      195
+    ],
+    "forward_with_hidden_states": [
+      914,
+      936
+    ],
+    "get_embeddings_lm_head_tied_names": [
+      1141,
+      1146
+    ],
+    "get_flops": [
+      1157,
+      1224
+    ],
+    "init_model_randomly": [
+      1082,
+      1139
+    ],
+    "masked_mean": [
+      977,
+      979
+    ],
+    "pad_to_right": [
+      307,
+      332
+    ],
+    "rotate_half": [
+      167,
+      171
+    ]
+  }
+}

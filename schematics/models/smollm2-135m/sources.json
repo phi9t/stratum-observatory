@@ -1,0 +1,64 @@
+{
+  "checkpoint": {
+    "repo": "HuggingFaceTB/SmolLM2-135M",
+    "revision": "93efa2f097d58c2a74874c7e644dbc9b0cee75a2"
+  },
+  "sources": [
+    {
+      "id": "config",
+      "kind": "hf",
+      "repo": "HuggingFaceTB/SmolLM2-135M",
+      "revision": "93efa2f097d58c2a74874c7e644dbc9b0cee75a2",
+      "path": "config.json",
+      "role": "config"
+    },
+    {
+      "id": "reference",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "revision": "5f4ecf2d9f867a1255131d2461d75793c0cf1db2",
+      "path": "src/transformers/models/llama/modeling_llama.py",
+      "role": "reference"
+    },
+    {
+      "id": "serving",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "revision": "3015d5634e74d59704e2b39bab0dbe2e6f86a38a",
+      "path": "vllm/model_executor/models/llama.py",
+      "role": "serving"
+    },
+    {
+      "id": "configuration",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "revision": "5f4ecf2d9f867a1255131d2461d75793c0cf1db2",
+      "path": "src/transformers/models/llama/configuration_llama.py",
+      "role": "extra"
+    },
+    {
+      "id": "rope",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "revision": "5f4ecf2d9f867a1255131d2461d75793c0cf1db2",
+      "path": "src/transformers/modeling_rope_utils.py",
+      "role": "extra"
+    },
+    {
+      "id": "training-context",
+      "kind": "github",
+      "repo": "huggingface/smollm",
+      "revision": "438be18dae658a638f3a6976fdf5190bb6d68619",
+      "path": "text/pretraining/README.md",
+      "role": "extra"
+    },
+    {
+      "id": "training",
+      "kind": "github",
+      "repo": "huggingface/nanotron",
+      "revision": "fb0747bac263a4c3a8ff4d724869a533afb561d8",
+      "path": "src/nanotron/models/llama.py",
+      "role": "training"
+    }
+  ]
+}
