@@ -1,0 +1,54 @@
+{
+  "source": "reference",
+  "classes": {
+    "DeepseekV3RMSNorm": {
+      "section": "block"
+    },
+    "DeepseekV3RotaryEmbedding": {
+      "section": "positions"
+    },
+    "DeepseekV3LinearScalingRotaryEmbedding": {
+      "excluded": "rope_scaling.type=yarn selects the YaRN subclass, not linear scaling"
+    },
+    "DeepseekV3DynamicNTKScalingRotaryEmbedding": {
+      "excluded": "rope_scaling.type=yarn disables dynamic NTK scaling"
+    },
+    "DeepseekV3YarnRotaryEmbedding": {
+      "section": "positions"
+    },
+    "DeepseekV3MLP": {
+      "section": "experts"
+    },
+    "MoEGate": {
+      "section": "experts"
+    },
+    "DeepseekV3MoE": {
+      "section": "experts"
+    },
+    "DeepseekV3Attention": {
+      "section": "attention"
+    },
+    "DeepseekV3FlashAttention2": {
+      "section": "serving"
+    },
+    "DeepseekV3DecoderLayer": {
+      "section": "block"
+    },
+    "DeepseekV3PreTrainedModel": {
+      "excluded": "initialization and loading infrastructure, no forward computation"
+    },
+    "DeepseekV3Model": {
+      "section": "overview"
+    },
+    "DeepseekV3ForCausalLM": {
+      "section": "overview"
+    },
+    "DeepseekV3ForSequenceClassification": {
+      "excluded": "not the causal LM head selected by this checkpoint architectures"
+    }
+  },
+  "serving": {
+    "source": "serving",
+    "notes": "Read complete deepseek_v2.py and layers/mla.py. Exact DeepseekV3ForCausalLM inherits DeepseekV2ForCausalLM. MLA fuses query/KV A projections, hands normalized latent + rotated shared key to attention backend; expanded fallback also exists. FFN fuses gate/up and SiLU/product; FusedMoEFactory receives correction bias, grouped selection, sigmoid, renorm, scale and separate/fused shared paths. Residual additions fuse with next RMSNorm. Main loader skips speculative layers. No index_topk so V3.2 indexer absent. Publisher absorption implementation supplies explicit compressed decode algebra; publisher Gate zero-masks excluded groups whereas reference uses negative infinity, differing for negative corrected scores. BF16 diagrams do not incorporate FP16 overflow adjustments. Training torchtitan uses token-flattened expanded KV and grouped biased selection; training execution/parity not verified."
+  }
+}

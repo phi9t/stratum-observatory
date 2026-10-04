@@ -1,0 +1,45 @@
+{
+  "source": "reference",
+  "classes": {
+    "Qwen3RMSNorm": {
+      "section": "block"
+    },
+    "Qwen3MLP": {
+      "section": "mlp"
+    },
+    "Qwen3Attention": {
+      "section": "attention"
+    },
+    "Qwen3DecoderLayer": {
+      "section": "block"
+    },
+    "Qwen3RotaryEmbedding": {
+      "section": "attention"
+    },
+    "Qwen3PreTrainedModel": {
+      "excluded": "Framework initialization/typing only; no forward circuit."
+    },
+    "Qwen3Model": {
+      "section": "overview"
+    },
+    "KwargsForCausalLM": {
+      "excluded": "Framework initialization/typing only; no forward circuit."
+    },
+    "Qwen3ForCausalLM": {
+      "section": "overview"
+    },
+    "Qwen3ForSequenceClassification": {
+      "excluded": "Task head not shipped by Qwen/Qwen3-8B (architectures=Qwen3ForCausalLM)."
+    },
+    "Qwen3ForTokenClassification": {
+      "excluded": "Task head not shipped by Qwen/Qwen3-8B (architectures=Qwen3ForCausalLM)."
+    },
+    "Qwen3ForQuestionAnswering": {
+      "excluded": "Task head not shipped by Qwen/Qwen3-8B (architectures=Qwen3ForCausalLM)."
+    }
+  },
+  "serving": {
+    "source": "serving",
+    "notes": "Packed QKV and inherited packed gate/up; Q/K head norms before RoPE retained. Attention backend owns KV cache. Deferred residual add fused with RMSNorm; KV heads partitioned or replicated across TP ranks. Read inherited Qwen2MLP and Qwen2Model from serving-base."
+  }
+}

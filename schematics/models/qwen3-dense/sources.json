@@ -1,0 +1,64 @@
+{
+  "checkpoint": {
+    "repo": "Qwen/Qwen3-8B",
+    "revision": "b968826d9c46dd6066d109eabc6255188de91218"
+  },
+  "sources": [
+    {
+      "id": "config",
+      "kind": "hf",
+      "repo": "Qwen/Qwen3-8B",
+      "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+      "path": "config.json",
+      "role": "config"
+    },
+    {
+      "id": "reference",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "path": "src/transformers/models/qwen3/modeling_qwen3.py",
+      "role": "reference",
+      "revision": "5f4ecf2d9f867a1255131d2461d75793c0cf1db2"
+    },
+    {
+      "id": "serving",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "path": "vllm/model_executor/models/qwen3.py",
+      "role": "serving",
+      "revision": "155488d853a0bc42df227dbfc74005b3fd488e94"
+    },
+    {
+      "id": "configuration",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "path": "src/transformers/models/qwen3/configuration_qwen3.py",
+      "role": "extra",
+      "revision": "5f4ecf2d9f867a1255131d2461d75793c0cf1db2"
+    },
+    {
+      "id": "serving-base",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "revision": "155488d853a0bc42df227dbfc74005b3fd488e94",
+      "path": "vllm/model_executor/models/qwen2.py",
+      "role": "extra"
+    },
+    {
+      "id": "rope",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "revision": "5f4ecf2d9f867a1255131d2461d75793c0cf1db2",
+      "path": "src/transformers/modeling_rope_utils.py",
+      "role": "extra"
+    },
+    {
+      "id": "training",
+      "kind": "github",
+      "repo": "NVIDIA/NeMo-AutoModel",
+      "revision": "2a80793f285a1ac41572be5a25f96ea29cacb1f5",
+      "path": "nemo_automodel/components/models/qwen3/model.py",
+      "role": "training"
+    }
+  ]
+}

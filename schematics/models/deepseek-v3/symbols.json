@@ -1,0 +1,1042 @@
+{
+  "configuration": {
+    "DeepseekV3Config": [
+      7,
+      199
+    ],
+    "DeepseekV3Config.__init__": [
+      112,
+      199
+    ],
+    "__init__": [
+      112,
+      199
+    ]
+  },
+  "mla-backend": {
+    "MLAModules": [
+      22,
+      42
+    ],
+    "MultiHeadLatentAttentionWrapper": [
+      44,
+      255
+    ],
+    "MultiHeadLatentAttentionWrapper.__init__": [
+      63,
+      161
+    ],
+    "MultiHeadLatentAttentionWrapper.forward": [
+      163,
+      255
+    ],
+    "__init__": [
+      63,
+      161
+    ],
+    "forward": [
+      163,
+      255
+    ]
+  },
+  "mtp": {
+    "MTPDecoder": [
+      215,
+      432
+    ],
+    "MTPDecoder.Config": [
+      224,
+      225
+    ],
+    "MTPDecoder.__init__": [
+      227,
+      240
+    ],
+    "MTPDecoder._apply_fsdp": [
+      242,
+      269
+    ],
+    "MTPDecoder.forward": [
+      365,
+      432
+    ],
+    "MTPDecoder.preprocess_inputs": [
+      271,
+      363
+    ],
+    "MTPLoss": [
+      477,
+      530
+    ],
+    "MTPLoss.Config": [
+      481,
+      482
+    ],
+    "MTPLoss.__call__": [
+      488,
+      530
+    ],
+    "MTPLoss.__init__": [
+      484,
+      486
+    ],
+    "MTPTransformerBlock": [
+      126,
+      212
+    ],
+    "MTPTransformerBlock.Config": [
+      137,
+      141
+    ],
+    "MTPTransformerBlock.__init__": [
+      143,
+      159
+    ],
+    "MTPTransformerBlock._maybe_shard_mtp_valid_mask_across_tp": [
+      197,
+      212
+    ],
+    "MTPTransformerBlock.forward": [
+      161,
+      195
+    ],
+    "__call__": [
+      488,
+      530
+    ],
+    "_apply_fsdp": [
+      242,
+      269
+    ],
+    "_maybe_shard_mtp_valid_mask_across_tp": [
+      197,
+      212
+    ],
+    "apply_fsdp_to_mtp_decoder": [
+      435,
+      474
+    ],
+    "preprocess_inputs": [
+      271,
+      363
+    ],
+    "roll_mtp_sequence": [
+      40,
+      123
+    ]
+  },
+  "publisher": {
+    "Block": [
+      365,
+      376
+    ],
+    "Block.__init__": [
+      366,
+      371
+    ],
+    "Block.forward": [
+      373,
+      376
+    ],
+    "ColumnParallelLinear": [
+      114,
+      122
+    ],
+    "ColumnParallelLinear.__init__": [
+      115,
+      118
+    ],
+    "ColumnParallelLinear.forward": [
+      120,
+      122
+    ],
+    "Expert": [
+      321,
+      329
+    ],
+    "Expert.__init__": [
+      322,
+      326
+    ],
+    "Expert.forward": [
+      328,
+      329
+    ],
+    "Gate": [
+      283,
+      318
+    ],
+    "Gate.__init__": [
+      284,
+      293
+    ],
+    "Gate.forward": [
+      295,
+      318
+    ],
+    "Linear": [
+      91,
+      111
+    ],
+    "Linear.__init__": [
+      94,
+      108
+    ],
+    "Linear.forward": [
+      110,
+      111
+    ],
+    "MLA": [
+      195,
+      269
+    ],
+    "MLA.__init__": [
+      196,
+      228
+    ],
+    "MLA.forward": [
+      230,
+      269
+    ],
+    "MLP": [
+      272,
+      280
+    ],
+    "MLP.__init__": [
+      273,
+      277
+    ],
+    "MLP.forward": [
+      279,
+      280
+    ],
+    "MoE": [
+      332,
+      362
+    ],
+    "MoE.__init__": [
+      333,
+      345
+    ],
+    "MoE.forward": [
+      347,
+      362
+    ],
+    "ModelArgs": [
+      20,
+      51
+    ],
+    "ParallelEmbedding": [
+      54,
+      74
+    ],
+    "ParallelEmbedding.__init__": [
+      55,
+      63
+    ],
+    "ParallelEmbedding.forward": [
+      65,
+      74
+    ],
+    "RMSNorm": [
+      140,
+      149
+    ],
+    "RMSNorm.__init__": [
+      141,
+      144
+    ],
+    "RMSNorm.forward": [
+      146,
+      149
+    ],
+    "RowParallelLinear": [
+      125,
+      137
+    ],
+    "RowParallelLinear.__init__": [
+      126,
+      129
+    ],
+    "RowParallelLinear.forward": [
+      131,
+      137
+    ],
+    "Transformer": [
+      379,
+      421
+    ],
+    "Transformer.__init__": [
+      380,
+      393
+    ],
+    "Transformer.forward": [
+      396,
+      421
+    ],
+    "apply_rotary_emb": [
+      187,
+      192
+    ],
+    "find_correction_dim": [
+      160,
+      161
+    ],
+    "find_correction_range": [
+      163,
+      166
+    ],
+    "linear": [
+      77,
+      88
+    ],
+    "linear_ramp_factor": [
+      168,
+      184
+    ],
+    "precompute_freqs_cis": [
+      152,
+      184
+    ],
+    "precompute_freqs_cis.find_correction_dim": [
+      160,
+      161
+    ],
+    "precompute_freqs_cis.find_correction_range": [
+      163,
+      166
+    ],
+    "precompute_freqs_cis.linear_ramp_factor": [
+      168,
+      184
+    ]
+  },
+  "reference": {
+    "DeepseekV3Attention": [
+      627,
+      859
+    ],
+    "DeepseekV3Attention.__init__": [
+      630,
+      695
+    ],
+    "DeepseekV3Attention._init_rope": [
+      697,
+      741
+    ],
+    "DeepseekV3Attention._shape": [
+      743,
+      748
+    ],
+    "DeepseekV3Attention.forward": [
+      750,
+      859
+    ],
+    "DeepseekV3DecoderLayer": [
+      1142,
+      1244
+    ],
+    "DeepseekV3DecoderLayer.__init__": [
+      1143,
+      1165
+    ],
+    "DeepseekV3DecoderLayer.forward": [
+      1167,
+      1244
+    ],
+    "DeepseekV3DynamicNTKScalingRotaryEmbedding": [
+      187,
+      225
+    ],
+    "DeepseekV3DynamicNTKScalingRotaryEmbedding.__init__": [
+      190,
+      199
+    ],
+    "DeepseekV3DynamicNTKScalingRotaryEmbedding._set_cos_sin_cache": [
+      201,
+      225
+    ],
+    "DeepseekV3FlashAttention2": [
+      860,
+      1139
+    ],
+    "DeepseekV3FlashAttention2.__init__": [
+      867,
+      873
+    ],
+    "DeepseekV3FlashAttention2._flash_attention_forward": [
+      1010,
+      1088
+    ],
+    "DeepseekV3FlashAttention2._upad_input": [
+      1090,
+      1139
+    ],
+    "DeepseekV3FlashAttention2.forward": [
+      875,
+      1008
+    ],
+    "DeepseekV3ForCausalLM": [
+      1514,
+      1733
+    ],
+    "DeepseekV3ForCausalLM.__init__": [
+      1517,
+      1524
+    ],
+    "DeepseekV3ForCausalLM._reorder_cache": [
+      1707,
+      1733
+    ],
+    "DeepseekV3ForCausalLM.forward": [
+      1548,
+      1640
+    ],
+    "DeepseekV3ForCausalLM.get_decoder": [
+      1541,
+      1542
+    ],
+    "DeepseekV3ForCausalLM.get_input_embeddings": [
+      1526,
+      1527
+    ],
+    "DeepseekV3ForCausalLM.get_output_embeddings": [
+      1532,
+      1533
+    ],
+    "DeepseekV3ForCausalLM.prepare_inputs_for_generation": [
+      1642,
+      1704
+    ],
+    "DeepseekV3ForCausalLM.set_decoder": [
+      1538,
+      1539
+    ],
+    "DeepseekV3ForCausalLM.set_input_embeddings": [
+      1529,
+      1530
+    ],
+    "DeepseekV3ForCausalLM.set_output_embeddings": [
+      1535,
+      1536
+    ],
+    "DeepseekV3ForSequenceClassification": [
+      1734,
+      1848
+    ],
+    "DeepseekV3ForSequenceClassification.__init__": [
+      1735,
+      1742
+    ],
+    "DeepseekV3ForSequenceClassification.forward": [
+      1751,
+      1848
+    ],
+    "DeepseekV3ForSequenceClassification.get_input_embeddings": [
+      1744,
+      1745
+    ],
+    "DeepseekV3ForSequenceClassification.set_input_embeddings": [
+      1747,
+      1748
+    ],
+    "DeepseekV3LinearScalingRotaryEmbedding": [
+      158,
+      186
+    ],
+    "DeepseekV3LinearScalingRotaryEmbedding.__init__": [
+      161,
+      170
+    ],
+    "DeepseekV3LinearScalingRotaryEmbedding._set_cos_sin_cache": [
+      172,
+      186
+    ],
+    "DeepseekV3MLP": [
+      374,
+      390
+    ],
+    "DeepseekV3MLP.__init__": [
+      375,
+      386
+    ],
+    "DeepseekV3MLP.forward": [
+      388,
+      390
+    ],
+    "DeepseekV3MoE": [
+      475,
+      611
+    ],
+    "DeepseekV3MoE.__init__": [
+      480,
+      520
+    ],
+    "DeepseekV3MoE.forward": [
+      522,
+      532
+    ],
+    "DeepseekV3MoE.moe_infer": [
+      535,
+      611
+    ],
+    "DeepseekV3Model": [
+      1346,
+      1511
+    ],
+    "DeepseekV3Model.__init__": [
+      1354,
+      1373
+    ],
+    "DeepseekV3Model.forward": [
+      1382,
+      1511
+    ],
+    "DeepseekV3Model.get_input_embeddings": [
+      1375,
+      1376
+    ],
+    "DeepseekV3Model.set_input_embeddings": [
+      1378,
+      1379
+    ],
+    "DeepseekV3PreTrainedModel": [
+      1251,
+      1339
+    ],
+    "DeepseekV3PreTrainedModel._init_weights": [
+      1260,
+      1339
+    ],
+    "DeepseekV3RMSNorm": [
+      94,
+      111
+    ],
+    "DeepseekV3RMSNorm.__init__": [
+      95,
+      101
+    ],
+    "DeepseekV3RMSNorm.forward": [
+      103,
+      111
+    ],
+    "DeepseekV3RotaryEmbedding": [
+      114,
+      157
+    ],
+    "DeepseekV3RotaryEmbedding.__init__": [
+      115,
+      132
+    ],
+    "DeepseekV3RotaryEmbedding._set_cos_sin_cache": [
+      134,
+      144
+    ],
+    "DeepseekV3RotaryEmbedding.forward": [
+      146,
+      157
+    ],
+    "DeepseekV3YarnRotaryEmbedding": [
+      262,
+      330
+    ],
+    "DeepseekV3YarnRotaryEmbedding.__init__": [
+      264,
+      283
+    ],
+    "DeepseekV3YarnRotaryEmbedding._set_cos_sin_cache": [
+      285,
+      330
+    ],
+    "MoEGate": [
+      393,
+      473
+    ],
+    "MoEGate.__init__": [
+      394,
+      415
+    ],
+    "MoEGate.forward": [
+      422,
+      473
+    ],
+    "MoEGate.reset_parameters": [
+      417,
+      420
+    ],
+    "_flash_attention_forward": [
+      1010,
+      1088
+    ],
+    "_get_unpad_data": [
+      80,
+      91
+    ],
+    "_init_rope": [
+      697,
+      741
+    ],
+    "_init_weights": [
+      1260,
+      1339
+    ],
+    "_reorder_cache": [
+      1707,
+      1733
+    ],
+    "_shape": [
+      743,
+      748
+    ],
+    "_upad_input": [
+      1090,
+      1139
+    ],
+    "apply_rotary_pos_emb": [
+      339,
+      371
+    ],
+    "get_decoder": [
+      1541,
+      1542
+    ],
+    "get_output_embeddings": [
+      1532,
+      1533
+    ],
+    "moe_infer": [
+      535,
+      611
+    ],
+    "prepare_inputs_for_generation": [
+      1642,
+      1704
+    ],
+    "repeat_kv": [
+      612,
+      626
+    ],
+    "reset_parameters": [
+      417,
+      420
+    ],
+    "rotate_half": [
+      331,
+      338
+    ],
+    "set_decoder": [
+      1538,
+      1539
+    ],
+    "set_output_embeddings": [
+      1535,
+      1536
+    ],
+    "yarn_find_correction_dim": [
+      226,
+      234
+    ],
+    "yarn_find_correction_range": [
+      235,
+      244
+    ],
+    "yarn_get_mscale": [
+      247,
+      250
+    ],
+    "yarn_linear_ramp_mask": [
+      253,
+      259
+    ]
+  },
+  "serving": {
+    "DeepSeekV2FusedQkvAProjLinear": [
+      952,
+      996
+    ],
+    "DeepSeekV2FusedQkvAProjLinear.__init__": [
+      953,
+      981
+    ],
+    "DeepSeekV2FusedQkvAProjLinear.forward": [
+      983,
+      996
+    ],
+    "DeepseekAttention": [
+      148,
+      241
+    ],
+    "DeepseekAttention.__init__": [
+      151,
+      229
+    ],
+    "DeepseekAttention.forward": [
+      231,
+      241
+    ],
+    "DeepseekForCausalLM": [
+      2000,
+      2001
+    ],
+    "DeepseekV2Attention": [
+      454,
+      634
+    ],
+    "DeepseekV2Attention.__init__": [
+      455,
+      588
+    ],
+    "DeepseekV2Attention.forward": [
+      590,
+      634
+    ],
+    "DeepseekV2DecoderLayer": [
+      1248,
+      1422
+    ],
+    "DeepseekV2DecoderLayer.__init__": [
+      1249,
+      1349
+    ],
+    "DeepseekV2DecoderLayer.forward": [
+      1351,
+      1422
+    ],
+    "DeepseekV2ForCausalLM": [
+      1871,
+      1997
+    ],
+    "DeepseekV2ForCausalLM.__init__": [
+      1884,
+      1933
+    ],
+    "DeepseekV2ForCausalLM.compute_logits": [
+      1976,
+      1981
+    ],
+    "DeepseekV2ForCausalLM.embed_input_ids": [
+      1961,
+      1962
+    ],
+    "DeepseekV2ForCausalLM.forward": [
+      1964,
+      1974
+    ],
+    "DeepseekV2ForCausalLM.get_eagle3_aux_hidden_state_layers": [
+      1957,
+      1959
+    ],
+    "DeepseekV2ForCausalLM.get_expert_mapping": [
+      1983,
+      1993
+    ],
+    "DeepseekV2ForCausalLM.load_weights": [
+      1995,
+      1997
+    ],
+    "DeepseekV2ForCausalLM.set_aux_hidden_state_layers": [
+      1954,
+      1955
+    ],
+    "DeepseekV2ForCausalLM.set_moe_parameters": [
+      1935,
+      1952
+    ],
+    "DeepseekV2MLAAttention": [
+      999,
+      1245
+    ],
+    "DeepseekV2MLAAttention.__init__": [
+      1007,
+      1237
+    ],
+    "DeepseekV2MLAAttention.forward": [
+      1239,
+      1245
+    ],
+    "DeepseekV2MLP": [
+      244,
+      288
+    ],
+    "DeepseekV2MLP.__init__": [
+      245,
+      282
+    ],
+    "DeepseekV2MLP.forward": [
+      284,
+      288
+    ],
+    "DeepseekV2MixtureOfExperts": [
+      1830,
+      1868
+    ],
+    "DeepseekV2MixtureOfExperts.extract_moe_parameters": [
+      1836,
+      1853
+    ],
+    "DeepseekV2MixtureOfExperts.update_physical_experts_metadata": [
+      1855,
+      1868
+    ],
+    "DeepseekV2MoE": [
+      291,
+      433
+    ],
+    "DeepseekV2MoE.__init__": [
+      292,
+      408
+    ],
+    "DeepseekV2MoE.forward": [
+      410,
+      433
+    ],
+    "DeepseekV2Model": [
+      1426,
+      1827
+    ],
+    "DeepseekV2Model.__init__": [
+      1429,
+      1502
+    ],
+    "DeepseekV2Model.embed_input_ids": [
+      1504,
+      1505
+    ],
+    "DeepseekV2Model.forward": [
+      1507,
+      1591
+    ],
+    "DeepseekV2Model.load_weights": [
+      1593,
+      1827
+    ],
+    "DeepseekV32IndexerCache": [
+      637,
+      675
+    ],
+    "DeepseekV32IndexerCache.__init__": [
+      638,
+      650
+    ],
+    "DeepseekV32IndexerCache.bind_kv_cache": [
+      652,
+      655
+    ],
+    "DeepseekV32IndexerCache.forward": [
+      667,
+      667
+    ],
+    "DeepseekV32IndexerCache.get_attn_backend": [
+      674,
+      675
+    ],
+    "DeepseekV32IndexerCache.get_kv_cache_spec": [
+      657,
+      665
+    ],
+    "DeepseekV32IndexerCache.uses_shuffled_layout": [
+      670,
+      672
+    ],
+    "DeepseekV3ForCausalLM": [
+      2004,
+      2005
+    ],
+    "GlmMoeDsaForCausalLM": [
+      2008,
+      2009
+    ],
+    "Indexer": [
+      678,
+      853
+    ],
+    "Indexer.__init__": [
+      679,
+      760
+    ],
+    "Indexer.forward": [
+      762,
+      853
+    ],
+    "_get_llama_4_scaling": [
+      444,
+      451
+    ],
+    "_get_moe_router_dtype": [
+      135,
+      145
+    ],
+    "_min_latency_fused_qkv_a_proj_fake": [
+      937,
+      949
+    ],
+    "_min_latency_fused_qkv_a_proj_impl": [
+      915,
+      934
+    ],
+    "_try_load_fp8_indexer_wk": [
+      856,
+      912
+    ],
+    "bind_kv_cache": [
+      652,
+      655
+    ],
+    "compute_logits": [
+      1976,
+      1981
+    ],
+    "extract_moe_parameters": [
+      1836,
+      1853
+    ],
+    "get_attn_backend": [
+      674,
+      675
+    ],
+    "get_eagle3_aux_hidden_state_layers": [
+      1957,
+      1959
+    ],
+    "get_expert_mapping": [
+      1983,
+      1993
+    ],
+    "get_kv_cache_spec": [
+      657,
+      665
+    ],
+    "set_aux_hidden_state_layers": [
+      1954,
+      1955
+    ],
+    "set_moe_parameters": [
+      1935,
+      1952
+    ],
+    "update_physical_experts_metadata": [
+      1855,
+      1868
+    ],
+    "uses_shuffled_layout": [
+      670,
+      672
+    ],
+    "yarn_get_mscale": [
+      436,
+      441
+    ]
+  },
+  "training": {
+    "Attention": [
+      37,
+      177
+    ],
+    "Attention.Config": [
+      45,
+      65
+    ],
+    "Attention.__init__": [
+      67,
+      102
+    ],
+    "Attention._gather_tp_input": [
+      104,
+      115
+    ],
+    "Attention.forward": [
+      117,
+      177
+    ],
+    "DeepSeekV3Model": [
+      254,
+      294
+    ],
+    "DeepSeekV3Model.Config": [
+      262,
+      281
+    ],
+    "DeepSeekV3Model.Config.get_nparams_and_flops": [
+      269,
+      272
+    ],
+    "DeepSeekV3Model.Config.set_sharding_": [
+      274,
+      281
+    ],
+    "DeepSeekV3Model.__init__": [
+      283,
+      284
+    ],
+    "DeepSeekV3Model._register_optimizer_hooks": [
+      287,
+      294
+    ],
+    "DeepSeekV3TransformerBlock": [
+      180,
+      216
+    ],
+    "DeepSeekV3TransformerBlock.Config": [
+      186,
+      187
+    ],
+    "DeepSeekV3TransformerBlock.__init__": [
+      189,
+      201
+    ],
+    "DeepSeekV3TransformerBlock.forward": [
+      203,
+      216
+    ],
+    "_gather_tp_input": [
+      104,
+      115
+    ],
+    "_register_optimizer_hooks": [
+      287,
+      294
+    ],
+    "get_deepseek_v3_nparams_and_flops": [
+      219,
+      251
+    ],
+    "get_nparams_and_flops": [
+      269,
+      272
+    ],
+    "set_sharding_": [
+      274,
+      281
+    ]
+  },
+  "training-moe": {
+    "Config": [
+      22,
+      24
+    ],
+    "DeepSeekV3Router": [
+      18,
+      83
+    ],
+    "DeepSeekV3Router.Config": [
+      22,
+      24
+    ],
+    "DeepSeekV3Router.__init__": [
+      26,
+      29
+    ],
+    "DeepSeekV3Router._select_experts": [
+      31,
+      83
+    ],
+    "__init__": [
+      26,
+      29
+    ],
+    "_select_experts": [
+      31,
+      83
+    ]
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "checkpoint": {
+    "repo": "deepseek-ai/DeepSeek-V3",
+    "revision": "e815299b0bcbac849fa540c768ef21845365c9eb"
+  },
+  "sources": [
+    {
+      "id": "config",
+      "kind": "hf",
+      "repo": "deepseek-ai/DeepSeek-V3",
+      "revision": "e815299b0bcbac849fa540c768ef21845365c9eb",
+      "path": "config.json",
+      "role": "config"
+    },
+    {
+      "id": "reference",
+      "kind": "hf",
+      "repo": "deepseek-ai/DeepSeek-V3",
+      "revision": "e815299b0bcbac849fa540c768ef21845365c9eb",
+      "path": "modeling_deepseek.py",
+      "role": "reference"
+    },
+    {
+      "id": "configuration",
+      "kind": "hf",
+      "repo": "deepseek-ai/DeepSeek-V3",
+      "revision": "e815299b0bcbac849fa540c768ef21845365c9eb",
+      "path": "configuration_deepseek.py",
+      "role": "extra"
+    },
+    {
+      "id": "publisher",
+      "kind": "hf",
+      "repo": "deepseek-ai/DeepSeek-V3",
+      "revision": "e815299b0bcbac849fa540c768ef21845365c9eb",
+      "path": "inference/model.py",
+      "role": "extra"
+    },
+    {
+      "id": "serving",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "revision": "155488d853a0bc42df227dbfc74005b3fd488e94",
+      "path": "vllm/model_executor/models/deepseek_v2.py",
+      "role": "serving"
+    },
+    {
+      "id": "training",
+      "kind": "github",
+      "repo": "pytorch/torchtitan",
+      "revision": "e3929368edd2f2457456913890ba2b4c0f27da31",
+      "path": "torchtitan/models/deepseek_v3/model.py",
+      "role": "training"
+    },
+    {
+      "id": "training-moe",
+      "kind": "github",
+      "repo": "pytorch/torchtitan",
+      "revision": "e3929368edd2f2457456913890ba2b4c0f27da31",
+      "path": "torchtitan/models/deepseek_v3/moe.py",
+      "role": "extra"
+    },
+    {
+      "id": "weights-index",
+      "kind": "hf",
+      "repo": "deepseek-ai/DeepSeek-V3",
+      "revision": "e815299b0bcbac849fa540c768ef21845365c9eb",
+      "path": "model.safetensors.index.json",
+      "role": "extra"
+    },
+    {
+      "id": "weights-readme",
+      "kind": "hf",
+      "repo": "deepseek-ai/DeepSeek-V3",
+      "revision": "e815299b0bcbac849fa540c768ef21845365c9eb",
+      "path": "README_WEIGHTS.md",
+      "role": "extra"
+    },
+    {
+      "id": "mla-backend",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "revision": "155488d853a0bc42df227dbfc74005b3fd488e94",
+      "path": "vllm/model_executor/layers/mla.py",
+      "role": "extra"
+    },
+    {
+      "id": "mtp",
+      "kind": "github",
+      "repo": "pytorch/torchtitan",
+      "revision": "e3929368edd2f2457456913890ba2b4c0f27da31",
+      "path": "torchtitan/models/deepseek_v3/mtp.py",
+      "role": "extra"
+    }
+  ]
+}
