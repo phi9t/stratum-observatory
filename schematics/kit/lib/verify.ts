@@ -96,9 +96,7 @@ export function verifyPins(slug: string): string[] {
     failures.push("checkpoint: repo is missing");
   }
   if (!HEX40.test(String(sources.checkpoint.revision ?? ""))) {
-    failures.push(
-      `checkpoint: revision "${String(sources.checkpoint.revision)}" is not a 40-hex commit (run fetch)`,
-    );
+    failures.push(`checkpoint: revision "${String(sources.checkpoint.revision)}" is not a 40-hex commit (run fetch)`);
   }
 
   const seen = new Set<string>();
@@ -126,8 +124,7 @@ export function verifyPins(slug: string): string[] {
 
   failures.push(...verifySymbolIndex(slug, sources));
 
-  const count = (role: string): number =>
-    sources.sources.filter((source) => source.role === role).length;
+  const count = (role: string): number => sources.sources.filter((source) => source.role === role).length;
   if (count("config") !== 1) {
     failures.push(`roles: expected exactly one "config" source, found ${count("config")}`);
   }
@@ -145,9 +142,7 @@ export function verifyPins(slug: string): string[] {
 
 /** symbols.json must index every cached code source, and match what the cache holds. */
 function verifySymbolIndex(slug: string, sources: Sources): string[] {
-  const codeSources = sources.sources.filter(
-    (source) => source.id && source.path && isCodePath(source.path),
-  );
+  const codeSources = sources.sources.filter((source) => source.id && source.path && isCodePath(source.path));
   if (codeSources.length === 0) {
     return [];
   }
@@ -173,7 +168,6 @@ function verifySymbolIndex(slug: string, sources: Sources): string[] {
   }
   return failures;
 }
-
 
 /** Names of the classes defined at column 0 (Python `class Name(...)` / `class Name:`). */
 export function topLevelClasses(text: string): string[] {
@@ -295,10 +289,7 @@ export function verifyFacts(slug: string, facts: Record<string, Fact>): string[]
             ? `${name}: "${locator.symbol}" is defined more than once in source "${locator.source}"; use one of ${qualified.join(", ")}`
             : `${name}: "${locator.symbol}" is not defined in source "${locator.source}"`,
         );
-      } else if (
-        locator.contains !== undefined &&
-        !sliceLines(loaded.text, range).includes(locator.contains)
-      ) {
+      } else if (locator.contains !== undefined && !sliceLines(loaded.text, range).includes(locator.contains)) {
         failures.push(
           `${name}: ${JSON.stringify(locator.contains)} does not appear inside "${locator.symbol}" (lines ${String(range[0])}-${String(range[1])}) in source "${locator.source}"`,
         );
@@ -404,10 +395,7 @@ export function verifyParameters(
   parameterTotal: number | Fact<number>,
   parameterNote?: string,
 ): ParameterResult {
-  const claimed =
-    typeof parameterTotal === "object" && parameterTotal !== null
-      ? parameterTotal.value
-      : parameterTotal;
+  const claimed = typeof parameterTotal === "object" && parameterTotal !== null ? parameterTotal.value : parameterTotal;
   if (typeof claimed !== "number" || !Number.isFinite(claimed)) {
     return { status: "fail", detail: `parameterTotal is not a finite number: ${String(claimed)}` };
   }

@@ -43,7 +43,13 @@ not reuse a lane for a second meaning. Three lanes plus ink is usually enough.
 - Wires are horizontal and vertical. Leave room: empty space is where wires go.
 - Labels are short. Box title: the operation (`RMSNorm`, `q projection`, `top-k`).
   Second line: the output width or shape. Everything else belongs in the inspector.
-- Keep a hand-laid overview under 1120px wide; `OpGraph` may be wider and will scroll.
+- Keep a hand-laid overview under 1120px wide. Keep each `OpGraph` to one band.
+- The overview is the page's first impression and must be more than a row of boxes:
+  show the layer stack as tiles coloured by kind (the same kinds as the layer map),
+  name the distinctive mechanisms on it, and show side inputs and the output. Compare
+  `models/gpt2/sections/Overview.tsx`.
+- A section with several figures needs a sub-heading and a connecting sentence for
+  each. Never stack figure after figure with nothing between them.
 - Draw to scale when sizes are the point; say what is not to scale.
 
 ## Words
@@ -55,6 +61,12 @@ not reuse a lane for a second meaning. Three lanes plus ink is usually enough.
 - Numbers: plain digits, no thousands separators (`129280`, `[B, S, 7168]`). Use
   `approx()` only beside the exact value. Use `n()` and `shape()` from the kit.
 - Captions say what to notice, not what the figure is.
+
+## Code
+
+Write section files the way you would write any source a colleague will read: one
+statement per line, one op per object. Run `npm run format -- <slug>` before
+checking; the `format` gate fails files prettier would change.
 
 ## Check with your eyes
 

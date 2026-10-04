@@ -22,6 +22,7 @@ npm run new -- <slug> <hf-repo>      # scaffold models/<slug>/
 npm run fetch -- <slug>              # pin revisions in sources.json, fill .sources-cache/<slug>/
 npm run dev -- <slug>                # vite dev server for one page
 npm run build -- <slug>              # dist/<slug>.html, single file
+npm run format -- <slug>             # prettier over models/<slug>
 npm run check -- <slug>              # every gate; writes runs/check/<slug>/report.json
 npm run shoot -- <slug>              # per-section screenshots into runs/shots/<slug>/
 ```
@@ -110,6 +111,7 @@ exists in `Page.tsx`'s `sectionIds`, or excluded with a reason.
 | `pins` | a revision is not a 40-hex commit, or a cached file is missing |
 | `typecheck` | `tsc --noEmit` reports an error |
 | `literals` | a section file contains a numeric literal outside JSX geometry props |
+| `format` | a `.ts`/`.tsx` file in the model folder is not prettier-formatted (`npm run format -- <slug>` fixes it) |
 | `facts` | a `cfg` value differs from `config.json`; a `code` locator does not resolve |
 | `coverage` | a reference class is unmapped, or mapped to a missing section |
 | `parameters` | `parameterTotal` differs from `safetensors.total` and `facts.ts` exports no `parameterNote` explaining why (skipped, and reported as skipped, when the hub gives no total) |

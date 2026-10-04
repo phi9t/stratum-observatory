@@ -61,7 +61,14 @@ function write(file: string, content: string): void {
 function writeSources(overrides: Record<string, unknown>[] = []): void {
   const sources = [
     { id: "config", kind: "hf", repo: "org/Toy", revision: SHA_A, path: "config.json", role: "config" },
-    { id: "reference", kind: "github", repo: "org/code", revision: SHA_B, path: "src/modeling_toy.py", role: "reference" },
+    {
+      id: "reference",
+      kind: "github",
+      repo: "org/code",
+      revision: SHA_B,
+      path: "src/modeling_toy.py",
+      role: "reference",
+    },
     { id: "serving", kind: "github", repo: "org/serve", revision: SHA_B, path: "toy.py", role: "serving" },
     ...overrides,
   ];
@@ -111,9 +118,7 @@ afterEach(() => {
 describe("loadSources / cachePath", () => {
   it("resolves a source id to its cached file", () => {
     expect(loadSources(SLUG).sources).toHaveLength(3);
-    expect(cachePath(SLUG, "reference")).toBe(
-      join(root, "cache", SLUG, "reference", "src", "modeling_toy.py"),
-    );
+    expect(cachePath(SLUG, "reference")).toBe(join(root, "cache", SLUG, "reference", "src", "modeling_toy.py"));
     expect(() => cachePath(SLUG, "nope")).toThrow(/no source with id "nope"/);
   });
 });
@@ -301,8 +306,7 @@ describe("verifyCoverage", () => {
 });
 
 describe("verifyParameters", () => {
-  const info = (body: unknown): void =>
-    write(join(root, "cache", SLUG, "model-info.json"), JSON.stringify(body));
+  const info = (body: unknown): void => write(join(root, "cache", SLUG, "model-info.json"), JSON.stringify(body));
 
   it("is skipped without model-info or without a total", () => {
     expect(verifyParameters(SLUG, 10).status).toBe("skipped");
@@ -314,7 +318,12 @@ describe("verifyParameters", () => {
     info({ safetensors: { total: 1000 } });
     expect(verifyParameters(SLUG, 1000).status).toBe("pass");
     const base = cfg("hidden_size", 64);
-    expect(verifyParameters(SLUG, derive(() => 1000, [base])).status).toBe("pass");
+    expect(
+      verifyParameters(
+        SLUG,
+        derive(() => 1000, [base]),
+      ).status,
+    ).toBe("pass");
     const failed = verifyParameters(SLUG, 990);
     expect(failed.status).toBe("fail");
     expect(failed.detail).toMatch(/990 differs from safetensors\.total 1000/);

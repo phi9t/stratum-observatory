@@ -28,5 +28,5 @@ Derived 124439808. Hub `safetensors.total` 137022720. Difference 12582912 = 12 l
 - The float32 cache-size figure assumes the stored dtype; a server may use another.
 
 ## Gates
-`npm run check -- gpt2`: pins, typecheck, literals, facts, coverage, parameters, build,
+`npm run check -- gpt2`: pins, typecheck, literals, format, facts, coverage, parameters, build,
 layout, play all pass.

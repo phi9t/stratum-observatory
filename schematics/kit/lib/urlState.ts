@@ -46,7 +46,11 @@ export function useUrlNumber(
   min: number,
   max: number,
 ): readonly [number, (next: number | ((current: number) => number)) => void] {
-  const raw = useSyncExternalStore(subscribe, () => read().get(key), () => null);
+  const raw = useSyncExternalStore(
+    subscribe,
+    () => read().get(key),
+    () => null,
+  );
   const clamp = (value: number): number =>
     Number.isFinite(value) ? Math.min(max, Math.max(min, Math.round(value))) : fallback;
   const value = raw === null ? fallback : clamp(Number(raw));
@@ -69,11 +73,12 @@ export function useUrlChoice<T extends string>(
   fallback: T,
   allowed: readonly T[],
 ): readonly [T, (next: T) => void] {
-  const raw = useSyncExternalStore(subscribe, () => read().get(key), () => null);
-  const value = raw !== null && (allowed as readonly string[]).includes(raw) ? (raw as T) : fallback;
-  const set = useCallback(
-    (next: T) => write(key, next === fallback ? null : next),
-    [key, fallback],
+  const raw = useSyncExternalStore(
+    subscribe,
+    () => read().get(key),
+    () => null,
   );
+  const value = raw !== null && (allowed as readonly string[]).includes(raw) ? (raw as T) : fallback;
+  const set = useCallback((next: T) => write(key, next === fallback ? null : next), [key, fallback]);
   return [value, set];
 }

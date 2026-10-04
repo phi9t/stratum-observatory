@@ -180,6 +180,24 @@ await gate("literals", () => {
   fromFailures("literals", files.flatMap((name) => literalViolations(join(directory, name))));
 });
 
+// --- format ---
+
+await gate("format", () => {
+  // Formatting is mechanical: `npm run format -- <slug>` fixes every finding.
+  const result = spawnSync("npx", ["prettier", "--check", `${relative(PACKAGE_ROOT, root)}/**/*.{ts,tsx}`], {
+    cwd: PACKAGE_ROOT,
+    encoding: "utf8",
+  });
+  if (result.status === 0) {
+    return record("format", "pass", []);
+  }
+  const unformatted = `${result.stdout}\n${result.stderr}`
+    .split("\n")
+    .filter((line) => line.startsWith("[warn] ") && /\.tsx?$/.test(line))
+    .map((line) => `${line.replace("[warn] ", "")}: not formatted; run npm run format -- ${slug}`);
+  record("format", "fail", unformatted.length > 0 ? unformatted : [result.stderr.trim() || "prettier --check failed"]);
+});
+
 // --- facts, coverage, parameters ---
 
 await gate("facts", async () => {
@@ -389,6 +407,18 @@ function layoutProbe(limit) {
     }
   }
 
+  for (const graph of document.querySelectorAll("svg[data-bands]")) {
+    const bands = Number(graph.getAttribute("data-bands"));
+    const rows = Number(graph.getAttribute("data-rows"));
+    if (bands > 1 && rows > 1) {
+      result.svgCount += 1;
+      if (result.svg.length < limit) {
+        result.svg.push(
+          `op graph "${graph.getAttribute("data-graph")}" wraps onto ${bands} bands and uses ${rows} rows: wires tangle. Split it into two graphs at a seam (each with a heading), or shorten each op's sub line so it fits one band`,
+        );
+      }
+    }
+  }
   for (const node of document.querySelectorAll("svg g.ms-node")) {
     const rect = node.querySelector(":scope > rect");
     if (!rect) continue;

@@ -16,14 +16,24 @@ export function Stack() {
       source={[{ source: "reference", symbol: "GPT2Model" }]}
       title="The stack"
     >
-      <LayerMap count={f.layers.value} kindOf={() => "block"} kinds={KINDS} label="GPT-2 layers" onSelect={setLayer} selected={layer} />
+      <LayerMap
+        count={f.layers.value}
+        kindOf={() => "block"}
+        kinds={KINDS}
+        label="GPT-2 layers"
+        onSelect={setLayer}
+        selected={layer}
+      />
       <Sentence>
-        Layer {n(layer)} is block h[{n(layer)}]: it reads the stream left by {layer === 0 ? "the embeddings" : `layer ${n(layer - 1)}`} and{" "}
-        {layer === f.layers.value - 1 ? "hands its result to the final LayerNorm." : `passes its result to layer ${n(layer + 1)}.`}
+        Layer {n(layer)} is block h[{n(layer)}]: it reads the stream left by{" "}
+        {layer === 0 ? "the embeddings" : `layer ${n(layer - 1)}`} and{" "}
+        {layer === f.layers.value - 1
+          ? "hands its result to the final LayerNorm."
+          : `passes its result to layer ${n(layer + 1)}.`}
       </Sentence>
       <Prose>
-        GPT-2 has one layer kind. The code can scale attention by one over the layer number, but this checkpoint's config leaves that off, so
-        the only thing that differs between layers is the learned weights.
+        GPT-2 has one layer kind. The code can scale attention by one over the layer number, but this checkpoint's
+        config leaves that off, so the only thing that differs between layers is the learned weights.
       </Prose>
     </Section>
   );

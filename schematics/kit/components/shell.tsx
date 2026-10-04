@@ -42,8 +42,7 @@ function SectionNav({ mark, sections }: { mark: string; sections: readonly Secti
       return;
     }
     const reduced =
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
   };
   return (
@@ -154,15 +153,7 @@ export function Prose({ children }: { children: ReactNode }) {
 }
 
 /** Rounded white panel holding one fixed-size SVG; scrolls sideways when narrow. */
-export function Figure({
-  label,
-  caption,
-  children,
-}: {
-  label: string;
-  caption?: ReactNode;
-  children: ReactNode;
-}) {
+export function Figure({ label, caption, children }: { label: string; caption?: ReactNode; children: ReactNode }) {
   return (
     <figure className="ms-figure">
       <div
@@ -197,15 +188,7 @@ export function Pipes({ children }: { children: ReactNode }) {
   return <div className="ms-pipes">{children}</div>;
 }
 
-export function Pipe({
-  lane,
-  label,
-  items,
-}: {
-  lane: Lane;
-  label: string;
-  items: readonly PipeItem[];
-}) {
+export function Pipe({ lane, label, items }: { lane: Lane; label: string; items: readonly PipeItem[] }) {
   return (
     <div className="ms-pipe" data-lane={lane}>
       <div className="ms-pipe__label">{label}</div>

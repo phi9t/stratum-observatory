@@ -102,8 +102,14 @@ const edges: Edge[] = [
 - `sub` is short (a width or a shape). Long text goes in `detail`.
 - `width` is the op's output width per token. Give it on every data-path op: the
   gauge under the box shows bottlenecks and expansions at a glance.
-- Wide graphs scroll; if one exceeds about 14 columns, split it into two graphs at a
-  natural seam (e.g. "build q, k, v" and "attend and project").
+- A graph should fit one band (about 1240px: roughly eight columns). A single-row
+  chain that is longer wraps cleanly onto a second band. A multi-row graph that wraps
+  tangles, and the layout gate fails it: split it into two graphs at a natural seam
+  (e.g. "build q, k, v" and "attend and project").
+- `heading` puts a sub-heading above the graph. Give one whenever a section has more
+  than one graph, and put a sentence of prose between graphs saying how they connect.
+- `sub` is at most 24 characters: one width or one shape. Two shapes joined with "|"
+  do not fit; name the op after what it makes and put both shapes in `detail.output`.
 - Build ops with a function of the selected layer or variant when they differ, so the
   graph is always the true one.
 

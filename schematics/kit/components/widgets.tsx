@@ -56,7 +56,8 @@ export function LayerMap({
         {kinds.map((kind) => (
           <li key={kind.id}>
             <span aria-hidden="true" className="ms-swatch" data-lane={kind.lane} />
-            {kind.label} ({String(Array.from({ length: count }, (_u, i) => i).filter((i) => kindOf(i) === kind.id).length)})
+            {kind.label} (
+            {String(Array.from({ length: count }, (_u, i) => i).filter((i) => kindOf(i) === kind.id).length)})
           </li>
         ))}
       </ul>
@@ -102,8 +103,16 @@ export function AttentionGrid({
       width={left + side + 240}
     >
       <title id={titleId}>{title}</title>
-      <text className="ms-fig__column" x={left} y={18}>key position →</text>
-      <text className="ms-fig__column" textAnchor="end" transform={`rotate(-90 ${String(left - 34)} ${String(top)})`} x={left - 34} y={top}>
+      <text className="ms-fig__column" x={left} y={18}>
+        key position →
+      </text>
+      <text
+        className="ms-fig__column"
+        textAnchor="end"
+        transform={`rotate(-90 ${String(left - 34)} ${String(top)})`}
+        x={left - 34}
+        y={top}
+      >
         query ↓
       </text>
       {positions.map((q) =>
@@ -150,7 +159,8 @@ export function AttentionGrid({
         </g>
       ))}
       <text className="ms-fig__note" x={left} y={top + side + 22}>
-        Row q={n(query)} reads {n(positions.filter((k) => cell(query, k) !== "masked").length)} of {n(size)} shown positions.
+        Row q={n(query)} reads {n(positions.filter((k) => cell(query, k) !== "masked").length)} of {n(size)} shown
+        positions.
       </text>
     </svg>
   );
@@ -291,7 +301,11 @@ export function MoeRouter({
       })}
       <line className="ms-router__axis" x1={left} x2={left + span} y1={base + 0.5} y2={base + 0.5} />
       <text className="ms-fig__note" x={left} y={base + 20}>
-        selected: {[...routing.chosen].sort((a, b) => a - b).map(n).join(", ")}
+        selected:{" "}
+        {[...routing.chosen]
+          .sort((a, b) => a - b)
+          .map(n)
+          .join(", ")}
       </text>
       <text className="ms-fig__note" x={left} y={base + 36}>
         weights: {routing.weights.map((w) => w.toFixed(3)).join("  ")}
@@ -302,7 +316,15 @@ export function MoeRouter({
             shared · always on
           </text>
           {Array.from({ length: shared }, (_u, s) => (
-            <rect className="ms-router__bar" data-shared="true" height={full} key={s} width={10} x={sharedX + s * 14} y={base - full} />
+            <rect
+              className="ms-router__bar"
+              data-shared="true"
+              height={full}
+              key={s}
+              width={10}
+              x={sharedX + s * 14}
+              y={base - full}
+            />
           ))}
           <text className="ms-fig__note" x={sharedX} y={base + 20}>
             no router logit
@@ -405,7 +427,11 @@ export function Ledger({
                   {n(row.value)} <span>({approx(row.value)})</span>
                 </td>
                 <td className="ms-ledger__share" data-lane={row.lane}>
-                  <span aria-hidden="true" className="ms-ledger__bar" style={{ inlineSize: `${String(Math.max(share, 0.4))}%` }} />
+                  <span
+                    aria-hidden="true"
+                    className="ms-ledger__bar"
+                    style={{ inlineSize: `${String(Math.max(share, 0.4))}%` }}
+                  />
                   <span>{share.toFixed(share < 0.1 ? 3 : 2)}%</span>
                 </td>
               </tr>
@@ -480,10 +506,16 @@ export function TensorScale({
   }
   const width = x - colGap + 24;
   const height = maxBottom + 58;
-  const find = (stage: number, key: string): Placed | undefined =>
-    placed[stage]?.find((tensor) => tensor.key === key);
+  const find = (stage: number, key: string): Placed | undefined => placed[stage]?.find((tensor) => tensor.key === key);
   return (
-    <svg aria-labelledby={titleId} className="ms-fig ms-scale" height={height} role="img" viewBox={`0 0 ${String(width)} ${String(height)}`} width={width}>
+    <svg
+      aria-labelledby={titleId}
+      className="ms-fig ms-scale"
+      height={height}
+      role="img"
+      viewBox={`0 0 ${String(width)} ${String(height)}`}
+      width={width}
+    >
       <title id={titleId}>{title}</title>
       <g className="ms-scale__ribbon">
         {placed.flatMap((column, stage) =>
@@ -512,7 +544,14 @@ export function TensorScale({
               <text className="ms-scale__shape" x={tensor.x} y={tensor.y - 7}>
                 {n(tensor.tokens)} × {n(tensor.width)}
               </text>
-              <rect className="ms-scale__tensor" data-lane={tensor.lane} height={tensor.h} width={tensor.w} x={tensor.x} y={tensor.y} />
+              <rect
+                className="ms-scale__tensor"
+                data-lane={tensor.lane}
+                height={tensor.h}
+                width={tensor.w}
+                x={tensor.x}
+                y={tensor.y}
+              />
               <text className="ms-scale__count" x={tensor.x} y={tensor.y + tensor.h + 15}>
                 {n(tensor.tokens * tensor.width)} scalars{tensor.note === undefined ? "" : ` · ${tensor.note}`}
               </text>

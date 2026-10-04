@@ -37,7 +37,14 @@ export function Overview() {
         caption="The output head has no weights of its own: it reuses the token embedding matrix, transposed. The blue line is that tie."
         label="Forward pass drawing"
       >
-        <svg aria-labelledby={titleId} className="ms-fig" height={L.height} role="img" viewBox={`0 0 ${String(L.width)} ${String(L.height)}`} width={L.width}>
+        <svg
+          aria-labelledby={titleId}
+          className="ms-fig"
+          height={L.height}
+          role="img"
+          viewBox={`0 0 ${String(L.width)} ${String(L.height)}`}
+          width={L.width}
+        >
           <title id={titleId}>GPT-2 forward pass from token ids to logits</title>
           <ArrowDefs id={arrow} />
           <ColumnLabel x={L.ids}>input</ColumnLabel>
@@ -46,13 +53,44 @@ export function Overview() {
           <ColumnLabel x={L.norm}>final norm</ColumnLabel>
           <ColumnLabel x={L.head}>head</ColumnLabel>
 
-          <Node h={44} kind="tensor" lane="merged" lines={[shape("B", "S")]} title="input_ids" w={104} x={L.ids} y={L.y - 22} />
+          <Node
+            h={44}
+            kind="tensor"
+            lane="merged"
+            lines={[shape("B", "S")]}
+            title="input_ids"
+            w={104}
+            x={L.ids}
+            y={L.y - 22}
+          />
           <Wire arrow={arrow} d={`M 120 ${String(L.y)} H ${String(L.wte)}`} />
-          <Node h={44} lane="high" lines={[`${n(f.vocab.value)} × ${n(f.hidden.value)}`]} title="wte lookup" w={140} x={L.wte} y={L.y - 22} />
-          <Node h={44} lane="instance" lines={[`${n(f.positions.value)} × ${n(f.hidden.value)}`]} title="wpe lookup" w={140} x={L.wpe} y={L.y + 54} />
-          <Note lane="instance" x={L.wpe} y={L.y + 116}>position 0, 1, 2, … of each token</Note>
+          <Node
+            h={44}
+            lane="high"
+            lines={[`${n(f.vocab.value)} × ${n(f.hidden.value)}`]}
+            title="wte lookup"
+            w={140}
+            x={L.wte}
+            y={L.y - 22}
+          />
+          <Node
+            h={44}
+            lane="instance"
+            lines={[`${n(f.positions.value)} × ${n(f.hidden.value)}`]}
+            title="wpe lookup"
+            w={140}
+            x={L.wpe}
+            y={L.y + 54}
+          />
+          <Note lane="instance" x={L.wpe} y={L.y + 116}>
+            position 0, 1, 2, … of each token
+          </Note>
           <Wire arrow={arrow} d={`M 290 ${String(L.y)} H ${String(L.add - 12)}`} lane="high" />
-          <Wire arrow={arrow} d={`M 290 ${String(L.y + 76)} H ${String(L.add)} V ${String(L.y + 12)}`} lane="instance" />
+          <Wire
+            arrow={arrow}
+            d={`M 290 ${String(L.y + 76)} H ${String(L.add)} V ${String(L.y + 12)}`}
+            lane="instance"
+          />
           <g className="ms-sum">
             <circle cx={L.add} cy={L.y} r={10} />
             <path d={`M ${String(L.add - 5)} ${String(L.y)} h 10 M ${String(L.add)} ${String(L.y - 5)} v 10`} />
@@ -74,10 +112,33 @@ export function Overview() {
           <Wire arrow={arrow} d={`M ${String(L.stack + L.stackW)} ${String(L.y)} H ${String(L.norm)}`} />
           <Node h={44} lane="merged" lines={[n(f.hidden.value)]} title="LayerNorm" w={100} x={L.norm} y={L.y - 22} />
           <Wire arrow={arrow} d={`M ${String(L.norm + 100)} ${String(L.y)} H ${String(L.head)}`} />
-          <Node h={44} lane="high" lines={[`${n(f.hidden.value)} → ${n(f.vocab.value)}`]} title="lm_head" w={150} x={L.head} y={L.y - 22} />
-          <Wire d={`M ${String(L.wte + 70)} ${String(L.y - 22)} V 40 H ${String(L.head + 75)} V ${String(L.y - 22)}`} kind="state" lane="high" />
-          <Note anchor="middle" lane="high" x={(L.wte + L.head) / 2 + 70} y={34}>same matrix: lm_head.weight is wte.weight</Note>
-          <Node h={40} kind="tensor" lane="merged" lines={[shape("B", "S", f.vocab.value)]} title="logits" w={150} x={L.head} y={L.y + 56} />
+          <Node
+            h={44}
+            lane="high"
+            lines={[`${n(f.hidden.value)} → ${n(f.vocab.value)}`]}
+            title="lm_head"
+            w={150}
+            x={L.head}
+            y={L.y - 22}
+          />
+          <Wire
+            d={`M ${String(L.wte + 70)} ${String(L.y - 22)} V 40 H ${String(L.head + 75)} V ${String(L.y - 22)}`}
+            kind="state"
+            lane="high"
+          />
+          <Note anchor="middle" lane="high" x={(L.wte + L.head) / 2 + 70} y={34}>
+            same matrix: lm_head.weight is wte.weight
+          </Note>
+          <Node
+            h={40}
+            kind="tensor"
+            lane="merged"
+            lines={[shape("B", "S", f.vocab.value)]}
+            title="logits"
+            w={150}
+            x={L.head}
+            y={L.y + 56}
+          />
           <Wire arrow={arrow} d={`M ${String(L.head + 75)} ${String(L.y + 22)} V ${String(L.y + 56)}`} />
         </svg>
       </Figure>
@@ -85,11 +146,31 @@ export function Overview() {
         caption="Stages of the forward pass"
         head={["Stage", "What happens", "Output"]}
         rows={[
-          ["Token embedding", "Each id selects one row of wte.", <Tensor key="t" name="inputs_embeds" shape={shape("B", "S", f.hidden.value)} />],
-          ["Position embedding", "Each position index selects one row of wpe; the two are added.", <Tensor key="t" name="hidden_states" shape={shape("B", "S", f.hidden.value)} />],
-          ["Blocks", `${n(f.layers.value)} blocks, each: norm, attention, add, norm, MLP, add.`, <Tensor key="t" name="hidden_states" shape={shape("B", "S", f.hidden.value)} />],
-          ["Final norm", "One more LayerNorm, because blocks normalise their inputs, not their outputs.", <Tensor key="t" name="hidden_states" shape={shape("B", "S", f.hidden.value)} />],
-          ["Head", "A bias-free projection onto the token embeddings.", <Tensor key="t" name="logits" shape={shape("B", "S", f.vocab.value)} />],
+          [
+            "Token embedding",
+            "Each id selects one row of wte.",
+            <Tensor key="t" name="inputs_embeds" shape={shape("B", "S", f.hidden.value)} />,
+          ],
+          [
+            "Position embedding",
+            "Each position index selects one row of wpe; the two are added.",
+            <Tensor key="t" name="hidden_states" shape={shape("B", "S", f.hidden.value)} />,
+          ],
+          [
+            "Blocks",
+            `${n(f.layers.value)} blocks, each: norm, attention, add, norm, MLP, add.`,
+            <Tensor key="t" name="hidden_states" shape={shape("B", "S", f.hidden.value)} />,
+          ],
+          [
+            "Final norm",
+            "One more LayerNorm, because blocks normalise their inputs, not their outputs.",
+            <Tensor key="t" name="hidden_states" shape={shape("B", "S", f.hidden.value)} />,
+          ],
+          [
+            "Head",
+            "A bias-free projection onto the token embeddings.",
+            <Tensor key="t" name="logits" shape={shape("B", "S", f.vocab.value)} />,
+          ],
         ]}
       />
     </Section>

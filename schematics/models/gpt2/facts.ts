@@ -98,11 +98,7 @@ export const finalNormParams = derive(() => norm(hidden.value), [hidden]);
 
 /** Parameters of GPT2LMHeadModel; the head adds none because it is tied to wte. */
 export const parameterTotal = derive(
-  () =>
-    tokenEmbedParams.value +
-    positionEmbedParams.value +
-    layers.value * blockParams.value +
-    finalNormParams.value,
+  () => tokenEmbedParams.value + positionEmbedParams.value + layers.value * blockParams.value + finalNormParams.value,
   [tokenEmbedParams, positionEmbedParams, layers, blockParams, finalNormParams, tiedHead],
 );
 
@@ -128,10 +124,36 @@ export function cacheScalars(batch: number, context: number): number {
 export const BYTES_PER_SCALAR = Float32Array.BYTES_PER_ELEMENT;
 
 export const facts: Record<string, Fact> = {
-  vocab, positions, hidden, layers, heads, activation, normEps, eosToken,
-  mlpRatio, qkvParts, preNorm, scaling, tiedHead, headBias, conv1dWeight, geluFormula,
-  ignoredMaskBuffer, servingFusedQkv, servingNoLayerScale,
-  headDim, qkvWidth, mlpWidth, tokenEmbedParams, positionEmbedParams, attentionParams,
-  mlpParams, blockNormParams, blockParams, finalNormParams, parameterTotal,
-  maskBufferScalars, checkpointScalars,
+  vocab,
+  positions,
+  hidden,
+  layers,
+  heads,
+  activation,
+  normEps,
+  eosToken,
+  mlpRatio,
+  qkvParts,
+  preNorm,
+  scaling,
+  tiedHead,
+  headBias,
+  conv1dWeight,
+  geluFormula,
+  ignoredMaskBuffer,
+  servingFusedQkv,
+  servingNoLayerScale,
+  headDim,
+  qkvWidth,
+  mlpWidth,
+  tokenEmbedParams,
+  positionEmbedParams,
+  attentionParams,
+  mlpParams,
+  blockNormParams,
+  blockParams,
+  finalNormParams,
+  parameterTotal,
+  maskBufferScalars,
+  checkpointScalars,
 };

@@ -1,11 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import {
-  verifyCoverage,
-  verifyFacts,
-  verifyParameters,
-  verifyPins,
-} from "../../../kit/lib/verify";
+import { verifyCoverage, verifyFacts, verifyParameters, verifyPins } from "../../../kit/lib/verify";
 import * as model from "../facts";
 import { sectionIds } from "../Page";
 

@@ -2,7 +2,7 @@ import { useId, type KeyboardEvent, type ReactNode } from "react";
 
 import { SourceRef, type Ref } from "../lib/sources";
 import { useUrlChoice } from "../lib/urlState";
-import { Button, Sentence } from "./controls";
+import { Button } from "./controls";
 import { Figure, type Lane } from "./shell";
 
 // A block drawn op by op. You give ops on a (col, row) grid and edges between
@@ -61,48 +61,99 @@ const NODE_H = 46;
 const ROUND = 26;
 const MARGIN = 24;
 const SKIP_LANE = 18;
+const SUB_MAX = 24;
 const GAUGE_PX = 60;
 const GAUGE_H = 4;
 
-type Box = Readonly<{ op: Op; x: number; y: number; w: number; h: number }>;
+type Box = Readonly<{ op: Op; x: number; y: number; w: number; h: number; band: number }>;
 
-function layout(ops: readonly Op[], skipCount: number) {
+const MAX_WIDTH = 1240; // a graph wider than this continues on a new band below
+const BAND_GAP = 44;
+
+type Layout = Readonly<{
+  boxes: Map<string, Box>;
+  width: number;
+  height: number;
+  /** Top of the node area of each band (skip lanes sit above it). */
+  bandTop: readonly number[];
+  /** Y of the horizontal gutter under each band, used by wires that change band. */
+  gutter: readonly number[];
+}>;
+
+function opWidth(op: Op): number {
+  return op.kind === "sum" || op.kind === "mul"
+    ? ROUND
+    : Math.max(64, Math.ceil(Math.max(op.label.length * TITLE_PX, (op.sub?.length ?? 0) * LINE_PX) + PAD));
+}
+
+function layout(ops: readonly Op[], edges: readonly Edge[]): Layout {
   const cols = Math.max(...ops.map((op) => op.col)) + 1;
-  const rows = Math.max(...ops.map((op) => op.row)) + 1;
-  const width = (op: Op): number =>
-    op.kind === "sum" || op.kind === "mul"
-      ? ROUND
-      : Math.max(64, Math.ceil(Math.max(op.label.length * TITLE_PX, (op.sub?.length ?? 0) * LINE_PX) + PAD));
   const colWidth = Array.from({ length: cols }, (_u, col) =>
-    Math.max(0, ...ops.filter((op) => op.col === col).map(width)),
+    Math.max(0, ...ops.filter((op) => op.col === col).map(opWidth)),
   );
+  // Assign columns to bands so no band is wider than MAX_WIDTH.
+  const colBand: number[] = [];
   const colX: number[] = [];
+  let band = 0;
   let x = MARGIN;
-  for (const w of colWidth) {
+  let widest = 0;
+  for (let col = 0; col < cols; col += 1) {
+    if (x > MARGIN && x + colWidth[col] + MARGIN > MAX_WIDTH) {
+      band += 1;
+      x = MARGIN;
+    }
+    colBand.push(band);
     colX.push(x);
-    x += w + GAP_X;
+    x += colWidth[col] + GAP_X;
+    widest = Math.max(widest, x - GAP_X + MARGIN);
   }
-  const top = MARGIN + skipCount * SKIP_LANE + (skipCount > 0 ? 8 : 0);
+  const bands = band + 1;
+  const bandOf = (id: string): number => colBand[ops.find((op) => op.id === id)?.col ?? 0];
+  const bandTop: number[] = [];
+  const gutter: number[] = [];
+  let y = MARGIN;
+  for (let b = 0; b < bands; b += 1) {
+    const inBand = ops.filter((op) => colBand[op.col] === b);
+    const rows = Math.max(...inBand.map((op) => op.row)) + 1;
+    const skips = edges.filter(
+      (edge) => edge.kind === "skip" && bandOf(edge.from) === b && bandOf(edge.to) === b,
+    ).length;
+    const top = y + skips * SKIP_LANE + (skips > 0 ? 8 : 0);
+    bandTop.push(top);
+    const bottom = top + rows * ROW_H - (ROW_H - NODE_H) + 14;
+    gutter.push(bottom + BAND_GAP / 2 - 8);
+    y = bottom + BAND_GAP;
+  }
   const boxes = new Map<string, Box>();
   for (const op of ops) {
-    const w = width(op);
+    const w = opWidth(op);
     const h = op.kind === "sum" || op.kind === "mul" ? ROUND : NODE_H;
+    const b = colBand[op.col];
     boxes.set(op.id, {
       op,
       w,
       h,
+      band: b,
       x: colX[op.col] + (colWidth[op.col] - w) / 2,
-      y: top + op.row * ROW_H + (NODE_H - h) / 2,
+      y: bandTop[b] + op.row * ROW_H + (NODE_H - h) / 2,
     });
   }
-  return { boxes, width: x - GAP_X + MARGIN, height: top + rows * ROW_H - (ROW_H - NODE_H) + MARGIN, top };
+  return { boxes, width: widest, height: y - BAND_GAP + MARGIN - 14, bandTop, gutter };
 }
 
-function route(edge: Edge, from: Box, to: Box, skipIndex: number, top: number): string {
+function route(edge: Edge, from: Box, to: Box, laneIndex: number, crossIndex: number, L: Layout): string {
   const fy = from.y + from.h / 2;
   const ty = to.y + to.h / 2;
+  if (from.band !== to.band) {
+    // Leave to the right, travel along the gutter under the upper band, enter from the left.
+    const upper = Math.min(from.band, to.band);
+    const gy = L.gutter[upper] + crossIndex * 6;
+    const fx = from.x + from.w;
+    const tx = to.x;
+    return `M ${fx} ${fy} H ${fx + 14} V ${gy} H ${tx - 16} V ${ty} H ${tx}`;
+  }
   if (edge.kind === "skip") {
-    const lane = top - 8 - skipIndex * SKIP_LANE;
+    const lane = L.bandTop[from.band] - 8 - laneIndex * SKIP_LANE;
     const fx = from.x + from.w / 2;
     const tx = to.x + to.w / 2;
     return `M ${fx} ${from.y} V ${lane} H ${tx} V ${to.y}`;
@@ -138,7 +189,7 @@ function Inspector({ op }: { op: Op }) {
     rows.push([`param · ${name}`, value]);
   }
   return (
-    <div aria-label="Operation inspector" className="ms-inspector" role="region">
+    <div aria-label="Operation inspector" aria-live="polite" className="ms-inspector" role="region">
       <div className="ms-inspector__title">{op.label}</div>
       <div>
         <p className="ms-inspector__what">{d.what}</p>
@@ -175,8 +226,11 @@ export function OpGraph({
   ops,
   edges,
   caption,
+  heading,
 }: {
   id: string;
+  /** Sub-heading shown above the stepper. Give one whenever a section holds more than one graph. */
+  heading?: string;
   title: string;
   ops: readonly Op[];
   edges: readonly Edge[];
@@ -185,6 +239,12 @@ export function OpGraph({
   const titleId = useId();
   const arrow = useId();
   const ids = ops.map((op) => op.id);
+  const long = ops.find((op) => (op.sub?.length ?? 0) > SUB_MAX);
+  if (long !== undefined) {
+    throw new Error(
+      `OpGraph ${id}: op "${long.id}" has a ${String(long.sub?.length)}-character sub line; keep it to ${String(SUB_MAX)} (one width or one shape) and put the rest in detail`,
+    );
+  }
   if (new Set(ids).size !== ids.length) {
     throw new Error(`OpGraph ${id}: duplicate op id`);
   }
@@ -193,8 +253,8 @@ export function OpGraph({
   const selected = ops[index];
   const widest = Math.max(1, ...ops.map((op) => op.width ?? 0));
   const gauged = ops.some((op) => op.width !== undefined);
-  const skips = edges.filter((edge) => edge.kind === "skip");
-  const { boxes, width, height, top } = layout(ops, skips.length);
+  const L = layout(ops, edges);
+  const { boxes, width, height } = L;
   const box = (opId: string): Box => {
     const found = boxes.get(opId);
     if (found === undefined) {
@@ -217,6 +277,7 @@ export function OpGraph({
 
   return (
     <div className="ms-opgraph">
+      {heading === undefined ? null : <h3 className="ms-sub">{heading}</h3>}
       <div className="ms-control">
         <Button disabled={index === 0} onClick={() => select(ids[index - 1])}>
           Previous op
@@ -225,12 +286,9 @@ export function OpGraph({
           Next op
         </Button>
         <span className="ms-control__value">
-          op {String(index + 1)} of {String(ops.length)}
+          op {String(index + 1)} of {String(ops.length)} · {selected.label}
         </span>
       </div>
-      <Sentence>
-        {selected.label}: {selected.detail.what}
-      </Sentence>
       <Figure
         caption={
           gauged ? (
@@ -248,6 +306,9 @@ export function OpGraph({
         <svg
           aria-labelledby={titleId}
           className="ms-fig"
+          data-bands={L.bandTop.length}
+          data-graph={id}
+          data-rows={Math.max(...ops.map((op) => op.row)) + 1}
           height={height}
           role="group"
           viewBox={`0 0 ${String(width)} ${String(height)}`}
@@ -255,21 +316,44 @@ export function OpGraph({
         >
           <title id={titleId}>{title}</title>
           <defs>
-            <marker id={arrow} markerHeight="7" markerUnits="userSpaceOnUse" markerWidth="7" orient="auto" refX="6.2" refY="3.5" viewBox="0 0 7 7">
+            <marker
+              id={arrow}
+              markerHeight="7"
+              markerUnits="userSpaceOnUse"
+              markerWidth="7"
+              orient="auto"
+              refX="6.2"
+              refY="3.5"
+              viewBox="0 0 7 7"
+            >
               <path className="ms-arrowhead" d="M 0 0.8 L 7 3.5 L 0 6.2 z" />
             </marker>
           </defs>
           {edges.map((edge) => {
             const from = box(edge.from);
             const to = box(edge.to);
-            const d = route(edge, from, to, skips.indexOf(edge), top);
+            const sameBandSkips = edges.filter(
+              (other) =>
+                other.kind === "skip" && box(other.from).band === from.band && box(other.to).band === from.band,
+            );
+            const crossing = edges.filter((other) => box(other.from).band !== box(other.to).band);
+            const d = route(edge, from, to, sameBandSkips.indexOf(edge), crossing.indexOf(edge), L);
             const className =
-              edge.kind === "skip" ? "ms-wire ms-wire--skip" : edge.kind === "state" ? "ms-wire ms-wire--state" : "ms-wire";
+              edge.kind === "skip"
+                ? "ms-wire ms-wire--skip"
+                : edge.kind === "state"
+                  ? "ms-wire ms-wire--state"
+                  : "ms-wire";
             return (
               <g key={`${edge.from}>${edge.to}:${edge.kind ?? "data"}`}>
                 <path className={className} d={d} data-lane={from.op.lane ?? "merged"} markerEnd={`url(#${arrow})`} />
                 {edge.label === undefined ? null : (
-                  <text className="ms-wire__label" textAnchor="middle" x={(from.x + from.w + to.x) / 2} y={Math.min(from.y, to.y) + from.h / 2 - 7}>
+                  <text
+                    className="ms-wire__label"
+                    textAnchor="middle"
+                    x={(from.x + from.w + to.x) / 2}
+                    y={Math.min(from.y, to.y) + from.h / 2 - 7}
+                  >
                     {edge.label}
                   </text>
                 )}
@@ -285,7 +369,14 @@ export function OpGraph({
             return (
               <g className="ms-gauge" data-lane={op.lane ?? "merged"} key={`gauge-${op.id}`}>
                 <rect className="ms-gauge__track" height={GAUGE_H} rx={2} width={GAUGE_PX} x={x} y={b.y + b.h + 6} />
-                <rect className="ms-gauge__fill" height={GAUGE_H} rx={2} width={Math.max(2, (op.width / widest) * GAUGE_PX)} x={x} y={b.y + b.h + 6} />
+                <rect
+                  className="ms-gauge__fill"
+                  height={GAUGE_H}
+                  rx={2}
+                  width={Math.max(2, (op.width / widest) * GAUGE_PX)}
+                  x={x}
+                  y={b.y + b.h + 6}
+                />
               </g>
             );
           })}
@@ -323,8 +414,19 @@ export function OpGraph({
                   </>
                 ) : (
                   <>
-                    <rect height={b.h} rx={op.kind === "tensor" || op.kind === "state" ? 3 : 7} width={b.w} x={b.x} y={b.y} />
-                    <text className="ms-node__title" textAnchor="middle" x={cx} y={op.sub === undefined ? cy + 4 : cy - 3}>
+                    <rect
+                      height={b.h}
+                      rx={op.kind === "tensor" || op.kind === "state" ? 3 : 7}
+                      width={b.w}
+                      x={b.x}
+                      y={b.y}
+                    />
+                    <text
+                      className="ms-node__title"
+                      textAnchor="middle"
+                      x={cx}
+                      y={op.sub === undefined ? cy + 4 : cy - 3}
+                    >
                       {op.label}
                     </text>
                     {op.sub === undefined ? null : (
