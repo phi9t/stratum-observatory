@@ -166,7 +166,13 @@ export function Block() {
       source={[{ source: "reference", symbol: "GPT2Block" }]}
       title="Anatomy of a block"
     >
-      <OpGraph edges={edges} id="block" ops={ops} title={`GPT-2 block, layer ${n(layer)}`} />
+      <OpGraph
+        caption="Click a box, or step with the buttons, to inspect one operation. The bar under a box is the width of its output, relative to the widest in that figure; here every operation keeps the stream's width."
+        edges={edges}
+        id="block"
+        ops={ops}
+        title={`GPT-2 block, layer ${n(layer)}`}
+      />
       <Check question="If you deleted both LayerNorms inside a block, would any tensor change shape?">
         No. A LayerNorm rescales each position's vector and keeps its width, so every shape in the drawing would stay{" "}
         {shape("B", "S", d)}. What changes is the scale of what attention and the MLP read, which is why training

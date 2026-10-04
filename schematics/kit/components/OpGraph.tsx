@@ -252,7 +252,6 @@ export function OpGraph({
   const index = ids.indexOf(selectedId);
   const selected = ops[index];
   const widest = Math.max(1, ...ops.map((op) => op.width ?? 0));
-  const gauged = ops.some((op) => op.width !== undefined);
   const L = layout(ops, edges);
   const { boxes, width, height } = L;
   const box = (opId: string): Box => {
@@ -289,20 +288,7 @@ export function OpGraph({
           op {String(index + 1)} of {String(ops.length)} · {selected.label}
         </span>
       </div>
-      <Figure
-        caption={
-          gauged ? (
-            <>
-              {caption}
-              {caption === undefined ? "" : " "}
-              The bar under a box is the width of its output, relative to the widest in this figure.
-            </>
-          ) : (
-            caption
-          )
-        }
-        label={title}
-      >
+      <Figure caption={caption} label={title}>
         <svg
           aria-labelledby={titleId}
           className="ms-fig"

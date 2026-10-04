@@ -106,6 +106,8 @@ const edges: Edge[] = [
 - List ops in execution order: stepping follows the array.
 - `id` (the prop) is the URL key and must be unique per page.
 - `sub` is short (a width or a shape). Long text goes in `detail`.
+- Explain the gauge once, in the legend sentence near the page's first graph ("the
+  bar under a box is the width of its output, relative to the widest in that figure").
 - `width` is the op's output width per token. Give it on every data-path op: the
   gauge under the box shows bottlenecks and expansions at a glance.
 - A graph should fit one band (about 1240px: roughly eight columns). A single-row

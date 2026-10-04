@@ -48,6 +48,11 @@ not reuse a lane for a second meaning. Three lanes plus ink is usually enough.
   Use `StackOverview` (layer tiles coloured by the same kinds as the layer map, side
   inputs, legend), or hand-lay one as `models/gpt2/sections/Overview.tsx` does when
   the model has structure `StackOverview` cannot show (a tie, two towers, a memory).
+- Show the shape of a mechanism before its parts. When a sublayer is split into
+  several graphs, open the section with one small topology graph (at most eight
+  boxes, two or three rows) in which each box is one of the detailed graphs below:
+  the reader must be able to see, in one figure, which paths run in parallel and
+  where they meet. Splitting without this turns a circuit into a list.
 - A section with several figures needs a sub-heading and a connecting sentence for
   each. Never stack figure after figure with nothing between them.
 - Draw to scale when sizes are the point; say what is not to scale.
