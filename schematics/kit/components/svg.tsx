@@ -145,3 +145,174 @@ export function Note({
     </text>
   );
 }
+
+// ---------------------------------------------------------------------------
+// StackOverview: the whole model on one line, with the layer stack drawn as
+// tiles coloured by kind. Use it as the page's first figure.
+
+export type OverviewStage = Readonly<{ title: string; line: string; lane: Lane; kind?: "op" | "tensor" }>;
+
+const OVERVIEW = { tile: 12, gap: 3, perRow: 32, nodeH: 46, pad: 18, link: 34, top: 44 };
+
+export function StackOverview({
+  title,
+  before,
+  after,
+  count,
+  kinds,
+  kindOf,
+  stackTitle,
+  stackLine,
+  side,
+  selected,
+}: {
+  title: string;
+  /** Stages left of the stack: input tensor, embedding. */
+  before: readonly OverviewStage[];
+  /** Stages right of the stack: final norm, head, output tensor. */
+  after: readonly OverviewStage[];
+  count: number;
+  kinds: readonly Readonly<{ id: string; label: string; lane: Lane }>[];
+  kindOf: (index: number) => string;
+  stackTitle: string;
+  /** One mono line under the tiles, usually the stream shape. */
+  stackLine: string;
+  /** Inputs that enter every layer from the side (positions, masks, caches). */
+  side?: OverviewStage;
+  /** Layer to mark, so the overview follows the layer map. */
+  selected?: number;
+}) {
+  const O = OVERVIEW;
+  const rows = Math.ceil(count / O.perRow);
+  const perRow = Math.min(count, O.perRow);
+  const tilesW = perRow * (O.tile + O.gap) - O.gap;
+  const plateW = Math.max(tilesW + 2 * O.pad, nodeWidth(stackTitle, [stackLine]) + 8);
+  const plateH = 38 + rows * (O.tile + O.gap) + 26;
+  const mid = O.top + plateH / 2;
+  const widths = (stages: readonly OverviewStage[]): number[] =>
+    stages.map((stage) => nodeWidth(stage.title, [stage.line]));
+  const beforeW = widths(before);
+  const afterW = widths(after);
+  let x = 16;
+  const beforeX = beforeW.map((w) => {
+    const at = x;
+    x += w + O.link;
+    return at;
+  });
+  const plateX = x;
+  x += plateW + O.link;
+  const afterX = afterW.map((w) => {
+    const at = x;
+    x += w + O.link;
+    return at;
+  });
+  const width = x - O.link + 16;
+  const sideW = side === undefined ? 0 : nodeWidth(side.title, [side.line]);
+  const sideY = O.top + plateH + 30;
+  const legendY = sideY + (side === undefined ? 0 : O.nodeH + 26);
+  const height = legendY + 18;
+  const laneOf = (index: number): Lane => kinds.find((kind) => kind.id === kindOf(index))?.lane ?? "merged";
+  const tilesX = plateX + (plateW - tilesW) / 2;
+  return (
+    <svg
+      aria-label={title}
+      className="ms-fig"
+      height={height}
+      role="img"
+      viewBox={`0 0 ${width} ${height}`}
+      width={width}
+    >
+      <ArrowDefs id="ms-overview-arrow" />
+      {before.map((stage, index) => (
+        <g key={stage.title}>
+          <Node
+            h={O.nodeH}
+            kind={stage.kind ?? "op"}
+            lane={stage.lane}
+            lines={[stage.line]}
+            title={stage.title}
+            x={beforeX[index]}
+            y={mid - O.nodeH / 2}
+          />
+          <Wire
+            arrow="ms-overview-arrow"
+            d={`M ${beforeX[index] + beforeW[index]} ${mid} H ${index === before.length - 1 ? plateX : beforeX[index + 1]}`}
+            lane={stage.lane}
+          />
+        </g>
+      ))}
+      <rect className="ms-node__plate" height={plateH} rx={8} width={plateW} x={plateX} y={O.top} />
+      <text className="ms-node__title" textAnchor="middle" x={plateX + plateW / 2} y={O.top + 22}>
+        {stackTitle}
+      </text>
+      {Array.from({ length: count }, (_u, index) => (
+        <rect
+          className="ms-stack__tile"
+          data-lane={laneOf(index)}
+          data-selected={index === selected ? "true" : undefined}
+          height={O.tile}
+          key={index}
+          rx={2}
+          width={O.tile}
+          x={tilesX + (index % O.perRow) * (O.tile + O.gap)}
+          y={O.top + 34 + Math.floor(index / O.perRow) * (O.tile + O.gap)}
+        />
+      ))}
+      <text className="ms-node__line" textAnchor="middle" x={plateX + plateW / 2} y={O.top + plateH - 10}>
+        {stackLine}
+      </text>
+      {after.map((stage, index) => (
+        <g key={stage.title}>
+          <Wire
+            arrow="ms-overview-arrow"
+            d={`M ${index === 0 ? plateX + plateW : afterX[index - 1] + afterW[index - 1]} ${mid} H ${afterX[index]}`}
+          />
+          <Node
+            h={O.nodeH}
+            kind={stage.kind ?? "op"}
+            lane={stage.lane}
+            lines={[stage.line]}
+            title={stage.title}
+            x={afterX[index]}
+            y={mid - O.nodeH / 2}
+          />
+        </g>
+      ))}
+      {side === undefined ? null : (
+        <>
+          <Node
+            h={O.nodeH}
+            kind="state"
+            lane={side.lane}
+            lines={[side.line]}
+            title={side.title}
+            x={plateX + (plateW - sideW) / 2}
+            y={sideY}
+          />
+          <Wire
+            arrow="ms-overview-arrow"
+            d={`M ${plateX + plateW / 2} ${sideY} V ${O.top + plateH}`}
+            kind="state"
+            lane={side.lane}
+          />
+        </>
+      )}
+      {kinds.map((kind, index) => (
+        <g key={kind.id}>
+          <rect
+            className="ms-stack__tile"
+            data-lane={kind.lane}
+            height={O.tile}
+            rx={2}
+            width={O.tile}
+            x={16 + index * 230}
+            y={legendY - 10}
+          />
+          <text className="ms-fig__note" x={16 + index * 230 + 20} y={legendY}>
+            {kind.label}
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+}

@@ -1373,6 +1373,18 @@
   text-decoration-color: currentcolor;
 }
 
+.ms-stack__tile {
+  fill: var(--lane-tint);
+  stroke: var(--lane);
+  stroke-width: 1;
+}
+
+.ms-stack__tile[data-selected="true"] {
+  fill: var(--ms-mark);
+  stroke: var(--ms-ink);
+  stroke-width: 2;
+}
+
 .ms-gauge__track {
   fill: var(--ms-rule);
 }

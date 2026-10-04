@@ -6,6 +6,7 @@ import {
   AttentionGrid,
   Button,
   Figure,
+  StackOverview,
   LayerMap,
   MoeRouter,
   Readout,
@@ -25,6 +26,7 @@ import {
 } from "..";
 
 export const sections = [
+  { id: "overview", label: "StackOverview" },
   { id: "layers", label: "LayerMap" },
   { id: "router", label: "MoeRouter" },
   { id: "patterns", label: "AttentionGrid" },
@@ -78,6 +80,34 @@ export function Page() {
       spec={[{ value: n(LAYERS), label: "toy layers" }]}
       tagline="Every playable widget in the kit, wired the way a model page wires it."
     >
+      <Section
+        id="overview"
+        lede="The first figure of a page: the whole model on one line, the stack as tiles coloured by kind, the selected layer marked."
+        source={ref}
+        title="StackOverview"
+      >
+        <Figure label="Whole model drawing">
+          <StackOverview
+            after={[
+              { title: "final norm", line: "4096", lane: "merged" },
+              { title: "head", line: "4096 → 150000", lane: "high" },
+              { title: "logits", line: "[B, S, 150000]", lane: "merged", kind: "tensor" },
+            ]}
+            before={[
+              { title: "token ids", line: "[B, S]", lane: "merged", kind: "tensor" },
+              { title: "embedding", line: "150000 × 4096", lane: "high" },
+            ]}
+            count={LAYERS}
+            kindOf={kindOf}
+            kinds={KINDS}
+            selected={layer}
+            side={{ title: "positions + mask", line: "enter every attention", lane: "instance" }}
+            stackLine="[B, S, 4096] in and out of every layer"
+            stackTitle="48 pre-norm layers"
+            title="Toy model overview"
+          />
+        </Figure>
+      </Section>
       <Section
         id="layers"
         lede="One tile per layer, coloured by kind. The legend counts each kind."

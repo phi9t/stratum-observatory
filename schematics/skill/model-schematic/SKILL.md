@@ -22,6 +22,11 @@ Work inside `schematics/`. Read `README.md` there first: it defines the folder
 contract and the gates. The worked example is `models/gpt2/`; copy its patterns, not
 its content.
 
+**Before designing anything, open every image in `examples/`** (next to this file).
+They are screenshots of the worked example and of the widget catalogue: that is what
+a finished section looks like, and your page is judged against them. Your sections
+should be at least as clear, as spacious and as consistent.
+
 ## Procedure
 
 1. **Scaffold and pin.** `npm run new -- <slug> <hf-repo>`. Add sources to
@@ -41,10 +46,12 @@ its content.
 5. **Build the sections** with the kit (`references/kit.md`). Style rules are in
    `references/style.md`; interaction requirements in `references/playability.md`;
    how to make it teach in `references/study-material.md`.
-6. **Check, look, fix.** `npm run check -- <slug>` until every gate passes or is
-   honestly skipped. Then `npm run shoot -- <slug>` and open every PNG in
-   `runs/shots/<slug>/` (light, dark, mobile). Fix what is ugly or unclear and repeat.
-   Expect three rounds.
+6. **Check, look, fix.** `npm run format -- <slug>`, then `npm run check -- <slug>`
+   until every gate passes or is honestly skipped. Then `npm run shoot -- <slug>` and
+   open every PNG in `runs/shots/<slug>/` (light, dark, mobile). Put each beside the
+   matching image in `examples/` and fix whatever makes yours worse: crowding, tangled
+   wires, a figure with nothing said about it, uneven spacing. Repeat. Expect three
+   rounds. Passing gates means nothing is broken; it does not mean the page is good.
 7. **Self-review** with `references/review-rubric.md`, then write
    `models/<slug>/REPORT.md`: what is drawn, what is excluded and why, what you could
    not verify, and the final check table.

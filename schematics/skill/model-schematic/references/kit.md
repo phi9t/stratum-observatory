@@ -51,6 +51,7 @@ Each section file exports one component that returns
 | `Schematic`, `Section`, `Sub`, `Prose` | Page frame, section, sub-heading, paragraph (≤ 44rem). |
 | `Figure` | Panel around one SVG. `OpGraph` wraps itself; use `Figure` for your own SVGs and for widgets (`AttentionGrid`, `MoeRouter`, `RopeDials`, `TensorScale`). |
 | `OpGraph` | A graph of operations with stepping and an inspector. The main tool. |
+| `StackOverview` | The page's first figure: stages left and right of a plate of layer tiles coloured by kind, side inputs below, legend. Pass `selected` so it follows the layer map. |
 | `LayerMap` | Selectable tile per layer, coloured by kind, with a counted legend. |
 | `Pipes` / `Pipe` | A linear sequence as chips and pills (`tensorItem`, `opItem`). Wraps on mobile. |
 | `Tensor` | Inline named tensor chip. |

@@ -44,10 +44,10 @@ not reuse a lane for a second meaning. Three lanes plus ink is usually enough.
 - Labels are short. Box title: the operation (`RMSNorm`, `q projection`, `top-k`).
   Second line: the output width or shape. Everything else belongs in the inspector.
 - Keep a hand-laid overview under 1120px wide. Keep each `OpGraph` to one band.
-- The overview is the page's first impression and must be more than a row of boxes:
-  show the layer stack as tiles coloured by kind (the same kinds as the layer map),
-  name the distinctive mechanisms on it, and show side inputs and the output. Compare
-  `models/gpt2/sections/Overview.tsx`.
+- The overview is the page's first impression and must be more than a row of boxes.
+  Use `StackOverview` (layer tiles coloured by the same kinds as the layer map, side
+  inputs, legend), or hand-lay one as `models/gpt2/sections/Overview.tsx` does when
+  the model has structure `StackOverview` cannot show (a tie, two towers, a memory).
 - A section with several figures needs a sub-heading and a connecting sentence for
   each. Never stack figure after figure with nothing between them.
 - Draw to scale when sizes are the point; say what is not to scale.
