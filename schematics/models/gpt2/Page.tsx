@@ -5,6 +5,7 @@ import { Block } from "./sections/Block";
 import { Data } from "./sections/Data";
 import { Mlp } from "./sections/Mlp";
 import { Overview } from "./sections/Overview";
+import { Run } from "./sections/Run";
 import { Serving } from "./sections/Serving";
 import { Sources } from "./sections/Sources";
 import { Stack } from "./sections/Stack";
@@ -17,6 +18,7 @@ export const sections = [
   { id: "block", label: "Block" },
   { id: "attention", label: "Attention" },
   { id: "mlp", label: "MLP" },
+  { id: "run", label: "Run it" },
   { id: "weights", label: "Weights" },
   { id: "serving", label: "Serving" },
   { id: "sources", label: "Sources" },
@@ -52,6 +54,7 @@ export function Page() {
       <Block />
       <Attention />
       <Mlp />
+      <Run />
       <Weights />
       <Serving />
       <Sources />

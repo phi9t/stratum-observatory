@@ -123,6 +123,10 @@ export function cacheScalars(batch: number, context: number): number {
 // float32 storage, as the hub's safetensors index reports (parameters: { F32: … }).
 export const BYTES_PER_SCALAR = Float32Array.BYTES_PER_ELEMENT;
 
+// Size of the in-browser experiment: the same architecture at a width a browser can
+// run instantly. These are not facts about the checkpoint.
+export const TOY = { vocab: 40, positions: 16, hidden: 24, layers: 2, heads: 3, tokens: 10 };
+
 export const facts: Record<string, Fact> = {
   vocab,
   positions,

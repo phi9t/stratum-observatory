@@ -28,5 +28,11 @@ Derived 124439808. Hub `safetensors.total` 137022720. Difference 12582912 = 12 l
 - The float32 cache-size figure assumes the stored dtype; a server may use another.
 
 ## Gates
-`npm run check -- gpt2`: pins, typecheck, literals, format, facts, coverage, parameters, build,
+`npm run check -- gpt2`: pins, typecheck, literals, format, tests, facts, coverage, parameters, build,
 layout, play all pass.
+
+## Clean reference
+`reference/model.ts` reproduces `transformers.GPT2LMHeadModel` at toy width (2 layers,
+width 24, 3 heads): logits within 1e-4, layer-0 attention within 1e-5, and it consumes
+exactly the 28 tensors upstream exports. In shape mode at the real config it counts
+124439808 parameters, equal to `parameterTotal`.

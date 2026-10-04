@@ -565,3 +565,76 @@ export function TensorScale({
     </svg>
   );
 }
+
+// ---------------------------------------------------------------------------
+// Heatmap: real values in [0, 1] from a run of the reference implementation.
+
+export function Heatmap({
+  title,
+  values,
+  rowLabel,
+  columnLabel,
+  marked,
+}: {
+  title: string;
+  /** values[row][column], each between 0 and 1. */
+  values: readonly (readonly number[])[];
+  rowLabel: string;
+  columnLabel: string;
+  /** Row to outline. */
+  marked?: number;
+}) {
+  const titleId = useId();
+  const rows = values.length;
+  const columns = values[0]?.length ?? 0;
+  const px = Math.max(14, Math.min(34, Math.floor(420 / Math.max(rows, columns))));
+  const left = 64;
+  const top = 34;
+  return (
+    <svg
+      aria-labelledby={titleId}
+      className="ms-fig"
+      height={top + rows * px + 16}
+      role="img"
+      viewBox={`0 0 ${String(left + columns * px + 24)} ${String(top + rows * px + 16)}`}
+      width={left + columns * px + 24}
+    >
+      <title id={titleId}>{title}</title>
+      <text className="ms-fig__column" x={left} y={18}>
+        {columnLabel} →
+      </text>
+      <text
+        className="ms-fig__column"
+        textAnchor="end"
+        transform={`rotate(-90 ${String(left - 34)} ${String(top)})`}
+        x={left - 34}
+        y={top}
+      >
+        {rowLabel} ↓
+      </text>
+      {values.map((row, r) =>
+        row.map((value, c) => (
+          <g key={`${String(r)}-${String(c)}`}>
+            <rect className="ms-heat__base" height={px} width={px} x={left + c * px} y={top + r * px} />
+            <rect
+              className="ms-heat__cell"
+              fillOpacity={Math.max(0, Math.min(1, value))}
+              height={px}
+              width={px}
+              x={left + c * px}
+              y={top + r * px}
+            />
+          </g>
+        )),
+      )}
+      {values.map((_row, r) => (
+        <text className="ms-fig__note" key={r} textAnchor="end" x={left - 8} y={top + r * px + px / 2 + 4}>
+          {n(r)}
+        </text>
+      ))}
+      {marked === undefined ? null : (
+        <rect className="ms-grid__row" height={px} width={columns * px} x={left} y={top + marked * px} />
+      )}
+    </svg>
+  );
+}

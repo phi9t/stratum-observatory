@@ -16,6 +16,11 @@ line passes or the failure is a stated, justified scope decision.
    does differently, with a ref, or states what was compared and found identical.
 6. No number in the prose or figures is absent from `facts.ts`.
 
+7a. `reference/model.ts` exists, reads cleanly top to bottom, and takes only branches
+    this checkpoint takes. Its parity test passes against an upstream fixture, or
+    `REPORT.md` says exactly why parity could not be run.
+7b. Shape mode at the real config equals `parameterTotal`.
+
 ## Coverage of detail
 7. All levels in `levels-of-detail.md` are present.
 8. The attention graph has every projection, norm, positional step, mask and cache

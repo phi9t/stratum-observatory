@@ -41,18 +41,21 @@ should be at least as clear, as spacious and as consistent.
 3. **Write `facts.ts`.** Every number the page will show: `cfg` for config values,
    `code` for things only the code states, `derive` for everything computed. Include
    the parameter ledger and `parameterTotal`.
-4. **Plan the sections** against `references/levels-of-detail.md`, which lists the
+4. **Write the clean reference implementation** (`reference/model.ts`) and prove it
+   against upstream with a parity fixture: `references/reference-implementation.md`.
+   Its shape-mode run must reproduce `parameterTotal`; fix whichever is wrong.
+5. **Plan the sections** against `references/levels-of-detail.md`, which lists the
    required levels and what each must contain. Write `coverage.json` as you go.
-5. **Build the sections** with the kit (`references/kit.md`). Style rules are in
+6. **Build the sections** with the kit (`references/kit.md`). Style rules are in
    `references/style.md`; interaction requirements in `references/playability.md`;
    how to make it teach in `references/study-material.md`.
-6. **Check, look, fix.** `npm run format -- <slug>`, then `npm run check -- <slug>`
+7. **Check, look, fix.** `npm run format -- <slug>`, then `npm run check -- <slug>`
    until every gate passes or is honestly skipped. Then `npm run shoot -- <slug>` and
    open every PNG in `runs/shots/<slug>/` (light, dark, mobile). Put each beside the
    matching image in `examples/` and fix whatever makes yours worse: crowding, tangled
    wires, a figure with nothing said about it, uneven spacing. Repeat. Expect three
    rounds. Passing gates means nothing is broken; it does not mean the page is good.
-7. **Self-review** with `references/review-rubric.md`, then write
+8. **Self-review** with `references/review-rubric.md`, then write
    `models/<slug>/REPORT.md`: what is drawn, what is excluded and why, what you could
    not verify, and the final check table.
 

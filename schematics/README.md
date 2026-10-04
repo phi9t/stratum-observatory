@@ -37,6 +37,7 @@ models/<slug>/
   facts.ts          every number the page shows (see below)
   sources.json      checkpoint identity and pinned sources
   coverage.json     reference-class → section map
+  reference/        model.ts (clean forward pass), make_fixture.py, fixture.json
   sections/*.tsx    one file per section; no numeric literals other than 0, 1, 2 except layout (below)
   tests/*.test.ts   at least facts.test.ts (scaffolded)
 ```
@@ -112,6 +113,7 @@ exists in `Page.tsx`'s `sectionIds`, or excluded with a reason.
 | `typecheck` | `tsc --noEmit` reports an error |
 | `literals` | a section file contains a numeric literal outside JSX geometry props |
 | `format` | a `.ts`/`.tsx` file in the model folder is not prettier-formatted (`npm run format -- <slug>` fixes it) |
+| `tests` | `vitest run models/<slug>` fails; this includes the clean reference's parity test against the upstream fixture |
 | `facts` | a `cfg` value differs from `config.json`; a `code` locator does not resolve |
 | `coverage` | a reference class is unmapped, or mapped to a missing section |
 | `parameters` | `parameterTotal` differs from `safetensors.total` and `facts.ts` exports no `parameterNote` explaining why (skipped, and reported as skipped, when the hub gives no total) |

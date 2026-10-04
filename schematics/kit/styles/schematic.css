@@ -1551,6 +1551,16 @@
   cursor: pointer;
 }
 
+.ms-heat__base {
+  fill: var(--ms-sunken);
+  stroke: var(--ms-surface);
+}
+
+.ms-heat__cell {
+  fill: var(--ms-skip);
+  stroke: var(--ms-surface);
+}
+
 .ms-router__bar {
   fill: var(--ms-rule-strong);
 }

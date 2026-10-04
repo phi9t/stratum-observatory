@@ -198,6 +198,28 @@ await gate("format", () => {
   record("format", "fail", unformatted.length > 0 ? unformatted : [result.stderr.trim() || "prettier --check failed"]);
 });
 
+// --- tests ---
+
+await gate("tests", () => {
+  if (isGallery) {
+    return record("tests", "skipped", NO_SOURCES);
+  }
+  const result = spawnSync("npx", ["vitest", "run", relative(PACKAGE_ROOT, root)], { cwd: PACKAGE_ROOT, encoding: "utf8" });
+  const output = `${result.stdout}\n${result.stderr}`;
+  const summary = output.split("\n").find((line) => /^\s*Tests\s/.test(line))?.trim() ?? "";
+  const hasReference = existsSync(join(root, "reference", "model.ts"));
+  const note = hasReference ? "includes the clean reference's parity test" : "no reference/model.ts: no clean reference implementation";
+  if (result.status === 0) {
+    return record("tests", "pass", [`${summary}; ${note}`]);
+  }
+  const failed = output
+    .split("\n")
+    .filter((line) => /FAIL|AssertionError|Error:/.test(line))
+    .slice(0, 8)
+    .map((line) => line.trim());
+  record("tests", "fail", failed.length > 0 ? failed : [summary || "vitest failed"]);
+});
+
 // --- facts, coverage, parameters ---
 
 await gate("facts", async () => {

@@ -7,3 +7,4 @@ export * from "./lib/facts";
 export * from "./lib/sources";
 export * from "./lib/urlState";
 export { rng, normals } from "./lib/rng";
+export * as ref from "./ref/tensor";
