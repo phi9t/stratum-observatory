@@ -1,4 +1,15 @@
-import { FactList, Readout, Section, Sentence, Slider, SourceRef, Takeaways, n, useUrlNumber } from "../../../kit";
+import {
+  Check,
+  FactList,
+  Readout,
+  Section,
+  Sentence,
+  Slider,
+  SourceRef,
+  Takeaways,
+  n,
+  useUrlNumber,
+} from "../../../kit";
 import * as f from "../facts";
 export function Serving() {
   const [b, setB] = useUrlNumber("batch", 1, 1, f.DISPLAY.batchMax);
@@ -75,6 +86,10 @@ export function Serving() {
           ],
         ]}
       />
+      <Check question="Why can this cache budget differ from memory allocated by a serving engine?">
+        It counts logical keys and values only. Tensor-parallel replication, allocator pages, metadata and a different
+        cache dtype can change physical allocation without changing the attention circuit.
+      </Check>
       <Takeaways
         items={[
           "Queries are recomputed; old keys and values persist.",

@@ -74,6 +74,7 @@ export const DISPLAY = {
   context: 256,
   bytes: 2,
   seedMax: 999,
+  runGain: 4,
   idStride: 7,
   parityTolerance: 1e-4,
   pairs: [0, 1, 16, 63],

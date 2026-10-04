@@ -53,3 +53,43 @@ it("future token changes cannot affect earlier logits", () => {
   expect([...a.data!.slice(0, -cfg.vocab)]).toEqual([...b.data!.slice(0, -cfg.vocab)]);
   expect([...a.data!.slice(-cfg.vocab)]).not.toEqual([...b.data!.slice(-cfg.vocab)]);
 });
+
+it("exposes computed projection, head-normalization and rotary score stages", () => {
+  const cfg = { ...f.TOY, normEps: f.normEps.value, theta: f.theta.value };
+  const c = new Ctx("value", null, 1, 4);
+  forward(c, cfg, [[1, 8, 15, 22, 29, 36, 3, 10]]);
+  for (const name of ["q_raw", "k_raw", "q_norm", "k_norm", "scores_raw", "scores_norm", "k_repeated", "v_repeated"])
+    expect(c.trace.get(`h0.attn.${name}`)?.data).toBeTruthy();
+  expect(maxAbsDiff(c.trace.get("h0.attn.scores_raw")!, c.trace.get("h0.attn.scores_norm")!)).toBeGreaterThan(0.1);
+  expect(maxAbsDiff(c.trace.get("h0.attn.scores_norm")!, c.trace.get("h0.attn.scores")!)).toBeGreaterThan(0.1);
+});
+
+it("shared KV copies are identical while queries differ; traced scores equal scalar dot products", () => {
+  const cfg = { ...f.TOY, normEps: f.normEps.value, theta: f.theta.value };
+  const c = new Ctx("value", null, 1, f.DISPLAY.runGain);
+  forward(c, cfg, [[1, 8, 15, 22, 29, 36, 3, 10]]);
+  const vec = (name: string, head: number, pos: number) =>
+    Array.from(
+      c.trace
+        .get(`h0.attn.${name}`)!
+        .data!.slice((head * cfg.tokens + pos) * cfg.headDim, (head * cfg.tokens + pos + 1) * cfg.headDim),
+    );
+  for (const name of ["k_repeated", "v_repeated"])
+    for (let pos = 0; pos < cfg.tokens; pos++) expect(vec(name, 0, pos)).toEqual(vec(name, 1, pos));
+  expect(vec("q", 0, 7)).not.toEqual(vec("q", 1, 7));
+  for (const [score, q, k] of [
+    ["scores_raw", "q_raw", "k_raw"],
+    ["scores_norm", "q_norm", "k_norm"],
+    ["scores", "q", "k"],
+  ]) {
+    const a = vec(q, 1, 7),
+      b = vec(k, 0, 2);
+    const expected = a.reduce((sum, value, i) => sum + value * b[i], 0) / Math.sqrt(cfg.headDim);
+    expect(c.trace.get(`h0.attn.${score}`)!.data![(cfg.tokens + 7) * cfg.tokens + 2]).toBeCloseTo(expected, 5);
+  }
+  const a = vec("q_norm", 1, 7),
+    b = vec("q", 1, 7);
+  expect(Math.hypot(a[0], a[cfg.headDim / 2])).toBeCloseTo(Math.hypot(b[0], b[cfg.headDim / 2]), 5);
+  const probabilities = c.trace.get("h0.attn.weights")!.data!.slice(7 * cfg.tokens, 8 * cfg.tokens);
+  expect(Math.max(...probabilities) - Math.min(...probabilities)).toBeGreaterThan(0.1);
+});

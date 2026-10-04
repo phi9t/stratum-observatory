@@ -1,4 +1,4 @@
-import { Figure, TensorScale, Section, Table, Takeaways, n, shape } from "../../../kit";
+import { Check, Figure, TensorScale, Section, Table, Takeaways, n, shape } from "../../../kit";
 import * as f from "../facts";
 export function Data() {
   const tokens = f.DISPLAY.tokens;
@@ -50,6 +50,10 @@ export function Data() {
           ["Logits", shape("B", "S", f.vocab.value), "Scores before sampling."],
         ]}
       />
+      <Check question="If the query-head count stayed fixed but every query had its own KV head, what would grow?">
+        The key and value projections and cache would grow by {n(f.groups.value)} times. Query width and residual width
+        would stay unchanged.
+      </Check>
       <Takeaways
         items={[
           `Each KV head serves ${n(f.groups.value)} query heads.`,

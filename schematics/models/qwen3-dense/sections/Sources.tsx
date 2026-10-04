@@ -40,6 +40,14 @@ export function Sources() {
           ],
           ["Grouped-query attention", "Several query heads read the same key/value head."],
           ["RMSNorm", "Scale a vector by its root mean square and a learned gain without centering it."],
+          [
+            "Scaled dot product",
+            "Sum coordinate products of a query and key, divided by the square root of head width.",
+          ],
+          [
+            "Seeded weight gain",
+            "The multiplier on synthetic initialization spread, distinct from the learned coordinate gains in RMSNorm.",
+          ],
           ["RoPE", "Rotate query and key coordinate pairs by position-dependent angles."],
           ["SiLU gate", "A smooth activation multiplied by an independent content projection; no token routing."],
           [

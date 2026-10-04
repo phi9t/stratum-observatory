@@ -84,22 +84,24 @@ export function Qwen3Attention(c: Ctx, name: string, id: string, x: Tensor, cfg:
   const heads = (t: Tensor, h: number) => permute(reshape(t, [b, s, h, cfg.headDim]), [0, 2, 1, 3]);
   const q0 = reshape(linear(c, `${name}.q_proj`, x, cfg.heads * cfg.headDim), [b, s, cfg.heads, cfg.headDim]);
   const k0 = reshape(linear(c, `${name}.k_proj`, x, cfg.kvHeads * cfg.headDim), [b, s, cfg.kvHeads, cfg.headDim]);
-  const q = c.mark(
-    `${id}.q`,
-    Qwen3RotaryEmbedding(permute(Qwen3RMSNorm(c, `${name}.q_norm`, q0, cfg), [0, 2, 1, 3]), cfg.theta),
-  );
-  const k = c.mark(
-    `${id}.k`,
-    Qwen3RotaryEmbedding(permute(Qwen3RMSNorm(c, `${name}.k_norm`, k0, cfg), [0, 2, 1, 3]), cfg.theta),
-  );
+  const qRaw = c.mark(`${id}.q_raw`, permute(q0, [0, 2, 1, 3]));
+  const kRaw = c.mark(`${id}.k_raw`, permute(k0, [0, 2, 1, 3]));
+  const qNorm = c.mark(`${id}.q_norm`, permute(Qwen3RMSNorm(c, `${name}.q_norm`, q0, cfg), [0, 2, 1, 3]));
+  const kNorm = c.mark(`${id}.k_norm`, permute(Qwen3RMSNorm(c, `${name}.k_norm`, k0, cfg), [0, 2, 1, 3]));
+  const q = c.mark(`${id}.q`, Qwen3RotaryEmbedding(qNorm, cfg.theta));
+  const k = c.mark(`${id}.k`, Qwen3RotaryEmbedding(kNorm, cfg.theta));
   const v = c.mark(`${id}.v`, heads(linear(c, `${name}.v_proj`, x, cfg.kvHeads * cfg.headDim), cfg.kvHeads));
   const groups = cfg.heads / cfg.kvHeads;
-  const scores = c.mark(
-    `${id}.scores`,
-    scale(matmul(q, permute(repeatKv(k, groups), [0, 1, 3, 2])), cfg.headDim ** -0.5),
-  );
+  const score = (queries: Tensor, keys: Tensor) =>
+    scale(matmul(queries, permute(repeatKv(keys, groups), [0, 1, 3, 2])), cfg.headDim ** -0.5);
+  // Diagnostic comparisons only: the forward path uses normalized, rotated scores.
+  c.mark(`${id}.scores_raw`, score(qRaw, kRaw));
+  c.mark(`${id}.scores_norm`, score(qNorm, kNorm));
+  c.mark(`${id}.k_repeated`, repeatKv(k, groups));
+  const vRepeated = c.mark(`${id}.v_repeated`, repeatKv(v, groups));
+  const scores = c.mark(`${id}.scores`, score(q, k));
   const weights = c.mark(`${id}.weights`, softmax(causalMask(scores)));
-  const mix = matmul(weights, repeatKv(v, groups));
+  const mix = matmul(weights, vRepeated);
   const merged = reshape(permute(mix, [0, 2, 1, 3]), [b, s, cfg.heads * cfg.headDim]);
   return c.mark(`${id}.out`, linear(c, `${name}.o_proj`, merged, cfg.hidden));
 }

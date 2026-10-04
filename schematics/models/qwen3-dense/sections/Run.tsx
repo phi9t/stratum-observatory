@@ -1,5 +1,8 @@
 import {
   Button,
+  Check,
+  Sub,
+  Table,
   Figure,
   Heatmap,
   Prose,
@@ -39,7 +42,7 @@ export function Run() {
   const [query, setQuery] = useUrlNumber("runQ", f.TOY.tokens - 1, 0, f.TOY.tokens - 1);
 
   // The clean reference, run here in the browser: seeded weights, seeded token ids.
-  const ctx = new ref.Ctx("value", null, seed);
+  const ctx = new ref.Ctx("value", null, seed, f.DISPLAY.runGain);
   const ids = [
     Array.from({ length: f.TOY.tokens }, (_unused, index) => (index * f.DISPLAY.idStride + seed) % f.TOY.vocab),
   ];
@@ -53,13 +56,24 @@ export function Run() {
   const grid = Array.from({ length: seq }, (_r, row) =>
     Array.from({ length: seq }, (_c, column) => weights.data![offset + row * seq + column]),
   );
-  const rowSum = grid[query].reduce((sum, value) => sum + value, 0);
-  const strongest = grid[query].indexOf(Math.max(...grid[query]));
+  const groups = TOY.heads / TOY.kvHeads;
+  const kvHead = Math.floor(Number(head) / groups);
+  const groupHeads = Array.from({ length: groups }, (_, i) => kvHead * groups + i);
+  const trace = (name: string) => ctx.trace.get(`h${layer}.attn.${name}`)!;
+  const vector = (name: string, h: number, pos: number) =>
+    Array.from(trace(name).data!.slice((h * seq + pos) * TOY.headDim, (h * seq + pos + 1) * TOY.headDim));
+  const format = (value: number) => value.toFixed(f.DISPLAY.digits);
+  const groupWeights = groupHeads.map((h) =>
+    Array.from({ length: seq }, (_, k) => weights.data![(h * seq + query) * seq + k]),
+  );
+  const scoreAt = (name: string, k: number) => trace(name).data![(Number(head) * seq + query) * seq + k];
+  const [key, setKey] = useUrlNumber("runKey", 1, 0, seq - 1);
+  const pair = TOY.headDim / 2;
 
   return (
     <Section
       id="run"
-      lede="The same forward pass, written cleanly and run in your browser at toy width. The weights are random, so this shows how the mechanism behaves, not what the trained model has learned."
+      lede="Different queries can read identical keys and values. Run Qwen3’s projections, head normalization and rotary arithmetic with random toy weights to see why their attention still differs."
       source={[
         { source: "reference", symbol: "Qwen3Attention.forward" },
         { source: "reference", symbol: "eager_attention_forward" },
@@ -82,23 +96,86 @@ export function Run() {
       <div className="ms-control">
         <Button onClick={() => setSeed((current) => current + 1)}>Draw new weights</Button>
       </div>
+      <Sub>Shared keys, different queries</Sub>
       <Sentence>
-        With weights from seed {n(seed)}, position {n(query)} in layer {layer}, head {head} puts its largest weight,{" "}
-        {grid[query][strongest].toFixed(f.DISPLAY.digits)}, on position {n(strongest)}. Its weights sum to{" "}
-        {rowSum.toFixed(f.DISPLAY.digits)}.
+        In toy layer {layer}, query heads {groupHeads.map(n).join(" and ")} read KV head {n(kvHead)} at position{" "}
+        {n(query)}. Seed {n(seed)} uses weight gain {n(f.DISPLAY.runGain)}. The checkpoint shares each KV head across{" "}
+        {n(f.groups.value)} queries; this smaller toy shares it across {n(groups)}.
       </Sentence>
       <Figure
-        caption="Computed, not drawn: these are the softmax outputs of the reference implementation. The upper triangle is exactly zero because the causal mask set those scores to minus infinity before the softmax."
-        label="Computed attention weights"
+        label="Queries sharing a KV head"
+        caption={`Rows are query heads ${groupHeads.map(n).join(" and ")}, in that order. Every column is the same key position and the same value vector for both queries; shading is the computed attention probability. Future keys remain masked.`}
       >
         <Heatmap
-          columnLabel="key position"
-          marked={query}
-          rowLabel="query"
-          title={`Attention weights of layer ${layer}, head ${head}, from a toy-width run`}
-          values={grid}
+          columnLabel="shared key position"
+          rowLabel="group row"
+          title="Different query heads attending to the same KV head"
+          values={groupWeights}
+          marked={groupHeads.indexOf(Number(head))}
         />
       </Figure>
+      <Table
+        caption="Identical KV vectors, distinct query vectors at the selected position"
+        head={["Query head", "KV head", "Rotated query", "Shared rotated key", "Shared value"]}
+        rows={groupHeads.map((h) => [
+          n(h),
+          n(kvHead),
+          vector("q", h, query).map(format).join(" · "),
+          vector("k_repeated", h, query).map(format).join(" · "),
+          vector("v_repeated", h, query).map(format).join(" · "),
+        ])}
+      />
+      <Sub>What head normalization changes</Sub>
+      <Prose>
+        Follow the selected query head’s scaled dot products against every key. The first comparison omits head
+        normalization and rotation; the next applies the learned Q/K RMSNorm gains; the last rotates those normalized
+        vectors. These diagnostic comparisons reuse the same projections, not separate model runs. Only the last scores
+        enter the actual forward pass.
+      </Prose>
+      <Sentence>
+        Head {head} at query position {n(query)} scores key {n(key)} as {format(scoreAt("scores_raw", key))} before head
+        normalization, {format(scoreAt("scores_norm", key))} after normalization, and {format(scoreAt("scores", key))}{" "}
+        after rotation.{" "}
+        {key > query
+          ? "This key is in the future and is masked before softmax."
+          : "This key is allowed by the causal mask."}
+      </Sentence>
+      <Table
+        caption="Scaled QK scores before the causal mask"
+        head={["Key position", "Projected only", "Head-normalized", "Normalized + RoPE", "Final probability"]}
+        current={key}
+        rows={Array.from({ length: seq }, (_, k) => [
+          n(k),
+          format(scoreAt("scores_raw", k)),
+          format(scoreAt("scores_norm", k)),
+          format(scoreAt("scores", k)),
+          format(grid[query][k]),
+        ])}
+      />
+      <Sub>Watch a half-split pair rotate</Sub>
+      <Slider label="Key position" min={0} max={seq - 1} value={key} onChange={setKey} />
+      <Sentence>
+        The first rotary pair joins coordinates {n(0)} and {n(pair)}. Query position {n(query)} rotates by {n(query)}{" "}
+        radians; key position {n(key)} rotates by {n(key)} radians. Rotation preserves each pair’s length while their
+        relative angle changes the dot product.
+      </Sentence>
+      <Table
+        caption="Actual normalized vectors before and after RoPE"
+        head={["Vector", "Before pair", "After pair", "Pair length before → after"]}
+        rows={[
+          ["Query", "q_norm", "q", Number(head), query],
+          ["Shared key", "k_norm", "k", kvHead, key],
+        ].map(([label, before, after, h, pos]) => {
+          const a = vector(String(before), Number(h), Number(pos));
+          const b = vector(String(after), Number(h), Number(pos));
+          return [
+            String(label),
+            `${format(a[0])} · ${format(a[pair])}`,
+            `${format(b[0])} · ${format(b[pair])}`,
+            `${format(Math.hypot(a[0], a[pair]))} → ${format(Math.hypot(b[0], b[pair]))}`,
+          ];
+        })}
+      />
       <Readout
         items={[
           {
@@ -118,10 +195,15 @@ export function Run() {
         width and requires a maximum absolute logits error below {n(f.DISPLAY.parityTolerance)}; the same code run
         without data at full width yields every shape on this page and the parameter total.
       </Prose>
+      <Check question="If query heads read identical keys and values, must their attention outputs match?">
+        No. Their query projections differ, so their dot products and softmax probabilities can differ. Each mixes the
+        same values with its own probabilities.
+      </Check>
       <Takeaways
         items={[
-          "Each row of attention weights is a probability distribution over the positions that row may read.",
-          "Position 0 can only read itself, so its weight on itself is always one, whatever the weights are.",
+          "Sharing a KV head saves stored keys and values without forcing its query heads to assign the same probabilities.",
+          "Qwen3 normalizes each query and key head before rotation; learned coordinate gains still affect their dot products.",
+          "RoPE preserves pair lengths but changes cross-position scores through relative rotation; values are never rotated.",
         ]}
       />
     </Section>

@@ -10,7 +10,7 @@ Seven source records are pinned in `sources.json`: checkpoint config; Transforme
 
 The clean TypeScript reference implements unpadded prefill from token IDs to logits. Shape execution at checkpoint dimensions yields **8190735360 parameters**, exactly matching the pinned safetensors metadata. CPU arithmetic is checked against synthetic weights exported by executing the pinned Transformers reference directly, using Transformers 4.51.3 and PyTorch 2.14 CPU. Dependencies needed for this fixture were isolated under ignored `runs/qwen3-python`; no global installation or home-directory modification was made. The fixture records source fingerprints. No trained weights were downloaded.
 
-Nine tests pass. They check source-derived facts and parameter accounting, real-config shapes, upstream toy logits/attention parity, parameter-name agreement, KV-head repetition ordering and nonmutation, half-split rotary coordinates, and the negative condition that changing a future token cannot affect earlier logits. Logits tolerance is 0.0001; attention tolerance is 0.00001. The browser executes this same clean implementation at explicitly labelled toy dimensions with random weights.
+Eleven tests pass. They check source-derived facts and parameter accounting, real-config shapes, upstream toy logits/attention parity, parameter-name agreement, KV-head repetition ordering and nonmutation, half-split rotary coordinates, and the negative condition that changing a future token cannot affect earlier logits. Logits tolerance is 0.0001; attention tolerance is 0.00001. The browser executes this same clean implementation at explicitly labelled toy dimensions with random weights and seeded gain 4. New tests independently check traced scalar dot products, identical repeated keys/values, distinct queries, rotary pair-length preservation and nonuniform default probabilities. The upstream fixture was preserved and its parity tests rerun; no fixture regeneration or package installation was needed during this upgrade.
 
 Cache reads/writes and their shapes are drawn from source, but cached decoding is **not numerically verified**. Padding, alternative attention backends, bfloat16 kernel rounding, GPU kernels, tensor-parallel execution and packed Transformer Engine training are not executed. vLLM and NeMo comparisons are source-level observations only: these GPU/distributed execution paths are outside the CPU fixture's scope. Logical cache capacity is derived arithmetic, not measured allocation or throughput.
 
@@ -18,11 +18,13 @@ Tokenization, sampling, training loss and optimizer behavior are excluded becaus
 
 ## Visual and interaction review
 
-Reviewed the skill's thirteen example images before designing. Screenshot review and fixes were repeated across desktop light, desktop dark and mobile light. Final capture contains 42 PNGs: hero plus ten sections in each view (33), and three attention detail graphs in each view (9). All were opened for visual inspection. Tall attention sections also received detail captures so wire labels and operation text could be inspected at reading scale. Corrections included simplifying crowded block labels, preserving the source's normalization/transpose order, displaying the rotary frequency vector before duplication, and shortening a cache-edge label that touched its box. Tables and wide figures use the kit's internal horizontal scrolling on mobile.
+Read the local skill and every reference, opened all thirteen example images, and re-reviewed the entire page against the rubric. Preserved the existing architecture drawings. Replaced the generic tagline and Run it prose/takeaways with Qwen3-specific teaching. Run it now displays a computed shared-KV query-group heatmap and repeated vectors, a table comparing projected / head-normalized / normalized-and-rotated scaled scores, and actual rotary pair coordinates and lengths. The toy retains its existing four-query / two-KV configuration; the page explicitly distinguishes its grouping factor of two from the checkpoint factor of four. Diagnostic score comparisons reuse the same projections; they are not alternate checkpoint execution modes. Signed scores stay in tables rather than being misrepresented as probabilities. Added reasoning checks to Run it, Data and Serving and defined the new terms in the glossary.
 
-Browser: **Google Chrome 145.0.7632.75**, `/usr/bin/google-chrome`. Final layout checks inspect 1907 text elements across the three views. Play checks identify 97 controls (46 buttons, 40 operations, 5 ranges, 6 radios); all 12 sampled controls change the page, and reload preserves the recorded URL scenario.
+Final screenshot review covered 45 PNGs generated from the current portable HTML: hero and all ten sections in desktop light, desktop dark and mobile light (33), three attention detail graphs in each view (9), and the shared-head figure in each view (3). All were opened. The tall attention and Run it captures were supplemented with detail captures at reading scale. No overlapping labels or illegible dark-mode text were found. Mobile figures and tables scroll within their panels; their offscreen columns remain intentionally outside the initial screenshot viewport. The mobile stack section was recaptured separately after an initial capture omitted its table paint. An initial detail-capture selector did not match the kit markup; it was corrected to the existing graph data attributes without editing tools.
 
-Artifact: **504854 bytes**, SHA-256 `4747160ce493dd7c79676d5a390890ef18f99771bee94485c5a2755ed411a8fc`. Captures are generated from that portable HTML by `npm run shoot`; output resides in ignored `runs/shots/qwen3-dense/`.
+Browser: **Google Chrome 145.0.7632.75**, `/usr/bin/google-chrome`. Final layout checks inspect 2180 text elements across the three views. Play checks identify 98 controls (46 buttons, 40 operations, 6 ranges, 6 radios); all 12 sampled controls change the page, and reload preserves the recorded URL scenario. The new key-position slider uses `runKey` URL state; the existing seed, layer, query-head and query-position controls continue to drive computed traces.
+
+Artifact: **512014 bytes**, SHA-256 `8d90048691d5099083e604a31ec142122dc700427fd0dfd6610945581f98da56`. Captures are generated by `npm run shoot`; output resides in ignored `runs/shots/qwen3-dense/`. Changes stay within `models/qwen3-dense/`; no commits, branches, weights or global installations.
 
 ## Skill self-review
 
@@ -41,14 +43,14 @@ Artifact: **504854 bytes**, SHA-256 `4747160ce493dd7c79676d5a390890ef18f99771bee
 | 9. Inspectors | PASS: each operation includes explanation, formula, input/output shapes and source references. |
 | 10. Code observations | PASS: Q/K gain vectors are shared across heads; rotated K and raw V enter cache before KV repetition. |
 | 11. Layer selection | PASS: layer tiles change selected block identity and explanatory sentence. |
-| 12. Mechanism widgets | PASS: causal-grid selection, rotary-position dial, runnable attention and cache budget use the implementation's rules. |
+| 12. Mechanism widgets | PASS: causal-grid selection, rotary-position dial, shared-KV numerical run, head-normalization score comparisons and cache budget use the implementation's rules. |
 | 13. Controls and URL | PASS: browser play probe changes all sampled controls and restores URL state after reload. |
 | 14. Screenshots | PASS: light, dark and mobile reviewed through repeated capture/fix rounds; detailed graphs inspected for label collisions. |
 | 15. Lane colours | PASS: shared kit semantic lanes consistently distinguish residual, attention, position and MLP flow. |
 | 16. Ledes/captions | PASS: sections state their teaching point and figures explain what to observe. |
 | 17. Consistent design | PASS: shared kit typography, spacing, cards, tables and diagram grammar throughout. |
 | 18. Width gauges | PASS: data-path operations specify output widths, including head and rotary frequency dimensions. |
-| 19. Teaching checks | PASS: each section ends with Takeaways; mechanism sections include reasoning checks. |
+| 19. Teaching checks | PASS: each section ends with Takeaways; Data, Block, Attention, MLP, Run it and Serving include reasoning checks. |
 | 20. Mechanism benefits | PASS: derived head sharing, positional pair counts, FFN expansion and fourfold logical cache saving explain consequences. |
 | 21. Glossary | PASS: source section defines introduced architecture and serving terminology. |
 | 22. Honesty | PASS: excluded features, unexecuted backends and numerical scope are listed above; no skipped gate is labelled passed. |
@@ -63,12 +65,12 @@ Command: `npm run check -- qwen3-dense`. The table below is copied from the gene
 | typecheck | PASS |  |
 | literals | PASS |  |
 | format | PASS |  |
-| tests | PASS | Tests  9 passed (9); includes the clean reference's parity test |
+| tests | PASS | Tests  11 passed (11); runs the clean reference's tests |
 | facts | PASS |  |
 | coverage | PASS |  |
 | parameters | PASS | parameterTotal 8190735360 equals safetensors.total |
-| build | PASS | dist/qwen3-dense.html 504854 bytes sha256 4747160ce493dd7c79676d5a390890ef18f99771bee94485c5a2755ed411a8fc |
-| layout | PASS | desktop-light, desktop-dark, mobile-light: 1907 text elements checked |
-| play | PASS | 97 controls (46 button, 40 op, 5 range, 6 radio); 12 of 12 sampled changed the page; reload kept #q=12&runLayer=1&ropePos=20480&runHead=2&runQ=4 |
+| build | PASS | dist/qwen3-dense.html 512014 bytes sha256 8d90048691d5099083e604a31ec142122dc700427fd0dfd6610945581f98da56 |
+| layout | PASS | desktop-light, desktop-dark, mobile-light: 2180 text elements checked |
+| play | PASS | 98 controls (46 button, 40 op, 6 range, 6 radio); 12 of 12 sampled changed the page; reload kept #q=12&runLayer=1&ropePos=20480&runHead=2&runQ=4 |
 
 **11 PASS · 0 FAIL · 0 SKIPPED.**

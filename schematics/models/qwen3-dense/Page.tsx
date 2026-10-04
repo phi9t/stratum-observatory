@@ -46,7 +46,7 @@ export function Page() {
         { value: n(f.vocab.value), label: "tokens" },
         { value: approx(f.parameterTotal.value), label: "parameters" },
       ]}
-      tagline="The forward pass from token ids to next-token logits, one operation at a time, drawn from the code that runs it."
+      tagline="Shared keys, head-normalized queries and rotary positions inside the dense Qwen3-8B decoder."
     >
       <Overview />
       <Data />
