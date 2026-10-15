@@ -111,7 +111,7 @@ their owning namespace preserved in the inspector. No shared kit changes.
 
 Operational deviation: dependency files were installed only under the ignored
 .sources-cache/qwen3-moe/python, but pip was invoked without --no-cache-dir and used
-/data02/home/philip.yang/.cache/pip for downloads. That unintended home-cache write
+~/.cache/pip for downloads. That unintended home-cache write
 violates the run's no-home-write constraint. No global installation or home source/
 configuration edit was made; no files outside the authorized directory were removed
 in an attempt to conceal or undo the cache side effect. Future reproduction commands
