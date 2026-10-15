@@ -1,8 +1,8 @@
 # Presentations — PASS
 
-Generated: 2026-09-21T02:20:52.889228+00:00
+Generated: 2026-10-15T03:50:24.456904+00:00
 
-Artifact `b5d9c50ee02420ce…`
+Artifact `c46cbe05b7d797ee…`
 
 Exports, delivered-page accessibility, print, portability and preview freshness.
 

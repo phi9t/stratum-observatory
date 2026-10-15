@@ -932,10 +932,10 @@ registry drives page builds, artifact identity, browser routing and preview sele
 Chromium exercises real landing links, variant switches, reloads, identity enforcement,
 scenario exports and return links. All eight portable files are included in the software gates.
 
-- `deepseek-v4.1.html` SHA-256: `341e2fd37dcce8284b6a5f329d514394c2e22d5d589cdc39a01b67a0fda73ecb`
+- `deepseek-v4.1.html` SHA-256: `ead964e180b5cc136a4ba3660d64de591adb0834913cd4f15c05b73b80c4fe86`
 - `index.html` SHA-256: `681120311d72174f0c1f1b49063c80cc740df132b0b805df08fe7285b66a7364`
-- `kimi-k3.html` SHA-256: `43dcb7b5f8674b343abd27dc14d9904a88a2e4e0f250217f2a6bbb600d07adbd`
-- `qwen3.8.html` SHA-256: `75e1990f52213bf8d7e73c269065b8d18aa3621c0ad2d73bef8f6c7e1fa399ce`
+- `kimi-k3.html` SHA-256: `bd5a87e7d0bcd865c54be8f96f88ddc18d9ba9b603d7c704993d6275fe2a1369`
+- `qwen3.8.html` SHA-256: `8b192d3ac0b11cc13c29e7585064bf9a709110d0e69260728d99c4b221163c17`
 
 Publication coverage: 3970 REVIEW_REQUIRED, 2334 CLAIM_ANCHOR.
 
@@ -949,10 +949,10 @@ exposes a workload-model selector, and links preserve the originating scenario. 
 system bookmarks redirect to these shared pages. Repeated local arrow-key navigation keeps focus
 in the model tabs. All eight files receive artifact identity and portable delivery checks.
 
-- `hardware.html` SHA-256: `c9fa3a4bcdf8bd3ca3525dd50b0ba4ce020ab6b1ddb2c074ef50d963122a64e7`
-- `networking.html` SHA-256: `4b9bc1f5eb60ca1b1953035fdec5e26d9fae6aa0d1050329060ea5f612eff590`
+- `hardware.html` SHA-256: `6095aaf590f75f578820f381d2f4e5d886a371225f9476dcf0cb28dd34736e05`
+- `networking.html` SHA-256: `98e0714f08f04e62deaeb67dd289342cbd1126a67044a4b42f418be8b052c145`
 
-- `foundations.html` SHA-256: `b5d9c50ee02420cec477cff40ae492f77c3850484e1215392ee93c548ba4adf5`
+- `foundations.html` SHA-256: `c46cbe05b7d797ee5bc1c51888371b3f6c4b35de2ec8291dc40fb178b3730c70`
 
 - `data-representation.html` SHA-256: `234b9d1be2d2a3dd37edff2a98f41f88806179297426227ab072d08d293c6a86`
 

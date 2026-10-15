@@ -1,28 +1,28 @@
 {
   "schema": "stratum-engineering/v1",
   "status": "PASS",
-  "started_at": "2026-09-21T02:33:29.880019+00:00",
-  "completed_at": "2026-09-21T02:39:16.345024+00:00",
+  "started_at": "2026-10-15T03:44:53.895677+00:00",
+  "completed_at": "2026-10-15T03:48:47.332554+00:00",
   "consumer_sha256": "a0cd74cc2fa149f86de10b25fe6a8f743343540b761f946f43aaf7bc3a56604e",
   "verifier_sha256": "3f23392bf5f3f90fd97f66bed1d7ff6b3cff6179b31f0d66c1caa72f675910f3",
   "lock_sha256": "1c98f0592895951493759023585d56f68491cb1a34ae5a0652b603b5f34ecc5e",
   "artifact_sha256": "681120311d72174f0c1f1b49063c80cc740df132b0b805df08fe7285b66a7364",
   "artifacts": {
     "data-representation.html": "234b9d1be2d2a3dd37edff2a98f41f88806179297426227ab072d08d293c6a86",
-    "deepseek-v4.1.html": "341e2fd37dcce8284b6a5f329d514394c2e22d5d589cdc39a01b67a0fda73ecb",
-    "foundations.html": "b5d9c50ee02420cec477cff40ae492f77c3850484e1215392ee93c548ba4adf5",
-    "hardware.html": "c9fa3a4bcdf8bd3ca3525dd50b0ba4ce020ab6b1ddb2c074ef50d963122a64e7",
+    "deepseek-v4.1.html": "ead964e180b5cc136a4ba3660d64de591adb0834913cd4f15c05b73b80c4fe86",
+    "foundations.html": "c46cbe05b7d797ee5bc1c51888371b3f6c4b35de2ec8291dc40fb178b3730c70",
+    "hardware.html": "6095aaf590f75f578820f381d2f4e5d886a371225f9476dcf0cb28dd34736e05",
     "index.html": "681120311d72174f0c1f1b49063c80cc740df132b0b805df08fe7285b66a7364",
-    "kimi-k3.html": "43dcb7b5f8674b343abd27dc14d9904a88a2e4e0f250217f2a6bbb600d07adbd",
-    "networking.html": "4b9bc1f5eb60ca1b1953035fdec5e26d9fae6aa0d1050329060ea5f612eff590",
-    "qwen3.8.html": "75e1990f52213bf8d7e73c269065b8d18aa3621c0ad2d73bef8f6c7e1fa399ce"
+    "kimi-k3.html": "bd5a87e7d0bcd865c54be8f96f88ddc18d9ba9b603d7c704993d6275fe2a1369",
+    "networking.html": "98e0714f08f04e62deaeb67dd289342cbd1126a67044a4b42f418be8b052c145",
+    "qwen3.8.html": "8b192d3ac0b11cc13c29e7585064bf9a709110d0e69260728d99c4b221163c17"
   },
   "repeat_build_sha256": "681120311d72174f0c1f1b49063c80cc740df132b0b805df08fe7285b66a7364",
   "deterministic_build": true,
   "commands": {
     "verifier-tests": {
       "argv": [
-        "python3",
+        "python",
         "-m",
         "unittest",
         "discover",
@@ -73,7 +73,7 @@
     },
     "input-fixtures": {
       "argv": [
-        "python3",
+        "python",
         "-m",
         "unittest",
         "discover",
@@ -100,7 +100,7 @@
     },
     "accounting": {
       "argv": [
-        "python3",
+        "python",
         "-m",
         "verification.accounting"
       ],
@@ -116,7 +116,7 @@
     },
     "browser": {
       "argv": [
-        "python3",
+        "python",
         "tests/browser.test.py"
       ],
       "exit": 0
@@ -166,12 +166,12 @@
     "verifier": 637,
     "atlas": 184,
     "pytorch": 84,
-    "verifier_skipped": 10,
+    "verifier_skipped": 19,
     "atlas_skipped": 0
   },
   "toolchain": {
     "python": "3.13.12",
-    "openssl": "OpenSSL 3.6.2 7 Apr 2026 (Library: OpenSSL 3.6.2 7 Apr 2026)",
+    "openssl": "OpenSSL 3.6.1 27 Jan 2026 (Library: OpenSSL 3.6.1 27 Jan 2026)",
     "browser": "Chromium"
   },
   "scope": "Local software/geometry tests only. Does not attest to upstream source truth, GPU execution or physical fabric conformance."

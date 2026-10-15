@@ -270,27 +270,27 @@ test_the_parameter_fixture_matches_the_shipped_ledger (test_ced.ParameterBandRat
 Otherwise every negative below is a test of a literal nobody ships. ... ok
 test_the_shipped_ledger_agrees_with_the_python_derivation (test_ced.ParameterBandRatioTests.test_the_shipped_ledger_agrees_with_the_python_derivation) ... ok
 test_a_checkpoint_with_one_ratio_throughout_cannot_pin_its_boundary (test_ced.PublisherAgreementTests.test_a_checkpoint_with_one_ratio_throughout_cannot_pin_its_boundary)
-Why CED_BAND_RATIO's distinctness rule is load-bearing rather than aesthetic: ... ok
+Why CED_BAND_RATIO's distinctness rule is load-bearing rather than aesthetic: ... skipped 'publisher cache absent'
 test_a_config_matching_no_mapped_field_blocks_rather_than_passing (test_ced.PublisherAgreementTests.test_a_config_matching_no_mapped_field_blocks_rather_than_passing)
 Zero comparisons is the exact false green a previous audit found here. ... ok
 test_a_derived_field_is_checked_against_an_expression_not_a_pointer (test_ced.PublisherAgreementTests.test_a_derived_field_is_checked_against_an_expression_not_a_pointer)
-encoderLayers is our arithmetic over compress_ratios, not a published field. It still ... ok
-test_a_faithful_transcription_against_the_whole_config_passes (test_ced.PublisherAgreementTests.test_a_faithful_transcription_against_the_whole_config_passes) ... ok
+encoderLayers is our arithmetic over compress_ratios, not a published field. It still ... skipped 'publisher cache absent'
+test_a_faithful_transcription_against_the_whole_config_passes (test_ced.PublisherAgreementTests.test_a_faithful_transcription_against_the_whole_config_passes) ... skipped 'publisher cache absent'
 test_a_mistranscribed_field_is_caught (test_ced.PublisherAgreementTests.test_a_mistranscribed_field_is_caught) ... ok
 test_a_partial_config_cannot_report_agreement (test_ced.PublisherAgreementTests.test_a_partial_config_cannot_report_agreement)
 Two fields resolving out of fifty-four is not a faithful transcription verified; it is ... ok
 test_an_absent_cache_blocks_rather_than_passing (test_ced.PublisherAgreementTests.test_an_absent_cache_blocks_rather_than_passing) ... ok
 test_an_unmapped_model_field_is_visible_in_the_report (test_ced.PublisherAgreementTests.test_an_unmapped_model_field_is_visible_in_the_report) ... ok
 test_every_mapped_pointer_resolves_against_the_acquired_config (test_ced.PublisherAgreementTests.test_every_mapped_pointer_resolves_against_the_acquired_config)
-A pointer that silently fails to resolve is a field nothing compares, which is the ... ok
+A pointer that silently fails to resolve is a field nothing compares, which is the ... skipped 'publisher cache absent; run verification.sources acquire'
 test_every_mismatch_is_reported_not_only_the_first (test_ced.PublisherAgreementTests.test_every_mismatch_is_reported_not_only_the_first) ... ok
 test_every_transcribed_field_is_accounted_for (test_ced.PublisherAgreementTests.test_every_transcribed_field_is_accounted_for)
 A field with no mapping is a field nobody checks. Read from the shipped model rather ... ok
 test_one_unresolvable_field_is_enough_to_block (test_ced.PublisherAgreementTests.test_one_unresolvable_field_is_enough_to_block)
-Runs with no cache: the real config minus one key, so the guard is exercised where it ... ok
+Runs with no cache: the real config minus one key, so the guard is exercised where it ... skipped 'publisher cache absent'
 test_the_map_covers_the_fields_the_architecture_turns_on (test_ced.PublisherAgreementTests.test_the_map_covers_the_fields_the_architecture_turns_on) ... ok
 test_the_shipped_transcription_agrees_with_the_publisher_bytes (test_ced.PublisherAgreementTests.test_the_shipped_transcription_agrees_with_the_publisher_bytes)
-The check this task exists for, run against the real acquired config.json. ... ok
+The check this task exists for, run against the real acquired config.json. ... skipped 'publisher cache absent; run verification.sources acquire'
 test_no_framework_is_authorized_to_stand_in_for_this_model (test_ced.PublisherAuthorizationTests.test_no_framework_is_authorized_to_stand_in_for_this_model)
 No framework implements deepseek_v41. deepseek_v4 is a different model and ... ok
 test_the_publisher_is_authorized_for_the_roles_its_bytes_are_cited_under (test_ced.PublisherAuthorizationTests.test_the_publisher_is_authorized_for_the_roles_its_bytes_are_cited_under)
@@ -510,10 +510,10 @@ test_pyproject_is_covered (test_integration.ToolchainDigestTests.test_pyproject_
 test_python_lock_is_covered (test_integration.ToolchainDigestTests.test_python_lock_is_covered) ... ok
 test_python_version_pin_is_covered (test_integration.ToolchainDigestTests.test_python_version_pin_is_covered) ... ok
 test_yaml_workflows_are_covered (test_integration.ToolchainDigestTests.test_yaml_workflows_are_covered) ... ok
-test_a_value_contradicting_upstream_is_caught (test_integration.UpstreamComparisonTests.test_a_value_contradicting_upstream_is_caught) ... ok
+test_a_value_contradicting_upstream_is_caught (test_integration.UpstreamComparisonTests.test_a_value_contradicting_upstream_is_caught) ... skipped 'no upstream source bytes cached; run `uv run --frozen python -m verification.sources acquire` to compare against publisher configs. .verification-cache/ is git-ignored by design.'
 test_equal_relations_are_registered (test_integration.UpstreamComparisonTests.test_equal_relations_are_registered) ... ok
-test_the_shipped_values_agree_with_upstream (test_integration.UpstreamComparisonTests.test_the_shipped_values_agree_with_upstream) ... ok
-test_chapter_symbols_resolve_in_the_cited_pinned_files (test_mechanism_sources.MechanismSourceTests.test_chapter_symbols_resolve_in_the_cited_pinned_files) ... ok
+test_the_shipped_values_agree_with_upstream (test_integration.UpstreamComparisonTests.test_the_shipped_values_agree_with_upstream) ... skipped 'no upstream source bytes cached; run `uv run --frozen python -m verification.sources acquire` to compare against publisher configs. .verification-cache/ is git-ignored by design.'
+test_chapter_symbols_resolve_in_the_cited_pinned_files (test_mechanism_sources.MechanismSourceTests.test_chapter_symbols_resolve_in_the_cited_pinned_files) ... skipped 'Pinned source cache unavailable; source-symbol resolution NOT_RUN'
 test_symbol_ownership_does_not_accept_a_similar_class (test_mechanism_sources.MechanismSourceTests.test_symbol_ownership_does_not_accept_a_similar_class) ... ok
 test_allowed_snapshot (test_methodology_sources.MethodologySources.test_allowed_snapshot) ... ok
 test_cannot_masquerade_as_code_or_vendor (test_methodology_sources.MethodologySources.test_cannot_masquerade_as_code_or_vendor) ... ok
@@ -771,6 +771,6 @@ test_never_overwrites_accepted_lock (test_sources.SourceAcquisitionTests.test_ne
 test_rejects_local_network_before_fetch (test_sources.SourceAcquisitionTests.test_rejects_local_network_before_fetch) ... ok
 
 ----------------------------------------------------------------------
-Ran 637 tests in 141.740s
+Ran 637 tests in 110.270s
 
-OK (skipped=10)
+OK (skipped=19)
