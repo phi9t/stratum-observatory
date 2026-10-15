@@ -240,6 +240,17 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: engineering
+      # The schematics subtree is self-contained and its gates run locally (npm run check);
+      # Stratum's gates do not cover it. Here it is only built and shipped under schematics/.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build the model schematics
+        working-directory: schematics
+        run: |
+          npm ci
+          npm run index
+      - run: cp -r schematics/dist dist/schematics
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

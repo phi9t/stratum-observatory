@@ -4,6 +4,6 @@ test_fixture_contract_and_tampering (input_cases.InputCasesTests.test_fixture_co
 test_text_image_distinction (input_cases.InputCasesTests.test_text_image_distinction) ... ok
 
 ----------------------------------------------------------------------
-Ran 4 tests in 0.048s
+Ran 4 tests in 0.050s
 
 OK (skipped=1)

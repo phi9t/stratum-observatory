@@ -6,1105 +6,1105 @@ TAP version 13
 # Subtest: training assumptions derive the accumulation alternative without changing the ledger
 ok 1 - training assumptions derive the accumulation alternative without changing the ledger
   ---
-  duration_ms: 2.656986
+  duration_ms: 2.695702
   type: 'test'
   ...
 # Subtest: specialized caches are not certified by a generic GQA method
 ok 2 - specialized caches are not certified by a generic GQA method
   ---
-  duration_ms: 2.532696
+  duration_ms: 2.568044
   type: 'test'
   ...
 # Subtest: book notes resolve sources for every live model and lens without changing scenario state
 ok 3 - book notes resolve sources for every live model and lens without changing scenario state
   ---
-  duration_ms: 21.866964
+  duration_ms: 21.924153
   type: 'test'
   ...
 # Subtest: every V4.1 block restores the attention output position basis before projection
 ok 4 - every V4.1 block restores the attention output position basis before projection
   ---
-  duration_ms: 62.034001
+  duration_ms: 62.373054
   type: 'test'
   ...
 # Subtest: mHC read collapses the stream axis with a vector and write retains separate gates
 ok 5 - mHC read collapses the stream axis with a vector and write retains separate gates
   ---
-  duration_ms: 1.155497
+  duration_ms: 0.836854
   type: 'test'
   ...
 # Subtest: mHC block inspectors distinguish incoming read vector from current write coefficients
 ok 6 - mHC block inspectors distinguish incoming read vector from current write coefficients
   ---
-  duration_ms: 1.554114
+  duration_ms: 1.358174
   type: 'test'
   ...
 # Subtest: comparison preserves mHC identity on either side of the same-scenario comparison
 ok 7 - comparison preserves mHC identity on either side of the same-scenario comparison
   ---
-  duration_ms: 1.373776
+  duration_ms: 1.229156
   type: 'test'
   ...
 # Subtest: encoder chapter preserves the detailed operator graph at every absolute layer
 ok 8 - encoder chapter preserves the detailed operator graph at every absolute layer
   ---
-  duration_ms: 66.779598
+  duration_ms: 64.172343
   type: 'test'
   ...
 # Subtest: decoder chapter preserves the detailed operator graph at every absolute layer
 ok 9 - decoder chapter preserves the detailed operator graph at every absolute layer
   ---
-  duration_ms: 42.011148
+  duration_ms: 43.668734
   type: 'test'
   ...
 # Subtest: encoder ends at the decoder boundary and decoder begins at encoder output
 ok 10 - encoder ends at the decoder boundary and decoder begins at encoder output
   ---
-  duration_ms: 2.233143
+  duration_ms: 2.315456
   type: 'test'
   ...
 # Subtest: Engram modifies the input residual only at configured absolute layers
 ok 11 - Engram modifies the input residual only at configured absolute layers
   ---
-  duration_ms: 18.272492
+  duration_ms: 19.104637
   type: 'test'
   ...
 # Subtest: decoder collapses residual copies before final normalization and vocabulary projection
 ok 12 - decoder collapses residual copies before final normalization and vocabulary projection
   ---
-  duration_ms: 2.305218
+  duration_ms: 2.263895
   type: 'test'
   ...
 # Subtest: CED chapters restrict absolute layers and legacy block links preserve layer identity
 ok 13 - CED chapters restrict absolute layers and legacy block links preserve layer identity
   ---
-  duration_ms: 3.633407
+  duration_ms: 3.80484
   type: 'test'
   ...
 # Subtest: multi-model API exists
 ok 14 - multi-model API exists
   ---
-  duration_ms: 1.05877
+  duration_ms: 1.064892
   type: 'test'
   ...
 # Subtest: all nine exact variants are represented
 ok 15 - all nine exact variants are represented
   ---
-  duration_ms: 0.257964
+  duration_ms: 0.252849
   type: 'test'
   ...
 # Subtest: Kimi 93 layers include the last global layer
 ok 16 - Kimi 93 layers include the last global layer
   ---
-  duration_ms: 0.333479
+  duration_ms: 0.331029
   type: 'test'
   ...
 # Subtest: Qwen3.8 is not ordinary Qwen3
 ok 17 - Qwen3.8 is not ordinary Qwen3
   ---
-  duration_ms: 0.344791
+  duration_ms: 0.396561
   type: 'test'
   ...
 # Subtest: Qwen3 heads are not forced to divide residual width
 ok 18 - Qwen3 heads are not forced to divide residual width
   ---
-  duration_ms: 0.1518
+  duration_ms: 0.156804
   type: 'test'
   ...
 # Subtest: GQA counts K and V heads, not Q
 ok 19 - GQA counts K and V heads, not Q
   ---
-  duration_ms: 0.842885
+  duration_ms: 0.877465
   type: 'test'
   ...
 # Subtest: DeepSeek compressed MLA retains content latent and rotary key
 ok 20 - DeepSeek compressed MLA retains content latent and rotary key
   ---
-  duration_ms: 0.348457
+  duration_ms: 0.345814
   type: 'test'
   ...
 # Subtest: Kimi NoPE does not eliminate the shared 64 channels
 ok 21 - Kimi NoPE does not eliminate the shared 64 channels
   ---
-  duration_ms: 0.228926
+  duration_ms: 0.245359
   type: 'test'
   ...
 # Subtest: hybrid recurrent state is independent of context
 ok 22 - hybrid recurrent state is independent of context
   ---
-  duration_ms: 0.436179
+  duration_ms: 0.413562
   type: 'test'
   ...
 # Subtest: QSA sparse reads do not bound the full history
 ok 23 - QSA sparse reads do not bound the full history
   ---
-  duration_ms: 0.572615
+  duration_ms: 0.60076
   type: 'test'
   ...
 # Subtest: uniform sharding changes per-rank state, not global state
 ok 24 - uniform sharding changes per-rank state, not global state
   ---
-  duration_ms: 0.531586
+  duration_ms: 0.522314
   type: 'test'
   ...
 # Subtest: dense models cannot produce expert dispatch
 ok 25 - dense models cannot produce expert dispatch
   ---
-  duration_ms: 0.207673
+  duration_ms: 0.228823
   type: 'test'
   ...
 # Subtest: single rank has zero off-rank collective or expert traffic
 ok 26 - single rank has zero off-rank collective or expert traffic
   ---
-  duration_ms: 0.794741
+  duration_ms: 0.787728
   type: 'test'
   ...
 # Subtest: invalid URL input is rejected or clamped, never injected
 ok 27 - invalid URL input is rejected or clamped, never injected
   ---
-  duration_ms: 0.166985
+  duration_ms: 0.1976
   type: 'test'
   ...
 # Subtest: hardware capacity and scope distinguish GPU from rack
 ok 28 - hardware capacity and scope distinguish GPU from rack
   ---
-  duration_ms: 0.063044
+  duration_ms: 0.071397
   type: 'test'
   ...
 # Subtest: parameter ledgers declare rounded totals and extras
 ok 29 - parameter ledgers declare rounded totals and extras
   ---
-  duration_ms: 0.183764
+  duration_ms: 0.188235
   type: 'test'
   ...
 # Subtest: absent mechanisms produce zero, never 0 times NaN
 ok 30 - absent mechanisms produce zero, never 0 times NaN
   ---
-  duration_ms: 1.481216
+  duration_ms: 1.459491
   type: 'test'
   ...
 # Subtest: dsv41 context-linear and bounded match an independent derivation from MODELS fields
 ok 31 - dsv41 context-linear and bounded match an independent derivation from MODELS fields
   ---
-  duration_ms: 0.180373
+  duration_ms: 0.205762
   type: 'test'
   ...
 # Subtest: cacheLedger recurrent/conv match an independent derivation for a hybrid model
 ok 32 - cacheLedger recurrent/conv match an independent derivation for a hybrid model
   ---
-  duration_ms: 0.133147
+  duration_ms: 0.141722
   type: 'test'
   ...
 # Subtest: dsv41 transcribes the published shapes and derives nothing by rounding
 ok 33 - dsv41 transcribes the published shapes and derives nothing by rounding
   ---
-  duration_ms: 0.098126
+  duration_ms: 0.102217
   type: 'test'
   ...
 # Subtest: every model without an encoder/decoder split keeps the common CED defaults
 ok 34 - every model without an encoder/decoder split keeps the common CED defaults
   ---
-  duration_ms: 0.144366
+  duration_ms: 0.127677
   type: 'test'
   ...
 # Subtest: dsv41 layer kinds follow the published group structure
 ok 35 - dsv41 layer kinds follow the published group structure
   ---
-  duration_ms: 0.111348
+  duration_ms: 0.107083
   type: 'test'
   ...
 # Subtest: dsv41 partition sums to its layer count and excludes the draft layers
 ok 36 - dsv41 partition sums to its layer count and excludes the draft layers
   ---
-  duration_ms: 0.305583
+  duration_ms: 0.303601
   type: 'test'
   ...
 # Subtest: every model partitions to exactly its layer count
 ok 37 - every model partitions to exactly its layer count
   ---
-  duration_ms: 0.19681
+  duration_ms: 0.205913
   type: 'test'
   ...
 # Subtest: layerKind still rejects layers outside the backbone
 ok 38 - layerKind still rejects layers outside the backbone
   ---
-  duration_ms: 0.343207
+  duration_ms: 0.32939
   type: 'test'
   ...
 # Subtest: every model splits its cache into context-linear and bounded halves
 ok 39 - every model splits its cache into context-linear and bounded halves
   ---
-  duration_ms: 0.527569
+  duration_ms: 0.527357
   type: 'test'
   ...
 # Subtest: bounded state does not move with context, for any model
 ok 40 - bounded state does not move with context, for any model
   ---
-  duration_ms: 0.853489
+  duration_ms: 0.888167
   type: 'test'
   ...
 # Subtest: models with recurrent state report it as bounded, not zero
 ok 41 - models with recurrent state report it as bounded, not zero
   ---
-  duration_ms: 0.215464
+  duration_ms: 0.235226
   type: 'test'
   ...
 # Subtest: dsv41 global KV is 720 bytes per token from the four Full-mode layers
 ok 42 - dsv41 global KV is 720 bytes per token from the four Full-mode layers
   ---
-  duration_ms: 0.145094
+  duration_ms: 0.147804
   type: 'test'
   ...
 # Subtest: dsv41 SWA KV is bounded by the window across all forty layers
 ok 43 - dsv41 SWA KV is bounded by the window across all forty layers
   ---
-  duration_ms: 0.11531
+  duration_ms: 0.127398
   type: 'test'
   ...
 # Subtest: dsv41 reports its global-history layers as the thirty-eight CSA2 layers
 ok 44 - dsv41 reports its global-history layers as the thirty-eight CSA2 layers
   ---
-  duration_ms: 0.130099
+  duration_ms: 0.149875
   type: 'test'
   ...
 # Subtest: dsv41 parameters are derived, not rounded
 ok 45 - dsv41 parameters are derived, not rounded
   ---
-  duration_ms: 0.070129
+  duration_ms: 0.076378
   type: 'test'
   ...
 # Subtest: the derived dsv41 backbone reconciles with the published 552B
 ok 46 - the derived dsv41 backbone reconciles with the published 552B
   ---
-  duration_ms: 0.085454
+  duration_ms: 0.088876
   type: 'test'
   ...
 # Subtest: dsv41 counts the Compressor and Indexer projections model.py actually instantiates
 ok 47 - dsv41 counts the Compressor and Indexer projections model.py actually instantiates
   ---
-  duration_ms: 0.132628
+  duration_ms: 0.155061
   type: 'test'
   ...
 # Subtest: dsv41 does not fabricate a DSpark parameter count
 ok 48 - dsv41 does not fabricate a DSpark parameter count
   ---
-  duration_ms: 0.199917
+  duration_ms: 0.206587
   type: 'test'
   ...
 # Subtest: dsv41 prefill computes only the encoder half
 ok 49 - dsv41 prefill computes only the encoder half
   ---
-  duration_ms: 0.29074
+  duration_ms: 0.270833
   type: 'test'
   ...
 # Subtest: the prefill saving is the depth ratio the architecture claims
 ok 50 - the prefill saving is the depth ratio the architecture claims
   ---
-  duration_ms: 0.667248
+  duration_ms: 0.215536
   type: 'test'
   ...
 # Subtest: phase is a no-op for models without an encoder/decoder split
 ok 51 - phase is a no-op for models without an encoder/decoder split
   ---
-  duration_ms: 1.080587
+  duration_ms: 1.51139
   type: 'test'
   ...
 # Subtest: an unknown phase falls back to the default rather than propagating
 ok 52 - an unknown phase falls back to the default rather than propagating
   ---
-  duration_ms: 0.143399
+  duration_ms: 0.152368
   type: 'test'
   ...
 # Subtest: every innovation record derives its effect rather than stating it
 ok 53 - every innovation record derives its effect rather than stating it
   ---
-  duration_ms: 0.169611
+  duration_ms: 0.171871
   type: 'test'
   ...
 # Subtest: the innovation coverage names every innovation the architecture actually has
 ok 54 - the innovation coverage names every innovation the architecture actually has
   ---
-  duration_ms: 0.088256
+  duration_ms: 0.091463
   type: 'test'
   ...
 # Subtest: rendered innovation effects contain no hardcoded architectural number
 ok 55 - rendered innovation effects contain no hardcoded architectural number
   ---
-  duration_ms: 14.805598
+  duration_ms: 14.828541
   type: 'test'
   ...
 # Subtest: every innovation effect follows the field its exposition is about
 ok 56 - every innovation effect follows the field its exposition is about
   ---
-  duration_ms: 6.268906
+  duration_ms: 6.368074
   type: 'test'
   ...
 # Subtest: authored innovation prose carries no quantity, in digits or in words
 ok 57 - authored innovation prose carries no quantity, in digits or in words
   ---
-  duration_ms: 1.007167
+  duration_ms: 1.023721
   type: 'test'
   ...
 # Subtest: the prose rule is enforced, not merely declared
 ok 58 - the prose rule is enforced, not merely declared
   ---
-  duration_ms: 0.113339
+  duration_ms: 0.115787
   type: 'test'
   ...
 # Subtest: the FP4 row names the cached precisions from the model table
 ok 59 - the FP4 row names the cached precisions from the model table
   ---
-  duration_ms: 1.226037
+  duration_ms: 1.225666
   type: 'test'
   ...
 # Subtest: the FP4 row states the derived figure alongside the reported one
 ok 60 - the FP4 row states the derived figure alongside the reported one
   ---
-  duration_ms: 0.704172
+  duration_ms: 0.734572
   type: 'test'
   ...
 # Subtest: V4.1 offers independent mechanism chapters and other checkpoints reject them
 ok 61 - V4.1 offers independent mechanism chapters and other checkpoints reject them
   ---
-  duration_ms: 2.841572
+  duration_ms: 2.755599
   type: 'test'
   ...
 # Subtest: every deep dive is distinct, connected, inspectable and contract-clean
 ok 62 - every deep dive is distinct, connected, inspectable and contract-clean
   ---
-  duration_ms: 21.710377
+  duration_ms: 22.019159
   type: 'test'
   ...
 # Subtest: encoder and decoder distinguish token causality and compressed-state ownership
 ok 63 - encoder and decoder distinguish token causality and compressed-state ownership
   ---
-  duration_ms: 3.811732
+  duration_ms: 3.761992
   type: 'test'
   ...
 # Subtest: Engram separates token lookup from contextual gating
 ok 64 - Engram separates token lookup from contextual gating
   ---
-  duration_ms: 0.725693
+  duration_ms: 0.673695
   type: 'test'
   ...
 # Subtest: CSA2 exposes distinct write, rescore and reuse responsibilities
 ok 65 - CSA2 exposes distinct write, rescore and reuse responsibilities
   ---
-  duration_ms: 0.717849
+  duration_ms: 0.65222
   type: 'test'
   ...
 # Subtest: dSpark keeps Pro architecture, Flash mapping and DeepSpec verification distinct
 ok 66 - dSpark keeps Pro architecture, Flash mapping and DeepSpec verification distinct
   ---
-  duration_ms: 0.915675
+  duration_ms: 0.890864
   type: 'test'
   ...
 # Subtest: ds2: every decoder layer has a contained, orthogonal scene
 ok 67 - ds2: every decoder layer has a contained, orthogonal scene
   ---
-  duration_ms: 64.339295
+  duration_ms: 63.969477
   type: 'test'
   ...
 # Subtest: ds3: every decoder layer has a contained, orthogonal scene
 ok 68 - ds3: every decoder layer has a contained, orthogonal scene
   ---
-  duration_ms: 42.820789
+  duration_ms: 41.942403
   type: 'test'
   ...
 # Subtest: q38: every decoder layer has a contained, orthogonal scene
 ok 69 - q38: every decoder layer has a contained, orthogonal scene
   ---
-  duration_ms: 22.66853
+  duration_ms: 23.583795
   type: 'test'
   ...
 # Subtest: q330: every decoder layer has a contained, orthogonal scene
 ok 70 - q330: every decoder layer has a contained, orthogonal scene
   ---
-  duration_ms: 28.336272
+  duration_ms: 28.652686
   type: 'test'
   ...
 # Subtest: q3235: every decoder layer has a contained, orthogonal scene
 ok 71 - q3235: every decoder layer has a contained, orthogonal scene
   ---
-  duration_ms: 52.857759
+  duration_ms: 51.932504
   type: 'test'
   ...
 # Subtest: q3827: every decoder layer has a contained, orthogonal scene
 ok 72 - q3827: every decoder layer has a contained, orthogonal scene
   ---
-  duration_ms: 34.42772
+  duration_ms: 35.518505
   type: 'test'
   ...
 # Subtest: q38flash: every decoder layer has a contained, orthogonal scene
 ok 73 - q38flash: every decoder layer has a contained, orthogonal scene
   ---
-  duration_ms: 28.302663
+  duration_ms: 28.261491
   type: 'test'
   ...
 # Subtest: kimi3: every decoder layer has a contained, orthogonal scene
 ok 74 - kimi3: every decoder layer has a contained, orthogonal scene
   ---
-  duration_ms: 61.481452
+  duration_ms: 61.668513
   type: 'test'
   ...
 # Subtest: dsv41: every decoder layer has a contained, orthogonal scene
 ok 75 - dsv41: every decoder layer has a contained, orthogonal scene
   ---
-  duration_ms: 41.122776
+  duration_ms: 40.776052
   type: 'test'
   ...
 # Subtest: compare: all model/hardware identities have valid scenes
 ok 76 - compare: all model/hardware identities have valid scenes
   ---
-  duration_ms: 7.129169
+  duration_ms: 6.601164
   type: 'test'
   ...
 # Subtest: training: all model/hardware identities have valid scenes
 ok 77 - training: all model/hardware identities have valid scenes
   ---
-  duration_ms: 2.445937
+  duration_ms: 2.982252
   type: 'test'
   ...
 # Subtest: serving: all model/hardware identities have valid scenes
 ok 78 - serving: all model/hardware identities have valid scenes
   ---
-  duration_ms: 7.044454
+  duration_ms: 6.222114
   type: 'test'
   ...
 # Subtest: hardware: all model/hardware identities have valid scenes
 ok 79 - hardware: all model/hardware identities have valid scenes
   ---
-  duration_ms: 3.667849
+  duration_ms: 3.983423
   type: 'test'
   ...
 # Subtest: network: all model/hardware identities have valid scenes
 ok 80 - network: all model/hardware identities have valid scenes
   ---
-  duration_ms: 2.767857
+  duration_ms: 2.435296
   type: 'test'
   ...
 # Subtest: evidence: all model/hardware identities have valid scenes
 ok 81 - evidence: all model/hardware identities have valid scenes
   ---
-  duration_ms: 1.242737
+  duration_ms: 1.19571
   type: 'test'
   ...
 # Subtest: Kimi global layers do not insert rotary encoding
 ok 82 - Kimi global layers do not insert rotary encoding
   ---
-  duration_ms: 1.026637
+  duration_ms: 1.020645
   type: 'test'
   ...
 # Subtest: Qwen3 has Q/K head norms but no shared expert
 ok 83 - Qwen3 has Q/K head norms but no shared expert
   ---
-  duration_ms: 0.772777
+  duration_ms: 0.775977
   type: 'test'
   ...
 # Subtest: QSA has separate full history and block-selection paths
 ok 84 - QSA has separate full history and block-selection paths
   ---
-  duration_ms: 1.05818
+  duration_ms: 0.78267
   type: 'test'
   ...
 # Subtest: recurrence is explicitly time-delayed
 ok 85 - recurrence is explicitly time-delayed
   ---
-  duration_ms: 0.747726
+  duration_ms: 0.710748
   type: 'test'
   ...
 # Subtest: shared expert consumes hidden input, never routing scores
 ok 86 - shared expert consumes hidden input, never routing scores
   ---
-  duration_ms: 2.791752
+  duration_ms: 3.123847
   type: 'test'
   ...
 # Subtest: nonstandard residuals are not rendered as ordinary residual sums
 ok 87 - nonstandard residuals are not rendered as ordinary residual sums
   ---
-  duration_ms: 1.499131
+  duration_ms: 1.477151
   type: 'test'
   ...
 # Subtest: input / residual / PLE focus stages are real distinct scenes
 ok 88 - input / residual / PLE focus stages are real distinct scenes
   ---
-  duration_ms: 1.014077
+  duration_ms: 0.968358
   type: 'test'
   ...
 # Subtest: training modes change actual collective semantics
 ok 89 - training modes change actual collective semantics
   ---
-  duration_ms: 0.312953
+  duration_ms: 0.292278
   type: 'test'
   ...
 # Subtest: two-line operator boxes reserve at least 32px for fractional-DPR text bounds
 ok 90 - two-line operator boxes reserve at least 32px for fractional-DPR text bounds
   ---
-  duration_ms: 5.732874
+  duration_ms: 5.635248
   type: 'test'
   ...
 # Subtest: the residual stream is labelled as an input above both normalization entries
 ok 91 - the residual stream is labelled as an input above both normalization entries
   ---
-  duration_ms: 6.697356
+  duration_ms: 6.079702
   type: 'test'
   ...
 # Subtest: the residual stream arrives from outside the block and splits into attention and the mainline
 ok 92 - the residual stream arrives from outside the block and splits into attention and the mainline
   ---
-  duration_ms: 5.992503
+  duration_ms: 5.808522
   type: 'test'
   ...
 # Subtest: every dsv41 layer draws a contract-clean CSA2 block
 ok 93 - every dsv41 layer draws a contract-clean CSA2 block
   ---
-  duration_ms: 37.208453
+  duration_ms: 36.30631
   type: 'test'
   ...
 # Subtest: dsv41 attention shows two KV paths merging into one call
 ok 94 - dsv41 attention shows two KV paths merging into one call
   ---
-  duration_ms: 1.246422
+  duration_ms: 1.226978
   type: 'test'
   ...
 # Subtest: an SWA-only dsv41 layer draws no compressed path
 ok 95 - an SWA-only dsv41 layer draws no compressed path
   ---
-  duration_ms: 1.032269
+  duration_ms: 1.005423
   type: 'test'
   ...
 # Subtest: a dsv41 reuse layer reads a selection instead of computing one
 ok 96 - a dsv41 reuse layer reads a selection instead of computing one
   ---
-  duration_ms: 2.146067
+  duration_ms: 2.121073
   type: 'test'
   ...
 # Subtest: dsv41 states its single latent KV rather than implying per-head KV
 ok 97 - dsv41 states its single latent KV rather than implying per-head KV
   ---
-  duration_ms: 1.140578
+  duration_ms: 1.107
   type: 'test'
   ...
 # Subtest: dsv41 names the grouped output projection rather than a dense one
 ok 98 - dsv41 names the grouped output projection rather than a dense one
   ---
-  duration_ms: 1.070497
+  duration_ms: 1.186441
   type: 'test'
   ...
 # Subtest: the mHC residual is not drawn as an ordinary sum
 ok 99 - the mHC residual is not drawn as an ordinary sum
   ---
-  duration_ms: 1.840951
+  duration_ms: 1.842511
   type: 'test'
   ...
 # Subtest: an unknown layer kind cannot silently render as recurrence
 ok 100 - an unknown layer kind cannot silently render as recurrence
   ---
-  duration_ms: 0.435826
+  duration_ms: 0.461671
   type: 'test'
   ...
 # Subtest: every layer kind core.mjs can produce has a renderer
 ok 101 - every layer kind core.mjs can produce has a renderer
   ---
-  duration_ms: 0.279185
+  duration_ms: 0.281805
   type: 'test'
   ...
 # Subtest: the hierarchical candidate pool is drawn only where the decoder has one
 ok 102 - the hierarchical candidate pool is drawn only where the decoder has one
   ---
-  duration_ms: 47.50279
+  duration_ms: 46.050745
   type: 'test'
   ...
 # Subtest: the CED page is contract-clean and only offered where it applies
 ok 103 - the CED page is contract-clean and only offered where it applies
   ---
-  duration_ms: 8.113945
+  duration_ms: 8.674998
   type: 'test'
   ...
 # Subtest: every focal stage has exactly one builder, and an unoffered page throws rather than drawing another
 ok 104 - every focal stage has exactly one builder, and an unoffered page throws rather than drawing another
   ---
-  duration_ms: 41.838602
+  duration_ms: 40.645506
   type: 'test'
   ...
 # Subtest: the N-gram page is offered exactly where the model has n-gram layers
 ok 105 - the N-gram page is offered exactly where the model has n-gram layers
   ---
-  duration_ms: 0.1413
+  duration_ms: 0.1511
   type: 'test'
   ...
 # Subtest: the CED page shows a one-way handoff, not a shared stack
 ok 106 - the CED page shows a one-way handoff, not a shared stack
   ---
-  duration_ms: 0.865062
+  duration_ms: 0.793918
   type: 'test'
   ...
 # Subtest: the CED bands tile the declared depth, with no layer invented or dropped
 ok 107 - the CED bands tile the declared depth, with no layer invented or dropped
   ---
-  duration_ms: 1.186377
+  duration_ms: 1.137637
   type: 'test'
   ...
 # Subtest: the CED fan-outs are derived from the model, not from literals
 ok 108 - the CED fan-outs are derived from the model, not from literals
   ---
-  duration_ms: 1.367784
+  duration_ms: 1.34162
   type: 'test'
   ...
 # Subtest: a CED page cannot silently drop a declared site in the other half
 ok 109 - a CED page cannot silently drop a declared site in the other half
   ---
-  duration_ms: 1.285302
+  duration_ms: 1.24579
   type: 'test'
   ...
 # Subtest: dSpark expands the released Pro block and separates parallel slots from sequential token decisions
 ok 110 - dSpark expands the released Pro block and separates parallel slots from sequential token decisions
   ---
-  duration_ms: 3.1315
+  duration_ms: 3.214983
   type: 'test'
   ...
 # Subtest: each exact checkpoint starts with its pinned publisher configuration
 ok 111 - each exact checkpoint starts with its pinned publisher configuration
   ---
-  duration_ms: 1.934467
+  duration_ms: 1.953575
   type: 'test'
   ...
 # Subtest: Transformers stays distinct from publisher implementation
 ok 112 - Transformers stays distinct from publisher implementation
   ---
-  duration_ms: 0.347344
+  duration_ms: 0.343665
   type: 'test'
   ...
 # Subtest: generic training and partial serving sources cannot imply checkpoint support
 ok 113 - generic training and partial serving sources cannot imply checkpoint support
   ---
-  duration_ms: 0.420772
+  duration_ms: 0.396728
   type: 'test'
   ...
 # Subtest: selection marks existing references without adding unrelated checkpoint sources
 ok 114 - selection marks existing references without adding unrelated checkpoint sources
   ---
-  duration_ms: 0.674677
+  duration_ms: 0.707243
   type: 'test'
   ...
 # Subtest: references resolve only catalog identities and returned arrays are independent
 ok 115 - references resolve only catalog identities and returned arrays are independent
   ---
-  duration_ms: 0.445518
+  duration_ms: 1.142117
   type: 'test'
   ...
 # Subtest: operation filtering excludes unrelated publisher files and serving components
 ok 116 - operation filtering excludes unrelated publisher files and serving components
   ---
-  duration_ms: 1.163453
+  duration_ms: 0.44849
   type: 'test'
   ...
 # Subtest: training operations map only to corresponding generic Megatron mechanisms
 ok 117 - training operations map only to corresponding generic Megatron mechanisms
   ---
-  duration_ms: 0.329157
+  duration_ms: 0.3088
   type: 'test'
   ...
 # Subtest: serving cache selects cache sources without unrelated training or Engram code
 ok 118 - serving cache selects cache sources without unrelated training or Engram code
   ---
-  duration_ms: 0.242342
+  duration_ms: 0.207758
   type: 'test'
   ...
 # Subtest: selected FFN symbol does not point readers at Qwen attention
 ok 119 - selected FFN symbol does not point readers at Qwen attention
   ---
-  duration_ms: 0.307208
+  duration_ms: 0.318517
   type: 'test'
   ...
 # Subtest: unknown operations and absent cache mechanisms never inherit whole-model implementation coverage
 ok 120 - unknown operations and absent cache mechanisms never inherit whole-model implementation coverage
   ---
-  duration_ms: 0.391494
+  duration_ms: 0.364907
   type: 'test'
   ...
 # Subtest: V4.1 inputs exposes vision block internals and distinct token/Engram paths
 ok 121 - V4.1 inputs exposes vision block internals and distinct token/Engram paths
   ---
-  duration_ms: 3.012024
+  duration_ms: 3.069111
   type: 'test'
   ...
 # Subtest: tensor dimensions never contain thousands separators
 ok 122 - tensor dimensions never contain thousands separators
   ---
-  duration_ms: 50.841036
+  duration_ms: 48.584215
   type: 'test'
   ...
 # Subtest: V4.1 chapter tiles are grouped by producer and reuse bundle
 ok 123 - V4.1 chapter tiles are grouped by producer and reuse bundle
   ---
-  duration_ms: 41.901416
+  duration_ms: 41.889716
   type: 'test'
   ...
 # Subtest: reader-visible numbers never use thousands separators
 ok 124 - reader-visible numbers never use thousands separators
   ---
-  duration_ms: 14.438453
+  duration_ms: 14.955747
   type: 'test'
   ...
 # Subtest: every authored chapter section resolves to a real operation, CPU fixture and pinned source
 ok 125 - every authored chapter section resolves to a real operation, CPU fixture and pinned source
   ---
-  duration_ms: 29.593787
+  duration_ms: 26.353398
   type: 'test'
   ...
 # Subtest: chapter selections reject cross-mechanism, out-of-bounds and injected identities
 ok 126 - chapter selections reject cross-mechanism, out-of-bounds and injected identities
   ---
-  duration_ms: 3.757096
+  duration_ms: 3.760775
   type: 'test'
   ...
 # Subtest: query and normalization selections render different stored CPU intermediates
 ok 127 - query and normalization selections render different stored CPU intermediates
   ---
-  duration_ms: 3.476322
+  duration_ms: 3.351301
   type: 'test'
   ...
 # Subtest: every mixed sequence position and contributing patch is selectable with its saved identity
 ok 128 - every mixed sequence position and contributing patch is selectable with its saved identity
   ---
-  duration_ms: 2.629749
+  duration_ms: 2.620604
   type: 'test'
   ...
 # Subtest: prefill exposes per-query causality while decode keeps its selected position
 ok 129 - prefill exposes per-query causality while decode keeps its selected position
   ---
-  duration_ms: 1.137755
+  duration_ms: 1.168457
   type: 'test'
   ...
 # Subtest: dSpark labels preserve tap timing, one-based depth and token-only Markov correction
 ok 130 - dSpark labels preserve tap timing, one-based depth and token-only Markov correction
   ---
-  duration_ms: 0.274832
+  duration_ms: 0.239316
   type: 'test'
   ...
 # Subtest: Python highlighting preserves every byte, including multiline strings and escapes
 ok 131 - Python highlighting preserves every byte, including multiline strings and escapes
   ---
-  duration_ms: 16.066356
+  duration_ms: 11.552175
   type: 'test'
   ...
 # Subtest: rendered Python escapes markup instead of interpreting source as HTML
 ok 132 - rendered Python escapes markup instead of interpreting source as HTML
   ---
-  duration_ms: 0.435632
+  duration_ms: 0.419126
   type: 'test'
   ...
 # Subtest: each executable example has its own reachable source-linked schematic
 ok 133 - each executable example has its own reachable source-linked schematic
   ---
-  duration_ms: 8.799816
+  duration_ms: 8.739733
   type: 'test'
   ...
 # Subtest: unknown module cannot masquerade as a supported schematic
 ok 134 - unknown module cannot masquerade as a supported schematic
   ---
-  duration_ms: 0.476262
+  duration_ms: 0.47037
   type: 'test'
   ...
 # Subtest: backbone-mhc has contained, inspectable branching geometry
 ok 135 - backbone-mhc has contained, inspectable branching geometry
   ---
-  duration_ms: 3.257689
+  duration_ms: 2.562271
   type: 'test'
   ...
 # Subtest: backbone-moe has contained, inspectable branching geometry
 ok 136 - backbone-moe has contained, inspectable branching geometry
   ---
-  duration_ms: 0.956199
+  duration_ms: 0.627274
   type: 'test'
   ...
 # Subtest: mHC reads previous coefficients, preserves input/output matrix axes and observes a flat boundary
 ok 137 - mHC reads previous coefficients, preserves input/output matrix axes and observes a flat boundary
   ---
-  duration_ms: 1.740566
+  duration_ms: 1.274279
   type: 'test'
   ...
 # Subtest: MoE selection bias cannot reach mixture weights without selected indices; shared bypasses routing
 ok 138 - MoE selection bias cannot reach mixture weights without selected indices; shared bypasses routing
   ---
-  duration_ms: 0.508867
+  duration_ms: 0.286899
   type: 'test'
   ...
 # Subtest: backbone-mhc routes avoid unrelated operations
 ok 139 - backbone-mhc routes avoid unrelated operations
   ---
-  duration_ms: 1.885864
+  duration_ms: 1.344274
   type: 'test'
   ...
 # Subtest: backbone-moe routes avoid unrelated operations
 ok 140 - backbone-moe routes avoid unrelated operations
   ---
-  duration_ms: 1.153545
+  duration_ms: 0.935642
   type: 'test'
   ...
 # Subtest: backbone inspector dimensions follow the supplied model
 ok 141 - backbone inspector dimensions follow the supplied model
   ---
-  duration_ms: 0.73686
+  duration_ms: 0.413752
   type: 'test'
   ...
 # Subtest: dspark-attention: inspectable orthogonal module schematic
 ok 142 - dspark-attention: inspectable orthogonal module schematic
   ---
-  duration_ms: 2.116567
+  duration_ms: 2.128759
   type: 'test'
   ...
 # Subtest: dspark-heads: inspectable orthogonal module schematic
 ok 143 - dspark-heads: inspectable orthogonal module schematic
   ---
-  duration_ms: 0.385844
+  duration_ms: 0.399235
   type: 'test'
   ...
 # Subtest: deepspec-verifier: inspectable orthogonal module schematic
 ok 144 - deepspec-verifier: inspectable orthogonal module schematic
   ---
-  duration_ms: 0.565515
+  duration_ms: 0.56508
   type: 'test'
   ...
 # Subtest: draft attention sink normalizes but never supplies values; no causal triangle
 ok 145 - draft attention sink normalizes but never supplies values; no causal triangle
   ---
-  duration_ms: 0.270742
+  duration_ms: 0.30987
   type: 'test'
   ...
 # Subtest: Markov sampling feeds the next position; confidence bypasses final norm
 ok 146 - Markov sampling feeds the next position; confidence bypasses final norm
   ---
-  duration_ms: 0.368879
+  duration_ms: 0.977723
   type: 'test'
   ...
 # Subtest: DeepSpec explicitly separates rejection, bonus and cache ownership
 ok 147 - DeepSpec explicitly separates rejection, bonus and cache ownership
   ---
-  duration_ms: 0.334769
+  duration_ms: 0.376186
   type: 'test'
   ...
 # Subtest: routing rails do not pass through unrelated operators
 ok 148 - routing rails do not pass through unrelated operators
   ---
-  duration_ms: 1.99552
+  duration_ms: 1.923413
   type: 'test'
   ...
 # Subtest: DeepSpec stays in its own offline category and distinguishes ephemeral inputs
 ok 149 - DeepSpec stays in its own offline category and distinguishes ephemeral inputs
   ---
-  duration_ms: 0.268307
+  duration_ms: 0.256593
   type: 'test'
   ...
 # Subtest: DeepSpec passes the production lane and crossing contracts
 ok 150 - DeepSpec passes the production lane and crossing contracts
   ---
-  duration_ms: 74.914335
+  duration_ms: 73.45185
   type: 'test'
   ...
 # Subtest: engram-write: contained graph with source-bound inspectors
 ok 151 - engram-write: contained graph with source-bound inspectors
   ---
-  duration_ms: 4.989818
+  duration_ms: 2.11666
   type: 'test'
   ...
 # Subtest: csa2-compression: contained graph with source-bound inspectors
 ok 152 - csa2-compression: contained graph with source-bound inspectors
   ---
-  duration_ms: 0.584678
+  duration_ms: 0.365556
   type: 'test'
   ...
 # Subtest: csa2-selection: contained graph with source-bound inspectors
 ok 153 - csa2-selection: contained graph with source-bound inspectors
   ---
-  duration_ms: 0.320198
+  duration_ms: 0.247045
   type: 'test'
   ...
 # Subtest: csa2-attention: contained graph with source-bound inspectors
 ok 154 - csa2-attention: contained graph with source-bound inspectors
   ---
-  duration_ms: 0.370697
+  duration_ms: 0.362712
   type: 'test'
   ...
 # Subtest: Engram keeps shared value outside the stream gate and bypasses the residual
 ok 155 - Engram keeps shared value outside the stream gate and bypasses the residual
   ---
-  duration_ms: 0.383729
+  duration_ms: 0.34486
   type: 'test'
   ...
 # Subtest: compression direct path has no pooling gate; unfinished state bypasses normalization
 ok 156 - compression direct path has no pooling gate; unfinished state bypasses normalization
   ---
-  duration_ms: 0.187036
+  duration_ms: 0.179806
   type: 'test'
   ...
 # Subtest: selection preserves candidate block maximum, newest block and invalid sentinel
 ok 157 - selection preserves candidate block maximum, newest block and invalid sentinel
   ---
-  duration_ms: 0.301046
+  duration_ms: 0.319714
   type: 'test'
   ...
 # Subtest: attention has one normalization over both caches and no sink value edge
 ok 158 - attention has one normalization over both caches and no sink value edge
   ---
-  duration_ms: 0.196433
+  duration_ms: 0.210683
   type: 'test'
   ...
 # Subtest: attention index inputs and validity outputs occupy separate wire lanes
 ok 159 - attention index inputs and validity outputs occupy separate wire lanes
   ---
-  duration_ms: 0.511151
+  duration_ms: 0.469686
   type: 'test'
   ...
 # Subtest: every V4.1 chapter provides executable, attributed module examples
 ok 160 - every V4.1 chapter provides executable, attributed module examples
   ---
-  duration_ms: 2.546697
+  duration_ms: 2.521845
   type: 'test'
   ...
 # Subtest: browser Python is identical to checked-in modules
 ok 161 - browser Python is identical to checked-in modules
   ---
-  duration_ms: 2.366565
+  duration_ms: 2.082208
   type: 'test'
   ...
 # Subtest: decoder retains the bounded-replay mathematical explanation alongside the detailed block
 ok 162 - decoder retains the bounded-replay mathematical explanation alongside the detailed block
   ---
-  duration_ms: 15.575996
+  duration_ms: 15.450439
   type: 'test'
   ...
 # Subtest: CSA2 candidate selection distinguishes position scores, block maxima and final position selection
 ok 163 - CSA2 candidate selection distinguishes position scores, block maxima and final position selection
   ---
-  duration_ms: 2.113785
+  duration_ms: 2.183851
   type: 'test'
   ...
 # Subtest: mHC context preserves both state paths through attention, MoE and the model boundary
 ok 164 - mHC context preserves both state paths through attention, MoE and the model boundary
   ---
-  duration_ms: 3.127794
+  duration_ms: 3.086528
   type: 'test'
   ...
 # Subtest: CED serving displays the complete logical state breakdown with scoped formulas
 ok 165 - CED serving displays the complete logical state breakdown with scoped formulas
   ---
-  duration_ms: 17.931941
+  duration_ms: 18.124046
   type: 'test'
   ...
 # Subtest: CED serving phase selects inspection with the participating depth and active scope
 ok 166 - CED serving phase selects inspection with the participating depth and active scope
   ---
-  duration_ms: 1.557848
+  duration_ms: 1.523647
   type: 'test'
   ...
 # Subtest: serving geometry remains valid for all models, phases and ownership modes
 ok 167 - serving geometry remains valid for all models, phases and ownership modes
   ---
-  duration_ms: 9.29574
+  duration_ms: 9.157879
   type: 'test'
   ...
 # Subtest: CED phase depth does not claim the pinned reference implements encoder-only prefill
 ok 168 - CED phase depth does not claim the pinned reference implements encoder-only prefill
   ---
-  duration_ms: 0.565701
+  duration_ms: 0.525773
   type: 'test'
   ...
 # Subtest: CED serving separates reported phase accounting from opt-in framework replay
 ok 169 - CED serving separates reported phase accounting from opt-in framework replay
   ---
-  duration_ms: 0.667643
+  duration_ms: 0.634752
   type: 'test'
   ...
 # Subtest: SGLang indexer packing reconciles complete-pair KV payload without claiming allocated memory
 ok 170 - SGLang indexer packing reconciles complete-pair KV payload without claiming allocated memory
   ---
-  duration_ms: 0.840081
+  duration_ms: 0.789499
   type: 'test'
   ...
 # Subtest: portable build rejects changed Python sources and changed trace results
 ok 171 - portable build rejects changed Python sources and changed trace results
   ---
-  duration_ms: 30.952345
+  duration_ms: 29.115057
   type: 'test'
   ...
 # Subtest: workspace URL fields retain safe identities and reject markup or unsupported panels
 ok 172 - workspace URL fields retain safe identities and reject markup or unsupported panels
   ---
-  duration_ms: 1.604947
+  duration_ms: 1.585956
   type: 'test'
   ...
 # Subtest: CSA2 reindex connects its exact operation to selection Python and CPU fixture
 ok 173 - CSA2 reindex connects its exact operation to selection Python and CPU fixture
   ---
-  duration_ms: 16.892745
+  duration_ms: 16.905044
   type: 'test'
   ...
 # Subtest: wrong models and system views cannot inherit Python or worked support
 ok 174 - wrong models and system views cannot inherit Python or worked support
   ---
-  duration_ms: 4.184256
+  duration_ms: 3.934904
   type: 'test'
   ...
 # Subtest: invalid node and panel IDs recover to actual scene records
 ok 175 - invalid node and panel IDs recover to actual scene records
   ---
-  duration_ms: 0.842521
+  duration_ms: 0.842382
   type: 'test'
   ...
 # Subtest: exact node wins over module family and fallback identity remains node-specific
 ok 176 - exact node wins over module family and fallback identity remains node-specific
   ---
-  duration_ms: 0.833979
+  duration_ms: 0.852197
   type: 'test'
   ...
 # Subtest: structured metadata only contains original scene records and original explanations
 ok 177 - structured metadata only contains original scene records and original explanations
   ---
-  duration_ms: 1.564294
+  duration_ms: 1.520115
   type: 'test'
   ...
 # Subtest: unclassified nodes cannot gain implementation by impersonating an example ID
 ok 178 - unclassified nodes cannot gain implementation by impersonating an example ID
   ---
-  duration_ms: 0.148083
+  duration_ms: 0.176486
   type: 'test'
   ...
 # Subtest: explicit module stages preserve operation selection and the canonical example
 ok 179 - explicit module stages preserve operation selection and the canonical example
   ---
-  duration_ms: 0.904993
+  duration_ms: 0.923985
   type: 'test'
   ...
 # Subtest: related module mathematics enables reindex maths without inventing its formula
 ok 180 - related module mathematics enables reindex maths without inventing its formula
   ---
-  duration_ms: 0.701021
+  duration_ms: 0.722889
   type: 'test'
   ...
 # Subtest: retained input classification never claims that state was reused
 ok 181 - retained input classification never claims that state was reused
   ---
-  duration_ms: 0.391266
+  duration_ms: 0.384416
   type: 'test'
   ...
 # Subtest: CPU fixture selection is bounded to the selected module
 ok 182 - CPU fixture selection is bounded to the selected module
   ---
-  duration_ms: 0.973348
+  duration_ms: 0.966689
   type: 'test'
   ...
 # Subtest: actual residual, vision and Pro operations map only to matching implementations
 ok 183 - actual residual, vision and Pro operations map only to matching implementations
   ---
-  duration_ms: 3.39734
+  duration_ms: 3.471344
   type: 'test'
   ...
 # Subtest: CPU step navigation validates fixture and row identity against saved tensors
 ok 184 - CPU step navigation validates fixture and row identity against saved tensors
   ---
-  duration_ms: 0.755171
+  duration_ms: 0.729877
   type: 'test'
   ...
 1..184
@@ -1115,4 +1115,4 @@ ok 184 - CPU step navigation validates fixture and row identity against saved te
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 677.484221
+# duration_ms 675.514133
