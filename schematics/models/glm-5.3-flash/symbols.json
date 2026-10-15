@@ -1,0 +1,1056 @@
+{
+  "reference": {
+    "Glm5NextForConditionalGeneration": [
+      2133,
+      2368
+    ],
+    "Glm5NextForConditionalGeneration.__init__": [
+      2143,
+      2151
+    ],
+    "Glm5NextForConditionalGeneration._expand_multimodal_outputs": [
+      2283,
+      2335
+    ],
+    "Glm5NextForConditionalGeneration._expand_multimodal_outputs.repeat_tensor_or_list": [
+      2291,
+      2335
+    ],
+    "Glm5NextForConditionalGeneration.create_masks_for_generate": [
+      2338,
+      2368
+    ],
+    "Glm5NextForConditionalGeneration.forward": [
+      2181,
+      2281
+    ],
+    "Glm5NextForConditionalGeneration.get_image_features": [
+      2167,
+      2177
+    ],
+    "Glm5NextForConditionalGeneration.get_video_features": [
+      2154,
+      2164
+    ],
+    "Glm5NextModel": [
+      1880,
+      2060
+    ],
+    "Glm5NextModel.__init__": [
+      1886,
+      1892
+    ],
+    "Glm5NextModel.forward": [
+      1988,
+      2060
+    ],
+    "Glm5NextModel.get_image_features": [
+      1921,
+      1932
+    ],
+    "Glm5NextModel.get_placeholder_mask": [
+      1934,
+      1984
+    ],
+    "Glm5NextModel.get_video_features": [
+      1897,
+      1916
+    ],
+    "Glm5NextPreTrainedModel": [
+      1352,
+      1423
+    ],
+    "Glm5NextPreTrainedModel._init_weights": [
+      1381,
+      1423
+    ],
+    "Glm5NextRMSNorm": [
+      1557,
+      1574
+    ],
+    "Glm5NextRMSNorm.__init__": [
+      1558,
+      1564
+    ],
+    "Glm5NextRMSNorm.extra_repr": [
+      1573,
+      1574
+    ],
+    "Glm5NextRMSNorm.forward": [
+      1566,
+      1571
+    ],
+    "Glm5NextTextAttention": [
+      1100,
+      1275
+    ],
+    "Glm5NextTextAttention.__init__": [
+      1109,
+      1153
+    ],
+    "Glm5NextTextAttention.build_attention_mask_from_topk": [
+      1237,
+      1275
+    ],
+    "Glm5NextTextAttention.expand_kv": [
+      1155,
+      1172
+    ],
+    "Glm5NextTextAttention.forward": [
+      1174,
+      1235
+    ],
+    "Glm5NextTextDecoderLayer": [
+      1278,
+      1348
+    ],
+    "Glm5NextTextDecoderLayer.__init__": [
+      1279,
+      1297
+    ],
+    "Glm5NextTextDecoderLayer.forward": [
+      1299,
+      1348
+    ],
+    "Glm5NextTextExperts": [
+      107,
+      141
+    ],
+    "Glm5NextTextExperts.__init__": [
+      110,
+      117
+    ],
+    "Glm5NextTextExperts._apply_gate": [
+      136,
+      141
+    ],
+    "Glm5NextTextExperts.forward": [
+      119,
+      134
+    ],
+    "Glm5NextTextForgetGate": [
+      339,
+      372
+    ],
+    "Glm5NextTextForgetGate.__init__": [
+      340,
+      351
+    ],
+    "Glm5NextTextForgetGate.forward": [
+      353,
+      372
+    ],
+    "Glm5NextTextHyperConnection": [
+      218,
+      329
+    ],
+    "Glm5NextTextHyperConnection.__init__": [
+      271,
+      283
+    ],
+    "Glm5NextTextHyperConnection.forward": [
+      285,
+      329
+    ],
+    "Glm5NextTextHyperHead": [
+      332,
+      336
+    ],
+    "Glm5NextTextHyperHead.forward": [
+      335,
+      336
+    ],
+    "Glm5NextTextIndexer": [
+      772,
+      1060
+    ],
+    "Glm5NextTextIndexer.__init__": [
+      785,
+      807
+    ],
+    "Glm5NextTextIndexer.append_visible_tail": [
+      1010,
+      1060
+    ],
+    "Glm5NextTextIndexer.forward": [
+      810,
+      913
+    ],
+    "Glm5NextTextIndexer.get_pooled_states": [
+      935,
+      1008
+    ],
+    "Glm5NextTextIndexer.get_visible_tokens": [
+      915,
+      933
+    ],
+    "Glm5NextTextLinearAttention": [
+      620,
+      769
+    ],
+    "Glm5NextTextLinearAttention.__init__": [
+      623,
+      661
+    ],
+    "Glm5NextTextLinearAttention.forward": [
+      664,
+      769
+    ],
+    "Glm5NextTextMLP": [
+      85,
+      103
+    ],
+    "Glm5NextTextMLP.__init__": [
+      86,
+      95
+    ],
+    "Glm5NextTextMLP.forward": [
+      97,
+      103
+    ],
+    "Glm5NextTextMoE": [
+      185,
+      206
+    ],
+    "Glm5NextTextMoE.__init__": [
+      190,
+      197
+    ],
+    "Glm5NextTextMoE.forward": [
+      199,
+      206
+    ],
+    "Glm5NextTextModel": [
+      1425,
+      1510
+    ],
+    "Glm5NextTextModel.__init__": [
+      1428,
+      1442
+    ],
+    "Glm5NextTextModel.forward": [
+      1447,
+      1510
+    ],
+    "Glm5NextTextRMSNorm": [
+      65,
+      82
+    ],
+    "Glm5NextTextRMSNorm.__init__": [
+      66,
+      72
+    ],
+    "Glm5NextTextRMSNorm.extra_repr": [
+      81,
+      82
+    ],
+    "Glm5NextTextRMSNorm.forward": [
+      74,
+      79
+    ],
+    "Glm5NextTextRMSNormGated": [
+      374,
+      393
+    ],
+    "Glm5NextTextRMSNormGated.__init__": [
+      375,
+      379
+    ],
+    "Glm5NextTextRMSNormGated.forward": [
+      381,
+      393
+    ],
+    "Glm5NextTextTopkRouter": [
+      144,
+      182
+    ],
+    "Glm5NextTextTopkRouter.__init__": [
+      145,
+      155
+    ],
+    "Glm5NextTextTopkRouter.forward": [
+      157,
+      182
+    ],
+    "Glm5NextTextUnweightedRMSNorm": [
+      209,
+      215
+    ],
+    "Glm5NextTextUnweightedRMSNorm.__init__": [
+      210,
+      212
+    ],
+    "Glm5NextTextUnweightedRMSNorm.forward": [
+      214,
+      215
+    ],
+    "Glm5NextVisionAttention": [
+      1598,
+      1683
+    ],
+    "Glm5NextVisionAttention.__init__": [
+      1599,
+      1612
+    ],
+    "Glm5NextVisionAttention.forward": [
+      1614,
+      1683
+    ],
+    "Glm5NextVisionBlock": [
+      1686,
+      1713
+    ],
+    "Glm5NextVisionBlock.__init__": [
+      1687,
+      1692
+    ],
+    "Glm5NextVisionBlock.forward": [
+      1695,
+      1713
+    ],
+    "Glm5NextVisionMLP": [
+      1513,
+      1530
+    ],
+    "Glm5NextVisionMLP.__init__": [
+      1514,
+      1522
+    ],
+    "Glm5NextVisionMLP.forward": [
+      1524,
+      1530
+    ],
+    "Glm5NextVisionModel": [
+      1798,
+      1876
+    ],
+    "Glm5NextVisionModel.__init__": [
+      1807,
+      1830
+    ],
+    "Glm5NextVisionModel.forward": [
+      1835,
+      1876
+    ],
+    "Glm5NextVisionPatchEmbed": [
+      1716,
+      1733
+    ],
+    "Glm5NextVisionPatchEmbed.__init__": [
+      1717,
+      1725
+    ],
+    "Glm5NextVisionPatchEmbed.forward": [
+      1727,
+      1733
+    ],
+    "Glm5NextVisionPatchMerger": [
+      1533,
+      1553
+    ],
+    "Glm5NextVisionPatchMerger.__init__": [
+      1534,
+      1543
+    ],
+    "Glm5NextVisionPatchMerger.forward": [
+      1545,
+      1553
+    ],
+    "Glm5NextVisionRotaryEmbedding": [
+      1736,
+      1794
+    ],
+    "Glm5NextVisionRotaryEmbedding.__init__": [
+      1743,
+      1754
+    ],
+    "Glm5NextVisionRotaryEmbedding.compute_axial_rope_parameters": [
+      1757,
+      1775
+    ],
+    "Glm5NextVisionRotaryEmbedding.forward": [
+      1778,
+      1786
+    ],
+    "Glm5NextVisionRotaryEmbedding.recomposition_frequencies": [
+      1788,
+      1794
+    ],
+    "_apply_gate": [
+      136,
+      141
+    ],
+    "_expand_multimodal_outputs": [
+      2283,
+      2335
+    ],
+    "_init_weights": [
+      1381,
+      1423
+    ],
+    "append_visible_tail": [
+      1010,
+      1060
+    ],
+    "apply_mask_to_padding_states": [
+      396,
+      405
+    ],
+    "apply_rotary_pos_emb_vision": [
+      1584,
+      1595
+    ],
+    "build_attention_mask_from_topk": [
+      1237,
+      1275
+    ],
+    "causal_conv1d_fn": [
+      429,
+      448
+    ],
+    "causal_conv1d_update": [
+      409,
+      425
+    ],
+    "chunk_kimi_delta_attention": [
+      517,
+      614
+    ],
+    "compute_axial_rope_parameters": [
+      1757,
+      1775
+    ],
+    "create_masks_for_generate": [
+      2338,
+      2368
+    ],
+    "eager_attention_forward": [
+      1075,
+      1097
+    ],
+    "expand_kv": [
+      1155,
+      1172
+    ],
+    "get_placeholder_mask": [
+      1934,
+      1984
+    ],
+    "get_pooled_states": [
+      935,
+      1008
+    ],
+    "get_visible_tokens": [
+      915,
+      933
+    ],
+    "l2norm": [
+      451,
+      459
+    ],
+    "load_balancing_loss_func": [
+      2063,
+      2129
+    ],
+    "load_balancing_loss_func.presented": [
+      2073,
+      2129
+    ],
+    "presented": [
+      2073,
+      2129
+    ],
+    "recomposition_frequencies": [
+      1788,
+      1794
+    ],
+    "recurrent_kimi_delta_attention": [
+      463,
+      513
+    ],
+    "repeat_kv": [
+      1063,
+      1072
+    ],
+    "repeat_tensor_or_list": [
+      2291,
+      2335
+    ],
+    "rotate_half": [
+      1577,
+      1581
+    ]
+  },
+  "reference_config": {
+    "Glm5NextConfig": [
+      268,
+      315
+    ],
+    "Glm5NextConfig.__post_init__": [
+      307,
+      315
+    ],
+    "Glm5NextTextConfig": [
+      29,
+      226
+    ],
+    "Glm5NextTextConfig.__post_init__": [
+      155,
+      204
+    ],
+    "Glm5NextTextConfig.validate_architecture": [
+      206,
+      226
+    ],
+    "Glm5NextVisionConfig": [
+      231,
+      263
+    ],
+    "validate_architecture": [
+      206,
+      226
+    ]
+  },
+  "serving": {
+    "Glm5NextDecoderLayer": [
+      345,
+      687
+    ],
+    "Glm5NextDecoderLayer.__init__": [
+      346,
+      516
+    ],
+    "Glm5NextDecoderLayer.forward": [
+      518,
+      623
+    ],
+    "Glm5NextDecoderLayer.hc_fused_post_pre": [
+      658,
+      687
+    ],
+    "Glm5NextDecoderLayer.hc_post": [
+      649,
+      656
+    ],
+    "Glm5NextDecoderLayer.hc_pre": [
+      625,
+      647
+    ],
+    "Glm5NextForCausalLM": [
+      1047,
+      1137
+    ],
+    "Glm5NextForCausalLM.__init__": [
+      1050,
+      1071
+    ],
+    "Glm5NextForCausalLM.compute_logits": [
+      1128,
+      1133
+    ],
+    "Glm5NextForCausalLM.embed_input_ids": [
+      1073,
+      1074
+    ],
+    "Glm5NextForCausalLM.forward": [
+      1076,
+      1087
+    ],
+    "Glm5NextForCausalLM.get_mamba_state_copy_func": [
+      1121,
+      1126
+    ],
+    "Glm5NextForCausalLM.get_mamba_state_dtype_from_config": [
+      1090,
+      1098
+    ],
+    "Glm5NextForCausalLM.get_mamba_state_shape_from_config": [
+      1101,
+      1118
+    ],
+    "Glm5NextForCausalLM.load_weights": [
+      1135,
+      1137
+    ],
+    "Glm5NextForConditionalGeneration": [
+      1145,
+      1279
+    ],
+    "Glm5NextForConditionalGeneration.__init__": [
+      1195,
+      1237
+    ],
+    "Glm5NextForConditionalGeneration.get_encoder_cudagraph_config": [
+      1274,
+      1279
+    ],
+    "Glm5NextForConditionalGeneration.get_mamba_state_copy_func": [
+      1190,
+      1193
+    ],
+    "Glm5NextForConditionalGeneration.get_mamba_state_dtype_from_config": [
+      1178,
+      1181
+    ],
+    "Glm5NextForConditionalGeneration.get_mamba_state_shape_from_config": [
+      1184,
+      1187
+    ],
+    "Glm5NextForConditionalGeneration.set_moe_parameters": [
+      1239,
+      1257
+    ],
+    "Glm5NextForConditionalGeneration.update_physical_experts_metadata": [
+      1259,
+      1272
+    ],
+    "Glm5NextMLP": [
+      156,
+      206
+    ],
+    "Glm5NextMLP.__init__": [
+      157,
+      200
+    ],
+    "Glm5NextMLP.forward": [
+      202,
+      206
+    ],
+    "Glm5NextMoE": [
+      209,
+      342
+    ],
+    "Glm5NextMoE.__init__": [
+      210,
+      315
+    ],
+    "Glm5NextMoE.forward": [
+      317,
+      342
+    ],
+    "Glm5NextModel": [
+      690,
+      1044
+    ],
+    "Glm5NextModel.__init__": [
+      691,
+      768
+    ],
+    "Glm5NextModel.__init__.get_layer": [
+      733,
+      768
+    ],
+    "Glm5NextModel._aux_hidden_state": [
+      773,
+      791
+    ],
+    "Glm5NextModel.embed_input_ids": [
+      770,
+      771
+    ],
+    "Glm5NextModel.forward": [
+      793,
+      857
+    ],
+    "Glm5NextModel.load_weights": [
+      859,
+      1044
+    ],
+    "_aux_hidden_state": [
+      773,
+      791
+    ],
+    "_dequant_fp8_block": [
+      1386,
+      1420
+    ],
+    "_fused_shared_expert_name": [
+      1349,
+      1353
+    ],
+    "_fused_shared_experts_tuned": [
+      1297,
+      1331
+    ],
+    "_is_kda_layer": [
+      130,
+      136
+    ],
+    "_is_linear_attn": [
+      139,
+      141
+    ],
+    "_is_moe": [
+      126,
+      127
+    ],
+    "_num_fused_shared_experts": [
+      1334,
+      1346
+    ],
+    "_try_load_fp8_attn_proj": [
+      1423,
+      1488
+    ],
+    "_try_load_fp8_indexer_wk": [
+      1356,
+      1383
+    ],
+    "_validate_supported_config": [
+      144,
+      153
+    ],
+    "compute_logits": [
+      1128,
+      1133
+    ],
+    "get_encoder_cudagraph_config": [
+      1274,
+      1279
+    ],
+    "get_layer": [
+      733,
+      768
+    ],
+    "get_spec_layer_idx_from_weight_name": [
+      1282,
+      1294
+    ],
+    "hc_fused_post_pre": [
+      658,
+      687
+    ],
+    "hc_post": [
+      649,
+      656
+    ],
+    "hc_pre": [
+      625,
+      647
+    ],
+    "set_moe_parameters": [
+      1239,
+      1257
+    ],
+    "update_physical_experts_metadata": [
+      1259,
+      1272
+    ]
+  },
+  "serving_attention": {
+    "Glm5NextIndexerCache": [
+      79,
+      122
+    ],
+    "Glm5NextIndexerCache.__init__": [
+      97,
+      110
+    ],
+    "Glm5NextIndexerCache.get_attn_backend": [
+      121,
+      122
+    ],
+    "Glm5NextIndexerCache.get_kv_cache_spec": [
+      112,
+      119
+    ],
+    "Glm5NextMLAAttention": [
+      385,
+      575
+    ],
+    "Glm5NextMLAAttention.__init__": [
+      386,
+      569
+    ],
+    "Glm5NextMLAAttention.forward": [
+      571,
+      575
+    ],
+    "Glm5NextTailCache": [
+      125,
+      184
+    ],
+    "Glm5NextTailCache.__init__": [
+      141,
+      154
+    ],
+    "Glm5NextTailCache.get_attn_backend": [
+      181,
+      184
+    ],
+    "Glm5NextTailCache.get_kv_cache_spec": [
+      156,
+      179
+    ],
+    "Indexer": [
+      187,
+      382
+    ],
+    "Indexer.__init__": [
+      188,
+      295
+    ],
+    "Indexer.forward": [
+      297,
+      382
+    ],
+    "_fused_indexer_k_norm": [
+      55,
+      59
+    ],
+    "_fused_indexer_weight_scale": [
+      63,
+      68
+    ],
+    "_pad_indexer_heads": [
+      72,
+      76
+    ]
+  },
+  "serving_indexer": {
+    "_build_decode_scatter_indices": [
+      13,
+      42
+    ],
+    "_decode_topk_seq_lens": [
+      72,
+      106
+    ],
+    "_fill_causal_indices": [
+      109,
+      113
+    ],
+    "_fill_short_decode_causal_indices": [
+      116,
+      129
+    ],
+    "_gather_workspace_shapes": [
+      132,
+      150
+    ],
+    "_scatter_decode_tokens_by_request": [
+      45,
+      69
+    ],
+    "kv_cache_as_quant_view": [
+      153,
+      170
+    ]
+  },
+  "serving_kda": {
+    "Glm5NextLinearAttention": [
+      163,
+      794
+    ],
+    "Glm5NextLinearAttention.__init__": [
+      204,
+      383
+    ],
+    "Glm5NextLinearAttention.__init__._a_log_weight_loader": [
+      328,
+      383
+    ],
+    "Glm5NextLinearAttention._flashkda_prefill": [
+      385,
+      451
+    ],
+    "Glm5NextLinearAttention._forward": [
+      502,
+      794
+    ],
+    "Glm5NextLinearAttention._forward._rearr": [
+      652,
+      794
+    ],
+    "Glm5NextLinearAttention._forward._w": [
+      560,
+      650
+    ],
+    "Glm5NextLinearAttention.forward": [
+      453,
+      499
+    ],
+    "Glm5NextLinearAttention.get_kv_cache_spec": [
+      168,
+      176
+    ],
+    "Glm5NextLinearAttention.get_state_dtype": [
+      178,
+      187
+    ],
+    "Glm5NextLinearAttention.get_state_shape": [
+      189,
+      202
+    ],
+    "_Glm5NextMergedColumnParallelLinear": [
+      64,
+      124
+    ],
+    "_Glm5NextMergedColumnParallelLinear.__init__": [
+      74,
+      86
+    ],
+    "_Glm5NextMergedColumnParallelLinear.weight_loader": [
+      88,
+      105
+    ],
+    "_Glm5NextMergedColumnParallelLinear.weight_loader_v2": [
+      107,
+      124
+    ],
+    "_a_log_weight_loader": [
+      328,
+      383
+    ],
+    "_cast_sigmoid": [
+      132,
+      134
+    ],
+    "_flashkda_prefill": [
+      385,
+      451
+    ],
+    "_forward": [
+      502,
+      794
+    ],
+    "_rearr": [
+      652,
+      794
+    ],
+    "_resolve_kda_prefill_backend": [
+      137,
+      160
+    ],
+    "_w": [
+      560,
+      650
+    ],
+    "forward": [
+      453,
+      499
+    ],
+    "get_kv_cache_spec": [
+      168,
+      176
+    ],
+    "get_state_dtype": [
+      178,
+      187
+    ],
+    "get_state_shape": [
+      189,
+      202
+    ],
+    "weight_loader": [
+      88,
+      105
+    ],
+    "weight_loader_v2": [
+      107,
+      124
+    ]
+  },
+  "serving_mtp": {
+    "Glm5NextMTP": [
+      216,
+      444
+    ],
+    "Glm5NextMTP.__init__": [
+      217,
+      227
+    ],
+    "Glm5NextMTP._rewrite_spec_layer_name": [
+      275,
+      298
+    ],
+    "Glm5NextMTP.compute_logits": [
+      259,
+      264
+    ],
+    "Glm5NextMTP.embed_input_ids": [
+      243,
+      244
+    ],
+    "Glm5NextMTP.forward": [
+      246,
+      257
+    ],
+    "Glm5NextMTP.get_top_tokens": [
+      266,
+      273
+    ],
+    "Glm5NextMTP.load_weights": [
+      300,
+      444
+    ],
+    "Glm5NextMTP.set_moe_parameters": [
+      229,
+      241
+    ],
+    "Glm5NextMultiTokenPredictor": [
+      119,
+      213
+    ],
+    "Glm5NextMultiTokenPredictor.__init__": [
+      120,
+      149
+    ],
+    "Glm5NextMultiTokenPredictor.compact_topk_indices": [
+      156,
+      162
+    ],
+    "Glm5NextMultiTokenPredictor.compute_logits": [
+      186,
+      196
+    ],
+    "Glm5NextMultiTokenPredictor.embed_input_ids": [
+      164,
+      165
+    ],
+    "Glm5NextMultiTokenPredictor.forward": [
+      167,
+      184
+    ],
+    "Glm5NextMultiTokenPredictor.get_top_tokens": [
+      198,
+      213
+    ],
+    "Glm5NextMultiTokenPredictor.set_skip_topk": [
+      151,
+      154
+    ],
+    "Glm5NextMultiTokenPredictorLayer": [
+      44,
+      116
+    ],
+    "Glm5NextMultiTokenPredictorLayer.__init__": [
+      45,
+      88
+    ],
+    "Glm5NextMultiTokenPredictorLayer.forward": [
+      90,
+      116
+    ],
+    "_rewrite_spec_layer_name": [
+      275,
+      298
+    ],
+    "compact_topk_indices": [
+      156,
+      162
+    ],
+    "load_weights": [
+      300,
+      444
+    ],
+    "set_moe_parameters": [
+      229,
+      241
+    ],
+    "set_skip_topk": [
+      151,
+      154
+    ]
+  }
+}

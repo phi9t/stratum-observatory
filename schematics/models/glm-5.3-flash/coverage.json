@@ -1,0 +1,87 @@
+{
+  "source": "reference",
+  "classes": {
+    "Glm5NextTextRMSNorm": {
+      "section": "block"
+    },
+    "Glm5NextTextMLP": {
+      "section": "experts"
+    },
+    "Glm5NextTextExperts": {
+      "section": "experts"
+    },
+    "Glm5NextTextTopkRouter": {
+      "section": "experts"
+    },
+    "Glm5NextTextMoE": {
+      "section": "experts"
+    },
+    "Glm5NextTextUnweightedRMSNorm": {
+      "section": "block"
+    },
+    "Glm5NextTextHyperConnection": {
+      "section": "block"
+    },
+    "Glm5NextTextHyperHead": {
+      "section": "block"
+    },
+    "Glm5NextTextForgetGate": {
+      "section": "kda"
+    },
+    "Glm5NextTextRMSNormGated": {
+      "section": "kda"
+    },
+    "Glm5NextTextLinearAttention": {
+      "section": "kda"
+    },
+    "Glm5NextTextIndexer": {
+      "section": "sparse"
+    },
+    "Glm5NextTextAttention": {
+      "section": "sparse"
+    },
+    "Glm5NextTextDecoderLayer": {
+      "section": "block"
+    },
+    "Glm5NextPreTrainedModel": {
+      "excluded": "Framework initialization, generation capability metadata and load-ignore rules; no tensor circuit unique to this checkpoint page."
+    },
+    "Glm5NextTextModel": {
+      "section": "overview"
+    },
+    "Glm5NextVisionMLP": {
+      "section": "weights"
+    },
+    "Glm5NextVisionPatchMerger": {
+      "section": "weights"
+    },
+    "Glm5NextRMSNorm": {
+      "section": "weights"
+    },
+    "Glm5NextVisionAttention": {
+      "section": "weights"
+    },
+    "Glm5NextVisionBlock": {
+      "section": "weights"
+    },
+    "Glm5NextVisionPatchEmbed": {
+      "section": "weights"
+    },
+    "Glm5NextVisionRotaryEmbedding": {
+      "section": "weights"
+    },
+    "Glm5NextVisionModel": {
+      "section": "weights"
+    },
+    "Glm5NextModel": {
+      "section": "overview"
+    },
+    "Glm5NextForConditionalGeneration": {
+      "section": "overview"
+    }
+  },
+  "serving": {
+    "source": "serving",
+    "notes": "vLLM validates the k-pool tail requirement, allocates a sparse top-k buffer with tail room rounded to 128 columns, stores compressed indexer states at one state per index_kpool tokens, keeps a raw tail cache for incomplete pools, fuses KDA projections/kernels, and fuses deferred mHC post/pre across adjacent layers. MTP serving can reuse top-k between draft iterations; base decoder layers do not reuse top-k for this checkpoint because every indexer_types entry is full."
+  }
+}

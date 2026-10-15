@@ -1,0 +1,72 @@
+{
+  "checkpoint": {
+    "repo": "zai-org/GLM-5.3-Flash-BF16",
+    "revision": "a5b45eb41df6402735dedc900be14a42e8d5e538"
+  },
+  "sources": [
+    {
+      "id": "config",
+      "kind": "hf",
+      "repo": "zai-org/GLM-5.3-Flash-BF16",
+      "revision": "a5b45eb41df6402735dedc900be14a42e8d5e538",
+      "path": "config.json",
+      "role": "config"
+    },
+    {
+      "id": "reference",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "revision": "e0eb2810ac1b2caf6d082f247d8d37162ecf67a0",
+      "path": "src/transformers/models/glm5_next/modeling_glm5_next.py",
+      "role": "reference"
+    },
+    {
+      "id": "reference_config",
+      "kind": "github",
+      "repo": "huggingface/transformers",
+      "revision": "e0eb2810ac1b2caf6d082f247d8d37162ecf67a0",
+      "path": "src/transformers/models/glm5_next/configuration_glm5_next.py",
+      "role": "extra"
+    },
+    {
+      "id": "serving",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "revision": "273a04964ed9d1e389c4a7cb9d660e8294782f8d",
+      "path": "vllm/models/glm5next/common/model.py",
+      "role": "serving"
+    },
+    {
+      "id": "serving_attention",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "revision": "273a04964ed9d1e389c4a7cb9d660e8294782f8d",
+      "path": "vllm/models/glm5next/common/attention.py",
+      "role": "extra"
+    },
+    {
+      "id": "serving_kda",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "revision": "273a04964ed9d1e389c4a7cb9d660e8294782f8d",
+      "path": "vllm/models/glm5next/common/kda.py",
+      "role": "extra"
+    },
+    {
+      "id": "serving_indexer",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "revision": "273a04964ed9d1e389c4a7cb9d660e8294782f8d",
+      "path": "vllm/models/glm5next/common/sparse_indexer.py",
+      "role": "extra"
+    },
+    {
+      "id": "serving_mtp",
+      "kind": "github",
+      "repo": "vllm-project/vllm",
+      "revision": "273a04964ed9d1e389c4a7cb9d660e8294782f8d",
+      "path": "vllm/models/glm5next/common/mtp.py",
+      "role": "extra"
+    }
+  ]
+}
